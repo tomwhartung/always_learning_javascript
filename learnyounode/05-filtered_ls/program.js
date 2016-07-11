@@ -29,14 +29,14 @@ function filterLs ( err, list ) {
 	if ( err ) {
 		console.log( 'Error: ' + err )
 	} else {
-		console.log( 'Found ' + list.length-1 + ' elements in the directory; extension = "' + extension + '"' );
+	//	console.log( 'Found ' + list.length-1 + ' elements in the directory; extension = "' + extension + '"' );
 		var dotExtension = '.' + extension;
 		for( index=0; index < list.length; index++ ) {
 			var dirElt = list[index];
 			var eltExtension = path.extname(dirElt);
-			console.log( 'Testing ' + dirElt + '; eltExtension = ' + eltExtension + '; extension = ' + extension );
+	//		console.log( 'Testing ' + dirElt + '; eltExtension = ' + eltExtension + '; extension = ' + extension );
 			if( eltExtension == dotExtension ) {
-				console.log( 'Matched: ' + dirElt );
+				console.log( dirElt );
 			}
 		}
 	}
