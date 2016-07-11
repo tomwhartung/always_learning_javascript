@@ -17,16 +17,28 @@
 //  The list of files should be printed to the console, one file per line. You  
 //  must use asynchronous I/O.  
 //
+var directory = process.argv[2];
+var extension = process.argv[3];
 
 var fs = require('fs')
+var path = require('path')
 
-fs.readdir( process.argv[2], filterLs );
+fs.readdir( directory, filterLs );
 
 function filterLs ( err, list ) {
 	if ( err ) {
 		console.log( 'Error: ' + err )
 	} else {
-		console.log( list.length-1 );
+		console.log( 'Found ' + list.length-1 + ' elements in the directory; extension = "' + extension + '"' );
+		var dotExtension = '.' + extension;
+		for( index=0; index < list.length; index++ ) {
+			var dirElt = list[index];
+			var eltExtension = path.extname(dirElt);
+			console.log( 'Testing ' + dirElt + '; eltExtension = ' + eltExtension + '; extension = ' + extension );
+			if( eltExtension == dotExtension ) {
+				console.log( 'Matched: ' + dirElt );
+			}
+		}
 	}
 }
 
