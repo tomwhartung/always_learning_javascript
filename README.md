@@ -10,7 +10,7 @@ The nodeschool site is at [nodeschool.io](http://nodeschool.io/).
 
 2. npm set prefix /usr  // stay out of my /usr/local/bin !
 
-3. npm install learnyounode -g
+3. sudo npm install learnyounode -g
 
 4. learnyounode
 
