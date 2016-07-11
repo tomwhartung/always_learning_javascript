@@ -8,10 +8,10 @@
 //  The full path to the file to read will be provided as the first  
 //  command-line argument.  
 //
-
+var filename = process.argv[2];
 var fs = require('fs')
 
-fs.readFile( process.argv[2], countLines );
+fs.readFile( filename, countLines );
 
 function countLines ( err, buffer ) {
 	if ( err ) {
