@@ -24,11 +24,14 @@ http.get( url3, getResponse3 );
 
 function getResponse1( response ) {
 	processResponse( response, 0 );
-	if( allDone() ) {
-		for( var index = 0; index < response.length; index++ ) {
-			console.log( response[index] );
-		}
-	}
+}
+
+function getResponse2( response ) {
+	processResponse( response, 1 );
+}
+
+function getResponse3( response ) {
+	processResponse( response, 2 );
 }
 
 function processResponse( response, index ) {
@@ -38,13 +41,14 @@ function processResponse( response, index ) {
 	})
 	response.on( "end", function () {
 		done[index] = true;
+		checkForCompletion();
 	})  
 }
 
-function allDone() {
+function checkForCompletion() {
 	if( done[0] && done[1] && done[2] ) {
-		return true;
-	} else {
-		return false;
+		console.log( response[0] );
+		console.log( response[1] );
+		console.log( response[2] );
 	}
 }
