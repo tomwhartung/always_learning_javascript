@@ -1,0 +1,120 @@
+
+Hello AngularJS I
+
+1. In app.js, we created a new module named myApp. A module contains the different components of an AngularJS app.
+
+2. Then, in index.html we added <body ng-app="myApp">. The ng-app is called a directive. It tells AngularJS that the myApp module will live within the <body> element, termed the application's scope. In other words, we used the ng-app directive to define the application scope.
+
+3. In MainController.js we created a new controller named MainController. A controller manages the app's data. Here we use the property title to store a string, and attach it to $scope.
+
+4. Then, in index.html, we added <div class="main" ng-controller="MainController">. Like ng-app, ng-controller is a directive that defines the controller scope. This means that properties attached to $scope in MainController become available to use within <div class="main">.
+
+5. Inside <div class="main"> we accessed $scope.title using {{ title }}. This is called an expression. Expressions are used to display values on the page.
+
+6. The value of title showed up when we viewed the app in the browser.
+
+--
+
+Hello AngularJS II
+
+So far this is our typical workflow when making an AngularJS app:
+
+1. Create a module, and use ng-app in the view to define the application scope.
+2. Create a controller, and use ng-controller in the view to define the controller scope.
+3. Add data to $scope in the controller so they can be displayed with expressions in the view.
+
+--
+
+Workflow
+
+Well done! In the controller, you used an object to group together related data about a product. Then in the view, you used dot notation to display the values.
+
+--
+
+Filters I
+
+For the price, use a currency filter:
+
+   <p class="price">{{ product.price | currency }} </p>
+
+1. AngularJS gets the value of product.price.
+2. It sends this number into the currency filter. The pipe symbol (|) takes the output on the left and "pipes" it to the right.
+3. The filter outputs a formatted currency with the dollar sign and the correct decimal places.
+
+--
+
+Filters II
+
+More filters: date and uppercase
+
+--
+
+ng-repeat I
+
+Well done! You got both books in $scope.products to show up in the view. How does it work?
+
+1. In the controller, we used products to store an array containing two objects.
+2. Then in the view, we added <div ng-repeat="product in products">. Like ng-app and ng-controller, the ng-repeat is a directive. It loops through an array and displays each element. Here, the ng-repeat repeats all the HTML inside <div class="col-md-6"> for each element in the products array.
+
+In this way, ng-repeat shows both products in the $scope.products array. Instead of writing the same HTML twice as before, we just use ng-repeat to generate the HTML twice.
+
+--
+
+ng-repeat II
+
+Use the ng-src directive for images:
+
+    <img ng-src="{{ product.cover }}">
+
+--
+
+Directives
+
+Directives bind behavior to HTML elements. When the app runs, AngularJS walks through each HTML element looking for directives. When it finds one, AngularJS triggers that behavior (like attaching a scope or looping through an array).
+
+--
+
+ng-click I
+
+Add to MainController.js:
+	$scope.plusOne = function(index) {
+		$scope.products[index].likes += 1; 
+	}
+
+Add to index.html:
+	<div class="rating"> 
+		<p class="likes" ng-click="plusOne($index)">
+			+ {{ product.likes }}</p> 
+	</div>
+
+Great! Each time you click on the number of likes, the number goes up. How does it work?
+
+1. The ng-click is a directive. When <p class="likes"> is clicked, ng-click tells AngularJS to run the plusOne() function in the controller.
+2. The plusOne() function gets the index of the product that was clicked, and then adds one to that product's likes property.
+
+Notice that the plusOne() doesn't interact with the view at all; it just updates the controller. Any change made to the controller shows up in the view.
+
+--
+
+ng-click II
+
+
+Add to MainController.js:
+	$scope.minusOne = function(index) {
+		$scope.products[index].dislikes += 1; 
+	};
+
+Add to index.html:
+	<p class="dislikes" ng-click="plusOne($index)">
+		+ {{ product.dislikes }}</p> 
+
+--
+
+Generalizations
+
+expressions: in double-curly braces
+filters: perform simple transformations to text
+directives: link data and function in the controller to elements in the view
+changes in the controller automatically pushed to view (without reloading page)
+
+
