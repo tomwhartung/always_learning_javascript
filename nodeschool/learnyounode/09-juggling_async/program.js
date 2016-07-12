@@ -15,7 +15,7 @@ var http = require('http')
 var url1 = process.argv[2];
 var url2 = process.argv[3];
 var url3 = process.argv[4];
-var response = [ '', '', '' ];
+var content = [ '', '', '' ];
 var done = [ false, false, false ];
 
 http.get( url1, getResponse1 );
@@ -37,7 +37,7 @@ function getResponse3( response ) {
 function processResponse( response, index ) {
 	response.setEncoding( "utf8" );
 	response.on( "data", function (data) {
-		response[index] += data;
+		content[index] += data;
 	})
 	response.on( "end", function () {
 		done[index] = true;
@@ -47,8 +47,8 @@ function processResponse( response, index ) {
 
 function checkForCompletion() {
 	if( done[0] && done[1] && done[2] ) {
-		console.log( response[0] );
-		console.log( response[1] );
-		console.log( response[2] );
+		console.log( content[0] );
+		console.log( content[1] );
+		console.log( content[2] );
 	}
 }
