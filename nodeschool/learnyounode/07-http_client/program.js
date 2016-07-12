@@ -12,12 +12,8 @@ http.get( urlToGet, processResponse );
 
 function processResponse ( response ) {
 	response.setEncoding( "utf8" );
-	console.log( 'Processing Response' );
 	response.on( "data", function (data) {
-		console.log( typeof data );
+		console.log( data );
 	})  
-
-	{
-	}
 }
 
