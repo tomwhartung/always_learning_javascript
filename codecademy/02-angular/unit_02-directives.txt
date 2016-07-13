@@ -1,0 +1,150 @@
+
+Directives I
+
+Add new js/directives/appInfo.js (and include in index.html):
+
+app.directive('appInfo', function() { 
+  return { 
+    restrict: 'E',   // 'E' for element
+    scope: {
+      info: '='      // look for "info=..."
+    }, 
+    templateUrl: 'js/directives/appInfo.html' 
+  }; 
+});
+
+Add new js/directives/appInfo.html :
+
+<img class="icon" ng-src="{{ info.icon }}"> 
+<h2 class="title">{{ info.title }}</h2> 
+<p class="developer">{{ info.developer }}</p> 
+<p class="price">{{ info.price | currency }}</p>
+
+Update index.html to use the new directive:
+
+<div class="card">
+	<app-info info="move"></app-info>
+</div>
+
+--
+
+Directives II
+
+We wrote code to teach the browser a new HTML element <app-info>, and used it in the view to display each app's details.
+
+First in js/directives/appInfo.js, we made a new directive. We used app.directive to create a new directive named 'appInfo'. It returns an object with three options:
+
+1. "restrict" specifies how the directive will be used in the view. The 'E' means it will be used as a new HTML element.
+
+2. "scope" specifies that we will pass information into this directive through an attribute named info.
+   The = tells the directive to look for an attribute named info in the <app-info> element, like this:
+
+     <app-info info="shutterbugg"></app-info>
+
+    The data in info becomes available to use in the template given by templateURL.
+
+3. "templateUrl" specifies the HTML to use in order to display the data in scope.info.
+   Here we use the HTML in js/directives/appInfo.html.
+
+Looking at js/directives/appInfo.html, we define the HTML to display details about an app, like its title and price.
+We use expressions and filters to display the data.
+
+--
+
+Directives III
+
+Why is creating your own directives useful?
+
+o Readability. Directives let you write expressive HTML. Looking at index.html you can understand the app's behavior just by reading the HTML.
+o Reusability. Directives let you create self-contained units of functionality. We could easily plug in this directive into another AngularJS app and avoid writing a lot of repetitive HTML.
+
+<div class="card">
+	<app-info info="forecast"></app-info>
+</div>
+
+
+--
+
+Built-in and Custom Directives
+
+1. Add data to controller:
+  $scope.apps = [ 
+  { 
+    icon: 'img/move.jpg', 
+    title: 'MOVE', 
+    developer: 'MOVE, Inc.', 
+    price: 0.99 
+  }, 
+  { 
+    icon: 'img/shutterbugg.jpg', 
+    title: 'Shutterbugg', 
+    developer: 'Chico Dusty', 
+    price: 2.99 
+  },
+  ....
+
+2. Replace individual cards with one that uses ng-repeat
+
+   <div class="card" ng-repeat="app in apps">
+      <app-info info="app"></app-info>
+   </div>
+
+--
+
+InstallApp I
+
+New Directive:
+
+app.directive('installApp', function() {
+	return {
+		restrict: 'E',   // 'E' for element
+		scope: { },
+		templateUrl: 'js/directives/installApp.html',
+		link: function(scope, element, attrs) {
+			scope.buttonText = "Install",
+			scope.installed = false,
+			scope.download = function() { 
+				element.toggleClass('btn-active'); 
+				if(scope.installed) {
+					scope.buttonText = "Install";
+					scope.installed = false;
+				} else {
+					scope.buttonText = "Uninstall";
+					scope.installed = true;
+				} 
+			}
+		}
+	};
+});
+
+--
+
+InstallApp II
+
+Adding js/directives/installApp.html :
+
+<button class="btn btn-active" ng-click="download()"> 
+  {{ buttonText }} 
+</button>
+
+--
+
+InstallApp III
+
+Add to index.html:
+
+<div class="main" ng-controller="MainController">
+  <div class="container">
+    <div class="card" ng-repeat="app in apps">
+      <app-info info="app"></app-info>
+      <install-app> </install-app>
+    </div>
+  </div>
+</div>
+
+--
+
+Generalizations
+
+    Directives are a powerful way to create self-contained, interactive components. Unlike jQuery which adds interactivity as a layer on top of HTML, AngularJS treats interactivity as a native component of HTML.
+
