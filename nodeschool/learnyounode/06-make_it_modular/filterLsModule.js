@@ -20,10 +20,59 @@ var fs = require('fs')
 var path = require('path')
 
 module.exports = function (directory, extension, filterLsCallback ) {
-//	fs.readdir( directory, filterLs );
 	console.log( 'Hi from the exports function in filterLsModule.js' );
-}  
+	fs.readdir( directory, function( err, list ) {   // filterLsModule as a callback fcn
+		console.log( 'do filterLsModule stuff here' );
+		if ( err ) {
+			console.log( 'Error: ' + err )
+		} else {
+			console.log( 'typeof list = ' + typeof list );
+			console.log( 'list instanceof Array = ' + list instanceof Array );
+			console.log( 'Found ' + list.length-1 + ' elements in the directory; extension = "' + extension + '"' );
+// 		var dotExtension = '.' + extension;
+// 		for( index=0; index < list.length; index++ ) {
+// 			var dirElt = list[index];
+// 			var eltExtension = path.extname(dirElt);
+// 	//		console.log( 'Testing ' + dirElt + '; eltExtension = ' + eltExtension + '; extension = ' + extension );
+// 			if( eltExtension == dotExtension ) {
+// 				console.log( dirElt );
+// 			}
+//			}
+		}
+	});
+}
 
+// function filterLsModule ( err, list ) {
+// 	if ( err ) {
+// 		console.log( 'Error: ' + err )
+// 	} else {
+// 	//	console.log( 'Found ' + list.length-1 + ' elements in the directory; extension = "' + extension + '"' );
+// 		var dotExtension = '.' + extension;
+// 		for( index=0; index < list.length; index++ ) {
+// 			var dirElt = list[index];
+// 			var eltExtension = path.extname(dirElt);
+// 	//		console.log( 'Testing ' + dirElt + '; eltExtension = ' + eltExtension + '; extension = ' + extension );
+// 			if( eltExtension == dotExtension ) {
+// 				console.log( dirElt );
+// 			}
+// 		}
+// 	}
+// }
+
+//
+// ??????????????????????
+// This is rather confusing to me.  It is hard to take baby steps and maintain confidence with so much going on here.
+//
+// It's like every thing here is a call back function, could you maybe be a bit more specific???
+//
+// 1. "foo(function (err, data) {" that foo looks out of place (either that or the "function") I suspect a typoe!
+// 2. "callback" in this context refers to which one
+// 3. I suspect that the code below is the patter we want to use in this module and
+//    that "callback" refers to what we are trying to do with filterLsCallback in program.js
+//
+// Sorry but I do not have infinite time to play around with this right now.
+// Going to let this sink in a bit and maybe ask for help later.
+// ??????????????????????
 //
 //  Also keep in mind that it is idiomatic to check for errors and do
 //  early-returns within callback functions:
@@ -40,21 +89,4 @@ module.exports = function (directory, extension, filterLsCallback ) {
 //         callback(null, data)
 //       })
 //     }
-
-// function filterLs ( err, list ) {
-// 	if ( err ) {
-// 		console.log( 'Error: ' + err )
-// 	} else {
-// 	//	console.log( 'Found ' + list.length-1 + ' elements in the directory; extension = "' + extension + '"' );
-// 		var dotExtension = '.' + extension;
-// 		for( index=0; index < list.length; index++ ) {
-// 			var dirElt = list[index];
-// 			var eltExtension = path.extname(dirElt);
-// 	//		console.log( 'Testing ' + dirElt + '; eltExtension = ' + eltExtension + '; extension = ' + extension );
-// 			if( eltExtension == dotExtension ) {
-// 				console.log( dirElt );
-// 			}
-// 		}
-// 	}
-// }
 

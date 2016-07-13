@@ -49,7 +49,9 @@ var extension = process.argv[3];
 var filterLsModule = require( './filterLsModule' );
 
 console.log( 'Calling filterLsModule...' );
+
 filterLsModule( directory, extension, filterLsCallback );
+
 console.log( '... called filterLsModule.' );
 
 function filterLsCallback ( err, list ) {
