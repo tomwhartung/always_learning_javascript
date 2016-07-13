@@ -1,0 +1,87 @@
+
+1. Why Sass?
+
+2. Compiling Sass - here's the command:
+
+sass main.scss main.css
+
+--
+
+3. Sass Overview
+
+4. Nesting Selectors
+
+Has the same effect as specifying nested elements
+
+/* Example: */
+.parent {
+  color: blue;
+  .child {
+    font-size: 12px;
+  }
+}
+/* Compiles to: */
+.parent {
+  color: blue;
+}
+.parent .child {
+    font-size: 12px;
+}
+
+--
+
+5. Nesting Properties
+
+/* Example: */
+.parent {
+  font : {
+    family: Roboto, sans-serif;
+    size: 12px;
+    decoration: none;
+  }
+}
+/* Compiles to: */
+.parent {
+  font-family: Roboto, sans-serif;
+  font-size: 12px;
+  font-decoration: none;
+}
+
+--
+
+6. Variables in Sass
+
+In Sass, $ is used to define and reference a variable:
+
+$translucent-white: rgba(255,255,255,0.3);
+
+--
+
+7. Sass(y) Types
+
+* Colors
+  $translucent-white: rgba(255,255,255,0.3);
+
+* Numbers
+  $icon-square-length: 300px;
+
+* Strings
+* Booleans
+* null
+
+--
+
+8. Maps & Lists
+
+* Lists: separated by either spaces or commas
+  $standard-border: 4px solid black;
+
+* Maps: Key-value pairs
+  (key1: value1, key2: value2);
+
+--
+
+9. Generalizations
+
+Nesting, Variables, Data Types
+
