@@ -14,3 +14,11 @@ The nodeschool site is at [nodeschool.io](http://nodeschool.io/).
 
 4. learnyounode
 
+## scope-chains-closures Setup
+
+1. Install node and npm, and set the npm prefix (see learnyounode setup above)
+
+2. sudo npm install -g scope-chains-closures
+
+3. scope-chains-closures
+
