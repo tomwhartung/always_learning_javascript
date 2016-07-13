@@ -1,0 +1,74 @@
+
+Routing I
+
+Added to index.html :
+
+<div ng-view></div>
+
+Added to app.js :
+
+app.config(function ($routeProvider) { 
+  $routeProvider 
+    .when('/', { 
+      controller: 'HomeController', 
+      templateUrl: 'views/home.html' 
+    }) 
+    .otherwise({ 
+      redirectTo: '/' 
+    }); 
+});
+
+--
+
+Routing II
+//
+// controller uses service (js/services/photos.js) to get json for page
+// Injects home.html (which uses ng-repeat to include photos.html) into the ng-view div in index.html
+// From app.js :
+//
+  $routeProvider 
+    .when('/', { 
+      controller: 'HomeController', 
+      templateUrl: 'views/home.html' 
+    }) 
+
+Added to app.js :
+
+.when('/photos/:id', {
+	controller: 'PhotoController',
+	templateUrl: 'views/photo.html'    
+})
+
+--
+
+Routing III
+
+Updated photo.html :
+
+<div class="photo">
+  <div class="container">
+    <img ng-src="{{ detail.url }}">
+    <h2 class="photo-title">{{ detail.title }}</h2>
+    <p class="photo-author">{{ detail.author }}</p>
+    <p class="photo-views">{{ detail.views | number }}</p>
+    <p class="photo-upvotes">{{ detail.upvotes | number }}</p>
+    <p class="photo-pubdate">{{ detail.pubdate | date }}</p>
+  </div>
+</div>
+//
+// Note that in js/controllers/PhotoController.js we assign the data for the specified id to "detail"
+//
+app.controller('PhotoController', ['$scope', 'photos', '$routeParams', function($scope, photos, $routeParams) {
+  photos.success(function(data) {
+    $scope.detail = data[$routeParams.id];
+  });
+}]);
+
+--
+
+Generalizations
+
+Routes let us map URLs to self-contained controllers and templates.
+
+They are a way to manage apps that contain multiple views (templates).
+
