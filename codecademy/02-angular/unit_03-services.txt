@@ -1,0 +1,110 @@
+
+Services I
+
+js/services/forecast.js :
+
+app.factory('forecast', ['$http', function($http) {
+	return $http.get('https://s3.amazonaws.com/codecademy-content/courses/ltp4/forecast-api/forecast.json') 
+		.success(function(data) { 
+		return data; 
+	}) 
+	.error(function(err) { 
+		return err; 
+	}); 
+}]);
+
+js/controllers/MainController.js :
+
+Was giving an error but then worked???
+app.controller('MainController', ['$scope', 'forecast', function($scope, forecast) { 
+	forecast.success( function(data) {
+    $scope.fiveDay = data;
+  });
+}]);
+
+Works:
+app.controller('MainController', ['$scope', 'forecast', function($scope, forecast) { 
+	forecast.success( function(data) { 
+		$scope.fiveDay = data; 
+	});
+}]);
+
+--
+
+Services II
+
+//
+// js/services/forecast.js :
+// bring in angular's built-in http and make it available to the service
+// construct HTTP GET request, which may succeed or fail
+//
+app.factory('forecast', ['$http', function($http) {
+	return $http.get('https://s3.amazonaws.com/codecademy-content/courses/ltp4/forecast-api/forecast.json') 
+....
+
+//
+// js/controllers/MainController.js :
+// calls the forecast service and (if successful) stores the data in $scope.fiveDay
+//
+app.controller('MainController', ['$scope', 'forecast', function($scope, forecast) { 
+	forecast.success( function(data) { 
+		$scope.fiveDay = data; 
+	});
+//
+// index.html - what I did that it did not like:
+//
+<div class="forecast" ng-repeat="day in fiveDay.days">
+	<div class="day row">
+		<!-- datetime -->
+		<div class="weekday col-xs-4">
+			{{ day.datetime | date:'EEE' }}
+		</div>
+		<!-- icon -->
+		<div class="weather col-xs-3">
+			<img ng-src="{{ day.icon }}">
+		</div>
+		<div class="col-xs-1"></div>
+			<!-- high -->
+		<div class="high col-xs-2">
+			{{ day.high }}
+		</div>
+		<!-- low -->
+		<div class="low col-xs-2">
+			{{ day.low }}
+		</div>
+	</div>
+</div>
+
+//
+// index.html - what they wanted to see:
+// (Note the <p> tags and &deg; entity characters)
+//
+<div class="forecast" ng-repeat="day in fiveDay.days">
+	<div class="day row">
+		<div class="weekday col-md-4">
+			<p>{{ day.datetime | date }}</p>
+		</div>
+		<div class="weather col-md-3">
+			<img ng-src="{{ day.icon }}">
+		</div>
+		<div class="weather col-md-1">
+		</div>
+		<div class="high col-md-2">
+			<p>{{ day.high }}&deg;</p>
+		</div>
+		<div class="low col-md-2">
+			<p>{{ day.low }}&deg;</p>
+		</div>
+	</div>
+</div>
+
+--
+
+Generalizations
+
+Services: reusable by other parts of the application
+
+* Use directives for UI components
+
+* Use services for communication logic
+
