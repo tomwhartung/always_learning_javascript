@@ -24,18 +24,18 @@ var portNum = process.argv[2];
 var server = net.createServer(function (socket) {  
 	var date = new Date();
 	var dateAndTime = date.getFullYear() + '-' +
-		formatDateElement(date.getMonth()) + '-' +
+		formatDateElement(date.getMonth()+1) + '-' +
 		formatDateElement(date.getDate()) + ' ' +
 		formatDateElement(date.getHours()) + ':' +
 		formatDateElement(date.getMinutes());
 
-	console.log( dateAndTime );
+//	console.log( dateAndTime );
 	socket.write( dateAndTime );
-	socket.write( "" );
+	socket.write( "\n" );
 	socket.end();
 });
 
-server.listen( portNum )  
+server.listen( portNum );
 
 /**
  * Assumes 1 or two digits in (e.g., month or hour)
@@ -45,3 +45,4 @@ function formatDateElement( dateDigit ) {
 	var paddedDigit = "00" + dateDigit;
 	return paddedDigit.substr( paddedDigit.length-2 );
 }
+
