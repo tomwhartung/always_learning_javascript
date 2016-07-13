@@ -22,3 +22,10 @@ The nodeschool site is at [nodeschool.io](http://nodeschool.io/).
 
 3. scope-chains-closures
 
+## learnyoureact Setup
+
+1. Install node and npm, and set the npm prefix (see learnyounode setup above)
+
+2. sudo npm install -g learnyoureact
+
+3. learnyoureact
