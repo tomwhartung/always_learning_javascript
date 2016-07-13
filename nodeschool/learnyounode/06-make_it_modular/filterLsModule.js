@@ -19,11 +19,27 @@
 var fs = require('fs')
 var path = require('path')
 
-module.exports = function (directory, extension, filterLs ) {
+module.exports = function (directory, extension, filterLsCallback ) {
 //	fs.readdir( directory, filterLs );
 	console.log( 'Hi from the exports function in filterLsModule.js' );
 }  
 
+//
+//  Also keep in mind that it is idiomatic to check for errors and do
+//  early-returns within callback functions:
+//
+//     function bar (callback) {
+//       foo(function (err, data) {
+//         if (err)
+//           return callback(err) // early return
+//
+//         // ... no error, continue doing cool things with `data`
+//
+//         // all went well, call callback with `null` for the error argument
+//
+//         callback(null, data)
+//       })
+//     }
 
 // function filterLs ( err, list ) {
 // 	if ( err ) {

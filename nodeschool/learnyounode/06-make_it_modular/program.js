@@ -49,25 +49,23 @@ var extension = process.argv[3];
 var filterLsModule = require( './filterLsModule' );
 
 console.log( 'Calling filterLsModule...' );
-filterLsModule ();
+filterLsModule( directory, extension, filterLsCallback );
 console.log( '... called filterLsModule.' );
 
-// fs.readdir( directory, filterLs );
-// 
-// function filterLs ( err, list ) {
-// 	if ( err ) {
-// 		console.log( 'Error: ' + err )
-// 	} else {
-// 	//	console.log( 'Found ' + list.length-1 + ' elements in the directory; extension = "' + extension + '"' );
-// 		var dotExtension = '.' + extension;
-// 		for( index=0; index < list.length; index++ ) {
-// 			var dirElt = list[index];
-// 			var eltExtension = path.extname(dirElt);
-// 	//		console.log( 'Testing ' + dirElt + '; eltExtension = ' + eltExtension + '; extension = ' + extension );
-// 			if( eltExtension == dotExtension ) {
-// 				console.log( dirElt );
-// 			}
-// 		}
-// 	}
-// }
+function filterLsCallback ( err, list ) {
+	if ( err ) {
+		console.log( 'Error: ' + err )
+	} else {
+		console.log( 'Found ' + list.length-1 + ' elements in the directory; extension = "' + extension + '"' );
+		var dotExtension = '.' + extension;
+		for( index=0; index < list.length; index++ ) {
+			var dirElt = list[index];
+			var eltExtension = path.extname(dirElt);
+			console.log( 'Testing ' + dirElt + '; eltExtension = ' + eltExtension + '; extension = ' + extension );
+			if( eltExtension == dotExtension ) {
+				console.log( dirElt );
+			}
+		}
+	}
+}
 
