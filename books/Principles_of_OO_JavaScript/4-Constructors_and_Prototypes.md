@@ -51,4 +51,15 @@ Person.prototype.sayName = function() {
 
 You do not want to do this with the data members, though, because then every Person object would have the same name!
 
+#### Changing Prototypes
+
+* You can change an object's prototype at any time (e.g., add a method or data member)
+
+* This change is reflected immediately in all objects that are derived from this prototype
+
+* Note that Object.seal() and Object.freeze() operate on the current instance only
+
+#### Built in Object Prototypes
+
+It is also possible to modify the prototypes of built in objects, Array, String, Function, etc.
 
