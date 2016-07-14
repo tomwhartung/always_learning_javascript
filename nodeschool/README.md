@@ -48,4 +48,4 @@ The nodeschool site is at [nodeschool.io](http://nodeschool.io/).
 
 2. sudo npm install -g currying-workshopper
 
-3. currying-workshopper
+3. curry
