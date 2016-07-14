@@ -41,3 +41,11 @@ The nodeschool site is at [nodeschool.io](http://nodeschool.io/).
 2. sudo npm install -g functional-javascript-workshop
 
 3. functional-javascript-workshop
+
+## currying-workshopper Setup
+
+1. Install node and npm, and set the npm prefix (see learnyounode setup above)
+
+2. sudo npm install -g currying-workshopper
+
+3. currying-workshopper
