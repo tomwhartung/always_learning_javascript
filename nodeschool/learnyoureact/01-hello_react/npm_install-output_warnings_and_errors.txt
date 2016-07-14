@@ -1,0 +1,27 @@
+tomh@bette: /var/www/learn/node_js/github/customizations/always_learning/nodeschool/learnyoureact/01-hello_react
+ $ sudo npm install --save react react-dom express body-parser express-react-views@0.9.0 babel@5.8.23
+npm WARN package.json 01-hello_react@1.0.0 No description
+npm WARN package.json 01-hello_react@1.0.0 No repository field.
+npm WARN package.json 01-hello_react@1.0.0 No README data
+npm WARN peerDependencies The peer dependency react@^0.14.0 included from express-react-views will no
+npm WARN peerDependencies longer be automatically installed to fulfill the peerDependency 
+npm WARN peerDependencies in npm 3+. Your application will need to depend on it explicitly.
+npm WARN peerDependencies The peer dependency react-dom@^0.14.0 included from express-react-views will no
+npm WARN peerDependencies longer be automatically installed to fulfill the peerDependency 
+npm WARN peerDependencies in npm 3+. Your application will need to depend on it explicitly.
+npm WARN optional dep failed, continuing fsevents@1.0.13
+npm WARN deprecated minimatch@2.0.10: Please update to minimatch 3.0.2 or higher to avoid a RegExp DoS issue
+npm WARN prefer global babel@5.8.23 should be installed with -g
+npm ERR! Linux 3.13.0-91-generic
+npm ERR! argv "/opt/node/bin/node" "/usr/local/bin/npm" "install" "--save" "react" "react-dom" "express" "body-parser" "express-react-views@0.9.0" "babel@5.8.23"
+npm ERR! node v4.2.3
+npm ERR! npm  v2.14.7
+npm ERR! code EPEERINVALID
+
+npm ERR! peerinvalid The package react-dom@15.2.1 does not satisfy its siblings' peerDependencies requirements!
+npm ERR! peerinvalid Peer express-react-views@0.9.0 wants react-dom@^0.14.0
+
+npm ERR! Please include the following file with any support request:
+npm ERR!     /var/www/learn/node_js/github/customizations/always_learning/nodeschool/learnyoureact/01-hello_react/npm-debug.log
+tomh@bette: /var/www/learn/node_js/github/customizations/always_learning/nodeschool/learnyoureact/01-hello_react
+ $
