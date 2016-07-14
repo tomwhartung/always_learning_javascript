@@ -29,3 +29,15 @@ The nodeschool site is at [nodeschool.io](http://nodeschool.io/).
 2. sudo npm install -g learnyoureact
 
 3. learnyoureact
+
+#### The first lesson (install) displayed errors (see learnyoureact/01-hello_react/npm_install-output_warnings_and_errors.txt) so I did not get very far with this.
+
+* Try again later!
+
+## functional-javascript-workshop Setup
+
+1. Install node and npm, and set the npm prefix (see learnyounode setup above)
+
+2. sudo npm install -g functional-javascript-workshop
+
+3. functional-javascript-workshop
