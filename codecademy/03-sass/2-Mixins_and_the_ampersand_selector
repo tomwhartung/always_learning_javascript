@@ -1,0 +1,125 @@
+
+1. The & Selector in Nesting
+
+/* Example - this: */
+.notecard { 
+  &:hover {
+      @include transform (rotatey(-180deg));  
+  }
+}
+/* Compiles to this: */
+.notecard:hover {
+  transform: rotatey(-180deg);
+}
+
+--
+
+2. What is a Mixin?
+
+In Sass, a mixin lets you make groups of CSS declarations that you want to reuse throughout your site.
+
+/* Example */
+@mixin backface-visibility {
+  backface-visibility: hidden;
+  -webkit-backface-visibility: hidden;
+  -moz-backface-visibility: hidden;
+  -ms-backface-visibility: hidden;
+  -o-backface-visibility: hidden;
+}
+/* Can be inserted anywhere with this: */
+@include backface_visibility;
+
+--
+
+3. Mixins: Arguments
+
+An argument, or parameter, is a value passed to the mixin that will be used inside the mixin, such as $visibility in this example:
+
+/* Example */
+@mixin backface-visibility($visibility) {
+  backface-visibility: $visibility;
+  -webkit-backface-visibility: $visibility;
+  -moz-backface-visibility: $visibility;
+  -ms-backface-visibility: $visibility;
+  -o-backface-visibility: $visibility;
+}
+/* Allows setting visibility dynamically like this: */
+@include backface-visibility(hidden);
+
+--
+
+4. Default Value Arguments
+
+A default value is assigned to the argument if no value is passed in when the mixin is included. Defining a default value for each argument is optional. 
+
+/* Example - use "hidden" as default when no visibility is specified */
+@mixin backface-visibility($visibility: hidden) {
+   backface-visibility: $visibility;
+  -webkit-backface-visibility: $visibility;
+  -moz-backface-visibility: $visibility;
+  -ms-backface-visibility: $visibility;
+  -o-backface-visibility: $visibility;
+}
+
+--
+
+5. Mixin Facts
+
+1. Mixins can take multiple arguments.
+
+2. Sass allows you to explicitly define each argument in your @include statement.
+
+3. When values are explicitly specified you can send them out of order.
+
+4. If a mixin definition has a combination of arguments with and without a default value, you should define the ones with no default value first.
+
+5. Mixins can be nested.
+
+/* Example */
+@mixin dashed-border($width, $color: #FFF) {
+  border: {
+     color: $color;
+     width: $width;
+     style: dashed;
+  }
+}
+span { //only passes non-default argument
+    @include dashed-border(3px);
+}
+p { //passes both arguments
+    @include dashed-border(3px, green);
+}
+div { //passes out of order but explicitly defined
+   @include dashed-border(color: purple, width: 5px); 
+}
+
+--
+
+6. List Arguments
+
+/* Example */
+/* Compiles to this: */
+
+--
+
+7. String Interpolation
+
+/* Example */
+/* Compiles to this: */
+
+--
+
+8. The & Selector in Mixins
+
+/* Example */
+/* Compiles to this: */
+
+--
+
+9. Generalizations
+
+/* Example */
+/* Compiles to this: */
+
+--
+
