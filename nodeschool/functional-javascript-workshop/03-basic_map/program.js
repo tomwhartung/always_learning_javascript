@@ -21,7 +21,12 @@
 // * numbers: An Array of 0 to 20 Integers between 0 and 9
 
 function doubleAll(numbers) {
-	// SOLUTION GOES HERE
+	var doubleMapp = new Array();
+	Array.prototype.map( function( currentValue, index, array ) {
+	//	return 2 * currentValue;
+		doubleMapp 2 * currentValue;
+	});
+	return doubleMapp;
 }
 
 module.exports = doubleAll
