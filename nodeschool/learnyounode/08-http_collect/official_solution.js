@@ -1,5 +1,5 @@
 /*
- * Here's the official solution in case you want to compare notes:  
+ * Here's the official solution in case you want to compare notes:
  *
  * As suspected, they use an anonymous "lambda" function
  *
@@ -9,16 +9,16 @@
  *     file:///usr/lib/node_modules/learnyounode/docs/bl.html
  *     file:///usr/lib/node_modules/learnyounode/docs/concat-stream.html
  */
-var http = require('http')  
-var bl = require('bl')  
+var http = require('http')
+var bl = require('bl')
 
-http.get(process.argv[2], function (response) {  
-  response.pipe( bl(function (err, data) {  
-    if (err)  
-      return console.error(err)  
-    data = data.toString()  
-    console.log(data.length)  
-    console.log(data)  
-  }) )    
-})  
+http.get(process.argv[2], function (response) {
+  response.pipe( bl(function (err, data) {
+    if (err)
+      return console.error(err)
+    data = data.toString()
+    console.log(data.length)
+    console.log(data)
+  }) )
+})
 
