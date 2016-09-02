@@ -49,3 +49,11 @@ The nodeschool site is at [nodeschool.io](http://nodeschool.io/).
 2. sudo npm install -g currying-workshopper
 
 3. curry
+
+## TODO:
+
+JavaScripting
+Async you
+Count to 6
+Express Works
+
