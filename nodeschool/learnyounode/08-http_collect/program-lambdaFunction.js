@@ -10,13 +10,12 @@
 //  of characters received from the server. The second line should contain the  
 //  complete String of characters sent by the server.  
 //
+//
 var urlToGet = process.argv[2];
 var http = require('http')
 var entireResponse = '';
 
-http.get( urlToGet, processResponse );
-
-function processResponse ( response ) {
+http.get( urlToGet, function ( response ) {
 	response.setEncoding( "utf8" );
 	response.on( "data", function (data) {
 	//	console.log( 'DATA: ' + data );
@@ -26,5 +25,5 @@ function processResponse ( response ) {
 		console.log( entireResponse.length );
 		console.log( entireResponse );
 	})  
-}
+});
 
