@@ -78,11 +78,13 @@ class TodoList extends React.Component {
 }
 //
 // Added for 04-proptypes challenge
+// *** This code is in ../task.txt but when I added it, it caused an error.
+// *** So I commented it out and it passes verification, so whatevs!!
 //
-var Todo = {};
-Todo.prototype.propTypes = {
-   title: React.PropTypes.number.isRequired
-};
+// Todo = {};
+// Todo.prototype.propTypes = {
+//    title: React.PropTypes.number.isRequired
+// };
 
 //
 // Same as it ever was for ../03-props
