@@ -1,0 +1,20 @@
+{
+  "name": "01-hello_react",
+  "version": "1.0.0",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "description": "",
+  "dependencies": {
+    "babel": "^5.8.23",
+    "body-parser": "^1.15.2",
+    "express": "^4.14.0",
+    "express-react-views": "^0.9.0",
+    "react": "^15.3.1",
+    "react-dom": "^15.3.1"
+  }
+}
