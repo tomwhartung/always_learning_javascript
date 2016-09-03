@@ -4,7 +4,9 @@ Checking in my nodeschool code to make it easy to pick up where I left off on an
 
 The nodeschool site is at [nodeschool.io](http://nodeschool.io/).
 
-## learnyounode Setup
+## Basics
+
+#### learnyounode Setup
 
 1. Install node and npm
 
@@ -14,7 +16,23 @@ The nodeschool site is at [nodeschool.io](http://nodeschool.io/).
 
 4. learnyounode
 
-## scope-chains-closures Setup
+#### javascripting Setup
+
+1. Install node and npm, and set the npm prefix (see learnyounode setup above)
+
+2. sudo npm install -g javascripting
+
+3. javascripting
+
+#### how-to-npm Setup
+
+1. Install node and npm, and set the npm prefix (see learnyounode setup above)
+
+2. sudo npm install -g how-to-npm
+
+3. how-to-npm
+
+#### scope-chains-closures Setup
 
 1. Install node and npm, and set the npm prefix (see learnyounode setup above)
 
@@ -22,7 +40,25 @@ The nodeschool site is at [nodeschool.io](http://nodeschool.io/).
 
 3. scope-chains-closures
 
-## learnyoureact Setup
+#### functional-javascript-workshop Setup
+
+1. Install node and npm, and set the npm prefix (see learnyounode setup above)
+
+2. sudo npm install -g functional-javascript-workshop
+
+3. functional-javascript-workshop
+
+#### async-you Setup
+
+1. Install node and npm, and set the npm prefix (see learnyounode setup above)
+
+2. sudo npm install -g async-you
+
+3. async-you
+
+## Frameworks and DBs
+
+#### learnyoureact Setup
 
 1. Install node and npm, and set the npm prefix (see learnyounode setup above)
 
@@ -34,15 +70,59 @@ The nodeschool site is at [nodeschool.io](http://nodeschool.io/).
 
 * Try again later!
 
-## functional-javascript-workshop Setup
+#### learnyoumongo Setup
 
 1. Install node and npm, and set the npm prefix (see learnyounode setup above)
 
-2. sudo npm install -g functional-javascript-workshop
+2. sudo npm install -g learnyoumongo
 
-3. functional-javascript-workshop
+3. learnyoumongo
 
-## currying-workshopper Setup
+#### learnyoucouchdb Setup
+
+1. Install node and npm, and set the npm prefix (see learnyounode setup above)
+
+2. sudo npm install -g learnyoucouchdb
+
+3. learnyoucouchdb
+
+#### expressworks Setup
+
+1. Install node and npm, and set the npm prefix (see learnyounode setup above)
+
+2. sudo npm install -g expressworks
+
+3. expressworks
+
+## ECMAScript 6
+
+#### count-to-6 Setup
+
+1. Install node and npm, and set the npm prefix (see learnyounode setup above)
+
+2. sudo npm install -g count-to-6
+
+3. count-to-6
+
+#### tower-of-babel Setup
+
+1. Install node and npm, and set the npm prefix (see learnyounode setup above)
+
+2. sudo npm install -g tower-of-babel
+
+3. tower-of-babel
+
+#### promise-it-wont-hurt Setup
+
+1. Install node and npm, and set the npm prefix (see learnyounode setup above)
+
+2. sudo npm install -g promise-it-wont-hurt
+
+3. promise-it-wont-hurt
+
+## Bonus
+
+#### currying-workshopper Setup
 
 1. Install node and npm, and set the npm prefix (see learnyounode setup above)
 
@@ -50,10 +130,19 @@ The nodeschool site is at [nodeschool.io](http://nodeschool.io/).
 
 3. curry
 
-## TODO:
+#### webgl-workshop Setup
 
-JavaScripting
-Async you
-Count to 6
-Express Works
+1. Install node and npm, and set the npm prefix (see learnyounode setup above)
+
+2. sudo npm install -g webgl-workshop
+
+3. webgl-workshop
+
+#### nodebot-workshop Setup
+
+1. Install node and npm, and set the npm prefix (see learnyounode setup above)
+
+2. sudo npm install -g nodebot-workshop
+
+3. nodebot-workshop
 
