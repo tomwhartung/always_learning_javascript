@@ -328,7 +328,7 @@ and *3.1.4. Refactoring the Code - Part 2.*
 
 ### 3.1.2. Refactoring the Code - Part 1: Handling an Array of Clicks
 
-#### **Step 3.1.1.4.1.** Update the `Board` component to keep the *state* of each of the 9 `Square` components
+#### **Step 3.1.1.1.** Update the `Board` component to keep the *state* of each of the 9 `Square` components
 
 Add this line to the top of the `Board` function component:
 
@@ -336,7 +336,7 @@ Add this line to the top of the `Board` function component:
 const [squares, setSquares] = useState( Array(9).fill(null) );
 ```
 
-#### **Step 3.1.1.4.2.** Update the `Board` component to pass the appropriate state value to each of the 9 `Square` components
+#### **Step 3.1.1.2.** Update the `Board` component to pass the appropriate state value to each of the 9 `Square` components
 
 Add `value=...` properties to the `Board` component's `<Square ...>` tags as follows:
 
@@ -358,7 +358,7 @@ Add `value=...` properties to the `Board` component's `<Square ...>` tags as fol
 </div>
 ```
 
-#### **Step 3.1.1.4.3.** Update the `Square` component to use the *state* value passed in to it from the `Board` component
+#### **Step 3.1.1.3.** Update the `Square` component to use the *state* value passed in to it from the `Board` component
 
 This requires adding `{value}` as a parameter to the `Square` function component definition.
 
@@ -403,14 +403,14 @@ function Square( {value} ) {
 }
 ```
 
-#### **Step 3.1.1.4.4.** Update the `Square` component to tell the `Board` component when a square has been clicked
+#### **Step 3.1.1.4.** Update the `Square` component to tell the `Board` component when a square has been clicked
 
 This entails following these steps, which are in a *slightly different sequence* than those in the tutorial:
 
-- **Step 3.1.1.4.4.1.** Add `onSquareClick` to the the `Square` component's properties
-- **Step 3.1.1.4.4.2.** Update the `Square` component to call `onSquareClick` when a square is clicked
-- **Step 3.1.1.4.4.3.** Add a `handleClick` function in the `Board` component that updates the `squares` array
-- **Step 3.1.1.4.4.4.** Update the `Board` component to connect `onSquareClick` with `handleClick`
+- **Step 3.1.1.4.1.** Add `onSquareClick` to the the `Square` component's properties
+- **Step 3.1.1.4.2.** Update the `Square` component to call `onSquareClick` when a square is clicked
+- **Step 3.1.1.4.3.** Add a `handleClick` function in the `Board` component that updates the `squares` array
+- **Step 3.1.1.4.4.** Update the `Board` component to connect `onSquareClick` with `handleClick`
 
 #### **Step 3.1.1.4.4.1.** Add `onSquareClick` to the the `Square` component's properties
 
