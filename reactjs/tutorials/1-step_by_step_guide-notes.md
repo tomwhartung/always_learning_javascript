@@ -14,6 +14,24 @@ const root = ReactDOM.createRoot(document.getElementById('root'));
 root.render(<h1>Hello, world!</h1>);
 ```
 
+## Getting It to Work in My Codepen Account
+
+I did the following to get the example above to work in my new codepen account:
+
+1. Created the account
+1. Copy-and-pasted the code (not sure whether I created a pen...)
+1. Created a collection named "Reactjs step-by-step tutorial code"
+1. Renamed the pen by clicking on the pencil next to "Untitled" in the upper-left-hand corner to "My Hello World in React"
+1. Added the pen to the collection
+1. Noticed a little red exclamation point in the bottom right corner of the JS panel
+1. Clicked on the gear icon in the JS panel
+1. Changed JS Preprocessor to Babel
+1. Added the following External Scripts, copied from Dan Abramov's "Hello World in React" pen referenced and linked to in the tutorial:
+   - https://unpkg.com/react/umd/react.development.js
+   - https://unpkg.com/react-dom/umd/react-dom.development.js
+
+After waiting a few seconds, it worked!!
+
 ## Modern JS
 
 This page links to the following page:
