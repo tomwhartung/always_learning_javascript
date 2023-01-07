@@ -14,7 +14,7 @@ const root = ReactDOM.createRoot(document.getElementById('root'));
 root.render(<h1>Hello, world!</h1>);
 ```
 
-## Getting It to Work in My Codepen Account
+## Getting "My Hello World in React" to Work in My Codepen Account
 
 I did the following to get the example above to work in my new codepen account:
 
@@ -50,4 +50,51 @@ It is for people used to old-school JS, such as *moi,* and contains the followin
 - They sometimes use [arrow functions](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Functions/Arrow_functions),
   which are like regular functions, except shorter
   - They do not have their own `this`, `arguments`, or `super`
+
+# 2. JSX
+
+React doesn't use templates, but rather uses "components" that contain both markup and logic.
+
+```javascript
+const element = <h1>Hello, world!</h1>;
+```
+
+Updated the "My Hello World in React" in my codepen account to use this declaration.
+
+Copied, pasted, and edited the following code from the tutorial into this pen:
+
+**Before Editing**
+
+```javascript
+function formatName(user) {
+  return user.firstName + ' ' + user.lastName;
+}
+
+const user = {
+  firstName: 'Tom',
+  lastName: 'H.'
+};
+```
+
+**After Editing**
+
+```javascript
+function formatName(user) {
+  return myName.firstName + ' ' + myName.lastName;
+}
+
+const myName = {
+  firstName: 'Tom',
+  lastName: 'H.'
+};
+
+const myNameMarkup = (
+  <h1>
+    Hello, {formatName(myName)}!
+  </h1>
+);
+```
+
+*Voila!*
+
 
