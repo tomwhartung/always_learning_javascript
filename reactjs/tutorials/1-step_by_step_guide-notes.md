@@ -69,7 +69,6 @@ Copied, pasted, and edited the following code from the tutorial into this pen:
 function formatName(user) {
   return user.firstName + ' ' + user.lastName;
 }
-
 const user = {
   firstName: 'Tom',
   lastName: 'H.'
@@ -82,12 +81,10 @@ const user = {
 function formatName(user) {
   return myName.firstName + ' ' + myName.lastName;
 }
-
 const myName = {
   firstName: 'Tom',
   lastName: 'H.'
 };
-
 const myNameMarkup = (
   <h1>
     Hello, {formatName(myName)}!
@@ -96,5 +93,49 @@ const myNameMarkup = (
 ```
 
 *Voila!*
+
+Added another new function, demonstrating use of JSX inside of an `if` statement:
+
+**Before Editing**
+
+```javascript
+function getGreeting(user) {
+  if (user) {
+    return <h1>Hello, {formatName(user)}!</h1>;
+  }
+  return <h1>Hello, Stranger.</h1>;
+}
+```
+
+**After Editing**
+
+```javascript
+function getGreeting(user) {
+  if (user) {
+    return <h1>Hello, {formatName(user)}!</h1>;
+  }
+  return <h1>Hello, Stranger.</h1>;
+}
+```
+
+It's also ok to use JSX inside of `for` statements.
+
+## Attributes
+
+"Don't put quotes around curly braces" when using a variable to specify an atttribute:
+
+`const element = <img src={user.avatarUrl}></img>;`
+
+## Child Elements
+
+**Was unable to get this to work, rats.**
+
+## "JSX Prevents Injection Attacks"
+
+> It is safe to embed user input in JSX: ... By default, React DOM escapes any values embedded in JSX before rendering them....
+
+## TODO
+
+> Enable "Babel" language definition for your editor.
 
 
