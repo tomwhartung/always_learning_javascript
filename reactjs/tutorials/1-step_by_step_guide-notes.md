@@ -167,16 +167,56 @@ setInterval(tick, 1000);
 
 When you call `render()` multiple times, react compares the old DOM with the new DOM, and updates only the elements that have changed.
 
+# 4. Components and Props
 
+Components are like JavaScript functions that accept `props` (properties) as input and return React elements to be rendered on the screen.
+
+## Two Ways to Define Components
+
+Use a JS function or class to define a component.
+
+### A Component as a JS Function
+
+Following is a *function component:*
+
+```javascript
+function Welcome(props) {
+  return <h1>Hello, {props.name}</h1>;
+}
+```
+
+### A Component as a JS Class
+
+The following class definition is equivalent to the function component above:
+
+```javascript
+class Welcome extends React.Component {
+  render() {
+    return <h1>Hello, {this.props.name}</h1>;
+  }
+}
+```
+
+### Using a Component to Create an Element
+
+Note the use of the Component's name (**Welcome**) in the following definition:
+
+```javascript
+const element = <**Welcome** name="Sara" />;
+```
+
+> **Note: Always start component names with a capital letter.**
+
+React assumes element definitions starting with a lower case letter are HTML tags.
+
+### Components Can Be Nested
+
+Components can contain other components:
 
 ```javascript
 ```
 
-```javascript
-```
-
-```javascript
-```
+> Typically, new React apps have a single App component at the very top.
 
 ```javascript
 ```
