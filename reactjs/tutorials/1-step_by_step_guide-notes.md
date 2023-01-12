@@ -260,6 +260,77 @@ function withdraw(account, amount) {
 ```
  > **All React components must act like pure functions with respect to their props.**
 
+# 5. State and Lifecycle
+
+Refactored the ticking clock example from Section 3 to use a new, reusable `Clock` function component:
+
+```javascript
+const root = ReactDOM.createRoot(document.getElementById('root'));
+function Clock(props) {
+  return (
+    <div>
+      <h1>Hello, world!</h1>
+      <h2>It is {props.date.toLocaleTimeString()}.</h2>
+    </div>
+  );
+}
+function tick() {
+  root.render(<Clock date={new Date()} />);
+}
+setInterval(tick, 1000);
+```
+
+A better solution would be for the Clock function component to set up its own timer, so we can just do:
+
+```javascript
+root.render(<Clock />);
+```
+
+> To implement this, we need to add “state” to the Clock component.
+
+Each component has its own private state that is totally under its control.
+
+As a first step, we convert our component function to a class.
+
+## Converting a Function to a Class
+
+There are five steps to this process:
+
+1. Create an ES6 class and extend React.Component
+2. Add an empty (for now) `render()` method to it
+3. Move the component function's statements to the class' `render()` method
+4. Change `props` to `this.props` in the body of the `render()` method
+5. Delete the now-empty function definition
+
+Here is the result:
+
+```javascript
+class Clock extends React.Component {
+  render() {
+    return (
+      <div>
+        <h1>Hello, world!</h1>
+        <h2>It is {this.props.date.toLocaleTimeString()}.</h2>
+      </div>
+    );
+  }
+}
+```
+
+This, however, is not the whole solution.
+
+## Adding Local State to a Class
+
+
+```javascript
+```
+
+```javascript
+```
+
+```javascript
+```
+
 ```javascript
 ```
 
