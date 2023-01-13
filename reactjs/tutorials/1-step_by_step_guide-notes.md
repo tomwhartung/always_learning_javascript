@@ -408,6 +408,51 @@ tick() {
 }
 ```
 
+## Using State Correctly
+
+These are the rules we need to follow when using `setState()`:
+
+1. Use the `setState()` method to modify the state: `this.setState({comment: 'Hello'});`
+2. Do not assume React will update the state immediately: for efficiency, React may batch these calls
+   - If you need to set a value based upon the most recent value of a `props` or `state` variable, use a function as an argument to `setState()`
+   - The function may be a regular function or an arrow function
+   - Below are examples of the wrong way, followed by the correct use both an arrow and a regular function
+3. If your state contains more than one independent variable, you can update them independently with separate calls to `setState()`
+
+```javascript
+// Demonstrating rule 2: the correct way to set the state based on the most recent values in the state and props arrays
+// --------------------------------------------------------------------------------------------------------------------
+// WRONG: accessing values of state and props directly
+this.setState({
+  counter: this.state.counter + this.props.increment,
+});
+// Correct: using an arrow function to set the state of the counter based on up-to-date values
+this.setState((state, props) => ({
+  counter: state.counter + props.increment
+}));
+// Correct: using a regular function to set the state of the counter based on up-to-date values
+this.setState(function(state, props) {
+  return {
+    counter: state.counter + props.increment
+  };
+});
+```
+
+```javascript
+```
+
+```javascript
+```
+
+```javascript
+```
+
+```javascript
+```
+
+```javascript
+```
+
 ```javascript
 ```
 
