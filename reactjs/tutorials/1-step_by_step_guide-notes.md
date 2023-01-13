@@ -321,17 +321,91 @@ This, however, is not the whole solution.
 
 ## Adding Local State to a Class
 
+Follow these steps to change the `date` from being a property to being part of the Clock component's state:
+
+1. In `render()` replace `this.props.date` with `this.state.date`
+2. Add a constructor to the `Clock` class to initialize `this.state` (*)
+3. Remove the `date` prop from the call to `render()` the `Clock` component
+
+(*) Note the call to `super()` in the new constructor, which passes the `props` to the base class
+
+> **Class components should always call the base constructor with `props`.**
+
+Now we can move the call to `render()` out from the `tick()` function to the bottom of our code.
+Following is the result:
 
 ```javascript
+class Clock extends React.Component {
+  constructor(props) {
+    super(props);
+    this.state = {date: new Date()};
+  }
+
+  render() {
+    return (
+      <div>
+        <h1>Hello, world!</h1>
+        <h2>It is {this.state.date.toLocaleTimeString()}.</h2>
+      </div>
+    );
+  }
+}
+
+const root = ReactDOM.createRoot(document.getElementById('root'));
+root.render(<Clock />);
 ```
 
-```javascript
-```
+But!  The clock no longer ticks!  Rats!  We'll fix that next.
+
+## Adding Lifecycle Methods to a Class
+
+Now we want to add code to set up the timer when it renders the `Clock`.
+
+> This is called *“mounting”* in React.
+
+We will also add code to clear the timer when we remove the `Clock` from the DOM.
+
+> This is called *“unmounting”* in React.
+
+We do this by adding these *"lifecycle methods"* to the class:
 
 ```javascript
+  componentDidMount() {      // runs after the component has been rendered to the DOM
+  }
+  componentWillUnmount() {   // runs after the component has been rendered to the DOM
+  }
 ```
+Our `componentDidMount()` method runs after the component has been rendered to the DOM.
+It needs to start the timer and save its id on `this` so we can clear the timer when the `Clock` shuts down.
 
 ```javascript
+componentDidMount() {
+  this.timerID = setInterval(
+    () => this.tick(),
+    1000
+  );
+}
+```
+
+**Note:** We will define the `tick()` method momentarily.
+
+Our `componentWillUnmount()` method runs after the component has been rendered to the DOM.
+It uses the id we saved on `this` to clear the timer.
+
+```javascript
+componentWillUnmount() {
+  clearInterval(this.timerID);
+}
+```
+
+Here is the `tick()` method, which `componentDidMount()` calls to set the state of the `date`.
+
+```javascript
+tick() {
+  this.setState({
+    date: new Date()
+  });
+}
 ```
 
 ```javascript
