@@ -9,10 +9,27 @@ Taking some notes while I go through this reactjs tutorial:
 
 Here is the smallest React example:
 
+```html
+<div id="root">
+    <!-- This element's contents -->
+    <!-- will be replaced with -->
+    <!-- the React component we will -->
+    <!-- define in the code. -->
+</div>
+```
 ```javascript
 const root = ReactDOM.createRoot(document.getElementById('root'));
 root.render(<h1>Hello, world!</h1>);
 ```
+
+We also need to use Babel as the JS preprocessor and include the following two ReactJS files:
+
+```
+https://unpkg.com/react/umd/react.development.js
+https://unpkg.com/react-dom/umd/react-dom.development.js
+```
+
+**Note:** this code is now set up in my codepen template named *ReactJS Starting Point.*
 
 ## Getting "My Hello World in React" to Work in My Codepen Account
 
@@ -417,7 +434,8 @@ These are the rules we need to follow when using `setState()`:
    - If you need to set a value based upon the most recent value of a `props` or `state` variable, use a function as an argument to `setState()`
    - The function may be a regular function or an arrow function
    - Below are examples of the wrong way, followed by the correct use both an arrow and a regular function
-3. If your state contains more than one independent variable, you can update them independently with separate calls to `setState()`
+3. State variables are merged, not overwritten
+   - In other words, if your state contains more than one variable, you can update them independently with separate calls to `setState()`
 
 ```javascript
 // Demonstrating rule 2: the correct way to set the state based on the most recent values in the state and props arrays
@@ -438,11 +456,40 @@ this.setState(function(state, props) {
 });
 ```
 
-```javascript
-```
+Note that the `tick()` method above uses `setState()` to set the state of the `date`:
 
 ```javascript
+tick() {
+  this.setState({
+    date: new Date()
+  });
+}
 ```
+
+## Top-down, Unidirectional Data Flow
+
+Parent and child components are blind to a component's state (and to whether it's a function or a class).
+
+To demonstrate this, we break the code used to format the date out of `Clock` and use it to create a `FormattedDate` component.
+
+```javascript
+function FormattedDate(props) {
+  return <h2>It is {props.date.toLocaleTimeString()}.</h2>;
+}
+```
+
+Then update the `Clock` class' `render()` method to use the new `FormattedDate` component:
+
+```javascript
+{/* Replace the <h2> tag with our new component */}
+<FormattedDate date={this.state.date} />
+```
+
+> This is commonly called a “top-down” or “unidirectional” data flow. Any state is always owned by some specific component, and any data or UI derived from that state can only affect components “below” them in the tree.
+>
+> If you imagine a component tree as a waterfall of props, each component’s state is like an additional water source that joins it at an arbitrary point but also flows down.
+
+
 
 ```javascript
 ```
