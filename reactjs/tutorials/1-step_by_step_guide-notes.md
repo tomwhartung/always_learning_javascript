@@ -489,10 +489,36 @@ Then update the `Clock` class' `render()` method to use the new `FormattedDate` 
 >
 > If you imagine a component tree as a waterfall of props, each component’s state is like an additional water source that joins it at an arbitrary point but also flows down.
 
+## Demonstrating Our Reusable Components
 
+Inspired by the tutorial, I played around with my pen a bit and came up with this `App` function component:
 
 ```javascript
+// App: uses both of our components a time or two
+function App() {
+  return (
+    <div>
+      <Clock />
+      <Clock />
+      <h2>Just the date, ma'am:</h2>
+        <FormattedDate date={new Date()} />
+      <Clock />
+    </div>
+  );
+}
+const root = ReactDOM.createRoot( document.getElementById('root') );
+
+// root.render( <Clock date={new Date()} /> );
+root.render( <App /> );
 ```
+
+**Note:** I am not sure, but it feels like using `new Date()` to create a new `FormattedDate` might be cheating?
+
+I should probably put the date in the `App` component, then pass it down to `Clock` in addition to `FormattedDate`.
+Probably!  But that would require making `App` a class and refactoring a bit and yadda yadda yadda and,
+ the problem is, I'm just playing around, so I say it's ok to be lazy!!
+
+# 6. Handling Events
 
 ```javascript
 ```
