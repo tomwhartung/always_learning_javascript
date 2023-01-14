@@ -528,7 +528,7 @@ When asking ReactJS to handle events, observe the following rules:
 (4) In general, provide an event listener when rendering an element (**RATHER THAN** calling `addEventListener`)
     - When the component is a class, the event handler is usually contained within that class
 
-An example of rules (1) and (2):
+## Example of Rules (1) and (2):
 
 ```html
 <button onClick={activateLasers}>
@@ -536,9 +536,9 @@ An example of rules (1) and (2):
 </button>
 ```
 
-An example of rule (3):
+## Example of Rule (3)
 
-Do this:
+To call `preventDefault` explicitly (**RATHER THAN** returning `false`) to prevent default behavior, do this:
 
 ```javascript
 function Form() {
@@ -566,7 +566,9 @@ and **NOT** this:
 >React events do not work exactly the same as native events. See the [SyntheticEvent reference](https://reactjs.org/docs/events.html)
 guide to learn more.
 
-An example of rule (4):
+## Example of Rule (4)
+
+To provide an event listener when rendering an element (**RATHER THAN** calling `addEventListener`) by putting the event handler within that class:
 
 ```javascript
 class Toggle extends React.Component {
@@ -593,6 +595,38 @@ class Toggle extends React.Component {
   }
 }
 ```
+
+The `Toggle` component provides a button allowing users to toggle it between ON and OFF states.
+
+See the [My Toggle Component](https://codepen.io/tomwhartung/pen/ZEjyMqV) pen on [codepen.io](https://codepen.io).
+
+**Note to Self:** in a Class, the `render()` method needs to `return` the JSX markup.
+
+### Notes Concerning Calling the `bind()` Function
+
+This seems non-intuitive to me, but apparently it shouldn't be.  Quoting from the tutorial:
+
+> If you forget to bind this.handleClick and pass it to onClick, this will be undefined when the function is actually called.
+
+And:
+
+> This is not React-specific behavior; it is a part of how functions work in JavaScript....
+
+> Generally, if you refer to a method without () after it, such as `onClick={this.handleClick}`, you should `bind` that method.
+
+And, "[i]f calling `bind` annoys you", see this tutorial page for two work-arounds: using *class fields syntax* or "an arrow function in the callback".
+After describing these work-arounds, the page expresses a caveat, so is maybe not the best way to handle events.
+
+Moreover, it seems best to stick to using `bind()` in classes that create components:
+
+> We generally recommend binding in the constructor or using the class fields syntax, to avoid this sort of performance problem.
+
+
+## To Do
+
+I had some issues getting My Toggle pen to render the button!  **Yes, issues!**  Go figure!!
+
+** When having issues, consider using [Error Boundaries](https://reactjs.org/docs/error-boundaries.html) instead of `console.log()` statements.
 
 ```javascript
 ```
