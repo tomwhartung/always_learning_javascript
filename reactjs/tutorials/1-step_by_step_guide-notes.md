@@ -520,7 +520,78 @@ Probably!  But that would require making `App` a class and refactoring a bit and
 
 # 6. Handling Events
 
+When asking ReactJS to handle events, observe the following rules:
+
+(1) ReactJS events are in camelCase (**NOT** lowercase)
+(2) Pass a function defined in curly braces as the event handler (**NOT** a string)
+(3) To prevent default behavior, call `preventDefault` explicitly (**RATHER THAN** returning `false`)
+(4) In general, provide an event listener when rendering an element (**RATHER THAN** calling `addEventListener`)
+    - When the component is a class, the event handler is usually contained within that class
+
+An example of rules (1) and (2):
+
+```html
+<button onClick={activateLasers}>
+  Activate Lasers
+</button>
+```
+
+An example of rule (3):
+
+Do this:
+
 ```javascript
+function Form() {
+  function **handleSubmit(e)** {
+    **e.preventDefault()**;
+    console.log('You clicked submit.');
+  }
+
+  return (
+    <form onSubmit={**handleSubmit**}>
+      <button type="submit">Submit</button>
+    </form>
+  );
+}
+```
+
+and **NOT** this:
+
+```html
+<form onsubmit="console.log('You clicked submit.'); return false">
+  <button type="submit">Submit</button>
+</form>
+```
+
+>React events do not work exactly the same as native events. See the [SyntheticEvent reference](https://reactjs.org/docs/events.html)
+guide to learn more.
+
+An example of rule (4):
+
+```javascript
+class Toggle extends React.Component {
+  constructor(props) {
+    super(props);
+    this.state = {isToggleOn: true};
+
+    // This binding is necessary to make `this` work in the callback
+    this.handleClick = this.handleClick.bind(this);
+  }
+
+  handleClick() {
+    this.setState(prevState => ({
+      isToggleOn: !prevState.isToggleOn
+    }));
+  }
+
+  render() {
+    return (
+      <button onClick={this.handleClick}>
+        {this.state.isToggleOn ? 'ON' : 'OFF'}
+      </button>
+    );
+  }
+}
 ```
 
 ```javascript
@@ -532,6 +603,14 @@ Probably!  But that would require making `App` a class and refactoring a bit and
 ```javascript
 ```
 
+```html
+```
+
 ```javascript
 ```
 
+```javascript
+```
+
+```html
+```
