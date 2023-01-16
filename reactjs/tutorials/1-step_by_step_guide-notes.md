@@ -628,6 +628,19 @@ I had some issues getting My Toggle pen to render the button!  **Yes, issues!** 
 
 ** When having issues, consider using [Error Boundaries](https://reactjs.org/docs/error-boundaries.html) instead of `console.log()` statements.
 
+## Passing Arguments to Event Handlers
+
+Use code similar to the following to pass a parameter, such as a row `id` number, to an event handler:
+
+```javascript
+<button onClick={(e) => this.deleteRow(id, e)}>Delete Row</button>
+<button onClick={this.deleteRow.bind(this, id)}>Delete Row</button>
+```
+
+This code passes the argument `e`, which represents the React event, as the **second** argument **after the ID**.
+
+# 7. Conditional Rendering
+
 ```javascript
 ```
 
