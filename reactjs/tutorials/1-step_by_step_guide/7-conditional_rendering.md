@@ -10,8 +10,9 @@ Notes from going through step 7 of this reactjs tutorial:
 There are several ways to create and render elements and components based on the current values of the state and available properties.
 
 - Use the JavaScript `if` statement
-- Use the conditional operator ( `x ? y : z` )
-- Use variables to refer to elements you want to display (see "Element Variables" below)
+- Use variables to refer to elements you want to display - see the "Element Variables" subsection below
+- Use an inline if with the JavaScript logical `&&` operator - see the "Inline If With Logical && Operator" subsection below
+- Use the conditional operator ( `x ? y : z` ) - see the "Inline If-Else with Conditional Operator" subsection below
 
 Following is an example of using an `if` statement based on the value of a passed-in property:
 
@@ -107,10 +108,11 @@ class LoginControl extends React.Component {
   render() {
     const isLoggedIn = this.state.isLoggedIn;
     let button;
+    // **Based on the value of isLoggedIn, assign the appropriate component to the variable button**
     if (isLoggedIn) {
-      button = <LogoutButton onClick={this.handleLogoutClick} />;
+      **button = <LogoutButton onClick={this.handleLogoutClick} />;**
     } else {
-      button = <LoginButton onClick={this.handleLoginClick} />;
+      **button = <LoginButton onClick={this.handleLoginClick} />;**
     }
 
     return (
@@ -132,6 +134,11 @@ Note that this example uses the code from the previous example, ["My Which Greet
 
 ## Inline If With Logical && Operator
 
+Recall that JavaScript evaluates the logical `&&` operator as follows:
+
+- `true && expression` evaluates to `expression`
+- `false && expression` evaluates to `false`
+
 The following example uses the JavaScript logical `&&` operator to embed expressions in JSX:
 
 ```javascript
@@ -140,7 +147,7 @@ function Mailbox(props) {
   return (
     <div>
       <h1>Hello!</h1>
-      {unreadMessages.length > 0 &&
+      {unreadMessages.length > 0 **&&**
         <h2>
           You have {unreadMessages.length} unread messages.
         </h2>
@@ -156,15 +163,95 @@ const root = ReactDOM.createRoot(document.getElementById('root'));
 root.render(<Mailbox unreadMessages={messages} />);
 ```
 
-```html
-```
+To see this example work, see my pen ["My Count Unread Msgs."](https://codepen.io/tomwhartung/pen/VwBMwyx) on codepen.
+
+**Warning:** even though a value of `false` will not return cause a component to be rendered, using it in the `render()` method may cause it to render a `0`.
+For example:
 
 ```javascript
+render() {
+  const count = 0;
+  return (
+    <div>
+      {count && <h1>Messages: {count}</h1>}
+    </div>
+  );
+}
 ```
+
+Instead of returing nothing, this code will return `<div>0</div>`.
+
+To have a component return no markup whatsoever, see the "Preventing a Component from Rendering" subsection below.
+
+## Inline If-Else with Conditional Operator
+
+The JavaScript inline operator syntax `condition ? x : y` works just like the it does in C.
 
 ```javascript
+render() {
+  const isLoggedIn = this.state.isLoggedIn;
+  return (
+    <div>
+      The user is <b>{isLoggedIn ? 'currently' : 'not'}</b> logged in.
+    </div>
+  );
+}
 ```
 
-```html
+**Note:** it is best to use this technique to render only very small bits of markup.
+
+## Preventing [a] Component from Rendering
+
+To prevent a component from rendering, have it return `null`.
+
+The following example displays a warning banner only if there are warnings present:
+
+```javascript
+// WarningBanner: if there are warnings, returns a warning banner, else **returns null**
+function WarningBanner(props) {
+  if (!props.warn) {
+    **return null;**
+  }
+
+  return (
+    <div className="warning">
+      Warning!
+    </div>
+  );
+}
+
+// Page: sets a state variable that allows showing or hiding the warning banner
+class Page extends React.Component {
+  constructor(props) {
+    super(props);
+    this.state = {showWarning: true};
+    this.handleToggleClick = this.handleToggleClick.bind(this);
+  }
+
+  handleToggleClick() {
+    this.setState(state => ({
+      showWarning: !state.showWarning
+    }));
+  }
+
+  render() {
+    return (
+      <div>
+        <WarningBanner warn={this.state.showWarning} />
+        <button onClick={this.handleToggleClick}>
+          {this.state.showWarning ? 'Hide' : 'Show'}
+        </button>
+      </div>
+    );
+  }
+}
+
+const root = ReactDOM.createRoot(document.getElementById('root'));
+root.render(<Page />);
 ```
+
+To see this example work, see my pen ["My Warning Banner"](https://codepen.io/tomwhartung/pen/xxJXxoW?editors=0010) on codepen.
+
+**Note!!**
+> Returning null from a component’s render method does not affect the firing of the component’s lifecycle methods.
 
