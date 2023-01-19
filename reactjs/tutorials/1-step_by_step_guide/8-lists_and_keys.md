@@ -62,11 +62,28 @@ Including the "key" attribute prevents the warning from displaying.
 
 ## Keys
 
+Supplying keys to elements in a list ensures each element has a stable identity.
+
+- Usually you will want to use the `id` value for the item from the database
+- If the `id` value is not available, use the index "as a last resort:"
 
 ```javascript
+const todoItems = todos.map((todo, **index**) =>
+  // Only do this if items have no stable IDs
+  <li key={**index**}>
+    {todo.text}
+  </li>
+);
 ```
 
-```html
+> We don’t recommend using indexes for keys if the order of items may change.
+> This can negatively impact performance and may cause issues with component state.
+
+This part of the tutorial has a couple of links to details about all this.
+
+## Extracting Components With Keys
+
+```javascript
 ```
 
 ```javascript
