@@ -132,18 +132,23 @@ const content = posts.map((post) =>
 
 > With the example above, the Post component can read `props.id` (`post.id` ??), but not `props.key` (`post.key` ??).
 
-## Embedding map() in JSX
+## Embedding `map()` in JSX
 
-
-```javascript
-```
-
-```html
-```
+The following code is a more succinct version of previous versions, in that the return statement contains the call to the `map()` function:
 
 ```javascript
+function NumberList(props) {
+  const numbers = props.numbers;
+  return (
+    <ul>
+      {numbers.map((number) =>
+        <ListItem key={number.toString()}
+                  value={number} />
+      )}
+    </ul>
+  );
+}
 ```
 
-```html
-```
+This style is not always preferable, however, because when the nesting gets complicated, embedding too much code like this can hurt readability.
 
