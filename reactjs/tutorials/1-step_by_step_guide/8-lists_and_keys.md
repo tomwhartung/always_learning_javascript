@@ -83,8 +83,57 @@ This part of the tutorial has a couple of links to details about all this.
 
 ## Extracting Components With Keys
 
+It is **crucial** to specify the key when creating the **component** rather than with the tag.
+
+This example shows the correct usage:
+
 ```javascript
+function ListItem(props) {
+  // **Correct! There is no need to specify the key here:**
+  return <li>{props.value}</li>;
+}
+
+function NumberList(props) {
+  const numbers = props.numbers;
+  const listItems = numbers.map((number) =>
+    // **Correct! Key should be specified inside the array.**
+    <ListItem **key={number.toString()} value={number}** />
+  );
+  return (
+    <ul>
+      {listItems}
+    </ul>
+  );
+}
 ```
+
+> A good rule of thumb is that elements inside the map() call need keys.
+
+See my pen ["My Map of List Items"](https://codepen.io/tomwhartung/pen/XWBzNBw?editors=1011) on codepen to see the example from the "Basic List Component" subsection
+refactored with comments that highlight this distinction.
+
+## Keys Must Only Be Unique Among Siblings
+
+Some details on using keys:
+
+- Keys do not need to be globally unique.  That is, we can use the same key values in different lists.
+- Keys do not get passed to components.  If you need the value, pass it as a prop with a different name.
+
+This example code apparently uses the `post` variable as an alias for `props` (??):
+
+```javascript
+const content = posts.map((post) =>
+  <Post
+    key={post.id}
+    id={post.id}
+    title={post.title} />
+);
+```
+
+> With the example above, the Post component can read `props.id` (`post.id` ??), but not `props.key` (`post.key` ??).
+
+## Embedding map() in JSX
+
 
 ```javascript
 ```
