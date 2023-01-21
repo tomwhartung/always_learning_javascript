@@ -45,7 +45,7 @@ function Form() {
 and **NOT** this:
 
 ```html
-<form onsubmit="console.log('You clicked submit.'); return false">
+<form onsubmit="console.log('You clicked submit.'); **return false**">
   <button type="submit">Submit</button>
 </form>
 ```
@@ -55,7 +55,7 @@ guide to learn more.
 
 ## Example of Rule (4)
 
-To provide an event listener when rendering an element (**RATHER THAN** calling `addEventListener`) by putting the event handler within that class:
+Provide an event listener when rendering an element (**RATHER THAN** calling `addEventListener`) by putting the event handler within that class:
 
 ```javascript
 class Toggle extends React.Component {
@@ -75,7 +75,7 @@ class Toggle extends React.Component {
 
   render() {
     return (
-      <button onClick={this.handleClick}>
+      <button **onClick={this.handleClick}**>
         {this.state.isToggleOn ? 'ON' : 'OFF'}
       </button>
     );
