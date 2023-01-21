@@ -205,6 +205,7 @@ class Reservation extends React.Component {
     const value = target.type === 'checkbox' ? target.checked : target.value;
     const name = target.name;
 
+    // **Note:** this uses the *ES6 computed property name syntax* to update the correct state variable (*)
     this.setState({
       [name]: value
     });
@@ -236,12 +237,48 @@ class Reservation extends React.Component {
 }
 ```
 
-```html
-```
+**(*) Note:** using the *ES6 computed property name syntax* means that this ES6 code:
 
 ```javascript
+this.setState({
+  [name]: value
+});
 ```
 
-```html
+is equivalent to this ES5 code:
+
+```javascript
+var partialState = {};
+partialState[name] = value;
+this.setState(partialState);
 ```
+
+In other words, this syntax allows us to merge a partial state - i.e., a change to a single state variable - into the current state.
+
+## Controlled Input Null Value
+
+The following code shows how to lock an input field, preventing the user from changing an input value, until after a short delay (*):
+
+```javascript
+ReactDOM.createRoot(mountNode).render(<input value="hi" />);
+
+setTimeout(function() {
+  ReactDOM.createRoot(mountNode).render(<input value={null} />);
+}, 1000);
+```
+
+(*) At least, that's what I think it does.  Maybe refer back to this subsection later...???
+
+## Alternatives to Controlled Components
+
+In some circumstances working with Controlled Components may be too tedious, i.e., overkill,
+for example, when working with a codebase that already uses a non-React library.
+
+In cases like these, you may want to consider working with
+[UnControlled Components](https://reactjs.org/docs/uncontrolled-components.html), which is an advanced topic.
+
+## Fully-Fledged Solutions
+
+For a more complete solution, one that includes validation and keeping track of which fields have changed,
+consider looking at [Formik](https://jaredpalmer.com/formik), or something similar.
 
