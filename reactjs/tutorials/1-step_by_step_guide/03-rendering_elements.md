@@ -1,5 +1,5 @@
 
-# 3-rendering_elements.md
+# 03-rendering_elements.md
 
 Notes from going through step 3 of this reactjs tutorial:
 

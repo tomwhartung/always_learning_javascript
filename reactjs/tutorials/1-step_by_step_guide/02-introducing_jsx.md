@@ -1,5 +1,5 @@
 
-# 2-introducing-jsx.md
+# 02-introducing-jsx.md
 
 Notes from going through step 2 of this reactjs tutorial:
 

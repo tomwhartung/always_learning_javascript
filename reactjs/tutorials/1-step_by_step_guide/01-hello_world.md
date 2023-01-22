@@ -1,5 +1,5 @@
 
-# 1-hello_world.md
+# 01-hello_world.md
 
 Notes from going through step 1 of this reactjs tutorial:
 
