@@ -1,5 +1,5 @@
 
-# 6-handling_events.md
+# 06-handling_events.md
 
 Notes from going through step 6 of this reactjs tutorial:
 
