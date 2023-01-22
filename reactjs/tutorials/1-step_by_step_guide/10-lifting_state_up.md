@@ -111,11 +111,38 @@ We still aren't there yet:
 
 ## Writing Conversion Functions
 
+Next we add these functions to convert the two types of temperature inputs:
+
+```javascript
+function toCelsius(fahrenheit) {
+  return (fahrenheit - 32) * 5 / 9;
+}
+
+function toFahrenheit(celsius) {
+  return (celsius * 9 / 5) + 32;
+}
+
+// tryConvert: use the input convert function to try to convert the input temperature string
+function tryConvert(temperature, convert) {
+  const input = parseFloat(temperature);
+  if (Number.isNaN(input)) {
+    return '';
+  }
+  const output = convert(input);
+  const rounded = Math.round(output * 1000) / 1000;
+  return rounded.toString();
+}
+```
+
+## Lifting State Up
 
 ```javascript
 ```
 
-```html
+```javascript
+```
+
+```javascript
 ```
 
 ```javascript
