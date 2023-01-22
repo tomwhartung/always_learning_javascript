@@ -149,8 +149,17 @@ Following is an overview of this process:
 
 1. Replace `this.state.temperature` with `this.props.temperature` in `TemperatureInput`'s `render()` method
 2. Update `TemperatureInput`'s `handleChange()` method to call its parent `Calculator`'s appropriate `on...Change()` method
-   2.1. For `temperature`s in `celsius`, call `handleCelsiusChange()`
-   2.2. For `temperature`s in `fahrenheit`, call `handleFahrenheitChange()`
+   2.1. For `temperature`s in `celsius`, `Calculator` will call its `handleCelsiusChange()` method
+   2.2. For `temperature`s in `fahrenheit`, `Calculator` will call its `handleFahrenheitChange()` method
+   2.3. We will add those in subsequent steps
+3. Update the `Calculator`'s `constructor` to store the current `temperature` and its `scale` as state variables
+4. Add new methods to `Calculator` to handle changes to its new `temperature` and `scale` state variables
+   4.1. Add `handleCelsiusChange()` to handle changes to `temperature`s in `celsius`
+   4.2. Add `handleFahrenheitChange()` to handle changes to `temperature`s in `fahrenheit`
+5. Update the `Calculator`'s `render` method to keep its state and local variables up-to-date
+6. Update the `Calculator`'s `render` method to handle input changes and render the resultant verdict
+   6.1. For `temperature`s in `celsius`, set the `TemperatureInput`'s `props` and call `handleCelsiusChange()`
+   6.2. For `temperature`s in `fahrenheit`, set the `TemperatureInput`'s `props` and call `handleFahrenheitChange()`
 
 ### LSU Step 1. Replace `this.state.temperature` with `this.props.temperature` in `TemperatureInput`'s `render()` method
 
@@ -212,17 +221,124 @@ class TemperatureInput extends React.Component {
 }
 ```
 
-To see this code complete with comments, see my pen
+To see this code complete with helpful comments, which are omitted from this version of the component, see my pen
 [10. My Lifting State Up](https://codepen.io/tomwhartung/pen/abjEeRV?editors=0110) on codepen.
 
-```javascript
-```
+### LSU Step 3. Update the `Calculator`'s `constructor` to store the current `temperature` and its `scale` as state variables
+
+Following is the code for the `Calculator`'s new `constructor`:
 
 ```javascript
+  constructor(props) {
+    super(props);
+    this.handleCelsiusChange = this.handleCelsiusChange.bind(this);
+    this.handleFahrenheitChange = this.handleFahrenheitChange.bind(this);
+    this.state = {temperature: '', scale: 'c'};
+  }
 ```
 
+Note that this code references two new methods: `this.handleCelsiusChange` and `this.handleFahrenheitChange`.
+We will add those in the next step!
+
+### LSU Step 4. Add new methods to `Calculator` to handle changes to its new `temperature` and `scale` state variables
+
+Following is the code to add for the new `handleCelsiusChange()` and `handleFahrenheitChange()` methods:
+
 ```javascript
+  // Method to handle when the user updates the input for temperatures in celsius:
+  handleCelsiusChange(temperature) {
+    this.setState({scale: 'c', temperature});
+  }
+
+  // Method to handle when the user updates the input for temperatures in fahrenheit:
+  handleFahrenheitChange(temperature) {
+    this.setState({scale: 'f', temperature});
+  }
 ```
+
+### LSU Step 5. Update the `Calculator`'s `render` method to keep its state variables up-to-date
+
+Add the following code to the top of `Calculator`'s `render` method, to keep the component's state variables and
+the method's local variables up-to-date:
+
+```javascript
+    // Keep our scale and temperature state variables up-to-date:
+    const scale = this.state.scale;
+    const temperature = this.state.temperature;
+    // Also keep these local variables, which are dependent on the state variables, up-to-date:
+    const celsius = scale === 'f' ? tryConvert(temperature, toCelsius) : temperature;
+    const fahrenheit = scale === 'c' ? tryConvert(temperature, toFahrenheit) : temperature;
+```
+
+### LSU Step 6. Update the `Calculator`'s `render` method to handle input changes and render the resultant verdict
+
+Following is the `Calculator`'s new `return` statement:
+
+```javascript
+    return (
+      <div>
+        <TemperatureInput
+          scale="c"
+          temperature={celsius}
+          onTemperatureChange={this.handleCelsiusChange} />
+        <TemperatureInput
+          scale="f"
+          temperature={fahrenheit}
+          onTemperatureChange={this.handleFahrenheitChange} />
+        <BoilingVerdict
+          celsius={parseFloat(celsius)} />
+      </div>
+    );
+```
+
+And here is the new `Calculator` component in its entirety:
+
+```javascript
+class Calculator extends React.Component {
+  constructor(props) {
+    super(props);
+    this.handleCelsiusChange = this.handleCelsiusChange.bind(this);
+    this.handleFahrenheitChange = this.handleFahrenheitChange.bind(this);
+    this.state = {temperature: '', scale: 'c'};
+  }
+
+  handleCelsiusChange(temperature) {
+    this.setState({scale: 'c', temperature});
+  }
+
+  handleFahrenheitChange(temperature) {
+    this.setState({scale: 'f', temperature});
+  }
+
+  render() {
+    const scale = this.state.scale;
+    const temperature = this.state.temperature;
+    const celsius = scale === 'f' ? tryConvert(temperature, toCelsius) : temperature;
+    const fahrenheit = scale === 'c' ? tryConvert(temperature, toFahrenheit) : temperature;
+
+    return (
+      <div>
+        <TemperatureInput
+          scale="c"
+          temperature={celsius}
+          onTemperatureChange={this.handleCelsiusChange} />
+        <TemperatureInput
+          scale="f"
+          temperature={fahrenheit}
+          onTemperatureChange={this.handleFahrenheitChange} />
+        <BoilingVerdict
+          celsius={parseFloat(celsius)} />
+      </div>
+    );
+  }
+}
+```
+
+To see this code complete, see my pen
+[10. My Lifting State Up](https://codepen.io/tomwhartung/pen/abjEeRV?editors=0110) on codepen.
+
+### LSU Summary
+
 
 ## Lessons Learned
 
