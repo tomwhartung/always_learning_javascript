@@ -134,16 +134,97 @@ function tryConvert(temperature, convert) {
 }
 ```
 
+Almost there!  However this version still does not give us the verdict, nor does it keep the two input fields in sync.
+
 ## Lifting State Up
 
+As mentioned previously, *lifting state up* means moving the processing of a state variable from two child components
+up to their nearest ancestor.
+
+In this example, that means moving the state of the `temperature` variable from the `TemperatureInput` component up
+to the `Calculator` component.
+This makes the `Calculator` component the *source of truth* for the value of the `temperature` variable.
+
+Following is an overview of this process:
+
+1. Replace `this.state.temperature` with `this.props.temperature` in `TemperatureInput`'s `render()` method
+2. Update `TemperatureInput`'s `handleChange()` method to call its parent `Calculator`'s appropriate `on...Change()` method
+   2.1. For `temperature`s in `celsius`, call `handleCelsiusChange()`
+   2.2. For `temperature`s in `fahrenheit`, call `handleFahrenheitChange()`
+
+### LSU Step 1. Replace `this.state.temperature` with `this.props.temperature` in `TemperatureInput`'s `render()` method
+
+Code to change for step 1: update the `TemperatureInput` component, replacing `this.state.temperature` to `this.props.temperature`:
+
 ```javascript
+  render() {
+    // Before: const temperature = this.state.temperature;
+    const temperature = this.props.temperature;
+    // ...
 ```
+
+Because `TemperatureInput` has no control over its `props`, it should no longer call `this.setState()` to change
+the value of the `temperature` variable.
+
+### LSU Step 2. Update `TemperatureInput`'s `handleChange()` method to call `Calculator`'s appropriate `on...Change()` method
+
+This means that, when the user inputs a new `temperature` value, the `TemperatureInput` component must update its
+value in its `handleChange` method:
+
+```javascript
+  handleChange(e) {
+    // Before: this.setState({temperature: e.target.value});
+    this.props.onTemperatureChange(e.target.value);
+    // ...
+```
+
+**Note:** `onTemperatureChange` is both a method and one of `TemperatureInput`'s `props`!
+
+- As one of `TemperatureInput`'s `props`, `onTemperatureChange` is managed by the `Calculator` component
+- When the value of of the `temperature` changes, the `Calculator` component will set this prop/method equal to
+either its method `{this.handleCelsiusChange}` or `{this.handleFahrenheitChange}`, as appropriate
+- Changes to the `Calculator` component occur in Step 3
+
+Here is the code for our new, improved `TemperatureInput` component:
+
+```javascript
+class TemperatureInput extends React.Component {
+  constructor(props) {
+    super(props);
+    this.handleChange = this.handleChange.bind(this);
+  }
+
+  handleChange(e) {
+    this.props.onTemperatureChange(e.target.value);
+  }
+
+  render() {
+    const temperature = this.props.temperature;
+    const scale = this.props.scale;
+    return (
+      <fieldset>
+        <legend>Enter temperature in {scaleNames[scale]}:</legend>
+        <input value={temperature}
+               onChange={this.handleChange} />
+      </fieldset>
+    );
+  }
+}
+```
+
+To see this code complete with comments, see my pen
+[10. My Lifting State Up](https://codepen.io/tomwhartung/pen/abjEeRV?editors=0110) on codepen.
 
 ```javascript
 ```
 
 ```javascript
 ```
+
+```javascript
+```
+
+## Lessons Learned
 
 ```javascript
 ```
