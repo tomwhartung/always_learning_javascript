@@ -56,7 +56,7 @@ This code works ok, and is a good starting point, but it does not yet demonstrat
 
 In this step we add a second input that accepts temperatures in Fahrenheit, and keeps the two temperature inputs in sync.
 
-First we extract a TemperatureInput component out of the Calculator component:
+First we extract a `TemperatureInput` component out of the `Calculator` component:
 
 ```javascript
 const scaleNames = {
@@ -149,17 +149,17 @@ Following is an overview of this process:
 
 1. Replace `this.state.temperature` with `this.props.temperature` in `TemperatureInput`'s `render()` method
 2. Update `TemperatureInput`'s `handleChange()` method to call its parent `Calculator`'s appropriate `on...Change()` method
-   2.1. For `temperature`s in `celsius`, `Calculator` will call its `handleCelsiusChange()` method
-   2.2. For `temperature`s in `fahrenheit`, `Calculator` will call its `handleFahrenheitChange()` method
-   2.3. We will add those in subsequent steps
+   - For `temperature`s in `celsius`, `Calculator` will call its `handleCelsiusChange()` method
+   - For `temperature`s in `fahrenheit`, `Calculator` will call its `handleFahrenheitChange()` method
+   - We will add those in subsequent steps
 3. Update the `Calculator`'s `constructor` to store the current `temperature` and its `scale` as state variables
 4. Add new methods to `Calculator` to handle changes to its new `temperature` and `scale` state variables
-   4.1. Add `handleCelsiusChange()` to handle changes to `temperature`s in `celsius`
-   4.2. Add `handleFahrenheitChange()` to handle changes to `temperature`s in `fahrenheit`
+   - Add `handleCelsiusChange()` to handle changes to `temperature`s in `celsius`
+   - Add `handleFahrenheitChange()` to handle changes to `temperature`s in `fahrenheit`
 5. Update the `Calculator`'s `render` method to keep its state and local variables up-to-date
 6. Update the `Calculator`'s `render` method to handle input changes and render the resultant verdict
-   6.1. For `temperature`s in `celsius`, set the `TemperatureInput`'s `props` and call `handleCelsiusChange()`
-   6.2. For `temperature`s in `fahrenheit`, set the `TemperatureInput`'s `props` and call `handleFahrenheitChange()`
+   - For `temperature`s in `celsius`, set the `TemperatureInput`'s `props` and call `handleCelsiusChange()`
+   - For `temperature`s in `fahrenheit`, set the `TemperatureInput`'s `props` and call `handleFahrenheitChange()`
 
 ### LSU Step 1. Replace `this.state.temperature` with `this.props.temperature` in `TemperatureInput`'s `render()` method
 
@@ -339,12 +339,36 @@ To see this code complete, see my pen
 
 ### LSU Summary
 
+That is quite a bit of work, but hey, it does what we want!
+
+Here is what this code causes ReactJS to do **every time the user presses a key** to edit one of the input fields:
+
+1. calls the specified `onChange` method for the input, i.e. the `TemperatureInput` component's `handleChange` method
+2. this method calls `this.props.onTemperatureChange()` with the new value
+3. when rendering the input, the `Calculator` component set `this.props.onTemperatureChange()` to:
+  - the `Calculator`’s `handleCelsiusChange` method on the input for celsius temperatures
+  - the `Calculator`’s `handleFahrenheitChange` method on the input for fahrenheit temperatures
+4. when one of these methods call `setState()`, ReactJS calls the `Calculator` component's `render()` method
+5. the `Calculator` component's `render()` method recalculates both values and updates the two `TemperatureInput` components
+6. ReactJS calls the `TemperatureInput` components' `render()` methods and the page accordingly
+7. ReactJS then calls the `BoilingVerdict` component's `render()` method
+8. ReactJS then updates the DOM with the boiling verdict as appropriate
+
+All this keeps the two input values in sync, every time the user presses a key in one of them!
 
 ## Lessons Learned
 
-```javascript
-```
+Here are the key take-aways of all this:
 
-```html
-```
+- Every component having one or more values that can change must have a *single source of truth* for those value(s)
+- If two or more components display the value of a variable, we must lift the state up to a common ancestor
+- Lifting state up and having a single source of truth helps make code easier to debug
+- Rather than keep two values for the state, one in celsius and one in fahrenheit, it's better to keep a single value,
+along with a state, and calculate the other value when it's time to render it
+
+Finally, note that:
+
+> When you see something wrong in the UI, you can use
+[React Developer Tools](https://github.com/facebook/react/tree/main/packages/react-devtools)
+to inspect the props and move up the tree until you find the component responsible for updating the state.
 
