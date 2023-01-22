@@ -1,5 +1,5 @@
 
-# 4-components_and_props.md
+# 04-components_and_props.md
 
 Notes from going through step 4 of this reactjs tutorial:
 
