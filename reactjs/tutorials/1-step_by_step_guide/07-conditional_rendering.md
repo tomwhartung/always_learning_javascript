@@ -1,7 +1,7 @@
 
-# 7-conditional_rendering.md
+# 07-conditional_rendering.md
 
-Notes from going through step 7 of this reactjs tutorial:
+Notes from going through lesson 7 of this reactjs tutorial:
 
 - [ReactJS Step-by-step Guide - Conditional Rendering](https://reactjs.org/docs/conditional-rendering.html)
 
