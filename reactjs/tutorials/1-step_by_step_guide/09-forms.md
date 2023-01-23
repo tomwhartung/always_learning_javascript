@@ -1,7 +1,7 @@
 
-# 9-template.md
+# 09-template.md
 
-Notes from going through step 9 of this reactjs tutorial:
+Notes from going through lesson 9 of this reactjs tutorial:
 
 - [ReactJS Step-by-step Guide - Forms](https://reactjs.org/docs/forms.html)
 
