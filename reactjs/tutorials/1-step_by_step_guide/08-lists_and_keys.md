@@ -1,7 +1,7 @@
 
-# 8-lists_and_keys.md
+# 08-lists_and_keys.md
 
-Notes from going through step 8 of this reactjs tutorial:
+Notes from going through lesson 8 of this reactjs tutorial:
 
 - [ReactJS Step-by-step Guide - Lists and Keys](https://reactjs.org/docs/lists-and-keys.html)
 
