@@ -159,16 +159,80 @@ The results of this code look familiar, but note that this example is slightly m
 To see this code complete, see my pen
 [11. My WelcomeDialog 2](https://codepen.io/tomwhartung/pen/xxJWKpJ?editors=1010) on codepen.
 
+### Class Components Work Just Fine!
+
+This example shows that we can use reactJS components defined as classes, *no problemo*!
 
 ```javascript
+function FancyBorder(props) {
+  return (
+    <div className={'FancyBorder FancyBorder-' + props.color}>
+      {props.children}
+    </div>
+  );
+}
+
+// Dialog: a generic function dialog used by a specific class dialog named SignUpDialog,
+//     and in turn uses a smaller function dialog named FancyBorder
+function Dialog(props) {
+  return (
+    <FancyBorder color="blue">
+      <h1 className="Dialog-title">
+        {props.title}
+      </h1>
+      <p className="Dialog-message">
+        {props.message}
+      </p>
+      {props.children}
+    </FancyBorder>
+  );
+}
+
+// SignUpDialog: specific class dialog that uses a generic function dialog, etc.
+class SignUpDialog extends React.Component {
+  constructor(props) {
+    super(props);
+    this.handleChange = this.handleChange.bind(this);
+    this.handleSignUp = this.handleSignUp.bind(this);
+    this.state = {login: ''};
+  }
+
+  render() {
+    return (
+      <Dialog title="Mars Exploration Program"
+              message="How should we refer to you?">
+        <input value={this.state.login}
+               onChange={this.handleChange} />
+        <button onClick={this.handleSignUp}>
+          Sign Me Up!
+        </button>
+      </Dialog>
+    );
+  }
+
+  handleChange(e) {
+    this.setState({login: e.target.value});
+  }
+
+  handleSignUp() {
+    alert(`Welcome aboard, ${this.state.login}!`);
+  }
+}
+
+const root = ReactDOM.createRoot(document.getElementById('root'));
+root.render(<SignUpDialog />);
 ```
 
-```html
-```
+To see this code complete, see my pen
+[11. My Using Class Components](https://codepen.io/tomwhartung/pen/wvxmwEW?editors=1010) on codepen.
 
-```javascript
-```
+## So What About Inheritance?
 
-```html
-```
+> At Facebook, we use React in thousands of components, and we haven’t found any use cases where we would recommend creating component inheritance hierarchies.
+
+> Props and composition give you all the flexibility you need to customize a component’s look and behavior in an explicit and safe way.
+
+> If you want to reuse non-UI functionality between components, we suggest extracting it into a separate JavaScript module.
+
+So there you have it!!
 
