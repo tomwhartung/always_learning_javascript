@@ -168,6 +168,30 @@ const root = ReactDOM.createRoot(document.getElementById('container'));
 root.render(<FilterableProductTable products={PRODUCTS} />);
 ```
 
+> The easiest way is to build a version that takes your data model and renders the UI but has no interactivity.
+> It’s best to decouple these processes because building a static version requires a lot of typing and no thinking,
+> and adding interactivity requires a lot of thinking and not a lot of typing.
+
+Well, that's one way of looking at it!
+
+Here are some additional things to note:
+
+- When building a static version of a page, use `props` exclusively, and *don't use state at all.*  State is used only when interacting with the user.
+- When building larger apps, it is usually easier to start with the small components and work your way up to the big ones
+  - This makes it easier to develop reusable components
+- When building smaller apps, it might be easier to start with the big components and work your way down to the smaller ones
+- At the end of this state, the components will have only `render()` methods
+
+### A Brief Interlude: Props vs State
+
+The two types of data in ReactJS are `props` and `state`.
+If you feel uncertain about this distinction, refer to the following pages:
+
+- [React docs: state and lifecycle](https://reactjs.org/docs/state-and-lifecycle.html)
+- [React FAQ: the difference between `state` and `props`](https://reactjs.org/docs/faq-state.html#what-is-the-difference-between-state-and-props)
+
+
+
 ```javascript
 ```
 
