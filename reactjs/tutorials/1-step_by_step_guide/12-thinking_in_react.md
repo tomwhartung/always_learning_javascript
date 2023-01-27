@@ -190,6 +190,33 @@ If you feel uncertain about this distinction, refer to the following pages:
 - [React docs: state and lifecycle](https://reactjs.org/docs/state-and-lifecycle.html)
 - [React FAQ: the difference between `state` and `props`](https://reactjs.org/docs/faq-state.html#what-is-the-difference-between-state-and-props)
 
+## Step 3: Identify The Minimal (but complete) Representation Of UI State
+
+Remember Lesson 10:
+[Lifting State Up?](https://github.com/tomwhartung/always_learning_javascript/blob/master/reactjs/tutorials/1-step_by_step_guide/10-lifting_state_up.md)
+When implementing the interactive part of the UI, the idea of there being a *single source of truth* is essential!
+
+This is also known as keeping the state variables **DRY:** *Don't Repeat Yourself.*
+For example, if you are keeping an array of TODO items, there is no reason to keep a count of items, just keep the array of the items itself.
+It is easy enough to count them when the count is needed.
+
+A good way to identify which data items are `state` is to:
+
+1. Make a list of each piece of data in the app
+2. For each piece of data, ask the following questions:
+   - Is it a property passed in from its parent?
+     - If so, it is probably *NOT* `state`
+   - Does the user change its value?
+     - If so, it probably *IS* `state`
+   - Can its value be derived from other `props` or `state` variables?
+     - If so, it is probably *NOT* `state`
+
+In the app we are developing, the following data items are dependent on user input, and hence are `state` variables:
+
+- The search text
+- The value of the "Only show products in stock" checkbox
+
+## Step 4: Identify Where Your State Should Live
 
 
 ```javascript
