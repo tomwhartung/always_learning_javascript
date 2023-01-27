@@ -218,6 +218,26 @@ In the app we are developing, the following data items are dependent on user inp
 
 ## Step 4: Identify Where Your State Should Live
 
+This next step can be the most challenging.
+If you get it wrong, then you will need to go through the steps in Lesson 10,
+[Lifting State Up](https://github.com/tomwhartung/always_learning_javascript/blob/master/reactjs/tutorials/1-step_by_step_guide/10-lifting_state_up.md)
+which can take some time.
+
+Here is what the tutorial recommends doing for each `state` variable you identified in the last step:
+
+1. Identify all components that depend on that `state` for rendering something
+2. Find the component that is common to all of these components
+3. Consider designating this component, or its parent, as the owner of the `state` - as the *single source of truth* for it
+4. If it doesn't make sense for the component identified in the prior step to own the variable, create a new component solely for this purpose
+
+In our app, the following components use the `state` variables we have identified:
+
+- The user specifies the search text and checked `state` in the `SearchBar` component
+- `SearchBar` also needs to display the search text and checked `state`
+- `ProductTable` needs to filter the product list based on the `state`
+- The FilterableProductTable component is a common parent to both of these components
+
+Therefore, it totally makes sense for the `FilterableProductTable` component to own both the filter text and checked value `state` variables.
 
 ```javascript
 ```
