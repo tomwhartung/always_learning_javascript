@@ -1,6 +1,6 @@
 //
-// 12-thinking_in_react-before-static_version.js
-// ---------------------------------------------
+// 12a-thinking_in_react-BEFORE-static_version.js
+// ----------------------------------------------
 //
 // Code from Lesson 12 of this reactjs tutorial:
 //   ReactJS Step-by-step Guide - Thinking in React
@@ -102,7 +102,6 @@ class FilterableProductTable extends React.Component {
   }
 }
 
-// Hard-coded list of products, used temporarily for development and testing
 const PRODUCTS = [
   {category: 'Sporting Goods', price: '$49.99', stocked: true, name: 'Football'},
   {category: 'Sporting Goods', price: '$9.99', stocked: true, name: 'Baseball'},
