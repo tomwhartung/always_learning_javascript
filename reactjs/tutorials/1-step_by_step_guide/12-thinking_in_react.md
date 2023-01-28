@@ -164,7 +164,7 @@ const PRODUCTS = [
   {category: 'Electronics', price: '$199.99', stocked: true, name: 'Nexus 7'}
 ];
 
-const root = ReactDOM.createRoot(document.getElementById('container'));
+const root = ReactDOM.createRoot(document.getElementById('**container**'));
 root.render(<FilterableProductTable products={PRODUCTS} />);
 ```
 
@@ -239,8 +239,124 @@ In our app, the following components use the `state` variables we have identifie
 
 Therefore, it totally makes sense for the `FilterableProductTable` component to own both the filter text and checked value `state` variables.
 
-```javascript
+## Step 5: Add Inverse Data Flow
+
+This version of the tutorial doesn't cover these changes very well.
+After taking a glance, it looks like the newer version, which is in beta and was mentioned previously, does a better job of it.
+
+For my purposes, I created two javascript files, copy-and-pasting code from the tutorial into them and adding just a few comments at the top.
+
+- `12a-thinking_in_react-BEFORE-static_version.js` - containing the static version of the code from near the beginning of the tutorial
+- `12b-thinking_in_react-AFTER-stateful_version.js` - containing the stateful version of the code from near the end of the tutorial
+
+Following is the output from running diff against the two versions:
+
 ```
+ $ diff 12a-thinking_in_react-BEFORE-static_version.js 12b-thinking_in_react-AFTER-stateful_version.js
+2,3c2,3
+< // 12a-thinking_in_react-BEFORE-static_version.js
+< // ----------------------------------------------
+---
+> // 12b-thinking_in_react-AFTER-stateful_version.js
+> // -----------------------------------------------
+45a46,48
+>     const filterText = this.props.filterText;
+>     const inStockOnly = this.props.inStockOnly;
+>
+49a53,58
+>       if (product.name.indexOf(filterText) === -1) {
+>         return;
+>       }
+>       if (inStockOnly && !product.stocked) {
+>         return;
+>       }
+60c69,70
+<           key={product.name} />
+---
+>           key={product.name}
+>         />
+79a90,103
+>   constructor(props) {
+>     super(props);
+>     this.handleFilterTextChange = this.handleFilterTextChange.bind(this);
+>     this.handleInStockChange = this.handleInStockChange.bind(this);
+>   }
+>
+>   handleFilterTextChange(e) {
+>     this.props.onFilterTextChange(e.target.value);
+>   }
+>
+>   handleInStockChange(e) {
+>     this.props.onInStockChange(e.target.checked);
+>   }
+>
+83c107,112
+<         <input type="text" placeholder="Search..." />
+---
+>         <input
+>           type="text"
+>           placeholder="Search..."
+>           value={this.props.filterText}
+>           onChange={this.handleFilterTextChange}
+>         />
+85c114,118
+<           <input type="checkbox" />
+---
+>           <input
+>             type="checkbox"
+>             checked={this.props.inStockOnly}
+>             onChange={this.handleInStockChange}
+>           />
+94a128,150
+>   constructor(props) {
+>     super(props);
+>     this.state = {
+>       filterText: '',
+>       inStockOnly: false
+>     };
+>
+>     this.handleFilterTextChange = this.handleFilterTextChange.bind(this);
+>     this.handleInStockChange = this.handleInStockChange.bind(this);
+>   }
+>
+>   handleFilterTextChange(filterText) {
+>     this.setState({
+>       filterText: filterText
+>     });
+>   }
+>
+>   handleInStockChange(inStockOnly) {
+>     this.setState({
+>       inStockOnly: inStockOnly
+>     })
+>   }
+>
+98,99c154,164
+<         <SearchBar />
+<         <ProductTable products={this.props.products} />
+---
+>         <SearchBar
+>           filterText={this.state.filterText}
+>           inStockOnly={this.state.inStockOnly}
+>           onFilterTextChange={this.handleFilterTextChange}
+>           onInStockChange={this.handleInStockChange}
+>         />
+>         <ProductTable
+>           products={this.props.products}
+>           filterText={this.state.filterText}
+>           inStockOnly={this.state.inStockOnly}
+>         />
+```
+
+It's easy to see they made **a lot** of changes, which I will go through in the next subsection, which is not part of the tutorial.
+
+## Examining the Before and After versions
+
+This subsection looks at what they changed between the static and stateful versions of the app.
+
+Just prior to this section you can see all of the differences betwen the two versions.
+This subsection goes through these one-by-one
+
 
 ```javascript
 ```
