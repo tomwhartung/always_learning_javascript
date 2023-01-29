@@ -1,7 +1,7 @@
 
-# 0-template.md
+# 00-template.md
 
-Notes from going through step 0 of this reactjs tutorial:
+Notes from going through lesson 0 of this reactjs tutorial:
 
 - [ReactJS Step-by-step Guide - XXX](https://reactjs.org/docs/XXX.html)
 
