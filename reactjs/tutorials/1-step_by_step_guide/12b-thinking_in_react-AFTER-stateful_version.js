@@ -92,15 +92,15 @@ class SearchBar extends React.Component {
     this.handleFilterTextChange = this.handleFilterTextChange.bind(this);
     this.handleInStockChange = this.handleInStockChange.bind(this);
   }
-  
+
   handleFilterTextChange(e) {
     this.props.onFilterTextChange(e.target.value);
   }
-  
+
   handleInStockChange(e) {
     this.props.onInStockChange(e.target.checked);
   }
-  
+
   render() {
     return (
       <form>
@@ -131,7 +131,7 @@ class FilterableProductTable extends React.Component {
       filterText: '',
       inStockOnly: false
     };
-    
+
     this.handleFilterTextChange = this.handleFilterTextChange.bind(this);
     this.handleInStockChange = this.handleInStockChange.bind(this);
   }
@@ -141,7 +141,7 @@ class FilterableProductTable extends React.Component {
       filterText: filterText
     });
   }
-  
+
   handleInStockChange(inStockOnly) {
     this.setState({
       inStockOnly: inStockOnly
