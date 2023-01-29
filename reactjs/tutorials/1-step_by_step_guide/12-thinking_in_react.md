@@ -629,9 +629,21 @@ Updating the `ProductTable` class in the
 [12. My Product Page App](https://codepen.io/tomwhartung/pen/ZEjREar?editors=1010)
 on codepen completes the changes we need to make for this step in the process!
 
-```javascript
-```
+## Testing the Completed App
 
-```html
-```
+Running the latest version on codepen, by following the link immediately above, shows that indeed the app meets the requirements:
+
+- Clicking on the *Only show products in stock* check box immediately removes the products that are not in stock from the list
+- Typing one or more characters in the *Search...* box immediately removes any products that do not match the input text
+
+## And That’s It
+
+Thus ends this tutorial.
+
+At this point I intend to continue with the other tutorial on the site, of which at this time there are two versions:
+
+- The older [Tutorial: Intro to React](https://reactjs.org/tutorial/tutorial.html)
+- The newer [Tutorial: Tic-Tac-Toe](https://beta.reactjs.org/learn/tutorial-tic-tac-toe), which is in beta
+
+I will probably go with the newer one, at least to start, sticking with it as long as "it's not too bad!"
 
