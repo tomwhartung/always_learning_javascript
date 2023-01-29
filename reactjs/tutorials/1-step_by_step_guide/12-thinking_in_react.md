@@ -355,7 +355,10 @@ It's easy to see they made **a lot** of changes, which I will go through in the 
 This subsection looks at what they changed between the static and stateful versions of the app.
 
 Just prior to this section you can see all of the differences betwen the two versions.
-This subsection goes through these changes one component at a time, starting at the top of the hierarchy, which is at the end of the file.
+This subsection goes through these changes one component at a time, starting at the top of the hierarchy.
+
+**Note:** the top of the hierarchy is at the end of the file, so we will go through these changes
+starting with the last one at the end and working forward!
 
 ### Changes to the `FilterableProductTable` Component
 
@@ -521,12 +524,110 @@ on codepen does not cause an error, but it's still only a partial solution.
 
 ### Changes to the `ProductTable` Component
 
+Following is the `ProductTable` component **BEFORE** these changes:
 
 ```javascript
+class ProductTable extends React.Component {
+  render() {
+    const rows = [];
+    let lastCategory = null;
+
+    this.props.products.forEach((product) => {
+      if (product.category !== lastCategory) {
+        rows.push(
+          <ProductCategoryRow
+            category={product.category}
+            key={product.category} />
+        );
+      }
+      rows.push(
+        <ProductRow
+          product={product}
+          key={product.name} />
+      );
+      lastCategory = product.category;
+    });
+
+    return (
+      <table>
+        <thead>
+          <tr>
+            <th>Name</th>
+            <th>Price</th>
+          </tr>
+        </thead>
+        <tbody>{rows}</tbody>
+      </table>
+    );
+  }
+}
 ```
 
-```html
+We need to update the `ProductTable` component to **filter out** any product rows that:
+
+- Do **not** meet the `filterText` seach criteria specified by the user
+- Are **not** in stock when the `inStockOnly` checkbox is checked
+
+**Note:** in the parent component, `FilterableProductTable`, the `filterText` and `inStockOnly` variables are `state` variables,
+but in this component they are `props`!
+
+Following is the `ProductTable` component **AFTER** these changes, with comments added that briefly explain what the new code does:
+
+```javascript
+class ProductTable extends React.Component {
+  render() {
+    // Set local variables based on the passed-in properties
+    const filterText = this.props.filterText;
+    const inStockOnly = this.props.inStockOnly;
+
+    const rows = [];
+    let lastCategory = null;
+
+    this.props.products.forEach((product) => {
+      // If the product name does not match the filter text,
+      //    do not render this product
+      if (product.name.indexOf(filterText) === -1) {
+        return;
+      }
+      // If the user wants to see only stocked products and this product is out of stock,
+      //    do not render this product
+      if (inStockOnly && !product.stocked) {
+        return;
+      }
+      if (product.category !== lastCategory) {
+        rows.push(
+          <ProductCategoryRow
+            category={product.category}
+            key={product.category} />
+        );
+      }
+      rows.push(
+        <ProductRow
+          product={product}
+          key={product.name}
+        />
+      );
+      lastCategory = product.category;
+    });
+
+    return (
+      <table>
+        <thead>
+          <tr>
+            <th>Name</th>
+            <th>Price</th>
+          </tr>
+        </thead>
+        <tbody>{rows}</tbody>
+      </table>
+    );
+  }
+}
 ```
+
+Updating the `ProductTable` class in the
+[12. My Product Page App](https://codepen.io/tomwhartung/pen/ZEjREar?editors=1010)
+on codepen completes the changes we need to make for this step in the process!
 
 ```javascript
 ```
