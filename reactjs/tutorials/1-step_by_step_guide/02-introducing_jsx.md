@@ -1,7 +1,7 @@
 
 # 02-introducing-jsx.md
 
-Notes from going through step 2 of this reactjs tutorial:
+Notes from going through lesson 2 of this reactjs tutorial:
 
 - [ReactJS Step-by-step Guide - Introducing JSX](https://reactjs.org/docs/introducing-jsx.html)
 

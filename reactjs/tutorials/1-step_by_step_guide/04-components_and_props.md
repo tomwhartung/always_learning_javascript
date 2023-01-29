@@ -1,7 +1,7 @@
 
 # 04-components_and_props.md
 
-Notes from going through step 4 of this reactjs tutorial:
+Notes from going through lesson 4 of this reactjs tutorial:
 
 - [ReactJS Step-by-step Guide - Components and Props](https://reactjs.org/docs/components-and-props.html)
 

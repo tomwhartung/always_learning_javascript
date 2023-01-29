@@ -1,7 +1,7 @@
 
 # 03-rendering_elements.md
 
-Notes from going through step 3 of this reactjs tutorial:
+Notes from going through lesson 3 of this reactjs tutorial:
 
 - [ReactJS Step-by-step Guide - Rendering Elements](https://reactjs.org/docs/rendering-elements.html)
 

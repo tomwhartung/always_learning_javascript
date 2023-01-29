@@ -1,7 +1,7 @@
 
 # 05-state_and_lifecycle.md
 
-Notes from going through step 5 of this reactjs tutorial:
+Notes from going through lesson 5 of this reactjs tutorial:
 
 - [ReactJS Step-by-step Guide - State and Lifecycle](https://reactjs.org/docs/state-and-lifecycle.html)
 

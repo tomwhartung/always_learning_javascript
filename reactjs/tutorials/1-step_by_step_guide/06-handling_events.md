@@ -1,7 +1,7 @@
 
 # 06-handling_events.md
 
-Notes from going through step 6 of this reactjs tutorial:
+Notes from going through lesson 6 of this reactjs tutorial:
 
 - [ReactJS Step-by-step Guide - Handling Events](https://reactjs.org/docs/handling-events.html)
 
