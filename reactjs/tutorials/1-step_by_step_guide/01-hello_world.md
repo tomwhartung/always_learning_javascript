@@ -1,7 +1,7 @@
 
 # 01-hello_world.md
 
-Notes from going through step 1 of this reactjs tutorial:
+Notes from going through lesson 1 of this reactjs tutorial:
 
 - [ReactJS Step-by-step Guide - Hello World](https://reactjs.org/docs/hello-world.html)
 
