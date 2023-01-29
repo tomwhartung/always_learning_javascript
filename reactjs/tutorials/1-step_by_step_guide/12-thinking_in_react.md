@@ -385,7 +385,10 @@ class FilterableProductTable extends React.Component {
 }
 ```
 
-Following is the `FilterableProductTable` component **AFTER** these changes, with comments added that briefly explaining what the new code does:
+The `FilterableProductTable` component needs to be updated to manage the `state` variables.
+These are values input by the user in the `SearchBar` component that affect the display of products in the `ProductTable` component.
+
+Following is the `FilterableProductTable` component **AFTER** these changes, with comments added that briefly explain what the new code does:
 
 ```javascript
 class FilterableProductTable extends React.Component {
@@ -437,9 +440,86 @@ class FilterableProductTable extends React.Component {
 }
 ```
 
-Updating the class in the
+Updating the `FilterableProductTable` class in the
 [12. My Product Page App](https://codepen.io/tomwhartung/pen/ZEjREar?editors=1010)
 on codepen does not cause an error, but it's only a partial solution.
+
+### Changes to the `SearchBar` Component
+
+Following is the `SearchBar` component **BEFORE** these changes:
+
+```javascript
+class SearchBar extends React.Component {
+  render() {
+    return (
+      <form>
+        <input type="text" placeholder="Search..." />
+        <p>
+          <input type="checkbox" />
+          {' '}
+          Only show products in stock
+        </p>
+      </form>
+    );
+  }
+}
+```
+
+The `SearchBar` component needs to be updated to pass the `state` variables, which are just `props` in this class,
+from its parent component, the `FilterableProductTable` component, to the elements in the DOM.
+
+Following is the `SearchBar` component **AFTER** these changes, with comments added that briefly explain what the new code does:
+
+```javascript
+class SearchBar extends React.Component {
+  constructor(props) {
+    super(props);
+
+    // Bind the event handlers for the props that reflect the parent component's state variables
+    this.handleFilterTextChange = this.handleFilterTextChange.bind(this);
+    this.handleInStockChange = this.handleInStockChange.bind(this);
+  }
+
+  // Event handler for the filter text prop: call event handler in parent class
+  handleFilterTextChange(e) {
+    this.props.onFilterTextChange(e.target.value);
+  }
+
+  // Event handler for the in stock change checkbox prop: call event handler in parent class
+  handleInStockChange(e) {
+    this.props.onInStockChange(e.target.checked);
+  }
+
+  // Render the form, using the latest values for the props
+  // -> Note that these props are state variables in the parent component
+  render() {
+    return (
+      <form>
+        <input
+          type="text"
+          placeholder="Search..."
+          value={this.props.filterText}
+          onChange={this.handleFilterTextChange}
+        />
+        <p>
+          <input
+            type="checkbox"
+            checked={this.props.inStockOnly}
+            onChange={this.handleInStockChange}
+          />
+          {' '}
+          Only show products in stock
+        </p>
+      </form>
+    );
+  }
+}
+```
+Updating the `SearchBar` class in the
+[12. My Product Page App](https://codepen.io/tomwhartung/pen/ZEjREar?editors=1010)
+on codepen does not cause an error, but it's still only a partial solution.
+
+### Changes to the `ProductTable` Component
 
 
 ```javascript
