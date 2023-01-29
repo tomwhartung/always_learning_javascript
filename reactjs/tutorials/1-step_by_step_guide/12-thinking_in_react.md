@@ -355,14 +355,92 @@ It's easy to see they made **a lot** of changes, which I will go through in the 
 This subsection looks at what they changed between the static and stateful versions of the app.
 
 Just prior to this section you can see all of the differences betwen the two versions.
-This subsection goes through these one-by-one
+This subsection goes through these changes one component at a time, starting at the top of the hierarchy, which is at the end of the file.
 
+### Changes to the `FilterableProductTable` Component
+
+The `FilterableProductTable` component is at the top of the hierarchy - and is the last component in the file.
+This component:
+
+- Renders the `SearchBar` component
+- Renders the `` component
+- Owns the `state` variables set in the `SearchBar` component
+  - `FilterableProductTable` monitors and manages changes to the `state` variables set in the `SearchBar` component
+  - When the `state` variables change, `FilterableProductTable`
+    - Passes the latest values for the `state` variables to them
+    - Rerenders the `SearchBar` and `ProductTable` components at the same time
+
+Following is the `FilterableProductTable` component **BEFORE** these changes:
 
 ```javascript
+class FilterableProductTable extends React.Component {
+  render() {
+    return (
+      <div>
+        <SearchBar />
+        <ProductTable products={this.props.products} />
+      </div>
+    );
+  }
+}
 ```
 
-```html
+Following is the `FilterableProductTable` component **AFTER** these changes, with comments added that briefly explaining what the new code does:
+
+```javascript
+class FilterableProductTable extends React.Component {
+  constructor(props) {
+    super(props);
+    // Add the state variables to this class component
+    this.state = {
+      filterText: '',
+      inStockOnly: false
+    };
+
+    // Bind the event handlers for the state variables
+    this.handleFilterTextChange = this.handleFilterTextChange.bind(this);
+    this.handleInStockChange = this.handleInStockChange.bind(this);
+  }
+
+  // Event handler for the search bar's filter text state variable
+  handleFilterTextChange(filterText) {
+    this.setState({
+      filterText: filterText
+    });
+  }
+
+  // Event handler for the in stock only checkbox state variable
+  handleInStockChange(inStockOnly) {
+    this.setState({
+      inStockOnly: inStockOnly
+    })
+  }
+
+  // Render the child components, passing the updated values for the state variables
+  render() {
+    return (
+      <div>
+        <SearchBar
+          filterText={this.state.filterText}
+          inStockOnly={this.state.inStockOnly}
+          onFilterTextChange={this.handleFilterTextChange}
+          onInStockChange={this.handleInStockChange}
+        />
+        <ProductTable
+          products={this.props.products}
+          filterText={this.state.filterText}
+          inStockOnly={this.state.inStockOnly}
+        />
+      </div>
+    );
+  }
+}
 ```
+
+Updating the class in the
+[12. My Product Page App](https://codepen.io/tomwhartung/pen/ZEjREar?editors=1010)
+on codepen does not cause an error, but it's only a partial solution.
+
 
 ```javascript
 ```
