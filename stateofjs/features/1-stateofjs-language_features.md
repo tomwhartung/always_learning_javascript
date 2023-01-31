@@ -18,7 +18,7 @@ This feature allows creation of a *proxy* object that you can use in place of an
 
 Typical uses for a *proxy* are "to log property accesses, validate, format, or sanitize inputs, and so on."
 
-## Simplistic Example Code
+## Example Code
 
 This code creates an empty proxy class, that does not do anything.
 
@@ -97,7 +97,7 @@ If I need to use `Promise`s, I should learn more about them.  This link looks li
 A typical use for `Promise.allSettled()` is when the tasks are independent.
 If the promises are interdependent, it may be better to use `Promise.allSettled()`.
 
-## Simplistic Example Code
+## Example Code
 
 ```javascript
 Promise.allSettled([
@@ -123,33 +123,56 @@ For details about this feature, see the
 [MDN page for *Promise.allSettled()*](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Promise/allSettled).
 
 
-# import
+# `import`
 
 Here are some notes from
 [MDN's page describing *import*](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Statements/import).
 
 ## Overview
+
+`import` is a static declaration that imports the read-only *live bindings* (variables and functions) which are
+[exported](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Statements/export)
+by another module.
+
 ## Description
-## Simplistic Example Code
+
+Only the top-most level of a [module](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Guide/Modules)
+may use `import`.
+
+There are many subtleties to `import` statements.  For example, there are four forms:
+
+- [Named import](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Statements/import#named_import)
+- [Default import](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Statements/import#default_import)
+- [Namespace import](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Statements/import#namespace_import)
+- [Side effect import](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Statements/import#import_a_module_for_its_side_effects_only)
+
+## Example Code
 
 ```javascript
+// Named import
+import { foo, bar } from "/modules/my-module.js";
+// Default import
+import myDefault, * as myModule from "/modules/my-module.js";
+// Namespace import
+import * as myModule from "/modules/my-module.js";
+// Side effect import
+import "/modules/my-module.js";
 ```
-```javascript
-```
+
 ## For Details
 
 For details about this feature, see the
 [MDN page for *import*](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Statements/import).
 
 
-# Name of Feature
+# `Name of Feature`
 
 Here are some notes from
 [MDN's page describing *Name of Feature*](MDN Page for Feature).
 
 ## Overview
 ## Description
-## Simplistic Example Code
+## Example Code
 
 ```javascript
 ```
@@ -161,14 +184,14 @@ For details about this feature, see the
 [MDN page for *Name of Feature*](MDN Page for Feature).
 
 
-# Name of Feature
+# `Name of Feature`
 
 Here are some notes from
 [MDN's page describing *Name of Feature*](MDN Page for Feature).
 
 ## Overview
 ## Description
-## Simplistic Example Code
+## Example Code
 
 ```javascript
 ```
@@ -180,14 +203,14 @@ For details about this feature, see the
 [MDN page for *Name of Feature*](MDN Page for Feature).
 
 
-# Name of Feature
+# `Name of Feature`
 
 Here are some notes from
 [MDN's page describing *Name of Feature*](MDN Page for Feature).
 
 ## Overview
 ## Description
-## Simplistic Example Code
+## Example Code
 
 ```javascript
 ```
@@ -199,14 +222,14 @@ For details about this feature, see the
 [MDN page for *Name of Feature*](MDN Page for Feature).
 
 
-# Name of Feature
+# `Name of Feature`
 
 Here are some notes from
 [MDN's page describing *Name of Feature*](MDN Page for Feature).
 
 ## Overview
 ## Description
-## Simplistic Example Code
+## Example Code
 
 ```javascript
 ```
@@ -218,14 +241,14 @@ For details about this feature, see the
 [MDN page for *Name of Feature*](MDN Page for Feature).
 
 
-# Name of Feature
+# `Name of Feature`
 
 Here are some notes from
 [MDN's page describing *Name of Feature*](MDN Page for Feature).
 
 ## Overview
 ## Description
-## Simplistic Example Code
+## Example Code
 
 ```javascript
 ```
@@ -237,14 +260,14 @@ For details about this feature, see the
 [MDN page for *Name of Feature*](MDN Page for Feature).
 
 
-# Name of Feature
+# `Name of Feature`
 
 Here are some notes from
 [MDN's page describing *Name of Feature*](MDN Page for Feature).
 
 ## Overview
 ## Description
-## Simplistic Example Code
+## Example Code
 
 ```javascript
 ```
