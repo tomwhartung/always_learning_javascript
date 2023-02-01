@@ -3,7 +3,7 @@
 
 This page contains some notes about the [stateofjs' list of JS language features](https://2022.stateofjs.com/en-US/features/language/)
 
-# Proxies
+# 1. Proxies
 
 Here are some notes from
 [MDN's page describing *proxies*](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Proxy).
@@ -67,10 +67,10 @@ For details about this feature, see the
 [MDN page for *proxies*](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Proxy).
 
 
-# Promise.allSettled()
+# 2. `Promise.allSettled()`
 
 Here are some notes from
-[MDN's page describing *Promise.allSettled()*](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Promise/allSettled).
+[MDN's page describing *`Promise.allSettled()`*](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Promise/allSettled).
 
 ## Overview
 
@@ -122,13 +122,13 @@ Promise.allSettled([
 ## For Details
 
 For details about this feature, see the
-[MDN page for *Promise.allSettled()*](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Promise/allSettled).
+[MDN page for *`Promise.allSettled()`*](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Promise/allSettled).
 
 
-# `import`
+# 3. Dynamic Import: `import`
 
 Here are some notes from
-[MDN's page describing *import*](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Statements/import).
+[MDN's page describing *`import`*](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Statements/import).
 
 ## Overview
 
@@ -164,10 +164,10 @@ import "/modules/my-module.js";
 ## For Details
 
 For details about this feature, see the
-[MDN page for *import*](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Statements/import).
+[MDN page for *`import`*](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Statements/import).
 
 
-# `Private class features`
+# 4. Private Fields: Private class features
 
 Here are some notes from
 [MDN's page describing *Private class features*](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Classes/Private_class_fields).
@@ -224,10 +224,10 @@ For details about this feature, see the
 [MDN page for *Private class features*](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Classes/Private_class_fields).
 
 
-# `Name of Feature`
+# 5. Nullish Coalescing: Nullish coalescing operator `(??)`
 
 Here are some notes from
-[MDN's page describing *Name of Feature*](MDN Page for Feature).
+[MDN page describing *Nullish coalescing operator `(??)`*](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Operators/Nullish_coalescing).
 
 ## Overview
 ## Description
@@ -240,13 +240,13 @@ Here are some notes from
 ## For Details
 
 For details about this feature, see the
-[MDN page for *Name of Feature*](MDN Page for Feature).
+[MDN page for *Nullish coalescing operator `(??)`*](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Operators/Nullish_coalescing).
 
 
-# `Name of Feature`
+# 6. Numeric Separators: Lexical grammar
 
 Here are some notes from
-[MDN's page describing *Name of Feature*](MDN Page for Feature).
+[MDN's page describing *Lexical grammar*](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Lexical_grammar).
 
 ## Overview
 ## Description
@@ -259,13 +259,13 @@ Here are some notes from
 ## For Details
 
 For details about this feature, see the
-[MDN page for *Name of Feature*](MDN Page for Feature).
+[MDN page for *Lexical grammar*](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Lexical_grammar).
 
 
-# `Name of Feature`
+# 7. `String.prototype.replaceAll()`
 
 Here are some notes from
-[MDN's page describing *Name of Feature*](MDN Page for Feature).
+[MDN's page describing *`String.prototype.replaceAll()`*](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/String/replaceAll).
 
 ## Overview
 ## Description
@@ -278,13 +278,13 @@ Here are some notes from
 ## For Details
 
 For details about this feature, see the
-[MDN page for *Name of Feature*](MDN Page for Feature).
+[MDN page for *`String.prototype.replaceAll()`*](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/String/replaceAll).
 
 
-# `Name of Feature`
+# 8. `String.prototype.matchAll()`
 
 Here are some notes from
-[MDN's page describing *Name of Feature*](MDN Page for Feature).
+[MDN's page describing *`String.prototype.matchAll()`*](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/String/matchAll).
 
 ## Overview
 ## Description
@@ -297,13 +297,13 @@ Here are some notes from
 ## For Details
 
 For details about this feature, see the
-[MDN page for *Name of Feature*](MDN Page for Feature).
+[MDN page for *`String.prototype.matchAll()`*](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/String/matchAll).
 
 
-# `Name of Feature`
+# 9. Logical Assignment: Logical AND assignment `(&&=)`
 
 Here are some notes from
-[MDN's page describing *Name of Feature*](MDN Page for Feature).
+[MDN's page describing *Logical AND assignment `(&&=)`*](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Operators/Logical_AND_assignment).
 
 ## Overview
 ## Description
@@ -316,6 +316,142 @@ Here are some notes from
 ## For Details
 
 For details about this feature, see the
-[MDN page for *Name of Feature*](MDN Page for Feature).
+[MDN page for *Logical AND assignment `(&&=)`*](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Operators/Logical_AND_assignment).
 
 
+# 10. `Promise.any()`
+
+Here are some notes from
+[MDN's page describing *`Promise.any()`*](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Promise/any).
+
+## Overview
+## Description
+## Example Code
+
+```javascript
+```
+```javascript
+```
+## For Details
+
+For details about this feature, see the
+[MDN page for *`Promise.any()`*](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Promise/any).
+
+
+# 11. `Array.prototype.at()`
+
+Here are some notes from
+[MDN's page describing *`Array.prototype.at()`*](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Array/at).
+
+## Overview
+## Description
+## Example Code
+
+```javascript
+```
+```javascript
+```
+## For Details
+
+For details about this feature, see the
+[MDN page for *`Array.prototype.at()`*](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Array/at).
+
+
+# 12. Top Level `await()`: `await`
+
+Here are some notes from
+[MDN's page describing *`await`*](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Operators/await).
+
+## Overview
+## Description
+## Example Code
+
+```javascript
+```
+```javascript
+```
+## For Details
+
+For details about this feature, see the
+[MDN page for *`await`*](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Operators/await).
+
+
+# 13. Temporal: `Date`
+
+Here are some notes from
+[MDN's page describing *`Date`*](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Date).
+
+## Overview
+## Description
+## Example Code
+
+```javascript
+```
+```javascript
+```
+## For Details
+
+For details about this feature, see the
+[MDN page for *`Date`*](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Date).
+
+
+# 14. `Array.prototype.findLast()`
+
+Here are some notes from
+[MDN's page describing *`Array.prototype.findLast()`*](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Array/findLast).
+
+## Overview
+## Description
+## Example Code
+
+```javascript
+```
+```javascript
+```
+## For Details
+
+For details about this feature, see the
+[MDN page for *`Array.prototype.findLast()`*](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Array/findLast).
+
+
+# 15. `Error.prototype.cause`
+
+Here are some notes from
+[MDN's page describing *`Error.prototype.cause`*](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Error/cause).
+
+## Overview
+## Description
+## Example Code
+
+```javascript
+```
+```javascript
+```
+## For Details
+
+For details about this feature, see the
+[MDN page for *`Error.prototype.cause`*](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Error/cause).
+
+
+# 16. `Object.hasOwn()`
+
+Here are some notes from
+[MDN's page describing *`Object.hasOwn()`*](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Object/hasOwn).
+
+## Overview
+## Description
+## Example Code
+
+```javascript
+```
+```javascript
+```
+## For Details
+
+For details about this feature, see the
+[MDN page for *`Object.hasOwn()`*](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Object/hasOwn).
+
+
+# 17. Regexp Match Indices: (No link to MDN given?!?!?!)
+
+**TODO:** Look this up when (almost) done!
