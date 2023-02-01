@@ -331,13 +331,37 @@ Here are some notes from
 [MDN's page describing *`String.prototype.replaceAll()`*](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/String/replaceAll).
 
 ## Overview
+
+`String.prototype.replaceAll()` finds all occurrences of a pattern in a string, replaces each occurrence with a new string or the
+return value of a function, and returns the new string.
+
+### Syntax
+
+```javascript
+replaceAll(pattern, replacement)
+```
+
 ## Description
+
+The pattern may be a regular expression or a literal.
+If you use a regular expression, the global option must be set.
+
+The original string is left unchanged.
+
+To replace only the first occurrence of the pattern, use
+[`replace()`](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/String/replace)
+
 ## Example Code
 
 ```javascript
+"aabbcc".replaceAll("b", ".");
+// 'aa..cc'
+
+// "This will work:"
+"aabbcc".replaceAll(/b/g, ".");
+("aa..cc");
 ```
-```javascript
-```
+
 ## For Details
 
 For details about this feature, see the
