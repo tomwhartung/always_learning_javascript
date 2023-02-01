@@ -282,16 +282,46 @@ Here are some notes from
 [MDN's page describing *Lexical grammar*](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Lexical_grammar).
 
 ## Overview
+
+**Numeric separators** is a topic that appears under the heading
+[Literals](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Lexical_grammar#literals),
+which is about 2/3 the way down MDN's Lexical grammar page.
+
 ## Description
+
+Numeric separators are underscore ("`_`") characters that help improve the readability of long numeric literals.
+
+**Note:** At the time of this writing, some rather obscure browsers do not support this feature.
+For details see
+[the Can I Use page for Numerical separators](https://caniuse.com/mdn-javascript_grammar_numeric_separators).
+
 ## Example Code
 
 ```javascript
+1_000_000_000_000
+1_050.95
+0b1010_0001_1000_0101
+0o2_2_5_6
+0xA0_B0_C0
+1_000_000_000_000_000_000_000n
 ```
+
+There are some caveats:
+
 ```javascript
+// More than one underscore in a row is not allowed
+100__000; // SyntaxError
+
+// Not allowed at the end of numeric literals
+100_; // SyntaxError
+
+// Can not be used after leading 0
+0_1; // SyntaxError
 ```
+
 ## For Details
 
-For details about this feature, see the
+For details about this feature, and a **whole lot more** about JavaScript's syntax, see the
 [MDN page for *Lexical grammar*](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Lexical_grammar).
 
 
