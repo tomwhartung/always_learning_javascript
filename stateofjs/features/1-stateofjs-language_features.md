@@ -224,19 +224,52 @@ For details about this feature, see the
 [MDN page for *Private class features*](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Classes/Private_class_fields).
 
 
-# 5. Nullish Coalescing: Nullish coalescing operator `(??)`
+# 5. Nullish Coalescing: Nullish coalescing operator (`??`)
 
 Here are some notes from
-[MDN page describing *Nullish coalescing operator `(??)`*](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Operators/Nullish_coalescing).
+[MDN page describing *Nullish coalescing operator (`??`)*](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Operators/Nullish_coalescing).
 
 ## Overview
+
+The `??` operator works as follows:
+
+- if the operand on the left side is `null` or `undefined`,
+  - returns the operand on the right side,
+- else
+  - returns the operand on the left side.
+
 ## Description
+
+The `??` operator is good for making sure a variable has a default value.
+
+It is similar to the logical OR `||` operator, which returns the opearand on the right side when the operand on the left is *falsy.*
+
+If you want to combine `??` with `||` or `&&`, use parentheses to indicate precedence.
+
+### Accessing Object Properties
+
+**Note:** When accessing the property of an object, trying to access `null` or `undefined` values may throw an error.
+In this case, consider using the
+[optional chaning operator `.?`](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Operators/Optional_chaining).
+
 ## Example Code
 
+These examples demonstrate how to provide default values:
+
 ```javascript
+const nullValue = null;
+const emptyText = ""; // falsy
+const someNumber = 42;
+
+const valA = nullValue ?? "default for A";
+const valB = emptyText ?? "default for B";
+const valC = someNumber ?? 0;
+
+console.log(valA); // "default for A"
+console.log(valB); // "" (as the empty string is not null or undefined)
+console.log(valC); // 42
 ```
-```javascript
-```
+
 ## For Details
 
 For details about this feature, see the
