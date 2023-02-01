@@ -91,8 +91,10 @@ If I need to use `Promise`s, I should learn more about them.  This link looks li
 
 - `Promise.all()` fulfills when all promises fulfill, else rejects
 - `Promise.allSettled()` fulfills when all promises settle
-- `Promise.any()` fulfills when any of the promises fulfills, rejects when all reject
+- `Promise.any()` fulfills when any of the promises fulfills, rejects when all reject (*)
 - `Promise.race()` settles when any promise settles, rejects when any promise rejects
+
+(*) This file covers the `Promise.any()` feature in a subsection below.
 
 A typical use for `Promise.allSettled()` is when the tasks are independent.
 If the promises are interdependent, it may be better to use `Promise.allSettled()`.
@@ -165,23 +167,61 @@ For details about this feature, see the
 [MDN page for *import*](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Statements/import).
 
 
-# `Name of Feature`
+# `Private class features`
 
 Here are some notes from
-[MDN's page describing *Name of Feature*](MDN Page for Feature).
+[MDN's page describing *Private class features*](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Classes/Private_class_fields).
 
 ## Overview
+
+You can create private members of a class by previxing the name with a hash (**#**) character.
+
 ## Description
+
+Following is a list of class features that you can make private:
+
+- Private fields
+- Private methods
+- Private static fields
+- Private static methods
+- Private getters
+- Private setters
+- Private static getters
+- Private static setters
+
+These are formally known as *private properties*.
+
+Note that constructors cannot be made private, but there is a
+[work-around of sorts](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Classes/Private_class_fields#simulating_private_constructors).
+
 ## Example Code
 
 ```javascript
+class ClassWithPrivateField {
+  #privateField;
+
+  constructor() {
+    this.#privateField = 42;
+  }
+}
+
+class SubClass extends ClassWithPrivateField {
+  #subPrivateField;
+
+  constructor() {
+    super();
+    this.#subPrivateField = 23;
+  }
+}
+
+new SubClass();
+// SubClass {#subPrivateField: 23}
 ```
-```javascript
-```
+
 ## For Details
 
 For details about this feature, see the
-[MDN page for *Name of Feature*](MDN Page for Feature).
+[MDN page for *Private class features*](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Classes/Private_class_fields).
 
 
 # `Name of Feature`
