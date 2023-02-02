@@ -565,16 +565,68 @@ Here are some notes from
 [MDN's page describing *`Array.prototype.at()`*](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Array/at).
 
 ## Overview
+
+Given a numeric `index`, `Array.prototype.at()` returns the element at that position in the array.
+
 ## Syntax
+
 ```javascript
+at(index)
 ```
+
 ## Description
+
+Given a positive `index`, `Array.prototype.at()`behaves just like the bracket notation `Array[index]`.
+
+Given a negative `index`, `Array.prototype.at()` counts backward from the last element.
+
+Although `array.at(-1)` behaves as expected, square brackets do not work that way with a literal `index`.
+That is, in the expression `array[-1]` the literal `-1` is interpreted as a string and handled like `array["-1"]`.
+
+This is only true with stand-alone literals, so `array[array.length - 1]` is equivalent to `array.at(-1)`.
+
 ## Example Code
 
 ```javascript
+// Our array with items
+const cart = ["apple", "banana", "pear"];
+
+// A function which returns the last item of a given array
+function returnLast(arr) {
+  return arr.at(-1);
+}
+
+// Get the last item of our array 'cart'
+const item1 = returnLast(cart);
+console.log(item1); // 'pear'
+
+// Add an item to our 'cart' array
+cart.push("orange");
+const item2 = returnLast(cart);
+console.log(item2); // 'orange'
 ```
+
+Interestingly, as the following example shows, `Array.prototype.at()` works with *non-array objects*:
+
 ```javascript
+// Our array with items
+const cart = ["apple", "banana", "pear"];
+
+// A function which returns the last item of a given array
+function returnLast(arr) {
+  return arr.at(-1);
+}
+
+// Get the last item of our array 'cart'
+const item1 = returnLast(cart);
+console.log(item1); // 'pear'
+
+// Add an item to our 'cart' array
+cart.push("orange");
+const item2 = returnLast(cart);
+console.log(item2); // 'orange'
 ```
+
 ## For Details
 
 For details about this feature, see the
