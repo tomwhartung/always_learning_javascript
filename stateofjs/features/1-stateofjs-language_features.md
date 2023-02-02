@@ -374,10 +374,45 @@ Here are some notes from
 [MDN's page describing *`String.prototype.matchAll()`*](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/String/matchAll).
 
 ## Overview
+
+`String.prototype.matchAll()` returns an iterator of all results from matching a regular expression to the specified string.
+
+### Syntax
+
+```javascript
+matchAll(regexp)
+```
+
+Where `regexp` is a regular expression object, or an object with a Symbol.matchAll() method.
+
 ## Description
+
+The returned `Array` is not restartable and contains another `Array`
+"with the same shape as the return value of `RegExp.prototype.exec()`."
+
+The `regex` must have the global flag set, else `matchall()` throws a `TypeError` exception.
+
 ## Example Code
 
 ```javascript
+const regexp = /foo[a-z]*/g;
+const str = "table football, foosball";
+const matches = str.matchAll(regexp);
+
+for (const match of matches) {
+  console.log(
+    `Found ${match[0]} start=${match.index} end=${
+      match.index + match[0].length
+    }.`,
+  );
+}
+// Found football start=6 end=14.
+// Found foosball start=16 end=24.
+
+// matches iterator is exhausted after the for...of iteration
+// Call matchAll again to create a new iterator
+Array.from(str.matchAll(regexp), (m) => m[0]);
+// [ "football", "foosball" ]
 ```
 ```javascript
 ```
