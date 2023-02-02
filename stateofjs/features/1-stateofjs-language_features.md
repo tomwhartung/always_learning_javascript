@@ -1,7 +1,8 @@
 
 # 1-stateofjs-language_features.md
 
-This page contains some notes about the [stateofjs' list of JS language features](https://2022.stateofjs.com/en-US/features/language/)
+This page contains some notes about the
+[stateofjs' list of JS language features](https://2022.stateofjs.com/en-US/features/language/).
 
 # 1. Proxies
 
@@ -78,6 +79,12 @@ Here are some notes from
 [`Promise`](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Promise) which,
 in turn, fulfills when all of the passed-in promises fulfill.
 
+## Syntax
+
+```javascript
+Promise.allSettled(iterable)
+```
+
 ## TODO
 
 If I need to use `Promise`s, I should learn more about them.  This link looks like it would be a good place to start:
@@ -135,6 +142,22 @@ Here are some notes from
 `import` is a static declaration that imports the read-only *live bindings* (variables and functions) which are
 [exported](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Statements/export)
 by another module.
+
+## Syntax
+
+```javascript
+import defaultExport from "module-name";
+import * as name from "module-name";
+import { export1 } from "module-name";
+import { export1 as alias1 } from "module-name";
+import { default as alias } from "module-name";
+import { export1, export2 } from "module-name";
+import { export1, export2 as alias2, /* … */ } from "module-name";
+import { "string name" as alias } from "module-name";
+import defaultExport, { export1, /* … */ } from "module-name";
+import defaultExport, * as name from "module-name";
+import "module-name";
+```
 
 ## Description
 
@@ -238,6 +261,12 @@ The `??` operator works as follows:
 - else
   - returns the operand on the left side.
 
+## Syntax
+
+```javascript
+leftExpr ?? rightExpr
+```
+
 ## Description
 
 The `??` operator is good for making sure a variable has a default value.
@@ -335,7 +364,7 @@ Here are some notes from
 `String.prototype.replaceAll()` finds all occurrences of a pattern in a string, replaces each occurrence with a new string or the
 return value of a function, and returns the new string.
 
-### Syntax
+## Syntax
 
 ```javascript
 replaceAll(pattern, replacement)
@@ -377,7 +406,7 @@ Here are some notes from
 
 `String.prototype.matchAll()` returns an iterator of all results from matching a regular expression to the specified string.
 
-### Syntax
+## Syntax
 
 ```javascript
 matchAll(regexp)
@@ -436,7 +465,7 @@ The `&&=` operator works as follows:
 - else
   - does not change the operand on the left side.
 
-### Syntax
+## Syntax
 
 ```javascript
 expr1 &&= expr2
