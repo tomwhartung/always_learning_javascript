@@ -428,13 +428,46 @@ Here are some notes from
 [MDN's page describing *Logical AND assignment `(&&=)`*](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Operators/Logical_AND_assignment).
 
 ## Overview
+
+The `&&=` operator works as follows:
+
+- if the operand on the left side is [truthy](https://developer.mozilla.org/en-US/docs/Glossary/Truthy)
+  - assigns the value of the operand on the right side to the operand on the left side,
+- else
+  - does not change the operand on the left side.
+
+### Syntax
+
+```javascript
+expr1 &&= expr2
+```
+
 ## Description
+
+```javascript
+x &&= y
+```
+
+Is equivalent to:
+
+```javascript
+x && (x = y)
+```
+
+In other words, if `x` is falsey, it maintains its value, else it is set to the value of `y`.
+
 ## Example Code
 
 ```javascript
+let x = 0;
+let y = 1;
+
+x &&= 0; // 0: x is falsey, so does not change
+x &&= 1; // 0: x is falsey, so does not change
+y &&= 1; // 1: y is truthy, so gets the new value (1)
+y &&= 0; // 0: y is truthy, so gets the new value (0)
 ```
-```javascript
-```
+
 ## For Details
 
 For details about this feature, see the
