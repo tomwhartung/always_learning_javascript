@@ -101,7 +101,7 @@ If I need to use `Promise`s, I should learn more about them.  This link looks li
 - `Promise.any()` fulfills when any of the promises fulfills, rejects when all reject (*)
 - `Promise.race()` settles when any promise settles, rejects when any promise rejects
 
-(*) This file covers the `Promise.any()` feature in a subsection below.
+(*) This file covers the `Promise.any()` feature in subsection 10. `Promise.any()`.
 
 A typical use for `Promise.allSettled()` is when the tasks are independent.
 If the promises are interdependent, it may be better to use `Promise.allSettled()`.
@@ -509,12 +509,49 @@ Here are some notes from
 [MDN's page describing *`Promise.any()`*](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Promise/any).
 
 ## Overview
+
+Given an iterable of promises, `Promise.any()` returns a single promise that fulfills when **any** in the list fulfills, or
+rejects when **all** of the promises in the list reject.
+
+## Syntax
+
+```javascript
+Promise.any(iterable)
+```
+`iterable` is an iterable, such as an Array, of promises.
+
 ## Description
+
+`Promise.any()` *short-circuits* after only one fulfillment,
+and does not care about any of the others in the passed-in `iterable`.
+
+Note that `Promise.any()` differs from the other `Promise.*` static methods in that it:
+
+- `Promise.any()` returns only one fulfillment, while `Promise.all()` returns an array of them
+- `Promise.any()` returns the first *fulfilled* promise, while `Promise.race()` returns the first *settled* promise
+- You can find information about the `Promise.allSettled()` feature in subsection 2. `Promise.allSettled()`
+
 ## Example Code
 
 ```javascript
-```
-```javascript
+const pErr = new Promise((resolve, reject) => {
+  reject("Always fails");
+});
+
+const pSlow = new Promise((resolve, reject) => {
+  setTimeout(resolve, 500, "Done eventually");
+});
+
+const pFast = new Promise((resolve, reject) => {
+  setTimeout(resolve, 100, "Done quick");
+});
+
+Promise.any([pErr, pSlow, pFast]).then((value) => {
+  console.log(value);
+  // pFast fulfills first
+});
+// Logs:
+// Done quick
 ```
 ## For Details
 
@@ -528,6 +565,9 @@ Here are some notes from
 [MDN's page describing *`Array.prototype.at()`*](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Array/at).
 
 ## Overview
+## Syntax
+```javascript
+```
 ## Description
 ## Example Code
 
@@ -547,6 +587,9 @@ Here are some notes from
 [MDN's page describing *`await`*](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Operators/await).
 
 ## Overview
+## Syntax
+```javascript
+```
 ## Description
 ## Example Code
 
@@ -566,6 +609,9 @@ Here are some notes from
 [MDN's page describing *`Date`*](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Date).
 
 ## Overview
+## Syntax
+```javascript
+```
 ## Description
 ## Example Code
 
@@ -585,6 +631,9 @@ Here are some notes from
 [MDN's page describing *`Array.prototype.findLast()`*](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Array/findLast).
 
 ## Overview
+## Syntax
+```javascript
+```
 ## Description
 ## Example Code
 
@@ -604,6 +653,9 @@ Here are some notes from
 [MDN's page describing *`Error.prototype.cause`*](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Error/cause).
 
 ## Overview
+## Syntax
+```javascript
+```
 ## Description
 ## Example Code
 
@@ -623,6 +675,9 @@ Here are some notes from
 [MDN's page describing *`Object.hasOwn()`*](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Object/hasOwn).
 
 ## Overview
+## Syntax
+```javascript
+```
 ## Description
 ## Example Code
 
