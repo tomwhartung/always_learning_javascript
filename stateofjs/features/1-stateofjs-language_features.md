@@ -4,6 +4,11 @@
 This page contains some notes about the
 [stateofjs' list of JS language features](https://2022.stateofjs.com/en-US/features/language/).
 
+## TODOs
+
+**Note:** this file contains a few **TODO** items, recommending more in-depth study of features I am just
+kind of glossing over right now!
+
 # 1. Proxies
 
 Here are some notes from
@@ -609,22 +614,12 @@ console.log(item2); // 'orange'
 Interestingly, as the following example shows, `Array.prototype.at()` works with *non-array objects*:
 
 ```javascript
-// Our array with items
-const cart = ["apple", "banana", "pear"];
-
-// A function which returns the last item of a given array
-function returnLast(arr) {
-  return arr.at(-1);
-}
-
-// Get the last item of our array 'cart'
-const item1 = returnLast(cart);
-console.log(item1); // 'pear'
-
-// Add an item to our 'cart' array
-cart.push("orange");
-const item2 = returnLast(cart);
-console.log(item2); // 'orange'
+const arrayLike = {
+  length: 2,
+  0: "a",
+  1: "b",
+};
+console.log(Array.prototype.at.call(arrayLike, -1)); // "b"
 ```
 
 ## For Details
@@ -639,16 +634,91 @@ Here are some notes from
 [MDN's page describing *`await`*](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Operators/await).
 
 ## Overview
+
+Waits for a `Promise` to fulfill then returns its fulfillment value.
+
 ## Syntax
-```javascript
-```
-## Description
-## Example Code
 
 ```javascript
+await expression    // expression is a Promise, a thenable object (*), or any value to wait for.
 ```
+
+(*) A [thenable object](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Promise#thenables)
+implements the `.then()` method, which takes these two methods:
+
+- A method to call when the promise is fulfilled
+- A method to call when the promise is rejected
+
+## Description
+
+You can use the `await` operator only:
+
+- Inside an [async function](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Statements/async_function)
+- At the top level of a [module](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Guide/Modules)
+
+## TODO
+
+If I am going to do much with asynchronous code in general and promises in particular, it would be worthwhile to study
+[async functions](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Statements/async_function).
+
+Also, at some point I will definitely need to study how to use
+[modules](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Guide/Modules)
+more in-depth as well!
+
+## Example Code
+
+To try this example on the developer.mozilla.org site, see the
+[async functions page](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Statements/async_function).
+
 ```javascript
+function resolveAfter2Seconds(x) {
+  return new Promise((resolve) => {
+    setTimeout(() => {
+      resolve(x);
+    }, 2000);
+  });
+}
+
+async function f1() {
+  const x = await resolveAfter2Seconds(10);
+  console.log(x); // 10
+}
+
+f1();
 ```
+
+Example of resolving a
+[thenable object](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Promise#thenables):
+
+```javascript
+async function f() {
+  const thenable = {
+    then(resolve, _reject) {
+      resolve("resolved!");
+    },
+  };
+  console.log(await thenable); // "resolved!"
+}
+
+f();
+```
+
+Example of rejecting a
+[thenable object](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Promise#thenables):
+
+```javascript
+async function f() {
+  const thenable = {
+    then(resolve, reject) {
+      reject(new Error("rejected!"));
+    },
+  };
+  await thenable; // Throws Error: rejected!
+}
+
+f();
+```
+
 ## For Details
 
 For details about this feature, see the
@@ -745,4 +815,5 @@ For details about this feature, see the
 
 # 17. Regexp Match Indices: (No link to MDN given?!?!?!)
 
-**TODO:** Look this up when (almost) done!
+## **TODO:** Look this up when (almost) done!
+
