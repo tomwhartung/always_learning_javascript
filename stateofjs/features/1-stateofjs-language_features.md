@@ -731,16 +731,45 @@ Here are some notes from
 [MDN's page describing *`Date`*](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Date).
 
 ## Overview
-## Syntax
-```javascript
-```
+
+A `Date` object uses an integer to represent a moment in time.
+
 ## Description
+
+The integer that a `Date` object refers to equals the number of seconds since midnight on 1/1/1970, which is also known as the
+[*ECMAScript epoch*](https://tc39.es/ecma262/multipage/numbers-and-dates.html#sec-time-values-and-time-range).
+
 ## Example Code
 
 ```javascript
+Date()         // Constructor returns a string representation of the current time
+new Date()     // Returns a Date object representing the current time
 ```
+
+Some static methods:
+
 ```javascript
+Date.now()      // Returns the integer corresponding to the current time
+Date.parse()    // Returns the integer corresponding to the passed-in string representation
 ```
+
+Some instance methods:
+
+```javascript
+Date.prototype.getDay(...)
+Date.prototype.getHour(...)
+Date.prototype.getMinutes(...)
+Date.prototype.getMonth(...)
+Date.prototype.getUTCDay(...)
+Date.prototype.getUTCMinutes(...)
+Date.prototype.set*(...)
+Date.prototype.toDateString(...)
+Date.prototype.toLocalString(...)
+Date.prototype.toString(...)
+Date.prototype.toTimeString(...)
+Date.prototype.valueOf(...)
+```
+
 ## For Details
 
 For details about this feature, see the
