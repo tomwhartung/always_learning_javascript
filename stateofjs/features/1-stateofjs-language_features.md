@@ -782,16 +782,153 @@ Here are some notes from
 [MDN's page describing *`Array.prototype.findLast()`*](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Array/findLast).
 
 ## Overview
+
+Starts at the end of an array and returns the last element in it that satisfies the specified criteria.
+If no value satisfies the criteria, returns `undefined`.
+
+## Related Functions
+
+Depending on exactly what you're trying to do, one of these might work better:
+
+- `find()` finds the first element
+- `findLastIndex()` finds the index of the last element
+- `indexOf()` uses a testing function to find the index of a specific value
+- `findIndex()` finds the index of a specific value
+- `includes()` determines whether a given element exists in the array
+- `some()` uses a testing function to find a value
+
 ## Syntax
-```javascript
-```
-## Description
-## Example Code
 
 ```javascript
+// Arrow function
+findLast((element) => { /* … */ })
+findLast((element, index) => { /* … */ })
+findLast((element, index, array) => { /* … */ })
+
+// Callback function
+findLast(callbackFn)
+findLast(callbackFn, thisArg)
+
+// Inline callback function
+findLast(function (element) { /* … */ })
+findLast(function (element, index) { /* … */ })
+findLast(function (element, index, array) { /* … */ })
+findLast(function (element, index, array) { /* … */ }, thisArg)
 ```
+
+### Parameters
+
+- `callbackFn` - this function returns a truthy value when the element satisfies the criteria for which we are looking
+   - `element` - the element being processed, i.e., tested
+   - `index` - the index of this `element`
+   - `array` - the array being processed
+- `thisArg` - optional value for `this` when running the `callbackFn`
+
+
+## Description
+
+Working backward from the last element in the array, `findLast()` calls the `callbackFn`,
+which may be an arrow function, for each element in it.
+
+Although `findLast()` does not modify the array, the `callbackFn` can.
+This, however, is **not recommended** because it can make it more difficult to find bugs.
+
+## Example Code
+
+Here are two examples that do the same thing.
+
 ```javascript
+//
+// This version uses a formal function:
+//
+const inventory = [
+  { name: "apples", quantity: 2 },
+  { name: "bananas", quantity: 0 },
+  { name: "fish", quantity: 1 },
+  { name: "cherries", quantity: 5 },
+];
+
+// return true inventory stock is low
+function isNotEnough(item) {
+  return item.quantity < 2;
+}
+
+console.log(inventory.findLast(isNotEnough));
+// { name: "fish", quantity: 1 }
+
+//
+// This version does the same thing using an arrow function and
+// [object destructuring](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Operators/Destructuring_assignment#object_destructuring)
+//
+// Apparently, "object destructuring" means using curly braces to pull the quantity out of the object
+//
+const inventory = [
+  { name: "apples", quantity: 2 },
+  { name: "bananas", quantity: 0 },
+  { name: "fish", quantity: 1 },
+  { name: "cherries", quantity: 5 },
+];
+
+const result = inventory.findLast((**{ quantity }**) => quantity < 2);   // The '**'s are meant to highlight the object destructuring aspect of this!
+
+console.log(result);
+// { name: "fish", quantity: 1 }
 ```
+
+This next example demonstrates that:
+
+> Empty slots in sparse arrays are visited, and are treated the same as `undefined`.
+
+```javascript
+// Declare array with no elements at indexes 2, 3, and 4
+const array = [0, 1, , , , 5, 6];
+
+// Shows all indexes, not just those with assigned values
+array.findLast((value, index) => {
+  console.log(`Visited index ${index} with value ${value}`);
+});
+// Visited index 6 with value 6
+// Visited index 5 with value 5
+// Visited index 4 with value undefined
+// Visited index 3 with value undefined
+// Visited index 2 with value undefined
+// Visited index 1 with value 1
+// Visited index 0 with value 0
+
+// Shows all indexes, including deleted
+array.findLast((value, index) => {
+  // Delete element 5 on first iteration
+  if (index === 6) {
+    console.log(`Deleting array[5] with value ${array[5]}`);
+    delete array[5];
+  }
+  // Element 5 is still visited even though deleted
+  console.log(`Visited index ${index} with value ${value}`);
+});
+// Deleting array[5] with value 5
+// Visited index 6 with value 6
+// Visited index 5 with value undefined
+// Visited index 4 with value undefined
+// Visited index 3 with value undefined
+// Visited index 2 with value undefined
+// Visited index 1 with value 1
+// Visited index 0 with value 0
+```
+
+This example illustrates that you can call `findLast()` on **objects that are not arrays**:
+
+```javascript
+const arrayLike = {
+  length: 3,
+  0: 2,
+  1: 7.3,
+  2: 4,
+};
+console.log(
+  Array.prototype.findLast.call(arrayLike, (x) => Number.isInteger(x)),
+); // 4
+```
+
 ## For Details
 
 For details about this feature, see the
