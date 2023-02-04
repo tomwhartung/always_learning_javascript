@@ -941,16 +941,46 @@ Here are some notes from
 [MDN's page describing *`Error.prototype.cause`*](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Error/cause).
 
 ## Overview
-## Syntax
-```javascript
-```
+
+'Error` objects include a property named `cause`, which indicates "the specific original cause" of the error.
+
 ## Description
+
+A `Error.prototype.cause` is Writable and Configurable, but not Enumerable, and may be of any type.
+
+A specific `Error` object may or may not actually have a value for its `cause` property.
+
 ## Example Code
 
+This code shows how to catch an error and re-throw it, using its `cause` as part of a new message:
+
 ```javascript
+try {
+  connectToDatabase();
+} catch (err) {
+  throw new Error('Connecting to database failed.', { cause: err });
+}
 ```
+
+This example shows how to throw an error, using structured data - i.e., an object - as its `cause`.
+This technique can be useful when the code catching the error will perform additional processing.
+
 ```javascript
+function makeRSA(p, q) {
+  if (!Number.isInteger(p) || !Number.isInteger(q)) {
+    throw new Error('RSA key generation requires integer inputs.', {
+      cause: { code: 'NonInteger', values: [p, q] },
+    });
+  }
+  if (!areCoprime(p, q)) {
+    throw new Error('RSA key generation requires two co-prime integers.', {
+      cause: { code: 'NonCoprime', values: [p, q] },
+    })
+  }
+  // rsa algorithm…
+}
 ```
+
 ## For Details
 
 For details about this feature, see the
