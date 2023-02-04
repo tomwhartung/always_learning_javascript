@@ -993,16 +993,55 @@ Here are some notes from
 [MDN's page describing *`Object.hasOwn()`*](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Object/hasOwn).
 
 ## Overview
+
+`Object.hasOwn()` is a static method that returns `true` when the specified object has the property indicated, and
+`false` when this property does not exist or is inherited.
+
+`Object.hasOwn()` replaces `Object.prototype.hasOwnProperty()`, and should be used instead of the older method
+because it is more intuitive.
+
 ## Syntax
+
 ```javascript
+Object.hasOwn(obj, prop)
 ```
+
+### Parameters
+
+- `obj` - the object being tested
+- `prop` - the property being tested for
+
 ## Description
+
+`Object.hasOwn()` returns `true` even if the value of `prop` is `null` or `undefined`.
+
+To test whether a property may be in the object's inheritance chain, use the
+[`in` operator](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Operators/in).
+
 ## Example Code
 
 ```javascript
+const example = {};
+Object.hasOwn(example, 'prop');   // false - 'prop' has not been defined
+
+example.prop = 'exists';
+Object.hasOwn(example, 'prop');   // true - 'prop' has been defined
+
+example.prop = null;
+Object.hasOwn(example, 'prop');   // true - own property exists with value of null
+
+example.prop = undefined;
+Object.hasOwn(example, 'prop');   // true - own property exists with value of undefined
 ```
+
+This example demonstrates how you can use `Object.hasOwn()` with arrays:
+
 ```javascript
+const fruits = ['Apple', 'Banana', 'Watermelon', 'Orange'];
+Object.hasOwn(fruits, 3);   // true ('Orange')
+Object.hasOwn(fruits, 4);   // false - not defined
 ```
+
 ## For Details
 
 For details about this feature, see the
