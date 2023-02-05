@@ -1048,7 +1048,22 @@ For details about this feature, see the
 [MDN page for *`Object.hasOwn()`*](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Object/hasOwn).
 
 
-# 17. Regexp Match Indices: (No link to MDN given?!?!?!)
+# 17. Regexp Match Indices: (No link to MDN given!)
 
-## **TODO:** Look this up when (almost) done!
+Here are some notes from
+[StackOverflow page for Get index of ...](https://stackoverflow.com/questions/15934353/get-index-of-each-capture-in-a-javascript-regex).
+
+## Overview
+
+This is the only one of these features that does not link to an MDN page.
+
+The StackOverflow page linked to above and below has several potential answers.
+However, I see no reason to spend time diving into any of these at this time,
+because I'll just forget it, or the language might change, by the time I want to use a feature like this,
+assuming that time will ever come.
+
+## For Details
+
+For details about this feature, see the
+[StackOverflow page for Get index of ...](https://stackoverflow.com/questions/15934353/get-index-of-each-capture-in-a-javascript-regex).
 
