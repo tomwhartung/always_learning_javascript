@@ -6,8 +6,21 @@ This page contains some notes about the
 
 ## TODOs
 
-**Note:** this file contains a few **TODO** items, recommending more in-depth study of features I am just
-kind of glossing over right now!
+This file contains a couple of **TODO** items, recommending more in-depth study of features
+I am just kind of glossing over right now.
+
+**Here is a summary of these TODOs:**
+
+- 2. `Promise.allSettled()`
+  - If I need to use `Promise`s, I should learn more about them
+  - Recommended link: [MDN *Using promises* tutorial](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Guide/Using_promises)
+- 10. `Promise.any()`
+  - For the same reasons
+- 12. Top Level `await()`: `await`
+  - If I am going to do much with asynchronous code, it would be worthwhile to study asynchronous functions and modules
+  - A link: [async functions](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Statements/async_function)
+  - Another link: [modules](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Guide/Modules)
+
 
 # 1. Proxies
 
@@ -656,7 +669,7 @@ You can use the `await` operator only:
 - Inside an [async function](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Statements/async_function)
 - At the top level of a [module](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Guide/Modules)
 
-## TODO
+## TODOs
 
 If I am going to do much with asynchronous code in general and promises in particular, it would be worthwhile to study
 [async functions](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Statements/async_function).
