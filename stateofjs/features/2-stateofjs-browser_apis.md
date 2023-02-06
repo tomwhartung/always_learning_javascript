@@ -22,7 +22,7 @@ A service worker acts as a proxy for a web application to use when working with 
 Service workers manage network requests, taking appropriate action when the network is down.
 They also send update requests to the server.
 
-## Concepts and usage
+## Concepts and Usage
 
 A service worker is a javascript file known as a
 [*worker*](https://developer.mozilla.org/en-US/docs/Web/API/Worker).
@@ -64,8 +64,35 @@ Here are some notes from
 [MDN's page describing *JavaScript's Internationalization API*](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Intl).
 
 ## Overview
+
+Use the `Intl` object to provide language-sensitive services such as string comparison and number formatting.
+It furnishes the namespace for the *ECMAScript Internationalization API.*
+
 ## Description
-## Concepts and usage
+
+`Intl` supports several different constructors and a couple of static methods
+that can identify `locales`, that are case-sensitive ASCII strings.
+
+These `locales` in turn identify and contain language, region or country, and other subtags for the `locale`.
+
+## Example Code
+
+Following is an example of how the `Intl` object can format dates and numbers:
+
+```javascript
+const count = 26254.39;
+const date = new Date("2012-05-24");
+
+function log(locale) {
+  console.log(
+    `${new Intl.DateTimeFormat(locale).format(date)} ${new Intl.NumberFormat(locale).format(count)}`
+  );
+}
+
+log("en-US"); // 5/24/2012 26,254.39
+
+log("de-DE"); // 24.5.2012 26.254,39
+```
 
 ## For Details
 
@@ -80,7 +107,10 @@ Here are some notes from
 
 ## Overview
 ## Description
-## Concepts and usage
+## Concepts and Usage
+## Example Code
+```javascript
+```
 
 ## For Details
 
@@ -95,7 +125,10 @@ Here are some notes from
 
 ## Overview
 ## Description
-## Concepts and usage
+## Concepts and Usage
+## Example Code
+```javascript
+```
 
 ## For Details
 
@@ -110,7 +143,10 @@ Here are some notes from
 
 ## Overview
 ## Description
-## Concepts and usage
+## Concepts and Usage
+## Example Code
+```javascript
+```
 
 ## For Details
 
@@ -125,7 +161,10 @@ Here are some notes from
 
 ## Overview
 ## Description
-## Concepts and usage
+## Concepts and Usage
+## Example Code
+```javascript
+```
 
 ## For Details
 
@@ -140,7 +179,10 @@ Here are some notes from
 
 ## Overview
 ## Description
-## Concepts and usage
+## Concepts and Usage
+## Example Code
+```javascript
+```
 
 ## For Details
 
@@ -155,7 +197,10 @@ Here are some notes from
 
 ## Overview
 ## Description
-## Concepts and usage
+## Concepts and Usage
+## Example Code
+```javascript
+```
 
 ## For Details
 
@@ -170,7 +215,10 @@ Here are some notes from
 
 ## Overview
 ## Description
-## Concepts and usage
+## Concepts and Usage
+## Example Code
+```javascript
+```
 
 ## For Details
 
@@ -185,7 +233,10 @@ Here are some notes from
 
 ## Overview
 ## Description
-## Concepts and usage
+## Concepts and Usage
+## Example Code
+```javascript
+```
 
 ## For Details
 
@@ -200,7 +251,10 @@ Here are some notes from
 
 ## Overview
 ## Description
-## Concepts and usage
+## Concepts and Usage
+## Example Code
+```javascript
+```
 
 ## For Details
 
@@ -215,7 +269,10 @@ Here are some notes from
 
 ## Overview
 ## Description
-## Concepts and usage
+## Concepts and Usage
+## Example Code
+```javascript
+```
 
 ## For Details
 
@@ -230,7 +287,10 @@ Here are some notes from
 
 ## Overview
 ## Description
-## Concepts and usage
+## Concepts and Usage
+## Example Code
+```javascript
+```
 
 ## For Details
 
@@ -245,7 +305,10 @@ Here are some notes from
 
 ## Overview
 ## Description
-## Concepts and usage
+## Concepts and Usage
+## Example Code
+```javascript
+```
 
 ## For Details
 
@@ -260,7 +323,10 @@ Here are some notes from
 
 ## Overview
 ## Description
-## Concepts and usage
+## Concepts and Usage
+## Example Code
+```javascript
+```
 
 ## For Details
 
