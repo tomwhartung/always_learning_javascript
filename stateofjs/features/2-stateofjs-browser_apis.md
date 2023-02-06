@@ -6,7 +6,14 @@ This page contains some notes about the
 
 ## TODOs
 
-**Note:** Any **TODO** items I might have are currently TBD!
+This file contains some **TODO** items, recommending more in-depth study of features
+I am just kind of glossing over right now.
+
+**Here is a summary of these TODOs:**
+
+- 3. WebGL: Getting started with WebGL
+  - Follow the links at the end and decide whether I want to use WebGL in my project.
+
 
 # 1. Service Worker:Service Worker API
 
@@ -106,16 +113,93 @@ Here are some notes from
 [MDN's page for *Getting started with WebGL*](https://developer.mozilla.org/en-US/docs/Web/API/WebGL_API/Tutorial/Getting_started_with_WebGL).
 
 ## Overview
+
+MDN's *Getting started* page is the first in a series of pages that introduce readers to an API based on the Khronos Group's
+[Open GL|ES](https://www.khronos.org/opengles/) standard for embedded accelerated 2D and 3D graphics.
+
 ## Description
-## Concepts and Usage
+
+These pages assume that readers already have "an understanding of the mathematics involved in 3D graphics."
+
+Note that there are other frameworks built on top of WebGL that can make certain types of applications easier to develop.
+Examples include:
+
+- [THREE.js](https://threejs.org/)
+- [BABYLON.js](https://www.babylonjs.com/)
+
+and there are many others.
+
 ## Example Code
+
+The following code shows how to get started by using these two files:
+
+- `index.html`
+- `webgl-demo.js`
+
+to create a:
+
+> big black, empty box, ready and waiting to receive content.
+
+The contents of `index.html`:
+
+```html
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <title>WebGL Demo</title>
+    <script *src="webgl-demo.js"* type="module" defer></script>
+  </head>
+
+  <body>
+    *<canvas id="glcanvas" width="640" height="480"></canvas>*
+  </body>
+</html>
+```
+
+The contents of `webgl-demo.js`:
+
 ```javascript
+main();
+
+//
+// start here
+//
+function main() {
+  const canvas = document.querySelector("#glcanvas");
+  // Initialize the GL context
+  const gl = canvas.getContext("webgl");
+
+  // Only continue if WebGL is available and working
+  if (gl === null) {
+    alert(
+      "Unable to initialize WebGL. Your browser or machine may not support it."
+    );
+    return;
+  }
+
+  // Set clear color to black, fully opaque
+  gl.clearColor(0.0, 0.0, 0.0, 1.0);
+  // Clear the color buffer with specified clear color
+  gl.clear(gl.COLOR_BUFFER_BIT);
+}
 ```
 
 ## For Details
 
 For details about this feature, see the
 [MDN page for *Getting started with WebGL*](https://developer.mozilla.org/en-US/docs/Web/API/WebGL_API/Tutorial/Getting_started_with_WebGL).
+
+Just before link to the next page in MDN's series of pages on this topic,
+this page ends with a **See also** section with the following links:
+
+- [An introduction to WebGL](https://dev.opera.com/articles/introduction-to-webgl-part-1/) on `dev.opera.com`
+- [WebGL Fundamentals](https://webglfundamentals.org/)
+- [An intro to modern OpenGL](https://duriansoftware.com/joe/an-intro-to-modern-opengl.-table-of-contents)
+
+### TODO
+
+Follow these links and decide whether I want to use WebGL in my project.
 
 
 # 4. Web Animations: Using the Web Animations API
