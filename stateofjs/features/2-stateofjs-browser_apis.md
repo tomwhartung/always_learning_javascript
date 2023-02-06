@@ -14,8 +14,43 @@ Here are some notes from
 [MDN's page describing the *Service Worker API*](https://developer.mozilla.org/en-US/docs/Web/API/Service_Worker_API).
 
 ## Overview
+
+A service worker acts as a proxy for a web application to use when working with the browser and network.
+
 ## Description
+
+Service workers manage network requests, taking appropriate action when the network is down.
+They also send update requests to the server.
+
 ## Concepts and usage
+
+A service worker is a javascript file known as a
+[*worker*](https://developer.mozilla.org/en-US/docs/Web/API/Worker).
+and designed to perform background processes.
+
+Service workers have no DOM access and run asynchronously.
+That is, they are non-blocking, because they run in a different thread than the main JS process.
+They are restricted to using HTTPS and, in Firefox, they are hidden and do not work in private browsing mode.
+
+Use `ServiceWorkerContainer.register(scriptURL [,options])` to register a service worker.
+
+This is the lifecycle that service workers follow as soon as a user accesses a page defining one:
+
+1. Download
+2. Install
+3. Activate
+
+### Possible Uses
+
+Following are a few of the things service workers are intended to do:
+
+- Synchronize background data
+- Respond to resource requests
+- Contain hooks for background services
+- Serve as a single source for updates to expensive data, such as geolocation data, for multiple pages
+- Pre-fetch data likely to be needed
+
+This technology is expected to develop, so that the number of possible uses will grow with time.
 
 ## For Details
 
