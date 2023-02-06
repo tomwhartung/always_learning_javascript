@@ -8,10 +8,10 @@ This page contains some notes about the
 
 **Note:** Any **TODO** items I might have are currently TBD!
 
-# 1. Service Worker API
+# 1. Service Worker:Service Worker API
 
 Here are some notes from
-[MDN's page describing *Service Worker API*]().
+[MDN's page describing the *Service Worker API*](https://developer.mozilla.org/en-US/docs/Web/API/Service_Worker_API).
 
 ## Overview
 ## Description
@@ -20,13 +20,13 @@ Here are some notes from
 ## For Details
 
 For details about this feature, see the
-[MDN page for *Service Worker API*]().
+[MDN page for the *Service Worker API*](https://developer.mozilla.org/en-US/docs/Web/API/Service_Worker_API).
 
 
-# 2. Intl - JavaScript
+# 2. Intl: Intl - JavaScript
 
 Here are some notes from
-[MDN's page describing *Intl - JavaScript*]().
+[MDN's page describing *JavaScript's Internationalization API*](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Intl).
 
 ## Overview
 ## Description
@@ -35,13 +35,13 @@ Here are some notes from
 ## For Details
 
 For details about this feature, see the
-[MDN page for *Intl - JavaScript*]().
+[MDN page for *JavaScript's Internationalization API*](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Intl).
 
 
-# 3. Getting started with WebGL
+# 3. WebGL: Getting started with WebGL
 
 Here are some notes from
-[MDN's page describing *Getting started with WebGL*]().
+[MDN's page for *Getting started with WebGL*](https://developer.mozilla.org/en-US/docs/Web/API/WebGL_API/Tutorial/Getting_started_with_WebGL).
 
 ## Overview
 ## Description
@@ -50,13 +50,13 @@ Here are some notes from
 ## For Details
 
 For details about this feature, see the
-[MDN page for *Getting started with WebGL*]().
+[MDN page for *Getting started with WebGL*](https://developer.mozilla.org/en-US/docs/Web/API/WebGL_API/Tutorial/Getting_started_with_WebGL).
 
 
-# 4. Using the Web Animations API
+# 4. Web Animations: Using the Web Animations API
 
 Here are some notes from
-[MDN's page describing *Using the Web Animations API*]().
+[MDN's page for *Using the Web Animations API*](https://developer.mozilla.org/en-US/docs/Web/API/Web_Animations_API/Using_the_Web_Animations_API).
 
 ## Overview
 ## Description
@@ -65,13 +65,13 @@ Here are some notes from
 ## For Details
 
 For details about this feature, see the
-[MDN page for *Using the Web Animations API*]().
+[MDN page for *Using the Web Animations API*](https://developer.mozilla.org/en-US/docs/Web/API/Web_Animations_API/Using_the_Web_Animations_API).
 
 
-# 5. WebRTC API
+# 5. WebRTC: WebRTC API
 
 Here are some notes from
-[MDN's page describing *WebRTC API*]().
+[MDN's page for using the *WebRTC API*](https://developer.mozilla.org/en-US/docs/Web/API/WebRTC_API).
 
 ## Overview
 ## Description
@@ -80,13 +80,13 @@ Here are some notes from
 ## For Details
 
 For details about this feature, see the
-[MDN page for *WebRTC API*]().
+[MDN page for using the *WebRTC API*](https://developer.mozilla.org/en-US/docs/Web/API/WebRTC_API).
 
 
 # 6. Web Speech API
 
 Here are some notes from
-[MDN's page describing *Web Speech API*]().
+[MDN's page describing the *Web Speech API*](https://developer.mozilla.org/en-US/docs/Web/API/Web_Speech_API).
 
 ## Overview
 ## Description
@@ -95,13 +95,13 @@ Here are some notes from
 ## For Details
 
 For details about this feature, see the
-[MDN page for *Web Speech API*]().
+[MDN page for the *Web Speech API*](https://developer.mozilla.org/en-US/docs/Web/API/Web_Speech_API).
 
 
-# 7. The WebSocket API (WebSockets)
+# 7. WebSocket: The WebSocket API (WebSockets)
 
 Here are some notes from
-[MDN's page describing *The WebSocket API (WebSockets)*]().
+[MDN's page describing *The WebSocket API (WebSockets)*](https://developer.mozilla.org/en-US/docs/Web/API/WebSockets_API).
 
 ## Overview
 ## Description
@@ -110,13 +110,13 @@ Here are some notes from
 ## For Details
 
 For details about this feature, see the
-[MDN page for *The WebSocket API (WebSockets)*]().
+[MDN page for *The WebSocket API (WebSockets)*](https://developer.mozilla.org/en-US/docs/Web/API/WebSockets_API).
 
 
-# 8. Web Components
+# 8. Custom Elements: Web Components, Custom elements
 
 Here are some notes from
-[MDN's page describing *Web Components*]().
+[MDN's page describing *Web Components, Custom elements*](https://developer.mozilla.org/en-US/docs/Web/Web_Components).
 
 ## Overview
 ## Description
@@ -125,13 +125,13 @@ Here are some notes from
 ## For Details
 
 For details about this feature, see the
-[MDN page for *Web Components*]().
+[MDN page for *Web Components, Custom elements*](https://developer.mozilla.org/en-US/docs/Web/Web_Components).
 
 
-# 9. Page Visibility API
+# 9. Shadow DOM: Web Components, Shadow DOM
 
 Here are some notes from
-[MDN's page describing *Page Visibility API*]().
+[MDN's page describing *Web Components, Shadow DOM*](https://developer.mozilla.org/en-US/docs/Web/Web_Components).
 
 ## Overview
 ## Description
@@ -140,13 +140,13 @@ Here are some notes from
 ## For Details
 
 For details about this feature, see the
-[MDN page for *Page Visibility API*]().
+[MDN page for *Web Components, Shadow DOM*](https://developer.mozilla.org/en-US/docs/Web/Web_Components).
 
 
-# 10. Broadcast Channel API
+# 10. Page Visibility API
 
 Here are some notes from
-[MDN's page describing *Broadcast Channel API*]().
+[MDN's page describing the *Page Visibility API*](https://developer.mozilla.org/en-US/docs/Web/API/Page_Visibility_API).
 
 ## Overview
 ## Description
@@ -155,13 +155,13 @@ Here are some notes from
 ## For Details
 
 For details about this feature, see the
-[MDN page for *Broadcast Channel API*]().
+[MDN page for the *Page Visibility API*](https://developer.mozilla.org/en-US/docs/Web/API/Page_Visibility_API).
 
 
-# 11. Geolocation API
+# 11. Broadcast Channel API
 
 Here are some notes from
-[MDN's page describing *Geolocation API*]().
+[MDN's page describing the *Broadcast Channel API*](https://developer.mozilla.org/en-US/docs/Web/API/Broadcast_Channel_API).
 
 ## Overview
 ## Description
@@ -170,13 +170,13 @@ Here are some notes from
 ## For Details
 
 For details about this feature, see the
-[MDN page for *Geolocation API*]().
+[MDN page for the *Broadcast Channel API*](https://developer.mozilla.org/en-US/docs/Web/API/Broadcast_Channel_API).
 
 
-# 12. File System Access API
+# 12. Geolocation API
 
 Here are some notes from
-[MDN's page describing *File System Access API*]().
+[MDN's page describing the *Geolocation API*](https://developer.mozilla.org/en-US/docs/Web/API/Geolocation_API).
 
 ## Overview
 ## Description
@@ -185,13 +185,13 @@ Here are some notes from
 ## For Details
 
 For details about this feature, see the
-[MDN page for *File System Access API*]().
+[MDN page for the *Geolocation API*](https://developer.mozilla.org/en-US/docs/Web/API/Geolocation_API).
 
 
-# 13. Web Share API
+# 13. File System Access API
 
 Here are some notes from
-[MDN's page describing *Web Share API*]().
+[MDN's page describing the *File System Access API*](https://developer.mozilla.org/en-US/docs/Web/API/File_System_Access_API).
 
 ## Overview
 ## Description
@@ -200,13 +200,13 @@ Here are some notes from
 ## For Details
 
 For details about this feature, see the
-[MDN page for *Web Share API*]().
+[MDN page for the *File System Access API*](https://developer.mozilla.org/en-US/docs/Web/API/File_System_Access_API).
 
 
-# 14. WebXR Device API
+# 14. Web Share API
 
 Here are some notes from
-[MDN's page describing *WebXR Device API*]().
+[MDN's page describing the *Web Share API*](https://developer.mozilla.org/en-US/docs/Web/API/Web_Share_API).
 
 ## Overview
 ## Description
@@ -215,5 +215,20 @@ Here are some notes from
 ## For Details
 
 For details about this feature, see the
-[MDN page for *WebXR Device API*]().
+[MDN page for the *Web Share API*](https://developer.mozilla.org/en-US/docs/Web/API/Web_Share_API).
+
+
+# 15. WebXR Device API
+
+Here are some notes from
+[MDN's page describing the *WebXR Device API*](https://developer.mozilla.org/en-US/docs/Web/API/WebXR_Device_API).
+
+## Overview
+## Description
+## Concepts and usage
+
+## For Details
+
+For details about this feature, see the
+[MDN page for the *WebXR Device API*](https://developer.mozilla.org/en-US/docs/Web/API/WebXR_Device_API).
 
