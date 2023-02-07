@@ -305,11 +305,17 @@ Here are some notes from
 [MDN's page for using the *WebRTC API*](https://developer.mozilla.org/en-US/docs/Web/API/WebRTC_API).
 
 ## Overview
-## Description
+
+Web Real-Time Communication or **WebRTC** enables applications and sites to capture and stream A/V media.
+It also allows browsers to exchange data without an intermediary.
+
 ## Concepts and Usage
-## Example Code
-```javascript
-```
+
+WebRTC comprises standards allowing peer-to-peer teleconferencing without additonal third-party software or plug-ins.
+This includes support for file exchange, sharing of screens, management of identities, interfacing with legacy
+telephone systems, and arbitrary binary data.
+
+This MDN page includes a full set of links to detailed information about how to use this feature.
 
 ## For Details
 
