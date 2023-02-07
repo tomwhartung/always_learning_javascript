@@ -12,7 +12,9 @@ I am just kind of glossing over right now.
 **Here is a summary of these TODOs:**
 
 - 3. WebGL: Getting started with WebGL
-  - Follow the links at the end and decide whether I want to use WebGL in my project.
+  - Follow the links at the end and decide whether I want to use WebGL in my project
+- 4. Web Animations: Using the Web Animations API
+  - Check out these [animation demos](https://codepen.io/collection/nqNJvD) on codepen
 
 
 # 1. Service Worker:Service Worker API
@@ -199,7 +201,7 @@ this page ends with a **See also** section with the following links:
 
 ### TODO
 
-Follow these links and decide whether I want to use WebGL in my project.
+Follow the links mentioned in the previous and decide whether I want to use WebGL in my project.
 
 
 # 4. Web Animations: Using the Web Animations API
@@ -313,6 +315,10 @@ Here are some notes from
 
 For details about this feature, see the
 [MDN page for using the *WebRTC API*](https://developer.mozilla.org/en-US/docs/Web/API/WebRTC_API).
+
+### TODO
+
+Check out these [animation demos](https://codepen.io/collection/nqNJvD) on codepen.
 
 
 # 6. Web Speech API
