@@ -208,11 +208,88 @@ Here are some notes from
 [MDN's page for *Using the Web Animations API*](https://developer.mozilla.org/en-US/docs/Web/API/Web_Animations_API/Using_the_Web_Animations_API).
 
 ## Overview
+
+The [Web Animations API](https://developer.mozilla.org/en-US/docs/Web/API/Web_Animations_API)
+allows for the construction of DOM element animations, and to control their playback.
+
 ## Description
-## Concepts and Usage
+
+The [Web Animations API](https://developer.mozilla.org/en-US/docs/Web/API/Web_Animations_API)
+was designed to help implement [CSS Animations](https://developer.mozilla.org/en-US/docs/Web/CSS/CSS_Animations)
+and [CSS Transitions](https://developer.mozilla.org/en-US/docs/Web/CSS/CSS_Transitions).
+
+This API allows using JavaScript rather than CSS to create interactive animations.
+
 ## Example Code
-```javascript
+
+The following code shows how you can use CSS to create an animation:
+
 ```
+#alice {
+  animation: aliceTumbling infinite 3s linear;
+}
+
+@keyframes aliceTumbling {
+  0% {
+    color: #000;
+    transform: rotate(0) translate3D(-50%, -50%, 0);
+  }
+  30% {
+    color: #431236;
+  }
+  100% {
+    color: #000;
+    transform: rotate(360deg) translate3D(-50%, -50%, 0);
+  }
+}
+```
+
+This code shows how to use JavaScript to do the same thing:
+
+```javascript
+//
+// 1. Create a Keyframe Object
+//
+const aliceTumbling = [
+  { transform: 'rotate(0) translate3D(-50%, -50%, 0)', color: '#000' },
+  { color: '#431236', offset: 0.3 },
+  { transform: 'rotate(360deg) translate3D(-50%, -50%, 0)', color: '#000' }
+];
+//
+// 2. Create an object of timing properties:
+//
+const aliceTiming = {
+  duration: 3000,
+  iterations: Infinity
+}
+//
+// 3. Bring the Keyframe Object and timing properties together:
+//
+document.getElementById("alice").animate(
+  aliceTumbling,
+  aliceTiming
+)
+```
+
+Following is another way of doing the same thing, by passing in the keyframe and timing object properties:
+
+```javascript
+document.getElementById("alice").animate(
+  [
+    { transform: 'rotate(0) translate3D(-50%, -50%, 0)', color: '#000' },
+    { color: '#431236', offset: 0.3 },
+    { transform: 'rotate(360deg) translate3D(-50%, -50%, 0)', color: '#000' }
+  ], {
+    duration: 3000,
+    iterations: Infinity
+  }
+);
+```
+
+### Pausing and Playing Animations
+
+The API also provides methods to `pause`, `play`, `finish`, `cancel` and `reverse` animations,
+as well as change their `playbackRate` by calling `updatePlaybackRate`.
 
 ## For Details
 
