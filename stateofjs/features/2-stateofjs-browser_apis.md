@@ -361,11 +361,16 @@ Here are some notes from
 [MDN's page describing *The WebSocket API (WebSockets)*](https://developer.mozilla.org/en-US/docs/Web/API/WebSockets_API).
 
 ## Overview
+
+Web Sockets enable interactive communication between the user and a server.
+
 ## Description
-## Concepts and Usage
-## Example Code
-```javascript
-```
+
+The Web Socket API supports the following interfaces:
+
+- `WebSocket` - allows connecting to a WebSocket server and exchanging data
+- `CloseEvent` - event sent when the connection closes
+- `MessageEvent` - event sent when the server sends a message to the browser
 
 ## For Details
 
