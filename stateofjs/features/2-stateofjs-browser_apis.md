@@ -333,11 +333,21 @@ Here are some notes from
 [MDN's page describing the *Web Speech API*](https://developer.mozilla.org/en-US/docs/Web/API/Web_Speech_API).
 
 ## Overview
-## Description
+
+These two interfaces of the Web Speech API support incorporating speech into web apps:
+
+- Use the `SpeechSynthesis` for converting text into speech
+- Use the `SpeechRecognition` for converting speech into text
+
 ## Concepts and Usage
-## Example Code
-```javascript
-```
+
+The `SpeechSynthesis` interface supports text-to-speech capabilities.
+`SpeechSynthesisVoice` objects can represent different voice types and
+`SpeechSynthesisUtterance` objects can represent different parts of speech.
+Use the `SpeechSynthesis.speak()` method to actually speak the data that these objects contain.
+
+After creating a new `SpeechRecognition` object and using it to detect when the microphone is active,
+you can use the `SpeechGrammar` interface to set the grammar you want the app to recognize.
 
 ## For Details
 
