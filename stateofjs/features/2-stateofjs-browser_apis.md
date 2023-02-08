@@ -503,11 +503,60 @@ Here are some notes from
 [MDN's page describing the *Page Visibility API*](https://developer.mozilla.org/en-US/docs/Web/API/Page_Visibility_API).
 
 ## Overview
-## Description
+
+The Page Visibility API sends events enabling developers to know when their page becomes visible or hidden,
+allowing developers to conserve resources when the user is not even looking at the page.
+
 ## Concepts and Usage
+
+When a document is hidden or becomes visible, the Page Visibility API sends a
+[`visibilitychange` event](https://developer.mozilla.org/en-US/docs/Web/API/Document/visibilitychange_event).
+
+Note that changing a CSS property to show or hide an `<iframe>` element does not trigger this event.
+
+### Use cases
+
+Following are a few times when you would want to pause background processing when the page is no longer visible:
+
+- An image carousel should not advance when no one is watching it
+- There is no reason to continue updating a dashboard, containing network statistics, for example, when it's not being viewed
+- A site wants an accurate count of pages not just rendered, but actually viewed
+
+[MDN's *Page Visibility API* page](https://developer.mozilla.org/en-US/docs/Web/API/Page_Visibility_API)
+includes a section about how modern browsers have features that, independently of this API, also mitigate
+the impact of background and hidden tabs.
+
 ## Example Code
-```javascript
+
+This code shows how to pause music when a document is no longer visible, and have the recording pick up where it
+left off when it becomes visible again:
+
+```html
+<audio
+  controls
+  src="https://mdn.github.io/webaudio-examples/audio-basics/outfoxing.mp3"></audio>
 ```
+
+```javascript
+const audio = document.querySelector("audio");
+
+// Handle page visibility change:
+// - If the page is hidden, pause the video
+// - If the page is shown, play the video
+document.addEventListener("visibilitychange", () => {
+  if (document.hidden) {
+    audio.pause();
+  } else {
+    audio.play();
+  }
+});
+```
+
+[MDN's *Page Visibility API* page](https://developer.mozilla.org/en-US/docs/Web/API/Page_Visibility_API)
+includes a demo showing how this code works.
+
+
+Of course, the same technique works with videos as well.
 
 ## For Details
 
