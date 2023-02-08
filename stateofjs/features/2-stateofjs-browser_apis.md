@@ -15,6 +15,9 @@ I am just kind of glossing over right now.
   - Follow the links at the end and decide whether I want to use WebGL in my project
 - 4. Web Animations: Using the Web Animations API
   - Check out these [animation demos](https://codepen.io/collection/nqNJvD) on codepen
+- 8. Custom Elements and 9. Shadow DOM
+  - Spend a little time looking at HTML templates, the third feature on MDN's Web Components page
+  - [Using templates and slots tutorial](https://developer.mozilla.org/en-US/docs/Web/Web_Components/Using_templates_and_slots).
 
 
 # 1. Service Worker:Service Worker API
@@ -437,19 +440,61 @@ For details about this feature, see the
 # 9. Shadow DOM: Web Components -> Shadow DOM
 
 Here are some notes from
-[MDN's page describing *Web Components, Shadow DOM*](https://developer.mozilla.org/en-US/docs/Web/Web_Components).
+[MDN's page describing *Web Components -> Shadow DOM*](https://developer.mozilla.org/en-US/docs/Web/Web_Components).
 
 ## Overview
-## Description
+
+The shadow DOM is one part of a set of technologies that allow developers to create reusable HTML elements.
+
 ## Concepts and Usage
+
+The Shadow DOM is a set of Javascript APIs allowing developers to attach an encapsulated DOM tree to an element.
+
+MDN's [Using shadow DOM tutorial](https://developer.mozilla.org/en-US/docs/Web/Web_Components/Using_shadow_DOM)
+starts with a High-level view that presents some example code, presented in the next subsection.
+It then describes how developers can manipulate the encapsulated *Shadow DOM* just like the regular DOM.
+
 ## Example Code
+
+Following is the example code the
+[Using shadow DOM tutorial](https://developer.mozilla.org/en-US/docs/Web/Web_Components/Using_shadow_DOM)
+uses to introduce the concept and define some relevant terms:
+
 ```javascript
+<!DOCTYPE html>
+<html lang="en-US">
+  <head>
+    <meta charset="utf-8" />
+    <title>Simple DOM example</title>
+  </head>
+  <body>
+    <section>
+      <img
+        src="dinosaur.png"
+        alt="A red Tyrannosaurus Rex: A two legged dinosaur standing upright like a human, with small arms, and a large head with lots of sharp teeth." />
+      <p>
+        Here we will add a link to the
+        <a href="https://www.mozilla.org/">Mozilla homepage</a>
+      </p>
+    </section>
+  </body>
+</html>
 ```
+
+Following a section on using the *shadow DOM,* the tutorial presents a simple example to demonstrate the *shadow DOM* works.
 
 ## For Details
 
 For details about this feature, see the
-[MDN page for *Web Components, Shadow DOM*](https://developer.mozilla.org/en-US/docs/Web/Web_Components).
+[MDN page for *Web Components -> Shadow DOM*](https://developer.mozilla.org/en-US/docs/Web/Web_Components).
+
+### TODO
+
+Spend a little time looking at the
+[Using templates and slots tutorial](https://developer.mozilla.org/en-US/docs/Web/Web_Components/Using_templates_and_slots).
+It describes HTML Templates, which follows *Custom elements* and the *shadow DOM*,
+and is the third of the three features on the
+[MDN page for *Web Components*](https://developer.mozilla.org/en-US/docs/Web/Web_Components) page.
 
 
 # 10. Page Visibility API
