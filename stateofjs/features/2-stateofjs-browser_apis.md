@@ -378,17 +378,55 @@ For details about this feature, see the
 [MDN page for *The WebSocket API (WebSockets)*](https://developer.mozilla.org/en-US/docs/Web/API/WebSockets_API).
 
 
-# 8. Custom Elements: Web Components, Custom elements
+# 8. Custom Elements: Web Components -> Custom elements
 
 Here are some notes from
 [MDN's page describing *Web Components, Custom elements*](https://developer.mozilla.org/en-US/docs/Web/Web_Components).
 
 ## Overview
-## Description
+
+Custom elements are one part of a set of technologies that allow developers to create reusable custom elements.
+
 ## Concepts and Usage
+
+Custom elements are Javascript APIs allowing developers to define reusable custom elements.
+
+MDN's [Using custom elements tutorial](https://developer.mozilla.org/en-US/docs/Web/Web_Components/Using_custom_elements)
+starts with a High-level view that discusses how to use the
+[`CustomElementRegistry`](https://developer.mozilla.org/en-US/docs/Web/API/CustomElementRegistry)
+object to use the `define()` method to register elements along with a class object defining the
+element's behavior.
+
+Custom elements may be:
+
+- *Autonomous custom elements,* which do not inherit from existing HTML elements
+- *Customized buit-in elements,* which do inherit and hence extend existing HTML elements
+
 ## Example Code
+
+The following example code defines a `word-count` element:
+
 ```javascript
+customElements.define("word-count", WordCount, { extends: "p" });
 ```
+
+This element's class object is the `WordCount` class, and it extends the `p` or paragraph standard HTML element.
+
+The following example code shows how a developer might define a `WordCount` class:
+
+```javascript
+class WordCount extends HTMLParagraphElement {
+  constructor() {
+    // Always call super first in constructor
+    super();
+
+    // Element functionality written in here
+  }
+}
+```
+
+The [Using custom elements tutorial](https://developer.mozilla.org/en-US/docs/Web/Web_Components/Using_custom_elements)
+contains examples of both *autonomous custom elements* and *Customized buit-in elements.*
 
 ## For Details
 
@@ -396,7 +434,7 @@ For details about this feature, see the
 [MDN page for *Web Components, Custom elements*](https://developer.mozilla.org/en-US/docs/Web/Web_Components).
 
 
-# 9. Shadow DOM: Web Components, Shadow DOM
+# 9. Shadow DOM: Web Components -> Shadow DOM
 
 Here are some notes from
 [MDN's page describing *Web Components, Shadow DOM*](https://developer.mozilla.org/en-US/docs/Web/Web_Components).
