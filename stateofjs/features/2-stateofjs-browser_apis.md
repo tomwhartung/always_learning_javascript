@@ -555,7 +555,6 @@ document.addEventListener("visibilitychange", () => {
 [MDN's *Page Visibility API* page](https://developer.mozilla.org/en-US/docs/Web/API/Page_Visibility_API)
 includes a demo showing how this code works.
 
-
 Of course, the same technique works with videos as well.
 
 ## For Details
@@ -570,10 +569,48 @@ Here are some notes from
 [MDN's page describing the *Broadcast Channel API*](https://developer.mozilla.org/en-US/docs/Web/API/Broadcast_Channel_API).
 
 ## Overview
+
+The *Broadcast Channel API* allows workers to communicate between windows, tabs, frames, and iframes
+that have the same [origin](https://developer.mozilla.org/en-US/docs/Glossary/Origin).
+
 ## Description
-## Concepts and Usage
+
+Use this API by creating a
+[`BroadcastChannel`](https://developer.mozilla.org/en-US/docs/Web/API/BroadcastChannel)
+object and programming your workers to "subscribe" to a particular channel.
+This allows the browsing contexts - the windows, tabs, etc. sharing the same origin,
+to use `postMessage()` to send messages and listen for *message* events.
+
 ## Example Code
+
+This code snippet shows how to create a `BroadcastChannel` object:
+
 ```javascript
+// Connection to a broadcast channel
+const bc = new BroadcastChannel("test_channel");
+```
+
+This code snippet shows how to send a message:
+
+```javascript
+// Example of sending of a very simple message
+bc.postMessage("This is a test message.");
+```
+
+This code snippet shows how to receive a message:
+
+```javascript
+// A handler that only logs the event to the console:
+bc.onmessage = (event) => {
+  console.log(event);
+};
+```
+
+This code snippet shows how to disconnect from a channel:
+
+```javascript
+// Disconnect the channel
+bc.close();
 ```
 
 ## For Details
