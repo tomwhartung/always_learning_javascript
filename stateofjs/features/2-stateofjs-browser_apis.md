@@ -625,11 +625,36 @@ Here are some notes from
 [MDN's page describing the *Geolocation API*](https://developer.mozilla.org/en-US/docs/Web/API/Geolocation_API).
 
 ## Overview
-## Description
+
+JavaScript's Geolocation API allows developers to, with the user's permission, access a user's location.
+In other words, applications using the `Geolocation` object *must* add the `geolocation` permission to their manifest.
+
+Note that most browsers support this feature only over HTTPS.
+
 ## Concepts and Usage
+
+Developers use the
+[`Navigator.geolocation`](https://developer.mozilla.org/en-US/docs/Web/API/Navigator/geolocation)
+read-only property to get a
+[`GeoLocation`](https://developer.mozilla.org/en-US/docs/Web/API/Geolocation)
+object and access the user's location.
+
+This enables the developer to run these methods:
+
+- [`Geolocation.getCurrentPosition()`](https://developer.mozilla.org/en-US/docs/Web/API/Geolocation/getCurrentPosition)
+  - Retrieves the device's current location
+- [`Geolocation.watchPosition()`](https://developer.mozilla.org/en-US/docs/Web/API/Geolocation/watchPosition)
+  - Enables tracking the device's location
+
+MDN's page describing the
+[*Geolocation API*](https://developer.mozilla.org/en-US/docs/Web/API/Geolocation_API)
+also lists the interfaces developers can use with this API.
+
 ## Example Code
-```javascript
-```
+
+For example code, see MDN's
+[Using the Geolocation API](https://developer.mozilla.org/en-US/docs/Web/API/Geolocation_API/Using_the_Geolocation_API#examples)
+page.
 
 ## For Details
 
