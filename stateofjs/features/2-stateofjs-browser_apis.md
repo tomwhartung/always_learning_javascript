@@ -668,10 +668,89 @@ Here are some notes from
 [MDN's page describing the *File System Access API*](https://developer.mozilla.org/en-US/docs/Web/API/File_System_Access_API).
 
 ## Overview
-## Description
+
+The File Sytem Access API gives developers access to the user's file system.
+
+It is available only under HTTPS and only on some browsers.
+
 ## Concepts and Usage
+
+The File Sytem Access API allows developers to read and write files, and access the directory structure on
+the user's file system.
+
+Access takes place via file system handles:
+
+- [`FileSystemHandle`](https://developer.mozilla.org/en-US/docs/Web/API/FileSystemHandle) is the parent interface
+  - `FileSystemHandle` represents a file or directory entry
+- [`FileSystemFileHandle`](https://developer.mozilla.org/en-US/docs/Web/API/FileSystemFileHandle) is for files
+- [`FileSystemDirectoryHandle`](https://developer.mozilla.org/en-US/docs/Web/API/FileSystemDirectoryHandle) is for directories
+
+Get one of these handles by calling a method such as:
+
+- [`showOpenFilePicker`](https://developer.mozilla.org/en-US/docs/Web/API/Window/showOpenFilePicker) - allows the user to select a file
+- [`showDirectoryPicker`](https://developer.mozilla.org/en-US/docs/Web/API/Window/showDirectoryPicker) - allows the user to select a directory
+
+which present the user with a picker allowing them to select a file or directory as appropriate.
+
+Following are some other APIs which allow access to file handles:
+
+- The [HTML Drag and Drop API](https://developer.mozilla.org/en-US/docs/Web/API/HTML_Drag_and_Drop_API)
+- The [File Handling API](https://developer.chrome.com/en/articles/file-handling/)
+
 ## Example Code
+
+The following example code, from the
+[File System Access API](https://developer.mozilla.org/en-US/docs/Web/API/File_System_Access_API)
+page, shows how to present the file system picker and use `getFile()` to get its contents:
+
 ```javascript
+const pickerOpts = {
+  types: [
+    {
+      description: 'Images',
+      accept: {
+        'image/*': ['.png', '.gif', '.jpeg', '.jpg']
+      }
+    },
+  ],
+  excludeAcceptAllOption: true,
+  multiple: false
+};
+
+async function getTheFile() {
+  // open file picker
+  [fileHandle] = await window.showOpenFilePicker(pickerOpts);
+
+  // get file contents
+  const fileData = await fileHandle.getFile();
+}
+```
+
+The following example code, from the
+[FileSystemFileHandle](https://developer.mozilla.org/en-US/docs/Web/API/FileSystemFileHandle)
+page, shows how to do the same thing, in a slightly different, but essentially the same, manner
+
+```javascript
+async function getTheFile() {
+  const pickerOpts = {
+    types: [
+      {
+        description: 'Images',
+        accept: {
+          'image/*': ['.png', '.gif', '.jpeg', '.jpg'],
+        },
+      },
+    ],
+    excludeAcceptAllOption: true,
+    multiple: false,
+  };
+
+  // open file picker
+  const [fileHandle] = await window.showOpenFilePicker(pickerOpts);
+  // get file contents
+  const fileData = await fileHandle.getFile();
+  return fileData;
+}
 ```
 
 ## For Details
