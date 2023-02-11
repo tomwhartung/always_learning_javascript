@@ -827,11 +827,35 @@ Here are some notes from
 [MDN's page describing the *WebXR Device API*](https://developer.mozilla.org/en-US/docs/Web/API/WebXR_Device_API).
 
 ## Overview
+
+WebXR Device API supports rendering 3D scenes, targeting devices designed to present Virtual Reality (VR) and Augmented Reality (AR).
+It is based on the WebXR standards and implements core WebXR features.
+
+This API is available only under HTTPS, and only on some browsers.
+
 ## Description
-## Concepts and Usage
-## Example Code
-```javascript
-```
+
+By combining support for VR and AR devices, WebXR replaces the older
+[WebVR API](https://developer.mozilla.org/en-US/docs/Web/API/WebVR_API).
+
+Following are the key capabilities that the WebXR Device API provides:
+
+- Finding compatible devices
+- Rendering scenes at the right frame rate
+- Create vectors based on input controls
+- Mirror output to a 2D display (optional)
+
+Supported equipment may include:
+
+- Accelerometers
+- Barometers
+- Sensors able to detect when the user moves their body or just their head
+
+Most of this page consists of links to more information, including:
+
+- [Reference Docs](https://developer.mozilla.org/en-US/docs/Web/API/WebXR_Device_API#webxr_reference_docs)
+- [Guides and Tutorials](https://developer.mozilla.org/en-US/docs/Web/API/WebXR_Device_API#guides_and_tutorials)
+- [Specifications](https://developer.mozilla.org/en-US/docs/Web/API/WebXR_Device_API#specifications)
 
 ## For Details
 
