@@ -671,7 +671,7 @@ Here are some notes from
 
 The File Sytem Access API gives developers access to the user's file system.
 
-It is available only under HTTPS and only on some browsers.
+This API is available only under HTTPS, and only on some browsers.
 
 ## Concepts and Usage
 
@@ -765,11 +765,55 @@ Here are some notes from
 [MDN's page describing the *Web Share API*](https://developer.mozilla.org/en-US/docs/Web/API/Web_Share_API).
 
 ## Overview
-## Description
+
+The Web Share API allows the sharing of content such as text and links to a user-selected *share target.*
+
+This API is available only under HTTPS, and only on some browsers.
+
 ## Concepts and Usage
+
+Examples of the sort of *share targets* a user can specify include email, the system clipboard, websites,
+messaging and contacts applications, and Bluetooth or Wi-Fi.
+
+This API has only the following two methods:
+
+- [`navigator.canShare()`](https://developer.mozilla.org/en-US/docs/Web/API/Navigator/canShare) - verify whether the data can be shared
+- [`navigator.share()`](https://developer.mozilla.org/en-US/docs/Web/API/Navigator/share) - actually share the data
+
 ## Example Code
+
+This example, from the
+[MDN page for the *Web Share API*](https://developer.mozilla.org/en-US/docs/Web/API/Web_Share_API),
+shows how to use a button click to share a link:
+
 ```javascript
+const shareData = {
+  title: 'MDN',
+  text: 'Learn web development on MDN!',
+  url: 'https://developer.mozilla.org'
+}
+
+const btn = document.querySelector('button');
+const resultPara = document.querySelector('.result');
+
+// Share must be triggered by "user activation"
+btn.addEventListener('click', async () => {
+  try {
+    await navigator.share(shareData)
+    resultPara.textContent = 'MDN shared successfully'
+  } catch (err) {
+    resultPara.textContent = `Error: ${err}`
+  }
+});
 ```
+
+The [`navigator.share()`](https://developer.mozilla.org/en-US/docs/Web/API/Navigator/share)
+has a live example of this code, but it doesn't work!
+When I click the button it says:
+
+> Error: TypeError: navigator.share is not a function
+
+This may be a sign that my browser (Chrome) is not set up for this sort of sharing.
 
 ## For Details
 
