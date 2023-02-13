@@ -36,15 +36,30 @@ Some essential elements of progressive enhancement are:
 [MDN's introduction to PWAs](https://developer.mozilla.org/en-US/docs/Web/Progressive_web_apps/Introduction)
 provides an additional level of detail about them:
 
-Progressive web apps provide
+Following are some of the principles progressive web apps should follow:
 
-
-## Example Code
-
+- [Discoverability](https://developer.mozilla.org/en-US/docs/Web/Progressive_web_apps/Introduction#discoverability)
+  - Enable search engines to discover the web page's contents
+- [Installability](https://developer.mozilla.org/en-US/docs/Web/Progressive_web_apps/Introduction#installability)
+  - Enable the page to be made available on the home screen or app launcher of a device
+- [Linkability](https://developer.mozilla.org/en-US/docs/Web/Progressive_web_apps/Introduction#linkability)
+  - Enables users to share it by sending its URL
+- [Network independence](https://developer.mozilla.org/en-US/docs/Web/Progressive_web_apps/Introduction#network_independence)
+  - Enables users to continue using the app even when the network connection is poor or non-existent
+- [Hardware flexibility](https://developer.mozilla.org/en-US/docs/Web/Progressive_web_apps/Introduction#progressive_enhancement_support)
+  - Supports older browers while also utilizing the new features that modern browsers provide
+- [Re-engageablility](https://developer.mozilla.org/en-US/docs/Web/Progressive_web_apps/Introduction#re-engageability)
+  - Able to let users know when new content is available
+- [Device independence](https://developer.mozilla.org/en-US/docs/Web/Progressive_web_apps/Introduction#responsiveness)
+  - Able to work on a variety of device types, from phones, laptops, TVs, to even appliances such as refridgerators
+- [Secure](https://developer.mozilla.org/en-US/docs/Web/Progressive_web_apps/Introduction#secure)
+  - Able to keep sensitive data private from third parties who lack permission to see it
 
 ## TODO
 
 Look into all this when I have the inclination to, and more time to do so.
+The [MDN page for *progressive Web Apps*](https://developer.mozilla.org/en-US/docs/Web/Progressive_web_apps)
+is a good place to *start.*
 
 ## For Details
 
