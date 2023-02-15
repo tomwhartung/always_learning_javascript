@@ -6,6 +6,14 @@ This page contains some notes about the
 
 ## TODOs
 
+This file contains some **TODO** items, recommending more in-depth study of features
+I am just kind of glossing over right now.
+
+**Here is a summary of these TODOs:**
+
+- 1. Progressive Web Apps (PWAs)
+  - Look into all this when I have the inclination to, and more time to do so
+  - The [MDN page for *PWAs*](https://developer.mozilla.org/en-US/docs/Web/Progressive_web_apps) is a good place to *start*
 
 
 # 1. Progressive Web Apps (PWAs)
