@@ -82,20 +82,23 @@ Here are some notes from
 
 ## Overview
 
+WebAssembly is a fast, extremely efficient, low-level language similar to assembly with a compact binary format.
 
-## Syntax
-
-
-## TODO
-
+It can provide a compilation target for languages such as C/C++, C#, and Rust and is designed to work with JavaScript.
 
 ## Description
 
+WebAssembly allows code written in other languages to run on the web.
+
+- The [WebAssembly JavaScript Interface](https://developer.mozilla.org/en-US/docs/WebAssembly/JavaScript_interface) allows these other languages to share resources and run alongside each other.
+- The [W3C WebAssembly Working Group](https://www.w3.org/wasm/) is working on standards with representatives from all major browsers.
+
+A good way to get started learning about WebAssembly is to access
+[MDN's WebAssembly Concepts page](https://developer.mozilla.org/en-US/docs/WebAssembly/Concepts).
 
 ## Example Code
 
-```javascript
-```
+For examples, see MDN's [webassembly-examples](https://github.com/mdn/webassembly-examples/) github repo.
 
 ## For Details
 
