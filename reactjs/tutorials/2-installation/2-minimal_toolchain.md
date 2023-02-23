@@ -150,3 +150,127 @@ Wow!  ;-)
 
 Edited `src/App.js` and added ye olde "Hello World!", so we are good to go!!
 
+## Extra Credit: `README.md` file
+
+The idea to take a closer look at the `my-first-app` directory comes from my *Road to React* book.
+
+```
+$ pwd
+/var/www/always_learning/always_learning_javascript/reactjs/projects/my-first-app
+$ ls -l
+-rw-r--r--   1 tomh tomh   3359 Feb 22 16:51 README.md
+drwxr-xr-x 823 tomh tomh  32768 Feb 22 17:04 node_modules
+-rw-r--r--   1 tomh tomh 671802 Feb 22 16:52 package-lock.json
+-rw-r--r--   1 tomh tomh    815 Feb 22 16:52 package.json
+drwxr-xr-x   2 tomh tomh   4096 Feb 22 16:51 public
+drwxr-xr-x   2 tomh tomh   4096 Feb 22 17:07 src
+$
+```
+
+Note that running `npm create-react-app my-first-app` added a `README.md` file.
+
+I repeat: **I did not add this file,** npm did!
+
+It contains some notes about various `npm` commands that I can run.
+
+## Extra Credit: `npm` commands
+
+The idea to run these "extra credit" `npm` commands comes from my *Road to React* book.
+
+```
+$ pwd
+/var/www/always_learning/always_learning_javascript/reactjs/projects/my-first-app
+$ ls -l
+-rw-r--r--   1 tomh tomh   3359 Feb 22 16:51 README.md
+drwxr-xr-x 823 tomh tomh  32768 Feb 22 17:04 node_modules
+-rw-r--r--   1 tomh tomh 671802 Feb 22 16:52 package-lock.json
+-rw-r--r--   1 tomh tomh    815 Feb 22 16:52 package.json
+drwxr-xr-x   2 tomh tomh   4096 Feb 22 16:51 public
+drwxr-xr-x   2 tomh tomh   4096 Feb 22 17:07 src
+$
+```
+
+Note that the *"before"* listing above *does not* contain a `build` directory.
+
+```
+$ npm run build
+
+> my-first-app@0.1.0 build
+> react-scripts build
+
+Creating an optimized production build...
+Compiled successfully.
+
+File sizes after gzip:
+
+  46.65 kB  build/static/js/main.021ecfac.js
+  1.78 kB   build/static/js/787.b0e29ad6.chunk.js
+  541 B     build/static/css/main.073c9b0a.css
+
+The project was built assuming it is hosted at /.
+You can control this with the homepage field in your package.json.
+
+The build folder is ready to be deployed.
+You may serve it with a static server:
+
+  npm install -g serve
+  serve -s build
+
+Find out more about deployment here:
+
+  https://cra.link/deployment
+
+ $ ls -l
+total 716
+-rw-r--r--   1 tomh tomh   3359 Feb 22 16:51 README.md
+drwxr-xr-x   3 tomh tomh   4096 Feb 23 15:14 build               # Newly created
+drwxr-xr-x 823 tomh tomh  32768 Feb 22 17:04 node_modules
+-rw-r--r--   1 tomh tomh 671802 Feb 22 16:52 package-lock.json
+-rw-r--r--   1 tomh tomh    815 Feb 22 16:52 package.json
+drwxr-xr-x   2 tomh tomh   4096 Feb 22 16:51 public
+drwxr-xr-x   2 tomh tomh   4096 Feb 22 17:07 src
+$
+```
+
+Note that the *"after"* listing above *does* contain a `build` directory.
+
+And btw, the book claims this command creates a "*dist/* folder".
+No doubt these things change quickly!
+
+## Extra Credit: Previewing the Production-Ready Build???
+
+The `README.md` file, and the output of `npm build` above, mention that this command
+creates a production-ready build in the `build` directory
+
+I'm not ready to deploy it yet, but will give previewing it a try:
+
+```
+$ npm run preview
+npm ERR! Missing script: "preview"
+npm ERR!
+npm ERR! To see a list of scripts, run:
+npm ERR!   npm run
+
+npm ERR! A complete log of this run can be found in:
+npm ERR!     /home/tomh/.npm/_logs/2023-02-23T22_41_49_530Z-debug-0.log
+ $ npm run dev
+npm ERR! Missing script: "dev"
+npm ERR!
+npm ERR! To see a list of scripts, run:
+npm ERR!   npm run
+
+npm ERR! A complete log of this run can be found in:
+npm ERR!     /home/tomh/.npm/_logs/2023-02-23T22_54_19_315Z-debug-0.log
+$
+```
+
+Yikes!  These two commands, which I got from the book, don't work!!
+Maybe they are a Vite thing??
+
+```
+$ npm start
+$
+```
+
+At least `npm start` works, so that's cool.
+
