@@ -12,6 +12,13 @@ How to get started by installing a minimal toolchain.
   - The book shows how to use `create-react-app`
   - The book also uses vite, which I don't want to get into right now
 
+## More About `create-react-app`
+
+References to maybe check out later:
+
+- [`create-react-app` home page](https://create-react-app.dev/)
+- [`create-react-app` Getting Started page](https://create-react-app.dev/docs/getting-started/)
+
 # Actual Steps Taken
 
 ## Using `create-react-app`
