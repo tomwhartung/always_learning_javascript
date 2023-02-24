@@ -15,15 +15,46 @@ These are the references I'm using for this part of the process:
   - Not sure where I found this link, but it looks like what I want, so I'm glad I kept it around
   - [Babeljs.io page for editors and syntax highlighting](https://babeljs.io/docs/editors)
 
-# Updating My `~/.vimrc`
+# Summary of How I Got it to Work
+
+## 1. MaxMEllon/vim-jsx-pretty
+
+After taking a rather convoluted journey, I found the
+[MaxMEllon/vim-jsx-pretty](https://github.com/MaxMEllon/vim-jsx-pretty)
+repo.
+
+### Installation
+
+I picked the "Using Vim8's package manager" option in the `README.md` file and
+installed it by running these commands:
+
+```
+mkdir -p ~/.vim/pack/vim-jsx-pretty/start
+cd $_
+git clone git@github.com:MaxMEllon/vim-jsx-pretty.git
+```
+
+**TODO:** return to this directory on occasion and do a `git pull`.
+Note that this repo was last updated two years ago, so this is apparently no big deal.
+
+## 2. `:syntax on`
+
+I verified that vim doen's use the `vim-jsx-pretty` plugin unless syntax highlighting is turned on.
+
+So I added `:syntax on` to the end of my `~/.vimrc` file!
+
+
+# Details About How I Got it to Work
+
+This section details how I found the repo and figured out how to make it work.
+
+## 1. First Try
 
 Quoting from the [Babeljs.io page for editors and syntax highlighting](https://babeljs.io/docs/editors),
 under the **Vim** heading:
 
 > Install the vim-javascript plugin, which brings both improved syntax highlighting and indentation support for JavaScript to Vim.
 > Another option is to use yajs.vim with es.next.syntax.
-
-## 1. First Try
 
 The first sentence links to
 [https://github.com/pangloss/vim-javascript](https://github.com/pangloss/vim-javascript)
@@ -54,7 +85,7 @@ Although the most recent update to the
 [MaxMEllon/vim-jsx-pretty](https://github.com/MaxMEllon/vim-jsx-pretty)
 repo was 2 years ago, let's give it a whirl!
 
-### Looking at the `README.md` file:
+### Looking at the `README.md` File:
 
 Rather than doing the whole vim-plug plugin manager thing, let's try to install it
 "Using Vim8's package manager" by running these commands
