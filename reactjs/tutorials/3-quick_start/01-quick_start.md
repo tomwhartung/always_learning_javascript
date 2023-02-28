@@ -7,9 +7,9 @@ Notes from going through this reactjs tutorial:
 
 The goal is to *not* dwell on things I already learned in going through the previous tutorials.
 
-# 0. Creating a New React App
+# Creating a New React App
 
-I am creating a new react app so I can play around with some of these ideas and topics.
+I am creating a new react app so I can play around with some of these ideas and topics, if I decide I want to....
 
 ## Commands Run
 
@@ -102,21 +102,91 @@ if (isLoggedIn) {
 
 # 6. Rendering lists
 
-- 
+- Use `for` loops and the array `map()` function to process lists
+- React will *need* the `id` numbers if items will be deleted, inserted, or reordered
 
 ```javascript
+// No curly braces needed to declare our array
+const products = [
+  { title: 'Cabbage', id: 1 },
+  { title: 'Garlic', id: 2 },
+  { title: 'Apple', id: 3 },
+];
+//
+// **Notes:**
+//   Curly braces needed **only inside the markup tags**
+//   product.id comes from the array, which will typically come from a database
+//
+const listItems = products.map(product =>
+  <li key={product.id}>
+    {product.title}
+  </li>
+);
+
+return (
+  <ul>{listItems}</ul>
+);
 ```
 
-```html
-```
+# 7. Responding to events
+
+- Define and specify event handlers inside the components
 
 ```javascript
+//
+// handleClick() is the event handler
+// Use curly braces used to specify it inside the markup tag
+//
+function MyButton() {
+  function handleClick() {
+    alert('You clicked me!');
+  }
+
+  return (
+    <button onClick={handleClick}>
+      Click me
+    </button>
+  );
+}
 ```
 
-```html
-```
+# 8. Updating the screen - Using state variables
+
+1. `import` the ability to `useState` from `'react'`
+2. Declare a *state variable* in the component
+   - This declaration specifies the name of the state variable, the function that sets it, and its initial value
+   - The declaration usually takes the form `const [something, setSomething] = useState(initialValue);`
+3. Each instance of the component gets its own unique value for the state variable
+
+- For a demo of this code, see the Second App, `MyStateApp`, in this repo under `reactjs/projects/my-quick-start-app`
+  - Some commenting and uncommenting may be necessary
 
 ```javascript
+import { useState } from 'react';
+
+export default function MyApp() {
+  return (
+    <div>
+      <h1>Counters that update separately</h1>
+      <MyButton />
+      <MyButton />
+    </div>
+  );
+}
+
+function MyButton() {
+  const [count, setCount] = useState(0);
+
+  function handleClick() {
+    setCount(count + 1);
+  }
+
+  return (
+    <button onClick={handleClick}>
+      Clicked {count} times
+    </button>
+  );
+}
 ```
 
 ```html
