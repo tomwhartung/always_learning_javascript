@@ -159,7 +159,7 @@ function MyButton() {
 3. Each instance of the component gets its own unique value for the state variable
 
 - For a demo of this code, see the Second App, `MyStateApp`, in this repo under `reactjs/projects/my-quick-start-app`
-  - Some commenting and uncommenting may be necessary
+  - `export` the `AllMyApps` app to run all apps in `my-quick-start-app`
 
 ```javascript
 import { useState } from 'react';
@@ -189,8 +189,16 @@ function MyButton() {
 }
 ```
 
-```html
-```
+# 9. Using Hooks
+
+- A *hook* is a function that starts with `use`
+- In the example above, `useState` is a *hook*
+- There are several types of [built-in React hooks](https://beta.reactjs.org/reference/react)
+- It is also possible to create custom *hooks*
+- *Hooks* are like functions, but are more restrictive
+  - For example, it is possible to call hooks only at the *top level* of your components
+
+# 10. Sharing data between components
 
 ```javascript
 ```
@@ -202,9 +210,6 @@ function MyButton() {
 ```
 
 ```javascript
-```
-
-```html
 ```
 
 ```javascript
