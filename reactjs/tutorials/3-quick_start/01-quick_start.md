@@ -200,21 +200,82 @@ function MyButton() {
 
 # 10. Sharing data between components
 
-```javascript
-```
+In section *8. Updating the screen - Using state variables* above we wrote a program showing how to
+keep independent values in two different instances of the same component.
+
+- React also support sharing data between components
+  - This was covered previously in `../1-step_by_step_guide/10-lifting_state_up.md`
+
+Here is the process:
+
+1. Move the *state variable* up to the lowest component in the heirarchy that is above the components that need to share the state
+2. Pass the state down *as a property* to each of the lower components that use the state variable
+   - Use curly braces to refer to the new *property* defined in the higher-level component
+3. Change each of the lower components to use the new *property* instead of the state variable
+
+The following code examples show each step in this process.
+
+1. Move the *state variable* up to the lowest component in the heirarchy that is above the components that need to share the state
 
 ```javascript
+export default function MyApp() {
+  const [count, setCount] = useState(0);    // formerly in the MyButton() function component
+
+  function handleClick() {                  // formerly in the MyButton() function component
+    setCount(count + 1);
+  }
+
+  return (
+    <div>
+      <h1>Counters that update separately</h1>
+      <MyButton />
+      <MyButton />
+    </div>
+  );
+}
+
+function MyButton() {
+  // we moved code defining the state (const...) and handling the click (handleClick())
+  //   *from* here *to* the top-level MyApp component
+}
 ```
 
-```html
+2. Pass the state down *as a property* to each of the lower components that use the state variable
+   - Use curly braces to refer to the new *property* defined in the higher-level component
+
+```javascript
+export default function MyApp() {
+  const [count, setCount] = useState(0);
+
+  function handleClick() {
+    setCount(count + 1);
+  }
+
+  // Pass the state down as a property by setting the count={count} and
+  //   handleClick event onClick handler for each button
+  return (
+    <div>
+      <h1>Counters that update together</h1>
+      <MyButton count={count} onClick={handleClick} />
+      <MyButton count={count} onClick={handleClick} />
+    </div>
+  );
+}
+```
+
+3. Change each of the lower components to use the new *property* instead of the state variable
+
+```javascript
+// The new MyButton function component now uses passed-in *properties* to refer to the onClick event handler count value
+function MyButton({ count, onClick }) {
+  return (
+    <button onClick={onClick}>
+      Clicked {count} times
+    </button>
+  );
+}
 ```
 
 ```javascript
-```
-
-```javascript
-```
-
-```html
 ```
 
