@@ -40,3 +40,8 @@
 hr {
   width: 90%;
 }
+
+.independent-button {
+  margin: 10px;
+  padding: 5px;
+}
