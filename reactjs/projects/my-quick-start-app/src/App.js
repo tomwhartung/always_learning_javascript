@@ -44,13 +44,13 @@ function IndependentCountersApp() {
 function IndependentButton() {
   const [independentCount, setIndependentCount] = useState(0);
 
-  function handleClick() {
+  function handleIndependentClick() {
     setIndependentCount(independentCount + 1);
   }
 
   return (
     <button
-      onClick={handleClick}
+      onClick={handleIndependentClick}
       className="independent-button">
       Clicked {independentCount} times
     </button>
@@ -61,24 +61,24 @@ function IndependentButton() {
 function ControlledCountersApp() {
   const [controlledCount, setControlledCount] = useState(0);
 
-  function handleClick() {
+  function handleControlledClick() {
     setControlledCount(controlledCount + 1);
   }
   return (
     <div className="App">
       <h1>Counters that update together</h1>
-      <ControlledButton controlledCount={controlledCount} onClick={handleClick} />
-      <ControlledButton controlledCount={controlledCount} onClick={handleClick} />
+      <ControlledButton controlledCount={controlledCount} onControlledClick={handleControlledClick} />
+      <ControlledButton controlledCount={controlledCount} onControlledClick={handleControlledClick} />
     </div>
   );
 }
 
 // ControlledButton: button controlled by props
-function ControlledButton({ controlledCount, onClick }) {
+function ControlledButton({ controlledCount, onControlledClick }) {
 
   return (
     <button
-      onClick={onClick}
+      onClick={onControlledClick}
       className="controlled-button">
       Clicked {controlledCount} times
     </button>
