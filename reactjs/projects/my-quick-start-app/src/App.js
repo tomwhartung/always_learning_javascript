@@ -6,12 +6,16 @@ import { useState } from 'react';
 
 // AllMyApps: run all the apps!
 function AllMyApps() {
+
+//const [totalCount, setTotalCount] = useState(0);
+  const totalCount = 1;
+
   return (
     <div className="App">
       <header className="App-header">
         <h1>Here Are All My Apps!</h1>
         <hr />
-        <BonjourApp />
+        <BonjourApp totalCount={totalCount} />
         <hr />
         <IndependentCountersApp />
         <hr />
@@ -23,9 +27,12 @@ function AllMyApps() {
 }
 
 // BonjourApp: says Hello World in French
-function BonjourApp() {
+function BonjourApp( totalCount ) {
   return (
-    <h1>Bonjour, monde!</h1>
+    <div className="App">
+      <h1>Bonjour, monde!</h1>
+      <p>totalCount = {totalCount.totalCount} </p>
+    </div>
   );
 }
 
