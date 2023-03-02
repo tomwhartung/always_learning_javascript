@@ -49,6 +49,26 @@ Noting just the **important** stuff!
 
 - Use the `className` attribute to specify CSS classes for your components
   - In JSX, the `className` attribute **replaces** the HTML `class` attribute
+  - Idea: use lower-case for class names and put them in double quotes (based on the example I'm seeing)
+
+In the JSX (reactjs/projects/my-quick-start-app/src/App.js):
+
+```
+  return (
+    <button
+      className="independent-button">
+      ...
+    </button>
+```
+
+In the css (reactjs/projects/my-quick-start-app/src/App.css):
+
+```
+.independent-button {
+  margin: 10px;
+  padding: 5px;
+}
+```
 
 ## 4. Displaying data
 
@@ -266,7 +286,10 @@ export default function MyApp() {
 3. Change each of the lower components to use the new *property* instead of the state variable
 
 ```javascript
+//
 // The new MyButton function component now uses passed-in *properties* to refer to the onClick event handler count value
+// *Note* the passed-in parameters that appear inside curly braces inside the parenthesis in the function definition!!
+//
 function MyButton({ count, onClick }) {
   return (
     <button onClick={onClick}>
