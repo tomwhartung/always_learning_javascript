@@ -13,9 +13,9 @@ function AllMyApps() {
         <hr />
         <BonjourApp />
         <hr />
-        <MyStateApp />
+        <IndependentCountersApp />
         <hr />
-        <MyCountTotalClicksApp />
+        <ControlledCountersApp />
         <hr />
       </header>
     </div>
@@ -29,62 +29,60 @@ function BonjourApp() {
   );
 }
 
-// MyStateApp: demonstrates how to use multiple instances of the same state
-function MyStateApp() {
+// IndependentCountersApp: demonstrates how to use multiple instances of the same state
+function IndependentCountersApp() {
   return (
     <div className="App">
-      <h1>Counters that update separately</h1>
+      <h1>Independent Counters that Update Separately</h1>
       <IndependentButton />
       <IndependentButton />
     </div>
   );
 }
 
-// IndependentButton: button that counts how many times it's been clicked
+// IndependentButton: button that independently counts how many times it's been clicked
 function IndependentButton() {
-  const [count, setCount] = useState(0);
+  const [independentCount, setIndependentCount] = useState(0);
 
   function handleClick() {
-    setCount(count + 1);
+    setIndependentCount(independentCount + 1);
   }
 
   return (
     <button
       onClick={handleClick}
       className="independent-button">
-      Clicked {count} times
+      Clicked {independentCount} times
     </button>
   );
 }
 
-// MyCountTotalClicksApp: demonstrates how to lift state up
-function MyCountTotalClicksApp() {
-  const [count, setCount] = useState(0);
+// ControlledCountersApp: demonstrates how to lift state up
+function ControlledCountersApp() {
+  const [controlledCount, setControlledCount] = useState(0);
 
   function handleClick() {
-    setCount(count + 1);
+    setControlledCount(controlledCount + 1);
   }
   return (
     <div className="App">
       <h1>Counters that update together</h1>
-      <ControlledButton count={count} onClick={handleClick} />
-      <ControlledButton count={count} onClick={handleClick} />
+      <ControlledButton controlledCount={controlledCount} onClick={handleClick} />
+      <ControlledButton controlledCount={controlledCount} onClick={handleClick} />
     </div>
   );
 }
 
 // ControlledButton: button controlled by props
-function ControlledButton({ count, onClick }) {
+function ControlledButton({ controlledCount, onClick }) {
 
   return (
     <button
       onClick={onClick}
       className="controlled-button">
-      Clicked {count} times
+      Clicked {controlledCount} times
     </button>
   );
 }
 
-// export default BonjourApp;    // First App above
-// export default MyStateApp;    // Second App above
-export default AllMyApps;    // All the Apps above
+export default AllMyApps;
