@@ -299,6 +299,37 @@ function MyButton({ count, onClick }) {
 }
 ```
 
-```javascript
-```
+Got this much to work ok.
+
+- See `reactjs/projects/my-quick-start-app/src/App.js` for the results
+
+# Extra Credit: Implement a `totalCount`??
+
+I tried extending the resulting `reactjs/projects/my-quick-start-app/src/App.js` to maintain a `totalCount`
+
+- Tried keeping a `totalCount` state variable in the `AllMyApps` top-level component
+- Tried passing a function to display this count in the `BonjourApp` component
+  - Got this to work ok by refering to `{totalCount.totalCount}`, which I found puzzling
+- Tried passing a function to update this count to the `IndependentCountersApp` and `ControlledCountersApp` components
+  - This gave me a "white screen of death"
+  - See `App-handleAnyClick-first_effort_failure.js` for an initial effort that I thought should work
+  - **I currently don't understand why this won't work** (*)
+- Tried passing a function to update this count to just the `ControlledCountersApp` component
+  - This compiles and runs but does not work
+  - One error is "handleAnyClick is not a function"
+  - Trying the trick learned above with totalCount.totalCount, I get a "handleAnyClick.handleAnyClick is not a function" error
+  - See `App-passing_a_function_fail.js`
+  - **I currently don't understand why this won't work** (*)
+- Tried passing the `totalCount` property to just the `ControlledCountersApp` component and updating it locally
+  - This compiles and runs but does not work
+  - I did not really expect it to work but thought I'd give it a try
+  - See `App-passing_a_variable_fail.js`
+
+## Use Classes to Fix??
+
+Note that all of these are function components.
+
+Could I get it to work by using classes as components?
+
+**That's a good question that I do not care to try to answer at this point!**
 
