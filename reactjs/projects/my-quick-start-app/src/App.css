@@ -41,6 +41,7 @@ hr {
   width: 90%;
 }
 
+.controlled-button,
 .independent-button {
   margin: 10px;
   padding: 5px;
