@@ -156,9 +156,66 @@ Let me think about it....
 
 ## Files Edited
 
-- TBD
-  - TBD
+Tried editing `src/App.js` to fix the error above:
 
+```
+$ gd src/App.js
+diff --git a/reactjs/projects/ttt-their_way-app/src/App.js b/reactjs/projects/ttt-their_way-app/src/App.js
+index 18de78c..2b54e0f 100644
+--- a/reactjs/projects/ttt-their_way-app/src/App.js
++++ b/reactjs/projects/ttt-their_way-app/src/App.js
+@@ -31,7 +31,7 @@ function Board({ xIsNext, squares, onPlay }) {
+   }
+
+   return (
+-    <>
++    <div>
+       <div className="status">{status}</div>
+       <div className="board-row">
+         <Square value={squares[0]} onSquareClick={() => handleClick(0)} />
+@@ -48,7 +48,7 @@ function Board({ xIsNext, squares, onPlay }) {
+         <Square value={squares[7]} onSquareClick={() => handleClick(7)} />
+         <Square value={squares[8]} onSquareClick={() => handleClick(8)} />
+       </div>
+-    </>
++    </div>
+   );
+ }
+```
+
+This caused a slew of other errors:
+
+```
+Failed to compile.
+
+./src/App.js
+  Line 5:   'React' must be in scope when using JSX  react/react-in-jsx-scope
+  Line 34:  'React' must be in scope when using JSX  react/react-in-jsx-scope
+  Line 35:  'React' must be in scope when using JSX  react/react-in-jsx-scope
+  Line 36:  'React' must be in scope when using JSX  react/react-in-jsx-scope
+  Line 37:  'React' must be in scope when using JSX  react/react-in-jsx-scope
+  Line 38:  'React' must be in scope when using JSX  react/react-in-jsx-scope
+  Line 39:  'React' must be in scope when using JSX  react/react-in-jsx-scope
+  Line 41:  'React' must be in scope when using JSX  react/react-in-jsx-scope
+  Line 42:  'React' must be in scope when using JSX  react/react-in-jsx-scope
+  Line 43:  'React' must be in scope when using JSX  react/react-in-jsx-scope
+  Line 44:  'React' must be in scope when using JSX  react/react-in-jsx-scope
+  Line 46:  'React' must be in scope when using JSX  react/react-in-jsx-scope
+  Line 47:  'React' must be in scope when using JSX  react/react-in-jsx-scope
+  Line 48:  'React' must be in scope when using JSX  react/react-in-jsx-scope
+  Line 49:  'React' must be in scope when using JSX  react/react-in-jsx-scope
+  Line 79:  'React' must be in scope when using JSX  react/react-in-jsx-scope
+  Line 80:  'React' must be in scope when using JSX  react/react-in-jsx-scope
+  Line 86:  'React' must be in scope when using JSX  react/react-in-jsx-scope
+  Line 87:  'React' must be in scope when using JSX  react/react-in-jsx-scope
+  Line 88:  'React' must be in scope when using JSX  react/react-in-jsx-scope
+  Line 90:  'React' must be in scope when using JSX  react/react-in-jsx-scope
+  Line 91:  'React' must be in scope when using JSX  react/react-in-jsx-scope
+
+Search for the keywords to learn more about each error.
+```
+
+**Putting this version on hold for the time being.**
 
 # 1. TBD
 
