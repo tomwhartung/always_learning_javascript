@@ -39,10 +39,76 @@ $ npm start
 $
 ```
 
-## Files Edited
+## Files Edited - Part One
+
+Edited these files to remove the demo code that `create-react-app` gives us by default:
+
+### `.html` File
 
 - `public/index.html`
   - Changed the `<title>`
+
+Leaving all other files in the `public` directory alone for now.
+
+The two `public/logo*.png` files are no doubt *harmless* cruft, but still cruft!
+However, I'm just get started, so indulging in perfectionism would be premature!!
+
+### `.css` Files
+
+- `src/App.css`
+  - Removed all css from this file
+
+Leaving `src/index.css` alone for now, because it only defines the fonts to use.
+
+### `.js` Files
+
+- `src/App.js`
+  - Removed all of the JSX in the `function App()...` except the opening `<div className="App">` and closing `</div>` tags
+  - Added three `<p>` tags with different versions of ye olde standard greeting, as minimal temporary placeholders
+  - The `git diff` output appears below
+
+Leaving `src/index.js` alone for now, because although it is tiny it does some very important things, such as:
+
+- `import` some files that are no doubt crucial to this project's success
+- render the `App`!!
+
+```
+$ gd reactjs/projects/ttt-my_way-app/src/App.js
+diff --git a/reactjs/projects/ttt-my_way-app/src/App.js b/reactjs/projects/ttt-my_way-app/src/App.js
+index 3784575..cb58fb6 100644
+--- a/reactjs/projects/ttt-my_way-app/src/App.js
++++ b/reactjs/projects/ttt-my_way-app/src/App.js
+@@ -4,20 +4,15 @@ import './App.css';
+ function App() {
+   return (
+     <div className="App">
+-      <header className="App-header">
+-        <img src={logo} className="App-logo" alt="logo" />
+-        <p>
+-          Edit <code>src/App.js</code> and save to reload.
+-        </p>
+-        <a
+-          className="App-link"
+-          href="https://reactjs.org"
+-          target="_blank"
+-          rel="noopener noreferrer"
+-        >
+-          Learn React
+-        </a>
+-      </header>
++      <p>
++        Hello, world!
++      </p>
++      <p>
++        Bonjour, le monde!
++      </p>
++      <p>
++        Hola, mundo!
++      </p>
+     </div>
+   );
+ }
+```
 
 # 1. TBD
 
