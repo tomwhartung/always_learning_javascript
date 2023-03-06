@@ -110,11 +110,36 @@ index 3784575..cb58fb6 100644
  }
 ```
 
+## Files Edited - Part Two
+
+Edited these files to **add** just **some** of the code that the tutorial gives us by default:
+
+- `src/App.css`
+  - Verified that these two groups of style definitions match:
+    - The 90 lines of styles in `reactjs/projects/downloads/codesandbox/src/styles.css`
+    - The 90 lines of styles inside the `<style>` tag at the end of `reactjs/projects/downloads/reactjs/sandbox.html`
+  - Added these 90 lines to the previously empty `src/App.css`
+
+```
+$ pwd
+/var/www/always_learning/always_learning_javascript
+$ diff reactjs/projects/downloads/codesandbox/src/styles.css  reactjs/projects/ttt-my_way-app/src/App.css
+$
+```
+
+So far my version of the app has not blown up!
+
+I believe we are now ready to start working on the JSX React code!!
+
+
 # 1. TBD
 
 ```javascript
 ```
 
+So far my version of the app has not blown up!
+
+
 # 1. TBD
 
 ```javascript
@@ -122,6 +147,9 @@ index 3784575..cb58fb6 100644
 
 ```javascript
 ```
+
+So far my version of the app has not blown up!
+
 
 # 1. XXX
 
