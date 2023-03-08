@@ -16,8 +16,9 @@ This should be obvious, but just so we leave no doubt, the table below shows whe
 What is not so obvious is that these files do not match what's in the code boxes.
 For one thing, the files contain a lot of css, while the code boxes don't show any of that.  Hmmm.
 
-| Title of Subsection    | Name of Directory         | Name of File |                        Comment                        |
-| ---------------------- | ------------------------- |:------------:| ----------------------------------------------------- |
-| What are you building? | 01-What_are_you_building  | sandbox.html | This looks like the entire app                        |
-| Setup for the tutorial | 02-Setup_for_the_tutorial | sandbox.html | The code box contains just barely three lines of code |
+| Title of Subsection         | Name of Directory              | Name of File |                        Comment                                             |
+| --------------------------- | ------------------------------ |:------------:| -------------------------------------------------------------------------- |
+| What are you building?      | 01-What_are_you_building       | sandbox.html | This looks like the entire app                                             |
+| Setup for the tutorial      | 02-Setup_for_the_tutorial      | sandbox.html | The code box contains just barely three lines of code                      |
+| Inspecting the starter code | 03-Inspecting_the_starter_code | sandbox.html | This code contains the `<>` that gives an error in the `their_way` version |
 
