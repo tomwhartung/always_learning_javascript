@@ -1,20 +1,7 @@
 import logo from './logo.svg';
 import './App.css';
 
-function App() {
-  return (
-    <div className="App">
-      <p>
-        Hello, world!
-      </p>
-      <p>
-        Bonjour, le monde!
-      </p>
-      <p>
-        Hola, mundo!
-      </p>
-    </div>
-  );
+export default function Square() {
+  return <button className="square">X</button>;
 }
 
-export default App;
