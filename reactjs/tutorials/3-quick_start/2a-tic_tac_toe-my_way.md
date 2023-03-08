@@ -131,8 +131,24 @@ So far my version of the app has not blown up!
 
 I believe we are now ready to start working on the JSX React code!!
 
+## Final Setup Step: Files Edited - Part Three
 
-# 1. TBD
+- `src/App.js`
+  - Replaced all of the `function App()` greeting code with the contents of the few lines in the *second* code box, duplicated below
+  - Also deleted the `export default App;` line
+
+```
+export default function Square() {
+  return <button className="square">X</button>;
+}
+```
+
+So far my version of the app has not blown up!
+
+# 2. Overview
+
+```javascript
+```
 
 ```javascript
 ```
@@ -140,7 +156,7 @@ I believe we are now ready to start working on the JSX React code!!
 So far my version of the app has not blown up!
 
 
-# 1. TBD
+# 3. TBD
 
 ```javascript
 ```
@@ -151,34 +167,25 @@ So far my version of the app has not blown up!
 So far my version of the app has not blown up!
 
 
-# 1. XXX
+# 4. XXX
 
 ```javascript
-```
-
-```html
-```
-
-```javascript
-```
-
-# 1. XXX
-
-```javascript
-```
-
-```html
 ```
 
 ```javascript
 ```
 
-# 1. XXX
+# 5. XXX
 
 ```javascript
 ```
 
-```html
+```javascript
+```
+
+# 6. XXX
+
+```javascript
 ```
 
 ```javascript
