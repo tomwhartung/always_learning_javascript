@@ -1,5 +1,5 @@
 import logo from './logo.svg';
-import './App.css';
+import './styles.css';
 
 export default function Square() {
   return <button className="square">X</button>;
