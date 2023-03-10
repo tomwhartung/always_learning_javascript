@@ -5,7 +5,9 @@ Notes from going through lesson 0 of this reactjs tutorial:
 
 - [ReactJS Tutorial: Tic-Tac-Toe](https://beta.reactjs.org/learn/tutorial-tic-tac-toe)
 
-# 1. Setup for `their_way` of Doing the Tutorial
+# 1. Setup for the tutorial
+
+This section describes my efforts to setup the project for **`their_way`** of doing the tutorial.
 
 The tutorial wants me to build this on a website named CodeSandbox.
 I won't be doing that.
@@ -16,14 +18,14 @@ is to download the CodeSandbox files.
 I will be building this `their_way` version of the tic-tac-toe project on my localhost in
 `/var/www/always_learning/always_learning_javascript/reactjs/projects`.
 
-## Parallel Development
+## 1.1. Parallel Development
 
 I will also be going through this in a parallel `my_way` version of the project, following a process
 that makes more sense to me - because I'll learn more about `npm`, structuring the project, etc. - for working on my localhost.
 
 See the file `2a-tic_tac_toe-my_way` in this directory for details about that effort.
 
-## Process for `their_way` of Developing on My Localhost
+## 1.2. Process for `their_way` of Developing on My Localhost
 
 This process is a summarization of the process given in the **Note** box under
 [*Setup for the tutorial*](https://beta.reactjs.org/learn/tutorial-tic-tac-toe#setup-for-the-tutorial).
@@ -36,17 +38,22 @@ This process is a summarization of the process given in the **Note** box under
 
 It all sounds too pat and easy, hence the desire to also do it `my_way`!
 
-## Steps Taken and Commands Run
+## 1.3. Steps Taken and Commands Run
 
-### 1. Install `Node.js`
+**Note:** Taking these steps leads to a version that fails to compile.
+Feel free to skip ahead!
+
+However, I think most of these steps are necessary, and that we might be on the right track....
+
+### 1.3.1. Install `Node.js`
 
 Already done!
 
-### 2. Download the Zip File
+### 1.3.2. Download the Zip File
 
 Too easy!
 
-### 3. Unzip the Zip File and `cd`
+### 1.3.3. Unzip the Zip File and `cd`
 
 Working on this version of the project in
 `/var/www/always_learning/always_learning_javascript/reactjs/projects/ttt-their_way`.
@@ -70,7 +77,7 @@ unzip i18f1x.zip
 l
 ```
 
-### 4. Run `npm install`
+### 1.3.4. Run `npm install`
 
 Commands run:
 
@@ -102,7 +109,7 @@ Run `npm audit` for details.
 $
 ```
 
-### 5. Run `npm start`
+### 1.3.5. Run `npm start`
 
 ```
 $ pwd
@@ -154,7 +161,10 @@ Thinking I might, *might,* try fixing this error.
 
 Let me think about it....
 
-## Files Edited
+## 1.4. Files Edited - First try
+
+**Note:** Taking these steps apparently just makes things worse!
+Feel free to skip ahead to the next section, *1.5. Files Edited - Second try.*
 
 Tried editing `src/App.js` to fix the error above:
 
@@ -215,9 +225,76 @@ Failed to compile.
 Search for the keywords to learn more about each error.
 ```
 
+## 1.5. Files Edited - Second Try - Another Failed Attempt
+
+In `2a-tic_tac_toe-my_way.md` it was easy enough to get the minimal, 3-line version of `App.js` presented in the code box in the
+[Setup for the tutorial](https://beta.reactjs.org/learn/tutorial-tic-tac-toe#setup-for-the-tutorial) subsection.
+Let's give that a try!
+
+- Saved a copy of the current version of `App.js` as `App-the_whole_shebang-fails_to_compile.js`
+- Replaced all of with the minimal, 3-line version of `App.js` that appears in the following code snipped
+
+```javascript
+export default function Square() {
+  return <button className="square">X</button>;
+}
+```
+
+Rats!  This resulted in the following error:
+
+```
+./src/App.js
+  Line 4:  'React' must be in scope when using JSX  react/react-in-jsx-scope
+```
+
+Which might be considered slightly better than the **21 similar errors** seen above.
+
+**Note:** Went ahead and checked in this change.
+
+## 1.6. Files Edited - Third Try - More Failed Attempts
+
+Comparing the version of `index.js` in `ttt-my_way-app/src` to the version of `index.js` in `ttt-their_way-app/src`,
+I tried making the following edits to `ttt-their_way-app/src/index.js`:
+
+- Added the line `import ReactDOM from 'react-dom/client';` as line 2
+  - This did not help
+  - Commented out the line but left it in the new file `src/index-failed_attempts_to_fix_the_errors.js`
+    - Don't want to waste time trying this "fix" again
+    - Who knows, it might come in handy in the future
+- Tried these two edits, based on what I see in `ttt-my_way-app/src/index.js`:
+  - Updated line 10 (formerly line 9) from `<StrictMode>` to `<React.StrictMode>`
+  - Updated line 12 (formerly line 11) from `</StrictMode>` to `</React.StrictMode>`
+  - This did not help
+  - Left these two "non-fixes" in the new file `src/index-failed_attempts_to_fix_the_errors.js`
+    - I don't believe they will hurt anything, but want to be safe.
+
+**Note:** Checked in the new file `src/index-failed_attempts_to_fix_the_errors.js` for possible future reference.
+
+Following is the difference between the two `index*.js` files:
+
+```
+$ pwd
+/var/www/always_learning/always_learning_javascript/reactjs/projects/ttt-their_way-app
+$ diff src/index.js src/index-failed_attempts_to_fix_the_errors.js
+1a2
+> // import ReactDOM from 'react-dom/client';
+9c10
+<   <StrictMode>
+---
+>   <React.StrictMode>
+11c12
+<   </StrictMode>
+---
+>   </React.StrictMode>
+$
+```
+
 **Putting this version on hold for the time being.**
 
-# 1. TBD
+# 2. Overview
+
+```javascript
+```
 
 ```
 ```
