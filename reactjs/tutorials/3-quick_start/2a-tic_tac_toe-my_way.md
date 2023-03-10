@@ -13,14 +13,14 @@ I won't be doing that.
 I will be building this `my_way` version of the tic-tac-toe project on my localhost by working in
 `/var/www/always_learning/always_learning_javascript/reactjs/projects/ttt-my_way-app`.
 
-## Parallel Development
+## 1.1. Parallel Development
 
 I will also be going through this in a parallel `their_way` version of the project, following the process
 they suggest for working on my localhost.
 
 See the file `2b-tic_tac_toe-their_way` in this directory for details about that effort.
 
-## Commands Run
+## 1.2. Commands Run
 
 ```
 $ pwd
@@ -39,7 +39,7 @@ $ npm start
 $
 ```
 
-## Files Edited - Part One
+## 1.3. Files Edited - Part One
 
 Edited these files to remove the demo code that `create-react-app` gives us by default:
 
@@ -57,6 +57,8 @@ However, I'm just get started, so indulging in perfectionism would be premature!
 
 - `src/App.css`
   - Removed all css from this file
+  - Note that we rename this file to `src/styles.css`
+    - For more information, see subsection *2.1. Inspecting the starter code* below
 
 Leaving `src/index.css` alone for now, because it only defines the fonts to use.
 
@@ -110,7 +112,7 @@ index 3784575..cb58fb6 100644
  }
 ```
 
-## Files Edited - Part Two
+## 1.4. Files Edited - Part Two
 
 Edited these files to **add** just **some** of the code that the tutorial gives us by default:
 
@@ -131,7 +133,7 @@ So far my version of the app has not blown up!
 
 I believe we are now ready to start working on the JSX React code!!
 
-## Final Setup Step: Files Edited - Part Three
+## 1.5. Final Setup Step: Files Edited - Part Three
 
 - `src/App.js`
   - Replaced all of the `function App()` greeting code with the contents of the few lines in the *second* code box, duplicated below
@@ -145,7 +147,48 @@ export default function Square() {
 
 So far my version of the app has not blown up!
 
-# 2. Overview
+# 2. Overview - `<h2> ...` Element
+
+Diving into the tutorial for realsies.
+
+## 2.1. Inspecting the starter code
+
+Much of this is review.
+
+### 2.1.1. Files Edited, Continued
+
+- Renaming `App.css` to `styles.css` for consistency with the tutorial
+- Updated `App.js` to use the new style sheet name
+
+While looking through this subsection, I tried to fix the errors I am seeing in the `ttt-their_way-app` version of this project.
+
+### 2.1.2. A Brief Aside
+
+I tried several things, but all my attempts failed.  Rats.
+For details, see `2b-tic_tac_toe-their_way.md`.
+
+## 2.2. Building the board
+
+Made the updates discussed in this subsection, which involve creating a `Board` with 3 rows of 3 squares each for a total of 9 squares,
+to the `ttt-my_way-app` version of `App.js`, without breaking anything.  Yay!
+
+## 2.3. Passing data through props
+
+```javascript
+```
+
+```javascript
+```
+
+## 2.4. Making an interactive component
+
+```javascript
+```
+
+```javascript
+```
+
+## 2.5. React Developer Tools
 
 ```javascript
 ```
@@ -156,7 +199,33 @@ So far my version of the app has not blown up!
 So far my version of the app has not blown up!
 
 
-# 3. TBD
+# 3. Completing the game - `<h2> ...` Element
+
+## 3.1. Lifting state up
+
+```javascript
+```
+
+```javascript
+```
+
+## 3.2. Why immutability is important
+
+```javascript
+```
+
+```javascript
+```
+
+## 3.3. Taking turns
+
+```javascript
+```
+
+```javascript
+```
+
+## 3.4. Declaring a winner
 
 ```javascript
 ```
@@ -167,7 +236,9 @@ So far my version of the app has not blown up!
 So far my version of the app has not blown up!
 
 
-# 4. XXX
+# 4. Adding time travel - `<h2> ...` Element
+
+## 4.1. Storing a history of moves
 
 ```javascript
 ```
@@ -175,7 +246,7 @@ So far my version of the app has not blown up!
 ```javascript
 ```
 
-# 5. XXX
+## 4.2. Lifting state up, again
 
 ```javascript
 ```
@@ -183,7 +254,39 @@ So far my version of the app has not blown up!
 ```javascript
 ```
 
-# 6. XXX
+## 4.3. Showing the past moves
+
+```javascript
+```
+
+```javascript
+```
+
+## 4.4. Picking a key
+
+```javascript
+```
+
+```javascript
+```
+
+## 4.5. Implementing time travel
+
+```javascript
+```
+
+```javascript
+```
+
+## 4.6. Final cleanup
+
+```javascript
+```
+
+```javascript
+```
+
+## 4.7. Wrapping up
 
 ```javascript
 ```
