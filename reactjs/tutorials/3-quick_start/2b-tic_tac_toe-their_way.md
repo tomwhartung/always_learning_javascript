@@ -289,6 +289,50 @@ $ diff src/index.js src/index-failed_attempts_to_fix_the_errors.js
 $
 ```
 
+## 1.7. Files Edited - Fourth Try - `public/index.html`
+
+Reviewed these two files:
+
+- `ttt-my_way-app/public/index.html`
+- `ttt-their_way-app/public/index.html`,
+
+and made the following **cosmetic changes** to `ttt-their_way-app/public/index.html`, to make the files more similar:
+
+- Added a `<meta name="description" ...` tag to `ttt-their_way-app/public/index.html`
+- Added closing slashes ("`/`") to `<meta ...` and `<link ...` tags that didn't have them in `ttt-their_way-app/public/index.html`
+- Changed the `<title ...> tag in `ttt-their_way-app/public/index.html`
+- Removed the `<link rel="apple-touch-icon" ...` tag from `ttt-my_way-app/public/index.html`
+- Added a `<noscript ...> tag to `ttt-their_way-app/public/index.html`
+
+Here is the output of the `diff` command run comparing the updated versions of these two files:
+
+```
+$ pwd
+/var/www/always_learning/always_learning_javascript/reactjs/projects
+$ diff -i -b -w ttt-my_way-app/public/index.html ttt-their_way-app/public/index.html
+5,6c5
+<     <link rel="icon" href="%PUBLIC_URL%/favicon.ico" />
+<     <meta name="viewport" content="width=device-width, initial-scale=1" />
+---
+>   <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no" />
+13,14c12,13
+<       manifest.json provides metadata used when your web app is installed on a
+<       user's mobile device or desktop. See https://developers.google.com/web/fundamentals/web-app-manifest/
+---
+>     manifest.json provides metadata used when your web app is added to the
+>     homescreen on Android. See https://developers.google.com/web/fundamentals/engage-and-retain/web-app-manifest/
+16a16
+>   <link rel="shortcut icon" href="%PUBLIC_URL%/favicon.ico" />
+26c26,27
+<     <title>"My Way" Version of the React Tutorial Tic-Tac-Toe App</title>
+---
+>   <title>"Their Way" Version of the React Tutorial Tic-Tac-Toe App</title>
+>
+$
+```
+
+This of course did not fix the error, but hey, it was worth a try!
+
 **Putting this version on hold for the time being.**
 
 # 2. Overview
