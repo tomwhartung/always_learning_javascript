@@ -218,7 +218,8 @@ Here's the process:
    - Add an `import {useState}` statement at the top of the file
    - Remove the `{ value }` argument from the `Square` component function's definition
    - Define a new `value` variable by adding a call to `useState(null)`
-
+3. Remove the `value=...` properties from the `Square` tags in the `Board` component
+4. Update the `<button...` tag in the `Square` component to display an "X" when it has been clicked
 
 1. Add a `handleClick()` function to the `Square` component
 
@@ -252,21 +253,37 @@ function Square() {
   function handleClick() {
 ```
 
+3. Remove the `value=...` properties from the `Square` tags in the `Board` component
+
 ```javascript
+export default function Board() {
+. . .
+. . .
+      <div className="board-row">
+        <Square />
+        <Square />
+        <Square />
+      </div>
+  . . .
+  . . .
 ```
 
-```javascript
-```
-
-## 2.5. React Developer Tools
+4. Update the `<button...` tag in the `Square` component to display an "X" when it has been clicked
 
 ```javascript
-```
-
-```javascript
+  function handleClick() {
+    setValue('X');
+  }
 ```
 
 So far my version of the app has not blown up!
+
+## 2.5. React Developer Tools
+
+Note that, since I've installed the *React Developer Tools* plugin, the Developer tools window
+contains a *Components* tab, way over on the right.
+Opening this tab, and clicking on one of the components, allows seeing props, hooks (e.g., state),
+and other information that might help when debugging.
 
 
 # 3. Completing the game - `<h2> ...` Element
