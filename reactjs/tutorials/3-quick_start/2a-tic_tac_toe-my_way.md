@@ -210,6 +210,48 @@ export default function Board() {
 
 ## 2.4. Making an interactive component
 
+Time to make a square display an 'X' when we click on it.
+Here's the process:
+
+1. Add a `handleClick()` function to the `Square` component
+2. Update the `Square` component to use *state* to remember that it has been clicked
+   - Add an `import {useState}` statement at the top of the file
+   - Remove the `{ value }` argument from the `Square` component function's definition
+   - Define a new `value` variable by adding a call to `useState(null)`
+
+
+1. Add a `handleClick()` function to the `Square` component
+
+```javascript
+function Square({ value }) {
+  function handleClick() {
+    console.log( "Clicked!" );
+  }
+  return (
+    <button
+      className="square"
+      onClick={handleClick}
+    >
+      {value}
+    </button>
+  );
+}
+```
+
+2. Update the `Square` component to use *state* to remember that it has been clicked
+   - Add an `import {useState}` statement at the top of the file
+   - Remove the `{ value }` argument from the `Square` component function's definition
+   - Define a new `value` variable by adding a call to `useState(null)`
+
+```javascript
+import { useState } from 'react';
+
+// Square: function component defining a square on the tic-tac-toe board
+function Square() {
+  const [value, setValue] = useState(null);
+  function handleClick() {
+```
+
 ```javascript
 ```
 
