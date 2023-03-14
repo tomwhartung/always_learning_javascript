@@ -290,9 +290,9 @@ and other information that might help when debugging.
 
 To complete the game, we need to do the following:
 
-**Goal A:** Place alternating "X"s and "O"s on the board
-**Goal B:** Determine when the game is over
-**Goal C:** Determine whether the someone has won or result is a draw
+- **Goal A:** Place alternating "X"s and "O"s on the board
+- **Goal B:** Determine when the game is over
+- **Goal C:** Determine whether the someone has won or result is a draw
 
 ## 3.1. Lifting state up
 
