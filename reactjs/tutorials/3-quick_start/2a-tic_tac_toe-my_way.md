@@ -288,13 +288,81 @@ and other information that might help when debugging.
 
 # 3. Completing the game - `<h2> ...` Element
 
+To complete the game, we need to do the following:
+
+**Goal A:** Place alternating "X"s and "O"s on the board
+**Goal B:** Determine when the game is over
+**Goal C:** Determine whether the someone has won or result is a draw
+
 ## 3.1. Lifting state up
 
-```javascript
-```
+To accomplish **Goal B,** we need to be able to determine the state in each of the 9 `Square` components.
+
+The best place to do this is in the `Board` component, because it is the *parent* of all 9 `Square` components.
+
+- To do this, we need to refactor the code to keep the state in the `Board` component
+- This is known as *Lifting state up*
+
+### 3.1.1. Refactoring Steps - Part 1
+
+1. Update the `Board` component to keep the *state* of each of the 9 `Square` components
+2. Update the `Board` component to pass the appropriate *state* value to each of the 9 `Square` components
+3. Update the `Square` component to use the *state* value passed in to it from the `Board` component
+4. Update the `Square` component to tell the `Board` component when a square has been clicked
+- Do this by:
+  - Passing a function named `onSquareClick` from the `Board` component to the `Square` component
+  - Update the `Square` component to call `onSquareClick`
+  - Add `onSquareClick` to the the `Square` component's properties
+  - Update the `Board` component to connect `onSquareClick` with `handleClick`
+  - Update the `handleClick` function in the `Board` component to to update the `squares` array
+
+This doesn't quite fix everything, but it's a huge starting point.
+
+For additional steps and updates to the code, see subsections *3.1.3. Refactoring Steps - Part 2*
+and *3.1.4. Refactoring the Code - Part 2.*
+
+### 3.1.2. Refactoring the Code - Part 1
+
+**Step 1.** Update the `Board` component to keep the *state* of each of the 9 `Square` components
 
 ```javascript
 ```
+
+**Step 2.** Update the `Board` component to pass the appropriate state value to each of the 9 `Square` components
+
+```javascript
+```
+
+**Step 3.** Update the `Square` component to use the *state* value passed in to it from the `Board` component
+
+```javascript
+```
+
+**Step 4.** Update the `Square` component to tell the `Board` component when a square has been clicked
+
+- Do this by:
+  - Passing a function named `onSquareClick` from the `Board` component to the `Square` component
+  - Update the `Square` component to call `onSquareClick`
+  - Add `onSquareClick` to the the `Square` component's properties
+  - Update the `Board` component to connect `onSquareClick` with `handleClick`
+  - Update the `handleClick` function in the `Board` component to to update the `squares` array
+
+```javascript
+```
+
+
+```javascript
+```
+
+### 3.1.3. Refactoring Steps - Part 2
+
+TBD.
+
+### 3.1.4. Refactoring the Code - Part 2
+
+TBD.
+
+
 
 ## 3.2. Why immutability is important
 
