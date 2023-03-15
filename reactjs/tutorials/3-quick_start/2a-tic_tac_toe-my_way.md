@@ -271,9 +271,9 @@ export default function Board() {
 4. Update the `<button...` tag in the `Square` component to display an "X" when it has been clicked
 
 ```javascript
-  function handleClick() {
-    setValue('X');
-  }
+function handleClick() {
+  setValue('X');
+}
 ```
 
 So far my version of the app has not blown up!
@@ -303,7 +303,7 @@ The best place to do this is in the `Board` component, because it is the *parent
 - To do this, we need to refactor the code to keep the state in the `Board` component
 - This is known as *Lifting state up*
 
-### 3.1.1. Refactoring Steps - Part 1
+### 3.1.1. Refactoring Steps - Part 1: Handling an Array of Clicks
 
 1. Update the `Board` component to keep the *state* of each of the 9 `Square` components
 2. Update the `Board` component to pass the appropriate *state* value to each of the 9 `Square` components
@@ -323,7 +323,7 @@ This doesn't quite fix everything, but it's a huge starting point.
 For additional steps and updates to the code, see subsections *3.1.3. Refactoring Steps - Part 2*
 and *3.1.4. Refactoring the Code - Part 2.*
 
-### 3.1.2. Refactoring the Code - Part 1
+### 3.1.2. Refactoring the Code - Part 1: Handling an Array of Clicks
 
 **Step 1.** Update the `Board` component to keep the *state* of each of the 9 `Square` components
 
@@ -338,21 +338,21 @@ const [squares, setSquares] = useState( Array(9).fill(null) );
 Add `value=...` properties to the `Board` component's `<Square ...>` tags as follows:
 
 ```javascript
-      <div className="board-row">
-        <Square value={squares[0]} />
-        <Square value={squares[1]} />
-        <Square value={squares[2]} />
-      </div>
-      <div className="board-row">
-        <Square value={squares[3]} />
-        <Square value={squares[4]} />
-        <Square value={squares[5]} />
-      </div>
-      <div className="board-row">
-        <Square value={squares[6]} />
-        <Square value={squares[7]} />
-        <Square value={squares[8]} />
-      </div>
+<div className="board-row">
+  <Square value={squares[0]} />
+  <Square value={squares[1]} />
+  <Square value={squares[2]} />
+</div>
+<div className="board-row">
+  <Square value={squares[3]} />
+  <Square value={squares[4]} />
+  <Square value={squares[5]} />
+</div>
+<div className="board-row">
+  <Square value={squares[6]} />
+  <Square value={squares[7]} />
+  <Square value={squares[8]} />
+</div>
 ```
 
 **Step 3.** Update the `Square` component to use the *state* value passed in to it from the `Board` component
@@ -422,12 +422,12 @@ function Square( {value, onSquareClick} ) {
 The new `<button ...` tag in the `Square` component now looks like this:
 
 ```javascript
-    <button
-      className="square"
-      onClick={onSquareClick}
-    >
-      {value}
-    </button>
+<button
+  className="square"
+  onClick={onSquareClick}
+>
+  {value}
+</button>
 ```
 
 **Step 4.3.** Add a `handleClick` function in the `Board` component that updates the `squares` array
@@ -435,11 +435,11 @@ The new `<button ...` tag in the `Square` component now looks like this:
 The new `handleClick` event handler goes between the `const` and `return` statements, and looks like this:
 
 ```javascript
-  function handleClick() {
-    const nextSquares = squares.slice();   // Creates a new copy of the squares array
-    nextSquares[0] = "X";                  // Updates the first one (!!!)
-    setSquares(nextSquares);               // Sets squares equal to the new copy
-  }
+function handleClick() {
+  const nextSquares = squares.slice();   // Creates a new copy of the squares array
+  nextSquares[0] = "X";                  // Updates the first one (!!!)
+  setSquares(nextSquares);               // Sets squares equal to the new copy
+}
 ```
 
 **Step 4.4.** Update the `Board` component to connect `onSquareClick` with `handleClick`
@@ -447,52 +447,119 @@ The new `handleClick` event handler goes between the `const` and `return` statem
 We do this by updating each of the `<Square ...` tags as follows:
 
 ```javascript
-      <div className="board-row">
-        <Square value={squares[0]} onSquareClick={handleClick} />
-        <Square value={squares[1]} onSquareClick={handleClick} />
-        <Square value={squares[2]} onSquareClick={handleClick} />
-      </div>
-      <div className="board-row">
-        <Square value={squares[3]} onSquareClick={handleClick} />
-        <Square value={squares[4]} onSquareClick={handleClick} />
-        <Square value={squares[5]} onSquareClick={handleClick} />
-      </div>
-      <div className="board-row">
-        <Square value={squares[6]} onSquareClick={handleClick} />
-        <Square value={squares[7]} onSquareClick={handleClick} />
-        <Square value={squares[8]} onSquareClick={handleClick} />
-      </div>
+<div className="board-row">
+  <Square value={squares[0]} onSquareClick={handleClick} />
+  <Square value={squares[1]} onSquareClick={handleClick} />
+  <Square value={squares[2]} onSquareClick={handleClick} />
+</div>
+<div className="board-row">
+  <Square value={squares[3]} onSquareClick={handleClick} />
+  <Square value={squares[4]} onSquareClick={handleClick} />
+  <Square value={squares[5]} onSquareClick={handleClick} />
+</div>
+<div className="board-row">
+  <Square value={squares[6]} onSquareClick={handleClick} />
+  <Square value={squares[7]} onSquareClick={handleClick} />
+  <Square value={squares[8]} onSquareClick={handleClick} />
+</div>
 ```
 
+### 3.1.3. Refactoring Steps - Part 2: Using an Arrow Function
+
+5. Enable "X"s in more than just first square
+6. Understand why `onSquareClick={handleClick(0)}` causes an **infinite loop!**
+-  The parens around the `0` in `onSquareClick={handleClick(0)}` cause handleClick to be called without clicks!
+   - `onSquareClick={handleClick}` sets `onSquareClick` equal to the function `{handleClick}`
+   - `onSquareClick={handleClick(0)} causes React to try to call `handleClick(0)` !!
+7. Use the correct syntax to pass the clicked `Square`s index to the event handler
+
+### 3.1.4. Refactoring the Code - Part 2: Using an Arrow Function
+
+** Step 5.** Enable "X"s in more than just first square
+
+This requires passing a parameter to the `Board` component's `handleClick` function.
+
+*Before:*
 
 ```javascript
+function handleClick() {
+  const nextSquares = squares.slice();   // Creates a new copy of the squares array
+  nextSquares[0] = "X";                  // Updates the first one (!!!)
+  setSquares(nextSquares);               // Sets squares equal to the new copy
+}
 ```
+
+*After:*
 
 ```javascript
+function handleClick( idx ) {
+  const nextSquares = squares.slice();   // Creates a new copy of the squares array
+  nextSquares[idx] = "X";                // Update the idx-th one
+  setSquares(nextSquares);               // Sets squares equal to the new copy
+}
 ```
 
+** Step 6.** Understand why `onSquareClick={handleClick(0)}` causes an **infinite loop!**
+
+Change the assignment in the first `<Square...` tag from
+`onSquareClick={handleClick}` to `onSquareClick={handleClick(0)}`
+
+*Before:*
 
 ```javascript
+<Square value={squares[0]} onSquareClick={handleClick} />
 ```
+
+
+*After:*
 
 ```javascript
+<Square value={squares[0]} onSquareClick={handleClick(0)} />
 ```
 
+Open the console to see the error:
+
+> Uncaught Error: Too many re-renders. React limits the number of renders to prevent an infinite loop.
+
+**Step 7.** Use the correct syntax to pass the clicked `Square`s index to the event handler
+
+The correct syntax is `<Square value={squares[0]} onSquareClick={() => handleClick(0)} />`.
 
 ```javascript
+<div className="board-row">
+  <Square value={squares[0]} onSquareClick={() => handleClick(0)} />
+  <Square value={squares[1]} onSquareClick={() => handleClick(1)} />
+  <Square value={squares[2]} onSquareClick={() => handleClick(2)} />
+</div>
+<div className="board-row">
+  <Square value={squares[3]} onSquareClick={() => handleClick(3)} />
+  <Square value={squares[4]} onSquareClick={() => handleClick(4)} />
+  <Square value={squares[5]} onSquareClick={() => handleClick(5)} />
+</div>
+<div className="board-row">
+  <Square value={squares[6]} onSquareClick={() => handleClick(6)} />
+  <Square value={squares[7]} onSquareClick={() => handleClick(7)} />
+  <Square value={squares[8]} onSquareClick={() => handleClick(8)} />
+</div>
 ```
 
-### 3.1.3. Refactoring Steps - Part 2
+Quoting from the tutorial:
 
-TBD.
-
-### 3.1.4. Refactoring the Code - Part 2
-
-TBD.
-
-
+> `() => handleClick(0)` is an arrow function, which is a shorter way to define functions. When the square is clicked, the code after the `=>` “arrow” will run, calling `handleClick(0)`.
 
 ## 3.2. Why immutability is important
+
+```javascript
+```
+
+
+```javascript
+```
+
+
+*Before:*
+
+*After:*
 
 ```javascript
 ```
@@ -501,6 +568,18 @@ TBD.
 ```
 
 ## 3.3. Taking turns
+
+```javascript
+```
+
+
+```javascript
+```
+
+
+*Before:*
+
+*After:*
 
 ```javascript
 ```
@@ -529,6 +608,19 @@ So far my version of the app has not blown up!
 ```javascript
 ```
 
+*Before:*
+
+*After:*
+
+```javascript
+```
+
+
+```javascript
+```
+
+
+
 ## 4.2. Lifting state up, again
 
 ```javascript
@@ -536,6 +628,19 @@ So far my version of the app has not blown up!
 
 ```javascript
 ```
+
+*Before:*
+
+*After:*
+
+```javascript
+```
+
+
+```javascript
+```
+
+
 
 ## 4.3. Showing the past moves
 
@@ -545,6 +650,19 @@ So far my version of the app has not blown up!
 ```javascript
 ```
 
+
+*Before:*
+
+*After:*
+
+```javascript
+```
+
+
+```javascript
+```
+
+
 ## 4.4. Picking a key
 
 ```javascript
@@ -552,6 +670,19 @@ So far my version of the app has not blown up!
 
 ```javascript
 ```
+
+*Before:*
+
+*After:*
+
+```javascript
+```
+
+
+```javascript
+```
+
+
 
 ## 4.5. Implementing time travel
 
@@ -561,6 +692,19 @@ So far my version of the app has not blown up!
 ```javascript
 ```
 
+*Before:*
+
+*After:*
+
+```javascript
+```
+
+
+```javascript
+```
+
+
+
 ## 4.6. Final cleanup
 
 ```javascript
@@ -569,6 +713,19 @@ So far my version of the app has not blown up!
 ```javascript
 ```
 
+*Before:*
+
+*After:*
+
+```javascript
+```
+
+
+```javascript
+```
+
+
+
 ## 4.7. Wrapping up
 
 ```javascript
@@ -576,4 +733,17 @@ So far my version of the app has not blown up!
 
 ```javascript
 ```
+
+
+*Before:*
+
+*After:*
+
+```javascript
+```
+
+
+```javascript
+```
+
 
