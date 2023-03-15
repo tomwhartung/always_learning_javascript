@@ -309,12 +309,14 @@ The best place to do this is in the `Board` component, because it is the *parent
 2. Update the `Board` component to pass the appropriate *state* value to each of the 9 `Square` components
 3. Update the `Square` component to use the *state* value passed in to it from the `Board` component
 4. Update the `Square` component to tell the `Board` component when a square has been clicked
-- Do this by:
-  - Passing a function named `onSquareClick` from the `Board` component to the `Square` component
-  - Update the `Square` component to call `onSquareClick`
-  - Add `onSquareClick` to the the `Square` component's properties
-  - Update the `Board` component to connect `onSquareClick` with `handleClick`
-  - Update the `handleClick` function in the `Board` component to to update the `squares` array
+- This is made a bit complicated by the fact that "state is private to a component that defines it,"
+- As a result, "you cannot update the Board’s state directly from Square"
+- Therefore we need to **pass an event handler from the `Board` component to the `Square` component**
+- To do this, we need to follow these steps, which are not in the same sequence as the tutorial:
+4.1. Add `onSquareClick` to the the `Square` component's properties
+4.2. Update the `Square` component to call `onSquareClick` when a square is clicked
+4.3. Update the `Board` component to connect `onSquareClick` with `handleClick`
+4.4. Update the `handleClick` function in the `Board` component to to update the `squares` array
 
 This doesn't quite fix everything, but it's a huge starting point.
 
@@ -400,12 +402,43 @@ function Square( {value} ) {
 
 **Step 4.** Update the `Square` component to tell the `Board` component when a square has been clicked
 
-- Do this by:
-  - Passing a function named `onSquareClick` from the `Board` component to the `Square` component
-  - Update the `Square` component to call `onSquareClick`
-  - Add `onSquareClick` to the the `Square` component's properties
-  - Update the `Board` component to connect `onSquareClick` with `handleClick`
-  - Update the `handleClick` function in the `Board` component to to update the `squares` array
+- This is made a bit complicated by the fact that "state is private to a component that defines it,"
+- As a result, "you cannot update the Board’s state directly from Square"
+- Therefore we need to **pass an event handler from the `Board` component to the `Square` component**
+- To do this, we need to follow these steps, which are not in the same sequence as the tutorial:
+
+4.1. Add `onSquareClick` to the the `Square` component's properties
+4.2. Update the `Square` component to call `onSquareClick` when a square is clicked
+4.3. Update the `Board` component to connect `onSquareClick` with `handleClick`
+4.4. Update the `handleClick` function in the `Board` component to to update the `squares` array
+
+```javascript
+```
+
+
+```javascript
+```
+
+```javascript
+```
+
+
+```javascript
+```
+
+```javascript
+```
+
+
+```javascript
+```
+
+```javascript
+```
+
+
+```javascript
+```
 
 ```javascript
 ```
