@@ -325,17 +325,77 @@ and *3.1.4. Refactoring the Code - Part 2.*
 
 **Step 1.** Update the `Board` component to keep the *state* of each of the 9 `Square` components
 
+Add this line to the top of the `Board` function component:
+
 ```javascript
+const [squares, setSquares] = useState( Array(9).fill(null) );
 ```
 
 **Step 2.** Update the `Board` component to pass the appropriate state value to each of the 9 `Square` components
 
+Add `value=...` properties to the `Board` component's `<Square ...>` tags as follows:
+
 ```javascript
+      <div className="board-row">
+        <Square value={squares[0]} />
+        <Square value={squares[1]} />
+        <Square value={squares[2]} />
+      </div>
+      <div className="board-row">
+        <Square value={squares[3]} />
+        <Square value={squares[4]} />
+        <Square value={squares[5]} />
+      </div>
+      <div className="board-row">
+        <Square value={squares[6]} />
+        <Square value={squares[7]} />
+        <Square value={squares[8]} />
+      </div>
 ```
 
 **Step 3.** Update the `Square` component to use the *state* value passed in to it from the `Board` component
 
+This requires adding `{value}` as a parameter to the `Square` function component definition.
+
+**Not mentioned in the tutorial** is the need to also:
+
+- **remove the `value` state variable** definition
+- **remove the `handleClick`** event handler
+
+from the `Square` component!
+
+*Before:*
+
 ```javascript
+function Square() {
+  const [value, setValue] = useState(null);
+  function handleClick() {
+    setValue('X');
+  }
+
+  return (
+    <button
+      className="square"
+      onClick={handleClick}
+    >
+      {value}
+    </button>
+  );
+}
+```
+
+*After:*
+
+```javascript
+function Square( {value} ) {
+  return (
+    <button
+      className="square"
+    >
+      {value}
+    </button>
+  );
+}
 ```
 
 **Step 4.** Update the `Square` component to tell the `Board` component when a square has been clicked
