@@ -549,6 +549,31 @@ Quoting from the tutorial:
 
 ## 3.2. Why immutability is important
 
+*Immutability* refers to the technique of making a copy of existing data before changing it,
+and changing the copy rather than the original.
+If you decide to keep the changes, then you can replace the old data with the newly copied-and-changed version.
+
+- This is what we did when updating the `squares` array in the `handleClick` event handler
+
+```javascript
+function handleClick( idx ) {
+  const nextSquares = squares.slice();   // Creates a new copy of the squares array
+  nextSquares[idx] = "X";                // Update the idx-th one
+  setSquares(nextSquares);               // Sets squares equal to the new copy
+}
+```
+
+Immutability has the following benefits:
+
+- Immutability makes it easier to implement complex features
+  - This will become apparent in the next section, *4. Adding time travel*
+- Immutability allows keeping earlier versions of data intact
+- Immutability makes it easier to compare when a component's data has changed
+  - In React, all child components automatically re-render by default when their parent changes
+  - You might want to skip this re-rendering, for performance reasons, when a component's data has not changed
+
+## 3.3. Taking turns
+
 ```javascript
 ```
 
@@ -566,8 +591,6 @@ Quoting from the tutorial:
 
 ```javascript
 ```
-
-## 3.3. Taking turns
 
 ```javascript
 ```
