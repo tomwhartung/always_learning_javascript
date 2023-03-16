@@ -15,11 +15,20 @@ function Square( {value, onSquareClick} ) {
 }
 
 export default function Board() {
+  const [xIsNext, setXIsNext] = useState( true );
   const [squares, setSquares] = useState( Array(9).fill(null) );
 
   function handleClick( idx ) {
+    if ( squares[idx] ) {                  // If the square already has a non-null value
+      return;                              //   it cannot be played again!
+    }
     const nextSquares = squares.slice();   // Creates a new copy of the squares array
-    nextSquares[idx] = "X";                // Update the idx-th one
+    if (xIsNext) {
+      nextSquares[idx] = "X";              // Update the idx-th one
+    } else {
+      nextSquares[idx] = "O";              // Update the idx-th one
+    }
+    setXIsNext( ! xIsNext );               // Toggle xIsNext
     setSquares(nextSquares);               // Sets squares equal to the new copy
   }
 
