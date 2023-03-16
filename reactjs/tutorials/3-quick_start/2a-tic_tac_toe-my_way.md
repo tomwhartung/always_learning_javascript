@@ -574,44 +574,104 @@ Immutability has the following benefits:
 
 ## 3.3. Taking turns
 
+It is time to update the code so that clicks alternate between showing "X"s and "O"s.
+"X" always has the first move.
+
+This requires a new *boolean* state variable, `xIsNext`.
+Add this declaration to the top of the `Board` component:
+
 ```javascript
+const [xIsNext, setXIsNext] = useState( true );
 ```
 
+Add this code to the middle of the `handleClick` event handler:
 
 ```javascript
+    if (xIsNext) {
+      nextSquares[idx] = "X";              // Update the idx-th one
+    } else {
+      nextSquares[idx] = "O";              // Update the idx-th one
+    }
+    setXIsNext( ! xIsNext );               // Toggle xIsNext
 ```
 
+**Note:** in this version, it's possible to overwrite an existing "X" or "O".
 
-*Before:*
+- We can fix this by *returning early* from `handleClick`:
+  - If the user clicks on a `square` whose value is not null, return before changing the array
 
-*After:*
+Add this code to the top of `handleClick`:
 
 ```javascript
+    if ( squares[idx] ) {     // If the square already has a non-null value
+      return;                 //   it cannot be played again!
+    }
 ```
 
+Following are versions of the bulk of the `Board` component before and after the changes in this subsection:
+
+** *Before:* **
+
 ```javascript
+export default function Board() {
+  const [squares, setSquares] = useState( Array(9).fill(null) );
+
+  function handleClick( idx ) {
+    const nextSquares = squares.slice();   // Creates a new copy of the squares array
+    nextSquares[idx] = "X";                // Update the idx-th one
+    setSquares(nextSquares);               // Sets squares equal to the new copy
+  }
+
+  return (
+  )
+}
 ```
 
-```javascript
-```
-
+** *After:* **
 
 ```javascript
-```
+export default function Board() {
+  const [xIsNext, setXIsNext] = useState( true );
+  const [squares, setSquares] = useState( Array(9).fill(null) );
 
+  function handleClick( idx ) {
+    if ( squares[idx] ) {                  // If the square already has a non-null value
+      return;                              //   it cannot be played again!
+    }
+    const nextSquares = squares.slice();   // Creates a new copy of the squares array
+    if (xIsNext) {
+      nextSquares[idx] = "X";              // Update the idx-th one
+    } else {
+      nextSquares[idx] = "O";              // Update the idx-th one
+    }
+    setXIsNext( ! xIsNext );               // Toggle xIsNext
+    setSquares(nextSquares);               // Sets squares equal to the new copy
+  }
 
-*Before:*
-
-*After:*
-
-```javascript
-```
-
-```javascript
+  return (
+  // . . .
+  )
+}
 ```
 
 ## 3.4. Declaring a winner
 
+
+```javascript
+```
+
+Just a test:
+
+*- **Before** :*
+
+**-*After**:*
+
+
+```javascript
+```
+
+```javascript
+```
 ```javascript
 ```
 
