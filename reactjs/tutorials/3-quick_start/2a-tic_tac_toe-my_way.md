@@ -215,9 +215,9 @@ Here's the process:
 
 1. Add a `handleClick()` function to the `Square` component
 2. Update the `Square` component to use *state* to remember that it has been clicked
-   - Add an `import {useState}` statement at the top of the file
-   - Remove the `{ value }` argument from the `Square` component function's definition
-   - Define a new `value` variable by adding a call to `useState(null)`
+- Add an `import {useState}` statement at the top of the file
+- Remove the `{ value }` argument from the `Square` component function's definition
+- Define a new `value` variable by adding a call to `useState(null)`
 3. Remove the `value=...` properties from the `Square` tags in the `Board` component
 4. Update the `<button...` tag in the `Square` component to display an "X" when it has been clicked
 
@@ -309,14 +309,14 @@ The best place to do this is in the `Board` component, because it is the *parent
 2. Update the `Board` component to pass the appropriate *state* value to each of the 9 `Square` components
 3. Update the `Square` component to use the *state* value passed in to it from the `Board` component
 4. Update the `Square` component to tell the `Board` component when a square has been clicked
-- This is made a bit complicated by the fact that "state is private to a component that defines it,"
-- As a result, "you cannot update the Board’s state directly from Square"
-- Therefore we need to **pass an event handler from the `Board` component to the `Square` component**
-- To do this, we need to follow these steps, which are not in the same sequence as the tutorial:
-4.1. Add `onSquareClick` to the the `Square` component's properties
-4.2. Update the `Square` component to call `onSquareClick` when a square is clicked
-4.3. Add a `handleClick` function in the `Board` component that updates the `squares` array
-4.4. Update the `Board` component to connect `onSquareClick` with `handleClick`
+   - This is made a bit complicated by the fact that "state is private to a component that defines it,"
+   - As a result, "you cannot update the Board’s state directly from Square"
+   - Therefore we need to **pass an event handler from the `Board` component to the `Square` component**
+   - To do this, we need to follow these steps, which are not in the same sequence as the tutorial:
+- **Step 4.1.** Add `onSquareClick` to the the `Square` component's properties
+- **Step 4.2.** Update the `Square` component to call `onSquareClick` when a square is clicked
+- **Step 4.3.** Add a `handleClick` function in the `Board` component that updates the `squares` array
+- **Step 4.4.** Update the `Board` component to connect `onSquareClick` with `handleClick`
 
 This doesn't quite fix everything, but it's a huge starting point.
 
@@ -741,7 +741,61 @@ export default function Board() {
 *- **After** :*
 
 ```javascript
+// Board: our tic-tac-toe game board
+export default function Board() {
+  const [xIsNext, setXIsNext] = useState( true );
+  const [squares, setSquares] = useState( Array(9).fill(null) );
+
+  function handleClick( idx ) {
+    if ( squares[idx] ) {                  // If the square already has a non-null value
+      return;                              //   it cannot be played again!
+    }
+    const nextSquares = squares.slice();   // Create a new copy of the squares array
+    if (xIsNext) {
+      nextSquares[idx] = "X";              // Update the idx-th one
+    } else {
+      nextSquares[idx] = "O";              // Update the idx-th one
+    }
+    setXIsNext( ! xIsNext );               // Toggle xIsNext
+    setSquares(nextSquares);               // Sets squares equal to the new copy
+  }
+
+  // New code to report the status of the game:
+  // Note: Also add a div element to display the status to the return statement
+  const winner = calculateWinner(squares);
+  let status;
+  if ( winner ) {
+    status = winner + " is the winner!";
+  } else {
+    let nextPlayer = xIsNext ? "X" : "O";
+    status = "The next player is " + nextPlayer;
+  }
+
+  return (
+    <>
+      <div className="status">{status}</div>
+      <div className="board-row">
+        <Square value={squares[0]} onSquareClick={() => handleClick(0)} />
+        <Square value={squares[1]} onSquareClick={() => handleClick(1)} />
+        <Square value={squares[2]} onSquareClick={() => handleClick(2)} />
+      </div>
+      <div className="board-row">
+        <Square value={squares[3]} onSquareClick={() => handleClick(3)} />
+        <Square value={squares[4]} onSquareClick={() => handleClick(4)} />
+        <Square value={squares[5]} onSquareClick={() => handleClick(5)} />
+      </div>
+      <div className="board-row">
+        <Square value={squares[6]} onSquareClick={() => handleClick(6)} />
+        <Square value={squares[7]} onSquareClick={() => handleClick(7)} />
+        <Square value={squares[8]} onSquareClick={() => handleClick(8)} />
+      </div>
+    </>
+  );
+}
 ```
+
+**Note:** At this point, the game is complete,according to the tutorial, anyway.
+**But it does not display when no one wins the game - when it is a draw!**
 
 ```javascript
 ```
