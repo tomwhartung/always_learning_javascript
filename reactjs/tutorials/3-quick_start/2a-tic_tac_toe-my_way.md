@@ -366,7 +366,7 @@ This requires adding `{value}` as a parameter to the `Square` function component
 
 from the `Square` component!
 
-*Before:*
+*- **Before** :*
 
 ```javascript
 function Square() {
@@ -386,7 +386,7 @@ function Square() {
 }
 ```
 
-*After:*
+**-*After**:*
 
 ```javascript
 function Square( {value} ) {
@@ -479,7 +479,7 @@ We do this by updating each of the `<Square ...` tags as follows:
 
 This requires passing a parameter to the `Board` component's `handleClick` function.
 
-*Before:*
+*- **Before** :*
 
 ```javascript
 function handleClick() {
@@ -489,7 +489,7 @@ function handleClick() {
 }
 ```
 
-*After:*
+**-*After**:*
 
 ```javascript
 function handleClick( idx ) {
@@ -504,14 +504,14 @@ function handleClick( idx ) {
 Change the assignment in the first `<Square...` tag from
 `onSquareClick={handleClick}` to `onSquareClick={handleClick(0)}`
 
-*Before:*
+*- **Before** :*
 
 ```javascript
 <Square value={squares[0]} onSquareClick={handleClick} />
 ```
 
 
-*After:*
+**-*After**:*
 
 ```javascript
 <Square value={squares[0]} onSquareClick={handleClick(0)} />
@@ -610,7 +610,7 @@ Add this code to the top of `handleClick`:
 
 Following are versions of the bulk of the `Board` component before and after the changes in this subsection:
 
-** *Before:* **
+*- **Before** :*
 
 ```javascript
 export default function Board() {
@@ -627,7 +627,7 @@ export default function Board() {
 }
 ```
 
-** *After:* **
+**-*After**:*
 
 ```javascript
 export default function Board() {
@@ -656,19 +656,55 @@ export default function Board() {
 
 ## 3.4. Declaring a winner
 
+A player wins when they get three in a row, diagonally, horizontally, or vertically.
+
+- We use the `calculateWinner` function to determine whether someone has won
+
+Add this code to the end of the file `App.js`:
 
 ```javascript
+// calculateWinner: determine whether we have a winner
+//   returns: the winning letter, or else null
+function calculateWinner( squares ) {
+  const lines = [
+    [0, 1, 2],  // horiz. bottom row
+    [3, 4, 5],  // horiz. middle row
+    [6, 7, 8],  // horiz. bottom row
+    [0, 3, 6],  // vert. left col
+    [1, 4, 7],  // vert. middle col
+    [2, 5, 8],  // vert. right col
+    [0, 4, 8],  // diag. left to right (down)
+    [2, 4, 6],  // diag. right to left (down)
+  ];
+  for ( let i = 0; i < lines.length; i++ ) {
+    const [a, b, c] = lines[i];
+    if ( squares[a] &&
+        squares[a] === squares[b] &&
+        squares[a] === squares[c]   )
+    {
+      return ( squares[a] );
+    }
+  }
+  return ( null );
+}
 ```
 
-Just a test:
+Add a call to `calculateWinner` to the top of `handleClick`, and if a player has won then just `return`:
+
+```javascript
+  function handleClick( idx ) {
+    if ( calculateWinner(squares) ) {      // If we have a winner
+      return;                              //   no more plays: we are done!
+    }
+    // . . .
+```
+
+At this point, the game is complete, but we still need to display who won.
 
 *- **Before** :*
 
-**-*After**:*
+*- **After** :*
 
-
-```javascript
-```
 
 ```javascript
 ```
@@ -691,9 +727,9 @@ So far my version of the app has not blown up!
 ```javascript
 ```
 
-*Before:*
+*- **Before** :*
 
-*After:*
+**-*After**:*
 
 ```javascript
 ```
@@ -712,9 +748,9 @@ So far my version of the app has not blown up!
 ```javascript
 ```
 
-*Before:*
+*- **Before** :*
 
-*After:*
+**-*After**:*
 
 ```javascript
 ```
@@ -734,9 +770,9 @@ So far my version of the app has not blown up!
 ```
 
 
-*Before:*
+*- **Before** :*
 
-*After:*
+**-*After**:*
 
 ```javascript
 ```
@@ -754,9 +790,9 @@ So far my version of the app has not blown up!
 ```javascript
 ```
 
-*Before:*
+*- **Before** :*
 
-*After:*
+**-*After**:*
 
 ```javascript
 ```
@@ -775,9 +811,9 @@ So far my version of the app has not blown up!
 ```javascript
 ```
 
-*Before:*
+*- **Before** :*
 
-*After:*
+**-*After**:*
 
 ```javascript
 ```
@@ -796,9 +832,9 @@ So far my version of the app has not blown up!
 ```javascript
 ```
 
-*Before:*
+*- **Before** :*
 
-*After:*
+**-*After**:*
 
 ```javascript
 ```
@@ -818,9 +854,9 @@ So far my version of the app has not blown up!
 ```
 
 
-*Before:*
+*- **Before** :*
 
-*After:*
+**-*After**:*
 
 ```javascript
 ```
