@@ -20,9 +20,6 @@ export default function Board() {
   const [squares, setSquares] = useState( Array(9).fill(null) );
 
   function handleClick( idx ) {
-    if ( calculateWinner(squares) ) {      // If we have a winner
-      return;                              //   no more plays: we are done!
-    }
     if ( squares[idx] ) {                  // If the square already has a non-null value
       return;                              //   it cannot be played again!
     }
@@ -36,8 +33,19 @@ export default function Board() {
     setSquares(nextSquares);               // Sets squares equal to the new copy
   }
 
+  // New code to report the status of the game:
+  const winner = calculateWinner(squares);
+  let status;
+  if ( winner ) {
+    status = winner + " is the winner!";
+  } else {
+    let nextPlayer = xIsNext ? "X" : "O";
+    status = nextPlayer + " is the next player";
+  }
+
   return (
     <>
+      <div className="status">{status}</div>
       <div className="board-row">
         <Square value={squares[0]} onSquareClick={() => handleClick(0)} />
         <Square value={squares[1]} onSquareClick={() => handleClick(1)} />
