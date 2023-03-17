@@ -37,7 +37,11 @@ export default function Board() {
   const winner = calculateWinner(squares);
   let status;
   if ( winner ) {
-    status = winner + " is the winner!";
+    if ( winner === "D" ) {
+      status = "The game is a draw!  Thanks for playing!  Reload to play again!!";
+    } else {
+      status = winner + " is the winner!  Reload to play again!!";
+    }
   } else {
     let nextPlayer = xIsNext ? "X" : "O";
     status = nextPlayer + " is the next player";
@@ -66,7 +70,7 @@ export default function Board() {
 }
 
 // calculateWinner: determine whether we have a winner
-//   returns: the winning letter, or else null
+//   returns: the winning letter, or "D" for a draw, else null
 function calculateWinner( squares ) {
   const lines = [
     [0, 1, 2],  // horiz. bottom row
@@ -87,6 +91,13 @@ function calculateWinner( squares ) {
       return ( squares[a] );
     }
   }
-  return ( null );
+  // No winner yet, so check for a draw
+  let draw = "D";
+  for ( let idx = 0; idx < squares.length; idx++ ) {
+    if ( ! squares[idx] ) {
+      return ( null );
+    }
+  }
+  return ( draw );
 }
 
