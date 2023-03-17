@@ -710,7 +710,7 @@ function handleClick( idx ) {
 
 **Note:** At this point, the game is complete, but we still need to display who won.
 
-- Remove the code that check `calculateWinner` from the top of the `calculateWinner` function
+- Remove the code that checks `calculateWinner` from the top of the `calculateWinner` function
 - Add the new code as indicated in the **After** version to the `Board` component
 
 *- **Before** :*
@@ -874,7 +874,30 @@ Do this in two steps:
 
 # 4. Adding time travel - `<h2> ...` Element
 
+Adding this feature will enable users to back up one or more moves.
+
 ## 4.1. Storing a history of moves
+
+Note that this is easier because we decided make a copy of the `squares` variable, rather than mutate it directly.
+
+- We will store the old versions of `squares` in an array named `history`
+
+## 4.2. Lifting state up, again
+
+Implementing this `history` feature requires making it a *state* variable.
+This in turn requires adding a new top-level `default` component named `Game` in which to store it.
+
+These are the steps we will be following:
+
+- **Step 4.2.1** Add a new top-level component named `Game`
+- **Step 4.2.2** Add the existing `xIsNext` and new `history` state variables to `Game`
+- **Step 4.2.3** Add an empty function `handlePlay` to `Game` and pass it and `squares` and `xIsNext` to `Board`
+- **Step 4.2.4** Change `Board` to take these three prop values, passing `handlePlay` to `Board` as `onPlay`
+- **Step 4.2.5** Update `Board` to use these props, including calling `onPlay` when the user clicks on a square
+- **Step 4.2.6** Update the `handlePlay` in `Game` to add the new `squares` array to the end of `history`
+- **Step 4.2.7** Update the `handlePlay` in `Game` to add the new `squares` array to the end of `history`
+
+At this point, the game should work as before, but now be saving each move taken in `history`
 
 ```javascript
 ```
@@ -894,8 +917,6 @@ Do this in two steps:
 ```
 
 
-
-## 4.2. Lifting state up, again
 
 ```javascript
 ```
