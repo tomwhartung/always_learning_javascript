@@ -14,15 +14,19 @@ function Square( {value, onSquareClick} ) {
   );
 }
 
+// Board: our tic-tac-toe game board
 export default function Board() {
   const [xIsNext, setXIsNext] = useState( true );
   const [squares, setSquares] = useState( Array(9).fill(null) );
 
   function handleClick( idx ) {
+    if ( calculateWinner(squares) ) {      // If we have a winner
+      return;                              //   no more plays: we are done!
+    }
     if ( squares[idx] ) {                  // If the square already has a non-null value
       return;                              //   it cannot be played again!
     }
-    const nextSquares = squares.slice();   // Creates a new copy of the squares array
+    const nextSquares = squares.slice();   // Create a new copy of the squares array
     if (xIsNext) {
       nextSquares[idx] = "X";              // Update the idx-th one
     } else {
@@ -51,5 +55,30 @@ export default function Board() {
       </div>
     </>
   );
+}
+
+// calculateWinner: determine whether we have a winner
+//   returns: the winning letter, or else null
+function calculateWinner( squares ) {
+  const lines = [
+    [0, 1, 2],  // horiz. bottom row
+    [3, 4, 5],  // horiz. middle row
+    [6, 7, 8],  // horiz. bottom row
+    [0, 3, 6],  // vert. left col
+    [1, 4, 7],  // vert. middle col
+    [2, 5, 8],  // vert. right col
+    [0, 4, 8],  // diag. left to right (down)
+    [2, 4, 6],  // diag. right to left (down)
+  ];
+  for ( let i = 0; i < lines.length; i++ ) {
+    const [a, b, c] = lines[i];
+    if ( squares[a] &&
+        squares[a] === squares[b] &&
+        squares[a] === squares[c]   )
+    {
+      return ( squares[a] );
+    }
+  }
+  return ( null );
 }
 
