@@ -291,8 +291,11 @@ and other information that might help when debugging.
 To complete the game, we need to do the following:
 
 - **Goal A:** Place alternating "X"s and "O"s on the board
+  - Goal A is accomplished in subsection "3.3. Taking turns"
 - **Goal B:** Determine when the game is over
+  - Goal B is accomplished in subsection "3.4. Declaring a winner"
 - **Goal C:** Determine whether the someone has won or result is a draw
+  - Goal C is accomplished in subsection "3.5. Extra Credit: Identifying Draws"
 
 ## 3.1. Lifting state up
 
@@ -305,18 +308,18 @@ The best place to do this is in the `Board` component, because it is the *parent
 
 ### 3.1.1. Refactoring Steps - Part 1: Handling an Array of Clicks
 
-1. Update the `Board` component to keep the *state* of each of the 9 `Square` components
-2. Update the `Board` component to pass the appropriate *state* value to each of the 9 `Square` components
-3. Update the `Square` component to use the *state* value passed in to it from the `Board` component
-4. Update the `Square` component to tell the `Board` component when a square has been clicked
+- **Step 3.1.1.1.** Update the `Board` component to keep the *state* of each of the 9 `Square` components
+- **Step 3.1.1.2.** Update the `Board` component to pass the appropriate *state* value to each of the 9 `Square` components
+- **Step 3.1.1.3.** Update the `Square` component to use the *state* value passed in to it from the `Board` component
+- **Step 3.1.1.4.** Update the `Square` component to tell the `Board` component when a square has been clicked
    - This is made a bit complicated by the fact that "state is private to a component that defines it,"
    - As a result, "you cannot update the Board’s state directly from Square"
    - Therefore we need to **pass an event handler from the `Board` component to the `Square` component**
    - To do this, we need to follow these steps, which are not in the same sequence as the tutorial:
-- **Step 4.1.** Add `onSquareClick` to the the `Square` component's properties
-- **Step 4.2.** Update the `Square` component to call `onSquareClick` when a square is clicked
-- **Step 4.3.** Add a `handleClick` function in the `Board` component that updates the `squares` array
-- **Step 4.4.** Update the `Board` component to connect `onSquareClick` with `handleClick`
+- **Step 3.1.1.4.1.** Add `onSquareClick` to the the `Square` component's properties
+- **Step 3.1.1.4.2.** Update the `Square` component to call `onSquareClick` when a square is clicked
+- **Step 3.1.1.4.3.** Add a `handleClick` function in the `Board` component that updates the `squares` array
+- **Step 3.1.1.4.4.** Update the `Board` component to connect `onSquareClick` with `handleClick`
 
 This doesn't quite fix everything, but it's a huge starting point.
 
@@ -325,7 +328,7 @@ and *3.1.4. Refactoring the Code - Part 2.*
 
 ### 3.1.2. Refactoring the Code - Part 1: Handling an Array of Clicks
 
-**Step 1.** Update the `Board` component to keep the *state* of each of the 9 `Square` components
+**Step 3.1.1.4.1.** Update the `Board` component to keep the *state* of each of the 9 `Square` components
 
 Add this line to the top of the `Board` function component:
 
@@ -333,7 +336,7 @@ Add this line to the top of the `Board` function component:
 const [squares, setSquares] = useState( Array(9).fill(null) );
 ```
 
-**Step 2.** Update the `Board` component to pass the appropriate state value to each of the 9 `Square` components
+**Step 3.1.1.4.2.** Update the `Board` component to pass the appropriate state value to each of the 9 `Square` components
 
 Add `value=...` properties to the `Board` component's `<Square ...>` tags as follows:
 
@@ -355,7 +358,7 @@ Add `value=...` properties to the `Board` component's `<Square ...>` tags as fol
 </div>
 ```
 
-**Step 3.** Update the `Square` component to use the *state* value passed in to it from the `Board` component
+**Step 3.1.1.4.3.** Update the `Square` component to use the *state* value passed in to it from the `Board` component
 
 This requires adding `{value}` as a parameter to the `Square` function component definition.
 
@@ -400,16 +403,16 @@ function Square( {value} ) {
 }
 ```
 
-**Step 4.** Update the `Square` component to tell the `Board` component when a square has been clicked
+**Step 3.1.1.4.4.** Update the `Square` component to tell the `Board` component when a square has been clicked
 
 This entails following these steps, which are in a *slightly different sequence* than those in the tutorial:
 
-- **Step 4.1.** Add `onSquareClick` to the the `Square` component's properties
-- **Step 4.2.** Update the `Square` component to call `onSquareClick` when a square is clicked
-- **Step 4.3.** Add a `handleClick` function in the `Board` component that updates the `squares` array
-- **Step 4.4.** Update the `Board` component to connect `onSquareClick` with `handleClick`
+- **Step 3.1.1.4.4.1.** Add `onSquareClick` to the the `Square` component's properties
+- **Step 3.1.1.4.4.2.** Update the `Square` component to call `onSquareClick` when a square is clicked
+- **Step 3.1.1.4.4.3.** Add a `handleClick` function in the `Board` component that updates the `squares` array
+- **Step 3.1.1.4.4.4.** Update the `Board` component to connect `onSquareClick` with `handleClick`
 
-**Step 4.1.** Add `onSquareClick` to the the `Square` component's properties
+**Step 3.1.1.4.4.1.** Add `onSquareClick` to the the `Square` component's properties
 
 The new `Square` function component's definition now looks like this:
 
@@ -417,7 +420,7 @@ The new `Square` function component's definition now looks like this:
 function Square( {value, onSquareClick} ) {
 ```
 
-**Step 4.2.** Update the `Square` component to call `onSquareClick` when a square is clicked
+**Step 3.1.1.4.4.2.** Update the `Square` component to call `onSquareClick` when a square is clicked
 
 The new `<button ...` tag in the `Square` component now looks like this:
 
@@ -430,7 +433,7 @@ The new `<button ...` tag in the `Square` component now looks like this:
 </button>
 ```
 
-**Step 4.3.** Add a `handleClick` function in the `Board` component that updates the `squares` array
+**Step 3.1.1.4.4.3.** Add a `handleClick` function in the `Board` component that updates the `squares` array
 
 The new `handleClick` event handler goes between the `const` and `return` statements, and looks like this:
 
@@ -442,7 +445,7 @@ function handleClick() {
 }
 ```
 
-**Step 4.4.** Update the `Board` component to connect `onSquareClick` with `handleClick`
+**Step 3.1.1.4.4.4.** Update the `Board` component to connect `onSquareClick` with `handleClick`
 
 We do this by updating each of the `<Square ...` tags as follows:
 
@@ -466,16 +469,16 @@ We do this by updating each of the `<Square ...` tags as follows:
 
 ### 3.1.3. Refactoring Steps - Part 2: Using an Arrow Function
 
-5. Enable "X"s in more than just first square
-6. Understand why `onSquareClick={handleClick(0)}` causes an **infinite loop!**
+- **Step 3.1.3.5.** Enable "X"s in more than just first square
+- **Step 3.1.3.6.** Understand why `onSquareClick={handleClick(0)}` causes an **infinite loop!**
 -  The parens around the `0` in `onSquareClick={handleClick(0)}` cause handleClick to be called without clicks!
    - `onSquareClick={handleClick}` sets `onSquareClick` equal to the function `{handleClick}`
    - `onSquareClick={handleClick(0)} causes React to try to call `handleClick(0)` !!
-7. Use the correct syntax to pass the clicked `Square`s index to the event handler
+- **Step 3.1.3.7.** Use the correct syntax to pass the clicked `Square`s index to the event handler
 
 ### 3.1.4. Refactoring the Code - Part 2: Using an Arrow Function
 
-** Step 5.** Enable "X"s in more than just first square
+** Step 3.1.3.5.** Enable "X"s in more than just first square
 
 This requires passing a parameter to the `Board` component's `handleClick` function.
 
@@ -499,7 +502,7 @@ function handleClick( idx ) {
 }
 ```
 
-** Step 6.** Understand why `onSquareClick={handleClick(0)}` causes an **infinite loop!**
+** Step 3.1.3.6.** Understand why `onSquareClick={handleClick(0)}` causes an **infinite loop!**
 
 Change the assignment in the first `<Square...` tag from
 `onSquareClick={handleClick}` to `onSquareClick={handleClick(0)}`
@@ -509,7 +512,6 @@ Change the assignment in the first `<Square...` tag from
 ```javascript
 <Square value={squares[0]} onSquareClick={handleClick} />
 ```
-
 
 *- **After** :*
 
@@ -521,7 +523,7 @@ Open the console to see the error:
 
 > Uncaught Error: Too many re-renders. React limits the number of renders to prevent an infinite loop.
 
-**Step 7.** Use the correct syntax to pass the clicked `Square`s index to the event handler
+**Step 3.1.3.7.** Use the correct syntax to pass the clicked `Square`s index to the event handler
 
 The correct syntax is `<Square value={squares[0]} onSquareClick={() => handleClick(0)} />`.
 
@@ -659,6 +661,8 @@ export default function Board() {
 }
 ```
 
+**Note:** at this point we have accomplished **Goal A:** Place alternating "X"s and "O"s on the board.
+
 ## 3.4. Declaring a winner
 
 A player wins when they get three in a row, diagonally, horizontally, or vertically.
@@ -794,13 +798,78 @@ export default function Board() {
 }
 ```
 
-**Note:** At this point, the game is complete,according to the tutorial, anyway.
-**But it does not display when no one wins the game - when it is a draw!**
+**Note:** at this point we have accomplished **Goal B:** Determine when the game is over.
+
+**Note:** At this point, the game is complete - according to the tutorial, anyway.
+**But!  It does not display when no one wins the game - when it is a draw!!**
+
+## 3.5. Extra Credit: Identifying Draws
+
+When all squares are full but there is no winner, the game ends in a draw.
+
+- Extra Credit: update `calculateWinner` to return a "D" for "D"raw when the game ends in a draw
+
+Do this in two steps:
+
+- **Step 3.5.1:** Update `calculateWinner` to check for a draw when neither player's won yet
+- **Step 3.5.2:** Update the `Board` component code to check for a draw and update the `status` accordingly
+
+*- End of `calculateWinner` - **Before** :*
 
 ```javascript
+  return ( null );
 ```
 
-So far my version of the app has not blown up!
+*- End of `calculateWinner` - **After** :*
+
+```javascript
+  // No winner yet, so check for a draw
+  let draw = "D";
+  for ( let idx = 0; idx < squares.length; idx++ ) {
+    if ( ! squares[idx] ) {
+      return ( null );
+    }
+  }
+  return ( draw );
+```
+
+*- `Board` component code - **Before** :*
+
+```javascript
+  // . . .
+  // New code to report the status of the game:
+  const winner = calculateWinner(squares);
+  let status;
+  if ( winner ) {
+    status = winner + " is the winner!";
+  } else {
+    let nextPlayer = xIsNext ? "X" : "O";
+    status = nextPlayer + " is the next player";
+  }
+  // . . .
+```
+
+*- `Board` component code - **After** :*
+
+```javascript
+  // . . .
+  // New code to report the status of the game:
+  const winner = calculateWinner(squares);
+  let status;
+  if ( winner ) {
+    if ( winner === "D" ) {
+      status = "The game is a draw!  Thanks for playing!  Reload to play again!!";
+    } else {
+      status = winner + " is the winner!  Reload to play again!!";
+    }
+  } else {
+    let nextPlayer = xIsNext ? "X" : "O";
+    status = nextPlayer + " is the next player";
+  }
+  // . . .
+```
+
+**Note:** at this point we have accomplished **Goal C:** Determine whether the someone has won or result is a draw.
 
 
 # 4. Adding time travel - `<h2> ...` Element
@@ -810,10 +879,10 @@ So far my version of the app has not blown up!
 ```javascript
 ```
 
+*- **Before** :*
+
 ```javascript
 ```
-
-*- **Before** :*
 
 *- **After** :*
 
