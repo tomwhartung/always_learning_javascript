@@ -240,9 +240,9 @@ function Square({ value }) {
 ```
 
 2. Update the `Square` component to use *state* to remember that it has been clicked
-   - Add an `import {useState}` statement at the top of the file
-   - Remove the `{ value }` argument from the `Square` component function's definition
-   - Define a new `value` variable by adding a call to `useState(null)`
+- Add an `import {useState}` statement at the top of the file
+- Remove the `{ value }` argument from the `Square` component function's definition
+- Define a new `value` variable by adding a call to `useState(null)`
 
 ```javascript
 import { useState } from 'react';
@@ -386,7 +386,7 @@ function Square() {
 }
 ```
 
-**-*After**:*
+*- **After** :*
 
 ```javascript
 function Square( {value} ) {
@@ -489,7 +489,7 @@ function handleClick() {
 }
 ```
 
-**-*After**:*
+*- **After** :*
 
 ```javascript
 function handleClick( idx ) {
@@ -511,7 +511,7 @@ Change the assignment in the first `<Square...` tag from
 ```
 
 
-**-*After**:*
+*- **After** :*
 
 ```javascript
 <Square value={squares[0]} onSquareClick={handleClick(0)} />
@@ -587,12 +587,12 @@ const [xIsNext, setXIsNext] = useState( true );
 Add this code to the middle of the `handleClick` event handler:
 
 ```javascript
-    if (xIsNext) {
-      nextSquares[idx] = "X";              // Update the idx-th one
-    } else {
-      nextSquares[idx] = "O";              // Update the idx-th one
-    }
-    setXIsNext( ! xIsNext );               // Toggle xIsNext
+if (xIsNext) {
+  nextSquares[idx] = "X";              // Update the idx-th one
+} else {
+  nextSquares[idx] = "O";              // Update the idx-th one
+}
+setXIsNext( ! xIsNext );               // Toggle xIsNext
 ```
 
 **Note:** in this version, it's possible to overwrite an existing "X" or "O".
@@ -603,9 +603,9 @@ Add this code to the middle of the `handleClick` event handler:
 Add this code to the top of `handleClick`:
 
 ```javascript
-    if ( squares[idx] ) {     // If the square already has a non-null value
-      return;                 //   it cannot be played again!
-    }
+if ( squares[idx] ) {     // If the square already has a non-null value
+  return;                 //   it cannot be played again!
+}
 ```
 
 Following are versions of the bulk of the `Board` component before and after the changes in this subsection:
@@ -623,11 +623,14 @@ export default function Board() {
   }
 
   return (
+    <>
+    // . . .
+    </>
   )
 }
 ```
 
-**-*After**:*
+*- **After** :*
 
 ```javascript
 export default function Board() {
@@ -649,7 +652,9 @@ export default function Board() {
   }
 
   return (
-  // . . .
+    <>
+    // . . .
+    </>
   )
 }
 ```
@@ -692,22 +697,49 @@ function calculateWinner( squares ) {
 Add a call to `calculateWinner` to the top of `handleClick`, and if a player has won then just `return`:
 
 ```javascript
+function handleClick( idx ) {
+  if ( calculateWinner(squares) ) {      // If we have a winner
+    return;                              //   no more plays: we are done!
+  }
+  // . . .
+```
+
+**Note:** At this point, the game is complete, but we still need to display who won.
+
+- Remove the code that check `calculateWinner` from the top of the `calculateWinner` function
+- Add the new code as indicated in the **After** version to the `Board` component
+
+*- **Before** :*
+
+```javascript
+// Board: our tic-tac-toe game board
+export default function Board() {
+  const [xIsNext, setXIsNext] = useState( true );
+  const [squares, setSquares] = useState( Array(9).fill(null) );
+
   function handleClick( idx ) {
     if ( calculateWinner(squares) ) {      // If we have a winner
       return;                              //   no more plays: we are done!
     }
+    if ( squares[idx] ) {                  // If the square already has a non-null value
+      return;                              //   it cannot be played again!
+    }
     // . . .
+    setXIsNext( ! xIsNext );               // Toggle xIsNext
+    setSquares(nextSquares);               // Sets squares equal to the new copy
+  }
+
+  return (
+    <>
+      <div className="board-row">
+    // . . .
+    </>
+  )
+}
 ```
-
-At this point, the game is complete, but we still need to display who won.
-
-*- **Before** :*
 
 *- **After** :*
 
-
-```javascript
-```
 ```javascript
 ```
 
@@ -729,7 +761,7 @@ So far my version of the app has not blown up!
 
 *- **Before** :*
 
-**-*After**:*
+*- **After** :*
 
 ```javascript
 ```
@@ -750,7 +782,7 @@ So far my version of the app has not blown up!
 
 *- **Before** :*
 
-**-*After**:*
+*- **After** :*
 
 ```javascript
 ```
@@ -772,7 +804,7 @@ So far my version of the app has not blown up!
 
 *- **Before** :*
 
-**-*After**:*
+*- **After** :*
 
 ```javascript
 ```
@@ -792,7 +824,7 @@ So far my version of the app has not blown up!
 
 *- **Before** :*
 
-**-*After**:*
+*- **After** :*
 
 ```javascript
 ```
@@ -813,7 +845,7 @@ So far my version of the app has not blown up!
 
 *- **Before** :*
 
-**-*After**:*
+*- **After** :*
 
 ```javascript
 ```
@@ -834,7 +866,7 @@ So far my version of the app has not blown up!
 
 *- **Before** :*
 
-**-*After**:*
+*- **After** :*
 
 ```javascript
 ```
@@ -856,7 +888,7 @@ So far my version of the app has not blown up!
 
 *- **Before** :*
 
-**-*After**:*
+*- **After** :*
 
 ```javascript
 ```
