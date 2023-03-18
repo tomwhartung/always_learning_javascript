@@ -2,20 +2,32 @@
 import './styles.css';
 import { useState } from 'react';
 
-// Square: function component defining a square on the tic-tac-toe board
-function Square( {value, onSquareClick} ) {
+// Game: our tic-tac-toe game app
+export default function Game() {
+  const [xIsNext, setXIsNext] = useState( true );
+  const [history, setHistory] = useState( [Array(9).fill(null)] );
+  const currentSquares = history[history.length - 1];
+
+  function handlePlay( nextSquares ) {
+    // TBD
+  }
+
   return (
-    <button
-      className="square"
-      onClick={onSquareClick}
-    >
-      {value}
-    </button>
+    <div className="game">
+      <div className="game-board">
+        <Board xIsNext={xIsNext} squares={currentSquares} onPlay={handlePlay} />
+      </div>
+      <div className="game-info">
+        <ol>
+          {/* TBD */ }
+        </ol>
+      </div>
+    </div>
   );
 }
 
 // Board: our tic-tac-toe game board
-export default function Board() {
+function Board() {
   const [xIsNext, setXIsNext] = useState( true );
   const [squares, setSquares] = useState( Array(9).fill(null) );
 
@@ -66,6 +78,18 @@ export default function Board() {
         <Square value={squares[8]} onSquareClick={() => handleClick(8)} />
       </div>
     </>
+  );
+}
+
+// Square: function component defining a square on the tic-tac-toe board
+function Square( {value, onSquareClick} ) {
+  return (
+    <button
+      className="square"
+      onClick={onSquareClick}
+    >
+      {value}
+    </button>
   );
 }
 
