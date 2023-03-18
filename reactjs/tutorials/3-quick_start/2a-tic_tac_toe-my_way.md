@@ -890,7 +890,7 @@ This in turn requires adding a new top-level `default` component named `Game` in
 These are the steps we will be following:
 
 - **Step 4.2.1** Add a new top-level component named `Game`
-- **Step 4.2.2** Add the existing `xIsNext` and new `history` state variables to `Game`
+- **Step 4.2.2** Add `currentSquares` and the existing `xIsNext` and new `history` state variables to `Game`
 - **Step 4.2.3** Add an empty function `handlePlay` to `Game` and pass it and `squares` and `xIsNext` to `Board`
 - **Step 4.2.4** Change `Board` to take these three prop values, passing `handlePlay` to `Board` as `onPlay`
 - **Step 4.2.5** Update `Board` to use these props, including calling `onPlay` when the user clicks on a square
@@ -903,41 +903,58 @@ After these changes, the game should work as before, at least superficially.
 
 ### **Step 4.2.1** Add a new top-level component named `Game`
 
+Add this code to the top of `App.js`:
+
 ```javascript
+// Game: our tic-tac-toe game app
+export default function Game() {
+  return (
+    <div className="game">
+      <div className="game-board">
+        <Board />
+      </div>
+      <div className="game-info">
+        <ol>
+          {/* TBD */ }
+        </ol>
+      </div>
+    </div>
+  );
+}
 ```
+
+Remove the `export default` qualifiers from the definition of the `Board` function component:
 
 *- **Before** :*
 
 ```javascript
+export default function Board() {
+// . . .
 ```
 
 *- **After** :*
 
 ```javascript
+function Board() {
+// . . .
 ```
 
 ```javascript
 ```
 
 
-### **Step 4.2.2** Add the existing `xIsNext` and new `history` state variables to `Game`
+### **Step 4.2.2** Add `currentSquares` and the existing `xIsNext` and new `history` state variables to `Game`
+
+After this step, the top of the `Game` function component should look like this:
 
 ```javascript
+export default function Game() {
+  const [xIsNext, setXIsNext] = useState( true );
+  const [history, setHistory] = useState( [Array(9).fill(null)] );
+  const currentSquares = history[history.length - 1];
+  // . . .
+}
 ```
-
-*- **Before** :*
-
-```javascript
-```
-
-*- **After** :*
-
-```javascript
-```
-
-```javascript
-```
-
 
 ### **Step 4.2.3** Add an empty function `handlePlay` to `Game` and pass it and `squares` and `xIsNext` to `Board`
 
