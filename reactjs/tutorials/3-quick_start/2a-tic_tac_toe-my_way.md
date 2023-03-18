@@ -897,7 +897,11 @@ These are the steps we will be following:
 - **Step 4.2.6** Update the `handlePlay` in `Game` to add the new `squares` array to the end of `history`
 - **Step 4.2.7** Update the `handlePlay` in `Game` to add the new `squares` array to the end of `history`
 
-At this point, the game should work as before, but now be saving each move taken in `history`
+After these changes, the game should work as before, at least superficially.
+
+- The app will be saving each move taken in `history`, but offering no way to back up through those moves.
+
+### **Step 4.2.1** Add a new top-level component named `Game`
 
 ```javascript
 ```
@@ -912,29 +916,118 @@ At this point, the game should work as before, but now be saving each move taken
 ```javascript
 ```
 
-
 ```javascript
 ```
 
 
-
-```javascript
-```
+### **Step 4.2.2** Add the existing `xIsNext` and new `history` state variables to `Game`
 
 ```javascript
 ```
 
 *- **Before** :*
 
+```javascript
+```
+
 *- **After** :*
 
 ```javascript
 ```
 
+```javascript
+```
+
+
+### **Step 4.2.3** Add an empty function `handlePlay` to `Game` and pass it and `squares` and `xIsNext` to `Board`
 
 ```javascript
 ```
 
+*- **Before** :*
+
+```javascript
+```
+
+*- **After** :*
+
+```javascript
+```
+
+```javascript
+```
+
+### **Step 4.2.4** Change `Board` to take these three prop values, passing `handlePlay` to `Board` as `onPlay`
+
+```javascript
+```
+
+*- **Before** :*
+
+```javascript
+```
+
+*- **After** :*
+
+```javascript
+```
+
+```javascript
+```
+
+### **Step 4.2.5** Update `Board` to use these props, including calling `onPlay` when the user clicks on a square
+
+```javascript
+```
+
+*- **Before** :*
+
+```javascript
+```
+
+*- **After** :*
+
+```javascript
+```
+
+```javascript
+```
+
+### **Step 4.2.6** Update the `handlePlay` in `Game` to add the new `squares` array to the end of `history`
+
+```javascript
+```
+
+*- **Before** :*
+
+```javascript
+```
+
+*- **After** :*
+
+```javascript
+```
+
+### **Step 4.2.7** Update the `handlePlay` in `Game` to add the new `squares` array to the end of `history`
+
+```javascript
+```
+
+*- **Before** :*
+
+```javascript
+```
+
+*- **After** :*
+
+```javascript
+```
+
+```javascript
+```
+
+After these changes, the works as before, but also saves each move taken in `history`.
+It does not yet offer a way to back up through those moves.
 
 
 ## 4.3. Showing the past moves
@@ -942,17 +1035,15 @@ At this point, the game should work as before, but now be saving each move taken
 ```javascript
 ```
 
+*- **Before** :*
+
 ```javascript
 ```
-
-
-*- **Before** :*
 
 *- **After** :*
 
 ```javascript
 ```
-
 
 ```javascript
 ```
@@ -963,41 +1054,36 @@ At this point, the game should work as before, but now be saving each move taken
 ```javascript
 ```
 
+*- **Before** :*
+
 ```javascript
 ```
-
-*- **Before** :*
 
 *- **After** :*
 
 ```javascript
 ```
 
-
 ```javascript
 ```
-
-
 
 ## 4.5. Implementing time travel
 
 ```javascript
 ```
 
+*- **Before** :*
+
 ```javascript
 ```
-
-*- **Before** :*
 
 *- **After** :*
 
 ```javascript
 ```
 
-
 ```javascript
 ```
-
 
 
 ## 4.6. Final cleanup
@@ -1005,20 +1091,18 @@ At this point, the game should work as before, but now be saving each move taken
 ```javascript
 ```
 
+*- **Before** :*
+
 ```javascript
 ```
-
-*- **Before** :*
 
 *- **After** :*
 
 ```javascript
 ```
 
-
 ```javascript
 ```
-
 
 
 ## 4.7. Wrapping up
@@ -1026,17 +1110,15 @@ At this point, the game should work as before, but now be saving each move taken
 ```javascript
 ```
 
+*- **Before** :*
+
 ```javascript
 ```
-
-
-*- **Before** :*
 
 *- **After** :*
 
 ```javascript
 ```
-
 
 ```javascript
 ```
