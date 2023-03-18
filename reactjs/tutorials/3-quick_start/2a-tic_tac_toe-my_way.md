@@ -891,7 +891,7 @@ These are the steps we will be following:
 
 - **Step 4.2.1** Add a new top-level component named `Game`
 - **Step 4.2.2** Add `currentSquares` and the existing `xIsNext` and new `history` state variables to `Game`
-- **Step 4.2.3** Add an empty function `handlePlay` to `Game` and pass it and `squares` and `xIsNext` to `Board`
+- **Step 4.2.3** Add an empty function `handlePlay` to `Game` and pass it, and `squares` and `xIsNext`, to `Board`
 - **Step 4.2.4** Change `Board` to take these three prop values, passing `handlePlay` to `Board` as `onPlay`
 - **Step 4.2.5** Update `Board` to use these props, including calling `onPlay` when the user clicks on a square
 - **Step 4.2.6** Update the `handlePlay` in `Game` to add the new `squares` array to the end of `history`
@@ -939,10 +939,6 @@ function Board() {
 // . . .
 ```
 
-```javascript
-```
-
-
 ### **Step 4.2.2** Add `currentSquares` and the existing `xIsNext` and new `history` state variables to `Game`
 
 After this step, the top of the `Game` function component should look like this:
@@ -956,19 +952,36 @@ export default function Game() {
 }
 ```
 
-### **Step 4.2.3** Add an empty function `handlePlay` to `Game` and pass it and `squares` and `xIsNext` to `Board`
+### **Step 4.2.3** Add an empty function `handlePlay` to `Game` and pass it, and `squares` and `xIsNext`, to `Board`
+
+The new `handlePlay` function goes between the `const` definitions and the `return` statement in `Game`, and looks like this:
 
 ```javascript
+  function handlePlay( nextSquares ) {
+    // TBD
+  }
 ```
+
+The **After** code shows how to update the `Board` tag in `Game''s `return` statement to pass in the props:
 
 *- **Before** :*
 
 ```javascript
+// . . .
+<div className="game-board">
+  <Board />
+</div>
+// . . .
 ```
 
 *- **After** :*
 
 ```javascript
+// . . .
+<div className="game-board">
+  <Board xIsNext={xIsNext} squares={currentSquares} onPlay={handlePlay} />
+</div>
+// . . .
 ```
 
 ```javascript
