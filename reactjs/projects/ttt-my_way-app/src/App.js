@@ -9,7 +9,8 @@ export default function Game() {
   const currentSquares = history[history.length - 1];
 
   function handlePlay( nextSquares ) {
-    // TBD
+    setHistory( [...history, nextSquares] );  // Adds nextSquares to the end of history
+    setXIsNext( ! xIsNext );                  // Toggle xIsNext
   }
 
   return (
@@ -27,11 +28,11 @@ export default function Game() {
 }
 
 // Board: our tic-tac-toe game board
-function Board() {
-  const [xIsNext, setXIsNext] = useState( true );
-  const [squares, setSquares] = useState( Array(9).fill(null) );
-
+function Board( xIsNext, squares, onPlay ) {
   function handleClick( idx ) {
+    // if ( calculateWinner(squares) ) {
+    //   return;
+    // }
     if ( squares[idx] ) {                  // If the square already has a non-null value
       return;                              //   it cannot be played again!
     }
@@ -41,8 +42,7 @@ function Board() {
     } else {
       nextSquares[idx] = "O";              // Update the idx-th one
     }
-    setXIsNext( ! xIsNext );               // Toggle xIsNext
-    setSquares(nextSquares);               // Sets squares equal to the new copy
+    onPlay(nextSquares);                   // Sets squares equal to the new copy
   }
 
   // New code to report the status of the game:
