@@ -29,15 +29,14 @@ export default function Game() {
 
 // Board: our tic-tac-toe game board
 function Board( { xIsNext, squares, onPlay } ) {
-  // console.log( "Board: squares[0] = " + squares[0] );
-  // console.log( "Board: squares.length = " + squares.length );
 
   function handleClick( idx ) {
     if ( squares[idx] ) {                  // If the square already has a non-null value
       return;                              //   it cannot be played again!
     }
-    // console.log( "Board.handleClick: squares[0] = " + squares[0] );
-    // console.log( "Board.handleClick: squares.length = " + squares.length );
+    if ( calculateWinner(squares) ) {      // If there's a winner or it's a draw
+      return;                              //   ignore all clicks, because we are done!
+    }
 
     const nextSquares = squares.slice();   // Create a new copy of the squares array
     if (xIsNext) {
@@ -45,7 +44,6 @@ function Board( { xIsNext, squares, onPlay } ) {
     } else {
       nextSquares[idx] = "O";              // Update the idx-th one
     }
-    // setSquares(nextSquares);               // Sets squares equal to the new copy
     onPlay(nextSquares);                   // Sets squares equal to the new copy
   }
 
@@ -53,11 +51,11 @@ function Board( { xIsNext, squares, onPlay } ) {
   const winner = calculateWinner(squares);
   let status;
   if ( winner ) {
-    // if ( winner === "D" ) {
-    //   status = "The game is a draw!  Thanks for playing!  Reload to play again!!";
-    // } else {
+    if ( winner === "D" ) {
+      status = "The game is a draw!  Thanks for playing!  Reload to play again!!";
+    } else {
       status = winner + " is the winner!  Reload to play again!!";
-    // }
+    }
   } else {
     let nextPlayer = xIsNext ? "X" : "O";
     status = nextPlayer + " is the next player";
@@ -119,14 +117,13 @@ function calculateWinner( squares ) {
       return ( squares[a] );
     }
   }
-  // // No winner yet, so check for a draw
-  // let draw = "D";
-  // for ( let idx = 0; idx < squares.length; idx++ ) {
-  //   if ( ! squares[idx] ) {
-  //     return ( null );
-  //   }
-  // }
-  // return ( draw );
-  return ( null );
+  // No winner yet, so check for a draw
+  let draw = "D";
+  for ( let idx = 0; idx < squares.length; idx++ ) {
+    if ( ! squares[idx] ) {
+      return ( null );
+    }
+  }
+  return ( draw );
 }
 
