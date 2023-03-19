@@ -129,7 +129,7 @@ $ diff reactjs/projects/downloads/codesandbox/src/styles.css  reactjs/projects/t
 $
 ```
 
-So far my version of the app has not blown up!
+So far my version of the App has not blown up!
 
 I believe we are now ready to start working on the JSX React code!!
 
@@ -145,7 +145,7 @@ export default function Square() {
 }
 ```
 
-So far my version of the app has not blown up!
+So far my version of the App has not blown up!
 
 # 2. Overview - `<h2> ...` Element
 
@@ -276,7 +276,7 @@ function handleClick() {
 }
 ```
 
-So far my version of the app has not blown up!
+So far my version of the App has not blown up!
 
 ## 2.5. React Developer Tools
 
@@ -897,11 +897,10 @@ These are the steps we will be following:
 - **Step 4.2.6** Update `Board` to call `onPlay` when the user clicks on a square
 - **Step 4.2.7** Update the `handlePlay` function in `Game` to toggle `xIsNext`
 - **Step 4.2.8** Update the `handlePlay` function in `Game` to add the new `squares` array to the end of `history`
-- **Step 4.2.9** Update the `handlePlay` function in `Game` to add the new `squares` array to the end of `history`
 
 After these changes, the game should work as before, at least superficially.
 
-- The app will be saving each move taken in `history`, but offering no way to back up through those moves.
+- The App will be saving each move taken in `history`, but offering no way to back up through those moves.
 
 ### **Step 4.2.1** Add a new top-level component named `Game`
 
@@ -1002,13 +1001,13 @@ function Board() {
 
 *- **After** :*
 
+**Note: The curly braces are *extremely* important!  Forgetting to put them in caused me major issues!!**
+
 ```javascript
 function Board( { xIsNext, squares, onPlay } ) {
 ```
 
-**Note: The curly braces are *extremely* important!  Forgetting to put them in caused me major issues!!**
-
-**Note:** This causes the app to no longer compile.
+**Note:** This causes the App to no longer compile.
 
 ### **Step 4.2.5** Update `Board` to use the first two props, fixing the compile error
 
@@ -1049,7 +1048,7 @@ setSquares(nextSquares);               // Sets squares equal to the new copy
 // setSquares(nextSquares);               // Sets squares equal to the new copy
 ```
 
-**Note:** At this the App compiles ok, and does **not** display a Console error when a `Square` is clicked, but it no longer works.
+**Note:** At this point the App compiles ok, and does **not** display a Console error when a `Square` is clicked, but it doesn't work.
 
 ### **Step 4.2.6** Update `Board` to call `onPlay` when the user clicks on a square
 
@@ -1070,7 +1069,7 @@ Add `onPlay(nextSquares);` to the end of the `handleClick` function in `Board`:
 onPlay(nextSquares);                   // Sets squares equal to the new copy
 ```
 
-**Note:** At this the App compiles ok, and does **not** display a Console error when a `Square` is clicked, but it no longer works.
+**Note:** At this point the App compiles ok, and does **not** display a Console error when a `Square` is clicked, but it doesn't work.
 
 ### **Step 4.2.7** Update the `handlePlay` function in `Game` to toggle `xIsNext`
 
@@ -1098,9 +1097,11 @@ export default function Game() {
 }
 ```
 
-### **Step 4.2.9** Update the `handlePlay` function in `Game` to add the new `squares` array to the end of `history`
+**Note:** At this point the App compiles ok, and toggles the next player when a `Square` is clicked, but it doesn't work.
 
-The `handlePlay` function also needs to add the `nextSquares` array to the end of the `history` array.
+### **Step 4.2.8** Update the `handlePlay` function in `Game` to add the new `squares` array to the end of `history`
+
+Add `setHistory( [...history, nextSquares] );` to the top of the `handlePlay` function:
 
 *- **Before** :*
 
@@ -1132,14 +1133,9 @@ The tutorial explains the syntax in the just-added statement as follows:
 > Here, [...history, nextSquares] creates a new array that contains all the items in history, followed by nextSquares.
 > (You can read the ...history spread syntax as “enumerate all the items in history”.)
 
+After these changes, the App works as before, but also saves each move taken in `history`.
 
-
-```javascript
-```
-
-After these changes, the works as before, but also saves each move taken in `history`.
-It does not yet offer a way to back up through those moves.
-
+**Note:** The App does not yet offer a way to back up through those moves.
 
 ## 4.3. Showing the past moves
 
