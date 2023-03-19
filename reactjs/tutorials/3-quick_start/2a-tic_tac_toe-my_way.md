@@ -892,10 +892,11 @@ These are the steps we will be following:
 - **Step 4.2.1** Add a new top-level component named `Game`
 - **Step 4.2.2** Add `currentSquares` and the existing `xIsNext` and new `history` state variables to `Game`
 - **Step 4.2.3** Add an empty function `handlePlay` to `Game` and pass it, and `squares` and `xIsNext`, to `Board`
-- **Step 4.2.4** Change `Board` to take these three prop values, passing `handlePlay` to `Board` as `onPlay`
+- **Step 4.2.4** Change `Board` to take these three prop values, and call `onPlay`, i.e. `Board`'s `handlePlay` function
 - **Step 4.2.5** Update `Board` to use these props, including calling `onPlay` when the user clicks on a square
-- **Step 4.2.6** Update the `handlePlay` in `Game` to add the new `squares` array to the end of `history`
-- **Step 4.2.7** Update the `handlePlay` in `Game` to add the new `squares` array to the end of `history`
+- **Step 4.2.6** Update the `handlePlay` function in `Game` to toggle `xIsNext`
+- **Step 4.2.7** Update the `handlePlay` function in `Game` to add the new `squares` array to the end of `history`
+- **Step 4.2.7** Update the `handlePlay` function in `Game` to add the new `squares` array to the end of `history`
 
 After these changes, the game should work as before, at least superficially.
 
@@ -987,71 +988,114 @@ The **After** code shows how to update the `Board` tag in `Game''s `return` stat
 ```javascript
 ```
 
-### **Step 4.2.4** Change `Board` to take these three prop values, passing `handlePlay` to `Board` as `onPlay`
+### **Step 4.2.4** Change `Board` to take these three prop values, and call `onPlay`, i.e. `Board`'s `handlePlay` function
 
-```javascript
-```
+Update the `Board` function component's declaration as shown in the **After** code:
 
 *- **Before** :*
 
 ```javascript
+function Board() {
 ```
 
 *- **After** :*
 
 ```javascript
+function Board( xIsNext, squares, onPlay ) {
 ```
 
-```javascript
-```
+This causes the app to no longer compile.
 
 ### **Step 4.2.5** Update `Board` to use these props, including calling `onPlay` when the user clicks on a square
 
+To fix the compile error:
+
+- Remove the `const` declarations of `xIsNext` and `squares`
+- Replace the calls to `setXIsNext` and `setSquares` in `handleClick` with a call to the passed-in function `onPlay`
+
 ```javascript
+//  const [xIsNext, setXIsNext] = useState( true );                    // delete or comment-out this line
+//  const [squares, setSquares] = useState( Array(9).fill(null) );     // delete or comment-out this line
 ```
 
 *- **Before** :*
 
 ```javascript
+setXIsNext( ! xIsNext );               // Toggle xIsNext
+setSquares(nextSquares);               // Sets squares equal to the new copy
 ```
 
 *- **After** :*
 
 ```javascript
+// setXIsNext( ! xIsNext );               // Toggle xIsNext
+// setSquares(nextSquares);               // Sets squares equal to the new copy
+onPlay(nextSquares);                   // Sets squares equal to the new copy
 ```
 
-```javascript
-```
+At this the app compiles ok, but no longer works.
 
-### **Step 4.2.6** Update the `handlePlay` in `Game` to add the new `squares` array to the end of `history`
-
-```javascript
-```
+### **Step 4.2.6** Update the `handlePlay` function in `Game` to toggle `xIsNext`
 
 *- **Before** :*
 
 ```javascript
+export default function Game() {
+  // . . .
+  function handlePlay( nextSquares ) {
+    // TBD
+  }
+  // . . .
+}
 ```
 
 *- **After** :*
 
 ```javascript
+export default function Game() {
+  // . . .
+  function handlePlay( nextSquares ) {
+    setXIsNext( ! xIsNext );               // Toggle xIsNext
+  }
+  // . . .
+}
 ```
 
-### **Step 4.2.7** Update the `handlePlay` in `Game` to add the new `squares` array to the end of `history`
+### **Step 4.2.7** Update the `handlePlay` function in `Game` to add the new `squares` array to the end of `history`
 
-```javascript
-```
+The `handlePlay` function also needs to add the `nextSquares` array to the end of the `history` array.
 
 *- **Before** :*
 
 ```javascript
+export default function Game() {
+  // . . .
+  function handlePlay( nextSquares ) {
+    setXIsNext( ! xIsNext );               // Toggle xIsNext
+  }
+  // . . .
+}
 ```
 
 *- **After** :*
 
 ```javascript
+export default function Game() {
+  // . . .
+  function handlePlay( nextSquares ) {
+    setHistory( [...history, nextSquares] );  // Adds nextSquares to the end of history
+    setXIsNext( ! xIsNext );                  // Toggle xIsNext
+  }
+  // . . .
+}
 ```
+
+The tutorial explains the syntax in the just-added statement as follows:
+
+> Here, [...history, nextSquares] creates a new array that contains all the items in history, followed by nextSquares.
+> (You can read the ...history spread syntax as “enumerate all the items in history”.)
+
+
 
 ```javascript
 ```
