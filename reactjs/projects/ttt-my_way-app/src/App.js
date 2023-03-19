@@ -9,9 +9,11 @@ export default function Game() {
   const currentSquares = history[history.length - 1];
 
   function handlePlay( nextSquares ) {
-    setHistory( [...history, nextSquares] );  // Adds nextSquares to the end of history
-    setXIsNext( ! xIsNext );                  // Toggle xIsNext
+    // TBD
   }
+
+  console.log( "Game: currentSquares[0] = " + currentSquares[0] );
+  console.log( "Game: currentSquares.length = " + currentSquares.length );
 
   return (
     <div className="game">
@@ -28,20 +30,32 @@ export default function Game() {
 }
 
 // Board: our tic-tac-toe game board
-function Board( xIsNext, squares, onPlay ) {
+function Board( { xIsNext, squares, onPlay } ) {
+  // const [xIsNext, setXIsNext] = useState( true );
+  // const [squares, setSquares] = useState( Array(9).fill(null) );
+
+  console.log( "Board: xIsNext = " + xIsNext );
+  console.log( "Board: squares = " + squares );
+  console.log( "Board: onPlay = " + onPlay );
+
+  console.log( "Board: squares[0] = " + squares[0] );
+  console.log( "Board: squares.length = " + squares.length );
+
   function handleClick( idx ) {
-    // if ( calculateWinner(squares) ) {
-    //   return;
-    // }
     if ( squares[idx] ) {                  // If the square already has a non-null value
       return;                              //   it cannot be played again!
     }
+    console.log( "Board.handleClick: squares[0] = " + squares[0] );
+    console.log( "Board.handleClick: squares.length = " + squares.length );
+
     const nextSquares = squares.slice();   // Create a new copy of the squares array
     if (xIsNext) {
       nextSquares[idx] = "X";              // Update the idx-th one
     } else {
       nextSquares[idx] = "O";              // Update the idx-th one
     }
+    // setXIsNext( ! xIsNext );               // Toggle xIsNext
+    // setSquares(nextSquares);               // Sets squares equal to the new copy
     onPlay(nextSquares);                   // Sets squares equal to the new copy
   }
 
@@ -49,11 +63,11 @@ function Board( xIsNext, squares, onPlay ) {
   const winner = calculateWinner(squares);
   let status;
   if ( winner ) {
-    if ( winner === "D" ) {
-      status = "The game is a draw!  Thanks for playing!  Reload to play again!!";
-    } else {
+    // if ( winner === "D" ) {
+    //   status = "The game is a draw!  Thanks for playing!  Reload to play again!!";
+    // } else {
       status = winner + " is the winner!  Reload to play again!!";
-    }
+    // }
   } else {
     let nextPlayer = xIsNext ? "X" : "O";
     status = nextPlayer + " is the next player";
@@ -115,13 +129,14 @@ function calculateWinner( squares ) {
       return ( squares[a] );
     }
   }
-  // No winner yet, so check for a draw
-  let draw = "D";
-  for ( let idx = 0; idx < squares.length; idx++ ) {
-    if ( ! squares[idx] ) {
-      return ( null );
-    }
-  }
-  return ( draw );
+  // // No winner yet, so check for a draw
+  // let draw = "D";
+  // for ( let idx = 0; idx < squares.length; idx++ ) {
+  //   if ( ! squares[idx] ) {
+  //     return ( null );
+  //   }
+  // }
+  // return ( draw );
+  return ( null );
 }
 
