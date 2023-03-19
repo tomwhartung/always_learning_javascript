@@ -963,7 +963,7 @@ The new `handlePlay` function goes between the `const` definitions and the `retu
   }
 ```
 
-The **After** code shows how to update the `Board` tag in `Game''s `return` statement to pass in the props:
+This **Before** code shows that the `Board` tag in `Game''s `return` statement passes **no props**:
 
 *- **Before** :*
 
@@ -975,6 +975,8 @@ The **After** code shows how to update the `Board` tag in `Game''s `return` stat
 // . . .
 ```
 
+This **After** code shows how to update the `Board` tag in `Game''s `return` statement to pass **in the props:**
+
 *- **After** :*
 
 ```javascript
@@ -985,8 +987,7 @@ The **After** code shows how to update the `Board` tag in `Game''s `return` stat
 // . . .
 ```
 
-```javascript
-```
+**Note:** At this point the App still works.
 
 ### **Step 4.2.4** Change `Board` to take these three prop values, and call `onPlay`, i.e. `Board`'s `handlePlay` function
 
