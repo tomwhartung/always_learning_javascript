@@ -9,11 +9,9 @@ export default function Game() {
   const currentSquares = history[history.length - 1];
 
   function handlePlay( nextSquares ) {
-    // TBD
+    setHistory( [...history, nextSquares] );  // Adds nextSquares to the end of history
+    setXIsNext( ! xIsNext );                  // Toggle xIsNext
   }
-
-  console.log( "Game: currentSquares[0] = " + currentSquares[0] );
-  console.log( "Game: currentSquares.length = " + currentSquares.length );
 
   return (
     <div className="game">
@@ -31,22 +29,15 @@ export default function Game() {
 
 // Board: our tic-tac-toe game board
 function Board( { xIsNext, squares, onPlay } ) {
-  // const [xIsNext, setXIsNext] = useState( true );
-  // const [squares, setSquares] = useState( Array(9).fill(null) );
-
-  console.log( "Board: xIsNext = " + xIsNext );
-  console.log( "Board: squares = " + squares );
-  console.log( "Board: onPlay = " + onPlay );
-
-  console.log( "Board: squares[0] = " + squares[0] );
-  console.log( "Board: squares.length = " + squares.length );
+  // console.log( "Board: squares[0] = " + squares[0] );
+  // console.log( "Board: squares.length = " + squares.length );
 
   function handleClick( idx ) {
     if ( squares[idx] ) {                  // If the square already has a non-null value
       return;                              //   it cannot be played again!
     }
-    console.log( "Board.handleClick: squares[0] = " + squares[0] );
-    console.log( "Board.handleClick: squares.length = " + squares.length );
+    // console.log( "Board.handleClick: squares[0] = " + squares[0] );
+    // console.log( "Board.handleClick: squares.length = " + squares.length );
 
     const nextSquares = squares.slice();   // Create a new copy of the squares array
     if (xIsNext) {
@@ -54,7 +45,6 @@ function Board( { xIsNext, squares, onPlay } ) {
     } else {
       nextSquares[idx] = "O";              // Update the idx-th one
     }
-    // setXIsNext( ! xIsNext );               // Toggle xIsNext
     // setSquares(nextSquares);               // Sets squares equal to the new copy
     onPlay(nextSquares);                   // Sets squares equal to the new copy
   }
