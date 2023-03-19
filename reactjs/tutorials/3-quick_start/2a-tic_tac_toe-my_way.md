@@ -893,10 +893,11 @@ These are the steps we will be following:
 - **Step 4.2.2** Add `currentSquares` and the existing `xIsNext` and new `history` state variables to `Game`
 - **Step 4.2.3** Add an empty function `handlePlay` to `Game` and pass it, and `squares` and `xIsNext`, to `Board`
 - **Step 4.2.4** Change `Board` to take these three prop values, and call `onPlay`, i.e. `Board`'s `handlePlay` function
-- **Step 4.2.5** Update `Board` to use these props, including calling `onPlay` when the user clicks on a square
-- **Step 4.2.6** Update the `handlePlay` function in `Game` to toggle `xIsNext`
-- **Step 4.2.7** Update the `handlePlay` function in `Game` to add the new `squares` array to the end of `history`
-- **Step 4.2.7** Update the `handlePlay` function in `Game` to add the new `squares` array to the end of `history`
+- **Step 4.2.5** Update `Board` to use the first two props, fixing the compile error
+- **Step 4.2.6** Update `Board` to call `onPlay` when the user clicks on a square
+- **Step 4.2.7** Update the `handlePlay` function in `Game` to toggle `xIsNext`
+- **Step 4.2.8** Update the `handlePlay` function in `Game` to add the new `squares` array to the end of `history`
+- **Step 4.2.9** Update the `handlePlay` function in `Game` to add the new `squares` array to the end of `history`
 
 After these changes, the game should work as before, at least superficially.
 
@@ -1002,22 +1003,37 @@ function Board() {
 *- **After** :*
 
 ```javascript
-function Board( xIsNext, squares, onPlay ) {
+function Board( { xIsNext, squares, onPlay } ) {
 ```
 
-This causes the app to no longer compile.
+**Note: The curly braces are *extremely* important!  Forgetting to put them in caused me major issues!!**
 
-### **Step 4.2.5** Update `Board` to use these props, including calling `onPlay` when the user clicks on a square
+**Note:** This causes the app to no longer compile.
 
-To fix the compile error:
+### **Step 4.2.5** Update `Board` to use the first two props, fixing the compile error
 
-- Remove the `const` declarations of `xIsNext` and `squares`
-- Replace the calls to `setXIsNext` and `setSquares` in `handleClick` with a call to the passed-in function `onPlay`
+Fixing the compile error requires two sub-steps:
+
+**Step 4.2.5.1** Remove the `const` declarations of `xIsNext` and `squares`
+**Step 4.2.5.2** Remove the calls to `setXIsNext` and `setSquares` in `handleClick`
+
+#### Step 4.2.5.1: Remove the `const` declarations of `xIsNext` and `squares`
+
+*- **Before** :*
+
+```javascript
+const [xIsNext, setXIsNext] = useState( true );
+const [squares, setSquares] = useState( Array(9).fill(null) );
+```
+
+*- **After** :*
 
 ```javascript
 //  const [xIsNext, setXIsNext] = useState( true );                    // delete or comment-out this line
 //  const [squares, setSquares] = useState( Array(9).fill(null) );     // delete or comment-out this line
 ```
+
+#### Step 4.2.5.2: Remove the calls to `setXIsNext` and `setSquares` in `handleClick`
 
 *- **Before** :*
 
@@ -1031,12 +1047,32 @@ setSquares(nextSquares);               // Sets squares equal to the new copy
 ```javascript
 // setXIsNext( ! xIsNext );               // Toggle xIsNext
 // setSquares(nextSquares);               // Sets squares equal to the new copy
+```
+
+**Note:** At this the App compiles ok, and does **not** display a Console error when a `Square` is clicked, but it no longer works.
+
+### **Step 4.2.6** Update `Board` to call `onPlay` when the user clicks on a square
+
+Add `onPlay(nextSquares);` to the end of the `handleClick` function in `Board`:
+
+*- **Before** :*
+
+```javascript
+// setXIsNext( ! xIsNext );               // Toggle xIsNext
+// setSquares(nextSquares);               // Sets squares equal to the new copy
+```
+
+*- **After** :*
+
+```javascript
+// setXIsNext( ! xIsNext );               // Toggle xIsNext
+// setSquares(nextSquares);               // Sets squares equal to the new copy
 onPlay(nextSquares);                   // Sets squares equal to the new copy
 ```
 
-At this the app compiles ok, but no longer works.
+**Note:** At this the App compiles ok, and does **not** display a Console error when a `Square` is clicked, but it no longer works.
 
-### **Step 4.2.6** Update the `handlePlay` function in `Game` to toggle `xIsNext`
+### **Step 4.2.7** Update the `handlePlay` function in `Game` to toggle `xIsNext`
 
 *- **Before** :*
 
@@ -1062,7 +1098,7 @@ export default function Game() {
 }
 ```
 
-### **Step 4.2.7** Update the `handlePlay` function in `Game` to add the new `squares` array to the end of `history`
+### **Step 4.2.9** Update the `handlePlay` function in `Game` to add the new `squares` array to the end of `history`
 
 The `handlePlay` function also needs to add the `nextSquares` array to the end of the `history` array.
 
