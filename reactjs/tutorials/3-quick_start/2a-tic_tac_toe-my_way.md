@@ -1139,22 +1139,82 @@ After these changes, the App works as before, but also saves each move taken in 
 
 ## 4.3. Showing the past moves
 
+The goal of all the refactoring in subsection 4.2. was to save all of the moves in the `history` variable in the `Game` component.
+
+- We want to transform the Array of `square` Arrays in `history` into an array of `Button` components
+
+We can use the Array class' `map()` method to do this.
+Following is a simple example of how `map()` works as an anonymous *arrow function:*
+
 ```javascript
+[1, 2, 3].map( (x) => x * 2);  // yields [2, 4, 6]
 ```
+
+These are the steps we will be following:
+
+- **Step 4.3.1** Add an empty function named `jumpTo` to the `Game` component
+- **Step 4.3.2** Add the `moves` **arrow function** to just after `jumpTo` in `Game`
+- **Step 4.3.3** Add a reference to `moves` to the `return` statement in `Game`
+- **Step 4.3.4** Note the Warning message in the console
+
+### Step 4.3.1 Add an empty function named `jumpTo` to the `Game` component
+
+Add this function stub to just after `handlePlay` in `Game`:
+
+```javascript
+function jumpTo( nextMove ) {
+  // TBD
+}
+```
+
+### Step 4.3.2 Add the `moves` *arrow function* to just after `jumpTo` in `Game`
+
+```javascript
+// Note: this is a multi-line ARROW FUNCTION
+const moves = history.map( (squares, move) => {
+  let description;
+  if ( move > 0 ) {
+    description = 'Go to move #' + move;
+  } else {
+    description = 'Go to start of game';
+  }
+  return (
+    <li>
+      <button onClick={() => jumpTo(move)}>{description}</button>
+    </li>
+  );
+});
+```
+
+### Step 4.3.3 Add a reference to `moves` to the `return` statement in `Game`
 
 *- **Before** :*
 
 ```javascript
+<div className="game-info">
+  <ol>
+    {/* TBD */ }
+  </ol>
+</div>
 ```
 
 *- **After** :*
 
 ```javascript
+<div className="game-info">
+  <ol>{moves}</ol>
+</div>
 ```
 
-```javascript
-```
+**Note:** at this point, the list displays next to the `Board`, but clicking on the buttons does not take us back to prior moves.
 
+### Step 4.3.4 Note the Warning message in the console
+
+In additon to the list not working, the console displays this message:
+
+- Warning: Each child in a list should have a unique "key" prop
+
+The next section discusses this issue.
 
 ## 4.4. Picking a key
 
