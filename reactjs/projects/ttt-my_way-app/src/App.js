@@ -13,6 +13,25 @@ export default function Game() {
     setXIsNext( ! xIsNext );                  // Toggle xIsNext
   }
 
+  function jumpTo( nextMove ) {
+    // TBD
+  }
+
+  // Note: this is a multi-line anonymous ARROW FUNCTION
+  const moves = history.map( (squares, move) => {
+    let description;
+    if ( move > 0 ) {
+      description = 'Go to move #' + move;
+    } else {
+      description = 'Go to start of game';
+    }
+    return (
+      <li>
+        <button onClick={() => jumpTo(move)}>{description}</button>
+      </li>
+    );
+  });
+
   return (
     <div className="game">
       <div className="game-board">
@@ -20,7 +39,7 @@ export default function Game() {
       </div>
       <div className="game-info">
         <ol>
-          {/* TBD */ }
+          {moves}
         </ol>
       </div>
     </div>
