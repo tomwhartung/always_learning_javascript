@@ -161,6 +161,8 @@ Thinking I might, *might,* try fixing this error.
 
 Let me think about it....
 
+**Note:** Finally fixed the error!  Skip all this nonsense and go to subsection 1.8. Files Edited - Got It to Work!
+
 ## 1.4. Files Edited - First try
 
 **Note:** Taking these steps apparently just makes things worse!
@@ -232,7 +234,7 @@ In `2a-tic_tac_toe-my_way.md` it was easy enough to get the minimal, 3-line vers
 Let's give that a try!
 
 - Saved a copy of the current version of `App.js` as `App-the_whole_shebang-fails_to_compile.js`
-- Replaced all of with the minimal, 3-line version of `App.js` that appears in the following code snipped
+- Replaced all of with the minimal, 3-line version of `App.js` that appears in the following code snippet
 
 ```javascript
 export default function Square() {
@@ -334,6 +336,77 @@ $
 This of course did not fix the error, but hey, it was worth a try!
 
 **Putting this version on hold for the time being.**
+
+## 1.8. Files Edited - Got It to Work!
+
+Googled the error message and the fix is quite simple!
+
+### 1.8.1. Current Situation
+
+### 1.8.1.1. Files in `ttt-their_way-app/public`
+
+It looks like only cosmetic changes were made to `public/index.html` in subsection *"1.7. Files Edited - Fourth Try - `public/index.html`"*.
+Editing this file did not fix the problem.
+
+### 1.8.1.2. Files in `ttt-their_way-app/src`
+
+The files currently in `src` match the minimal versions from subsection *"1.5. Files Edited - Second Try - Another Failed Attempt"* above.
+
+*- **`App.js` Before** :*
+
+```javascript
+$ pwd
+/var/www/always_learning/always_learning_javascript/reactjs/projects/ttt-their_way-app/src
+$ cat App.js
+import { useState } from 'react';
+
+export default function Square() {
+  return <button className="square">X</button>;
+}
+$
+```
+
+*- **`index.js` Before** :*
+
+```javascript
+$ pwd
+/var/www/always_learning/always_learning_javascript/reactjs/projects/ttt-their_way-app/src
+$ cat index.js
+import React, { StrictMode } from "react";
+import { createRoot } from "react-dom/client";
+import "./styles.css";
+
+import App from "./App";
+
+const root = createRoot(document.getElementById("root"));
+root.render(
+  <StrictMode>
+    <App />
+  </StrictMode>
+);
+$
+```
+
+### 1.8.3. The Fix
+
+Simply googling the error message brought up a few posts on [stackoverflow.com](https://stackoverflow.com) that
+showed the correct syntax for statements `import`ing React.
+
+*- **`App.js`: After** :*
+
+```javascript
+import React, { useState } from 'react';
+
+export default function Square() {
+  return <button className="square">X</button>;
+}
+```
+
+**Note:** the first line now starts with `import React, ...`.
+**This was the problem all along!!**
+
+*- **`index.js` After** : no changes*
+
 
 # 2. Overview
 
