@@ -161,7 +161,9 @@ Thinking I might, *might,* try fixing this error.
 
 Let me think about it....
 
-**Note:** Finally fixed the error!  Skip all this nonsense and go to subsection 1.8. Files Edited - Got It to Work!
+**Note:** Finally fixed the error on 3/19/2023!
+
+- Skip the next few subsections and go to subsection *1.8. Files Edited - Got It to Work!*
 
 ## 1.4. Files Edited - First try
 
@@ -270,14 +272,14 @@ I tried making the following edits to `ttt-their_way-app/src/index.js`:
   - Left these two "non-fixes" in the new file `src/index-failed_attempts_to_fix_the_errors.js`
     - I don't believe they will hurt anything, but want to be safe.
 
-**Note:** Checked in the new file `src/index-failed_attempts_to_fix_the_errors.js` for possible future reference.
+**Note:** Checked the file in as `../fixes_that_failed/index-failed_attempts_to_fix_the_errors.js` for possible future reference.
 
 Following is the difference between the two `index*.js` files:
 
 ```
 $ pwd
 /var/www/always_learning/always_learning_javascript/reactjs/projects/ttt-their_way-app
-$ diff src/index.js src/index-failed_attempts_to_fix_the_errors.js
+$ diff src/index.js ../fixes_that_failed/index-failed_attempts_to_fix_the_errors.js
 1a2
 > // import ReactDOM from 'react-dom/client';
 9c10
