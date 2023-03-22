@@ -1360,7 +1360,7 @@ function handlePlay( nextSquares ) {
 // handlePlay: called when a user clicks on a square
 function handlePlay( nextSquares ) {
   const nextHistory = [...history.slice(0, currentMove +1), nextSquares];
-  setHistory( [...history, nextSquares] );    // Adds nextSquares to the end of history
+  setHistory( nextHistory );                  // Set history to the value calculated in the previous statement
   setCurrentMove( nextHistory.length - 1 );   // currentMove must reflect the # of moves in history
   setXIsNext( ! xIsNext );                    // Toggle xIsNext
 }
@@ -1394,13 +1394,7 @@ export default function Game() {
 }
 ```
 
-The game now appears to travel through time to previous moves, but some problems still remain.
-
-- The list of moves **does *not* update** when we move backwards
-- Subsequent moves do not reflect the input, but rather take us through the old moves
-- Subsequent moves are still tacked on to the end of the list
-
-At this point I'm not sure whether I messed something up, or the tutorial is still a work in progress.
+The game now travels back through time as it should!
 
 ## 4.6. Final cleanup
 
