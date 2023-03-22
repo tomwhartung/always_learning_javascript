@@ -1170,7 +1170,8 @@ function jumpTo( nextMove ) {
 ### Step 4.3.2 Add the `moves` *arrow function* to just after `jumpTo` in `Game`
 
 ```javascript
-// Note: this is a multi-line ARROW FUNCTION
+// Build a list of buttons, each with a key and a descripton, that allow time travel
+//   Note: this is a multi-line anonymous ARROW FUNCTION
 const moves = history.map( (squares, move) => {
   let description;
   if ( move > 0 ) {
@@ -1249,9 +1250,9 @@ Finishing this up requires taking these steps:
 
 - **Step 4.5.1** Add a `key` to the list items returned by the `moves` arrow function
 - **Step 4.5.2** Add a `currentMove` state variable to the `Game` function component
-- **Step 4.5.3** Update `Game`'s `jumpTo` method to update `currentMove`, using its value to decide the value of `xIsNext`
-- **Step 4.5.4** Add a `currentMove` state variable to the `Game` function component
-- **Step 4.5.5** Add a `currentMove` state variable to the `Game` function component
+- **Step 4.5.3** Update `Game`'s `jumpTo` method to update `currentMove`, using its value to also set the value of `xIsNext`
+- **Step 4.5.4** Update `Game`'s `handlePlay` method to accurately reflect the user's currently desired state
+- **Step 4.5.5** Update `Game` to render the move that was selected by the user
 
 ### Step 4.5.1 Add a `key` to the list items returned by the `moves` arrow function
 Update the list item tag in the `return` statement in the `moves = history.map(...` arrow function to use the `move` index as the key:
@@ -1307,31 +1308,99 @@ export default function Game() {
   const currentSquares = history[history.length - 1];
 ```
 
-- **Step 4.5.3** Update `Game`'s `jumpTo` method to update `currentMove`, using its value to decide the value of `xIsNext`
+- **Step 4.5.3** Update `Game`'s `jumpTo` method to update `currentMove`, using its value to also set the value of `xIsNext`
+
+The `jumpTo` function in `Game` takes an argument named `nextMove`, so we can use that to set our new `currentMove` variable.
+
+If we are backing up moves, we may need to change the of `xIsNext`.
+Indeed, we can always determine the value of `xIsNext` based on the value of `currentMove` - even when we are not backing up moves!
+
+- If the value of `currentMove` is even, then it is "X"'s turn
+- If the value of `currentMove` is odd, then it is "O"'s turn
 
 *- **Before** :*
 
 ```javascript
+function jumpTo( nextMove ) {
+  // TBD
+}
 ```
 
 *- **After** :*
 
 ```javascript
+// jumpTo: called when the user clicks a button in the list of moves to which they can back up
+function jumpTo( nextMove ) {
+  setCurrentMove( nextMove );
+  setXIsNext( nextMove % 2 === 0 );         // true for even-numbered moves, else false
+}
 ```
 
-```javascript
-```
+### Step 4.5.4 Update `Game`'s `handlePlay` method to accurately reflect the user's currently desired state
+
+Add a new `nextHistory` variable to `Game`'s `handlePlay` method to contain the way the board should look after this play.
+Set `nextHistory` equal to the existing array from 0 to `currentMove + 1) plus the next array of squares `nextSquares`.
+
+- Use `setHistory` to update the value of `history` so that it matches `nextHistory`
+- Use `setCurrentMove` to the length of `nextHistory` minus 1
 
 *- **Before** :*
 
 ```javascript
+// handlePlay: called when a user clicks on a square
+function handlePlay( nextSquares ) {
+  setHistory( [...history, nextSquares] );  // Adds nextSquares to the end of history
+  setXIsNext( ! xIsNext );                  // Toggle xIsNext
+}
 ```
 
 *- **After** :*
 
 ```javascript
+// handlePlay: called when a user clicks on a square
+function handlePlay( nextSquares ) {
+  const nextHistory = [...history.slice(0, currentMove +1), nextSquares];
+  setHistory( [...history, nextSquares] );    // Adds nextSquares to the end of history
+  setCurrentMove( nextHistory.length - 1 );   // currentMove must reflect the # of moves in history
+  setXIsNext( ! xIsNext );                    // Toggle xIsNext
+}
 ```
 
+### Step 4.5.5 Update `Game` to render the move that was selected by the user
+
+In other words, update `currentSquares` to match the `currentMove` in the `history` array of moves:
+
+*- **Before** :*
+
+```javascript
+export default function Game() {
+  const [xIsNext, setXIsNext] = useState( true );
+  const [history, setHistory] = useState( [Array(9).fill(null)] );
+  const [currentMove, setCurrentMove] = useState( 0 );
+  const currentSquares = history[history.length - 1];
+  // . . .
+}
+```
+
+*- **After** :*
+
+```javascript
+export default function Game() {
+  const [xIsNext, setXIsNext] = useState( true );
+  const [history, setHistory] = useState( [Array(9).fill(null)] );
+  const [currentMove, setCurrentMove] = useState( 0 );
+  const currentSquares = history[currentMove];
+  // . . .
+}
+```
+
+The game now appears to travel through time to previous moves, but some problems still remain.
+
+- The list of moves **does *not* update** when we move backwards
+- Subsequent moves do not reflect the input, but rather take us through the old moves
+- Subsequent moves are still tacked on to the end of the list
+
+At this point I'm not sure whether I messed something up, or the tutorial is still a work in progress.
 
 ## 4.6. Final cleanup
 
