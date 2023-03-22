@@ -1218,21 +1218,30 @@ The next section discusses this issue.
 
 ## 4.4. Picking a key
 
-```javascript
-```
+Implementing this feature requires rendering a list of buttons enabling the user to back up to previous moves in the game.
+When the user clicks on one of these buttons, the list must change -- it must back up to the move on which the user clicked and
+remove the moves after that.
 
-*- **Before** :*
+- A list whose elements can change is called a *dynamic list*
 
-```javascript
-```
+React requires that each element in a *dynamic list* have a *key.*
 
-*- **After** :*
+- A key from a database is a good candidate for use in this situation
+- The key enables React to determine which list elements have changed and need to be re-rendered
+  - If the current list contains a key that doesn't match an existing key, React knows it must *create* the list element
+  - If the current list does not contain a key that was in the previous list, React knows it must *destroy* the list element
+  - If the current list contains a key that matches one in the previous list, React knows it must *change* the list element
+  - If no key is specified, React will use the array index and report an error
+    - This can cause issues if the array elements are re-ordered
+- Keys need to be unique only within a given list, not globally
 
-```javascript
-```
+Quoting from the tutorial:
 
-```javascript
-```
+> **It’s strongly recommended that you assign proper keys whenever you build dynamic lists.**
+
+Additionally:
+
+> If you don’t have an appropriate key, you may want to consider restructuring your data so that you do.
 
 ## 4.5. Implementing time travel
 
