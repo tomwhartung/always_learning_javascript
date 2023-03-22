@@ -7,18 +7,24 @@ export default function Game() {
   const [xIsNext, setXIsNext] = useState( true );
   const [history, setHistory] = useState( [Array(9).fill(null)] );
   const [currentMove, setCurrentMove] = useState( 0 );
-  const currentSquares = history[history.length - 1];
+  const currentSquares = history[currentMove];
 
+  // handlePlay: called when a user clicks on a square
   function handlePlay( nextSquares ) {
-    setHistory( [...history, nextSquares] );  // Adds nextSquares to the end of history
-    setXIsNext( ! xIsNext );                  // Toggle xIsNext
+    const nextHistory = [...history.slice(0, currentMove + 1), nextSquares];
+    setHistory( nextHistory );                  // Set history to the value calculated in the previous statement
+    setCurrentMove( nextHistory.length - 1 );   // The currentMove must reflect the # of moves in history
+    setXIsNext( ! xIsNext );                    // Toggle xIsNext
   }
 
+  // jumpTo: called when the user clicks a button in the list of moves to which they can back up
   function jumpTo( nextMove ) {
-    // TBD
+    setCurrentMove( nextMove );
+    setXIsNext( nextMove % 2 === 0 );         // true for even-numbered moves, else false
   }
 
-  // Note: this is a multi-line anonymous ARROW FUNCTION
+  // Build a list of buttons, each with a key and a descripton, that allow time travel
+  //   Note: this is a multi-line anonymous ARROW FUNCTION
   const moves = history.map( (squares, move) => {
     let description;
     if ( move > 0 ) {
