@@ -1245,8 +1245,69 @@ Additionally:
 
 ## 4.5. Implementing time travel
 
+Finishing this up requires taking these steps:
+
+- **Step 4.5.1** Add a `key` to the list items returned by the `moves` arrow function
+- **Step 4.5.2** Add a `currentMove` state variable to the `Game` function component
+- **Step 4.5.3** Update `Game`'s `jumpTo` method to update `currentMove`, using its value to decide the value of `xIsNext`
+- **Step 4.5.4** Add a `currentMove` state variable to the `Game` function component
+- **Step 4.5.5** Add a `currentMove` state variable to the `Game` function component
+
+### Step 4.5.1 Add a `key` to the list items returned by the `moves` arrow function
+Update the list item tag in the `return` statement in the `moves = history.map(...` arrow function to use the `move` index as the key:
+
+*- **Before** :*
+
 ```javascript
+const moves = history.map( (squares, move) => {
+  // . . .
+  return (
+    <li>
+      <button onClick={() => jumpTo(move)}>{description}</button>
+    </li>
+  );
+});
 ```
+
+*- **After** :*
+
+```javascript
+const moves = history.map( (squares, move) => {
+  // . . .
+  return (
+    <li key={move}>
+      <button onClick={() => jumpTo(move)}>{description}</button>
+    </li>
+  );
+});
+```
+
+Note that this causes the Warning to disappear.
+
+### Step 4.5.2 Add a `currentMove` state variable to the `Game` function component
+
+Initialize the new state variable to 0:
+
+*- **Before** :*
+
+```javascript
+export default function Game() {
+  const [xIsNext, setXIsNext] = useState( true );
+  const [history, setHistory] = useState( [Array(9).fill(null)] );
+  const currentSquares = history[history.length - 1];
+```
+
+*- **After** :*
+
+```javascript
+export default function Game() {
+  const [xIsNext, setXIsNext] = useState( true );
+  const [history, setHistory] = useState( [Array(9).fill(null)] );
+  const [currentMove, setCurrentMove] = useState( 0 );
+  const currentSquares = history[history.length - 1];
+```
+
+- **Step 4.5.3** Update `Game`'s `jumpTo` method to update `currentMove`, using its value to decide the value of `xIsNext`
 
 *- **Before** :*
 
@@ -1257,6 +1318,16 @@ Additionally:
 
 ```javascript
 ```
+
+```javascript
+```
+
+*- **Before** :*
+
+```javascript
+```
+
+*- **After** :*
 
 ```javascript
 ```
