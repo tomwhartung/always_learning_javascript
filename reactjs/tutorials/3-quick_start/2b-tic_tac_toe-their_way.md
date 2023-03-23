@@ -467,7 +467,7 @@ export default function Square() {
 
 ## 2.1. Inspecting the starter code
 
-This section discusses the following files:
+This subsection discusses the following files:
 
 - `App.js`
 - `styles.css`
@@ -478,6 +478,65 @@ contents of all of them.
 I prefer having them broken down into these separate files.
 
 ## 2.2. Building the board
+
+This subsection discusses turning the single square into a board containing 9 squares, with each containing its number rather than all "X"s.
+The code they offer for downloading is saved in `reactjs/projects/downloads/reactjs/03-Inspecting_the_starter_code/sandbox.html` .
+
+I had to tweak this code in a couple of ways:
+
+- The `sandbox.html` file performs this bit of misdirection:
+
+*- **Before** :*
+
+```javascript
+let App = function Board() {
+  return (
+    <>
+      <div className="board-row">
+. . .
+. . .
+. . .
+      </div>
+    </>
+  );
+}
+
+
+const root = createRoot(document.getElementById('root'));
+root.render(
+  <StrictMode>
+    <App />
+  </StrictMode>
+);
+```
+
+I have two problems with this way of doing things:
+
+- I don't care for setting the `App` component equal to the `Board` component, then rendering the `App` component
+  - Why??
+- Our `index.js` contains the `root.render(...` code, and I'd rather just let that be, at least for now
+- For some reason, I get an error for the empty `<>` and `</>` enclosing tags, but it's ok if I use `<div>` ... `</div>`
+  - My version does fine with the empty `<>` and `</>` enclosing tags
+  - Don't feel like chasing down that error right now
+
+So I changed the code above to look like this:
+
+*- **After** :*
+
+```javascript
+export default function Board() {
+  return (
+    <div>
+      <div className="board-row">
+. . .
+. . .
+. . .
+      </div>
+    </div>
+  );
+}
+```
+
 ## 2.3. Passing data through props
 ## 2.4. Making an interactive component
 ## 2.5. React Developer Tools
