@@ -445,49 +445,76 @@ The version of `App.js` in `reactjs/projects/ttt-their_way-app/src` more closely
   - This typically occurs at the end of a subsection, when they are recapping a set of changes
   - I am saving each of these files in a separate, appropriately-named directory in `reactjs/projects/downloads/reactjs`
 - The code I will be migrating into `reactjs/projects/ttt-their_way-app/src/App.js` comes from the downloaded `sandbox.html` files
+  - Download links appear in the tutorail above boxes containing the current version of the code used in the tutorial
   - This code appears after the `<script type="text/babel" data-type="module">` tag in those files
-  - At this point it appears I will need to tweak this code a little to work with the code infrastructure I am using
+  - The downloaded `sandbox.html` files do not match the `App.js` code presented in the code boxes
+  - Therefore, at this point it appears I will need to tweak this code a little to work with the code infrastructure I am using
 
 **Note:** going forward the text in the heading tags in this file matches the text in the tutorial's headings.
 
-# 2. Overview
+# 2. Overview - `<h2> ...` Element
+
+At this point, this version of `App.js`, in `reactjs/projects/ttt-their_way-app/src`, closely matches the version of the app
+downloaded into `reactjs/projects/downloads/reactjs/02-Setup_for_the_tutorial/sandbox.html`.
+
+- When run, this version of the code produces a single square with an "X" in it:
+
+```javascript
+export default function Square() {
+  return <button className="square">X</button>;
+}
+```
+
+## 2.1. Inspecting the starter code
+
+This section discusses the following files:
+
+- `App.js`
+- `styles.css`
+- `index.js`
+
+Rather than break the downloaded code into these files, they provide a single `sandbox.html` file for download that contains the
+contents of all of them.
+I prefer having them broken down into these separate files.
+
+## 2.2. Building the board
+## 2.3. Passing data through props
+## 2.4. Making an interactive component
+## 2.5. React Developer Tools
+
+```
+```
 
 ```javascript
 ```
 
+```javascript
 ```
+
+*- **Before** :*
+
+```javascript
+```
+
+*- **After** :*
+
+```javascript
 ```
 
 ```javascript
 ```
 
-# 1. XXX
+```javascript
+```
+
+*- **Before** :*
 
 ```javascript
 ```
 
-```javascript
-```
-
-# 1. XXX
-
-```html
-```
+*- **After** :*
 
 ```javascript
-```
-
-# 1. XXX
-
-```html
-```
-
-```javascript
-```
-
-# 1. XXX
-
-```html
 ```
 
 ```javascript
