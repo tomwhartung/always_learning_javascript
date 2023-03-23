@@ -4,9 +4,9 @@ import { useState } from 'react';
 
 // Game: our tic-tac-toe game app
 export default function Game() {
-  const [xIsNext, setXIsNext] = useState( true );
   const [history, setHistory] = useState( [Array(9).fill(null)] );
   const [currentMove, setCurrentMove] = useState( 0 );
+  const xIsNext = currentMove % 2 === 0
   const currentSquares = history[currentMove];
 
   // handlePlay: called when a user clicks on a square
@@ -14,13 +14,11 @@ export default function Game() {
     const nextHistory = [...history.slice(0, currentMove + 1), nextSquares];
     setHistory( nextHistory );                  // Set history to the value calculated in the previous statement
     setCurrentMove( nextHistory.length - 1 );   // The currentMove must reflect the # of moves in history
-    setXIsNext( ! xIsNext );                    // Toggle xIsNext
   }
 
   // jumpTo: called when the user clicks a button in the list of moves to which they can back up
   function jumpTo( nextMove ) {
     setCurrentMove( nextMove );
-    setXIsNext( nextMove % 2 === 0 );         // true for even-numbered moves, else false
   }
 
   // Build a list of buttons, each with a key and a descripton, that allow time travel
