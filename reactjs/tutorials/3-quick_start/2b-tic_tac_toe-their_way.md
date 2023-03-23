@@ -409,6 +409,46 @@ export default function Square() {
 
 *- **`index.js` After** : no changes*
 
+## 1.9. Recap
+
+Assessing where I am at with these two versions of the tutorial, and how I plan to proceed with this version.
+
+## 1.9.1. Recap: Summary
+
+- The original goal
+  - The goal of this version of the project was to contrast two ostensibly different ways of doing the same thing
+  - The idea was that, for my own work, I might want to combine these methods in some way
+- The snag
+  - This version of the project hit on a snag right off, in that the code supplied did not compile
+  - See above for the error messages, fixes attempted, and ultimate fix applied
+- The other version, in `2a-tic_tac_toe-my_way.md`
+  - I was almost done going through the tutorial when I found the fix for this version
+  - I have now completed the other version, except for some optional "extra credit" ideas in the last section of it
+- The downloads
+  - The reason for having two versions of this project is that the tutorial provided two sources for downloading code
+    - Downloads in `reactjs/projects/downloads/reactjs` are from the [react.dev](https://react.dev) site
+    - Downloads in `reactjs/projects/downloads/codesandbox` are from the [codesandbox.io](https://codesandbox.io) site
+    - For details, see `reactjs/projects/downloads/README.md`
+  - The downloaded versions are a bit different stylistically
+    - At this time, I am not committed to any given style of organizing React code
+    - So I decided to work with two versions instead of just the one
+
+## 1.9.2. Recap: Going Forward
+
+The version of `App.js` in `reactjs/projects/ttt-their_way-app/src` more closely resembles the version of `App.js` in the
+`reactjs/projects/ttt-their_way-app/src` than it does this one.
+
+- At this point I prefer to have the `.js` code in a `.js` file rather than between `<script>` files in a `.html` file.
+  - In this tutorial, anyway, we work only on the `.js` code and the `.html` markup doesn't change
+  - The `.html` file also contains the project's css code, which is similarly unchanged during the project
+- I want to go through the tutorial again, downloading the `sandbox.html` files when the tutorial offers them
+  - This typically occurs at the end of a subsection, when they are recapping a set of changes
+  - I am saving each of these files in a separate, appropriately-named directory in `reactjs/projects/downloads/reactjs`
+- The code I will be migrating into `reactjs/projects/ttt-their_way-app/src/App.js` comes from the downloaded `sandbox.html` files
+  - This code appears after the `<script type="text/babel" data-type="module">` tag in those files
+  - At this point it appears I will need to tweak this code a little to work with the code infrastructure I am using
+
+**Note:** going forward the text in the heading tags in this file matches the text in the tutorial's headings.
 
 # 2. Overview
 
