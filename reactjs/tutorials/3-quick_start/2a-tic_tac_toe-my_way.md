@@ -1398,22 +1398,97 @@ The game now travels back through time as it should!
 
 ## 4.6. Final cleanup
 
-```javascript
-```
+There is some redundancy in our state variables:
+
+- `xIsNext` is *always* equal to
+  - `true` when `currentMove` is even
+  - `false` when `currentMove` is odd
+
+Therefore, we no longer need to store `xIsNext` as a state variable.
+
+> [A]lways try to avoid redundant state.
+> **Simplifying what you store in state reduces bugs and makes your code easier to understand.** [Emphasis added.]
+
+### 4.6.1. Converting `xIsNext` From a State Variable to a Property
+
+- **Step 4.6.1.1.** Change the declaration of `xIsNext` in `Game` to a Property
+- **Step 4.6.1.2.** Remove the Calls to `setXIsNext` From the `handlePlay` and `jumpTo` Functions in `Game`
+
+### Step 4.6.1.1. Change the declaration of `xIsNext` in `Game` to a Property
+
+Following are the **Before** and **After** versions of the state and property variable declarations at the top of the `Game` function component:
 
 *- **Before** :*
 
 ```javascript
+export default function Game() {
+  const [xIsNext, setXIsNext] = useState( true );
+  const [history, setHistory] = useState( [Array(9).fill(null)] );
+  const [currentMove, setCurrentMove] = useState( 0 );
+  const currentSquares = history[currentMove];
+  // . . .
+}
 ```
 
 *- **After** :*
 
 ```javascript
+export default function Game() {
+  const [history, setHistory] = useState( [Array(9).fill(null)] );
+  const [currentMove, setCurrentMove] = useState( 0 );
+  const xIsNext = currentMove % 2 === 0
+  const currentSquares = history[currentMove];
+  // . . .
+}
 ```
+
+**Note:** this causes a compilation error, because the `setXIsNext` function no longer exists!
+
+- **Step 4.6.1.2.** Remove the Calls to `setXIsNext` From the `handlePlay` and `jumpTo` Functions in `Game`
+
+*- **Before** :*
 
 ```javascript
+export default function Game() {
+  // . . .
+  // handlePlay: called when a user clicks on a square
+  function handlePlay( nextSquares ) {
+    const nextHistory = [...history.slice(0, currentMove + 1), nextSquares];
+    setHistory( nextHistory );                  // Set history to the value calculated in the previous statement
+    setCurrentMove( nextHistory.length - 1 );   // The currentMove must reflect the # of moves in history
+    setXIsNext( ! xIsNext );                    // Toggle xIsNext
+  }
+
+  // jumpTo: called when the user clicks a button in the list of moves to which they can back up
+  function jumpTo( nextMove ) {
+    setCurrentMove( nextMove );
+    setXIsNext( nextMove % 2 === 0 );         // true for even-numbered moves, else false
+  }
+  // . . .
+}
 ```
 
+*- **After** :*
+
+```javascript
+export default function Game() {
+  // . . .
+  // handlePlay: called when a user clicks on a square
+  function handlePlay( nextSquares ) {
+    const nextHistory = [...history.slice(0, currentMove + 1), nextSquares];
+    setHistory( nextHistory );                  // Set history to the value calculated in the previous statement
+    setCurrentMove( nextHistory.length - 1 );   // The currentMove must reflect the # of moves in history
+  }
+
+  // jumpTo: called when the user clicks a button in the list of moves to which they can back up
+  function jumpTo( nextMove ) {
+    setCurrentMove( nextMove );
+  }
+  // . . .
+}
+```
+
+This fixes the compilation error, and the game now once again works as it should.
 
 ## 4.7. Wrapping up
 
