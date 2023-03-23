@@ -17,6 +17,10 @@ This directory contains files downloaded per instructions in the
 [Setup for the tutorial](https://beta.reactjs.org/learn/tutorial-tic-tac-toe#setup-for-the-tutorial)
 subsection of the [Tic-Tac-Toe Tutorial](https://beta.reactjs.org/learn/tutorial-tic-tac-toe).
 
+**Note:** As of 3/24/2023 these [beta.reactjs.org](https://beta.reactjs.org) URLs redirect to pages on [react.dev](https://react.dev).
+
+I am not going to worry about that right now!
+
 - `codesandbox` directory: downloaded as suggested by the **Note** box in the subsection mentioned above
   - [https://codesandbox.io/s/i18f1x?file=/App.js&utm_medium=sandpack](https://codesandbox.io/s/i18f1x?file=/App.js&utm_medium=sandpack)
   - Menu icon in the upper left -> File -> Export to Zip
