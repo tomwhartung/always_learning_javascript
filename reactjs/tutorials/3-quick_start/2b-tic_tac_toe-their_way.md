@@ -510,7 +510,7 @@ root.render(
 );
 ```
 
-I have two problems with this way of doing things:
+I have a few problems with this way of doing things:
 
 - I don't care for setting the `App` component equal to the `Board` component, then rendering the `App` component
   - Why??
@@ -518,6 +518,7 @@ I have two problems with this way of doing things:
 - For some reason, I get an error for the empty `<>` and `</>` enclosing tags, but it's ok if I use `<div>` ... `</div>`
   - My version does fine with the empty `<>` and `</>` enclosing tags
   - Don't feel like chasing down that error right now
+  - For more details, see subsection *2.2.1. Theory as to why `<>` throws an error in this version* below
 
 So I changed the code above to look like this:
 
@@ -536,6 +537,48 @@ export default function Board() {
   );
 }
 ```
+
+2.2.1. My Theory as to Why `<>` Throws an Error in This Version
+
+My theory is that the `ttt-their_way-app` is using an older version of Babel than the `ttt-my_way-app` is using.
+
+#### 2.2.1.1. Evidence
+
+It looks like the package-lock.json file specifies the version of Babel to use.
+
+And it looks like the `ttt-their_way-app` is using version 7.0.0:
+
+```
+$ pwd
+/var/www/always_learning/always_learning_javascript/reactjs/projects/ttt-their_way-app
+$ grep -n babel-loader package-lock.json
+875:    "node_modules/babel-loader": {
+877:      "resolved": "https://registry.npmjs.org/babel-loader/-/babel-loader-7.0.0.tgz",
+10997:        "babel-loader": "7.0.0",
+$ wc -l  package-lock.json
+15428 package-lock.json
+$
+```
+
+While the `ttt-my_way-app` is using version 8.2.3:
+
+```
+$ pwd
+/var/www/always_learning/always_learning_javascript/reactjs/projects/ttt-my_way-app
+ $ grep -n babel-loader package-lock.json
+5152:    "node_modules/babel-loader": {
+5154:      "resolved": "https://registry.npmjs.org/babel-loader/-/babel-loader-8.3.0.tgz",
+5170:    "node_modules/babel-loader/node_modules/schema-utils": {
+14343:        "babel-loader": "^8.2.3",
+tomh@jane: /var/www/always_learning/always_learning_javascript/reactjs/projects/ttt-my_way-app
+ $ wc -l  package-lock.json
+17202 package-lock.json
+$
+```
+
+#### 2.2.1.2. What to Do About It
+
+I'm not going to worry about it for now, and hope that whatever the issue is, it will not cause further problems.
 
 ## 2.3. Passing data through props
 
