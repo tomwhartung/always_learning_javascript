@@ -622,7 +622,67 @@ export default function Board() {
 ```
 
 ## 2.4. Making an interactive component
+
+This subsection shows how to make each `Square` display an "X" inside it when the user clicks on it.
+The code they offer for downloading is saved in `reactjs/projects/downloads/reactjs/05-Making_an_interactive_component/sandbox.html` .
+
+Here are the steps that the tutorial presents for this process:
+
+2.4.1. Declare a `handleClick` function inside the `Square` function component
+2.4.2. Add an `onClick={handleClick}` attribute to `Square`'s `<button...` tag
+2.4.3. Update `Square` to `useState` [sic] to remember its state, i.e., whether it has been clicked, by setting its `value` to "X"
+2.4.4. Update `Board` to no longer pass a numeric `value` to each of the `Button` components it uses
+
+I had to tweak the downloaded code as described in the section *2.2. Building the board*; following is the result:
+
+```javascript
+function Square() {
+  const [value, setValue] = useState(null);
+
+  function handleClick() {
+    setValue('X');
+  }
+
+  return (
+    <button
+      className="square"
+      onClick={handleClick}
+    >
+      {value}
+    </button>
+  );
+}
+
+export default function Board() {
+  return (
+    <div>
+      <div className="board-row">
+        <Square />
+        <Square />
+        <Square />
+      </div>
+      <div className="board-row">
+        <Square />
+        <Square />
+        <Square />
+      </div>
+      <div className="board-row">
+        <Square />
+        <Square />
+        <Square />
+      </div>
+    </div>
+  );
+}
+```
+
 ## 2.5. React Developer Tools
+
+This subsection discusses ... 
+The code they offer for downloading is saved in `reactjs/projects/downloads/reactjs/ 
+/sandbox.html` .
+
+Here are the steps that the tutorial presents for this process:
 
 ```javascript
 ```
@@ -639,6 +699,26 @@ export default function Board() {
 
 ```javascript
 ```
+
+```javascript
+```
+
+# 3. Completing the game - `<h2> ...` Element
+
+This subsection discusses ... 
+The code they offer for downloading is saved in `reactjs/projects/downloads/reactjs/ 
+/sandbox.html` .
+
+
+```javascript
+```
+
+*- **Before** :*
+
+```javascript
+```
+
+*- **After** :*
 
 ```javascript
 ```
