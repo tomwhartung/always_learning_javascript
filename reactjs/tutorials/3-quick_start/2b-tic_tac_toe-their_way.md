@@ -538,11 +538,48 @@ export default function Board() {
 ```
 
 ## 2.3. Passing data through props
+
+This subsection discusses changing the "X" in each of the board's 9 squares to containing the values 1 through 9.
+The code they offer for downloading is saved in `reactjs/projects/downloads/reactjs/04-Passing_data_through_props/sandbox.html` .
+
+Here are the steps that the tutorial presents for this process:
+
+2.3.1. Create a new `Square` function component that comprises a `<button...>` tag
+2.3.2. Update the `Board` component to contain 9 of these `Squares`, 3 in each of 3 rows
+2.3.3. Update the `Square` component to accept a `value` property, as a function argument **in curly braces**
+2.3.4. Update the `Board` component to pass the appropriate value, 1-9, when creating each `Square`
+
+I had to tweak this code as described in the previous section, *2.2. Building the board*; following is the result:
+
+```javascript
+function Square({ value }) {
+  return <button className="square">{value}</button>;
+}
+
+export default function Board() {
+  return (
+    <div>
+      <div className="board-row">
+        <Square value="1" />
+        <Square value="2" />
+        <Square value="3" />
+      </div>
+      <div className="board-row">
+        <Square value="4" />
+        <Square value="5" />
+        <Square value="6" />
+      </div>
+      <div className="board-row">
+        <Square value="7" />
+        <Square value="8" />
+        <Square value="9" />
+      </div>
+    </div>);
+}
+```
+
 ## 2.4. Making an interactive component
 ## 2.5. React Developer Tools
-
-```
-```
 
 ```javascript
 ```
