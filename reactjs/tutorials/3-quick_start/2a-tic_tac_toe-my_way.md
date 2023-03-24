@@ -1492,6 +1492,15 @@ This fixes the compilation error, and the game now once again works as it should
 
 ## 4.7. Wrapping up
 
+This subsection features the following ideas for enhancements, allegedly offered in order of increasing complexity:
+
+1. In the list of buttons allowing the user to go back in the saved history of moves, show the current move number instead of a button
+2. Update the `Board` component to use two `for` loops instead of hard-coding each square
+3. Allow sorting the moves into either ascending or descending sequence
+4. Highlight the three winning squares, or else display a message declaring the finish a draw
+  - Note that I have already done the second part of this task!
+5. Show the location of each move in the list of moves, in the form (row, col)
+
 ```javascript
 ```
 
