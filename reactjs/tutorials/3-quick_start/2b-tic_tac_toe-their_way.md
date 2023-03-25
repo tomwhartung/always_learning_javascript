@@ -688,39 +688,37 @@ In this section we will switch between placing "X"s and placing "O"s on the boar
 
 ## 3.1. Lifting state up
 
-This subsection discusses moving or *lifting* the *state variables* currently in the `Square` component *up* the component hierarchy to the `Board` component.
+This subsection discusses moving or *lifting* the *state variables* currently in the `Square` component *up* the
+component hierarchy to the `Board` component.
 
-This subsection of the tutorial includes two codeboxes, and two downloads, so I have broken the steps that the tutorial presents for this process into two parts.
+This subsection of the tutorial includes two codeboxes, and two downloads, so I have broken the steps that the
+tutorial presents for this process into two parts.
 
 The code they offer for downloading is saved in:
 
 -  `reactjs/projects/downloads/reactjs/06-Lifting_state_up-part_1/sandbox.html` .
 -  `reactjs/projects/downloads/reactjs/07-Lifting_state_up-part_2/sandbox.html` .
 
-### 3.1.1. Refactoring Steps - Part 1: **Description TBD**
+**Note:** these steps are organized a little bit differently from those I went through doing the `ttt-my_way-app`
+version, due to the fact that this subsection has two codeboxes, and hence two versions of the downloaded file.
+
+### 3.1.1. Lifting state up - Part 1: Moving the `squares` state variable from `Square` to `Board`
 
 Here are the steps that the tutorial presents for this process:
 
 - **Step 3.1.1.1.** Update the `Board` component to keep the *state* of each of the 9 `Square` components
 - **Step 3.1.1.2.** Update the `Board` component to pass the appropriate *state* value to each of the 9 `Square` components
 - **Step 3.1.1.3.** Update the `Square` component to use the *state* value passed in to it from the `Board` component
-- **Step 3.1.1.4.** Update the `Square` component to tell the `Board` component when a square has been clicked
-   - This is made a bit complicated by the fact that "state is private to a component that defines it,"
-   - As a result, "you cannot update the Board’s state directly from Square"
-   - Therefore we need to **pass an event handler from the `Board` component to the `Square` component**
-   - To do this, we need to follow these steps, which are not in the same sequence as the tutorial:
 
+At this point the tutorial presents a code box, and corresponding download file, with the changes made so far.
 
+**Note:** at this point, the definition of `Square` in the codebox and downloaded code are missing the
+`handleClick` function we added in the subsection entitled *Making an interactive component*!!
+No biggie, but still....
 
-- **Step 3.1.1.4.1.** Add `onSquareClick` to the the `Square` component's properties
-- **Step 3.1.1.4.2.** Update the `Square` component to call `onSquareClick` when a square is clicked
-- **Step 3.1.1.4.3.** Add a `handleClick` function in the `Board` component that updates the `squares` array
-- **Step 3.1.1.4.4.** Update the `Board` component to connect `onSquareClick` with `handleClick`
+The following subsections show the code changes needed to fulfill these steps.
 
-
-### 3.1.2. Refactoring the Code - Part 1: **Description TBD**
-
-#### **Step 3.1.1.4.1.** Update the `Board` component to keep the *state* of each of the 9 `Square` components
+#### **Step 3.1.1.1.** Update the `Board` component to keep the *state* of each of the 9 `Square` components
 
 This is a matter of adding just one line of code after the `Board` function component's declaration:
 
@@ -745,7 +743,7 @@ export default function Board() {
 }
 ```
 
-#### **Step 3.1.1.4.2.** Update the `Board` component to pass the appropriate state value to each of the 9 `Square` components
+#### **Step 3.1.1.2.** Update the `Board` component to pass the appropriate state value to each of the 9 `Square` components
 
 This requires adding a `value=` property to each `Square` component in the `Board`:
 
@@ -801,18 +799,74 @@ export default function Board() {
 }
 ```
 
-#### **Step 3.1.1.4.3.** Update the `Square` component to use the *state* value passed in to it from the `Board` component
+#### **Step 3.1.1.3.** Update the `Square` component to use the *state* value passed in to it from the `Board` component
+
+This requires:
+
+- Adding the `{ value }` prop to the `Square` function component definition
+- Removing the `value` state variable definition from `Square`
+- Commenting out the call to `setValue('X');` in the `handleClick()` function in `Square`
+- Adding the `{value}` prop to the `<button...` tag definition
+
 *- **Before** :*
 
 ```javascript
+function Square() {
+  const [value, setValue] = useState(null);
+
+  function handleClick() {
+    setValue('X');
+  }
+
+  return (
+    <button
+      className="square"
+      onClick={handleClick}
+    >
+      {value}
+    </button>
+  );
+}
 ```
 
 *- **After** :*
 
 ```javascript
+function Square( { value } ) {
+
+  function handleClick() {
+    // setValue('X');
+  }
+
+  return (
+    <button
+      className="square"
+      onClick={handleClick}
+    >
+      {value}
+    </button>
+  );
+}
 ```
+
+Again, the codebox and downloaded code are missing `Square`'s `handleclick` function, but that's ok....
+
+### 3.1.2. Refactoring Steps - Part 2: Passing clicks from `Square` to `Board
+
+Following are the steps needed to finish *Lifting state up:*
+
+- **Step 3.1.2.** Update the `Square` component to tell the `Board` component when a square has been clicked
+   - This is made a bit complicated by the fact that "state is private to a component that defines it,"
+   - As a result, "you cannot update the Board’s state directly from Square"
+   - Therefore we need to **pass an event handler from the `Board` component to the `Square` component**
+   - To do this, we need to follow these steps, which are not in the same sequence as the tutorial:
+- **Step 3.1.2.1.** Add `onSquareClick` to the the `Square` component's properties
+- **Step 3.1.2.2.** Update the `Square` component to call `onSquareClick` when a square is clicked
+- **Step 3.1.2.3.** Add a `handleClick` function in the `Board` component that updates the `squares` array
+- **Step 3.1.2.4.** Update the `Board` component to connect `onSquareClick` with `handleClick`
 
 #### **Step 3.1.1.4.4.** Update the `Square` component to tell the `Board` component when a square has been clicked
+
 *- **Before** :*
 
 ```javascript
@@ -822,6 +876,7 @@ export default function Board() {
 
 ```javascript
 ```
+
 
 
 
@@ -834,8 +889,9 @@ export default function Board() {
 
 
 
-### 3.1.3. Refactoring Steps - Part 2: Using an Arrow Function
-### 3.1.4. Refactoring the Code - Part 2: Using an Arrow Function
+
+
+
 
 ## 3.2. Why immutability is important
 
