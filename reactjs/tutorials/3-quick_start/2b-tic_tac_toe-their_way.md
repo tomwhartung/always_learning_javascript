@@ -678,7 +678,30 @@ export default function Board() {
 
 ## 2.5. React Developer Tools
 
-This subsection discusses ... 
+This subsection briefly discusses the developer tools available in the browser section on CodeSandbox.
+
+I won't be using the site.
+
+# 3. Completing the game - `<h2> ...` Element
+
+In this section we will switch between placing "X"s and placing "O"s on the board, and implement declaring a winner.
+
+## 3.1. Lifting state up
+
+This subsection briefly discusses ....
+The code they offer for downloading is saved in `reactjs/projects/downloads/reactjs/ 
+/sandbox.html` .
+
+Here are the steps that the tutorial presents for this process:
+
+### 3.1.1. Refactoring Steps - Part 1: Handling an Array of Clicks
+### 3.1.2. Refactoring the Code - Part 1: Handling an Array of Clicks
+### 3.1.3. Refactoring Steps - Part 2: Using an Arrow Function
+### 3.1.4. Refactoring the Code - Part 2: Using an Arrow Function
+
+## 3.2. Why immutability is important
+
+This subsection briefly discusses ....
 The code they offer for downloading is saved in `reactjs/projects/downloads/reactjs/ 
 /sandbox.html` .
 
@@ -687,9 +710,6 @@ Here are the steps that the tutorial presents for this process:
 ```javascript
 ```
 
-```javascript
-```
-
 *- **Before** :*
 
 ```javascript
@@ -700,15 +720,14 @@ Here are the steps that the tutorial presents for this process:
 ```javascript
 ```
 
-```javascript
-```
-
-# 3. Completing the game - `<h2> ...` Element
+## 3.3. Taking turns
 
 This subsection discusses ... 
 The code they offer for downloading is saved in `reactjs/projects/downloads/reactjs/ 
 /sandbox.html` .
 
+Here are the steps that the tutorial presents for this process:
+
 
 ```javascript
 ```
@@ -722,6 +741,80 @@ The code they offer for downloading is saved in `reactjs/projects/downloads/reac
 
 ```javascript
 ```
+
+## 3.4. Declaring a winner
+
+This subsection discusses ... 
+The code they offer for downloading is saved in `reactjs/projects/downloads/reactjs/ 
+/sandbox.html` .
+
+Here are the steps that the tutorial presents for this process:
+
+
+```javascript
+```
+
+*- **Before** :*
+
+```javascript
+```
+
+*- **After** :*
+
+```javascript
+```
+
+## 3.5. Extra Credit: Identifying Draws
+
+This subsection discusses ... 
+The code they offer for downloading is saved in `reactjs/projects/downloads/reactjs/ 
+/sandbox.html` .
+
+Here are the steps that the tutorial presents for this process:
+
+
+```javascript
+```
+
+*- **Before** :*
+
+```javascript
+```
+
+*- **After** :*
+
+```javascript
+```
+
+# 4. Adding time travel - `<h2> ...` Element
+
+## 4.1. Storing a history of moves
+
+This subsection discusses ... 
+The code they offer for downloading is saved in `reactjs/projects/downloads/reactjs/ 
+/sandbox.html` .
+
+Here are the steps that the tutorial presents for this process:
+
+## 4.2. Lifting state up, again
+
+This subsection discusses ... 
+The code they offer for downloading is saved in `reactjs/projects/downloads/reactjs/ 
+/sandbox.html` .
+
+Here are the steps that the tutorial presents for this process:
+
+### **Step 4.2.1** Add a new top-level component named `Game`
+### **Step 4.2.2** Add `currentSquares` and the existing `xIsNext` and new `history` state variables to `Game`
+### **Step 4.2.3** Add an empty function `handlePlay` to `Game` and pass it, and `squares` and `xIsNext`, to `Board`
+### **Step 4.2.4** Change `Board` to take these three prop values, and call `onPlay`, i.e. `Board`'s `handlePlay` function
+### **Step 4.2.5** Update `Board` to use the first two props, fixing the compile error
+#### Step 4.2.5.1: Remove the `const` declarations of `xIsNext` and `squares`
+#### Step 4.2.5.2: Remove the calls to `setXIsNext` and `setSquares` in `handleClick`
+### **Step 4.2.6** Update `Board` to call `onPlay` when the user clicks on a square
+### **Step 4.2.7** Update the `handlePlay` function in `Game` to toggle `xIsNext`
+### **Step 4.2.8** Update the `handlePlay` function in `Game` to add the new `squares` array to the end of `history`
+## 4.3. Showing the past moves
 
 ```javascript
 ```
