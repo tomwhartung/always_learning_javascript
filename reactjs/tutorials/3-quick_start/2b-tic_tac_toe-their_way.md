@@ -1019,24 +1019,91 @@ This subsection does not contain any code boxes, so there is no code to download
 
 ## 3.3. Taking turns
 
-This subsection discusses ... 
-The code they offer for downloading is saved in `reactjs/projects/downloads/reactjs/ 
-/sandbox.html` .
+This subsection shows how to update the code so that it alternates between placing "X"s and "O"s.
+It also shows how to prevent overwriting a square that has already been played
 
-Here are the steps that the tutorial presents for this process:
+The code they offer for downloading is saved in `reactjs/projects/downloads/reactjs/08-Taking_turns/sandbox.html` .
 
+Following are the code changes the tutorial presents for this process.
+
+First declare a *state* variable named `xIsNext` at the top of the `Board` component:
 
 ```javascript
+const [xIsNext, setxIsNeXt] = useState(true);
 ```
+
+Next, update `Board`'s `handleClick` event handler to:
+
+- Use set `nextSquares[i]` based on the current value of `xIsNext`
+- Toggle `xIsNext`
 
 *- **Before** :*
 
 ```javascript
+export default function Board() {
+  const [xIsNext, setxIsNeXt] = useState(true);
+  const [squares, setSquares] = useState(Array(9).fill(null));
+
+  function handleClick(i) {
+    const nextSquares = squares.slice();
+    nextSquares[i] = 'X';
+    setSquares(nextSquares);
+  }
+
+  return (
+    // . . .
+  );
+}
 ```
 
 *- **After** :*
 
 ```javascript
+export default function Board() {
+  const [xIsNext, setXIsNext] = useState(true);
+  const [squares, setSquares] = useState(Array(9).fill(null));
+
+  function handleClick(i) {
+    if (squares[i] ) {        // Ignore click: this square has alredy been played!
+      return;
+    }
+    const nextSquares = squares.slice();
+    if (xIsNext) {
+      nextSquares[i] = 'X';
+    } else {
+      nextSquares[i] = 'O';
+    }
+    setSquares(nextSquares);
+    setXIsNext(!xIsNext);     // toggle xIsNext
+  }
+
+  return (
+    // . . .
+  );
+}
+```
+
+Finally, update `Board`'s `handleClick` event handler to ignore clicks on a square that has already been played:
+
+*- **Before** :*
+
+```javascript
+  function handleClick(i) {
+    const nextSquares = squares.slice();
+    // . . .
+  }
+```
+
+*- **After** :*
+
+```javascript
+  function handleClick(i) {
+    if (squares[i]) {       // Ignore click: this square has alredy been played!
+      return;
+    }
+    const nextSquares = squares.slice();
+    // . . .
+  }
 ```
 
 ## 3.4. Declaring a winner
@@ -1045,7 +1112,7 @@ This subsection discusses ...
 The code they offer for downloading is saved in `reactjs/projects/downloads/reactjs/ 
 /sandbox.html` .
 
-Here are the steps that the tutorial presents for this process:
+Here are the code changes the tutorial presents for this process:
 
 
 ```javascript
