@@ -306,27 +306,16 @@ The best place to do this is in the `Board` component, because it is the *parent
 - To do this, we need to refactor the code to keep the state in the `Board` component
 - This is known as *Lifting state up*
 
-### 3.1.1. Refactoring Steps - Part 1: Handling an Array of Clicks
+### 3.1.1. Lifting state up - Part 1: Handling an Array of Clicks
 
 - **Step 3.1.1.1.** Update the `Board` component to keep the *state* of each of the 9 `Square` components
 - **Step 3.1.1.2.** Update the `Board` component to pass the appropriate *state* value to each of the 9 `Square` components
 - **Step 3.1.1.3.** Update the `Square` component to use the *state* value passed in to it from the `Board` component
 - **Step 3.1.1.4.** Update the `Square` component to tell the `Board` component when a square has been clicked
-   - This is made a bit complicated by the fact that "state is private to a component that defines it,"
-   - As a result, "you cannot update the Board’s state directly from Square"
-   - Therefore we need to **pass an event handler from the `Board` component to the `Square` component**
-   - To do this, we need to follow these steps, which are not in the same sequence as the tutorial:
-- **Step 3.1.1.4.1.** Add `onSquareClick` to the the `Square` component's properties
-- **Step 3.1.1.4.2.** Update the `Square` component to call `onSquareClick` when a square is clicked
-- **Step 3.1.1.4.3.** Add a `handleClick` function in the `Board` component that updates the `squares` array
-- **Step 3.1.1.4.4.** Update the `Board` component to connect `onSquareClick` with `handleClick`
 
 This doesn't quite fix everything, but it's a huge starting point.
 
-For additional steps and updates to the code, see subsections *3.1.3. Refactoring Steps - Part 2*
-and *3.1.4. Refactoring the Code - Part 2.*
-
-### 3.1.2. Refactoring the Code - Part 1: Handling an Array of Clicks
+For additional steps and updates to the code, see subsections *3.1.2. Lifting state up - Part 2.*
 
 #### **Step 3.1.1.1.** Update the `Board` component to keep the *state* of each of the 9 `Square` components
 
@@ -405,7 +394,12 @@ function Square( {value} ) {
 
 #### **Step 3.1.1.4.** Update the `Square` component to tell the `Board` component when a square has been clicked
 
-This entails following these steps, which are in a *slightly different sequence* than those in the tutorial:
+This is made a bit complicated by the fact that "state is private to a component that defines it."
+As a result:
+
+- "[Y]ou cannot update the Board’s state directly from Square"
+- Therefore we need to **pass an event handler from the `Board` component to the `Square` component**
+- To do this, we need to follow these steps, which are not in the same sequence as the tutorial:
 
 - **Step 3.1.1.4.1.** Add `onSquareClick` to the the `Square` component's properties
 - **Step 3.1.1.4.2.** Update the `Square` component to call `onSquareClick` when a square is clicked
@@ -467,18 +461,16 @@ We do this by updating each of the `<Square ...` tags as follows:
 </div>
 ```
 
-### 3.1.3. Refactoring Steps - Part 2: Using an Arrow Function
+### 3.1.2. Lifting state up - Part 2: Using an Arrow Function
 
-- **Step 3.1.3.5.** Enable "X"s in more than just first square
-- **Step 3.1.3.6.** Understand why `onSquareClick={handleClick(0)}` causes an **infinite loop!**
+- **Step 3.1.2.1.** Enable "X"s in more than just first square
+- **Step 3.1.2.2.** Understand why `onSquareClick={handleClick(0)}` causes an **infinite loop!**
 -  The parens around the `0` in `onSquareClick={handleClick(0)}` cause handleClick to be called without clicks!
    - `onSquareClick={handleClick}` sets `onSquareClick` equal to the function `{handleClick}`
    - `onSquareClick={handleClick(0)} causes React to try to call `handleClick(0)` !!
-- **Step 3.1.3.7.** Use the correct syntax to pass the clicked `Square`s index to the event handler
+- **Step 3.1.2.3.** Use the correct syntax to pass the clicked `Square`s index to the event handler
 
-### 3.1.4. Refactoring the Code - Part 2: Using an Arrow Function
-
-** Step 3.1.3.5.** Enable "X"s in more than just first square
+#### **Step 3.1.2.1.** Enable "X"s in more than just first square
 
 This requires passing a parameter to the `Board` component's `handleClick` function.
 
@@ -502,7 +494,7 @@ function handleClick( idx ) {
 }
 ```
 
-** Step 3.1.3.6.** Understand why `onSquareClick={handleClick(0)}` causes an **infinite loop!**
+#### **Step 3.1.2.2.** Understand why `onSquareClick={handleClick(0)}` causes an **infinite loop!**
 
 Change the assignment in the first `<Square...` tag from
 `onSquareClick={handleClick}` to `onSquareClick={handleClick(0)}`
@@ -523,7 +515,7 @@ Open the console to see the error:
 
 > Uncaught Error: Too many re-renders. React limits the number of renders to prevent an infinite loop.
 
-#### **Step 3.1.3.7.** Use the correct syntax to pass the clicked `Square`s index to the event handler
+#### **Step 3.1.2.2.** Use the correct syntax to pass the clicked `Square`s index to the event handler
 
 The correct syntax is `<Square value={squares[0]} onSquareClick={() => handleClick(0)} />`.
 
