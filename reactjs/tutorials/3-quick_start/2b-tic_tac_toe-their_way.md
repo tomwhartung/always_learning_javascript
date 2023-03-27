@@ -1010,27 +1010,12 @@ It is useful to review the chain of events that occur when a user clicks on a sq
 3. The *arrow function* definition hard-wires `onSquareClick` to `handleClick` in the `Board` component
 4. The the `Board` component's `handleClick` function updates the `squares` state variable based on the index value passed to it
 
-
 ## 3.2. Why immutability is important
 
-This subsection discusses .
-The code they offer for downloading is saved in `reactjs/projects/downloads/reactjs/ 
-/sandbox.html` .
+This subsection discusses why `Board`'s `handleClick(i)` function uses `const nextSquares = squares.slice();` to
+create a new array of squares after each move, rather than update the original `squares` array of moves.
 
-Here are the steps that the tutorial presents for this process:
-
-```javascript
-```
-
-*- **Before** :*
-
-```javascript
-```
-
-*- **After** :*
-
-```javascript
-```
+This subsection does not contain any code boxes, so there is no code to download.
 
 ## 3.3. Taking turns
 
