@@ -1224,23 +1224,204 @@ but will not be adding it here.
 
 # 4. Adding time travel - `<h2> ...` Element
 
+This section shows how to store the moves played and allow the user to go back to a previous move.
+
 ## 4.1. Storing a history of moves
 
-This subsection discusses ... 
-The code they offer for downloading is saved in `reactjs/projects/downloads/reactjs/ 
-/sandbox.html` .
+This subsection discusses why treating the `squares` array as *immutable,* as discussed in subsection
+*3.2. Why immutability is important,* makes it easier to implement this "time travel" idea.
 
-Here are the steps that the tutorial presents for this process:
+There is no code to download for this subsection.
 
 ## 4.2. Lifting state up, again
 
-This subsection discusses ... 
-The code they offer for downloading is saved in `reactjs/projects/downloads/reactjs/ 
-/sandbox.html` .
+This subsection shows why implementing this feature means we need to *lift state up* to a new top-level `Game` component, and
+the code needed to do this.
 
-Here are the steps that the tutorial presents for this process:
+The code they offer for downloading is saved in `reactjs/projects/downloads/reactjs/10-Lifting_state_up_again/sandbox.html` .
+
+Here is a list of the steps that the tutorial presents for this process:
+
+- **Step 4.2.1** Add a new top-level component named `Game`
+- **Step 4.2.2** Add `currentSquares` and the existing `xIsNext` and new `history` state variables to `Game`
+- **Step 4.2.3** Add an empty function `handlePlay` to `Game` and pass it, and `squares` and `xIsNext`, to `Board`
+- **Step 4.2.4** Change `Board` to take these three prop values, and call `onPlay`, i.e. `Board`'s `handlePlay` function
+- **Step 4.2.5** Update `Board` to use the first two props, fixing the compile error
+- **Step 4.2.6** Update `Board` to call `onPlay` when the user clicks on a square
+- **Step 4.2.7** Update the `handlePlay` function in `Game` to toggle `xIsNext`
+- **Step 4.2.8** Update the `handlePlay` function in `Game` to add the new `squares` array to the end of `history`
+
+The following subsections show the code needed to take care of each of these steps.
 
 ### **Step 4.2.1** Add a new top-level component named `Game`
+
+To add a new top-level component, and still have the game work, we need to
+
+- Remove the `export default` prefix from the `Board` function component
+  - `Board` is left as-is, for now
+- Use the `export default` prefix to declare a new `Game` function component
+- Add JSX code to `Game` to use the `Board` component
+
+*- **Before** :*
+
+```javascript
+export default function Board() {
+  // . . .
+}
+```
+
+*- **After** :*
+
+```javascript
+function Board() {
+  // . . .
+}
+export default function Game() {
+  return (
+    <div className="game">
+      <div className="game-board">
+        <Board />
+      </div>
+      <div className="game-info">
+        <ol>{ /* TODO */ }</ol>
+      </div>
+    </div>
+  );
+}
+```
+
+```javascript
+```
+
+### **Step 4.2.2** Add `currentSquares` and the existing `xIsNext` and new `history` state variables to `Game`
+```javascript
+```
+
+*- **Before** :*
+
+```javascript
+```
+
+*- **After** :*
+
+```javascript
+```
+
+```javascript
+```
+### **Step 4.2.3** Add an empty function `handlePlay` to `Game` and pass it, and `squares` and `xIsNext`, to `Board`
+```javascript
+```
+
+*- **Before** :*
+
+```javascript
+```
+
+*- **After** :*
+
+```javascript
+```
+
+```javascript
+```
+### **Step 4.2.4** Change `Board` to take these three prop values, and call `onPlay`, i.e. `Board`'s `handlePlay` function
+```javascript
+```
+
+*- **Before** :*
+
+```javascript
+```
+
+*- **After** :*
+
+```javascript
+```
+
+```javascript
+```
+### **Step 4.2.5** Update `Board` to use the first two props, fixing the compile error
+```javascript
+```
+
+*- **Before** :*
+
+```javascript
+```
+
+*- **After** :*
+
+```javascript
+```
+
+```javascript
+```
+#### Step 4.2.5.1: Remove the `const` declarations of `xIsNext` and `squares`
+```javascript
+```
+
+*- **Before** :*
+
+```javascript
+```
+
+*- **After** :*
+
+```javascript
+```
+
+```javascript
+```
+#### Step 4.2.5.2: Remove the calls to `setXIsNext` and `setSquares` in `handleClick`
+```javascript
+```
+
+*- **Before** :*
+
+```javascript
+```
+
+*- **After** :*
+
+```javascript
+```
+
+```javascript
+```
+### **Step 4.2.6** Update `Board` to call `onPlay` when the user clicks on a square
+```javascript
+```
+
+*- **Before** :*
+
+```javascript
+```
+
+*- **After** :*
+
+```javascript
+```
+
+```javascript
+```
+### **Step 4.2.7** Update the `handlePlay` function in `Game` to toggle `xIsNext`
+```javascript
+```
+
+*- **Before** :*
+
+```javascript
+```
+
+*- **After** :*
+
+```javascript
+```
+
+```javascript
+```
+### **Step 4.2.8** Update the `handlePlay` function in `Game` to add the new `squares` array to the end of `history`
 ```javascript
 ```
 
@@ -1257,18 +1438,8 @@ Here are the steps that the tutorial presents for this process:
 ```javascript
 ```
 
-### **Step 4.2.2** Add `currentSquares` and the existing `xIsNext` and new `history` state variables to `Game`
-### **Step 4.2.3** Add an empty function `handlePlay` to `Game` and pass it, and `squares` and `xIsNext`, to `Board`
-### **Step 4.2.4** Change `Board` to take these three prop values, and call `onPlay`, i.e. `Board`'s `handlePlay` function
-### **Step 4.2.5** Update `Board` to use the first two props, fixing the compile error
-#### Step 4.2.5.1: Remove the `const` declarations of `xIsNext` and `squares`
-#### Step 4.2.5.2: Remove the calls to `setXIsNext` and `setSquares` in `handleClick`
-### **Step 4.2.6** Update `Board` to call `onPlay` when the user clicks on a square
-### **Step 4.2.7** Update the `handlePlay` function in `Game` to toggle `xIsNext`
-### **Step 4.2.8** Update the `handlePlay` function in `Game` to add the new `squares` array to the end of `history`
-
 ## 4.3. Showing the past moves
-This subsection discusses ... 
+This subsection shows how to ... 
 The code they offer for downloading is saved in `reactjs/projects/downloads/reactjs/ 
 /sandbox.html` .
 
@@ -1295,7 +1466,7 @@ Here are the steps that the tutorial presents for this process:
 ### Step 4.3.4 Note the Warning message in the console
 
 ## 4.4. Picking a key
-This subsection discusses ... 
+This subsection shows how to ... 
 The code they offer for downloading is saved in `reactjs/projects/downloads/reactjs/ 
 /sandbox.html` .
 
@@ -1317,7 +1488,7 @@ Here are the steps that the tutorial presents for this process:
 ```
 
 ## 4.5. Implementing time travel
-This subsection discusses ... 
+This subsection shows how to ... 
 The code they offer for downloading is saved in `reactjs/projects/downloads/reactjs/ 
 /sandbox.html` .
 
@@ -1343,7 +1514,7 @@ Here are the steps that the tutorial presents for this process:
 ```
 
 ## 4.6. Final cleanup
-This subsection discusses ... 
+This subsection shows how to ... 
 The code they offer for downloading is saved in `reactjs/projects/downloads/reactjs/ 
 /sandbox.html` .
 
