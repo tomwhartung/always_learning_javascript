@@ -1088,67 +1088,139 @@ Finally, update `Board`'s `handleClick` event handler to ignore clicks on a squa
 *- **Before** :*
 
 ```javascript
-  function handleClick(i) {
-    const nextSquares = squares.slice();
-    // . . .
-  }
+function handleClick(i) {
+  const nextSquares = squares.slice();
+  // . . .
+}
 ```
 
 *- **After** :*
 
 ```javascript
-  function handleClick(i) {
-    if (squares[i]) {       // Ignore click: this square has alredy been played!
-      return;
-    }
-    const nextSquares = squares.slice();
-    // . . .
+function handleClick(i) {
+  if (squares[i]) {       // Ignore click: this square has alredy been played!
+    return;
   }
+  const nextSquares = squares.slice();
+  // . . .
+}
 ```
 
 ## 3.4. Declaring a winner
 
-This subsection discusses ... 
-The code they offer for downloading is saved in `reactjs/projects/downloads/reactjs/ 
-/sandbox.html` .
+This subsection shows how to update the code so that it displays a message when one of the player wins.
 
-Here are the code changes the tutorial presents for this process:
+The code they offer for downloading is saved in `reactjs/projects/downloads/reactjs/09-Declaring_a_winner/sandbox.html` .
 
+Following are the code changes the tutorial presents for this process.
+
+First we need to add a `calculateWinner` function that the `Board` function component can call:
 
 ```javascript
+function calculateWinner(squares) {
+  const lines = [
+    [0, 1, 2],
+    [3, 4, 5],
+    [6, 7, 8],
+    [0, 3, 6],
+    [1, 4, 7],
+    [2, 5, 8],
+    [0, 4, 8],
+    [2, 4, 6],
+  ];
+  for (let i = 0; i < lines.length; i++) {
+    const [a, b, c] = lines[i];
+    if (squares[a] && squares[a] === squares[b] && squares[a] === squares[c]) {
+      return squares[a];
+    }
+  }
+  return null;
+}
 ```
+
+Note that this function can be global and does not need to be inside of the `Board` component.
+
+Next, we need to update `handleClick` to call `calculateWinner` and ignore any additoinal clicks - i.e., return,
+if one of the players has indeed won:
 
 *- **Before** :*
 
 ```javascript
+function handleClick(i) {
+  if (squares[i]) {
+    return;
+  }
+  const nextSquares = squares.slice();
+  // . . .
+}
 ```
 
 *- **After** :*
 
 ```javascript
+function handleClick(i) {
+  if (calculateWinner(squares) || squares[i]) {
+    return;
+  }
+  if (squares[i]) {
+    return;
+  }
+  const nextSquares = squares.slice();
+  // . . .
+}
 ```
 
-## 3.5. Extra Credit: Identifying Draws
+Finally, if someone has won, we need to display a message stating so.
+Take care of this by:
 
-This subsection discusses ... 
-The code they offer for downloading is saved in `reactjs/projects/downloads/reactjs/ 
-/sandbox.html` .
-
-Here are the steps that the tutorial presents for this process:
-
-
-```javascript
-```
+- Adding the code shown in the **After** section to construct a `status` message just before the `return` statement in the `Board` component
+- Adding a `<div>` element to display the `status` message to the `Board` component's `return` statement, as shown in the **After** code
 
 *- **Before** :*
 
 ```javascript
+function handleClick(i) {
+  // . . .
+}
+
+return (
+  <div>
+    <div className="board-row">
+  // . . .
+    </div>
+  </div>
+);
 ```
 
 *- **After** :*
 
 ```javascript
+function handleClick(i) {
+  // . . .
+}
+
+const winner = calculateWinner(squares);
+let status;
+if (winner) {
+  status = "Winner: " + winner;
+} else {
+  status = "Next player: " + (xIsNext ? "X" : "O");
+}
+
+return (
+  <div>
+    <div className="status">{status}</div>
+    <div className="board-row">
+  // . . .
+    </div>
+  </div>
+);
 ```
+
+**Note:** this version does *not* display a message when the game is a draw.
+I added that functionality to the `ttt-my_way-app` version - see subsection *3.5. Extra Credit: Identifying Draws* -
+but will not be adding it here.
+
 
 # 4. Adding time travel - `<h2> ...` Element
 
@@ -1169,6 +1241,22 @@ The code they offer for downloading is saved in `reactjs/projects/downloads/reac
 Here are the steps that the tutorial presents for this process:
 
 ### **Step 4.2.1** Add a new top-level component named `Game`
+```javascript
+```
+
+*- **Before** :*
+
+```javascript
+```
+
+*- **After** :*
+
+```javascript
+```
+
+```javascript
+```
+
 ### **Step 4.2.2** Add `currentSquares` and the existing `xIsNext` and new `history` state variables to `Game`
 ### **Step 4.2.3** Add an empty function `handlePlay` to `Game` and pass it, and `squares` and `xIsNext`, to `Board`
 ### **Step 4.2.4** Change `Board` to take these three prop values, and call `onPlay`, i.e. `Board`'s `handlePlay` function
@@ -1178,7 +1266,113 @@ Here are the steps that the tutorial presents for this process:
 ### **Step 4.2.6** Update `Board` to call `onPlay` when the user clicks on a square
 ### **Step 4.2.7** Update the `handlePlay` function in `Game` to toggle `xIsNext`
 ### **Step 4.2.8** Update the `handlePlay` function in `Game` to add the new `squares` array to the end of `history`
+
 ## 4.3. Showing the past moves
+This subsection discusses ... 
+The code they offer for downloading is saved in `reactjs/projects/downloads/reactjs/ 
+/sandbox.html` .
+
+Here are the steps that the tutorial presents for this process:
+```javascript
+```
+
+*- **Before** :*
+
+```javascript
+```
+
+*- **After** :*
+
+```javascript
+```
+
+```javascript
+```
+
+### Step 4.3.1 Add an empty function named `jumpTo` to the `Game` component
+### Step 4.3.2 Add the `moves` *arrow function* to just after `jumpTo` in `Game`
+### Step 4.3.3 Add a reference to `moves` to the `return` statement in `Game`
+### Step 4.3.4 Note the Warning message in the console
+
+## 4.4. Picking a key
+This subsection discusses ... 
+The code they offer for downloading is saved in `reactjs/projects/downloads/reactjs/ 
+/sandbox.html` .
+
+Here are the steps that the tutorial presents for this process:
+```javascript
+```
+
+*- **Before** :*
+
+```javascript
+```
+
+*- **After** :*
+
+```javascript
+```
+
+```javascript
+```
+
+## 4.5. Implementing time travel
+This subsection discusses ... 
+The code they offer for downloading is saved in `reactjs/projects/downloads/reactjs/ 
+/sandbox.html` .
+
+Here are the steps that the tutorial presents for this process:
+### Step 4.5.1 Add a `key` to the list items returned by the `moves` arrow function
+### Step 4.5.2 Add a `currentMove` state variable to the `Game` function component
+### Step 4.5.4 Update `Game`'s `handlePlay` method to accurately reflect the user's currently desired state
+### Step 4.5.5 Update `Game` to render the move that was selected by the user
+```javascript
+```
+
+*- **Before** :*
+
+```javascript
+```
+
+*- **After** :*
+
+```javascript
+```
+
+```javascript
+```
+
+## 4.6. Final cleanup
+This subsection discusses ... 
+The code they offer for downloading is saved in `reactjs/projects/downloads/reactjs/ 
+/sandbox.html` .
+
+Here are the steps that the tutorial presents for this process:
+### 4.6.1. Converting `xIsNext` From a State Variable to a Property
+### Step 4.6.1.1. Change the declaration of `xIsNext` in `Game` to a Property
+```javascript
+```
+
+*- **Before** :*
+
+```javascript
+```
+
+*- **After** :*
+
+```javascript
+```
+
+```javascript
+```
+
+## 4.7. Wrapping up
+This subsection discusses ... 
+The code they offer for downloading is saved in `reactjs/projects/downloads/reactjs/ 
+/sandbox.html` .
+
+Here are the steps that the tutorial presents for this process:
+
 
 ```javascript
 ```
