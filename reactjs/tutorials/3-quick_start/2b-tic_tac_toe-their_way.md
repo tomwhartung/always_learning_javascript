@@ -851,9 +851,9 @@ function Square( { value } ) {
 
 Again, the codebox and downloaded code are missing `Square`'s `handleclick` function, but that's ok....
 
-### 3.1.2. Refactoring Steps - Part 2: Passing clicks from `Square` to `Board
+### 3.1.2. Lifting state up - Part 2: Passing clicks from `Square` to `Board`
 
-Following are the steps needed to finish *Lifting state up:*
+Following are the steps needed to pass clicks from `Square` to `Board` and finish *Lifting state up:*
 
 - **Step 3.1.2.** Update the `Square` component to tell the `Board` component when a square has been clicked
    - This is made a bit complicated by the fact that "state is private to a component that defines it,"
@@ -865,26 +865,136 @@ Following are the steps needed to finish *Lifting state up:*
 - **Step 3.1.2.3.** Add a `handleClick` function in the `Board` component that updates the `squares` array
 - **Step 3.1.2.4.** Update the `Board` component to connect `onSquareClick` with `handleClick`
 
-#### **Step 3.1.1.4.4.** Update the `Square` component to tell the `Board` component when a square has been clicked
+#### **Step 3.1.2.** Update the `Square` component to tell the `Board` component when a square has been clicked
+
+This requires a few sub-steps.
+
+#### **Step 3.1.2.1.** Add `onSquareClick` to the the `Square` component's properties
+
+Remove the old `handleClick` event handler, and change the declaration of the `Square` function component as follows:
 
 *- **Before** :*
 
 ```javascript
+function Square( { value } ) {
+
+  function handleClick() {
+    // setValue('X');
+  }
+
+  return (
+    // . . .
+  );
+}
 ```
 
 *- **After** :*
 
 ```javascript
+function Square( { value, onSquareClick } ) {
+
+  return (
+    // . . .
+  );
+}
 ```
 
+#### **Step 3.1.2.2.** Update the `Square` component to call `onSquareClick` when a square is clicked
 
+Update the `<button ...` tag in `Square` to call `onSquareClick` instead of `handleClick`:
 
+*- **Before** :*
 
+```javascript
+  return (
+    <button
+      className="square"
+      onClick={handleClick}
+    >
+      {value}
+    </button>
+  );
+```
 
-#### **Step 3.1.1.4.4.1.** Add `onSquareClick` to the the `Square` component's properties
-#### **Step 3.1.1.4.4.2.** Update the `Square` component to call `onSquareClick` when a square is clicked
-#### **Step 3.1.1.4.4.3.** Add a `handleClick` function in the `Board` component that updates the `squares` array
-#### **Step 3.1.1.4.4.4.** Update the `Board` component to connect `onSquareClick` with `handleClick`
+*- **After** :*
+
+```javascript
+  return (
+    <button className="square" onClick={onSquareClick}>
+      {value}
+    </button>
+  );
+```
+
+#### **Step 3.1.2.3.** Add a `handleClick` function in the `Board` component that updates the `squares` array
+
+The tutorial does this step after the next one, but calling `handleClick` before it's defined causes an error,
+so we add the function first.
+
+Add the function to just after the `const [squares,...` statement at the top of `Board`:
+
+```javascript
+function handleClick(i) {
+  const nextSquares = squares.slice();
+  nextSquares[i] = 'X';
+  setSquares(nextSquares);
+}
+```
+
+#### **Step 3.1.2.4.** Update the `Board` component to connect `onSquareClick` with `handleClick`
+
+Because we must pass a value to `onSquareClick` via `handleClick`, this requires using an *arrow function*.
+
+Update the use of the `Square` component in the `return` statement in `Board` as follows:
+
+*- **Before** :*
+
+```javascript
+return (
+  <div>
+    <div className="board-row">
+      <Square value={squares[0]} />
+      <Square value={squares[1]} />
+      <Square value={squares[2]} />
+    </div>
+    <div className="board-row">
+      <Square value={squares[3]} />
+      <Square value={squares[4]} />
+      <Square value={squares[5]} />
+    </div>
+    <div className="board-row">
+      <Square value={squares[6]} />
+      <Square value={squares[7]} />
+      <Square value={squares[8]} />
+    </div>
+  </div>
+);
+```
+
+*- **After** :*
+
+```javascript
+  return (
+    <div>
+      <div className="board-row">
+        <Square value={squares[0]} onSquareClick={ () => handleClick(0) }/>
+        <Square value={squares[1]} onSquareClick={ () => handleClick(1) }/>
+        <Square value={squares[2]} onSquareClick={ () => handleClick(2) }/>
+      </div>
+      <div className="board-row">
+        <Square value={squares[3]} onSquareClick={ () => handleClick(3) }/>
+        <Square value={squares[4]} onSquareClick={ () => handleClick(4) }/>
+        <Square value={squares[5]} onSquareClick={ () => handleClick(5) }/>
+      </div>
+      <div className="board-row">
+        <Square value={squares[6]} onSquareClick={ () => handleClick(6) }/>
+        <Square value={squares[7]} onSquareClick={ () => handleClick(7) }/>
+        <Square value={squares[8]} onSquareClick={ () => handleClick(8) }/>
+      </div>
+    </div>
+  );
+```
+
 
 
 

@@ -412,7 +412,7 @@ This entails following these steps, which are in a *slightly different sequence*
 - **Step 3.1.1.4.3.** Add a `handleClick` function in the `Board` component that updates the `squares` array
 - **Step 3.1.1.4.4.** Update the `Board` component to connect `onSquareClick` with `handleClick`
 
-#### **Step 3.1.1.4.4.1.** Add `onSquareClick` to the the `Square` component's properties
+#### **Step 3.1.1.4.1.** Add `onSquareClick` to the the `Square` component's properties
 
 The new `Square` function component's definition now looks like this:
 
@@ -420,7 +420,7 @@ The new `Square` function component's definition now looks like this:
 function Square( {value, onSquareClick} ) {
 ```
 
-#### **Step 3.1.1.4.4.2.** Update the `Square` component to call `onSquareClick` when a square is clicked
+#### **Step 3.1.1.4.2.** Update the `Square` component to call `onSquareClick` when a square is clicked
 
 The new `<button ...` tag in the `Square` component now looks like this:
 
@@ -433,7 +433,7 @@ The new `<button ...` tag in the `Square` component now looks like this:
 </button>
 ```
 
-#### **Step 3.1.1.4.4.3.** Add a `handleClick` function in the `Board` component that updates the `squares` array
+#### **Step 3.1.1.4.3.** Add a `handleClick` function in the `Board` component that updates the `squares` array
 
 The new `handleClick` event handler goes between the `const` and `return` statements, and looks like this:
 
@@ -445,7 +445,7 @@ function handleClick() {
 }
 ```
 
-#### **Step 3.1.1.4.4.4.** Update the `Board` component to connect `onSquareClick` with `handleClick`
+#### **Step 3.1.1.4.4.** Update the `Board` component to connect `onSquareClick` with `handleClick`
 
 We do this by updating each of the `<Square ...` tags as follows:
 
