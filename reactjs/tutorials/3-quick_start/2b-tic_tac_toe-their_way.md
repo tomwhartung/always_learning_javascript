@@ -945,6 +945,10 @@ function handleClick(i) {
 
 Because we must pass a value to `onSquareClick` via `handleClick`, this requires using an *arrow function*.
 
+**Note:** This step combines two steps in the tutorial, and several of the steps presented in the `ttt-my_way-app` version.
+Since I already know that passing a parameter to an event handler that is called in a sub-component requires using an
+*arrow function*, I am skipping the folderol of hard-coding a single square in the handler and going straight to the solution.
+
 Update the use of the `Square` component in the `return` statement in `Board` as follows:
 
 *- **Before** :*
@@ -995,12 +999,16 @@ return (
   );
 ```
 
+The app now displays an "X" in a square immediately after the user clicks on it.
 
+### 3.1.3. Lifting state up - Summary
 
+It is useful to review the chain of events that occur when a user clicks on a square:
 
-
-
-
+1. The `Square` tag in the `Board` component calls the `onSquareClick` event handler
+2. The `onSquareClick` event handler is passed in as a property to `Square`
+3. The *arrow function* definition hard-wires `onSquareClick` to `handleClick` in the `Board` component
+4. The the `Board` component's `handleClick` function updates the `squares` state variable based on the index value passed to it
 
 
 ## 3.2. Why immutability is important
