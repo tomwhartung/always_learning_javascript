@@ -1369,104 +1369,138 @@ function Board({ xIsNext, squares, onPlay }) {
 
 **Note:** The tutorial covers * **Step 4.2.4** Change `Board` to take ... * before covering this step.
 
-Update the `<Board ...>` tag in `Game` so that it passes in the variables and the `handlePlay` function:
+First, remove the `const` declarations of `xIsNext` and `squares` from the top of `Board`,
+because they are now passed in as props:
 
 *- **Before** :*
 
 ```javascript
-<div className="game-board">
-  <Board />
-</div>
+function Board({ xIsNext, squares, onPlay }) {
+  const [xIsNext, setXIsNext] = useState(true);
+  const [squares, setSquares] = useState(Array(9).fill(null));
+
+  function handleClick(i) {
+  // . . .
+  }
+  // . . .
+}
 ```
 
 *- **After** :*
 
 ```javascript
-<div className="game-board">
-  <Board xIsNext={xIsNext} squares={currentSquares} onPlay={handlePlay} />
-</div>
+function Board({ xIsNext, squares, onPlay }) {
+
+  function handleClick(i) {
+  // . . .
+  }
+  // . . .
+}
 ```
 
-#### Step 4.2.5.1: Remove the `const` declarations of `xIsNext` and `squares`
-```javascript
-```
+Next, remove the calls to `setXIsNext` and `setSquares` in `handleClick`
 
 *- **Before** :*
 
 ```javascript
+function handleClick(i) {
+  // . . .
+  setSquares(nextSquares);
+  setXIsNext(!xIsNext);
+  onPlay(nextSquares);
+}
 ```
 
 *- **After** :*
 
 ```javascript
+function handleClick(i) {
+  // . . .
+  onPlay(nextSquares);
+}
 ```
 
-```javascript
-```
-#### Step 4.2.5.2: Remove the calls to `setXIsNext` and `setSquares` in `handleClick`
-```javascript
-```
+**Note:** the app now compiles, but still does not work.
+This is because we need to update the `handlePlay` function in `Game`.
 
-*- **Before** :*
-
-```javascript
-```
-
-*- **After** :*
-
-```javascript
-```
-
-```javascript
-```
 ### **Step 4.2.6** Update `Board` to call `onPlay` when the user clicks on a square
-```javascript
-```
+
+This may be done already, but if not do it now:
 
 *- **Before** :*
 
 ```javascript
+function Board({ xIsNext, squares, onPlay }) {
+  // . . .
+}
 ```
 
 *- **After** :*
 
 ```javascript
+function Board({ xIsNext, squares, onPlay }) {
+  // . . .
+  onPlay(nextSquares);
+}
 ```
 
-```javascript
-```
+Now we are calling `onPlay`, which is `Game`'s passed-in `handlePlay` function, but it doesn't yet do anything.
+Time to fix that!
+
 ### **Step 4.2.7** Update the `handlePlay` function in `Game` to toggle `xIsNext`
-```javascript
-```
 
 *- **Before** :*
 
 ```javascript
+export default function Game() {
+  // . . .
+  function handlePlay(nextSquares) {
+    // TODO
+  }
+  // . . .
+}
 ```
 
 *- **After** :*
 
 ```javascript
+export default function Game() {
+  // . . .
+  function handlePlay(nextSquares) {
+    setXIsNext(!xIsNext);
+  }
+  // . . .
+}
 ```
 
-```javascript
-```
 ### **Step 4.2.8** Update the `handlePlay` function in `Game` to add the new `squares` array to the end of `history`
-```javascript
-```
 
 *- **Before** :*
 
 ```javascript
+export default function Game() {
+  // . . .
+  function handlePlay(nextSquares) {
+    setXIsNext(!xIsNext);
+  }
+  // . . .
+}
 ```
 
 *- **After** :*
 
 ```javascript
+export default function Game() {
+  // . . .
+  function handlePlay(nextSquares) {
+    setHistory([...history, nextSquares]);
+    setXIsNext(!xIsNext);
+  }
+  // . . .
+}
 ```
 
-```javascript
-```
+The app now works once again!  Whew!!
 
 ## 4.3. Showing the past moves
 This subsection shows how to ... 
