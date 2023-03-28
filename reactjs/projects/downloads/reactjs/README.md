@@ -25,5 +25,12 @@ For one thing, the files contain a lot of css, while the code boxes don't show a
 | Making an interactive component | 05-Making_an_interactive_component | sandbox.html | Updates the code to display an "X" when the user clicks a `Square`         |
 | Lifting state up (part 1)       | 06-Lifting_state_up-part_1         | sandbox.html | Prepare to lift state up by moving state from `Square` to `Board`          |
 | Lifting state up (part 2)       | 07-Lifting_state_up-part_2         | sandbox.html | Finish lifting state up by updating `Square` and `Board` appropriately     |
+| Taking turns                    | 08-Taking_turns                    | sandbox.html | Update the code to alternate between placing "X"s and "O"s                 |
+| Declaring a winner              | 09-Declaring_a_winner              | sandbox.html | Update the code to declare a winner, if one of the player wins             |
+| Lifting state up, again         | 10-Lifting_state_up_again          | sandbox.html | Prepare the state variables for implementation of "time travel"            |
+| Showing the past moves          | 11-Showing_the_past_moves          | sandbox.html | Display a list of buttons users can click to "time travel"                 |
+| Implementing time travel-1      | 12-Implementing_time_travel-1      | sandbox.html | Add a `key` attribute to the list of "time travel" buttons                 |
+| Implementing time travel-2-done | 13-Implementing_time_travel-2-done | sandbox.html | Finish other steps needed to make the "time travel" buttons work           |
+| Wrapping up                     | 14-Wrapping_up                     | sandbox.html | Remove a redundant state variable and examine optional next steps          |
 | ---------------------------------------------------------------------------------------------------------------------------------------------------------------- |
 
