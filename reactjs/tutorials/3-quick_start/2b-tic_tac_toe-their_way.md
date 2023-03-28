@@ -1294,69 +1294,99 @@ export default function Game() {
 ```
 
 ### **Step 4.2.2** Add `currentSquares` and the existing `xIsNext` and new `history` state variables to `Game`
-```javascript
-```
 
-*- **Before** :*
+The next step is to add these variables to the `Game` component:
 
-```javascript
-```
+- Move the `xIsNext` *state variable* from the beginning of `Board` to the top of `Game`
+- Add a `history` *state variable* to the top of `Game`
+- Add `currentSquares` as a `const` variable to the top of `Game`
+  - For now, `currentSquares` will equal the last Array in the `history` Array of moves, each of which is also an Array
 
-*- **After** :*
-
-```javascript
-```
+Following is the code needed to add these variables:
 
 ```javascript
+const [xIsNext, setXIsNext] = useState(true);
+const [history, setHistory] = useState([Array(9).fill(null)]);
+const currentSquares = history[history.length - 1];
 ```
+
 ### **Step 4.2.3** Add an empty function `handlePlay` to `Game` and pass it, and `squares` and `xIsNext`, to `Board`
+
+The code for the empty function goes between the `const` variable definitions and the `return` statement in `Game`:
+
 ```javascript
+function handlePlay(nextSquares) {
+  // TODO
+}
 ```
+
+Update the `<Board ...>` tag in `Game`'s `return` statement so that it passes in the variables and the `handlePlay` function:
 
 *- **Before** :*
 
 ```javascript
+<div className="game-board">
+  <Board />
+</div>
 ```
 
 *- **After** :*
 
 ```javascript
+<div className="game-board">
+  <Board xIsNext={xIsNext} squares={currentSquares} onPlay={handlePlay} />
+</div>
 ```
 
-```javascript
-```
 ### **Step 4.2.4** Change `Board` to take these three prop values, and call `onPlay`, i.e. `Board`'s `handlePlay` function
-```javascript
-```
+
+**Note:** The tutorial covers * **Step 4.2.5** Update `Board` to use ... * before covering this step.
+
+- Update the `Board` function declaration to accept these variables, as shown in the **After** version of the code
+- Add a call to `onPlay` to the end of `Board`'s `handleClick` function
+  - Note that `onPlay` is `Game`'s `handlePlay` function, passed in via props
 
 *- **Before** :*
 
 ```javascript
+function Board() {
+  // . . .
+}
 ```
 
 *- **After** :*
 
 ```javascript
+function Board({ xIsNext, squares, onPlay }) {
+  // . . .
+  onPlay(nextSquares);
+}
 ```
 
-```javascript
-```
+**Note:** at this juncture, the code no longer compiles.  We will fix that presently.
+
 ### **Step 4.2.5** Update `Board` to use the first two props, fixing the compile error
-```javascript
-```
+
+**Note:** The tutorial covers * **Step 4.2.4** Change `Board` to take ... * before covering this step.
+
+Update the `<Board ...>` tag in `Game` so that it passes in the variables and the `handlePlay` function:
 
 *- **Before** :*
 
 ```javascript
+<div className="game-board">
+  <Board />
+</div>
 ```
 
 *- **After** :*
 
 ```javascript
+<div className="game-board">
+  <Board xIsNext={xIsNext} squares={currentSquares} onPlay={handlePlay} />
+</div>
 ```
 
-```javascript
-```
 #### Step 4.2.5.1: Remove the `const` declarations of `xIsNext` and `squares`
 ```javascript
 ```
