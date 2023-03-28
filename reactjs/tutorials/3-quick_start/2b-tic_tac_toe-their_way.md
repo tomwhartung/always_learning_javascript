@@ -1719,50 +1719,65 @@ export default function Game() {
 The game now works as it should!
 
 ## 4.6. Final cleanup
-This subsection shows how to ... 
-The code they offer for downloading is saved in `reactjs/projects/downloads/reactjs/ 
-/sandbox.html` .
 
-Here are the steps that the tutorial presents for this process:
-### 4.6.1. Converting `xIsNext` From a State Variable to a Property
-### Step 4.6.1.1. Change the declaration of `xIsNext` in `Game` to a Property
-```javascript
-```
+This subsection shows how to get rid of `xIsNext`, which is based on `currentMove` and therefore redundant.
+
+There is no code to download for this subsection.
+
+To finish this step we need to change the declaration of `xIsNext` in `Game` to a property, which requires
+removing all calls to `setXIsNext` from `Game`'s `handlePlay` and `jumpTo` functions:
 
 *- **Before** :*
 
 ```javascript
+export default function Game() {
+  const [xIsNext, setXIsNext] = useState(true);
+  const [history, setHistory] = useState([Array(9).fill(null)]);
+  const [currentMove, setCurrentMove] = useState(0);
+  const currentSquares = history[currentMove];
+
+  function handlePlay(nextSquares) {
+    const nextHistory = [...history.slice(0, currentMove + 1), nextSquares];
+    setHistory(nextHistory);
+    setCurrentMove(nextHistory.length - 1);
+    setXIsNext(!xIsNext);
+  }
+
+  function jumpTo(nextMove) {
+    setCurrentMove(nextMove);
+    setXIsNext(nextMove % 2 === 0);
+  }
+  // . . .
+}
 ```
 
 *- **After** :*
 
 ```javascript
-```
+export default function Game() {
+  const [history, setHistory] = useState([Array(9).fill(null)]);
+  const [currentMove, setCurrentMove] = useState(0);
+  const xIsNext = currentMove % 2 === 0;
+  const currentSquares = history[currentMove];
 
-```javascript
+  function handlePlay(nextSquares) {
+    const nextHistory = [...history.slice(0, currentMove + 1), nextSquares];
+    setHistory(nextHistory);
+    setCurrentMove(nextHistory.length - 1);
+  }
+
+  function jumpTo(nextMove) {
+    setCurrentMove(nextMove);
+  }
+  // . . .
+}
 ```
 
 ## 4.7. Wrapping up
-This subsection discusses ... 
-The code they offer for downloading is saved in `reactjs/projects/downloads/reactjs/ 
-/sandbox.html` .
 
-Here are the steps that the tutorial presents for this process:
+This subsection discusses some ideas for extending the app.
+For a list of these, see the `my_way` version in `reactjs/tutorials/3-quick_start/2a-tic_tac_toe-my_way.md` or the tutorial at
+[Tic-Tac-Toe App: Wrapping up](https://react.dev/learn/tutorial-tic-tac-toe#wrapping-up).
 
-
-```javascript
-```
-
-*- **Before** :*
-
-```javascript
-```
-
-*- **After** :*
-
-```javascript
-```
-
-```javascript
-```
+The code they offer for downloading is saved in `reactjs/projects/downloads/reactjs/14-Wrapping_up/sandbox.html` .
 
