@@ -1503,31 +1503,71 @@ export default function Game() {
 The app now works once again!  Whew!!
 
 ## 4.3. Showing the past moves
-This subsection shows how to ... 
-The code they offer for downloading is saved in `reactjs/projects/downloads/reactjs/ 
-/sandbox.html` .
 
-Here are the steps that the tutorial presents for this process:
+This subsection shows how to use the Javascript Array method `map(...)` to construct a list of `<button...` tags that
+users can click on to revisit their earlier moves.
+
+The code they offer for downloading is saved in `reactjs/projects/downloads/reactjs/11-Showing_the_past_moves/sandbox.html` .
+
+Here are the changes that the tutorial presents for this process:
+
+- Add an empty - for now - function named `jumpTo` to the `Game` component
+- Use the `map()` method to construct a list of buttons alowing users to revision prior moves
+- Add the list of buttons to the markup returned by the `Game` component
+
+Following is the code to be added to `Game` between the `handlePlay` function and the `return` statement:
+
 ```javascript
+function jumpTo(nextMove) {
+  // TODO
+}
+
+const moves = history.map((squares, move) => {
+  let description;
+  if (move > 0) {
+    description = 'Go to move # ' + move;
+  } else {
+    description = 'Go to start of game';
+  }
+  return (
+    <li>
+      <button onClick={() => jumpTo(move)}>{description}</button>
+    </li>
+  );
+});
 ```
+
+Update `Game`'s `return` statement, by putting the `moves` variable in the `game-info` `<div>` element,
+as shown in the **After** version of the code below:
 
 *- **Before** :*
 
 ```javascript
+return (
+  // . . .
+    <div className="game-info">
+      <ol>{ /* TODO */ }</ol>
+    </div>
+  // . . .
+);
 ```
 
 *- **After** :*
 
 ```javascript
+return (
+  // . . .
+    <div className="game-info">
+      <ol>{moves}</ol>
+    </div>
+  // . . .
+);
 ```
 
-```javascript
-```
+**Note that:**
 
-### Step 4.3.1 Add an empty function named `jumpTo` to the `Game` component
-### Step 4.3.2 Add the `moves` *arrow function* to just after `jumpTo` in `Game`
-### Step 4.3.3 Add a reference to `moves` to the `return` statement in `Game`
-### Step 4.3.4 Note the Warning message in the console
+- Clicking on the buttons does not work - because currently the `jumpTo` function is empty
+- The console displays a Warning message!
 
 ## 4.4. Picking a key
 This subsection shows how to ... 
