@@ -163,7 +163,10 @@ Let me think about it....
 
 **Note:** Finally fixed the error on 3/19/2023!
 
-- Skip the next few subsections and go to subsection *1.8. Files Edited - Got It to Work!*
+- Skip the next few subsections and go to subsection [*1.8. Files Edited - Got It to Work!*](https://github.com/tomwhartung/always_learning_javascript/blob/master/reactjs/tutorials/3-quick_start/2b-tic_tac_toe-their_way.md#18-files-edited---got-it-to-work)
+
+Or go straight to
+[*1.8.3. The Fix*](https://github.com/tomwhartung/always_learning_javascript/blob/master/reactjs/tutorials/3-quick_start/2b-tic_tac_toe-their_way.md#183-the-fix).
 
 ## 1.4. Files Edited - First try
 
@@ -1567,55 +1570,153 @@ return (
 **Note that:**
 
 - Clicking on the buttons does not work - because currently the `jumpTo` function is empty
-- The console displays a Warning message!
+- The console displays this Warning message: "Warning: Each child in a list should have a unique "key" prop."
 
 ## 4.4. Picking a key
-This subsection shows how to ... 
-The code they offer for downloading is saved in `reactjs/projects/downloads/reactjs/ 
-/sandbox.html` .
 
-Here are the steps that the tutorial presents for this process:
-```javascript
-```
+This subsection describes why React displays an error when the elements in a *dynamic list* do not have a *key.*
 
-*- **Before** :*
+- Supplying a key makes it easier for React to track which elements have been added, deleted, or changed
 
-```javascript
-```
-
-*- **After** :*
-
-```javascript
-```
-
-```javascript
-```
+If you do not supply a key, React *"will report an error and use the array index as a key by default."*
 
 ## 4.5. Implementing time travel
-This subsection shows how to ... 
-The code they offer for downloading is saved in `reactjs/projects/downloads/reactjs/ 
-/sandbox.html` .
 
-Here are the steps that the tutorial presents for this process:
-### Step 4.5.1 Add a `key` to the list items returned by the `moves` arrow function
-### Step 4.5.2 Add a `currentMove` state variable to the `Game` function component
-### Step 4.5.4 Update `Game`'s `handlePlay` method to accurately reflect the user's currently desired state
-### Step 4.5.5 Update `Game` to render the move that was selected by the user
-```javascript
-```
+This subsection shows how to finish enabling the user to revisit prior movies.
+
+**Note:** this section offers two versions of the code for downloading:
+
+- The first version is saved as `reactjs/projects/downloads/reactjs/12-Implementing_time_travel-1/sandbox.html`
+  - This version has the `key` added, which clears up the warning message in the console
+- The second version is saved as `reactjs/projects/downloads/reactjs/13-Implementing_time_travel-2-done/sandbox.html`
+  - This version is the version made available at the end of this subsection
+
+These are the changes that the tutorial calls for to complete this step in the process:
+
+- Add a `key` to the list items returned by the `moves` arrow function
+- Add a `currentMove` state variable to the `Game` function component
+- Update `Game`'s `jumpTo` method to render the move that was selected by the user
+- Update `Game`'s `handlePlay` method to update `history` and `currentMove`:
+- Update `Game` to render the user's currently desired state
+
+The updated code needed for each of these changes follows.
+
+Add a `key` to the list items returned by the `moves` arrow function, to fix the error message:
 
 *- **Before** :*
 
 ```javascript
+return (
+  <li>
+    <button onClick={() => jumpTo(move)}>{description}</button>
+  </li>
+);
 ```
 
 *- **After** :*
 
 ```javascript
+return (
+  <li key={move}>
+    <button onClick={() => jumpTo(move)}>{description}</button>
+  </li>
+);
+```
 ```
 
+Add a `currentMove` state variable to the `Game` function component, to keep track of the index for the current move:
+
+*- **Before** :*
+
 ```javascript
+export default function Game() {
+  const [xIsNext, setXIsNext] = useState(true);
+  const [history, setHistory] = useState([Array(9).fill(null)]);
+  const currentSquares = history[history.length - 1];
+  // . . .
+}
 ```
+
+*- **After** :*
+
+```javascript
+export default function Game() {
+  const [xIsNext, setXIsNext] = useState(true);
+  const [history, setHistory] = useState([Array(9).fill(null)]);
+  const [currentMove, setCurrentMove] = useState(0);
+  const currentSquares = history[history.length - 1];
+  // . . .
+}
+```
+
+Update `Game`'s `jumpTo` method to render the move that was selected by the user, by updating `currentMove` and `xIsNext`:
+
+*- **Before** :*
+
+```javascript
+function jumpTo(nextMove) {
+  // TODO
+}
+```
+
+*- **After** :*
+
+```javascript
+function jumpTo(nextMove) {
+  setCurrentMove(nextMove);
+  setXIsNext(nextMove % 2 === 0);
+}
+```
+
+Update `Game`'s `handlePlay` method to update `history` and `currentMove`:
+
+*- **Before** :*
+
+```javascript
+function handlePlay(nextSquares) {
+  setHistory([...history, nextSquares]);
+  setXIsNext(!xIsNext);
+}
+```
+
+*- **After** :*
+
+```javascript
+function handlePlay(nextSquares) {
+  const nextHistory = [...history.slice(0, currentMove + 1), nextSquares];
+  setHistory(nextHistory);
+  setCurrentMove(nextHistory.length - 1);
+  setXIsNext(!xIsNext);
+}
+```
+
+Update `Game` to render the user's currently desired state, by setting `currentSquares` to the `currentMove` in `history`:
+
+*- **Before** :*
+
+```javascript
+export default function Game() {
+  const [xIsNext, setXIsNext] = useState(true);
+  const [history, setHistory] = useState([Array(9).fill(null)]);
+  const [currentMove, setCurrentMove] = useState(0);
+  const currentSquares = history[history.length - 1];
+  // . . .
+}
+```
+
+*- **After** :*
+
+```javascript
+export default function Game() {
+  const [xIsNext, setXIsNext] = useState(true);
+  const [history, setHistory] = useState([Array(9).fill(null)]);
+  const [currentMove, setCurrentMove] = useState(0);
+  const currentSquares = history[currentMove];       // The only line changed in this **After** version
+  // . . .
+}
+```
+
+The game now works as it should!
 
 ## 4.6. Final cleanup
 This subsection shows how to ... 
