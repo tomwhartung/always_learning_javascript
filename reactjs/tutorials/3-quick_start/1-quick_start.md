@@ -305,6 +305,15 @@ Got this much to work ok.
 
 # Extra Credit: Implement a `totalCount`??
 
+## Problems and the Solution
+
+I had issues trying to do this.
+
+- The next section describes early attempts to do this
+- To see the solution, go to the end of this file
+
+## The Problems
+
 I tried extending the resulting `reactjs/projects/my-quick-start-app/src/App.js` to maintain a `totalCount`
 
 - Tried keeping a `totalCount` state variable in the `AllMyApps` top-level component
@@ -332,4 +341,11 @@ Note that all of these are function components.
 Could I get it to work by using classes as components?
 
 **That's a good question that I do not care to try to answer at this point!**
+
+## The Solution
+
+The solution was to put curly braces around the arguments in the function definitions of the function components.
+
+For the working app, see
+`reactjs/projects/my-quick-start-app/src/App.js`.
 
