@@ -6,9 +6,11 @@ import { useState } from 'react';
 
 // AllMyApps: run all the apps!
 function AllMyApps() {
+  const [totalCount, setTotalCount] = useState(0);
 
-//const [totalCount, setTotalCount] = useState(0);
-  const totalCount = 1;
+  function handleAnyClick() {
+    setTotalCount(totalCount + 1);
+  }
 
   return (
     <div className="App">
@@ -17,9 +19,9 @@ function AllMyApps() {
         <hr />
         <BonjourApp totalCount={totalCount} />
         <hr />
-        <IndependentCountersApp />
+        <IndependentCountersApp handleAnyClick={handleAnyClick} />
         <hr />
-        <ControlledCountersApp />
+        <ControlledCountersApp handleAnyClick={handleAnyClick} />
         <hr />
       </header>
     </div>
@@ -27,32 +29,34 @@ function AllMyApps() {
 }
 
 // BonjourApp: says Hello World in French
-function BonjourApp( totalCount ) {
+function BonjourApp( { totalCount } ) {
   return (
     <div className="App">
       <h1>Bonjour, monde!</h1>
-      <p>totalCount = {totalCount.totalCount} </p>
+      <p>totalCount = { totalCount } </p>
     </div>
   );
 }
 
 // IndependentCountersApp: demonstrates how to use multiple instances of the same state
-function IndependentCountersApp() {
+function IndependentCountersApp( { handleAnyClick } ) {
   return (
     <div className="App">
       <h1>Independent Counters that Update Separately</h1>
-      <IndependentButton />
-      <IndependentButton />
+      <IndependentButton handleAnyClick={handleAnyClick} />
+      <IndependentButton handleAnyClick={handleAnyClick} />
     </div>
   );
 }
 
 // IndependentButton: button that independently counts how many times it's been clicked
-function IndependentButton() {
+function IndependentButton( { handleAnyClick } ) {
   const [independentCount, setIndependentCount] = useState(0);
 
   function handleIndependentClick() {
     setIndependentCount(independentCount + 1);
+    handleAnyClick();
+    console.log( 'IndependentButton.handleIndependentClick called handleAnyClick()!' );
   }
 
   return (
@@ -65,11 +69,12 @@ function IndependentButton() {
 }
 
 // ControlledCountersApp: demonstrates how to lift state up
-function ControlledCountersApp() {
+function ControlledCountersApp( { handleAnyClick } ) {
   const [controlledCount, setControlledCount] = useState(0);
 
   function handleControlledClick() {
     setControlledCount(controlledCount + 1);
+    handleAnyClick();
   }
   return (
     <div className="App">
@@ -81,7 +86,7 @@ function ControlledCountersApp() {
 }
 
 // ControlledButton: button controlled by props
-function ControlledButton({ controlledCount, onControlledClick }) {
+function ControlledButton( { controlledCount, onControlledClick } ) {
 
   return (
     <button
