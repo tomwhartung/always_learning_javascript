@@ -16,6 +16,8 @@ I am creating a new react app so I can play around with some of these ideas and 
 ```
 $ pwd      # /var/www/always_learning/always_learning_javascript/reactjs/projects
 $ npx create-react-app my-quick-start-app
+$ cd my-quick-start-app
+$ pwd      # /var/www/always_learning/always_learning_javascript/reactjs/projects/my-quick-start-app
 $ npm run start
 $
 ```
