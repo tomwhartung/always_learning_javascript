@@ -80,7 +80,101 @@ function deleteUser(user: User) { // defind the type of the parameter
 }
 ```
 
-You can use
+You can use these built-in primitive JavaScript types and the following extensions provided by Typescript when defining interfaces:
+
+- Built-in primitive JavaScript types:
+  - `boolean`
+  - `bigint`
+  - `null`
+  - `number`
+  - `string`
+  - `symbol`
+  - `undefined`
+- Extensions provided by Typescript:
+  - `any` - allow anything
+  - `unknown` - developers using this type must define it when they use it
+    - I.e.: *"no operations are permitted on an unknown without first asserting or narrowing to a more specific type."*
+    - [Example of code using `unknown`](https://www.typescriptlang.org/play#example/unknown-and-never)
+    - [Blog post: `unknown` vs. `any`](https://mariusschulz.com/blog/the-unknown-type-in-typescript)
+    - [Typescript docs](https://www.typescriptlang.org/docs/handbook/release-notes/typescript-3-0.html#new-unknown-top-type)
+  - `never` - represents code that *"logically cannot happen."*
+    - [An example of code using `never` is at the bottom of this page](https://www.typescriptlang.org/play#example/unknown-and-never)
+    - [Example of conditional types using `never`](https://www.typescriptlang.org/play#example/conditional-types)
+  - `void` - used for functions that return nothing
+
+# 3. Composing Types
+
+Use Unions and Generics to combine simple types and create complex ones.
+
+## 3.1. Unions
+
+Unions can be used to declare `enum`erable types:
+
+```javascript
+type WindowStates = "open" | "closed" | "minimized";
+type LockStates = "locked" | "unlocked";
+type PositiveOddNumbersUnderTen = 1 | 3 | 5 | 7 | 9;
+```
+
+You can also use a union to combine two more specific types, e.g., an `array` and a `string`:
+
+```javascript
+function getLength(obj: string | string[]) {
+  return obj.length;
+}
+```
+
+Here is a clever way to change a `string` into an `array`, only if it is not already an `array`:
+
+```javascript
+function wrapInArray(obj: string | string[]) {
+  if (typeof obj === "string") {
+    return [obj];                  // (parameter) obj: string
+  }
+  return obj;
+}
+```
+
+## 3.2. Generics
+
+Quoting from this page:
+
+> Generics provide variables to types. A common example is an array. An array without generics could contain anything. An array with generics can describe the values that the array contains.
+
+A few examples of using generics to define the type of data an array can contain:
+
+```javascript
+type StringArray = Array<string>;
+type NumberArray = Array<number>;
+type ObjectWithNameArray = Array<{ name: string }>;
+```
+
+This kind of reminds me of templates in C++, where the `Type` is not known until someone uses the `interface`:
+
+```javascript
+interface Backpack<Type> {
+  add: (obj: Type) => void;
+  get: () => Type;
+}
+
+// This line is a shortcut to tell TypeScript there is a
+// constant called `backpack`, and to not worry about where it came from.
+declare const backpack: Backpack<string>;
+
+// object is a string, because we declared it above as the variable part of Backpack.
+const object = backpack.get();
+
+// Since the backpack variable is a string, you can't pass a number to the add function.
+backpack.add(23);
+// Causes an error:
+//   Argument of type 'number' is not assignable to parameter of type 'string'.
+```
+
+```javascript
+```
+
+```javascript
+```
 
 ```javascript
 ```
