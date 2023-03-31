@@ -170,18 +170,48 @@ backpack.add(23);
 //   Argument of type 'number' is not assignable to parameter of type 'string'.
 ```
 
-```javascript
-```
+# 4. Structural Type System
+
+The terms *duck typing* and *structural typing* refer to being able to recognize that when two objects
+have the same *shape* - i.e. their members contain the same *types* - then *"they are considered to be
+the same type."*
+
+For example:
 
 ```javascript
+interface Point {
+  x: number;
+  y: number;
+}
+
+function logPoint(p: Point) {
+  console.log(`${p.x}, ${p.y}`);
+}
+
+// logs "12, 26"
+const point = { x: 12, y: 26 };
+logPoint(point);
 ```
 
-```javascript
-```
+Quoting from the page:
+
+> The `point` variable is never declared to be a `Point` type. However, TypeScript compares the shape of `point` to the shape of `Point` in the type-check. They have the same shape, so the code passes.
+
+**Note:** only a subset of the `interface`'s or object's fields need to match.
 
 ```javascript
+const point3 = { x: 12, y: 26, z: 89 };
+logPoint(point3);                         // logs "12, 26"
+
+const rect = { x: 33, y: 3, width: 30, height: 80 };
+logPoint(rect);                         // logs "33, 3"
+
+const color = { hex: "#187ABF" };
+logPoint(color);
+// Causes an error:
+// Argument of type '{ hex: string; }' is not assignable to parameter of type 'Point'.
+//   Type '{ hex: string; }' is missing the following properties from type 'Point': x, y
 ```
 
-```javascript
-```
+**Note:** structural typing handles classes and objects the same.
 
