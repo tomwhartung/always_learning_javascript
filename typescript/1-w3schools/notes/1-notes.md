@@ -465,13 +465,101 @@ const car2: { type: string, mileage?: number } = {
 car.mileage = 2000;
 ```
 
+## 7.3. Index Signatures
 
-# 8. TS Enums
+Frankly, I am not 100% sure exactly what this means, but the example makes a certain amount of sense:
+
+> Index signatures can be used for objects without a defined list of properties.
 
 For example:
 
 ```javascript
+nameAgeMap.Jack = 25;        // No error
+nameAgeMap.Mark = "Fifty";   // Error: Type 'string' is not assignable to type 'number'.
 ```
+
+> Index signatures like this one can also be expressed with utility types like `Record<string, number>`.
+
+**Note:** a later section describes *"utility types."*
+
+
+# 8. TS Enums
+
+You can use an `enum` to define a class containing a set of constants.
+An `enum` can contain either `number`s or `string`s.
+
+## 8.1. Numeric Enums - Default
+
+By default, the first value in an `enum` is `0`, and subsequent values increase by `1`.
+
+For example:
+
+```javascript
+enum CardinalDirections {
+  North,
+  East,
+  South,
+  West
+}
+let currentDirection = CardinalDirections.North;
+console.log(currentDirection);                     // logs 0
+```
+
+## 8.2. Numeric Enums - Initialized
+
+Alternatively, you can set the first value in an `enum` to a non-zero number like `3`, and
+subsequent values will still increase by `1`.
+
+For example:
+
+```javascript
+enum CardinalDirections {
+  North = 11,
+  East,
+  South,
+  West
+}
+let currentDirection = CardinalDirections.West;
+console.log(currentDirection);                     // logs 14
+```
+
+## 8.3. Numeric Enums - Fully Initialized
+
+Of course it is perfectly acceptable to set each value in an `enum` to a specific `number`.
+
+For example:
+
+```javascript
+enum StatusCodes {
+  NotFound = 404,
+  Success = 200,
+  Accepted = 202,
+  BadRequest = 400
+}
+console.log(StatusCodes.NotFound);      // logs 404
+console.log(StatusCodes.Success);       // logs 200
+```
+
+## 8.4. String Enums
+
+Finally, you can set each value in an `enum` to a specific `string` value.
+In many ways, this makes the most sense of all the variants!
+
+For example:
+
+```javascript
+enum CardinalDirections {
+  North = 'North',
+  East = "East",
+  South = "South",
+  West = "West"
+};
+console.log(CardinalDirections.North);    // logs "North"
+console.log(CardinalDirections.West);     // logs "West"
+```
+
+**Note:** although you *can* mix `number` and `string` values, doing so is *inadvisable.*
+
 
 # 9. TS Aliases & Interfaces
 
