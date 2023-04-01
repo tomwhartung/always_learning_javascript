@@ -362,32 +362,154 @@ numbers.push(4);              // no error
 numbers.push("2");            // Error: Argument of type 'string' is not assignable to parameter of type 'number'.
 ```
 
+
 # 6. TS Tuples
 
+## 6.1. Typed Arrays
+
+A *tuple* is an array containing a fixed number of typed elements.
+
+For example:
+
 ```javascript
+let ourTuple: [number, boolean, string];
+ourTuple = [5, false, 'Hello world!'];
+ourTuple = [5, 'Hello world!', false];   // Error!
 ```
 
+## 6.2. Readonly Tuple
+
+Once a tuple has a set of values, TS turns off type checking.
+This means it is best to declare them to be `readonly`.
+
+For example:
+
+```javascript
+let ourTuple: [number, boolean, string];
+ourTuple = [5, false, 'Hello world!'];
+ourTuple.push = 'Hola mundo!';         // NO ERROR!  WTAF?!?!
+```
+
+Defining the tuple to be `readonly` solves this predicament:
+
+```javascript
+let ourReadonlyTuple: readonly [number, boolean, string] = [5, false, 'Hello world!'];
+ourReadonlyTuple.push = 'Hola mundo!';         // Error!  Yay!!!
+```
+
+**Note:** in React, state variables are tuples, consisting of a `string` and a `function`.
+
+## 6.3. Named Tuples
+
+For example:
+
+```javascript
+const point: [x: number, y: number] = [55.2, 41.3];
+```
+
+In this case, we can see that the `graph` tuple contains an `x`, or *horizontal* component and
+a `y`, or *vertical* component.
+
+## 6.4. Destructuring Tuples
+
+This means we can access the individual values in a *named tuple* by *"destructuring"* it, then
+using the *names* - rather than using a numeric *subscript.*
+
+For example:
+
+```javascript
+const point: [x: number, y: number] = [55.2, 41.3];
+const [x, y] = point;
+```
+
+
 # 7. TS Object Types
+
+For example:
 
 ```javascript
 ```
 
 # 8. TS Enums
 
+For example:
+
 ```javascript
 ```
 
 # 9. TS Aliases & Interfaces
+
+For example:
 
 ```javascript
 ```
 
 # 10. TS Union Types
 
+For example:
+
 ```javascript
 ```
 
-# 11. TS 
+# 11. TS Functions
+
+For example:
+
+```javascript
+```
+
+# 12. TS Casting
+
+For example:
+
+```javascript
+```
+
+# 13. TS Classes
+
+For example:
+
+```javascript
+```
+
+# 14. TS Basic Generics
+
+For example:
+
+```javascript
+```
+
+# 15. TS Utility Types
+
+For example:
+
+```javascript
+```
+
+# 16. TS Keyof
+
+For example:
+
+```javascript
+```
+
+# 17. TS Null
+
+For example:
+
+```javascript
+```
+
+# 18. TS Definitely Typed
+
+For example:
+
+```javascript
+```
+
+# 19. TS 
+
+For example:
 
 ```javascript
 ```
