@@ -19,6 +19,7 @@ For example, if a function is defined as needing a number, but is passed a strin
 
 Using the *official TypeScript compiler.*
 
+
 # 2. TS Get Started
 
 ## 2.1. TypeScript Compiler
@@ -231,6 +232,7 @@ who are already familiar with TypeScript.
 The file `typescript/1-w3schools/notes/1-notes-tsconfig.json` in this directory contains a copy of the file
 created by this command.
 
+
 # 3. TS Simple Types
 
 These *simple types* are also known as *primitives,* and are common to both JavaScript and TypeScript:
@@ -267,10 +269,62 @@ For both explicit and implicit types, when types don't match, TypeScript throws 
 When TypeScript is unable to infer a variable's type, it sets its type to `any`.
 This *disables type checking.*
 
+
 # 4. TS Special Types
 
+## 4.1. Type: `any`
+
+The `any` special type disables checking, allowing the variable to store `any` and all types of values.
+
+**Note:** in general, it is best to avoid using `any` types.
+
+## 4.2. Type: `unknown`
+
+The `unknown` special type is a safer alternative to `any`.
+You can use variables declared as `unknown` by using `as` to cast them to a specific type.
+
+Following is an example of how to use a cast to run `w` `as` a `Function`:
+
 ```javascript
+let w: unknown = 1;
+w = "string";         // no error
+w = {
+  runANonExistentMethod: () => {
+    console.log("I think therefore I am");
+  }
+} as { runANonExistentMethod: () => void}
+//
+// Trying to run w without a cast (using "as") gives an error:
+//
+w.runANonExistentMethod();        // Error: Object is of type 'unknown'.
+//
+// Using "as" to cast w as a Function allows us to run it:
+//
+(w as { runANonExistentMethod: Function }).runANonExistentMethod();
 ```
+
+This code shows how you might determine `w` is a function and hence safe to run:
+
+```javascript
+if(typeof w === 'object' && w !== null) {
+  (w as { runANonExistentMethod: Function }).runANonExistentMethod();
+}
+```
+
+**Note:** it's best to save `unknown` for special cases when you don't know what sort of value a variable
+might hold, and you are willing to perform tests to zero in on its type then use a cast before doing anything with it.
+
+## 4.3. Type: `never`
+
+The `never` special type throws an error when someone tries to use the variable.
+It is used mainly in *advanced generics.*
+
+## 4.4. Type: `undefined` & `null`
+
+The `undefined` special type refers to the JavaScript primitive type `undefined`.
+
+The `null` special type refers to the JavaScript primitive type `null`.
+
 
 # 5. TS Arrays
 
