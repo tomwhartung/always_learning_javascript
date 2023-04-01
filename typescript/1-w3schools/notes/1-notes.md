@@ -563,10 +563,75 @@ console.log(CardinalDirections.West);     // logs "West"
 
 # 9. TS Aliases & Interfaces
 
+## 9.1. Type Aliases
+
+You can define a custom name as an *alias* for both primitive and complex types.
+
 For example:
 
 ```javascript
+type CarYear = number
+type CarType = string
+type CarModel = string
+type Car = {
+  year: CarYear,
+  type: CarType,
+  model: CarModel
+}
+
+const carYear: CarYear = 2001
+const carType: CarType = "Toyota"
+const carModel: CarModel = "Corolla"
+const car: Car = {
+  year: carYear,
+  type: carType,
+  model: carModel
+};
 ```
+
+**Notice:** the lack of semicolons at the end of the `type` and `const` declarations!
+
+## 9.2. Interfaces
+
+Use `interface` to name an `object` type.
+
+For example:
+
+```javascript
+interface Rectangle {
+  height: number,
+  width: number
+}
+
+const rectangle: Rectangle = {
+  height: 20,
+  width: 10
+};
+```
+
+## 9.3. Extending Interfaces
+
+Interfaces can build on or *extend* one another by using the `extends` keyword.
+
+For example:
+
+```javascript
+interface Rectangle {
+  height: number,
+  width: number
+}
+
+interface ColoredRectangle extends Rectangle {    // Creates a *new* interface
+  color: string
+}
+
+const coloredRectangle: ColoredRectangle = {
+  height: 20,
+  width: 10,
+  color: "red"
+};
+```
+
 
 # 10. TS Union Types
 
