@@ -5,15 +5,16 @@
 
 ## 1.1. What is TypeScript?
 
-TypeScript is a *"Syntactic Superset"* of JavaScript: it includes all of JavaScript and adds **types.**
+TypeScript, or *TS*, is a *"Syntactic Superset"* of JavaScript, or *JS*.
+That is, it includes all of JS and adds **types.**
 
 ## 1.2. Why Should I Use TypeScript?
 
-TypeScript can help find logic errors in code that regular JavaScript that will not report.
+TS can help find logic errors in code that regular JS that will not report.
 
-For example, if a function is defined as needing a number, but is passed a string, TypeScript will report an error.
+For example, if a function is defined as needing a number, but is passed a string, TS will report an error.
 
-**Note:** TypeScript checks code at *compile time* rather than when it is running.
+**Note:** TS checks code at *compile time* rather than when it is running.
 
 ## 1.3. How Do I Use TypeScript?
 
@@ -24,7 +25,7 @@ Using the *official TypeScript compiler.*
 
 ## 2.1. TypeScript Compiler
 
-The TypeScript Compiler *transpiles* TypeScript into JavaScript.
+The TS Compiler *transpiles* TS into JS.
 
 ## 2.2. Installing the Compiler
 
@@ -37,7 +38,7 @@ $ cd my-first_typescript-app
 $ npm run start               # so far, so good!
 ```
 
-I used these commands to install TypeScript, and am including *all* of the command's output, for possible future reference:
+I used these commands to install TS, and am including *all* of the command's output, for possible future reference:
 
 ```
 $ pwd                         # /var/www/always_learning/always_learning_javascript/typescript/projects/my-first_typescript-app
@@ -71,7 +72,7 @@ Run `npm audit` for details.
 $
 ```
 
-I ran this command to run TypeScript, and am including *all* of the command's output, for possible future reference:
+I ran this command to run TS, and am including *all* of the command's output, for possible future reference:
 
 ```
 $ npx tsc
@@ -227,7 +228,7 @@ $
 **Note:** [https://aka.ms/tsconfig.json](https://aka.ms/tsconfig.json) redirects to
 [https://www.typescriptlang.org/tsconfig](https://www.typescriptlang.org/tsconfig),
 which looks rather like a man-page-type reference, suitable as a reminder for people
-who are already familiar with TypeScript.
+who are already familiar with TS.
 
 The file `typescript/1-w3schools/notes/1-notes-tsconfig.json` in this directory contains a copy of the file
 created by this command.
@@ -235,7 +236,7 @@ created by this command.
 
 # 3. TS Simple Types
 
-These *simple types* are also known as *primitives,* and are common to both JavaScript and TypeScript:
+These *simple types* are also known as *primitives,* and are common to both JS and TS:
 
 - `boolean`, or `Boolean` in some specific circumstances
 - `number`, or `Number` in some specific circumstances
@@ -255,18 +256,18 @@ let firstName: string = "Jane";
 
 ## 3.3. Implicit Type Assignment
 
-Implicit type assignment is quicker and easier for us but means JavaScript must guess the type:
+Implicit type assignment is quicker and easier for us but means JS must guess the type:
 
 ```javascript
 let firstName = "Joe";
 ```
 ## 3.4. Error in Type Assignment
 
-For both explicit and implicit types, when types don't match, TypeScript throws an error, but JavaScript doesn't.
+For both explicit and implicit types, when types don't match, TS throws an error, but JS doesn't.
 
 ## 3.5. Unable to Infer
 
-When TypeScript is unable to infer a variable's type, it sets its type to `any`.
+When TS is unable to infer a variable's type, it sets its type to `any`.
 This *disables type checking.*
 
 
@@ -321,14 +322,44 @@ It is used mainly in *advanced generics.*
 
 ## 4.4. Type: `undefined` & `null`
 
-The `undefined` special type refers to the JavaScript primitive type `undefined`.
+The `undefined` special type refers to the JS primitive type `undefined`.
 
-The `null` special type refers to the JavaScript primitive type `null`.
+The `null` special type refers to the JS primitive type `null`.
 
 
 # 5. TS Arrays
 
+TS allows defining the type of values that the code may add to an array.
+
+For example:
+
 ```javascript
+const names: string[] = [];
+names.push("Dylan");        // no error
+names.push(3);              // Error: Argument of type 'number' is not assignable to parameter of type 'string'.
+```
+
+## 5.1. Readonly
+
+Trying to change an array declared as `readonly` causes an error:
+
+For example:
+
+```javascript
+const names: readonly string[] = ["Dylan"];
+names.push("Jack");         // Error: Property 'push' does not exist on type 'readonly string[]'.
+```
+
+5.2. Type Inference
+
+When an array has values, TS infers its type.
+
+For example:
+
+```javascript
+const numbers = [1, 2, 3];    // inferred to type number[]
+numbers.push(4);              // no error
+numbers.push("2");            // Error: Argument of type 'string' is not assignable to parameter of type 'number'.
 ```
 
 # 6. TS Tuples
