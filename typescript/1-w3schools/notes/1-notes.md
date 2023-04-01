@@ -425,10 +425,46 @@ const [x, y] = point;
 
 # 7. TS Object Types
 
+Use this sort of syntax to declare the names and types of the data members in an object:
+
+```javascript
+const car: { type: string, model: string, year: number } = {
+  type: "Toyota",
+  model: "Corolla",
+  year: 2009
+};
+```
+
+## 7.1. Type Inference
+
+If a data member has a value, TS can use it to infer its type.
+
 For example:
 
 ```javascript
+const car = {
+  type: "Toyota",
+};
+car.type = "Ford";     // no error
+car.type = 2;          // Error: Type 'number' is not assignable to type 'string'.
 ```
+
+## 7.2. Optional Properties
+
+Use a question mark `?` to indicate when an object's data member or *property* is optional.
+
+For example:
+
+```javascript
+const car1: { type: string, mileage: number } = {
+  type: "Toyota",                                      // Error!!
+};
+const car2: { type: string, mileage?: number } = {
+  type: "Chevy",                                       // Ok
+};
+car.mileage = 2000;
+```
+
 
 # 8. TS Enums
 
