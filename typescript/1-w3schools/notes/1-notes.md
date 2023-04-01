@@ -223,13 +223,49 @@ You can learn more at https://aka.ms/tsconfig
 $
 ```
 
+**Note:** [https://aka.ms/tsconfig.json](https://aka.ms/tsconfig.json) redirects to
+[https://www.typescriptlang.org/tsconfig](https://www.typescriptlang.org/tsconfig),
+which looks rather like a man-page-type reference, suitable as a reminder for people
+who are already familiar with TypeScript.
+
 The file `typescript/1-w3schools/notes/1-notes-tsconfig.json` in this directory contains a copy of the file
 created by this command.
 
 # 3. TS Simple Types
 
+These *simple types* are also known as *primitives,* and are common to both JavaScript and TypeScript:
+
+- `boolean`, or `Boolean` in some specific circumstances
+- `number`, or `Number` in some specific circumstances
+- `string`, or `String` in some specific circumstances
+
+## 3.1. Type Assignment
+
+Type assignment may be *explicit* or *implicit.*
+
+## 3.2. Explicit Type Assignment
+
+Explicit type assignment is more intentional and makes it more obvious to those reading your code:
+
 ```javascript
+let firstName: string = "Jane";
 ```
+
+## 3.3. Implicit Type Assignment
+
+Implicit type assignment is quicker and easier for us but means JavaScript must guess the type:
+
+```javascript
+let firstName = "Joe";
+```
+## 3.4. Error in Type Assignment
+
+For both explicit and implicit types, when types don't match, TypeScript throws an error, but JavaScript doesn't.
+
+## 3.5. Unable to Infer
+
+When TypeScript is unable to infer a variable's type, it sets its type to `any`.
+This *disables type checking.*
 
 # 4. TS Special Types
 
