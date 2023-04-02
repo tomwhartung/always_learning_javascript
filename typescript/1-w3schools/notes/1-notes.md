@@ -635,10 +635,38 @@ const coloredRectangle: ColoredRectangle = {
 
 # 10. TS Union Types
 
+When a variable can be any one of two or more types, you can define a *union.*
+
+10.1. Union | (OR)
+
+To define a union, use a vertical bar `|`.
+
+For example, to define a `code` that can be a `string` or a `number`:
+
+```javascript
+function printStatusCode(code: string | number) {
+  console.log(`My status code is ${code}.`)
+}
+printStatusCode(404);
+printStatusCode('404');
+```
+
+10.2. Union Type Errors
+
+To avoid errors, you must limit operations on the variable to those that can apply to *all*
+of the types in the union.
+
 For example:
 
 ```javascript
+function printStatusCode(code: string | number) {
+  // This causes an error:
+  //   "Property 'toUpperCase' does not exist ontype 'string | number'."
+  //   "Property 'toUpperCase' does not exist on type 'number'"
+  console.log(`My status code is ${code.toUpperCase()}.`)
+}
 ```
+
 
 # 11. TS Functions
 
