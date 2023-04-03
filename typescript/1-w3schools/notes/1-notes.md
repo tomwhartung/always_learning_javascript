@@ -793,10 +793,200 @@ console.log(((x as unknown) as number).length);   // x is not actually a number,
 
 # 13. TS Classes
 
+## 13.1. Members: Types
+
+This example shows how to specify the type of a class's data members:
+
+```javascript
+class Person {
+  name: string;
+}
+
+const person = new Person();
+person.name = "Jane";
+```
+
+## 13.2. Members: Visibility
+
+TS supports these visibility modifiers:
+
+- `public` - the default visibility allows access from anywhere
+- `protected` - allows access only from within this class or a class that inherits from it
+- `private` - allows access only from within the class
+
 For example:
 
 ```javascript
+class Person {
+  private name: string;
+
+  public constructor(name: string) {
+    this.name = name;
+  }
+
+  public getName(): string {
+    return this.name;
+  }
+}
+
+const person = new Person("Jane");
+console.log(person.getName());  // Ok - it's public
+console.log(person.name);       // Error - person.name isn't accessible because it's private
 ```
+
+## 13.3. Parameter Properties
+
+This example shows the familiar syntax you can use to specify the types of method parameters and return values:
+
+```javascript
+class Person {
+  // name is a private member variable
+  public constructor(private name: string) {}
+
+  public getName(): string {
+    return this.name;
+  }
+}
+
+const person = new Person("Jane");
+console.log(person.getName());
+```
+
+## 13.4. Readonly
+
+This example shows how to use the `readonly` keyword to prevent changes to a class' data member:
+
+```javascript
+class Person {
+  // name can be only be set in this initial definition or in the constructor
+  private readonly name: string;
+
+  public constructor(name: string) {
+    this.name = name;
+  }
+
+  public getName(): string {
+    return this.name;
+  }
+}
+
+const person = new Person("Jane");
+console.log(person.getName());
+```
+
+## 13.5. Inheritance: Implements
+
+This example shows how a class that `implements` an `interface` must follow the type specifications
+specified in the `interface`:
+
+```javascript
+interface Shape {
+  getArea: () => number;
+}
+
+class Rectangle implements Shape {
+  public constructor(protected readonly width: number, protected readonly height: number) {}
+
+  public getArea(): number {
+    return this.width * this.height;
+  }
+}
+```
+
+## 13.6. Inheritance: Extends
+
+This example shows how a class that `extends` another `class` must follow the type specifications
+specified in that `class`:
+
+```javascript
+interface Shape {
+  getArea: () => number;
+}
+
+class Rectangle implements Shape {
+  public constructor(protected readonly width: number, protected readonly height: number) {}
+
+  public getArea(): number {
+    return this.width * this.height;
+  }
+}
+
+class Square extends Rectangle {
+  public constructor(width: number) {
+    super(width, width);
+  }
+
+  // getArea gets inherited from Rectangle
+}
+```
+
+## 13.7. Override
+
+This example shows how a class can use the `override` keyword to specify that it contains a different
+method from the one defined in a parent class:
+
+```javascript
+interface Shape {
+  getArea: () => number;
+}
+
+class Rectangle implements Shape {
+  // using protected for these members allows access from classes that extend from this class, such as Square
+  public constructor(protected readonly width: number, protected readonly height: number) {}
+
+  public getArea(): number {
+    return this.width * this.height;
+  }
+
+  public toString(): string {
+    return `Rectangle[width=${this.width}, height=${this.height}]`;
+  }
+}
+
+class Square extends Rectangle {
+  public constructor(width: number) {
+    super(width, width);
+  }
+
+  // this toString replaces the toString from Rectangle
+  public override toString(): string {
+    return `Square[width=${this.width}]`;
+  }
+}
+```
+
+**Note:** in general, use of the `override` keyword is optional.  To force its use in child
+classes, use the `noImplicitOverride` keyword.
+
+## 13.8. Abstract Classes
+
+Specifying that a class and one or more of its members are `abstract` allows the base
+`abstract` class to leave its `abstract` members to be unimplemented.
+
+For example:
+
+```javascript
+abstract class Polygon {
+  public abstract getArea(): number;
+
+  public toString(): string {
+    return `Polygon[area=${this.getArea()}]`;
+  }
+}
+
+class Rectangle extends Polygon {
+  public constructor(protected readonly width: number, protected readonly height: number) {
+    super();
+  }
+
+  public getArea(): number {
+    return this.width * this.height;
+  }
+}
+```
+
+**Note:** `abstract` classes can *not* be instantiated directly!
+
 
 # 14. TS Basic Generics
 
