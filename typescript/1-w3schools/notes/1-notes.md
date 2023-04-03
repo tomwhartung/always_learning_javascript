@@ -670,9 +670,89 @@ function printStatusCode(code: string | number) {
 
 # 11. TS Functions
 
-For example:
+## 11.1. Return Type
+
+Following is an example of how to declare a function that returns a `number`:
 
 ```javascript
+function getTime(): number {
+  return new Date().getTime();
+}
+```
+
+## 11.2. Void Return Type
+
+This example shows how to use the `void` keyword to declare a function that does not return anything:
+
+```javascript
+function printHello(): void {
+  console.log('Hello!');
+}
+```
+
+## 11.3. Parameters
+
+Following is an example of how to specify the types of the function's parameters:
+
+```javascript
+function multiply(a: number, b: number) {
+  return a * b;
+}
+```
+
+## 11.4. Optional Parameters
+
+In TS, all parameters are required, unless specifically marked with a `?` to indicate they are optional.
+
+In this example, the parameter `c` is optional:
+
+```javascript
+function add(a: number, b: number, c?: number) {
+  return a + b + (c || 0);
+}
+```
+
+## 11.5. Default Parameters
+
+This example shows how to specify a default value for a parameter:
+
+```javascript
+function pow(value: number, exponent: number = 10) {
+  return value ** exponent;
+}
+```
+
+## 11.6. Named Parameters
+
+This example shows how to specify a type for a named parameter:
+
+```javascript
+function divide({ dividend, divisor }: { dividend: number, divisor: number }) {
+  return dividend / divisor;
+}
+```
+
+## 11.7. Rest Parameters
+
+This example shows how to specify a type for a *rest* parameter,
+but note that this type must *always* be an array:
+
+```javascript
+function add(a: number, b: number, ...rest: number[]) {
+  return a + b + rest.reduce((p, c) => p + c, 0);
+}
+```
+
+## 11.8. Type Alias
+
+This example shows how to a *type alias* to define an anonymous *arrow* function:
+
+```javascript
+type Negate = (value: number) => number;
+
+// In this function, the parameter `value` automatically
+//   gets assigned the type `number` from the type `Negate`
+const negateFunction: Negate = (value) => value * -1;
 ```
 
 # 12. TS Casting
