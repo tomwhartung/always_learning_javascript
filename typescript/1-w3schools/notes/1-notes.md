@@ -755,12 +755,41 @@ type Negate = (value: number) => number;
 const negateFunction: Negate = (value) => value * -1;
 ```
 
+
 # 12. TS Casting
 
-For example:
+Use a *cast* to override a variable's type.
+
+12.1. Casting With `as`
+
+Following is an example of casting an `unknown` type to a `string`:
 
 ```javascript
+let x: unknown = 'hello';
+console.log((x as string).length);
 ```
+
+**Note:** just because you can force the compiler to consider a variable to be of a certain type,
+does not mean that the code will work as hoped when supplied a value that does not conform to that type!!
+
+12.2. Casting With `<>`
+
+This example shows how putting the type in angle brackets `<>` works the same as using `as`:
+
+```javascript
+let x: unknown = 'hello';
+console.log((<string>x).length);
+```
+
+12.3. Force casting
+
+Casting a variable first to `unknown`, then to another type, can help override TS type errors:
+
+```javascript
+let x = 'hello';
+console.log(((x as unknown) as number).length);   // x is not actually a number, so this will return undefined
+```
+
 
 # 13. TS Classes
 
