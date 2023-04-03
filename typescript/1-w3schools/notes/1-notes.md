@@ -1089,21 +1089,128 @@ function createLoggedPair<S extends string | number, T extends string | number>(
 
 # 15. TS Utility Types
 
-For example:
+This section briefly explains the most popular *utility types,* which can help when working with types.
+
+## 15.1. Partial
+
+This example demonstrates how to use `Partial` to make all properties of an object - or `interface` -
+optional:
 
 ```javascript
+interface Point {
+  x: number;
+  y: number;
+}
+
+let pointPart: Partial<Point> = {}; // `Partial` allows x and y to be optional
+pointPart.x = 10;
+```
+
+## 15.2. Required
+
+This example demonstrates how to use `Required` to make all properties of an object - or `interface` -
+required, even if one or more of the properties are marked optional in the original definition:
+
+```javascript
+interface Car {
+  make: string;
+  model: string;
+  mileage?: number;
+}
+
+let myCar: Required<Car> = {
+  make: 'Ford',
+  model: 'Focus',
+  mileage: 12000 // `Required` forces mileage to be defined
+};
+```
+
+## 15.3. Record
+
+This example demonstrates how to use `Record` to specify the types of a key and its value:
+
+```javascript
+const nameAgeMap: Record<string, number> = {
+  'Alice': 21,
+  'Bob': 25
+};
+```
+
+## 15.4. Omit
+
+This example demonstrates how to use `Omit` to remove properties from an object or `interface`:
+
+```javascript
+interface Person {
+  name: string;
+  age: number;
+  location?: string;
+}
+
+const bob: Omit<Person, 'age' | 'location'> = {
+  name: 'Bob'    // `Omit` has removed age and location from the type and they can't be defined here
+};
+```
+
+## 15.5. Pick
+
+This example demonstrates how to use `Pick` to specify which members to keep in a predefined object type:
+
+```javascript
+interface Person {
+  name: string;
+  age: number;
+  location?: string;
+}
+
+const bob: Pick<Person, 'name'> = {
+  name: 'Bob' // `Pick` has only kept name, so age and location were removed from the type and can't be defined
+};
+```
+
+## 15.6. Exclude
+
+This example demonstrates how to use `Exclude` to remove a type from a union:
+
+```javascript
+type Primitive = string | number | boolean
+const value: Exclude<Primitive, string> = true; // a string cannot be used here since Exclude removed it from the type.
+```
+
+## 15.7. ReturnType
+
+This example demonstrates how to use `ReturnType` to access the type of a function's return value:
+
+```javascript
+type PointGenerator = () => { x: number; y: number; };
+const point: ReturnType<PointGenerator> = {
+  x: 10,
+  y: 20
+};
+```
+
+## 15.8. Parameters
+
+This example demonstrates how to use `Parameters` to access the types of a function's parameters:
+
+```javascript
+type PointPrinter = (p: { x: number; y: number; }) => void;
+const point: Parameters<PointPrinter>[0] = {
+  x: 10,
+  y: 20
+};
 ```
 
 # 16. TS Keyof
 
-For example:
+This example demonstrates :
 
 ```javascript
 ```
 
 # 17. TS Null
 
-For example:
+This example demonstrates :
 
 ```javascript
 ```
