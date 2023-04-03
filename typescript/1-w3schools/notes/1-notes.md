@@ -990,9 +990,101 @@ class Rectangle extends Polygon {
 
 # 14. TS Basic Generics
 
-For example:
+TS allows developers to define generic types that can in turn be used to a set of similar types.
+
+## 14.1. Functions
+
+This example defines a generic function that accepts two parameters and returns them as a pair.
+Users of the definition must specify the type of each parameter at run time:
 
 ```javascript
+function createPair<S, T>(v1: S, v2: T): [S, T] {
+  return [v1, v2];
+}
+console.log(createPair<string, number>('hello', 42)); // ['hello', 42]
+```
+
+## 14.2. Classes
+
+This example shows a generic class that includes standard OO methods, `setValue`, `getValue`,
+and `toString`, allowing the user to define the type of the value when they use the class:
+
+```javascript
+class NamedValue<T> {
+  private _value: T | undefined;
+
+  constructor(private name: string) {}
+
+  public setValue(value: T) {
+    this._value = value;
+  }
+
+  public getValue(): T | undefined {
+    return this._value;
+  }
+
+  public toString(): string {
+    return `${this.name}: ${this._value}`;
+  }
+}
+
+let value = new NamedValue<number>('myNumber');
+value.setValue(10);
+console.log(value.toString()); // myNumber: 10
+```
+
+## 14.3. Type Aliases
+
+> Generics in type aliases allow creating types that are more reusable.
+
+```javascript
+type Wrapped<T> = { value: T };
+
+const wrappedValue: Wrapped<number> = { value: 10 };
+```
+
+You can also use this syntax with `interface`s.
+
+## 14.4. Default Value
+
+This example creates a generic class similar to the one in subsection *14.2. Classes*,
+showing how to assign default type values that take effect when the user does not
+specify a type at runtime:
+
+```javascript
+class NamedValue<T = string> {
+  private _value: T | undefined;
+
+  constructor(private name: string) {}
+
+  public setValue(value: T) {
+    this._value = value;
+  }
+
+  public getValue(): T | undefined {
+    return this._value;
+  }
+
+  public toString(): string {
+    return `${this.name}: ${this._value}`;
+  }
+}
+
+let value = new NamedValue('myNumber');
+value.setValue('myValue');
+console.log(value.toString()); // myNumber: myValue
+```
+
+## 14.5. Extends
+
+This example shows how to use `extends` to constrain the types supported by your generic type
+declaration to a set of types, rather than to just any type:
+
+```javascript
+function createLoggedPair<S extends string | number, T extends string | number>(v1: S, v2: T): [S, T] {
+  console.log(`creating pair: v1='${v1}', v2='${v2}'`);
+  return [v1, v2];
+}
 ```
 
 # 15. TS Utility Types
