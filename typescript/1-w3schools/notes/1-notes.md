@@ -1203,10 +1203,45 @@ const point: Parameters<PointPrinter>[0] = {
 
 # 16. TS Keyof
 
-This example demonstrates :
+TS includes the `keyof` reserved word, which you can use to extract an object type's key type.
+
+## 16.1. `keyof` with explicit keys
+
+This example demonstrates how to use `keyof` on an object type with explicit keys.
+In this case, it specifies a union type containing both members, i.e., `name` and `age`:
 
 ```javascript
+interface Person {
+  name: string;
+  age: number;
+}
+// `keyof Person` here creates a union type of "name" and "age", other strings will not be allowed
+function printPersonProperty(person: Person, property: keyof Person) {
+  console.log(`Printing person property ${property}: "${person[property]}"`);
+}
+let person = {
+  name: "Max",
+  age: 27
+};
+printPersonProperty(person, "name"); // Printing person property name: "Max"
 ```
+
+That is, specifying something other than `name` or `age` when calling `printPersonProperty` will
+cause an error.
+
+## 16.2. `keyof` with index signatures
+
+This example demonstrates how to use `keyof` with index signatures:
+
+```javascript
+type StringMap = { [key: string]: unknown };
+// `keyof StringMap` resolves to `string` here
+function createStringPair(property: keyof StringMap, value: string): StringMap {
+  return { [property]: value };
+}
+```
+
+**TODO:** consider revisiting this, right this second it is making no sense to me!!
 
 # 17. TS Null
 
