@@ -1243,11 +1243,93 @@ function createStringPair(property: keyof StringMap, value: string): StringMap {
 
 **TODO:** consider revisiting this, right this second it is making no sense to me!!
 
-# 17. TS Null
+# 17. TS Null & Undefined
 
-This example demonstrates :
+**Note:** to enable the handling of `null` and `undefined` values as described in this section,
+you must set the configuration parameter `strictNullChecks` to true.
+
+**All of the examples** in this section work *only* when `strictNullChecks` is set to true!!
+
+## 17.1. Types
+
+This example demonstrates that `null` and `undefined` are types, just like `string`, `number`, etc.:
 
 ```javascript
+let value: string | undefined | null = null;
+value = 'hello';
+value = undefined;
+```
+
+## 17.2. Optional Chaining
+
+This example demonstrates how to use the `?.` syntax to access an object's properties, even if they
+may not exist:
+
+```javascript
+interface House {
+  sqft: number;
+  yard?: {
+    sqft: number;
+  };
+}
+function printYardSize(house: House) {
+  const yardSize = house.yard?.sqft;
+  if (yardSize === undefined) {
+    console.log('No yard');
+  } else {
+    console.log(`Yard is ${yardSize} sqft`);
+  }
+}
+
+let home: House = {
+  sqft: 500
+};
+
+printYardSize(home);    // Prints 'No yard' because in this case `yard` is not defined.
+```
+
+## 17.3. Nullish Coalescence
+
+This example demonstrates how to use the `??` operator to gracefully deal with data that may be missing:
+
+```javascript
+function printMileage(mileage: number | null | undefined) {
+  console.log(`Mileage: ${mileage ?? 'Not Available'}`);
+}
+
+printMileage(null);   // Prints 'Mileage: Not Available'
+printMileage(0);      // Prints 'Mileage: 0'
+```
+
+## 17.4. Null Assertion
+
+The following example demonstrates how to use the TS `!` operator to tell TS to ignore the possibility that
+a value might be `null` or `undefined`.
+In this case, it is clear that `getValue` will *always* return a `string`:
+
+```javascript
+function getValue(): string | undefined {
+  return 'hello';
+}
+let value = getValue();
+console.log('value length: ' + value!.length);
+```
+
+**Warning:** this sort of thing can be unsafe!  In this example, someone might someday change `getValue`.
+*Ten cuidado!!*
+
+## 17.5. Array bounds handling
+
+TS assumes, by default, that accessing a value in an array never returns `undefined`,
+unless it is defined as part of the array's type.
+This is true even if the `strictNullChecks` configuration parameter is set, although
+the `noUncheckedIndexedAccess` configuration parameter can change this behavior.
+
+This example demonstrates how this might work:
+
+```javascript
+let array: number[] = [1, 2, 3];
+let value = array[0]; // with `noUncheckedIndexedAccess` this has the type `number | undefined`
 ```
 
 # 18. TS Definitely Typed
