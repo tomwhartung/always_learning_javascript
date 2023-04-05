@@ -1334,14 +1334,18 @@ let value = array[0]; // with `noUncheckedIndexedAccess` this has the type `numb
 
 # 18. TS Definitely Typed
 
-For example:
+Some NPM packages do not use TS, and are therefore not type safe.
 
-```javascript
+## 18.1. Using non-typed NPM packages in TypeScript
+
+The Definitely Typed community, which runs a non-https - and therefore currently-inaccessible-via-chrome -
+[site here](http://definitelytyped.org/), intended to help TS developers use these packages.
+
+To access these TS definitions, run this command:
+
+```
+npm install --save-dev @types/jquery
 ```
 
-# 19. TS 
+> No other steps are usually needed to use the types after installing the declaration package, TypeScript will automatically pick up the types when using the package itself.
 
-For example:
-
-```javascript
-```
