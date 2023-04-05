@@ -50,28 +50,62 @@ const user = {
 user.location;    // Causes an error: "Property 'location' does not exist on type '{ name: string; age: number; }'."
 ```
 
-This example shows how TS reports an error when it encounters 
+This example shows how TS reports an error when it encounters a typo:
 
 ```javascript
+const announcement = "Hello World!";
+
+// How quickly can you spot the typos?
+announcement.toLocaleLowercase();
+announcement.toLocalLowerCase();
+
+// We probably meant to write this...
+announcement.toLocaleLowerCase();
 ```
 
-This example shows how TS reports an error when it encounters 
+This example shows how TS reports an error when it encounters a possibly crufty, uncalled function:
 
 ```javascript
+function flipCoin() {
+  // Meant to be Math.random()
+  return Math.random < 0.5;    // Causes an error: "Operator '<' cannot be applied to types '() => number' and 'number'."
+}
 ```
 
-This example shows how TS reports an error when it encounters 
+This example shows how TS reports an error when it encounters a basic logic error:
 
 ```javascript
+const value = Math.random() < 0.5 ? "a" : "b";
+if (value !== "a") {
+  // ...
+} else if (value === "b") {   // This comparison appears to be unintentional because the types '"a"' and '"b"' have no overlap.
+  // Oops, unreachable
+}
 ```
 
 
 # 4. Types for Tooling
 
-Following is an example of:
+TS *tooling* refers to its ability to enable editors to find errors, suggest options for code completion, etc.
+
+Following is an example of the possibilities an editor might display in response to a user typing `res.sen`:
 
 ```javascript
+import express from "express";
+const app = express();
+
+app.get("/", function (req, res) {
+  res.sen        // send
+                 // sendDate
+                 // sendfile
+                 // sendFile
+                 // sendStatus
 ```
+
+Here are links to:
+
+- [Quick list of supported editors](https://github.com/Microsoft/TypeScript/wiki/TypeScript-Editor-Support)
+- [TypeScript Editor Support for vim](https://github.com/Microsoft/TypeScript/wiki/TypeScript-Editor-Support#vim)
 
 
 # 5. `tsc`, the TypeScript compiler
