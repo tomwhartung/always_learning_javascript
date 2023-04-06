@@ -110,6 +110,85 @@ Here are links to:
 
 # 5. `tsc`, the TypeScript compiler
 
+Run this command to install `tsc`, the TS compiler:
+
+```
+$ sudo npm install -g typescript
+[sudo] password for tomh:
+
+added 1 package in 3s
+npm notice
+npm notice New minor version of npm available! 9.5.0 -> 9.6.4
+npm notice Changelog: https://github.com/npm/cli/releases/tag/v9.6.4
+npm notice Run npm install -g npm@9.6.4 to update!
+npm notice
+$ sudo npm install -g npm@9.6.4
+
+removed 1 package, and changed 43 packages in 4s
+
+18 packages are looking for funding
+  run `npm fund` for details
+$
+```
+
+These commands show how to run `tsc`, the Typescript compiler, on an extremely minimalistic *Hello, world!* program:
+
+```javascript
+$ mkdir my-test_tsc
+$ cd  my-test_tsc
+$ cat > hello.ts
+// Greets the world.
+console.log("Hello world!");
+$ tsc hello.ts
+$
+```
+
+This program has no type errors, so there is *no* output from `tsc`.
+
+The following shows the results of running `tsc` on a program *with* type errors:
+
+```javascript
+$ mv hello.ts hello-ok.ts
+$ cat > hello.ts
+// This is an industrial-grade general-purpose greeter function:
+function greet(person, date) {
+  console.log(`Hello ${person}, today is ${date}!`);
+}
+
+greet("Brendan");
+$ tsc hello.ts
+hello.ts:6:1 - error TS2554: Expected 2 arguments, but got 1.
+
+6 greet("Brendan");
+  ~~~~~~~~~~~~~~~~
+
+  hello.ts:2:24
+    2 function greet(person, date) {
+                             ~~~~
+    An argument for 'date' was not provided.
+
+
+Found 1 error in hello.ts:6
+
+$
+```
+
+As expected, `tsc` reports an error because this version does not supply enough arguments when calling
+the `greet` function.
+
+
+# 6. Emitting with Errors
+
+Following is an example of:
+
+```javascript
+```
+
+Following is an example of:
+
+```javascript
+```
+
 Following is an example of:
 
 ```javascript
