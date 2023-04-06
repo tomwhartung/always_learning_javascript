@@ -110,7 +110,7 @@ Here are links to:
 
 # 5. `tsc`, the TypeScript compiler
 
-Run this command to install `tsc`, the TS compiler:
+Run this command to install `tsc`, the TS compiler, so that it globally accessible in:
 
 ```
 $ sudo npm install -g typescript
@@ -133,7 +133,7 @@ $
 
 These commands show how to run `tsc`, the Typescript compiler, on an extremely minimalistic *Hello, world!* program:
 
-```javascript
+```
 $ mkdir my-test_tsc
 $ cd  my-test_tsc
 $ cat > hello.ts
@@ -147,7 +147,7 @@ This program has no type errors, so there is *no* output from `tsc`.
 
 The following shows the results of running `tsc` on a program *with* type errors:
 
-```javascript
+```
 $ mv hello.ts hello-ok.ts
 $ cat > hello.ts
 // This is an industrial-grade general-purpose greeter function:
@@ -176,12 +176,20 @@ $
 As expected, `tsc` reports an error because this version does not supply enough arguments when calling
 the `greet` function.
 
+**Note:** `typescript/projects/my-test_tsc/` contains these files:
+
+- `hello-ok.ts` - the first source file that does *not* have any TS errors
+- `hello-ok.js` - output from running `tsc` on `hello-ok.ts`
+   - Note that `hello-ok.ts` *matches* `hello-ok.js` *exactly*
+- `hello-error.ts` - the second source file that *has* a TS error
+- `hello-error.js` - output from running `tsc` on `hello-error.ts`
+   - Note that `hello-error.ts` does *not match* `hello-error.js`
 
 # 6. Emitting with Errors
 
 Following is an example of:
 
-```javascript
+```
 ```
 
 Following is an example of:
