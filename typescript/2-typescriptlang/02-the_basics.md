@@ -201,30 +201,43 @@ $ tsc --noEmitOnError hello.ts
 
 # 7. Explicit Types
 
-Following is an example of:
+Explicit types are types the developer declares *explicitly* by using a *type annotation.*
+
+Following is an example of explicit types, annotated by `: string` and `: Date`:
 
 ```javascript
+function greet(person: string, date: Date) {
+  console.log(`Hello ${person}, today is ${date.toDateString()}!`);
+}
 ```
 
-Following is an example of:
+## 7.1. Inferred Types Are Preferred
+
+Following is an example of a variable declaration that would cause TS to *infer* that `msg` is a `string:
 
 ```javascript
+let msg = "hello there!";
 ```
 
+Quoting from
+[this section of The Basics page](https://www.typescriptlang.org/docs/handbook/2/basic-types.html#explicit-types):
 
-Following is an example of:
-
-```javascript
-```
-
-
-Following is an example of:
-
-```javascript
-```
+> it’s best not to add annotations when the type system would end up inferring the same type anyway.
 
 
 # 8. Erased Types
+
+Following is an example of:
+
+```javascript
+```
+
+
+Following is an example of:
+
+```javascript
+```
+
 
 Following is an example of:
 
