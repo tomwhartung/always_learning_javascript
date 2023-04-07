@@ -187,31 +187,36 @@ the `greet` function.
 
 # 6. Emitting with Errors
 
-Following is an example of:
+*Emitting* refers to when TS compiles a `.ts` file and generates a `.js` file.
+
+- By default, TS *emits* a `.js` file regardless of whether the `.ts` file contains type errors.
+
+The following command shows how to change TS's default behavoir so that,
+in the event the `.ts` file has a type error, it does *not* emit a `.js` file.
 
 ```
-```
-
-Following is an example of:
-
-```javascript
-```
-
-Following is an example of:
-
-```javascript
-```
-
-
-# 6. Emitting with Errors
-
-Following is an example of:
-
-```javascript
+$ tsc --noEmitOnError hello.ts
 ```
 
 
 # 7. Explicit Types
+
+Following is an example of:
+
+```javascript
+```
+
+Following is an example of:
+
+```javascript
+```
+
+
+Following is an example of:
+
+```javascript
+```
+
 
 Following is an example of:
 
