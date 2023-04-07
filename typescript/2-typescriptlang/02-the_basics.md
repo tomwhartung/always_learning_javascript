@@ -227,25 +227,38 @@ Quoting from
 
 # 8. Erased Types
 
-Following is an example of:
+Type annotations are part of *TypeScript,* and are *not valid* JavaScript.
+
+Following is a short example of some TS code that includes *annotations:*
 
 ```javascript
+function greet(person: string, date: Date) {
+  console.log(`Hello ${person}, today is ${date.toDateString()}!`);
+}
+
+greet("Maddison", new Date());
 ```
 
-
-Following is an example of:
+When `tsc` compiles the `.ts` code above, it emits this corresponding `.js` code:
 
 ```javascript
+"use strict";
+function greet(person, date) {
+    console.log("Hello ".concat(person, ", today is ").concat(date.toDateString(), "!"));
+}
+greet("Maddison", new Date());
 ```
 
-
-Following is an example of:
-
-```javascript
-```
+The `: string` and `: Date` annotations are missing in the `.js` code; these are called *erased types.*
 
 
 # 9. Downleveling
+
+Following is an example of:
+
+```javascript
+```
+
 
 Following is an example of:
 
