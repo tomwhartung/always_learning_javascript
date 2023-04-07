@@ -254,19 +254,38 @@ The `: string` and `: Date` annotations are missing in the `.js` code; these are
 
 # 9. Downleveling
 
+*Downleveling* refers to TS's ability to translate `.js` code targeting a newer version of the language,
+such as "ECMAScript 2015 (a.k.a. ECMAScript 6, ES2015, ES6, etc. - don’t ask)" to older versions, such
+as ECMAScript 3 (ES3) or ECMAScript 5 (ES5).
+
+- By default, TS targets ES3
+
+The following command shows how to use the
+[target](https://www.typescriptlang.org/tsconfig#target)
+option to override the default and have TS emit ECMAScript 2015 code:
+
+```
+tsc --target es2015 hello.ts
+```
+
+
+# 10. Strictness
+
 Following is an example of:
 
 ```javascript
 ```
 
 
+# 11. `noImplicitAny`
+
 Following is an example of:
 
 ```javascript
 ```
 
 
-# 10. 
+# 12. `strictNullChecks`
 
 Following is an example of:
 
