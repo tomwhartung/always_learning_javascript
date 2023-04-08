@@ -351,16 +351,17 @@ $
 
 # 11. `noImplicitAny`
 
-Following is an example of:
+By default, if TS cannot infer a variable's type to be something more specific like `string` or `number`,
+it falls back to using `any`, which is the most lenient type.
 
-```javascript
-```
+To override this behavior and have TS report any variable that it might infer can be `any` type,
+specify the `noImplicitAny` option.
 
 
 # 12. `strictNullChecks`
 
-Following is an example of:
+By default, TS allows developers to assign a value like `null` or `undefined` to any other type of variable.
 
-```javascript
-```
+To override this behavior and have TS require code to handle `null` and `undefined` values more explicitly,
+specify the `strictNullChecks` option.
 
