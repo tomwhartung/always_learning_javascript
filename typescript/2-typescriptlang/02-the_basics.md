@@ -271,9 +271,81 @@ tsc --target es2015 hello.ts
 
 # 10. Strictness
 
-Following is an example of:
+TS allows developers to specify how strict they want their type checking to be.
 
-```javascript
+- By default, TS is fairly loose, enabling existing projects to migrate to it:
+  - Types are optional
+  - Inferred types are as lenient as possible
+  - It does not check for values that may be `null` and `undefined`
+
+The hope is that new projects will seek to attain the benefits of stronger type checking
+and turn up TS's "strictness dial" by enabling *all* strictness-checking flags.
+
+- Specify the [-strict](https://www.typescriptlang.org/tsconfig#strict) flag when running `tsc`
+- Set `"strict": true` in your `tsconfig.json`
+
+Following is an example of compiling a small program first without and then with using `-strict`:
+
+```
+$ pwd
+/var/www/always_learning/always_learning_javascript/typescript/projects/my-test_tsc
+$ cp hello-error.ts  hello.ts
+$ cat  hello.ts
+// This is an industrial-grade general-purpose greeter function:
+function greet(person, date) {
+  console.log(`Hello ${person}, today is ${date}!`);
+}
+
+greet("Brendan");
+$
+```
+
+When the `-strict` flag is *not* specified, TS reports just one error:
+
+```
+$ tsc hello.ts
+hello.ts:6:1 - error TS2554: Expected 2 arguments, but got 1.
+
+6 greet("Brendan");
+  ~~~~~~~~~~~~~~~~
+
+  hello.ts:2:24
+    2 function greet(person, date) {
+                             ~~~~
+    An argument for 'date' was not provided.
+
+
+Found 1 error in hello.ts:6
+$
+```
+
+When the `-strict` flag *is* specified, TS reports three errors:
+
+```
+$ tsc -strict  hello.ts
+hello.ts:2:16 - error TS7006: Parameter 'person' implicitly has an 'any' type.
+
+2 function greet(person, date) {
+                 ~~~~~~
+
+hello.ts:2:24 - error TS7006: Parameter 'date' implicitly has an 'any' type.
+
+2 function greet(person, date) {
+                         ~~~~
+
+hello.ts:6:1 - error TS2554: Expected 2 arguments, but got 1.
+
+6 greet("Brendan");
+  ~~~~~~~~~~~~~~~~
+
+  hello.ts:2:24
+    2 function greet(person, date) {
+                             ~~~~
+    An argument for 'date' was not provided.
+
+
+Found 3 errors in the same file, starting at: hello.ts:2
+$
 ```
 
 
