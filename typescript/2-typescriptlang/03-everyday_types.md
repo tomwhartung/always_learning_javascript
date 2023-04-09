@@ -194,13 +194,95 @@ function welcomePeople(x: string[] | string) {
 ```
 
 
-# 9. 
+# 9. Type Aliases
+
+Use the `type` TS keyword to declare a *type alias,* which is just a name for any other type.
+
+```javascript
+type Point = {
+  x: number;
+  y: number;
+};
+
+// Exactly the same as the earlier example
+function printCoord(pt: Point) {
+  // . . .
+}
+```
+
+This example shows how to give a union a *type alias:*
+
+```javascript
+type ID = number | string;
+```
+
+
+# 10. Interfaces
+
+You can also use the `interface` keyword to create an *interface declaration* and
+name an object type:
+
+```javascript
+interface Point = {
+  x: number;
+  y: number;
+};
+
+// Exactly the same as the earlier example
+function printCoord(pt: Point) {
+  // . . .
+}
+```
+
+## 10.1. Differences Between Type Aliases and Interfaces
+
+The key difference between a type alias and an interfaces is that:
+
+- You can add properties to an `interface` - it is *extendable*
+- You cannot re-open a type alias to add a property
+
+These nuances will be covered in more detail in subsequent chapters of this reference.
+
+
+# 11. Type Assertions
+
+```javascript
+```
+
+# 12. Literal Types
+
+```javascript
+```
+
+## 12.1. Literal Inference
 
 ```javascript
 ```
 
 
-# 10. 
+# 13. `null` and `undefined`
+
+```javascript
+```
+
+## 13.1. `strictNullChecks` off
+
+```javascript
+```
+
+## 13.2. `strictNullChecks` on
+
+```javascript
+```
+
+
+# 14. Enums
+
+```javascript
+```
+
+
+# 15. Less Common Primitives
 
 ```javascript
 ```
