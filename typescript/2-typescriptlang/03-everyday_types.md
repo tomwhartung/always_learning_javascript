@@ -110,13 +110,53 @@ Property 'toUppercase' does not exist on type 'string'. Did you mean 'toUpperCas
 ```
 
 
-# 7. 
+# 7. Object Types
+
+Any JS value that has one or more *properties* is an *object type*.
+
+This example shows an *object type* that has two properties, `x` and `y`, which are both *number*s:
+
+```javascript
+// The parameter's type annotation is an object type
+function printCoord(pt: { x: number; y: number }) {
+  console.log("The coordinate's x value is " + pt.x);
+  console.log("The coordinate's y value is " + pt.y);
+}
+printCoord({ x: 3, y: 7 });
+```
+
+**Note** the curly braces `{ ... }` surrounding the function arguments in both the function's definition and
+the call to it.
+
+## 7.1. Optional Properties
+
+To indicate that one or more of an object type's properties are optional, add a question mark `?` after
+the property's name:
+
+```javascript
+function printName(obj: { first: string; last?: string }) {
+  // ...
+}
+// Both OK
+printName({ first: "Bob" });
+printName({ first: "Alice", last: "Alisson" });
+```
+
+**Note:** when accessing an optional property you must its value for being `undefined` before using it in a
+context where it needs to have a definite value.
+
+
+# 8. 
 
 ```javascript
 ```
 
+## 8.1. 
 
-# 8. 
+```javascript
+```
+
+## 8.2. 
 
 ```javascript
 ```
