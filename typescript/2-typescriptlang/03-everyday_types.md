@@ -324,18 +324,51 @@ handleRequest(req.url, req.method);
 
 # 13. `null` and `undefined`
 
-```javascript
-```
+JS defines the two primitive *values*, `null` and `undefined`.
+
+TS defines two corresponding *types*, `null` and `undefined`.
 
 ## 13.1. `strictNullChecks` off
 
-```javascript
-```
+Setting `strictNullChecks` off allows your program to handle `null` and `undefined`
+values as usual:
+
+- Any property can be `null` or `undefined`
+- Any statement can access `null` or `undefined` properties
+
+To identify potential problems sooner rather than later, developers should set `strictNullChecks` on,
+if at all possible.
 
 ## 13.2. `strictNullChecks` on
 
+Setting `strictNullChecks` on tells TS to check for
+`null` or `undefined` values, and force developers to test for them before using the variable or property.
+
+This example shows how to use *narrowing* to check for a `null` value before running code that requires
+the value be a `string`:
+
 ```javascript
+function doSomething(x: string | null) {
+  if (x === null) {
+    // do nothing
+  } else {
+    console.log("Hello, " + x.toUpperCase());
+  }
+}
 ```
+
+## 13.3. Non-null Assertion Operator (Postfix `!`)
+
+Adding a '!' immediately after an expression causes TS to assume the value is *not* `null` or `undefined`.
+
+```javascript
+function liveDangerously(x?: number | null) {
+  // No error
+  console.log(x!.toFixed());
+}
+```
+
+**Note:** TS might not flag an error, but that does *not* guarantee the code will run as hoped!!
 
 
 # 14. Enums
