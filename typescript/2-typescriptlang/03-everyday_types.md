@@ -146,19 +146,51 @@ printName({ first: "Alice", last: "Alisson" });
 context where it needs to have a definite value.
 
 
-# 8. 
+# 8. Union Types
+
+TS allows combining existing types into new types called *union types.*
+
+The value of a union type may be any one of the union's *members'* types.
+
+## 8.1. Defining a Union Type
+
+Following is an example of a function that can work on a value that is either a `number` or a `string`:
 
 ```javascript
+function printId(id: number | string) {
+  console.log("Your ID is: " + id);
+}
+printId(101);             // OK
+printId("202");           // OK
+printId({ myID: 22342 }); // Error: Argument of type '{ myID: number; }' is not assignable to parameter of type 'string | number'.
 ```
 
-## 8.1. 
+## 8.2. Working with Union Types
+
+Using a union type's value requires *narrowing* it by using code to detect which of the union's member types the value is.
+
+This example shows how to test whether a value is a `string` before trying to use it `toUpperCase` itself:
 
 ```javascript
+function printId(id: number | string) {
+  if (typeof id === "string") {
+    console.log(id.toUpperCase());    // In this branch, id is of type 'string'
+  } else {
+    console.log(id);                  // Here, id is of type 'number'
+  }
+}
 ```
 
-## 8.2. 
+This example shows how to use `isArray` to ensure a value is an array before trying to use it to `join` its members:
 
 ```javascript
+function welcomePeople(x: string[] | string) {
+  if (Array.isArray(x)) {
+    console.log("Hello, " + x.join(" and "));       // Here: 'x' is 'string[]'
+  } else {
+    console.log("Welcome lone traveler " + x);      // Here: 'x' is 'string'
+  }
+}
 ```
 
 
