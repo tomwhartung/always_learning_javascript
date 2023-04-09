@@ -44,13 +44,69 @@ Setting `noImplicitAny` causes TS to flag any variable declaration as an error b
 
 # 5. Type Annotations on Variables
 
+Use the type annotation `: <type>` to specify the type of a variable declared using `const`, `let`, or `var`.
+
 ```javascript
+let myName: string = "Alice";          // ok, but "overkill"
 ```
 
-
-# 6. 
+In this case, declaring the type is superfluous, unnecessary, and even discouraged:
 
 ```javascript
+let myName = "Alice";      // No type annotation needed -- 'myName' inferred as type 'string'
+```
+
+# 6. Functions
+
+## 6.1. Parameter Type Annotations
+
+You can add the `: <type>` type annotation after the name of each function parameter:
+
+```javascript
+// Parameter type annotation
+function greet(name: string) {
+  console.log("Hello, " + name.toUpperCase() + "!!");
+}
+// . . .
+// . . .
+// . . .
+greet(42);    // TS flags the error: Argument of type 'number' is not assignable to parameter of type 'string'.
+```
+
+**Note:** TS also checks the *number of arguments* used to call a function, regardless of whether you specify the
+types of the parameters.
+
+## 6.2. Return Type Annotations
+
+You can also use the `: <type>` type annotation to declare the function's return type value:
+
+```javascript
+function getFavoriteNumber(): number {
+  return 26;
+}
+```
+
+## 6.3. Anonymous Functions
+
+When it can, TS uses *contextual typing* to assign types to the parameters of anonymous and arrow functions.
+
+For example:
+
+```javascript
+// No type annotations here, but TypeScript can spot the bug
+const names = ["Alice", "Bob", "Eve"];
+
+// Contextual typing for function
+names.forEach(function (s) {
+  console.log(s.toUppercase());
+Property 'toUppercase' does not exist on type 'string'. Did you mean 'toUpperCase'?
+});
+
+// Contextual typing also applies to arrow functions
+names.forEach((s) => {
+  console.log(s.toUppercase());
+Property 'toUppercase' does not exist on type 'string'. Did you mean 'toUpperCase'?
+});
 ```
 
 
