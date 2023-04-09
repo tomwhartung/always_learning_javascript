@@ -246,17 +246,79 @@ These nuances will be covered in more detail in subsequent chapters of this refe
 
 # 11. Type Assertions
 
+When you know the type of data a variable contains you can use *type assertions* or *casts*
+to coerce one type into another.
+
+Use the `as` keyword or angle brackets `<>` to specify type assertions:
+
 ```javascript
+const myCanvas = document.getElementById("main_canvas") as HTMLCanvasElement;
+const myCanvas = <HTMLCanvasElement>document.getElementById("main_canvas");
 ```
+
+**Note:** you can *not* use the angle brackets `<>` syntax in `.tsx` files.
+
+In general, Assertions must be to either a less specific type or a more specific version of a specific type.
+To get around this constraint, use two casts, first to `any`, then to the goal type.
+
+```javascript
+const a (expr as any) as T;
+```
+
 
 # 12. Literal Types
 
+Literal types are most useful when combined into a union representing the set of the actual *values*
+a variable may have.
+
+The following example shows how TS can catch a typo in the specification of an `alignment`:
+
 ```javascript
+function printText(s: string, alignment: "left" | "right" | "center") {
+  // ...
+}
+printText("Hello, world", "left");
+printText("G'day, mate", "centre");    // should be "center: not "centre"
+                                       // Error: Argument of type '"centre"' is not assignable to
+                                       //   parameter of type '"left" | "right" | "center"'.
+```
+
+Use the same sort of `: <value1> | <value2>  | .. <valueN>` syntax for `numeric` literals:
+
+```javascript
+function compare(a: string, b: string): -1 | 0 | 1 {
+  return a === b ? 0 : a > b ? 1 : -1;
+}
 ```
 
 ## 12.1. Literal Inference
 
+Using literal types can sometimes lead to errors with non-intuitive solutions.
+
+In this example, TS infers the method `"GET"` is a `string` and generates an error:
+
 ```javascript
+const req = { url: "https://example.com", method: "GET" };
+handleRequest(req.url, req.method);   // Error: Argument of type 'string' is not assignable to
+                                      //     parameter of type '"GET" | "POST"'.
+```
+
+There are two ways one can handle this:
+
+1. Cast the argument either in the `req` object or the function call
+
+```javascript
+// Change 1: cast the argument in the `req` object
+const req = { url: "https://example.com", method: "GET" as "GET" };
+// Change 2: cast the argument in the function call
+handleRequest(req.url, req.method as "GET");
+```
+
+2. Cast the entire `req` object as a `const`, forcing them to be type literals:
+
+```javascript
+const req = { url: "https://example.com", method: "GET" } as const;
+handleRequest(req.url, req.method);
 ```
 
 
