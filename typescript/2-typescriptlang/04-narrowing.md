@@ -199,20 +199,45 @@ function multiplyValue(container: Container, factor: number) {
 
 # 4. The `in` operator narrowing
 
+The JS `in` operator determines whether an object has a specific property.
+This enables TS to use it for *"`in` operator narrowing."*
+
+Following is an example demostrating *"`in` operator narrowing:"*
+
 ```javascript
+type Fish = { swim: () => void };
+type Bird = { fly: () => void };
+
+function move(animal: Fish | Bird) {
+  if ("swim" in animal) {
+    return animal.swim();
+  }
+
+  return animal.fly();
+}
 ```
 
+This example demonstrates how this can work with a `type` that has **optional** members:
+
+```javascript
+type Fish = { swim: () => void };
+type Bird = { fly: () => void };
+type Human = { swim?: () => void; fly?: () => void };
+
+function move(animal: Fish | Bird | Human) {
+  if ("swim" in animal) {
+    animal;               // (parameter) animal: Fish | Human
+  } else {
+    animal;               // (parameter) animal: Bird | Human
+  }
+}
+```
 
 # 5. `instanceof` narrowing
-
-```javascript
-```
 
 
 # 6. Assignments
 
-```javascript
-```
 
 
 # 7. Control flow analysis
