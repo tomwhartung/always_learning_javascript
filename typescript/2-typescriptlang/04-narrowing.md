@@ -235,14 +235,85 @@ function move(animal: Fish | Bird | Human) {
 
 # 5. `instanceof` narrowing
 
+The JS `instanceof` operator returns `true` when an object is in a class' *prototype chain.*
+This allows TS to use `instance of` as a *type guard* to check for *"`instanceof` narrowing."*
+
+Following is an example of *"`instanceof` narrowing:"*
+
+```javascript
+function logValue(x: Date | string) {
+  if (x instanceof Date) {
+    console.log(x.toUTCString());     // (parameter) x: Date
+  } else {
+    console.log(x.toUpperCase());     // (parameter) x: string
+  }
+}
+```
 
 # 6. Assignments
 
+TS looks for assignments and narrows the type of the variable on the left to the type of
+the variable on the right.
+
+```javascript
+let x = Math.random() < 0.5 ? 10 : "hello world!";   // let x: string | number
+x = 1;
+
+console.log(x);            // let x: number
+x = "goodbye!";
+console.log(x);            // let x: string
+```
+
+This example shows that TS flags an error when we try to assign a `boolean` value to `x`:
+
+```javascript
+let x = Math.random() < 0.5 ? 10 : "hello world!";    // let x: string | number
+x = 1;
+
+console.log(x);     // let x: number
+x = true;           // Error: Type 'boolean' is not assignable to type 'string | number'.
+
+console.log(x);     // let x: string | number
+```
 
 
 # 7. Control flow analysis
 
+The term *control flow analysis* refers to TS's ability to recognize that, under certain
+conditions, certain code is *unreachable*
+
+Returning to the `padLeft` function from section *0. **Narrowing** and **type guards** defined*:
+
 ```javascript
+function padLeft(padding: number | string, input: string) {
+  if (typeof padding === "number") {
+    return " ".repeat(padding) + input;
+  }
+  return padding + input;      // TS knows that when padding is numeric, this statement is unreachable
+}
+```
+
+This example demonstrates how TS can recognize that as `x` holds different types of values and
+is aware that `x`'s type changes in response to each change in value.
+
+```javascript
+function example() {
+  let x: string | number | boolean;
+
+  x = Math.random() < 0.5;
+
+  console.log(x);          // let x: boolean
+
+  if (Math.random() < 0.5) {
+    x = "hello";
+    console.log(x);        // let x: string
+  } else {
+    x = 100;
+    console.log(x);        // let x: number
+  }
+
+  return x;                // let x: string | number
+}
 ```
 
 
