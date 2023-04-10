@@ -319,8 +319,58 @@ function example() {
 
 # 8. Using type predicates
 
+Note that the following function definition declares that `isFish` returns type `: pet is Fish`.
+
 ```javascript
+function isFish(pet: Fish | Bird): pet is Fish {
+  return (pet as Fish).swim !== undefined;
+}
 ```
+
+When a function specifies a return type in the form `parameterName is Type` it is called
+a *"type predicate"*.
+Th *type predicate* in the previous example causes TS to *narrow* the type of the argument
+`pet` to `Fish`, as long as `pet`'s original type is compatible.
+
+- *Type predicates* give developers better control over variables whose types change
+
+Following is an example of how a developer can now use `isFish` to know which function to call
+when it's time for the pet to move:
+
+```javascript
+// Both calls to 'swim' and 'fly' are now okay.
+let pet = getSmallPet();
+
+if (isFish(pet)) {
+  pet.swim();
+} else {
+  pet.fly();
+}
+```
+
+The following example shows how to use `isFish` to `filter` an array named `zoo` containing
+both `Fish` and `Bird`s so that it has only `Fish`:
+
+```javascript
+const zoo: (Fish | Bird)[] = [getSmallPet(), getSmallPet(), getSmallPet()];
+const underWater1: Fish[] = zoo.filter(isFish);
+// or, equivalently
+const underWater2: Fish[] = zoo.filter(isFish) as Fish[];
+
+// The predicate may need repeating for more complex examples
+const underWater3: Fish[] = zoo.filter((pet): pet is Fish => {
+  if (pet.name === "sharkey") return false;
+  return isFish(pet);
+});
+```
+
+## 8.1. `this` based type guards
+
+TS also supports using the syntax `this is Type` in *"`this` based type guards"*
+Classes can use these to narrow their own type.
+
+For more about *"`this` based type guards"* see the section about them on the TS Manual's
+[classes page](https://www.typescriptlang.org/docs/handbook/2/classes.html#this-based-type-guards).
 
 
 # 9. Discriminated unions
