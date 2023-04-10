@@ -373,12 +373,15 @@ function liveDangerously(x?: number | null) {
 
 # 14. Enums
 
-```javascript
-```
+Use the TS `enum` keyword to declare an *enumerated type* that can hold only one of a set of literal values.
+
+- Learn more about TS Enums on the [handbook's Enums page](https://www.typescriptlang.org/docs/handbook/enums.html).
 
 
 # 15. Less Common Primitives
 
-```javascript
-```
+JS includes two primitive types, `bigint` and `symbol`.
+
+- Learn more about TS BigInts [here](https://www.typescriptlang.org/docs/handbook/release-notes/typescript-3-2.html#bigint)
+- Learn more about TS Symbols [on the Symbols page](https://www.typescriptlang.org/docs/handbook/symbols.html)
 
