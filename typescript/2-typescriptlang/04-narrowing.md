@@ -47,7 +47,26 @@ function padLeft(padding: number | string, input: string) {
 
 # 1. `typeof` type guards
 
+TS expects `typeof` to return a value matching one of the following strings:
+"`string`", "`number`", "`bigint`", "`boolean`", "`symbol`", "`undefined`", "`object`", or "`function`".
+
+TS is aware that JS's `typeof` has some quirks:
+
+- For one thing, in JS the `typeof` an Array is `object`
+- For another, in JS the `typeof null` is also `object`:
+
 ```javascript
+function printAll(strs: string | string[] | null) {
+  if (typeof strs === "object") {
+    for (const s of strs) {          // TS warns: 'strs' is possibly 'null'.
+      console.log(s);
+    }
+  } else if (typeof strs === "string") {
+    console.log(strs);
+  } else {
+    // do nothing
+  }
+}
 ```
 
 # 2. Truthiness narrowing
