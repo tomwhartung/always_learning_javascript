@@ -71,7 +71,72 @@ function printAll(strs: string | string[] | null) {
 
 # 2. Truthiness narrowing
 
+Conditionals in JS do *not* require the expression being tested to yield a `boolean`:
+
 ```javascript
+function getUsersOnlineMessage(numUsersOnline: number) {
+  if (numUsersOnline) {
+    return `There are ${numUsersOnline} online now!`;
+  }
+  return "Nobody's here. :(";
+}
+```
+
+This makes `if` statements in JS less concerned with what's *true* or *false* and more
+concerned with what is called the expression's *"truthiness"*.
+
+In JS's conditional satements, all of the following values *"coerce"* to `false`:
+
+- `0`
+- `NaN`
+- `""` (the empty string)
+- `0n` (the bigint version of zero)
+- `null`
+- `undefined`
+
+In JS, * **all** other values* coerce to `true`!
+
+If this seems bothersome, there are a couple of workarounds.
+You can do your own coercing by:
+
+- Call a `Boolean` function on your variable
+- Using `!!`, the *"double-Boolean negation"*
+
+```javascript
+// both of these result in 'true'
+Boolean("hello");      // type: boolean, value: true
+!!"world";             // type: true,    value: true
+```
+
+Leveraging JS's concept of *truthiness,* we frequently see code such as this:
+
+```javascript
+function printAll(strs: string | string[] | null) {
+  if (strs && typeof strs === "object") {           // checking strs for truthiness ensures it is not null or ""
+    for (const s of strs) {
+      console.log(s);
+    }
+  } else if (typeof strs === "string") {
+    console.log(strs);
+  }
+}
+```
+
+This is called *"narrowing by truthiness."*
+
+Here is an example of using `!`, a Boolean negation, to *narrow by truthiness.*
+
+```javascript
+function multiplyAll(
+  values: number[] | undefined,
+  factor: number
+): number[] | undefined {
+  if (!values) {
+    return values;
+  } else {
+    return values.map((x) => x * factor);
+  }
+}
 ```
 
 # 3. Equality narrowing
