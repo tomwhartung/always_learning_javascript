@@ -108,7 +108,8 @@ Boolean("hello");      // type: boolean, value: true
 !!"world";             // type: true,    value: true
 ```
 
-Leveraging JS's concept of *truthiness,* we frequently see code such as this:
+Leveraging JS's concept of *truthiness,* we frequently see code such as this version of `printAll`
+from section *1. `typeof` type guards*:
 
 ```javascript
 function printAll(strs: string | string[] | null) {
@@ -141,7 +142,58 @@ function multiplyAll(
 
 # 3. Equality narrowing
 
+In the following example, note that:
+
+- `x`'s type is `string | number`
+- `y`'s type is `string | boolean`
+
 ```javascript
+function example(x: string | number, y: string | boolean) {
+  if (x === y) {
+    // We can now call any 'string' method on 'x' or 'y'.
+    x.toUpperCase();                   // (method) String.toUpperCase(): string
+    y.toLowerCase();                   // (method) String.toLowerCase(): string
+  } else {
+    console.log(x);                   // (parameter) x: string | number
+    console.log(y);                   // (parameter) y: string | boolean
+  }
+}
+```
+
+This example shows how our `printAll` function from section *1. `typeof` type guards*
+above can use *equality narrowing* to prevent run-time errors:
+
+```javascript
+function printAll(strs: string | string[] | null) {
+  if (strs !== null) {
+    if (typeof strs === "object") {
+      for (const s of strs) {         // (parameter) strs: string[]
+        console.log(s);
+      }
+    } else if (typeof strs === "string") {
+      console.log(strs);              // (parameter) strs: string
+    }
+  }
+}
+```
+
+This example shows how to use JS's looser checks `==` and `!=` - which do not convert their operands
+to the same type before comparing them - to perform *equality narrowing:*
+
+```javascript
+interface Container {
+  value: number | null | undefined;
+}
+
+function multiplyValue(container: Container, factor: number) {
+  // Remove both 'null' and 'undefined' from the type.
+  if (container.value != null) {
+    console.log(container.value);            // (property) Container.value: number
+
+    // Now we can safely multiply 'container.value'.
+    container.value *= factor;
+  }
+}
 ```
 
 
