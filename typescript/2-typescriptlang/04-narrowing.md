@@ -375,7 +375,49 @@ For more about *"`this` based type guards"* see the section about them on the TS
 
 # 9. Discriminated unions
 
+A *"discriminated union"* is a union of types when each of them contains a common property set
+to a string literal that uniquely indentifies each of the types.
+
+The following example does *not* use a *discriminated union* and is the **wrong** way to try to
+create an abstract type:
+
 ```javascript
+interface Shape {
+  kind: "circle" | "square";
+  radius?: number;
+  sideLength?: number;
+}
+```
+
+The following example shows how to use a *discriminated union* to create an abstract type:
+
+```javascript
+interface Circle {
+  kind: "circle";
+  radius: number;
+}
+
+interface Square {
+  kind: "square";
+  sideLength: number;
+}
+
+type Shape = Circle | Square;
+```
+
+Using this design, TS can easily determine which `Shape` objects have a `radius` member and which
+have a `sideLength` member.
+This makes it easier to write methods like `getArea()`:
+
+```javascript
+function getArea(shape: Shape) {
+  switch (shape.kind) {
+    case "circle":
+      return Math.PI * shape.radius ** 2;   // (parameter) shape: Circle
+    case "square":
+      return shape.sideLength ** 2;         // (parameter) shape: Square
+  }
+}
 ```
 
 
