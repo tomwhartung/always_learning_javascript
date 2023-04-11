@@ -423,11 +423,39 @@ function getArea(shape: Shape) {
 
 # 10. The `never` type
 
-```javascript
-```
+When TS exhausts all of the posibilities in a *discriminated union* it will fall back and
+assign its `never` type to the variable in question.
 
 # 11. Exhaustiveness checking
 
+Through narrowing, any type may be assigned the `never` type, but the `never` type can
+only be assigned to itself.
+
+The following code shows how a developer might add a third type to the abstract `Shape` type above:
+
 ```javascript
+interface Triangle {
+  kind: "triangle";
+  sideLength: number;
+}
+
+type Shape = Circle | Square | Triangle;
+```
+
+The following code shows how to add a default case to the `getArea` method above and ensure TS
+will flag an error indicating `getArea` needs to handle the new type:
+
+```javascript
+function getArea(shape: Shape) {
+  switch (shape.kind) {
+    case "circle":
+      return Math.PI * shape.radius ** 2;
+    case "square":
+      return shape.sideLength ** 2;
+    default:
+      const _exhaustiveCheck: never = shape;   // Error: Type 'Triangle' is not assignable to type 'never'.
+      return _exhaustiveCheck;
+  }
+}
 ```
 
