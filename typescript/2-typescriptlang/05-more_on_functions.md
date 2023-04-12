@@ -99,18 +99,74 @@ const u = firstElement([]);                // u is of type undefined
 
 ## 4.1. Inference
 
+The previous example demonstrates how TS can automatically choose by *inferring* a type.
+
+This example shows how to define a *generic* function type using two different type variables,
+`Input` and `Output`:
+
 ```javascript
+function map<Input, Output>(arr: Input[], func: (arg: Input) => Output): Output[] {
+  return arr.map(func);
+}
+
+// Parameter 'n' is of type 'string'
+// 'parsed' is of type 'number[]'
+const parsed = map(["1", "2", "3"], (n) => parseInt(n));
 ```
+
+The example above shows how TS *inferred* the type of:
+
+- `Input` to be (an array of) `string`s
+- `Output` to be (an array of) `number`s
 
 ## 4.2. Constraints
 
+The following example shows an *attempt* to use `extends` to constrain `Type`
+to a `number`:
+
 ```javascript
+function longest<Type extends { length: number }>(a: Type, b: Type) {
+  if (a.length >= b.length) {
+    return a;
+  } else {
+    return b;
+  }
+}
+
+const longerArray = longest([1, 2], [1, 2, 3]);  // longerArray is of type 'number[]'
+const longerString = longest("alice", "bob");    // longerString is of type 'alice' | 'bob'
+
+const notOK = longest(10, 100);      // Error! Numbers don't have a 'length' property:
+                                     //   "Argument of type 'number' is not assignable to
+                                     //      parameter of type '{ length: number; }'."
 ```
+
+The *attempt* works ok with some types, but not `number`s,
+because the `number` type does not have a `.length` property.
 
 ## 4.3. Working with Constrained Values
 
+Here is an example of a rather subtle error:
+
 ```javascript
+function minimumLength<Type extends { length: number }>(
+  obj: Type,
+  minimum: number
+): Type {
+  if (obj.length >= minimum) {
+    return obj;
+  } else {
+    return { length: minimum };   // Error: "Type '{ length: number; }' is not assignable to type 'Type'.
+                                  // '{ length: number; }' is assignable to the constraint of type 'Type',
+                                  //  but 'Type' could be instantiated with a different subtype of
+                                  //  constraint '{ length: number; }'.
+  }
+}
 ```
+
+This is how the manual explains the reason for the error:
+
+> The problem is that the function promises to return the *same* kind of object as was passed in, not just *some* object matching the constraint.
 
 ## 4.4. Specifying Type Arguments
 
