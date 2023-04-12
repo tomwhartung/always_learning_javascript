@@ -36,16 +36,44 @@ function greeter(fn: GreetFunction) {
 
 # 2. Call Signatures
 
-```javascript
-```
+Use a *call signature* to describe *"something callable with properties."*
 
+Following is an example of how to write a *call signature:*
+
+```javascript
+type DescribableFunction = {
+  description: string;
+  (someArg: number): boolean;
+};
+function doSomething(fn: DescribableFunction) {
+  console.log(fn.description + " returned " + fn(6));
+}
+```
 
 
 # 3. Construct Signatures
 
+We typically use the `new` operator to call a function known as a *constructor* to construct an object.
+
+The following example shows how to combine `new` with a *call signature* to write a *construct signature:*
+
 ```javascript
+type SomeConstructor = {
+  new (s: string): SomeObject;
+};
+function fn(ctor: SomeConstructor) {
+  return new ctor("hello");
+}
 ```
 
+This example shows how to declare a combination of a *call signature* and a *construct signature:*
+
+```javascript
+interface CallOrConstruct {
+  new (s: string): Date;
+  (n?: number): number;
+}
+```
 
 
 # 4. Generic Functions
