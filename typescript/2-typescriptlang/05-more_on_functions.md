@@ -78,6 +78,59 @@ interface CallOrConstruct {
 
 # 4. Generic Functions
 
+When TS wants to consider one or more types as being dependent on another type,
+it calls the *correspondence* between these types *generics.*
+
+This example shows how to define this correspondence by declaring a *type parameter:*
+
+```javascript
+function firstElement<Type>(arr: Type[]): Type | undefined {
+  return arr[0];
+}
+```
+
+This allows `firstElement` to work with a variety of primitives:
+
+```javascript
+const s = firstElement(["a", "b", "c"]);   // s is of type 'string'
+const n = firstElement([1, 2, 3]);         // n is of type 'number'
+const u = firstElement([]);                // u is of type undefined
+```
+
+## 4.1. Inference
+
+```javascript
+```
+
+## 4.2. Constraints
+
+```javascript
+```
+
+## 4.3. Working with Constrained Values
+
+```javascript
+```
+
+## 4.4. Specifying Type Arguments
+
+```javascript
+```
+
+## 4.5. Guidelines for Writing Good Generic Functions
+
+### 4.5.1. Push Type Parameters Down
+
+```javascript
+```
+
+### 4.5.2. Use Fewer Type Parameters
+
+```javascript
+```
+
+### 4.5.3. Type Parameters Should Appear Twice
+
 ```javascript
 ```
 
