@@ -170,29 +170,105 @@ This is how the manual explains the reason for the error:
 
 ## 4.4. Specifying Type Arguments
 
+Given this *generic* function definition:
+
 ```javascript
+function combine<Type>(arr1: Type[], arr2: Type[]): Type[] {
+  return arr1.concat(arr2);
+}
+```
+
+Calling it with mismatched arrays is an error:
+
+```javascript
+const arr = combine([1, 2, 3], ["hello"]);   // Error: Type 'string' is not assignable to type 'number'.
+```
+
+But as this example shows, you can make it work by *specifying type arguments:*
+
+```javascript
+const arr = combine<string | number>([1, 2, 3], ["hello"]);
 ```
 
 ## 4.5. Guidelines for Writing Good Generic Functions
 
+Try to not *"get carried away with type parameters."*
+
 ### 4.5.1. Push Type Parameters Down
 
+At first glance, this code may look like it's defining two identical functions,
+`firstElement1` and `firstElement2`:
+
 ```javascript
+function firstElement1<Type>(arr: Type[]) {
+  return arr[0];
+}
+
+function firstElement2<Type extends any[]>(arr: Type) {
+  return arr[0];
+}
+
+const a = firstElement1([1, 2, 3]);    // a: number (good)
+const b = firstElement2([1, 2, 3]);    // b: any (bad)
 ```
+
+The `extends any[]` in `firstElement2` does more harm than good, because it *infers*
+the return type to be `any`.
+
+> **Rule:** When possible, use the type parameter itself rather than constraining it
 
 ### 4.5.2. Use Fewer Type Parameters
 
+At first glance, `filter1` and `filter2` appear to be very similar:
+
 ```javascript
+function filter1<Type>(arr: Type[], func: (arg: Type) => boolean): Type[] {
+  return arr.filter(func);
+}
+
+function filter2<Type, Func extends (arg: Type) => boolean>(
+  arr: Type[],
+  func: Func
+): Type[] {
+  return arr.filter(func);
+}
 ```
+
+Looking at `filter2` more closely, we see it creates a `Func` type parameter that
+*"doesn't relate two values"* and really just makes
+the code unnecessarily more complicated!
+
+> **Rule:** Always use as few type parameters as possible
 
 ### 4.5.3. Type Parameters Should Appear Twice
 
+This example looks reasonable, but in reality uses `extends` and *generic types* unnecessarily:
+
 ```javascript
+function greet<Str extends string>(s: Str) {
+  console.log("Hello, " + s);
+}
+
+greet("world");
 ```
 
+It's always best to keep things as simple as possible:
+
+```javascript
+function greet(s: string) {
+  console.log("Hello, " + s);
+}
+```
+
+> **Rule:** If a type parameter only appears in one location, strongly reconsider if you actually need it
 
 
 # 5. Optional Parameters
+
+```javascript
+```
+
+## 5.1. Optional Parameters in Callbacks
 
 ```javascript
 ```
