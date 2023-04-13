@@ -342,12 +342,68 @@ myForEach([1, 2, 3], (a, i) => {
 
 # 6. Function Overloads
 
+Use a TS function *overload signature* to write a function that can take two or more sets
+of arguments that have a different number of arguments, or different types, or both.
+
+The following code shows the syntax used to declare the `makeDate` function with a few different
+*overload signatures:*
+
 ```javascript
+function makeDate(timestamp: number): Date;                              // function overload #1
+function makeDate(m: number, d: number, y: number): Date;                // function overload #2
+function makeDate(mOrTimestamp: number, d?: number, y?: number): Date {  // implementation signature
+  if (d !== undefined && y !== undefined) {
+    return new Date(y, mOrTimestamp, d);
+  } else {
+    return new Date(mOrTimestamp);
+  }
+}
+const d1 = makeDate(12345678);
+const d2 = makeDate(5, 5, 5);
+const d3 = makeDate(1, 3);      // Error: "No overload expects 2 arguments, but overloads do exist that
+                                //   expect either 1 or 3 arguments."
 ```
+
+**Note:** the third definition has two optional arguments, but callers need to specify either none or
+both of them!
+
+- This is because the third signature is the *implementation signature*
+- The *implementation signature* is "invisible" and cannot be called directly
 
 ## 6.1. Overload Signatures and the Implementation Signature
 
+Following is code containing a TS rookie mistake:
+
 ```javascript
+function fn(x: string): void;
+function fn() {
+  // ...
+}
+        // We expect to be able to call fn with zero arguments
+fn();   // But get an Error: "Expected 1 arguments, but got 0."
+```
+
+> The signature of the *implementation* is not visible from the outside. When writing an overloaded function, you should always have *two or more* signatures above the implementation of the function.
+
+> The implementation signature must also be *compatible* with the overloaded signatures.
+
+This requirement includes the types of both the function arguments and its return type.
+
+The following code samples show two different types of incompatiblity:
+
+```javascript
+function fn(x: boolean): void;  // Argument type isn't right
+function fn(x: string): void;   // Error: "This overload signature is not compatible with its implementation signature."
+function fn(x: boolean) {}
+```
+
+```javascript
+function fn(x: string): string;
+                                   // Return type isn't right
+function fn(x: number): boolean;   // Error: "This overload signature is not compatible with its implementation signature."
+function fn(x: string | number) {
+  return "oops";
+}
 ```
 
 ## 6.2. Writing Good Overloads
