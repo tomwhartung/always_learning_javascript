@@ -494,8 +494,94 @@ const admins = db.filterUsers(() => this.admin);   // Error:
 
 # 7. Other Types to Know About
 
+You can use these types anywhere, but they are particularly useful when working with functions.
+
+## 7.1. `void`
+
+- TS infers that functions that do not return a value return `void`
+- JS functions that do not return a value return `undefined`
+
 ```javascript
+function noop() {   // The inferred return type is void
+  return;
+}
 ```
+
+The fact that *"`void` is not the same as `undefined`"* will be discussed later.
+
+## 7.2. `object`
+
+Any value that is not a primitive (`string`, `number`, etc.) is an "`object`".
+
+- An exception is `{}`, the *empty object type*
+- Because a `function` is *not* a primitive, in TS it is an `object`, and in JS it is an `Object`
+
+**Note:** `object` is *not* the same as `Object`.
+
+## 7.3. `unknown`
+
+The `unknown` type is similar to the `any` type because both can represent *any* value.
+
+- However, `unknown` is *"safer"* because you cannot do anyting with it:
+
+```javascript
+function f1(a: any) {
+  a.b(); // OK
+}
+function f2(a: unknown) {
+  a.b();                     // Error: "'a' is of type 'unknown'."
+}
+```
+
+This means a function can return a value of `unknown` type, but callers need to be careful when using it:
+
+```javascript
+function safeParse(s: string): unknown {
+  return JSON.parse(s);
+}
+
+const obj = safeParse(someRandomString);   // Need to be careful with 'obj'!
+```
+
+## 7.4. `never`
+
+This example shows a function that will *never* return:
+
+```javascript
+function fail(msg: string): never {
+  throw new Error(msg);
+}
+```
+
+Another example of when a `function` should return `never` is when it terminates execution.
+
+Another example of when TS uses `never` is when it's run out of options in a union type:
+
+```javascript
+function fn(x: string | number) {
+  if (typeof x === "string") {
+    // do something
+  } else if (typeof x === "number") {
+    // do something else
+  } else {
+    x; // has type 'never'!
+  }
+}
+```
+
+## 7.5. `Function`
+
+You can call values of type `Function`, but they return an `any` type value.
+
+```javascript
+function doSomething(f: Function) {
+  return f(1, 2, 3);
+}
+```
+
+**Note:** it is best to avoid *untyped function calls* such as this one.
+
+> If you need to accept an arbitrary function but don’t intend to call it, the type `() => void` is generally safer.
 
 
 # 8. Rest Parameters and Arguments
