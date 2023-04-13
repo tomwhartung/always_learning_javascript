@@ -299,8 +299,45 @@ f(undefined);
 
 ## 5.1. Optional Parameters in Callbacks
 
+This code shows a rookie mistake frequently made when working with callback functions:
+
 ```javascript
+function myForEach(arr: any[], callback: (arg: any, index?: number) => void) {
+  for (let i = 0; i < arr.length; i++) {
+    callback(arr[i], i);
+  }
+}
 ```
+
+The author of the code above, which specifies an optional `index` into the array,
+is *probably* hoping that both of the following calls to be legal:
+
+```javascript
+myForEach([1, 2, 3], (a) => console.log(a));
+myForEach([1, 2, 3], (a, i) => console.log(a, i));
+```
+
+But the function definition might be misleading, and the actual function be:
+
+```javascript
+function myForEach(arr: any[], callback: (arg: any, index?: number) => void) {
+  for (let i = 0; i < arr.length; i++) {
+    // I don't feel like providing the index today
+    callback(arr[i]);
+  }
+}
+```
+
+When it comes to using optional parameters in callbacks, TS may get "confused."
+
+```javascript
+myForEach([1, 2, 3], (a, i) => {
+  console.log(i.toFixed());      // Error: 'i' is possibly 'undefined'.
+});
+```
+
+> **Rule:** When writing a function type for a callback, never write an optional parameter unless you intend to call the function without passing that argument
+
 
 
 # 6. Function Overloads
