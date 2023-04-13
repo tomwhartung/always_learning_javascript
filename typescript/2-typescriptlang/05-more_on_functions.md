@@ -265,7 +265,36 @@ function greet(s: string) {
 
 # 5. Optional Parameters
 
+The following example shows how to use a question mark `?` totell TS that a function takes a
+variable number of arguments:
+
 ```javascript
+function f(x?: number) {
+  // ...
+}
+f(); // OK
+f(10); // OK
+```
+
+This next example shows how to specify a *default* value for an argument, for when someone calls
+the function without specifying one:
+
+```javascript
+function f(x = 10) {
+  // ...
+}
+```
+
+And this example demonstrates that calling a function specifying `undefined` as the argument is
+equivalent to not specifying an argument at all:
+
+```javascript
+declare function f(x?: number): void;
+// cut
+// All OK
+f();
+f(10);
+f(undefined);
 ```
 
 ## 5.1. Optional Parameters in Callbacks
@@ -275,6 +304,21 @@ function greet(s: string) {
 
 
 # 6. Function Overloads
+
+```javascript
+```
+
+## 6.1. Overload Signatures and the Implementation Signature
+
+```javascript
+```
+
+## 6.2. Writing Good Overloads
+
+```javascript
+```
+
+## 6.3. Declaring `this` in a Function
 
 ```javascript
 ```
