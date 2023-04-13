@@ -408,12 +408,87 @@ function fn(x: string | number) {
 
 ## 6.2. Writing Good Overloads
 
+The following example shows a function with two overloads that allow it to work with either a string or an array:
+
 ```javascript
+function len(s: string): number;
+function len(arr: any[]): number;
+function len(x: any) {
+  return x.length;
+}
+```
+
+Note that we can call it with a value that *is* a `string` or an array but
+**not** a value that *might be* a `string` or an array:
+
+```javascript
+len(""); // OK
+len([0]); // OK
+len(Math.random() > 0.5 ? "hello" : [0]);  // Error:
+                                           // "No overload matches this call.
+                                           //   Overload 1 of 2, '(s: string): number', gave the following error.
+                                           //    Argument of type 'number[] | "hello"' is not assignable to
+                                           //      parameter of type 'string'.
+                                           //     Type 'number[]' is not assignable to type 'string'.
+                                           //   Overload 2 of 2, '(arr: any[]): number', gave the following error.
+                                           //    Argument of type 'number[] | "hello"' is not assignable to
+                                           //      parameter of type 'any[]'.
+                                           //      Type 'string' is not assignable to type 'any[]'."
+```
+
+In this case, where both overloads have the same number of arguments, it is better to use a
+*union type* than *overload signatures.*
+
+```javascript
+function len(x: any[] | string) {
+  return x.length;
+}
 ```
 
 ## 6.3. Declaring `this` in a Function
 
+TS uses code flow analysis to determine what `this` is when its used in a function:
+
 ```javascript
+const user = {
+  id: 123,
+
+  admin: false,
+  becomeAdmin: function () {
+    this.admin = true;
+  },
+};
+```
+
+The JS specification disallows using `this` as a parameter, so TS allows you to use `this` in
+a parameter definition, along with the type of `this`.
+
+```javascript
+interface DB {
+  filterUsers(filter: (this: User) => boolean): User[];
+}
+
+const db = getDB();
+const admins = db.filterUsers(function (this: User) {
+  return this.admin;
+});
+```
+
+**Note:** using `this` as a parameter in this way works only in functions declared using the `function`
+keyword.
+
+- That is, using `this` as a parameter in this way does *not* work in arrow functions
+
+```javascript
+interface DB {
+  filterUsers(filter: (this: User) => boolean): User[];
+}
+
+const db = getDB();
+const admins = db.filterUsers(() => this.admin);   // Error:
+                                                   // "The containing arrow function captures the global value of 'this'.
+                                                   //   Element implicitly has an 'any' type because type
+                                                   //   'typeof globalThis' has no index signature."
 ```
 
 
