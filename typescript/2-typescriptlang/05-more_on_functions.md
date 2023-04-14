@@ -586,8 +586,49 @@ function doSomething(f: Function) {
 
 # 8. Rest Parameters and Arguments
 
+## 8.1. Rest Parameters
+
+The following example shows how to use the `...` syntax *in a function's argument list* to define a function that
+takes *rest parameters,* allowing the function to take an *unlimited* number of arguments:
+
 ```javascript
+function multiply(n: number, ...m: number[]) {
+  return m.map((x) => n * x);
+}
+// 'a' gets value [10, 20, 30, 40]
+const a = multiply(10, 1, 2, 3, 4);
 ```
+
+In TS these *rest parameters* should be declared as `Array[T]` or just `T[]`, or as a *tuple type,*
+else they default to the `any[]` type.
+
+## 8.2. Rest Arguments
+
+The following example shows how using the `...` syntax *when calling a function* can *spread* out an array
+into its individual elements:
+
+```javascript
+const arr1 = [1, 2, 3];
+const arr2 = [4, 5, 6];
+arr1.push(...arr2);
+```
+
+The fact that TS does not always *"assume that arrays are immutable"* can confuse newbies to TS:
+
+```javascript
+const args = [8, 5];     // Inferred type is number[] -- "an array with zero or more numbers",
+                         //   not specifically two numbers
+const angle = Math.atan2(...args); // Error: "A spread argument must either have a tuple type or be passed to a rest parameter."
+```
+
+In this case, an extra `const` fixes the error:
+
+```javascript
+const args = [8, 5] as const;      // Inferred as 2-length tuple
+const angle = Math.atan2(...args); // OK
+```
+
+**TODO:** learn more about how `const` works.  Apparently it's not exactly like other languages....
 
 
 # 9. Parameter Destructuring
