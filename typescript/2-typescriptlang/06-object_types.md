@@ -366,13 +366,78 @@ type OneOrManyOrNullStrings = OneOrManyOrNull<string>;    // type OneOrManyOrNul
 
 ## 5.1. The `Array` Type
 
+An `Array` is a *generic* type.
+
+- `number[]` is equivalent to `Array<number>`
+- `string[]` is equivalent to `Array<string>`
+
 ```javascript
+interface Array<Type> {
+  /**
+   * Gets or sets the length of the array.
+   */
+  length: number;
+
+  /**
+   * Removes the last element from an array and returns it.
+   */
+  pop(): Type | undefined;
+
+  /**
+   * Appends new elements to an array, and returns the new length of the array.
+   */
+  push(...items: Type[]): number;
+
+  // ...
+}
 ```
 
+JS provides other *generic* data structures, such as `Map<K,V>`, `Set<T>`, and `Promise<T>`.
 
 ## 5.2. The `ReadonlyArray` Type
 
+The following example shows how you can use the `ReadonlyArray` special type type to describe an
+array that shouldn't be changed:
+
 ```javascript
+function doStuff(values: ReadonlyArray<string>) {
+  // We can read from 'values'...
+  const copy = values.slice();
+  console.log(`The first value is ${values[0]}`);
+
+  // ...but we can't mutate 'values'.
+  values.push("hello!");                // Error: "Property 'push' does not exist on type 'readonly string[]'."
+}
+```
+
+The following example shows how to use a regular `Array` to create a `ReadonlyArray`:
+
+```javascript
+const roArray: ReadonlyArray<string> = ["red", "green", "blue"];
+```
+
+The following example, which is equivalent to a previous example, shows how to use
+the `readonly` keyword instead of using the `ReadonlyArray` special type:
+
+```javascript
+function doStuff(values: readonly string[]) {
+  // We can read from 'values'...
+  const copy = values.slice();
+  console.log(`The first value is ${values[0]}`);
+
+  // ...but we can't mutate 'values'.
+  values.push("hello!");                  // Error: "Property 'push' does not exist on type 'readonly string[]'."
+}
+```
+
+Interestingly, you *cannot* assign a `ReadonlyArray` to a regular `Array`:
+
+```javascript
+let x: readonly string[] = [];
+let y: string[] = [];
+
+x = y;
+y = x;      // Error: "The type 'readonly string[]' is 'readonly' and cannot be assigned to the mutable type 'string[]'."
 ```
 
 
