@@ -95,7 +95,7 @@ You can remove optional attributes by using
 
 ## 1.2. `readonly` Properties
 
-Use the TS `readonly` keyword to flag attempts to change a property during type checking:
+Use the TS `readonly` modifier to flag attempts to change a property during type checking:
 
 ```javascript
 interface SomeType {
@@ -136,7 +136,7 @@ function evict(home: Home) {
 }
 ```
 
-The `readonly` keyword is not infallible, because TS does not look for the signal when checking for compatibility
+The `readonly` modifier is not infallible, because TS does not look for the signal when checking for compatibility
 between types.
 
 The following example shows how to circumvent the `readonly` property of two properties
@@ -417,7 +417,7 @@ const roArray: ReadonlyArray<string> = ["red", "green", "blue"];
 ```
 
 The following example, which is equivalent to a previous example, shows how to use
-the `readonly` keyword instead of using the `ReadonlyArray` special type:
+the `readonly` modifier instead of using the `ReadonlyArray` special type:
 
 ```javascript
 function doStuff(values: readonly string[]) {
@@ -443,13 +443,59 @@ y = x;      // Error: "The type 'readonly string[]' is 'readonly' and cannot be 
 
 ## 5.3. Tuple Types
 
+*Tuple types* are relavent to TS only, and are not a feature of JS.
+
+Following is an example of a *tuple type:*
+
 ```javascript
+type StringNumberPair = [string, number];
 ```
 
+Violating the number of elements or the types defined causes an error.
+
+The following example shows how to *destructure* a *tuple type:*
+
+```javascript
+function doSomething(stringHash: [string, number]) {
+  const [inputString, hash] = stringHash;
+
+  console.log(inputString);   // const inputString: string
+  console.log(hash);          // const hash: number
+}
+```
+
+The following example shows how to use a question mark `?` to indicate the member of a tuple is optional:
+
+```javascript
+type Either2dOr3d = [number, number, number?];
+
+function setCoordinate(coord: Either2dOr3d) {
+  const [x, y, z] = coord;                 // const z: number | undefined
+
+  console.log(`Provided coordinates had ${coord.length} dimensions`);   // (property) length: 2 | 3
+}
+```
+
+Any optional members must be at the end.
+
+The following example shows how to use *rest elements* in a variety of *tuples:*
+
+```javascript
+type StringNumberBooleans = [string, number, ...boolean[]];
+type StringBooleansNumber = [string, ...boolean[], number];
+type BooleansStringNumber = [...boolean[], string, number];
+```
+
+These can come in handy when used in argument lists.
 
 ## 5.4. `Readonly` Tuple Types
 
-```javascript
-```
+The following example shows how to use the `readonly` modifier with a *tuple:*
 
+```javascript
+function doSomething(pair: readonly [string, number]) {
+
+  pair[0] = "hello!";   // Error: "Cannot assign to '0' because it is a read-only property."
+}
+```
 
