@@ -507,7 +507,7 @@ function noop() {   // The inferred return type is void
 }
 ```
 
-The fact that *"`void` is not the same as `undefined`"* will be discussed later.
+The fact that *"`void` is not the same as `undefined`"* is discussed in section *"10. Assignability of Functions"* below.
 
 ## 7.2. `object`
 
@@ -665,7 +665,52 @@ function sum({ a, b, c }: ABC) {
 
 # 10. Assignability of Functions
 
+# 10.1. Return type `void`
+
+When a function declares its return type to be `void`, it can return a value, but that value will be ignored.
+
+The following example shows several ways to implement the `() => void` type:
+
 ```javascript
+type voidFunc = () => void;
+
+const f1: voidFunc = () => {
+  return true;
+};
+
+const f2: voidFunc = () => true;
+
+const f3: voidFunc = function () {
+  return true;
+};
 ```
 
+This sort of code is *not* always valid, however.
+
+- For an exception, see the **(*)** footnote below.
+
+After the following calls to the `() => void` type functions above, the variables `v1, `v2`, and `v3` all maintain
+the `void` type:
+
+```javascript
+const v1 = f1();
+
+const v2 = f2();
+
+const v3 = f3();
+```
+
+**(*)** The following example code shows the exception mentioned above:
+
+```javascript
+function f2(): void {
+  // @ts-expect-error
+  return true;
+}
+
+const f3 = function (): void {
+  // @ts-expect-error
+  return true;
+};
+```
 
