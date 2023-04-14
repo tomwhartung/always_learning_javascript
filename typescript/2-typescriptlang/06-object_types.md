@@ -300,7 +300,68 @@ TODO: If I need to do this, figure out exactly what they mean by "how conflicts 
 
 # 5. Generic Object Types
 
+Following is an example of an `interface` that defines a *generic object type* that declares a *type parameter:*
+
 ```javascript
+interface Box<Type> {
+  contents: Type;
+}
+```
+
+The following example shows how to use a *type alias* to define a similar *generic object type:*
+
+```javascript
+type Box<Type> = {
+  contents: Type;
+};
+```
+
+In the above example, the *generic type* is `<Type>` and the *type parameter* is `Type`.
+
+The following example shows how to use this *generic type* to declare a variable
+by specifying a *type argument:*
+
+```javascript
+let box: Box<string>;
+let boxA: Box<string> = { contents: "hello" };
+```
+
+The following example shows how we can *reuse* the generic `Box` type to work with `Apple`s:
+
+```javascript
+interface Box<Type> {
+  contents: Type;
+}
+
+interface Apple {
+  // ....
+}
+
+// Same as '{ contents: Apple }'.
+type AppleBox = Box<Apple>;
+```
+
+The following example shows how a *generic object type* also allows us to use
+[*generic functions*](https://www.typescriptlang.org/docs/handbook/2/functions.html#generic-functions)
+instead of overloads:
+
+```javascript
+function setContents<Type>(box: Box<Type>, newContents: Type) {
+  box.contents = newContents;
+}
+```
+
+The following example shows how using a *type alias,* which can describe primitive as well as object types,
+enables us to define many interesting combinations:
+
+```javascript
+type OrNull<Type> = Type | null;
+
+type OneOrMany<Type> = Type | Type[];
+
+type OneOrManyOrNull<Type> = OrNull<OneOrMany<Type>>;    // type OneOrManyOrNull<Type> = OneOrMany<Type> | null
+
+type OneOrManyOrNullStrings = OneOrManyOrNull<string>;    // type OneOrManyOrNullStrings = OneOrMany<string> | null
 ```
 
 ## 5.1. The `Array` Type
