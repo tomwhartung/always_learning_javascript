@@ -633,7 +633,33 @@ const angle = Math.atan2(...args); // OK
 
 # 9. Parameter Destructuring
 
+The term *parameter destructuring* refers to unpacking an object used as a function argument.
+
+This example shows how JS performs *parameter destructuring* without types:
+
 ```javascript
+function sum({ a, b, c }) {    // Note the curly braces inside the parens and around the parameters
+  console.log(a + b + c);
+}
+sum({ a: 10, b: 3, c: 9 });    // Note the curly braces inside the parens and around the arguments
+```
+
+The following example shows how, in TS, the types go *after* the `{}` *"destructuring syntax:"*
+
+```javascript
+function sum({ a, b, c }: { a: number; b: number; c: number }) {
+  console.log(a + b + c);
+}
+```
+
+The following example shows how to use a TS *named type* `ABC` to do this:
+
+```javascript
+// Same as prior example
+type ABC = { a: number; b: number; c: number };
+function sum({ a, b, c }: ABC) {
+  console.log(a + b + c);
+}
 ```
 
 
