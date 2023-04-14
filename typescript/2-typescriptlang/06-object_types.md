@@ -205,15 +205,59 @@ adding and retrieval of `string`s:
 ```javascript
 interface NumberOrStringDictionary {
   [index: string]: number | string;
-  length: number; // ok, length is a number
-  name: string; // ok, name is a string
+  length: number;   // ok, length is a number
+  name: string;     // ok, name is a string
 }
+```
+
+The following example shows that making an index signature *readonly* will prevent changes to it:
+
+```javascript
+interface ReadonlyStringArray {
+  readonly [index: number]: string;
+}
+
+let myArray: ReadonlyStringArray = getReadOnlyStringArray();
+myArray[2] = "Mallory";     // Error: "Index signature in type 'ReadonlyStringArray' only permits reading."
 ```
 
 
 # 2. Extending Types
 
+The following example shows how to use the `extends` keyword when creating an `interface` to effectively copy
+the properties of one type into another type, then add more properties with more specialized data:
+
 ```javascript
+interface BasicAddress {
+  name?: string;
+  street: string;
+  city: string;
+  country: string;
+  postalCode: string;
+}
+
+interface AddressWithUnit extends BasicAddress {
+  unit: string;
+}
+```
+
+The following example shows how to `extend` two `interface`s:
+
+```javascript
+interface Colorful {
+  color: string;
+}
+
+interface Circle {
+  radius: number;
+}
+
+interface ColorfulCircle extends Colorful, Circle {}
+
+const cc: ColorfulCircle = {
+  color: "red",
+  radius: 42,
+};
 ```
 
 
