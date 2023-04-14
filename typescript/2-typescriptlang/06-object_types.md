@@ -263,14 +263,39 @@ const cc: ColorfulCircle = {
 
 # 3. Intersection Types
 
+The following example shows how to use an ampersand `&` to create an *intersection type,*
+which is a *type alias* that combines two existing types without extending them.
+
 ```javascript
+interface Colorful {
+  color: string;
+}
+interface Circle {
+  radius: number;
+}
+
+type ColorfulCircle = Colorful & Circle;
+```
+
+The following example code shows how we might use the `ColorfulCircle` type defined above:
+
+```javascript
+function draw(circle: Colorful & Circle) {
+  console.log(`Color was ${circle.color}`);
+  console.log(`Radius was ${circle.radius}`);
+}
+
+draw({ color: "blue", radius: 42 });    // okay
 ```
 
 
 # 4. Interfaces vs. Intersections
 
-```javascript
-```
+The subtle difference between the `interface` created in section *2. Extending Types*
+and the *intersection* created in section *3. Intersection Types* is, according to this
+section, "how conflicts are handled."
+
+TODO: If I need to do this, figure out exactly what they mean by "how conflicts are handled."
 
 
 # 5. Generic Object Types
