@@ -176,17 +176,27 @@ The following example shows the wrong way and the right way, to call the `loggin
 in the previous example:
 
 ```javascript
-loggingIdentity(3);     // Error: Argument of type 'number' is not assignable to parameter of type 'Lengthwise'.
+loggingIdentity(3);     // Error: "Argument of type 'number' is not assignable to parameter of type 'Lengthwise'."
 
 loggingIdentity({ length: 10, value: 3 });  // Ok
 ```
 
 # 6. Using Type Parameters in Generic Constraints
 
-The following example 
+The following example shows how to *"declare a type parameter that is constrained by another type parameter:"*
 
 ```javascript
+function getProperty<Type, Key extends keyof Type>(obj: Type, key: Key) {
+  return obj[key];
+}
+
+let x = { a: 1, b: 2, c: 3, d: 4 };
+
+getProperty(x, "a");
+getProperty(x, "m");     // Error: "Argument of type '"m"' is not assignable to parameter of type '"a" | "b" | "c" | "d"'."
 ```
+
+**Note:** it looks to me like am assuming that `keyof` is the type parameter that is being extended.
 
 # 7. Using Class Types in Generics
 
