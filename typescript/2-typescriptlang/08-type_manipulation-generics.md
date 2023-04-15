@@ -63,8 +63,60 @@ function loggingIdentity<Type>(arg: Array<Type>): Array<Type> {
 
 # 3. Generic Types
 
+The following example shows how we can create a `myIdentity` function based on the `identity` function:
+
 ```javascript
+function identity<Type>(arg: Type): Type {
+  return arg;
+}
+
+let myIdentity: <Input>(arg: Input) => Input = identity;
 ```
+
+Note that, when creating the `myIdentity` function we changed the name of the *type parameter* from `Type`
+to `Input`.
+
+The following example shows how to write the generic type *"as a call signature of an object literal type:"*
+
+```javascript
+function identity<Type>(arg: Type): Type {
+  return arg;
+}
+
+let myIdentity: { <Type>(arg: Type): Type } = identity;
+```
+
+The following code takes this one step further, taking the previous example's *object literal* and moving it
+into an `interface`:
+
+```javascript
+interface GenericIdentityFn {
+  <Type>(arg: Type): Type;
+}
+
+function identity<Type>(arg: Type): Type {
+  return arg;
+}
+
+let myIdentity: GenericIdentityFn = identity;
+```
+
+The following example shows how to make the *generic type* a *"parameter of the whole interface."*
+
+```javascript
+interface GenericIdentityFn<Type> {
+  (arg: Type): Type;
+}
+
+function identity<Type>(arg: Type): Type {
+  return arg;
+}
+
+let myIdentity: GenericIdentityFn<number> = identity;
+```
+
+**Note:** now when we use the `interface` we need to specify what we want to use for the `Type` -
+in this case, by specifying `<number>`.
 
 # 4. Generic Classes
 
