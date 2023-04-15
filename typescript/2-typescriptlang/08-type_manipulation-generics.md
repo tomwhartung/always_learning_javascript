@@ -118,10 +118,43 @@ let myIdentity: GenericIdentityFn<number> = identity;
 **Note:** now when we use the `interface` we need to specify what we want to use for the `Type` -
 in this case, by specifying `<number>`.
 
+
 # 4. Generic Classes
 
+The following example shows how to make a *generic class* by using angle brackets `<>` to specify
+a type name that will be referenced inside the class:
+
 ```javascript
+class GenericNumber<NumType> {
+  zeroValue: NumType;
+  add: (x: NumType, y: NumType) => NumType;
+}
+
+let myGenericNumber = new GenericNumber<number>();
+myGenericNumber.zeroValue = 0;
+myGenericNumber.add = function (x, y) {
+  return x + y;
+};
 ```
+
+The following example shows how someone could use the `GenericNumber` *generic `class`* with a value
+for `<NumType>` that is, in fact, non-numeric:
+
+```javascript
+let stringNumeric = new GenericNumber<string>();
+stringNumeric.zeroValue = "";
+stringNumeric.add = function (x, y) {
+  return x + y;
+};
+
+console.log(stringNumeric.add(stringNumeric.zeroValue, "test"));
+```
+
+It sounds like the technique of *"putting the type parameter on the class itself"* is preferred, because,
+as the manual states:
+
+> Just as with interface, putting the type parameter on the class itself lets us make sure all of the properties of the class are working with the same type.
+
 
 # 5. Generic Constraints
 
