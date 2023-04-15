@@ -2,7 +2,7 @@
 # 01-typescript_for_js_programmers.md
 
 Some notes from reading
-[typescript_for_js_programmers](https://www.typescriptlang.org/docs/handbook/typescript-in-5-minutes.html).
+[Typescript for JS Programmers](https://www.typescriptlang.org/docs/handbook/typescript-in-5-minutes.html).
 
 # 1. Types by Inference
 
