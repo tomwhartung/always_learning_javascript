@@ -38,7 +38,27 @@ If TS is unable to correctly *infer* the type, then you can always revert to spe
 
 # 2. Working With Generic Type Variables
 
+The following example shows how to write a variation on the `identity` function that:
+
+- Takes an array as its argument
+- Logs the number of elements in the array to the `console`
+- Returns the array
+
 ```javascript
+function loggingIdentity<Type>(arg: Type[]): Type[] {
+  console.log(arg.length);
+  return arg;
+}
+```
+
+The following example is a variation on the previous example that specifies the `Array` rather
+than using square brackets `[]` to declare that the argument and return type are arrays:
+
+```javascript
+function loggingIdentity<Type>(arg: Array<Type>): Array<Type> {
+  console.log(arg.length); // Array has a .length, so no more error
+  return arg;
+}
 ```
 
 # 3. Generic Types
