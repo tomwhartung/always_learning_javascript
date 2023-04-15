@@ -158,15 +158,39 @@ as the manual states:
 
 # 5. Generic Constraints
 
+The following example shows how to define an `interface` with the *constraint* that anyone who uses the interface
+must use it with objects and classes that have a `length` member:
+
 ```javascript
+interface Lengthwise {
+  length: number;
+}
+
+function loggingIdentity<Type extends Lengthwise>(arg: Type): Type {
+  console.log(arg.length); // Now we know it has a .length property, so no more error
+  return arg;
+}
+```
+
+The following example shows the wrong way and the right way, to call the `loggingIdentity` function defined
+in the previous example:
+
+```javascript
+loggingIdentity(3);     // Error: Argument of type 'number' is not assignable to parameter of type 'Lengthwise'.
+
+loggingIdentity({ length: 10, value: 3 });  // Ok
 ```
 
 # 6. Using Type Parameters in Generic Constraints
+
+The following example 
 
 ```javascript
 ```
 
 # 7. Using Class Types in Generics
+
+The following example 
 
 ```javascript
 ```
