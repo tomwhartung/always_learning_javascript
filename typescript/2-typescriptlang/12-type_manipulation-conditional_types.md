@@ -74,14 +74,55 @@ let c = createLabel(Math.random() ? "hello" : 42);   // let c: NameLabel | IdLab
 
 ## 1.1. Conditional Type Constraints
 
-The following example 
+The following example shows the error message TS displays when we try to use an index that doesn't necessarily
+exist to create an *indexed access type:*
 
 ```javascript
+type MessageOf<T> = T["message"];    // Error: "Type '"message"' cannot be used to index type 'T'."
 ```
 
-The following example 
+The following example shows how to *constrain* a type so that we don't get this error:
 
 ```javascript
+type MessageOf<T extends { message: unknown }> = T["message"];
+
+interface Email {
+  message: string;
+}
+
+type EmailMessageContents = MessageOf<Email>;    // type EmailMessageContents = string
+```
+
+The following example shows how to use the conditional operator to create a `MessageOf` type that
+can be used to create another type and defaults to `never` when the referenced type - in this case,
+`Dog` - does *not* have the member given in the index, i.e., `message`:
+
+```javascript
+type MessageOf<T> = T extends { message: unknown } ? T["message"] : never;
+
+interface Email {
+  message: string;
+}
+
+interface Dog {
+  bark(): void;
+}
+
+type EmailMessageContents = MessageOf<Email>;   // type EmailMessageContents = string
+
+type DogMessageContents = MessageOf<Dog>;       // type DogMessageContents = never
+```
+
+The following example shows how to `Flatten` an array while leaving non-array types as-is:
+
+```javascript
+type Flatten<T> = T extends any[] ? T[number] : T;
+
+// Extracts out the element type.
+type Str = Flatten<string[]>;   // type Str = string
+
+// Leaves the type alone.
+type Num = Flatten<number>;     // type Num = number
 ```
 
 
