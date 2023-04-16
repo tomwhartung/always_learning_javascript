@@ -162,8 +162,34 @@ type T1 = ReturnType<typeof stringOrNum>;    // type T1 = string | number
 
 # 2. Distributive Conditional Types
 
-The following example 
+The following example shows a conditional type `ToArray` that can convert any type that `extends any`
+into an array:
 
 ```javascript
+type ToArray<Type> = Type extends any ? Type[] : never;
+```
+
+The following example shows how using this type with a union causes TS to *distribute* over the union:
+
+```javascript
+type ToArray<Type> = Type extends any ? Type[] : never;
+
+type StrArrOrNumArr = ToArray<string | number>;    // type StrArrOrNumArr = string[] | number[]
+```
+
+In other words:
+
+1. `StrArrOrNumArr` distributes on the union `string | number`
+2. So it becomes essentially `ToArray<string> | ToArray<number>;`
+3. And leaves us with the type `string[] | number[]`
+
+The following example shows that you can *prevent* TS from being *distributive* by
+surrounding the types on either side of `extends` with square brackets `[]`:
+
+```javascript
+type ToArrayNonDist<Type> = [Type] extends [any] ? Type[] : never;
+
+// 'StrArrOrNumArr' is no longer a union.
+type StrArrOrNumArr = ToArrayNonDist<string | number>;    // type StrArrOrNumArr = (string | number)[]
 ```
 
