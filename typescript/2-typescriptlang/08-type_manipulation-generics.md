@@ -200,8 +200,46 @@ getProperty(x, "m");     // Error: "Argument of type '"m"' is not assignable to 
 
 # 7. Using Class Types in Generics
 
-The following example 
+The following example illustrates why you should *"refer to class types by their constructor functions"* when
+*"creating factories in TypeScript using generics:"*
 
 ```javascript
+function create<Type>(c: { new (): Type }): Type {
+  return new c();
+}
 ```
+
+Apparently this code is an example of a TS *factory:*
+
+```javascript
+class BeeKeeper {
+  hasMask: boolean = true;
+}
+
+class ZooKeeper {
+  nametag: string = "Mikle";
+}
+
+class Animal {
+  numLegs: number = 4;
+}
+
+class Bee extends Animal {
+  keeper: BeeKeeper = new BeeKeeper();
+}
+
+class Lion extends Animal {
+  keeper: ZooKeeper = new ZooKeeper();
+}
+
+function createInstance<A extends Animal>(c: new () => A): A {
+  return new c();
+}
+
+createInstance(Lion).keeper.nametag;
+createInstance(Bee).keeper.hasMask;
+```
+
+Perhaps one could say - and I'm kind of guessing here - that the preceding code is rather like an ecosystem
+and the `createInstance<A extends Animal>(c: new () => A): A { ... }` function is in turn like the factory.
 
