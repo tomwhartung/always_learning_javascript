@@ -128,12 +128,39 @@ type Num = Flatten<number>;     // type Num = number
 
 ## 1.2. Inferring Within Conditional Types
 
-The following example 
+The following example shows how to use the TS keyword `infer` to define the `Flatten` type from
+the previous example:
 
 ```javascript
+type Flatten<Type> = Type extends Array<infer Item> ? Item : Type;
 ```
 
-## 1.3. Distributive Conditional Types
+The following example shows how to use `infer` to extract the type of the value returned by function types:
+
+```javascript
+type GetReturnType<Type> = Type extends (...args: never[]) => infer Return
+  ? Return
+  : never;
+
+type Num = GetReturnType<() => number>;      // type Num = number
+
+type Str = GetReturnType<(x: string) => string>;      // type Str = string
+
+type Bools = GetReturnType<(a: boolean, b: boolean) => boolean[]>;      // type Bools = boolean[]
+```
+
+The following example demonstrates that TS uses the *last* function signature - i.e., the catchall case - when
+using `infer` with an overloaded function's `Return` types:
+
+```javascript
+declare function stringOrNum(x: string): number;
+declare function stringOrNum(x: number): string;
+declare function stringOrNum(x: string | number): string | number;
+
+type T1 = ReturnType<typeof stringOrNum>;    // type T1 = string | number
+```
+
+# 2. Distributive Conditional Types
 
 The following example 
 
