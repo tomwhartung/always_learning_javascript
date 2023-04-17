@@ -86,29 +86,87 @@ type User = Concrete<MaybeUser>;    // type User = { id: string; name: string; a
 
 # 1. Key Remapping via `as`
 
-The following example 
+The following example shows how to use `as` to re-map the keys in a mapped type:
 
 ```javascript
+type MappedTypeWithNewProperties<Type> = {
+    [Properties in keyof Type as NewKeyType]: Type[Properties]
+}
 ```
 
-The following example 
+The following example shows how to create a type called `Getters` then use it to create a new type named
+`LazyPerson` that contains a `get*` function for each property in the `Person` interface:
 
 ```javascript
+type Getters<Type> = {
+    [Property in keyof Type as `get${Capitalize<string & Property>}`]: () => Type[Property]
+};
+
+interface Person {
+    name: string;
+    age: number;
+    location: string;
+}
+
+type LazyPerson = Getters<Person>;   // type LazyPerson = { getName: () => string; getAge: () => number; getLocation: () => string; }
 ```
 
-
-
-# 2. Further Exploration
-
-The following example 
+The following example shows how to create a typed called `RemoveKindField`, then use that to create a new type named
+`KindlessCircle` which matches the `Circle` interface but has only the `radius` and does *not* have the `kind`	member:
 
 ```javascript
+// Remove the 'kind' property
+type RemoveKindField<Type> = {
+    [Property in keyof Type as Exclude<Property, "kind">]: Type[Property]
+};
+
+interface Circle {
+    kind: "circle";
+    radius: number;
+}
+
+type KindlessCircle = RemoveKindField<Circle>;   // type KindlessCircle = { radius: number; }
 ```
 
-The following example 
+The following example shows how to *"map over arbitrary unions, not just unions of string | number | symbol,
+but unions of any type:"*
 
 ```javascript
+type EventConfig<Events extends { kind: string }> = {
+    [E in Events as E["kind"]]: (event: E) => void;
+}
+
+type SquareEvent = { kind: "square", x: number, y: number };
+type CircleEvent = { kind: "circle", radius: number };
+
+type Config = EventConfig<SquareEvent | CircleEvent>   // type Config = {
+                                                       //   square: (event: SquareEvent) => void;
+                                                       //   circle: (event: CircleEvent) => void;
+                                                       // }
 ```
 
+In this case, the union of any type mentioned above is the `SquareEvent | CircleEvent` union.
 
+Frankly, at this time I do not see how something like this could be useful!
+Maybe that will change someday but still...!!
+
+# 1.1. Further Exploration
+
+The following example shows how to combine a *mapped type* with a *conditional type:*
+
+```javascript
+type ExtractPII<Type> = {
+  [Property in keyof Type]: Type[Property] extends { pii: true } ? true : false;
+};
+
+type DBFields = {
+  id: { format: "incrementing" };
+  name: { type: string; pii: true };
+};
+
+type ObjectsNeedingGDPRDeletion = ExtractPII<DBFields>;   // type ObjectsNeedingGDPRDeletion = {
+                                                          //   id: false;
+                                                          //   name: true;
+                                                          // }
+```
 
