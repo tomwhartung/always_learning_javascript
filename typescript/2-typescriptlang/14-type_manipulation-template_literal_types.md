@@ -18,7 +18,7 @@ type World = "world";
 type Greeting = `hello ${World}`;   // type Greeting = "hello world"
 ```
 
-**Note:** the use of backticks `\`` and curly braces `{}` in the `hello ${World}` part of the above example
+**Note:** the use of backticks `` ` `` and curly braces `{}` in the `hello ${World}` part of the above example
 come from JS's *template literal strings.*
 
 The following example shows the effect of using *template literal types* in unions:
@@ -48,30 +48,55 @@ type LocaleMessageIDs = `${Lang}_${AllLocaleIDs}`;   // type LocaleMessageIDs = 
 ## 1.1. String Unions in Types
 
 
-The following example 
+The following code example shows an object that we might want to write code to *"watch:"*
 
 ```javascript
+const passedObject = {
+  firstName: "Saoirse",
+  lastName: "Ronan",
+  age: 26,
+};
 ```
 
+In this case, writing code to *"watch"* this object entails adding a `on()` function to the base object defined above
+that takes the following two arguments:
 
-The following example 
+- A `string` named `eventName` that will be of the form `attributeInThePassedObject + Changed`
+- A `function` named `callBack` that, when called:
+  - Should be passed in a value of type `attributeInThePassedObject`
+    - For example, for the `firstName` attribute the type will be `string`
+    - And for the `age` attribute the type will be `number`
+  - Returns `void`
+
+The following example shows how this might work:
 
 ```javascript
+const person = makeWatchedObject({
+  firstName: "Saoirse",
+  lastName: "Ronan",
+  age: 26,
+});
+
+// makeWatchedObject has added `on` to the anonymous Object
+
+person.on("firstNameChanged", (newValue) => {
+  console.log(`firstName was changed to ${newValue}!`);
+});
 ```
 
+**This subsection continues on with more examples, but at this point I don't think it's worth
+delving into these details unless I find the need for this type of functionality.**
 
-The following example 
-
-```javascript
-```
-
-
-The following example 
-
-```javascript
-```
+**TODO"** delve into these details sometime when I might want to actually want this type of functionality,
+so that I can experiment a bit and all.
 
 ## 1.2. Inference with Template Literals
+
+
+The following example 
+
+```javascript
+```
 
 
 The following example 
