@@ -127,31 +127,44 @@ TS includes the following *string maniuplation types* listed below.
 
 ## 2.1. `Uppercase<StringType>`
 
-The following example 
+The following example shows how you might use the `Uppercase<StringType>` *intrinsic string manipulation type:*
 
 ```javascript
+type Greeting = "Hello, world"
+type ShoutyGreeting = Uppercase<Greeting>    // type ShoutyGreeting = "HELLO, WORLD"
+
+type ASCIICacheKey<Str extends string> = `ID-${Uppercase<Str>}`
+type MainID = ASCIICacheKey<"my_app">        // type MainID = "ID-MY_APP"
 ```
 
 ## 2.2. `Lowercase<StringType>`
 
-The following example 
+The following example shows how you might use the `Lowercase<StringType>` *intrinsic string manipulation type:*
 
 ```javascript
+type Greeting = "Hello, world"
+type QuietGreeting = Lowercase<Greeting>   // type QuietGreeting = "hello, world"
+
+type ASCIICacheKey<Str extends string> = `id-${Lowercase<Str>}`
+type MainID = ASCIICacheKey<"MY_APP">      // type MainID = "id-my_app"
 ```
 
 ## 2.3. `Capitalize<StringType>`
 
-
-The following example 
+The following example shows how you might use the `Capitalize<StringType>` *intrinsic string manipulation type:*
 
 ```javascript
+type LowercaseGreeting = "hello, world";
+type Greeting = Capitalize<LowercaseGreeting>;   // type Greeting = "Hello, world"
 ```
 
 ## 2.4. `Uncapitalize<StringType>`
 
-The following example 
+The following example shows how you might use the `Uncapitalize<StringType>` *intrinsic string manipulation type:*
 
 ```javascript
+type UppercaseGreeting = "HELLO WORLD";
+type UncomfortableGreeting = Uncapitalize<UppercaseGreeting>;   // type UncomfortableGreeting = "hELLO WORLD"
 ```
 
 
