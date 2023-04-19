@@ -92,44 +92,38 @@ so that I can experiment a bit and all.
 
 ## 1.2. Inference with Template Literals
 
-
-The following example 
-
-```javascript
-```
-
-
-The following example 
+The following example code builds on the idea of using declared types to create a function that can
+*"watch"* the arbitrary typed fields in a base object presented in the previous subsection:
 
 ```javascript
+type PropEventSource<Type> = {
+    on<Key extends string & keyof Type>
+        (eventName: `${Key}Changed`, callback: (newValue: Type[Key]) => void ): void;
+};
+
+declare function makeWatchedObject<Type>(obj: Type): Type & PropEventSource<Type>;
+
+const person = makeWatchedObject({
+  firstName: "Saoirse",
+  lastName: "Ronan",
+  age: 26
+});
+
+person.on("firstNameChanged", newName => {  // (parameter) newName: string console.log(`new name is ${newName.toUpperCase()}`); });
+
+person.on("ageChanged", newAge => {   // (parameter) newAge: number if (newAge < 0) { console.warn("warning! negative age"); }
+})
 ```
 
+Again, because I am just starting out with TS and anxious to get on to writing code for my Project, I cannot see a great
+reason to delve into these details, which to be honest I find to be rather esoteric, at this time.
 
-The following example 
-
-```javascript
-```
-
-
-The following example 
-
-```javascript
-```
-
-
-The following example 
-
-```javascript
-```
-
+**TODO:** see the **TODO:** item in the previous subsection above, when my time and interest level permit.
 
 
 # 2. Intrinsic String Manipulation Types
 
-The following example 
-
-```javascript
-```
+TS includes the following *string maniuplation types* listed below.
 
 ## 2.1. `Uppercase<StringType>`
 
