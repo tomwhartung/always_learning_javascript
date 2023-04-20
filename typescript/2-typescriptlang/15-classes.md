@@ -268,9 +268,69 @@ class MyClass {
 
 # 2. Class Heritage
 
+## 2.1. `implements` Clauses
+
 The following example 
 ```javascript
 ```
+
+### 2.1.1. Cautions
+
+The following example 
+```javascript
+```
+
+
+The following example 
+```javascript
+```
+
+## 2.2. `extends` Clauses
+
+The following example 
+```javascript
+```
+
+### 2.2.1. Overriding Methods
+
+The following example 
+```javascript
+```
+
+The following example 
+```javascript
+```
+
+The following example 
+```javascript
+```
+The following example 
+```javascript
+```
+
+### 2.2.2. Type-only Field Declarations
+
+The following example 
+```javascript
+```
+
+### 2.2.3. Initialization Order
+
+The following example 
+```javascript
+```
+
+### 2.2.4. Inheriting Built-in Types
+
+The following example 
+```javascript
+```
+
+
+The following example 
+```javascript
+```
+
 
 # 3. Member Visibility
 
