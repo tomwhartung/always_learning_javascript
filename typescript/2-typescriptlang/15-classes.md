@@ -165,8 +165,34 @@ class Derived extends Base {
 
 ## 1.4. Methods
 
-The following example 
+The following example shows how to declare the types of a *method's* argument and return value:
+
 ```javascript
+class Point {
+  x = 10;
+  y = 10;
+
+  scale(n: number): void {
+    this.x *= n;
+    this.y *= n;
+  }
+}
+```
+
+The following example shows that it is important to use `this` when referring to a `class`'s field from inside
+one of its *methods:*
+
+```javascript
+let x: number = 0;
+
+class C {
+  x: string = "hello";
+
+  m() {
+    // This is trying to modify 'x' from line 1, not the class property
+    x = "world";    // Error: "Type 'string' is not assignable to type 'number'."
+  }
+}
 ```
 
 ## 1.5. Getters / Setters
