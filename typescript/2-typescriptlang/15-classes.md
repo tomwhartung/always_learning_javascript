@@ -90,11 +90,77 @@ class OKGreeter {
 
 ## 1.2. `readonly`
 
+The following example  shows the error messages that result from trying to assign a value to a `readonly`
+field outside of the `constructor()`:
+
+```javascript
+class Greeter {
+  readonly name: string = "world";
+
+  constructor(otherName?: string) {
+    if (otherName !== undefined) {
+      this.name = otherName;
+    }
+  }
+
+  err() {
+    this.name = "not ok";   // Error: "Cannot assign to 'name' because it is a read-only property."
+  }
+}
+const g = new Greeter();
+g.name = "also not ok";   // Error: "Cannot assign to 'name' because it is a read-only property."
+```
 
 ## 1.3. Constructors
 
-The following example 
+The following example shows how to define a `constructor()` that takes parameters and supplies default values
+for when it is called without any arguments:
+
 ```javascript
+class Point {
+  x: number;
+  y: number;
+
+  // Normal signature with defaults
+  constructor(x = 0, y = 0) {
+    this.x = x;
+    this.y = y;
+  }
+}
+```
+
+The following example shows how to define overloads for a `constructor()`:
+
+```javascript
+class Point {
+  // Overloads
+  constructor(x: number, y: string);
+  constructor(s: string);
+  constructor(xs: any, y?: any) {
+    // TBD
+  }
+}
+```
+
+**Note** that in TS, `function`s can have type paramters and return type annotations, but `constructor()`s cannot.
+
+### 1.3.1. Super Calls
+
+The following example shows that in a class that `extends` a base class, the constructor must call `super()` *before*
+it can access one of the fields in the base class:
+
+```javascript
+class Base {
+  k = 4;
+}
+
+class Derived extends Base {
+  constructor() {
+    // Prints a wrong value in ES5; throws exception in ES6
+    console.log(this.k);   // Error: "'super' must be called before accessing 'this' in the constructor of a derived class."
+    super();
+  }
+}
 ```
 
 ## 1.4. Methods
