@@ -197,15 +197,73 @@ class C {
 
 ## 1.5. Getters / Setters
 
-The following example 
+The following example shows how to define *accessors* - methods that change and retrieve the values of a class's
+fields - in a class:
+
 ```javascript
+class C {
+  _length = 0;
+  get length() {
+    return this._length;
+  }
+  set length(value) {
+    this._length = value;
+  }
+}
+```
+
+**Note** the following conventions and rules:
+
+- *Accessor methods* are optional, and you would usually provide them *only* when additional logic is needed
+  - Examples of "additional logic" include validation, clean up or *sanitizing* user input, etc.
+- If a field has a `get` method but no `set` method, TS considers it to be `readonly`
+- If the type of the argument to the `set` method is *not* specified, TS infers it from the `get` method's return type
+- The `get` and `set` methods must have the same *visibility*
+
+The following example shows how to allow a `set` method to accept a union of types, then convert them as needed, so
+that the `get` method can return a single type:
+
+```javascript
+class Thing {
+  _size = 0;
+
+  get size(): number {
+    return this._size;
+  }
+
+  set size(value: string | number | boolean) {
+    let num = Number(value);
+
+    // Don't allow NaN, Infinity, etc
+
+    if (!Number.isFinite(num)) {
+      this._size = 0;
+      return;
+    }
+
+    this._size = num;
+  }
+}
 ```
 
 ## 1.6. Index Signatures
 
-The following example 
+The following example shows how a class can the *index signature* syntax used for *other object types*
+to declare an *index signature* in a `class`:
+
 ```javascript
+class MyClass {
+  [s: string]: boolean | ((s: string) => boolean);
+
+  check(s: string) {
+    return this[s] as boolean;
+  }
+}
 ```
+
+**Note:** that, although it is possible to do this, as the following quote reveals, the manual recommends against it:
+
+> Because the index signature type needs to also capture the types of methods, it’s not easy to usefully use these types. Generally it’s better to store indexed data in another place instead of on the class instance itself.
 
 
 # 2. Class Heritage
