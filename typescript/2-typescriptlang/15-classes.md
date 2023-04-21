@@ -270,19 +270,61 @@ class MyClass {
 
 ## 2.1. `implements` Clauses
 
-The following example 
+The following example shows how to use the `implements` clause to signal TS to check for proper inheritance from an `interface`:
+
 ```javascript
+interface Pingable {
+  ping(): void;
+}
+
+class Sonar implements Pingable {
+  ping() {
+    console.log("ping!");
+  }
+}
+
+class Ball implements Pingable {    // Error: "Class 'Ball' incorrectly implements interface 'Pingable'.
+                                    //   Property 'ping' is missing in type 'Ball' but required in type 'Pingable'."
+  pong() {
+    console.log("pong!");
+  }
+}
 ```
 
 ### 2.1.1. Cautions
 
-The following example 
+**Note:** the `implements` clause has no real effect on the inheriting type or class.
+It only signals TS to *check* that class *properly defines* the methods in its parent interface.
+
+The following example shows the error message TS displays when `NameChecker` does not *properly define* `Checkable`'s
+`check(name: string): boolean;` method, which it is supposed to implement:
+
 ```javascript
+interface Checkable {
+  check(name: string): boolean;
+}
+
+class NameChecker implements Checkable {
+  check(s) {                          // Error: "Parameter 's' implicitly has an 'any' type."
+    // Notice no error here
+    return s.toLowercse() === "ok";   // [toLowercse()] any
+  }
+}
 ```
 
+The following example demonstrates that neither TS nor JS creates the optional member `y` in class `C'
+just because `C implements A`:
 
-The following example 
 ```javascript
+interface A {
+  x: number;
+  y?: number;
+}
+class C implements A {
+  x = 0;
+}
+const c = new C();
+c.y = 10;         // Error: "Property 'y' does not exist on type 'C'."
 ```
 
 ## 2.2. `extends` Clauses
