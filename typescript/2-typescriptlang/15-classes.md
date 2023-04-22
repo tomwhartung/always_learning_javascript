@@ -329,31 +329,124 @@ c.y = 10;         // Error: "Property 'y' does not exist on type 'C'."
 
 ## 2.2. `extends` Clauses
 
-The following example 
+When one class `extends` another class, the *derived* [or *extending*] class gets all of the members
+defined in the *parent* [or *extended*] class.
+
+The following example shows how you can use an object of the derived class `Dog` to reference methods defined
+in both its parent class `Animal` and its own class:
+
 ```javascript
+class Animal {
+  move() {
+    console.log("Moving along!");
+  }
+}
+
+class Dog extends Animal {
+  woof(times: number) {
+    for (let i = 0; i < times; i++) {
+      console.log("woof!");
+    }
+  }
+}
+
+const d = new Dog();
+d.move();     // Base class method
+d.woof(3);    // Derived class method
 ```
 
 ### 2.2.1. Overriding Methods
 
-The following example 
+The following example shows how a derived class can override a method in its parent class, and
+use `super.` to access the overridded method:
+
 ```javascript
+class Base {
+  greet() {
+    console.log("Hello, world!");
+  }
+}
+
+class Derived extends Base {
+  greet(name?: string) {
+    if (name === undefined) {
+      super.greet();
+    } else {
+      console.log(`Hello, ${name.toUpperCase()}`);
+    }
+  }
+}
+
+const d = new Derived();
+d.greet();            // "Hello, world!"
+d.greet("reader");    // `Hello, READER`
 ```
 
-The following example 
+**Note** that the `name` parameter in the definition of `greet(name?: string)` in `Derived` above is marked optional
+by the question mark `?`.
+
+The following example shows how to use `d`, the instance of of the `Derived` class created in the previous example,
+to create an instance of the the `Base` class and access its `greet()` method:
+
 ```javascript
+// Alias the derived instance through a base class reference
+const b: Base = d;
+// No problem
+b.greet();
 ```
 
-The following example 
+The following example shows that trying to define `Derived` *without* making the `greet` method's `name` parameter
+*optional* - **which is a violation of `Base`'s contract** - causes a TS error:
+
 ```javascript
-```
-The following example 
-```javascript
+class Base {
+  greet() {
+    console.log("Hello, world!");
+  }
+}
+
+class Derived extends Base {
+  // Make this parameter required
+  greet(name: string) {     // Error: "Property 'greet' in type 'Derived' is not assignable to the same property in base type 'Base'.
+                            //    Type '(name: string) => void' is not assignable to type '() => void'."
+    console.log(`Hello, ${name.toUpperCase()}`);
+  }
+}
 ```
 
 ### 2.2.2. Type-only Field Declarations
 
-The following example 
+This subsection seems overly esoteric.
+Quoting from the manual:
+
+> "When `target >= ES2022` or `useDefineForClassFields` is `true`, class fields are initialized after the parent class constructor completes, overwriting any value set by the parent class."
+
+The following example shows how to use the `declare` keyword to fix the issue:
+
 ```javascript
+interface Animal {
+  dateOfBirth: any;
+}
+
+interface Dog extends Animal {
+  breed: any;
+}
+
+class AnimalHouse {
+  resident: Animal;
+  constructor(animal: Animal) {
+    this.resident = animal;
+  }
+}
+
+class DogHouse extends AnimalHouse {
+  // Does not emit JavaScript code,
+  // only ensures the types are correct
+  declare resident: Dog;
+  constructor(dog: Dog) {
+    super(dog);
+  }
+}
 ```
 
 ### 2.2.3. Initialization Order
