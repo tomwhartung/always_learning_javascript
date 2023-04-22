@@ -502,21 +502,51 @@ As the example shows, a `public` member is accessible from anywhere.
 
 ## 3.2. `protected`
 
-The following example 
+The following example shows how you can access a `protected` data member only from a subclass:
+
 ```javascript
+class Greeter {
+  public greet() {
+    console.log("Hello, " + this.getName());
+  }
+  protected getName() {
+    return "hi";
+  }
+}
+
+class SpecialGreeter extends Greeter {
+  public howdy() {
+    console.log("Howdy, " + this.getName());   // OK to access protected member here
+  }
+}
+const g = new SpecialGreeter();
+g.greet();      // OK, because it's public
+g.getName();    // Error: "Property 'getName' is protected and only accessible within class 'Greeter' and its subclasses."
 ```
 
 ### 3.2.1. Exposure of `protected` members
 
-The following example 
+The following example deomonstrates that a `Derived` class can override - and make accessible - a member defined in a
+`Base` class by defining the member with implicit `public` access:
+
 ```javascript
+class Base {
+  protected m = 10;
+}
+class Derived extends Base {
+  // No modifier, so default is 'public'
+  m = 15;
+}
+const d = new Derived();
+console.log(d.m); // OK
 ```
+
+**Note** that if one merely forgot to add `protected` to the definition of `m` in `Derived`, this technique can lead to logic errors.
+
+- I personally would recommend against shenanigans like this!
 
 ### 3.2.2. Cross-hierarchy `protected` access
 
-The following example 
-```javascript
-```
 
 ## 3.3. `private`
 
