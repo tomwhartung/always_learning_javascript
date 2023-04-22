@@ -697,11 +697,80 @@ class Dog {
 _Dog_barkAmount = new WeakMap();
 ```
 
-# 4. Static members
+# 4. Static Members
 
-The following example 
+The following example demonstrates that you do not need to instantiate a `class` before accessing its `static` members:
+
 ```javascript
+class MyClass {
+  static x = 0;
+  static printX() {
+    console.log(MyClass.x);
+  }
+}
+console.log(MyClass.x);
+MyClass.printX();
 ```
+
+The following example demonstrates how classes can have `static` members that are `private`:
+
+```javascript
+class MyClass {
+  private static x = 0;
+}
+console.log(MyClass.x);   // Error: "Property 'x' is private and only accessible within class 'MyClass'."
+```
+
+Classes can also have `static` members that are `protected`.
+
+The following example demonstrates that `static` members are inherited:
+
+```javascript
+class Base {
+  static getGreeting() {
+    return "Hello world";
+  }
+}
+class Derived extends Base {
+  myGreeting = Derived.getGreeting();
+}
+```
+
+## 4.1. Special Static Names
+
+The following example shows the error message you get if you try to declare a `static` member that conflicts with
+the `Function` [sic] prototype's properties:
+
+```javascript
+class S {
+  static name = "S!";
+Static property 'name' conflicts with built-in property 'Function.name' of constructor function 'S'.
+}
+```
+
+## 4.2. Why No Static Classes?
+
+The following example demonstrates some alternatives to defining a `static` class:
+
+```javascript
+// Unnecessary "static" class
+class MyStaticClass {
+  static doSomething() {}
+}
+
+// Preferred (alternative 1)
+function doSomething() {}
+
+// Preferred (alternative 2)
+const MyHelperObject = {
+  dosomething() {},
+};
+```
+
+**Note** that a `static class` makes sense only in languages such as Java and C# require all code to be put in a class.
+
+JS does not have that requirement, so there's no compelling reason to have a `static class`.
+
 
 # 5. `static` Blocks Classes
 
