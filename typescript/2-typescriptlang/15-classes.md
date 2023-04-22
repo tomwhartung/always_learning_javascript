@@ -547,58 +547,154 @@ console.log(d.m); // OK
 
 ### 3.2.2. Cross-hierarchy `protected` access
 
+The following example demonstrates the error message TS displays when you try to access an inherited, `protected` member
+that is in a class *more than one level away* from - i.e., not a direct descendant of - the current derived class:
+
+```javascript
+class Base {
+  protected x: number = 1;
+}
+class Derived1 extends Base {
+  protected x: number = 5;
+}
+class Derived2 extends Base {
+  f1(other: Derived2) {
+    other.x = 10;
+  }
+  f2(other: Base) {
+    other.x = 10;   // Error: "Property 'x' is protected and only accessible through an instance of class 'Derived2'.
+                    //    This is an instance of class 'Base'."
+  }
+}
+```
+
+For a look at some of the reasoning behind this, see this
+[blog post](https://learn.microsoft.com/en-us/archive/blogs/ericlippert/why-cant-i-access-a-protected-member-from-a-derived-class)
+entitled *Why Can't I Access A Protected Member From A Derived Class?* on
+[learn.microsoft.com](https://learn.microsoft.com).
 
 ## 3.3. `private`
 
-The following example 
+The following example shows that `private` class members are inaccessible globally:
+
 ```javascript
+class Base {
+  private x = 0;
+}
+const b = new Base();
+// Can't access from outside the class
+console.log(b.x);     // Error: "Property 'x' is private and only accessible within class 'Base'."
 ```
 
+The following example shows that `private` class members are also not accessible in derived classes:
 
-The following example 
 ```javascript
+class Derived extends Base {
+  showX() {
+    // Can't access in subclasses
+    console.log(this.x);     // Error: "Property 'x' is private and only accessible within class 'Base'."
+  }
+}
 ```
 
+The following example shows that a `Derived` class *cannot* increase the visibility of a `private` member of its `Base` class:
 
-The following example 
 ```javascript
+class Base {
+  private x = 0;
+}
+class Derived extends Base {  // Error: "Class 'Derived' incorrectly extends base class 'Base'.
+                              //   Property 'x' is private in type 'Base' but not in type 'Derived'."
+  x = 1;
+}
 ```
 
 ### 3.3.1. Cross-instance `private` access
 
-The following example 
+The following example shows that it is ok for one instance of an object to access the `private` member of another
+instance of the same class:
+
 ```javascript
+class A {
+  private x = 10;
+
+  public sameAs(other: A) {
+    // No error
+    return other.x === this.x;
+  }
+}
 ```
 
 ### 3.3.2. Caveats
 
-The following example 
+The following two examples shows that TS's visibility checking is not foolproof:
+
 ```javascript
+class MySafe {
+  private secretKey = 12345;
+}
 ```
 
+If this code is in a separate file that is *not* compiled using TS, then TS does not flag the code as
+violating the `private` visibility declared in a different file:
 
-The following example 
 ```javascript
+// In a JavaScript file...
+const s = new MySafe();
+// Will print 12345
+console.log(s.secretKey);
 ```
 
+The following example shows that another way to bypass TS's visibility checking is to use bracket `[]` notation:
 
-The following example 
 ```javascript
+class MySafe {
+  private secretKey = 12345;
+}
+
+const s = new MySafe();
+
+// Not allowed during type checking
+console.log(s.secretKey);    // Error: "Property 'secretKey' is private and only accessible within class 'MySafe'."
+
+// OK
+console.log(s["secretKey"]);
 ```
 
+The following two examples show how to use JS's
+[private fields](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Classes/Private_class_fields)
+hashmark `#` operator to make a member *"hard private:"*
 
-The following example 
 ```javascript
+class Dog {
+  #barkAmount = 0;
+  personality = "happy";
+
+  constructor() {}
+}
 ```
 
-
-The following example 
 ```javascript
+"use strict";
+class Dog {
+    #barkAmount = 0;
+    personality = "happy";
+    constructor() { }
+}
 ```
 
+The following example shows that TS uses `WeakMap`s in place of `#` when compiling to ES2021 or earlier:
 
-The following example 
 ```javascript
+"use strict";
+var _Dog_barkAmount;
+class Dog {
+    constructor() {
+        _Dog_barkAmount.set(this, 0);
+        this.personality = "happy";
+    }
+}
+_Dog_barkAmount = new WeakMap();
 ```
 
 # 4. Static members
