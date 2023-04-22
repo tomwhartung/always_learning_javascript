@@ -772,11 +772,30 @@ const MyHelperObject = {
 JS does not have that requirement, so there's no compelling reason to have a `static class`.
 
 
-# 5. `static` Blocks Classes
+# 5. `static` Blocks in Classes
 
-The following example 
+The following example shows how to use a `static` block of code in a class:
+
 ```javascript
+class Foo {
+    static #count = 0;
+
+    get count() {
+        return Foo.#count;
+    }
+
+    static {
+        try {
+            const lastInstances = loadLastInstances();
+            Foo.#count += lastInstances.length;
+        }
+        catch {}
+    }
+}
 ```
+
+This allows you to write code that has its own scope and can also access *hard private* class members.
+
 
 # 6. Generic Classes
 
