@@ -451,20 +451,33 @@ class DogHouse extends AnimalHouse {
 
 ### 2.2.3. Initialization Order
 
-The following example 
+The following example shows that the order in which JS initializes class members can be counter-intuitive at times:
+
 ```javascript
+class Base {
+  name = "base";
+  constructor() {
+    console.log("My name is " + this.name);
+  }
+}
+
+class Derived extends Base {
+  name = "derived";
+}
+
+const d = new Derived();   // Prints "base", not "derived"
 ```
+
+This is because JS runs the `constructor()` in the `Base` class before initializing the members in the `Derived` class and
+running its `constructor()`.
 
 ### 2.2.4. Inheriting Built-in Types
 
-The following example 
-```javascript
-```
+This subsection is so esoteric that the manual includes the following Note:
 
+> Note: If you don’t plan to inherit from built-in types like Array, Error, Map, etc. or your compilation target is explicitly set to ES6/ES2015 or above, you may skip this section
 
-The following example 
-```javascript
-```
+I think it's totally ok to skip this subsection.
 
 
 # 3. Member Visibility
