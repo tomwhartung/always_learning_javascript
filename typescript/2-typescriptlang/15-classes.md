@@ -482,6 +482,91 @@ I think it's totally ok to skip this subsection.
 
 # 3. Member Visibility
 
+## 3.1. `public`
+
+The following example demonstrates that `public` is the default visibility of class members:
+
+```javascript
+class Greeter {
+  public greet() {
+    console.log("hi!");
+  }
+}
+const g = new Greeter();
+g.greet();
+```
+
+As the example shows, a `public` member is accessible from anywhere.
+
+**Note** that because `public` is the default, personal preference and stylistic concerns are the only reasons to specify it.
+
+## 3.2. `protected`
+
+The following example 
+```javascript
+```
+
+### 3.2.1. Exposure of `protected` members
+
+The following example 
+```javascript
+```
+
+### 3.2.2. Cross-hierarchy `protected` access
+
+The following example 
+```javascript
+```
+
+## 3.3. `private`
+
+The following example 
+```javascript
+```
+
+
+The following example 
+```javascript
+```
+
+
+The following example 
+```javascript
+```
+
+### 3.3.1. Cross-instance `private` access
+
+The following example 
+```javascript
+```
+
+### 3.3.2. Caveats
+
+The following example 
+```javascript
+```
+
+
+The following example 
+```javascript
+```
+
+
+The following example 
+```javascript
+```
+
+
+The following example 
+```javascript
+```
+
+
+The following example 
+```javascript
+```
+
+
 The following example 
 ```javascript
 ```
