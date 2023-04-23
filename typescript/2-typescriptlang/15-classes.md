@@ -799,9 +799,36 @@ This allows you to write code that has its own scope and can also access *hard p
 
 # 6. Generic Classes
 
-The following example 
+The following example shows how, when a `new` instance of the `Box` class is created,
+TS infers that its `Type` is a `string`:
+
 ```javascript
+class Box<Type> {
+  contents: Type;
+  constructor(value: Type) {
+    this.contents = value;
+  }
+}
+
+const b = new Box("hello!");   // const b: Box<string>
 ```
+
+## 6.1. Type Parameters in Static Members
+
+The following example shows an error message that may well be non-intuitive:
+
+```javascript
+class Box<Type> {
+  static defaultValue: Type;   // Error "Static members cannot reference class type parameters."
+}
+```
+
+A generic class cannot have any `static` members that reference the class's `Type` because:
+
+- Type annotations are available *only* at compile time and *not* at runtime
+- And moreover there can be only *one* instance of the static `defaultValue` member
+  - But having multiple instances of different `Type`s of `Box` would require different `Type`s of `defaultValue`
+
 
 # 7. `this` at Runtime in Classes
 
