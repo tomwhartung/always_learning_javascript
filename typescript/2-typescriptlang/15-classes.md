@@ -1150,16 +1150,38 @@ class Derived extends Base {   // Error: "Non-abstract class 'Derived' does not 
 
 ## 11.1. Abstract Construct Signatures
 
-The following example 
+The following example shows that ... frankly I have no clue why someone might want to do something like this:
+
 ```javascript
+function greet(ctor: typeof Base) {
+  const instance = new ctor();     // Error: "Cannot create an instance of an abstract class."
+  instance.printName();
+}
 ```
 
-The following example 
+Apparently this example builds on previous examples, in which `Base` is an *abstract class,* and hence TS
+refuses to allow you to instantiate it.
+
+The following example shows the absurdity of allowing this sort of thing:
+
 ```javascript
+// Bad!
+greet(Base);
 ```
 
-The following example 
+"Bad!"???  Duh!!!
+
+The following example shows how to use a *construct signature* - in the form of an arrow `=>` function - that
+prompts TS to display a more explicit error message:
+
 ```javascript
+function greet(ctor: new () => Base) {
+  const instance = new ctor();
+  instance.printName();
+}
+greet(Derived);
+greet(Base);   // Error: "Argument of type 'typeof Base' is not assignable to parameter of type 'new () => Base'.
+               //   Cannot assign an abstract constructor type to a non-abstract constructor type."
 ```
 
 
