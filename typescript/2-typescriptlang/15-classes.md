@@ -998,13 +998,73 @@ Again, I have to question when relying on this sort of overly complex code reall
 
 ## 8.1. `this`-based type guards
 
-The following example 
+The following example shows how to mix using `this is Type` to declare the return type of methods
+with *type narrowing*:
+
 ```javascript
+class FileSystemObject {
+  isFile(): this is FileRep {
+    return this instanceof FileRep;
+  }
+  isDirectory(): this is Directory {
+    return this instanceof Directory;
+  }
+  isNetworked(): this is Networked & this {
+    return this.networked;
+  }
+  constructor(public path: string, private networked: boolean) {}
+}
+
+class FileRep extends FileSystemObject {
+  constructor(path: string, public content: string) {
+    super(path, false);
+  }
+}
+
+class Directory extends FileSystemObject {
+  children: FileSystemObject[];
+}
+
+interface Networked {
+  host: string;
+}
+
+const fso: FileSystemObject = new FileRep("foo/bar.txt", "foo");
+
+if (fso.isFile()) {
+  fso.content;     // const fso: FileRep
+} else if (fso.isDirectory()) {
+  fso.children;    // const fso: Directory
+} else if (fso.isNetworked()) {
+  fso.host;       // const fso: Networked & FileSystemObject
+}
 ```
 
-The following example 
+The manual suggests that the preceding code could be used for *"lazy validation of a particular field,"*
+and offers the following example as a way to remove *"an `undefined` from the value held inside box when
+`hasValue` has been verified to be true:
+
 ```javascript
+class Box<T> {
+  value?: T;
+
+  hasValue(): this is { value: T } {
+    return this.value !== undefined;
+  }
+}
+
+const box = new Box();
+box.value = "Gameboy";
+
+box.value;    // (property) Box<unknown>.value?: unknown
+
+if (box.hasValue()) {
+  box.value;  // (property) value: unknown
+}
 ```
+
+To be honest, I find it difficult to imagine a use case for this sort of technique, but if and when
+I need to do something like this, hopefully I'll remember to return here!
 
 # 9. Parameter Properties
 
