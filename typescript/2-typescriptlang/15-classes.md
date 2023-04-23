@@ -932,6 +932,76 @@ when using arrow `=>` functions.
 
 # 8. `this` Types
 
+The following example demonstrates the special significance of `this` in classes to TS, in that
+TS has inferred the return type from `set` is `this` - because the function literally `return`s `this`:
+
+```javascript
+class Box {
+  contents: string = "";
+  set(value: string) {   // (method) Box.set(value: string): this
+    this.contents = value;
+    return this;
+  }
+}
+```
+
+This is notable because TS could have inferred the `return` type to be `Box`.
+
+The following example shows how this can be useful when we derive a class from `Box`:
+
+```javascript
+class ClearableBox extends Box {
+  clear() {
+    this.contents = "";
+  }
+}
+
+const a = new ClearableBox();
+const b = a.set("hello");    // const b: ClearableBox
+```
+
+The preceding example shows that in this case, we would want `set` to return a `ClearableBox` rather
+than just a `Box`, justifying TS inferring `set`s return type to be `this`.
+
+The following example shows that you can also use `this` in a method's *parameter **type** * definition:
+
+```javascript
+class Box {
+  content: string = "";
+  sameAs(other: this) {
+    return other.content === this.content;
+  }
+}
+```
+
+The following example shows how this works similarly to the previous examples when used with a derived class:
+
+```javascript
+class Box {
+  content: string = "";
+  sameAs(other: this) {
+    return other.content === this.content;
+  }
+}
+
+class DerivedBox extends Box {
+  otherContent: string = "?";
+}
+
+const base = new Box();
+const derived = new DerivedBox();
+derived.sameAs(base);    // Error: "Argument of type 'Box' is not assignable to parameter of type 'DerivedBox'.
+                         //   Property 'otherContent' is missing in type 'Box' but required in type 'DerivedBox'."
+```
+
+Again, I have to question when relying on this sort of overly complex code really makes sense....
+
+## 8.1. `this`-based type guards
+
+The following example 
+```javascript
+```
+
 The following example 
 ```javascript
 ```
