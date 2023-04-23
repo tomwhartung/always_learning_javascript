@@ -1090,9 +1090,23 @@ console.log(a.z);    // Error: "Property 'z' is private and only accessible with
 
 # 10. Class Expressions
 
-The following example 
+The following example shows a *class expression:*
+
 ```javascript
+const someClass = class<Type> {
+  content: Type;
+  constructor(value: Type) {
+    this.content = value;
+  }
+};
+
+const m = new someClass("Hello, world");   // const m: someClass<string>
 ```
+
+The preceding *class expression* is similar to a class declaration, except it has no name!
+
+- The only way to refer to the class is through its instances.
+
 
 # 11. `abstract` Classes and Members
 
