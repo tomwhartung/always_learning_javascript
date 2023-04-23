@@ -887,9 +887,48 @@ or an arrow `=>` function in a class:
 
 ## 7.2. `this` parameters
 
-The following example 
+The following two examples show that using `this` as an argument in a function definition has a *special meaning:*
+
 ```javascript
+// TypeScript input with 'this' parameter
+function fn(this: SomeType, x: number) {
+  /* ... */
+}
 ```
+
+The TS compiler removes the `this` argument, as the following code - which is the previous code example
+*after* having been run through the TS compiler - shows:
+
+```javascript
+// JavaScript output
+function fn(x) {
+  /* ... */
+}
+```
+
+The following example shows that putting `this` in a function's argument list causes TS to check
+*"that calling a function with a this parameter is done so with a correct context:"*
+
+```javascript
+class MyClass {
+  name = "MyClass";
+  getName(this: MyClass) {
+    return this.name;
+  }
+}
+const c = new MyClass();
+// OK
+c.getName();
+
+// Error, would crash
+const g = c.getName;
+console.log(g());   // Error: "The 'this' context of type 'void' is not assignable to method's 'this' of type 'MyClass'."
+```
+
+According to the manual, the tradeoffs for using this technique are the opposite of the tradeoffs
+when using arrow `=>` functions.
+
+**TODO:** if I ever want to do something this weird, review what the manual has to say about it.
 
 # 8. `this` Types
 
