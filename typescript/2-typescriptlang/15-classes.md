@@ -1110,16 +1110,42 @@ The preceding *class expression* is similar to a class declaration, except it ha
 
 # 11. `abstract` Classes and Members
 
-The following example 
+The following example demonstrates how you can define an *abstract method* which, like an *abstract field,*
+must be in an *abstract class:*
+
 ```javascript
+abstract class Base {
+  abstract getName(): string;
+
+  printName() {
+    console.log("Hello, " + this.getName());
+  }
+}
+
+const b = new Base();  // Error: "Cannot create an instance of an abstract class."
 ```
 
-The following example 
+The following example shows that the *only* way we can use an *abstract class* is to use it to *derive* a class:
+
 ```javascript
+class Derived extends Base {
+  getName() {
+    return "world";
+  }
+}
+
+const d = new Derived();
+d.printName();
 ```
 
-The following example 
+The following example demonstrates the error we get if the derived class fails to *implement all*
+of its parent's `abstract` fields and methods.
+
 ```javascript
+class Derived extends Base {   // Error: "Non-abstract class 'Derived' does not implement
+                               //   inherited abstract member 'getName' from class 'Base'."
+  // forgot to do anything
+}
 ```
 
 ## 11.1. Abstract Construct Signatures
