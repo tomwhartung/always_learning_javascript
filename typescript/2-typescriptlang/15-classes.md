@@ -1187,7 +1187,58 @@ greet(Base);   // Error: "Argument of type 'typeof Base' is not assignable to pa
 
 # 12. Relationships Between Classes
 
-The following example 
+The following example demonstrates that, because TS compares classes *structurally,* it can tell that the classes
+`Point1` and `Point2` are identical:
+
 ```javascript
+class Point1 {
+  x = 0;
+  y = 0;
+}
+
+class Point2 {
+  x = 0;
+  y = 0;
+}
+
+// OK
+const p: Point1 = new Point2();
+```
+
+The following example shows that, because TS uses *structural comparisons,* it can identify that
+`Employee` is a subclass of `Person` even though it does not use `extends` to explicitly declare
+itself as such:
+
+```javascript
+class Person {
+  name: string;
+  age: number;
+}
+
+class Employee {
+  name: string;
+  age: number;
+  salary: number;
+}
+
+// OK
+const p: Person = new Employee();
+```
+
+Again, I have no idea why someone would want to declare an empty class - and at least the manual cautions us
+against doing so - but due to its use of *structural comparisons,* the following example shows how TS is
+fine with this sort of absurdity:
+
+```javascript
+class Empty {}   // Don't - just DON'T!!
+
+function fn(x: Empty) {
+  // can't do anything with 'x', so I won't
+}
+
+// All OK!
+fn(window);
+fn({});
+fn(fn);
 ```
 
