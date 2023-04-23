@@ -832,6 +832,61 @@ A generic class cannot have any `static` members that reference the class's `Typ
 
 # 7. `this` at Runtime in Classes
 
+The following example demonstrates that the *way a function is called* determines the behavior of `this`
+in functions:
+
+```javascript
+class MyClass {
+  name = "MyClass";
+  getName() {
+    return this.name;
+  }
+}
+const c = new MyClass();
+const obj = {
+  name: "obj",
+  getName: c.getName,
+};
+
+// Prints "obj", not "MyClass"
+console.log(obj.getName());
+```
+
+In the preceding example, `getName` is called via `obj`, *not* via `MyClass` and `c`.
+
+The manual offers some work-arounds for this possibly confusing behavior, but I personally would recommend
+steering away from writing such confusing, non-KISS, ambiguous code!
+
+## 7.1. Arrow Functions
+
+The following example, which is similar to the preceding example, shows how `this` works differently in
+arrow `=>` functions:
+
+```javascript
+class MyClass {
+  name = "MyClass";
+  getName = () => {
+    return this.name;
+  };
+}
+const c = new MyClass();
+const g = c.getName;
+// Prints "MyClass" instead of crashing
+console.log(g());
+```
+
+The manual offers these trade-offs for our consideration when deciding whether to use a regular function
+or an arrow `=>` function in a class:
+
+- The value of `this` in the arrow `=>` function *"is guaranteed to be correct at runtime"*
+  - That is, the value will be more intuitive in the arrow function
+- Using the arrow `=>` function function will consume more memory
+  - This is *"because each instance will have its own copy of each function defined this way"*
+- The prototype chain does not have an entry for the arrow `=>` function
+  - This means you cannot use `super.getName`
+
+## 7.2. `this` parameters
+
 The following example 
 ```javascript
 ```
