@@ -1066,10 +1066,26 @@ if (box.hasValue()) {
 To be honest, I find it difficult to imagine a use case for this sort of technique, but if and when
 I need to do something like this, hopefully I'll remember to return here!
 
+
 # 9. Parameter Properties
 
-The following example 
+The following example the *special syntax* TS offers for creating *parameter properties* - members
+that TS *automatically creates* when you use an *access modifier* to prefix one or more arguments to
+a `class`'s `constructor`:
+
 ```javascript
+class Params {
+  constructor(
+    public readonly x: number,
+    protected y: number,
+    private z: number
+  ) {
+    // No body necessary
+  }
+}
+const a = new Params(1, 2, 3);
+console.log(a.x);    // (property) Params.x: number
+console.log(a.z);    // Error: "Property 'z' is private and only accessible within class 'Params'."
 ```
 
 # 10. Class Expressions
@@ -1078,11 +1094,34 @@ The following example
 ```javascript
 ```
 
-# 11. Classes and Members
+# 11. `abstract` Classes and Members
 
 The following example 
 ```javascript
 ```
+
+The following example 
+```javascript
+```
+
+The following example 
+```javascript
+```
+
+## 11.1. Abstract Construct Signatures
+
+The following example 
+```javascript
+```
+
+The following example 
+```javascript
+```
+
+The following example 
+```javascript
+```
+
 
 # 12. Relationships Between Classes
 
