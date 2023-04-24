@@ -202,7 +202,7 @@ const code = fs.readFileSync("hello.ts", "utf8");
 The `npm` node package manager uses **CommonJS syntax,** so even if you use the ES Modules syntax and
 do not plan on using it, having a basic understanding of it can be helpful.
 
-### 4.1.1. Exporting
+### 4.1. Exporting
 
 The following example shows how to use *CommonJS syntax* to list a set of identifiers as `module.exports`
 on a global `module`:
@@ -240,22 +240,52 @@ squareTwo;                  // const squareTwo: any
 **Note:* admittedly, as far as I'm concerned anyway, these examples do not explain this very well; for details see the
 [TS modules reference page](https://www.typescriptlang.org/docs/handbook/modules.html#export--and-import--require).
 
-## 4.1. CommonJS and ES Modules interop
+## 4.2. CommonJS and ES Modules interop
 
 If you are mixing the CommonJS and ES Modules syntaxes and run into issues, consider setting the
 [esModuleInterop](https://www.typescriptlang.org/tsconfig#esModuleInterop) TS compiler flag.
 
 # 5. TypeScript’s Module Resolution Options
 
-The following example 
-```javascript
-```
+The process of using a filename string in an `import` or `require` statement to determine which file
+on the filesystem to read is called *"module resolution."*
 
-The following example 
-```javascript
-```
+TS uses one of the following resolution strategies:
+
+- *Node:*
+  - Replicates the Node.js strategy for CommonJS code
+  - Includes checks for `.ts` and `.d.ts` files
+- *Classic:*
+  - Used when the `module` compiler option is *not* `commonjs`
+  - Included for backward compatibility
+
+TS includes the following flags that influence how the module strategy works:
+
+- [moduleResolution](https://www.typescriptlang.org/tsconfig#moduleResolution)
+- [baseUrl](https://www.typescriptlang.org/tsconfig#baseUrl)
+- [paths](https://www.typescriptlang.org/tsconfig#paths)
+- [rootDirs](https://www.typescriptlang.org/tsconfig#rootDirs)
+
+For comprehensive information about this topic, see the
+[TS Module Resolution page](https://www.typescriptlang.org/docs/handbook/module-resolution.html).
 
 # 6. TypeScript’s Module Output Options
+
+The following example 
+```javascript
+```
+
+## 6.1. `ES2020`
+
+The following example 
+```javascript
+```
+
+## 6.2. `CommonJS`
+
+The following example 
+```javascript
+```
 
 The following example 
 ```javascript
