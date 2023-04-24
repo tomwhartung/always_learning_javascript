@@ -337,9 +337,15 @@ when the `module` option is set to `ES2020`:
 Again, for details see the
 [TSConfig Reference for `module`](https://www.typescriptlang.org/tsconfig#module).
 
-# 7. TypeScript namespaces
+# 7. TypeScript `namespaces`
 
-The following example 
-```javascript
-```
+The TS `namespaces` module format is an older standard that is still used in projects such as
+[DefinitelyTyped](https://www.typescriptlang.org/dt).
+
+**Note:** that particular link is currently broken; maybe check back later?
+
+The manual recommends using the **ES Modules standard,** *"to align with JavaScript's direction."*
+
+For more information about `namespaces`, see the
+[namespaces reference page](https://www.typescriptlang.org/docs/handbook/namespaces.html).
 
