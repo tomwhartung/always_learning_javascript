@@ -136,7 +136,8 @@ You might want to do this when the code in the module has side-effects, e.g., in
 
 ### 3.2.1. TypeScript Specific ES Module Syntax
 
-The following example 
+The following example shows how JS and TS both understand the same `export` and `import` syntax:
+
 ```javascript
 // @filename: animal.ts
 export type Cat = { breed: string; yearOfBirth: number };
@@ -151,13 +152,15 @@ import { Cat, Dog } from "./animal.js";
 type Animals = Cat | Dog;
 ```
 
-#### 3.2.1.1. `import` type
+#### 3.2.1.1. `import type`
 
-The following example 
+The following example shows how you can use the `import type` TS extension to the JS `import` syntax to
+`import` *only* types:
+
 ```javascript
 // @filename: animal.ts
-export type Cat = { breed: string; yearOfBirth: number };
-'createCatName' cannot be used as a value because it was imported using 'import type'.
+export type Cat = { breed: string; yearOfBirth: number };   // Error: "'createCatName' cannot be used as a value
+                                                            //   because it was imported using 'import type'.
 export type Dog = { breeds: string[]; yearOfBirth: number };
 export const createCatName = () => "fluffy";
 
@@ -170,9 +173,12 @@ import type { createCatName } from "./animal.js";
 const name = createCatName();
 ```
 
-#### 3.2.1.2. Inline type imports
+**Note:** this example is a little tricky to understand because it allegedly contains code from three different files!
 
-The following example 
+#### 3.2.1.2. Inline `type` imports
+
+The following example shows how to use the TS *inline `type` import* extension to import a specific `type`:
+
 ```javascript
 // @filename: app.ts
 import { createCatName, type Cat, type Dog } from "./animal.js";
@@ -183,7 +189,9 @@ const name = createCatName();
 
 ### 3.2.2. ES Module Syntax with CommonJS Behavior
 
-The following example 
+The following example code demonstrates how ES Module syntax *"are for most cases the same as
+`require`",* which is used in the CommonJS and AMD environments:
+
 ```javascript
 import fs = require("fs");
 const code = fs.readFileSync("hello.ts", "utf8");
