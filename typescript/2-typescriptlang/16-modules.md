@@ -199,26 +199,57 @@ const code = fs.readFileSync("hello.ts", "utf8");
 
 # 4. CommonJS Syntax
 
-The following example 
+The `npm` node package manager uses **CommonJS syntax,** so even if you use the ES Modules syntax and
+do not plan on using it, having a basic understanding of it can be helpful.
+
+### 4.1.1. Exporting
+
+The following example shows how to use *CommonJS syntax* to list a set of identifiers as `module.exports`
+on a global `module`:
+
 ```javascript
+function absolute(num: number) {
+  if (num < 0) return num * -1;
+  return num;
+}
+
+module.exports = {
+  pi: 3.14,
+  squareTwo: 1.41,
+  phi: 1.61,
+  absolute,
+};
 ```
 
-The following example 
+The following example shows how to use `require` to import "these files" [sic]:
+
 ```javascript
+const maths = require("maths");
+maths.pi;
 ```
 
-The following example 
+I am guessing the code in the first example is in a file named `maths.ts`?
+
+The following example how to use JS's destructuring feature to "simplify" this type of import:
+
 ```javascript
+const { squareTwo } = require("maths");
+squareTwo;                  // const squareTwo: any
 ```
 
-The following example 
-```javascript
-```
+**Note:* admittedly, as far as I'm concerned anyway, these examples do not explain this very well; for details see the
+[TS modules reference page](https://www.typescriptlang.org/docs/handbook/modules.html#export--and-import--require).
 
 ## 4.1. CommonJS and ES Modules interop
 
+If you are mixing the CommonJS and ES Modules syntaxes and run into issues, consider setting the
+[esModuleInterop](https://www.typescriptlang.org/tsconfig#esModuleInterop) TS compiler flag.
 
 # 5. TypeScript’s Module Resolution Options
+
+The following example 
+```javascript
+```
 
 The following example 
 ```javascript
