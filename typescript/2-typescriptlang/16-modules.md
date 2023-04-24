@@ -271,25 +271,71 @@ For comprehensive information about this topic, see the
 
 # 6. TypeScript’s Module Output Options
 
-The following example 
+The following options determine the nature of the JS code that TS emits for modules:
+
+- [`target`](https://www.typescriptlang.org/tsconfig#target)
+  - Specifies the version of JS the emitted files should conform to
+  - `ES6` is a good choice, because most modern browsers support it
+- [`module`](https://www.typescriptlang.org/tsconfig#module)
+  - Determines whether to use the CommonJS syntax in emitted JS files
+  - When working on node projects, you probably want to use `CommonJS`
+
+Following is an example of ES Modules syntax:
+
 ```javascript
+import { valueOfPi } from "./constants.js";
+
+export const twoPi = valueOfPi * 2;
 ```
 
 ## 6.1. `ES2020`
 
-The following example 
+The following example code is apparently the JS emitted for the first example in this section
+when the `module` option is set to `ES2020`:
+
 ```javascript
+import { valueOfPi } from "./constants.js";
+export const twoPi = valueOfPi * 2;
 ```
 
 ## 6.2. `CommonJS`
 
-The following example 
+The following example code is apparently the JS emitted for the first example in this section
+when the `module` option is set to use `CommonJS` syntax:
+
 ```javascript
+"use strict";
+Object.defineProperty(exports, "__esModule", { value: true });
+exports.twoPi = void 0;
+const constants_js_1 = require("./constants.js");
+exports.twoPi = constants_js_1.valueOfPi * 2;
 ```
 
-The following example 
+## 6.3. `UMD`
+
+The following example code is apparently the JS emitted for the first example in this section
+when the `module` option is set to `ES2020`:
+
 ```javascript
+(function (factory) {
+    if (typeof module === "object" && typeof module.exports === "object") {
+        var v = factory(require, exports);
+        if (v !== undefined) module.exports = v;
+    }
+    else if (typeof define === "function" && define.amd) {
+        define(["require", "exports", "./constants.js"], factory);
+    }
+})(function (require, exports) {
+    "use strict";
+    Object.defineProperty(exports, "__esModule", { value: true });
+    exports.twoPi = void 0;
+    const constants_js_1 = require("./constants.js");
+    exports.twoPi = constants_js_1.valueOfPi * 2;
+});
 ```
+
+Again, for details see the
+[TSConfig Reference for `module`](https://www.typescriptlang.org/tsconfig#module).
 
 # 7. TypeScript namespaces
 
