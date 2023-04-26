@@ -104,6 +104,8 @@ $ git commit -m 'Adding the relevant files created for the hacker-stories projec
 $
 ```
 
+The *Road to React* book discusses many of these *"source files"* in the *Project Structure* section of the *Fundamentals of React* chapter.
+
 Noting that the `hacker-stories` directory has its own `.gitignore` file, I wondered how different it might be from the one I copied into
 the `projects` directory from `../../reactjs/projects`.
 
