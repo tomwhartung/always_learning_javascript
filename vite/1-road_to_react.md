@@ -3,7 +3,7 @@
 
 Notes from the section *Setting up a React Project* in the chapter *Fundamentals of React* in the *Road to React* e-book.
 
-1. Setting up a React Project
+# 1. Setting up a React Project
 
 There are two ways:
 
@@ -13,6 +13,8 @@ There are two ways:
 2. Install everything on your local machine
 
 I am going with #2.
+
+# 2. Install everything on your local machine
 
 Following are the comands I am running to *install everything on my local machine:*
 
@@ -105,6 +107,28 @@ $
 ```
 
 The *Road to React* book discusses many of these *"source files"* in the *Project Structure* section of the *Fundamentals of React* chapter.
+
+# 3. Project Structure
+
+Following is an annotated list of the key files and directories in a vite + reactjs project (*):
+
+- `package.json`: lists third-party dependencies
+  - Determines the contents of the `node_modules/` directory
+- `package-lock.json`: lists the packages used in this project, their versions and dependencies, where they reside and how to find them, etc.
+  - Currently massive at 3418 lines
+  - **WE WILL NOT BE EDITING THIS FILE**
+- `node_modules/`: contains all the node packages used by and installed for this project
+  - Currently contains 5933 files and uses 69 M of disk
+  - **WE WILL NOT BE TOUCHING THIS DIRECTORY**
+- `.gitignore`: identifies which files are *not* source files and should *not* be checked into github
+  - E.g., because `package.json` determines what is in `node_modules/`, there is *no need* to check the files in `node_modules/` into github
+- `vite.config.js`: specifies that we are using react
+- `public/`: stores static assets used by the development server
+- `index.html`: the base, *"driver"* file that links to where to find all the code for the page
+
+(*) These annotations are courtesy of the *Project Structure* section of the *Fundamentals of React* chapter of *Road to React.*
+
+# 4. `hacker-stories`
 
 Noting that the `hacker-stories` directory has its own `.gitignore` file, I wondered how different it might be from the one I copied into
 the `projects` directory from `../../reactjs/projects`.
