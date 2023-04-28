@@ -147,13 +147,86 @@ The following commands show how, in the `hacker-stories` project, you can
 use `npm run` to run each of these `scripts`
 
 ```
-npm run dev      # runs the app so you can see it in a browser
-npm run build    # builds a version of the app for production
-npm run lint     # identifies subtle issues with and concerns in the code for the project
-npm run preview  # runs the app so you can preview it in a browser
+npm run dev
+npm run build
+npm run lint
+npm run preview
 ```
 
-3.2. Other Important Files in the `hacker-stories` directory
+Following is a brief explanation of each of these commands;
+
+- `dev`: runs a development version the app so you can see it in a browser
+- `lint`: identifies subtle issues with and concerns in the code for the project
+  - For more information, see the subsection *"3.2. Linting with ESLint"* below
+- `build`: builds an optimized version of the app intended for use in production
+- `preview`: runs the version of the app built by the `build` command so you can preview it in a browser
+  - Ideally this should exactly match the `dev`elopment version
+
+3.2. Linting with ESLint
+
+Like all JS linters, [ESLint](https://eslint.org/) identifies potential problems in JS code.
+
+- ESLint also allows enforcement of developers` own personal set of coding standards
+
+Following is the output of `lint`ing the installed version of our `hacker-stories` project:
+
+```
+$ npm run lint
+
+> hacker-stories@0.0.0 lint
+> eslint src --ext js,jsx --report-unused-disable-directives --max-warnings 0
+
+
+/var/www/always_learning/always_learning_javascript/vite/projects/1-rtr-fundamentals_of_react/hacker-stories/src/App.jsx
+  12:9  error  Using target="_blank" without rel="noreferrer" (which implies rel="noopener") is a security risk in older browsers: see https://mathiasbynens.github.io/rel-noopener/#recommendations  react/jsx-no-target-blank
+  15:9  error  Using target="_blank" without rel="noreferrer" (which implies rel="noopener") is a security risk in older browsers: see https://mathiasbynens.github.io/rel-noopener/#recommendations  react/jsx-no-target-blank
+
+✖ 2 problems (2 errors, 0 warnings)
+  2 errors and 0 warnings potentially fixable with the `--fix` option.
+
+$
+```
+
+After looking up [`rel="noreferrer"`](https://developer.mozilla.org/en-US/docs/Web/HTML/Attributes/rel/noreferrer)
+and learning that adding it to each of the referenced anchor `<a ...>` tags is totally reasonable,
+fixing these issues in `App.jsx` is easy enough:
+
+```
+$ pwd
+/var/www/always_learning/always_learning_javascript/vite/projects
+$ git diff 1-rtr-fundamentals_of_react/hacker-stories/src/App.jsx
+diff --git a/vite/projects/1-rtr-fundamentals_of_react/hacker-stories/src/App.jsx b/vite/projects/1-rtr-fundamentals_of_react/hacker-stories/src/App.jsx
+index b8b8473..b46dfcf 100644
+--- a/vite/projects/1-rtr-fundamentals_of_react/hacker-stories/src/App.jsx
++++ b/vite/projects/1-rtr-fundamentals_of_react/hacker-stories/src/App.jsx
+@@ -9,10 +9,10 @@ function App() {
+   return (
+     <>
+       <div>
+-        <a href="https://vitejs.dev" target="_blank">
++        <a href="https://vitejs.dev" target="_blank" rel="noreferrer">
+           <img src={viteLogo} className="logo" alt="Vite logo" />
+         </a>
+-        <a href="https://react.dev" target="_blank">
++        <a href="https://react.dev" target="_blank" rel="noreferrer">
+           <img src={reactLogo} className="logo react" alt="React logo" />
+         </a>
+       </div>
+$
+```
+
+Following is the output from running `lint` on the updated version of the code:
+
+```
+$ npm run lint
+
+> hacker-stories@0.0.0 lint
+> eslint src --ext js,jsx --report-unused-disable-directives --max-warnings 0
+
+$
+```
+
+3.3. Other Important Files in the `hacker-stories` directory
 
 Following are some other important *source* files discussed in this section:
 
@@ -166,7 +239,8 @@ Following are some other important *source* files discussed in this section:
 - `src/index.css`: Styles for the overall application
 - `src/App.css`: Styles for the React components
 
-# 4. `hacker-stories`
+
+# 4. `hacker-stories` and `.gitignore` files
 
 Noting that the `hacker-stories` directory has its own `.gitignore` file, I wondered how different it might be from the one I copied into
 the `projects` directory from `../../reactjs/projects`.
