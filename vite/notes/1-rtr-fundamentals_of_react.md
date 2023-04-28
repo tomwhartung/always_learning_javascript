@@ -22,8 +22,8 @@ Following are the comands I am running to *install everything on my local machin
 $ pwd
 /var/www/always_learning/always_learning_javascript/vite
 $ mkdir projects
-$ mkdir projects/1-road_to_react
-$ cd  projects/1-road_to_react
+$ mkdir projects/1-rtr-fundamentals_of_react
+$ cd  projects/1-rtr-fundamentals_of_react
 $ npm -v
 9.5.1
 $ sudo npm install -g npm@latest
@@ -33,7 +33,7 @@ removed 1 package, and changed 51 packages in 7s
 
 18 packages are looking for funding
   run `npm fund` for details
-tomh@jane: /var/www/always_learning/always_learning_javascript/vite/projects/1-road_to_react
+tomh@jane: /var/www/always_learning/always_learning_javascript/vite/projects/1-rtr-fundamentals_of_react
 $ npm -v
 9.6.5
 $ npm create vite@latest hacker-stories -- --template react
@@ -41,7 +41,7 @@ Need to install the following packages:
   create-vite@4.3.1
 Ok to proceed? (y) y
 
-Scaffolding project in /var/www/always_learning/always_learning_javascript/vite/projects/1-road_to_react/hacker-stories...
+Scaffolding project in /var/www/always_learning/always_learning_javascript/vite/projects/1-rtr-fundamentals_of_react/hacker-stories...
 
 Done. Now run:
 
@@ -87,22 +87,22 @@ $ git commit -m 'Adding a .gitignore file in the vite/projects/ directory.'
 [master 3887f09] Adding a .gitignore file in the vite/projects/ directory.
  1 file changed, 38 insertions(+)
  create mode 100644 vite/projects/.gitignore
-$ git add 1-road_to_react/
+$ git add 1-rtr-fundamentals_of_react/
 $ git commit -m 'Adding the relevant files created for the hacker-stories project in the Road to React book into the vite/projects/ directory.'
 [master 1f48933] Adding the relevant files created for the hacker-stories project in the Road to React book into the vite/projects/ directory.
  12 files changed, 3661 insertions(+)
- create mode 100644 vite/projects/1-road_to_react/hacker-stories/.eslintrc.cjs
- create mode 100644 vite/projects/1-road_to_react/hacker-stories/.gitignore
- create mode 100644 vite/projects/1-road_to_react/hacker-stories/index.html
- create mode 100644 vite/projects/1-road_to_react/hacker-stories/package-lock.json
- create mode 100644 vite/projects/1-road_to_react/hacker-stories/package.json
- create mode 100644 vite/projects/1-road_to_react/hacker-stories/public/vite.svg
- create mode 100644 vite/projects/1-road_to_react/hacker-stories/src/App.css
- create mode 100644 vite/projects/1-road_to_react/hacker-stories/src/App.jsx
- create mode 100644 vite/projects/1-road_to_react/hacker-stories/src/assets/react.svg
- create mode 100644 vite/projects/1-road_to_react/hacker-stories/src/index.css
- create mode 100644 vite/projects/1-road_to_react/hacker-stories/src/main.jsx
- create mode 100644 vite/projects/1-road_to_react/hacker-stories/vite.config.js
+ create mode 100644 vite/projects/1-rtr-fundamentals_of_react/hacker-stories/.eslintrc.cjs
+ create mode 100644 vite/projects/1-rtr-fundamentals_of_react/hacker-stories/.gitignore
+ create mode 100644 vite/projects/1-rtr-fundamentals_of_react/hacker-stories/index.html
+ create mode 100644 vite/projects/1-rtr-fundamentals_of_react/hacker-stories/package-lock.json
+ create mode 100644 vite/projects/1-rtr-fundamentals_of_react/hacker-stories/package.json
+ create mode 100644 vite/projects/1-rtr-fundamentals_of_react/hacker-stories/public/vite.svg
+ create mode 100644 vite/projects/1-rtr-fundamentals_of_react/hacker-stories/src/App.css
+ create mode 100644 vite/projects/1-rtr-fundamentals_of_react/hacker-stories/src/App.jsx
+ create mode 100644 vite/projects/1-rtr-fundamentals_of_react/hacker-stories/src/assets/react.svg
+ create mode 100644 vite/projects/1-rtr-fundamentals_of_react/hacker-stories/src/index.css
+ create mode 100644 vite/projects/1-rtr-fundamentals_of_react/hacker-stories/src/main.jsx
+ create mode 100644 vite/projects/1-rtr-fundamentals_of_react/hacker-stories/vite.config.js
 $
 ```
 
@@ -143,7 +143,8 @@ Following is the code defining the `scripts` property in `package.json`:
 },
 ```
 
-These `scripts` are the commands you can run using `npm run` in the `hacker-stories` project:
+The following commands show how, in the `hacker-stories` project, you can
+use `npm run` to run each of these `scripts`
 
 ```
 npm run dev      # runs the app so you can see it in a browser
@@ -152,7 +153,7 @@ npm run lint     # identifies subtle issues with and concerns in the code for th
 npm run preview  # runs the app so you can preview it in a browser
 ```
 
-3.2. Other Important Files
+3.2. Other Important Files in the `hacker-stories` directory
 
 Following are some other important *source* files discussed in this section:
 
@@ -175,7 +176,7 @@ the `projects` directory from `../../reactjs/projects`.
 ```
 $ pwd
 /var/www/always_learning/always_learning_javascript/vite/projects
-$ diff .gitignore 1-road_to_react/hacker-stories/.gitignore
+$ diff .gitignore 1-rtr-fundamentals_of_react/hacker-stories/.gitignore
 1c1,9
 < .DS_STORE
 ---
