@@ -113,6 +113,8 @@ The *Road to React* book discusses many of these *"source files"* in the *Projec
 Following is an annotated list of the key files and directories in a vite + reactjs project (*):
 
 - `package.json`: lists third-party dependencies
+  - Specifies the commands you can run using `npm`
+    - See subsection *"3.1. `npm` Scripts"* below
   - Determines the contents of the `node_modules/` directory
 - `package-lock.json`: lists the packages used in this project, their versions and dependencies, where they reside and how to find them, etc.
   - Currently massive at 3418 lines
@@ -127,6 +129,41 @@ Following is an annotated list of the key files and directories in a vite + reac
 - `index.html`: the base, *"driver"* file that links to where to find all the code for the page
 
 (*) These annotations are courtesy of the *Project Structure* section of the *Fundamentals of React* chapter of *Road to React.*
+
+3.1. `npm` Scripts
+
+Following is the code defining the `scripts` property in `package.json`:
+
+```javascript
+"scripts": {
+  "dev": "vite",
+  "build": "vite build",
+  "lint": "eslint src --ext js,jsx --report-unused-disable-directives --max-warnings 0",
+  "preview": "vite preview"
+},
+```
+
+These `scripts` are the commands you can run using `npm run` in the `hacker-stories` project:
+
+```
+npm run dev      # runs the app so you can see it in a browser
+npm run build    # builds a version of the app for production
+npm run lint     # identifies subtle issues with and concerns in the code for the project
+npm run preview  # runs the app so you can preview it in a browser
+```
+
+3.2. Other Important Files
+
+Following are some other important *source* files discussed in this section:
+
+- `src/App.jsx`: Contains React components
+  - May want to split this up later
+- `src/main.jsx`: Entry point for React
+  - Connects the base file, `index.html`, with the main source of React components, `src/App.jsx`
+    - Referenced in `index.html`
+    - References `src/App.jsx`
+- `src/index.css`: Styles for the overall application
+- `src/App.css`: Styles for the React components
 
 # 4. `hacker-stories`
 
