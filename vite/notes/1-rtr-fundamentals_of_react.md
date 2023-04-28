@@ -1,5 +1,5 @@
 
-# 1-road_to_react.md
+# 1-rtr-fundamentals_of_react.md
 
 Notes from the section *Setting up a React Project* in the chapter *Fundamentals of React* in the *Road to React* e-book.
 
