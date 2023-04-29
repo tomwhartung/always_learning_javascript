@@ -317,20 +317,34 @@ The *"Road to React"* book also recommends installing a .eslintrc file with the 
 
 On the other hand, the ESLint documentation for
 [ESLint configuration files](https://eslint.org/docs/latest/use/configure/configuration-files#using-configuration-files)
-recommends using a `.eslintrc.json` (or `.eslintrc.yaml` etc.) file,
-so I will do that:
+recommends using a `.eslintrc.json` (or `.eslintrc.cjs` or `.eslintrc.yaml` etc.) file,
+
+And looking in the directory, I can see there is already a `.eslintrc.cjs` file:
 
 ```
 $ pwd
 /var/www/always_learning/always_learning_javascript/vite/projects/1-rtr-fundamentals_of_react/hacker-stories
-$ cat .eslint.json
-{
-  "extends": [
-    "react-app"
-  ]
+$ cat .eslintrc.cjs
+module.exports = {
+  env: { browser: true, es2020: true },
+  extends: [
+    'eslint:recommended',
+    'plugin:react/recommended',
+    'plugin:react/jsx-runtime',
+    'plugin:react-hooks/recommended',
+  ],
+  parserOptions: { ecmaVersion: 'latest', sourceType: 'module' },
+  settings: { react: { version: '18.2' } },
+  plugins: ['react-refresh'],
+  rules: {
+    'react-refresh/only-export-components': 'warn',
+  },
 }
 $
 ```
+
+This looks to be more complete than the `.eslintrc` file recommended by the book, so I am going to just stick with that.
+
 
 3.3. Other Important Files in the `hacker-stories` directory
 
