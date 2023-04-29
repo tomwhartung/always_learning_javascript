@@ -168,6 +168,8 @@ Like all JS linters, [ESLint](https://eslint.org/) identifies potential problems
 
 - ESLint also allows enforcement of developers` own personal set of coding standards
 
+3.2.1. Fixing Potential Issues
+
 Following is the output of `lint`ing the installed version of our `hacker-stories` project:
 
 ```
@@ -223,6 +225,110 @@ $ npm run lint
 > hacker-stories@0.0.0 lint
 > eslint src --ext js,jsx --report-unused-disable-directives --max-warnings 0
 
+$
+```
+
+3.2.2. Working With ESLint
+
+Our use of the `lint` command was productive, but the *Road to React* book offers more on this subject.
+
+3.2.2.1. Installing the ESLint Plugin
+
+Per the book's suggestion, I ran this command:
+
+```
+$ npm install vite-plugin-eslint --save-dev
+
+added 8 packages, and audited 249 packages in 5s
+
+82 packages are looking for funding
+  run `npm fund` for details
+
+found 0 vulnerabilities
+$
+```
+
+This updated the project's `package.json` and `package-lock.json` files, but did not change the output of the linter.
+
+Following are the changes the command made to `package.json`:
+
+```
+$ git diff vite/projects/1-rtr-fundamentals_of_react/hacker-stories/package.json
+diff --git a/vite/projects/1-rtr-fundamentals_of_react/hacker-stories/package.json b/vite/projects/1-rtr-fundamentals_of_react/hacker-stories/package.json
+index 3b21c41..8ecbad7 100644
+--- a/vite/projects/1-rtr-fundamentals_of_react/hacker-stories/package.json
++++ b/vite/projects/1-rtr-fundamentals_of_react/hacker-stories/package.json
+@@ -21,6 +21,7 @@
+     "eslint-plugin-react": "^7.32.2",
+     "eslint-plugin-react-hooks": "^4.6.0",
+     "eslint-plugin-react-refresh": "^0.3.4",
+-    "vite": "^4.3.2"
++    "vite": "^4.3.2",
++    "vite-plugin-eslint": "^1.8.1"
+   }
+ }
+$
+```
+
+3.2.2.2. Integrating the ESLint Plugin
+
+Next we add the plugin to `vite.config.js` to integrate it into the project:
+
+```
+$ pwd
+/var/www/always_learning/always_learning_javascript/vite/projects/1-rtr-fundamentals_of_react/hacker-stories
+$ git diff vite.config.js
+diff --git a/vite/projects/1-rtr-fundamentals_of_react/hacker-stories/vite.config.js b/vite/projects/1-rtr-fundamentals_of_react/hacker-stories/vite.config.js
+index 5a33944..373cba9 100644
+--- a/vite/projects/1-rtr-fundamentals_of_react/hacker-stories/vite.config.js
++++ b/vite/projects/1-rtr-fundamentals_of_react/hacker-stories/vite.config.js
+@@ -1,7 +1,8 @@
+ import { defineConfig } from 'vite'
+ import react from '@vitejs/plugin-react'
++import eslint from 'vite-plugin-eslint'
+
+ // https://vitejs.dev/config/
+ export default defineConfig({
+-  plugins: [react()],
++  plugins: [react(), eslint()],
+ })
+```
+
+3.2.2.3. Installing a Standard ESLint Configuration File
+
+Next we add a standard ESLint configuration file for a React project:
+
+```
+$ npm install eslint-config-react-app --save-dev
+$
+```
+
+Unsurprisingly I suppose, this updated the project's `package.json` and `package-lock.json` files again.
+
+The *"Road to React"* book also recommends installing a .eslintrc file with the following contents:
+
+```
+{
+  "extends": [
+    "react-app"
+  ]
+}
+```
+
+On the other hand, the ESLint documentation for
+[ESLint configuration files](https://eslint.org/docs/latest/use/configure/configuration-files#using-configuration-files)
+recommends using a `.eslintrc.json` (or `.eslintrc.yaml` etc.) file,
+so I will do that:
+
+```
+$ pwd
+/var/www/always_learning/always_learning_javascript/vite/projects/1-rtr-fundamentals_of_react/hacker-stories
+$ cat .eslint.json
+{
+  "extends": [
+    "react-app"
+  ]
+}
 $
 ```
 
