@@ -27,6 +27,10 @@ Hyphenated votes designate the site key followed by the IDE's rank in the articl
 
 Un-hyphenated votes designate sites with un-ranked lists of IDEs.
 
+- VSCode is the clear winner because:
+  - It is on all 7 lists
+  - It is in first place on all 4 of the ranked lists
+
 # 2. List of Sites
 
 (1): https://flatlogic.com/blog/best-10-ides-for-react-js-for-2021/
