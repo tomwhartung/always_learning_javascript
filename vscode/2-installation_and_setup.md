@@ -26,14 +26,36 @@ I am picking option (2).
 
 ## 1.2. Process
 
-```
-```
+1. Update the system repository:
 
 ```
+sudo apt update
 ```
 
+2. Install dependencies:
+
 ```
+sudo apt install software-properties-common apt-transport-https wget -y
 ```
+
+3. Add the GPG key from Microsoft:
+
+```
+wget -q https://packages.microsoft.com/keys/microsoft.asc -O- | sudo apt-key add -
+```
+
+4. Add Microsoft's repository to the OS:
+
+```
+sudo add-apt-repository "deb [arch=amd64] https://packages.microsoft.com/repos/vscode stable main"
+```
+
+5. Install the IDE:
+
+```
+sudo apt install code
+```
+
 
 ```
 ```
