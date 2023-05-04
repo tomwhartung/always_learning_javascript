@@ -62,5 +62,30 @@ sudo apt install code
 
 # 2. Setup
 
+## 2.1. References
 
+Here are two references I found with tips for setting up VSCode:
+
+- Dated 2022-02-17: [www.freecodecamp.org/news/vscode-react-setup/](https://www.freecodecamp.org/news/vscode-react-setup/)
+- Dated 2021-01-19: [www.sitepoint.com/vs-code-react-development/](https://www.sitepoint.com/vs-code-react-development/)
+
+## 2.2. Initial Setup
+
+- Choose a theme
+- Got this error message when trying to use github to login and enable syncing with other devices:
+  - "Writing login information to the keychain failed with error 'GDBus.Error:org.freedesktop.DBus.Error.ServiceUnknown: The name org.freedesktop.secrets was not provided by any .service files'."
+  - Not really planning to sync at this time...
+- Enabled the following extensions:
+  - Recommended:
+    - Python - Microsoft
+    - HTML CSS Support - ecmel
+    - ES7+ React/Redux/React-Native snippets - dsznajder
+  - After searching for "typescript":
+    - GitHub Copilot - GitHub
+    - JavaScript and TypeScript Nightly - Microsoft
+    - TypeScript React code snippets - infeng
+    - Pretty TypeScript Errors - yoavbls
+    - Prittier - Code formatter - Prettier
+      - Recommended by [www.freecodecamp.org/news/vscode-react-setup/](https://www.freecodecamp.org/news/vscode-react-setup/)
+  - **TODO:** May want to come back to these
 
