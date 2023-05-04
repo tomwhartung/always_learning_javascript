@@ -1,5 +1,5 @@
 
-# Reactathon.md
+# reactjs/reactathon/README.md
 
 Noticed this in a "Recommended Resources" box on stateofjs.com's
 [Resources page](https://2022.stateofjs.com/en-US/resources/):
