@@ -1,5 +1,5 @@
 
-# README.md
+# typescript/README.md
 
 This is the `README.md` file for the `typescript` directory in the `always_learning_javascript` repository.
 
@@ -23,22 +23,22 @@ Hopefully by the time I get through the above steps, I will be ready to work on 
 
 # 1. W3schools.com Online Tutorial
 
-The `typescript/1-w3schools/` directory has notes from the w3schools tutorial.
+The `typescript/notes/1-w3schools/` directory has notes from the w3schools tutorial.
 
 # 2. Typescriptlang.org Docs
 
-The `typescript/2-typescriptlang/` directory has notes gleaned from
+The `typescript/notes/2-typescriptlang/` directory has notes gleaned from
 the [TypeScript Documentation](https://www.typescriptlang.org/docs/).
 
 # 3. Typescript and React
 
-Look at the section *TypeScript in React* in the *React Maintenance* chapter of the *Road to React* e-book.
+The `typescript/projects/` directory has code using:
 
-**Locations for notes or code or both is TBD.**
+- 0-my-test_tsc - just typescript without react, i.e. using `tsc`
 
 # 4. Using Typescript, React and Vite
 
-**Locations for notes or code or both is TBD.**
+The `vite/` directory has code inspired by the *Road to React* e-book.
 
 # 5. Using Typescript, React, Vite, and MDB
 
@@ -46,5 +46,5 @@ Try this page:
 
 - [MDB 5 Vite Integration](https://mdbootstrap.com/docs/standard/getting-started/vite-integration/)
 
-**Locations for notes or code or both is TBD.**
+The `whole_shebang/` directory is where I am planning to put code using all of these components.
 
