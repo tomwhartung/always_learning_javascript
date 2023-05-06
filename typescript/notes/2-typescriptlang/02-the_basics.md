@@ -134,8 +134,8 @@ $
 These commands show how to run `tsc`, the Typescript compiler, on an extremely minimalistic *Hello, world!* program:
 
 ```
-$ mkdir my-test_tsc
-$ cd  my-test_tsc
+$ mkdir 0-my-test_tsc
+$ cd  0-my-test_tsc
 $ cat > hello.ts
 // Greets the world.
 console.log("Hello world!");
@@ -176,7 +176,7 @@ $
 As expected, `tsc` reports an error because this version does not supply enough arguments when calling
 the `greet` function.
 
-**Note:** `typescript/projects/my-test_tsc/` contains these files:
+**Note:** `typescript/projects/0-my-test_tsc/` contains these files:
 
 - `hello-ok.ts` - the first source file that does *not* have any TS errors
 - `hello-ok.js` - output from running `tsc` on `hello-ok.ts`
@@ -288,7 +288,7 @@ Following is an example of compiling a small program first without and then with
 
 ```
 $ pwd
-/var/www/always_learning/always_learning_javascript/typescript/projects/my-test_tsc
+/var/www/always_learning/always_learning_javascript/typescript/projects/0-my-test_tsc
 $ cp hello-error.ts  hello.ts
 $ cat  hello.ts
 // This is an industrial-grade general-purpose greeter function:
