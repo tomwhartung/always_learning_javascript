@@ -230,7 +230,7 @@ $
 which looks rather like a man-page-type reference, suitable as a reminder for people
 who are already familiar with TS.
 
-The file `typescript/1-w3schools/notes/1-notes-tsconfig.json` in this directory contains a copy of the file
+The file `typescript/notes/1-w3schools/1-notes-tsconfig.json` in this directory contains a copy of the file
 created by this command.
 
 
