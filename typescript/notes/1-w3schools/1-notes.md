@@ -33,18 +33,18 @@ I used these commands to use `npm` to create a new React project and ensure it w
 
 ```
 $ pwd                         # /var/www/always_learning/always_learning_javascript/typescript/projects
-$ npx create-react-app my-first_typescript-app
-$ cd my-first_typescript-app
+$ npx create-react-app 1-my-first_typescript-app
+$ cd 1-my-first_typescript-app
 $ npm run start               # so far, so good!
 ```
 
 I used these commands to install TS, and am including *all* of the command's output, for possible future reference:
 
 ```
-$ pwd                         # /var/www/always_learning/always_learning_javascript/typescript/projects/my-first_typescript-app
+$ pwd                         # /var/www/always_learning/always_learning_javascript/typescript/projects/1-my-first_typescript-app
 $ npm install typescript --save-dev
 npm WARN ERESOLVE overriding peer dependency
-npm WARN While resolving: my-first_typescript-app@0.1.0
+npm WARN While resolving: 1-my-first_typescript-app@0.1.0
 npm WARN Found: typescript@4.9.5
 npm WARN node_modules/typescript
 npm WARN   peer typescript@">= 2.7" from fork-ts-checker-webpack-plugin@6.5.3
