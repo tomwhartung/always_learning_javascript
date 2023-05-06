@@ -1,7 +1,7 @@
 
-# README.md
+# typescript/notes/2-typescriptlang/README.md
 
-This is the `README.md` file for the `typescript/2-typescriptlang` directory in the
+This is the `README.md` file for the `typescript/notes/2-typescriptlang` directory in the
 `always_learning_javascript` repository.
 
 This directory contains the notes I am taking while going through the
@@ -16,4 +16,8 @@ The notes in `01-typescript_for_js_programmers.md` are from
 
 The notes in `02-the_basics.md` are from
 [The Basics](https://www.typescriptlang.org/docs/handbook/2/basic-types.html).
+
+# 3. The Rest of the Handbook
+
+The rest of the files in this directory contain notes for each of the pages in the rest of the TS Handbook.
 
