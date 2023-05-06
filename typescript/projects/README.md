@@ -21,44 +21,31 @@ This is the `README.md` file for the `typescript/projects` directory in the `alw
 
 # 1. `typescript/projects/1-my-first_typescript-app`
 
-**Notes:**
+1.1. Notes About `typescript/projects/1-my-first_typescript-app`
 
-- Contains a minimal "Hello world"-type project
+- Contains a minimal "Hello world"-type project created by `create-react-app`
 - Done while going through the [typescript tutorial at w3schools](https://www.w3schools.com/typescript/index.php)
-- Notes are in the beginning of `typescript/1-w3schools/1-notes.md`
+- Notes are in the beginning of `typescript/notes/1-w3schools/1-notes.md`
 - Created using `npm`
 
-See more notes in **`filename_here`**.
+1.1. Lessons Learned From `typescript/projects/1-my-first_typescript-app`
 
-**Lessons learned:**
+**This project is currently broken!**
 
-**TBD:**
-- Do I need to rename the files to see a TS error?
+```
+$ pwd
+/var/www/always_learning/always_learning_javascript/typescript/projects/1-my-first_typescript-app
+$ npm run start
 
+> my-first_typescript-app@0.1.0 start
+> react-scripts start
 
-# 2. `typescript/projects/2-rtr-hello_typescript_world`
+sh: 1: react-scripts: not found
+$
+```
 
-**Notes:**
-
-- Start with `vite` setup
-- Add ESLint
-- Add typescript
-- Make updates per the *TypeScript in React* section of *React Maintenance* chapter of the *Road to React* ebook:
-  - Rename `.jsx` files to `.tsx`
-  - Add TS config files
-- See how things look in VSCode
-  - "Test drive it"
-
-See more notes in **`filename_here`**.
-
-**TODO:**
-
-- Be sure to keep `whole_shebang/notes/1-whole_shebang-commands.md` updated with any and all commands run
-
-**Lessons learned:**
-
-**TBD**
-
-
-# 3. ???
+- Only change is renaming the directory from `my-first_typescript-app` to `1-my-first_typescript-app`
+  - "Renaming it back" did not help, rats.
+- Not going to look into this because it was created by `create-react-app`
+  - I am going to use `vite` instead
 
