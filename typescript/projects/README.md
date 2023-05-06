@@ -1,5 +1,5 @@
 
-# README.md
+# typescript/projects/README.md
 
 This is the `README.md` file for the `typescript/projects` directory in the `always_learning_javascript` repository.
 
@@ -7,18 +7,17 @@ This is the `README.md` file for the `typescript/projects` directory in the `alw
 
 # 0. `typescript/projects/0-my-test_tsc`
 
-**Notes:**
+## 0.1. Notes on `typescript/projects/0-my-test_tsc`
 
-- Contains an even *more* minimal "Hello world"-type project
+- Contains the *most minimal* "Hello world"-type project possible
   - Hence the "0-", even though this is technically the second project
 - Done while going through the [Basics tutorial at typescriptlang.org](https://www.typescriptlang.org/docs/handbook/2/basic-types.html#tsc-the-typescript-compiler)
+- Corresponding notes are in `typescript/notes/2-typescriptlang/02-the_basics.md`
 
-See more notes in **`filename_here`**.
+## 0.2. Lessons learned From `typescript/projects/0-my-test_tsc`
 
-**Lessons learned:**
-
-**TBD:**
-- How to see a TS error?
+- How to use TS and `tsc` independently of React
+- How to configure TS to output a `.js` file even when there are type errors
 
 # 1. `typescript/projects/1-my-first_typescript-app`
 
