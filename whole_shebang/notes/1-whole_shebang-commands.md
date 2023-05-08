@@ -45,12 +45,22 @@ npm run dev                                                  # Run "Hello-world"
 
 ## 3.2. Add ESLint
 
-- For an overview, see section *""* in `vite/notes/2-rtr-typescript_in_react.md`
+- For an overview, see section *"2. Add ESLint"* in `vite/notes/2-rtr-typescript_in_react.md`
 - For details, see section *"4. Linting with ESLint"* in `vite/notes/1-rtr-fundamentals_of_react.md`
 
 Commands:
 
 ```
+npm install vite-plugin-eslint --save-dev         # install vite-plugin-eslint
+npm install eslint-config-react-app --save-dev    # install eslint-config-react-app
+npm run dev                                       # make sure it still runs ok
+cat .eslintrc.cjs                                 # ensure it's there and makes sense
+git diff package-lock.json                        # wow that is a lot of changes
+git add package-lock.json
+git commit -m 'package-lock.json updated by installing eslint.'
+git diff package.json                             # just a few changes
+git add package.json
+git commit -m 'package.json updated by installing eslint.'
 ```
 
 
