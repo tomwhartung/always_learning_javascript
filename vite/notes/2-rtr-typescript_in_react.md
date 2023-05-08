@@ -11,11 +11,10 @@ Adding TypeScript to React has several advantages:
 - Makes it easier to reorganize and refactor code
 - Improves developer experience
 
-# 1. TypeScript Setup
 
-## 1.1. Start With React
+# 1. Start With React
 
-Running the following commands, which are adapted from section *2. Install everything on your local machine*
+Running the following commands, which are adapted from section *"2. Setting up `vite` + `react`"*
 in `./1-rtr-fundamentals_of_react.md`:
 
 ```
@@ -54,3 +53,33 @@ added 240 packages, and audited 241 packages in 20s
 found 0 vulnerabilities
 $
 ```
+
+
+# 2. Add ESLint
+
+Running the following commands, which are adapted from section *"4. Linting with ESLint"*
+in `./1-rtr-fundamentals_of_react.md`:
+
+```
+pwd                                               # var/www/always_learning/always_learning_javascript/vite/projects/2-rtr-typescript_in_react/ts_in_react-1
+npm install vite-plugin-eslint --save-dev         # install vite-plugin-eslint
+npm install eslint-config-react-app --save-dev    # install eslint-config-react-app
+npm run dev                                       # make sure it still runs ok
+git diff package-lock.json                        # wow that is a lot of changes
+git diff package.json                             # just a few changes
+```
+
+Check the `vite/projects/2-rtr-typescript_in_react/ts_in_react-1/package*` files in to github:
+
+```
+pwd              # /var/www/always_learning/always_learning_javascript
+git add vite/projects/2-rtr-typescript_in_react/ts_in_react-1/package-lock.json
+git commit -m 'Updating vite/projects/2-rtr-typescript_in_react/ts_in_react-1/package-lock.json with changes made automatically by installing vite-plugin-eslint and eslint-config-react-app .'
+git add package.json
+git commit -m 'Updating vite/projects/2-rtr-typescript_in_react/ts_in_react-1/package.json with changes made automatically by installing vite-plugin-eslint and eslint-config-react-app .'
+```
+
+
+
+# 3. TypeScript Setup
+
