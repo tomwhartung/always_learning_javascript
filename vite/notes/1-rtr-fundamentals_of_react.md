@@ -14,7 +14,7 @@ There are two ways:
 
 I am going with #2.
 
-# 2. Install everything on your local machine
+# 2. Setting up `vite` + `react`
 
 Following are the comands I am running to *install everything on my local machine:*
 
@@ -130,7 +130,7 @@ Following is an annotated list of the key files and directories in a vite + reac
 
 (*) These annotations are courtesy of the *Project Structure* section of the *Fundamentals of React* chapter of *Road to React.*
 
-3.1. `npm` Scripts
+## 3.1. `npm` Scripts
 
 Following is the code defining the `scripts` property in `package.json`:
 
@@ -162,13 +162,13 @@ Following is a brief explanation of each of these commands;
 - `preview`: runs the version of the app built by the `build` command so you can preview it in a browser
   - Ideally this should exactly match the `dev`elopment version
 
-3.2. Linting with ESLint
+# 4. Linting with ESLint
 
 Like all JS linters, [ESLint](https://eslint.org/) identifies potential problems in JS code.
 
 - ESLint also allows enforcement of developers` own personal set of coding standards
 
-3.2.1. Fixing Potential Issues
+## 4.1. Fixing Potential Issues
 
 Following is the output of `lint`ing the installed version of our `hacker-stories` project:
 
@@ -228,11 +228,11 @@ $ npm run lint
 $
 ```
 
-3.2.2. Working With ESLint
+## 4.2. Working With ESLint
 
 Our use of the `lint` command was productive, but the *Road to React* book offers more on this subject.
 
-3.2.2.1. Installing the ESLint Plugin
+### 4.2.1. Installing the ESLint Plugin
 
 Per the book's suggestion, I ran this command:
 
@@ -270,7 +270,7 @@ index 3b21c41..8ecbad7 100644
 $
 ```
 
-3.2.2.2. Integrating the ESLint Plugin
+### 4.2.2. Integrating the ESLint Plugin
 
 Next we add the plugin to `vite.config.js` to integrate it into the project:
 
@@ -294,7 +294,7 @@ index 5a33944..373cba9 100644
  })
 ```
 
-3.2.2.3. Installing a Standard ESLint Configuration File
+### 4.2.3. Installing a Standard ESLint Configuration File
 
 Next we add a standard ESLint configuration file for a React project:
 
@@ -346,7 +346,7 @@ $
 This looks to be more complete than the `.eslintrc` file recommended by the book, so I am going to just stick with that.
 
 
-3.3. Other Important Files in the `hacker-stories` directory
+# 5. Other Important Files in the `hacker-stories` directory
 
 Following are some other important *source* files discussed in this section:
 
@@ -360,7 +360,7 @@ Following are some other important *source* files discussed in this section:
 - `src/App.css`: Styles for the React components
 
 
-# 4. `hacker-stories` and `.gitignore` files
+# 6. `hacker-stories` and `.gitignore` files
 
 Noting that the `hacker-stories` directory has its own `.gitignore` file, I wondered how different it might be from the one I copied into
 the `projects` directory from `../../reactjs/projects`.
