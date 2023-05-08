@@ -300,6 +300,13 @@ Next we add a standard ESLint configuration file for a React project:
 
 ```
 $ npm install eslint-config-react-app --save-dev
+
+added 209 packages, and audited 458 packages in 28s
+
+106 packages are looking for funding
+  run `npm fund` for details
+
+found 0 vulnerabilities
 $
 ```
 
