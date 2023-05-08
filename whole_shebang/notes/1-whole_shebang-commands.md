@@ -3,17 +3,16 @@
 
 A list of commands I can run to initialize a minimal "Hello world"-type project with the components I want to use.
 
-# 1. Components in "The Whole Shebang"
+# 1. Components in *"The Whole Shebang"*
 
 These are the components I am currently planning to use when starting a new project:
 
-- Reactjs
-- Vite
+- Vite with Reactjs
 - ESLint
 - TypeScript
 - MDB
 
-# 2. Commands to Create "The Whole Shebang"
+# 2. Commands to Create *"The Whole Shebang"*
 
 ```
 npm -v                                                       # Check current version of `npm`
@@ -24,15 +23,55 @@ npm install                                                  # Install dependenc
 npm run dev                                                  # Run "Hello-world"-type program using React
 ```
 
-# 3. Sources of the Above Commands
+# 3. *"The Whole Shebang"* Step-by-Step
 
-## 3.1. Install Minimal Hello-world-type React Project
+Tracing back to where these commands come from, what they do, and why we run them.
 
-- `vite/notes/1-rtr-fundamentals_of_react.md` in this repo
-  - Check current version of `npm`
-    - Upgrade current version of `npm`
-  - Initialize a project using React, install dependencies, and run it
-- `vite/notes/2-rtr-typescript_in_react.md` in this repo
-  - Add TS
-- 
+## 3.1. Vite + Reactjs
+
+- For an overview, see section *"1. Start With React"* in `vite/notes/2-rtr-typescript_in_react.md`
+- For details, see section *"2. Setting up `vite` + `react"* in `vite/notes/1-rtr-fundamentals_of_react.md`
+
+Commands:
+
+```
+npm -v                                                       # Check current version of `npm`
+sudo npm install -g npm@latest                               # Upgrade current version of `npm`
+npm create vite@latest <project-name> -- --template react    # Initialize a React project named "<project-name>"
+cd <project-name>                                            # Change into the project's directory
+npm install                                                  # Install dependencies
+npm run dev                                                  # Run "Hello-world"-type program using React
+```
+
+## 3.2. Add ESLint
+
+- For an overview, see section *""* in `vite/notes/2-rtr-typescript_in_react.md`
+- For details, see section *"4. Linting with ESLint"* in `vite/notes/1-rtr-fundamentals_of_react.md`
+
+Commands:
+
+```
+```
+
+
+
+## 3.3. Add TypeScript
+
+See section *""* in `vite/notes/2-rtr-typescript_in_react.md` in this repo.
+
+Commands:
+
+```
+```
+
+
+## 3.4. Add MDB
+
+See `vite/notes/XXX.md` in this repo.
+
+Commands:
+
+```
+```
+
 
