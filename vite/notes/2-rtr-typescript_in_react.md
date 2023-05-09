@@ -54,7 +54,6 @@ found 0 vulnerabilities
 $
 ```
 
-
 # 2. Add ESLint
 
 Running the following commands, which are adapted from section *"4. Linting with ESLint"*
@@ -65,6 +64,7 @@ pwd                                               # var/www/always_learning/alwa
 npm install vite-plugin-eslint --save-dev         # install vite-plugin-eslint
 npm install eslint-config-react-app --save-dev    # install eslint-config-react-app
 npm run dev                                       # make sure it still runs ok
+cat .eslintrc.cjs                                 # ensure it's there and makes sense
 git diff package-lock.json                        # wow that is a lot of changes
 git diff package.json                             # just a few changes
 ```
@@ -79,7 +79,91 @@ git add package.json
 git commit -m 'Updating vite/projects/2-rtr-typescript_in_react/ts_in_react-1/package.json with changes made automatically by installing vite-plugin-eslint and eslint-config-react-app .'
 ```
 
+# 3. Add and Setup TypeScript
 
+**Note:** subsequent sections contain more details - e.g. output from commands - because we have not yet performed these steps, and
+actually running these is *the main point of this project.*
 
-# 3. TypeScript Setup
+## 3.1. Install TypeScript
+
+Running the following commands, which are from subsection *"TypeScript in React"* in chapter *"React Mantenance"* of the book *"The Road to React"*.
+
+```
+$ pwd
+/var/www/always_learning/always_learning_javascript/vite/projects/2-rtr-typescript_in_react/ts_in_react-1
+$ npm install typescript @types/react @types/react-dom --save-dev
+
+changed 2 packages, and audited 458 packages in 5s
+
+106 packages are looking for funding
+  run `npm fund` for details
+
+found 0 vulnerabilities
+$
+```
+
+Update git with changes made to the `package*` files:
+
+```
+pwd              # /var/www/always_learning/always_learning_javascript
+git diff vite/projects/2-rtr-typescript_in_react/ts_in_react-1/package-lock.json
+git add  vite/projects/2-rtr-typescript_in_react/ts_in_react-1/package-lock.json
+git commit -m 'Updating vite/projects/2-rtr-typescript_in_react/ts_in_react-1/package-lock.json with changes made by installing typescript.'
+git diff vite/projects/2-rtr-typescript_in_react/ts_in_react-1/package.json
+git add vite/projects/2-rtr-typescript_in_react/ts_in_react-1/package.json
+git commit -m 'Updating vite/projects/2-rtr-typescript_in_react/ts_in_react-1/package.json with changes made by installing typescript.'
+```
+
+## 3.2. Configure TypeScript
+
+Running the following commands, which are from subsection *"TypeScript in React"* in chapter *"React Mantenance"* of the book *"The Road to React"*.
+
+**Note:** exit `cat` by pressing `Ctrl-D` on a new line.
+
+```
+$ pwd
+/var/www/always_learning/always_learning_javascript/vite/projects/2-rtr-typescript_in_react/ts_in_react-1
+$ cat > tsconfig.json
+{
+  "compilerOptions": {
+    "target": "ESNext",
+    "useDefineForClassFields": true,
+    "lib": ["DOM", "DOM.Iterable", "ESNext"],
+    "allowJs": false,
+    "skipLibCheck": true,
+    "esModuleInterop": false,
+    "allowSyntheticDefaultImports": true,
+    "strict": true,
+    "forceConsistentCasingInFileNames": true,
+    "module": "ESNext",
+    "moduleResolution": "Node",
+    "resolveJsonModule": true,
+    "isolatedModules": true,
+    "noEmit": true,
+    "jsx": "react-jsx"
+  },
+  "include": ["src"],
+  "references": [{ "path": "./tsconfig.node.json" }]
+}
+$ cat > tsconfig.node.json
+{
+  "compilerOptions": {
+    "composite": true,
+    "module": "ESNext",
+    "moduleResolution": "Node",
+    "allowSyntheticDefaultImports": true
+  },
+  "include": ["vite.config.ts"]
+}
+```
+
+Update git with the new `tsconfig*` files:
+
+```
+pwd              # /var/www/always_learning/always_learning_javascript
+git add vite/projects/2-rtr-typescript_in_react/ts_in_react-1/tsconfig.json
+git commit -m 'Adding vite/projects/2-rtr-typescript_in_react/ts_in_react-1/tsconfig.json copied from Road to React book.'
+git add vite/projects/2-rtr-typescript_in_react/ts_in_react-1/tsconfig.node.json
+git commit -m 'Adding vite/projects/2-rtr-typescript_in_react/ts_in_react-1/tsconfig.node.json copied from Road to React book.'
+```
 
