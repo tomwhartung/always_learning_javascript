@@ -50,20 +50,23 @@ outlined in the *Road to React* e-book.
 Notes for the `projects/2-rtr-typescript_in_react/ts_in_react-1` project are in
 `notes/2-rtr-typescript_in_react.md`.
 
-## 2.1. Overview of the `1-rtr-fundamentals_of_react` Project
+## 2.1. Overview of the `2-rtr-typescript_in_react` Project
 
-- Based on notes from the *Typescript in React* section in the *React Maintenance* chapter of the *Road to React* e-book
-- Started with `vite@latest` setup with `--template react`
-- Add ESLint
+This involves doing quite a few things, so having a checklist is appropriate:
 
-- Add typescript
-- Make updates per the *TypeScript in React* section of *React Maintenance* chapter of the *Road to React* ebook:
-  - Rename `.jsx` files to `.tsx`
-  - Add TS config files
-- Test drive VSCode
-  - See how things look in it
-- Generate a TS error
-- Generate an ESLint error
+- [x] Based on notes from the *Typescript in React* section in the *React Maintenance* chapter of the *Road to React* e-book
+- [x] Started with `vite@latest` setup with `--template react`
+- [x] Add ESLint
+- [x] Add typescript
+- [x] Add TS config files
+- [x] Test drive VSCode
+  - [x] See how things look in it
+- [x] Make updates per the *TypeScript in React* section of *React Maintenance* chapter of the *Road to React* ebook:
+  - [x] Rename `.jsx` files to `.tsx`
+  - [x] Edit `index.html` to reference `main.tsx` instead of `main.jsx`
+- [x] Ensure you can still build and run the app
+- [ ] Generate a TS error
+- [ ] Generate an ESLint error
 
 
 ### 2.2. Lessons Learned From the `2-rtr-typescript_in_react` Project
@@ -73,6 +76,8 @@ Notes for the `projects/2-rtr-typescript_in_react/ts_in_react-1` project are in
 # 3. `XXX` Project
 
 **The goal is to build the `whole_shebang`.**
+
+**TODO:** create projects with these or perhaps similar names:
 
 - 3-vite_mdb_only
   - See [MDB 5 Vite Integration](https://mdbootstrap.com/docs/standard/getting-started/vite-integration/)
@@ -84,5 +89,5 @@ Notes for the `projects/2-rtr-typescript_in_react/ts_in_react-1` project are in
 
 - Be sure to keep `whole_shebang/notes/1-whole_shebang-commands.md` updated with any and all commands run
 - Ultimately `whole_shebang/projects/1-whole_shebang` should be as minimal as possible
-  - Work out all issues *here*
+  - Work out all issues *here* and *not* when doing `whole_shebang/projects/1-whole_shebang`
 
