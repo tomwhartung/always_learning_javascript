@@ -86,7 +86,7 @@ actually running these is *the main point of this project.*
 
 ## 3.1. Install TypeScript
 
-Running the following commands, which are from subsection *"TypeScript in React"* in chapter *"React Mantenance"* of the book *"The Road to React"*.
+Running the following commands, which are from the subsection *"TypeScript in React"* in chapter *"React Mantenance"* of the book *"The Road to React"*.
 
 ```
 $ pwd
@@ -116,7 +116,7 @@ git commit -m 'Updating vite/projects/2-rtr-typescript_in_react/ts_in_react-1/pa
 
 ## 3.2. Configure TypeScript
 
-Running the following commands, which are from subsection *"TypeScript in React"* in chapter *"React Mantenance"* of the book *"The Road to React"*.
+Running the following commands, which are from the subsection *"TypeScript in React"* in chapter *"React Mantenance"* of the book *"The Road to React"*.
 
 **Note:** exit `cat` by pressing `Ctrl-D` on a new line.
 
@@ -166,4 +166,91 @@ git commit -m 'Adding vite/projects/2-rtr-typescript_in_react/ts_in_react-1/tsco
 git add vite/projects/2-rtr-typescript_in_react/ts_in_react-1/tsconfig.node.json
 git commit -m 'Adding vite/projects/2-rtr-typescript_in_react/ts_in_react-1/tsconfig.node.json copied from Road to React book.'
 ```
+
+## 3.3. Rename and Edit Source Files, and Ensure App Builds and Runs Ok
+
+These steps are from the subsection *"TypeScript in React"* in chapter *"React Mantenance"* of the
+book *"The Road to React"*.
+
+### 3.3.1. Rename and Edit `src/*.jsx` Source Files
+
+Run the following commands to **rename the `*.jsx` files to `*.tsx:**
+
+```
+git mv vite/projects/2-rtr-typescript_in_react/ts_in_react-1/src/App.jsx vite/projects/2-rtr-typescript_in_react/ts_in_react-1/src/App.tsx
+gc 'Renaming vite/projects/2-rtr-typescript_in_react/ts_in_react-1/src/App.jsx to vite/projects/2-rtr-typescript_in_react/ts_in_react-1/src/App.tsx .'
+git mv vite/projects/2-rtr-typescript_in_react/ts_in_react-1/src/main.jsx vite/projects/2-rtr-typescript_in_react/ts_in_react-1/src/main.tsx
+gc 'Renaming vite/projects/2-rtr-typescript_in_react/ts_in_react-1/src/main.jsx to vite/projects/2-rtr-typescript_in_react/ts_in_react-1/src/main.tsx .'
+```
+
+### 3.3.2. Edit `index.html`
+
+Now edit `index.html`, changing `main.jsx` on line 11 to `main.tsx`:
+
+```
+$ vi index.html         # change "main.jsx" on line 11 to "main.tsx"
+$ git diff vite/projects/2-rtr-typescript_in_react/ts_in_react-1/index.html
+diff --git a/vite/projects/2-rtr-typescript_in_react/ts_in_react-1/index.html b/vite/projects/2-rtr-typescript_in_react/ts_in_react-1/index.html
+index 79c4701..22365a1 100644
+--- a/vite/projects/2-rtr-typescript_in_react/ts_in_react-1/index.html
++++ b/vite/projects/2-rtr-typescript_in_react/ts_in_react-1/index.html
+@@ -8,6 +8,6 @@
+   </head>
+   <body>
+     <div id="root"></div>
+-    <script type="module" src="/src/main.jsx"></script>
++    <script type="module" src="/src/main.tsx"></script>
+   </body>
+ </html>
+$ git add vite/projects/2-rtr-typescript_in_react/ts_in_react-1/index.html
+$ git commit -m 'Changed "main.jsx" to "main.tsx" on line 11 of vite/projects/2-rtr-typescript_in_react/ts_in_react-1/index.html .'
+[master 5855ba4] Changed "main.jsx" to "main.tsx" on line 11 of vite/projects/2-rtr-typescript_in_react/ts_in_react-1/index.html .
+ 1 file changed, 1 insertion(+), 1 deletion(-)
+$
+```
+
+### 3.3.3. Ensure App Builds and Runs Ok
+
+Run these commands in the `vite/projects/2-rtr-typescript_in_react/ts_in_react-1/'` directory:
+
+```
+$ npm run
+Scripts available in ts_in_react-1@0.0.0 via `npm run-script`:
+  dev
+    vite
+  build
+    vite build
+  lint
+    eslint src --ext js,jsx --report-unused-disable-directives --max-warnings 0
+  preview
+    vite preview
+$ npm run build
+
+> ts_in_react-1@0.0.0 build
+> vite build
+
+vite v4.3.3 building for production...
+✓ 34 modules transformed.
+dist/index.html                   0.45 kB │ gzip:  0.30 kB
+dist/assets/react-35ef61ed.svg    4.13 kB │ gzip:  2.14 kB
+dist/assets/index-d526a0c5.css    1.42 kB │ gzip:  0.74 kB
+dist/assets/index-e92ae01e.js   143.41 kB │ gzip: 46.10 kB
+✓ built in 3.85s
+$ npm run dev
+
+> ts_in_react-1@0.0.0 build
+> vite build
+[Screen clears]
+
+  VITE v4.3.3  ready in 1331 ms
+
+  ➜  Local:   http://localhost:5173/
+  ➜  Network: use --host to expose
+  ➜  press h to show help
+[q]
+$
+```
+
+**Note:** be sure to check out app in browser at [localhost:5173/](http://localhost:5173/) before quitting out of `npm run dev`!
+
 
