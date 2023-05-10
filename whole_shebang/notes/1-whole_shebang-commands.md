@@ -161,6 +161,34 @@ git commit -m 'Updating vite/projects/2-rtr-typescript_in_react/ts_in_react-1/pa
 
 ### 3.3.3. Rename and Edit Source Files
 
+For details, see subsection *"3.3. Rename and Edit Source Files"* in `vite/notes/2-rtr-typescript_in_react.md` in this repo.
+
+Commands to rename the `src/*.jsx` source files:
+
+```
+git mv src/App.jsx src/App.tsx
+git commit -m 'Renaming src/App.jsx to src/App.tsx .'
+git mv src/main.jsx src/main.tsx
+git commit -m 'Renaming src/main.jsx to src/main.tsx .'
+```
+
+Command to edit `index.html`:
+
+```
+vi index.html         # change "main.jsx" on line 11 to "main.tsx"
+git add index.html
+git commit -m 'Changed "main.jsx" to "main.tsx" on line 11 of index.html .'
+```
+
+### 3.3.4. Ensure App Still Runs Ok
+
+Commands to ensure app still runs ok:
+
+```
+npm run         # check that available commands include dev, build, lint, and preview
+npm run build   # build the app
+npm run dev     # run the app in a browser window
+```
 
 ## 3.4. Add MDB
 
