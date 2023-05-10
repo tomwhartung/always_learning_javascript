@@ -253,4 +253,16 @@ $
 
 **Note:** be sure to check out app in browser at [localhost:5173/](http://localhost:5173/) before quitting out of `npm run dev`!
 
+### 3.3.4. Ensure ESLint and TS Work Ok
+
+#### 3.3.4.0. This Did Not Work at First!
+
+I had some issues the first time I went through all this:
+
+- ESLint doesn't work
+- VSCode shows two problems with `App.tsx`
+
+Had to take a little detour.
+
+- For details, see `2a-rtr-typescript_in_react-troubleshooting.md` in this directory
 
