@@ -90,12 +90,12 @@ I am thinking that these problems could also be due to a configuration issue.
 
 ## 0.3. Restarting the Process
 
-**Things to do differently this time:**
+### 0.3.1. Things to Do Differently This Time
 
-- Add project to VSCode as soon as it's been created
-- Try installing TS **before** ESLint
+- (1) Add project to VSCode as soon as it's been created
+- (2) Install TS **before** ESLint
 
-### 0.3.1. Resources and References
+### 0.3.2. Resources and References
 
 **Resources:**
 
@@ -109,20 +109,43 @@ I am thinking that these problems could also be due to a configuration issue.
 
 # 1. Start With React
 
-Take the same steps as those in section *"1. Start With React"* in `2-rtr-typescript_in_react.md`.
+Taking the same steps as those in section *"1. Start With React"* in `2-rtr-typescript_in_react.md`.
 
 ```
-$ pwd
-/var/www/always_learning/always_learning_javascript/vite/projects/2-rtr-typescript_in_react
-$ npm create vite@latest ts_in_react-2-troubleshooting -- --template react
+pwd   # /var/www/always_learning/always_learning_javascript/vite/projects/2-rtr-typescript_in_react
+
+npm create vite@latest ts_in_react-2-troubleshooting -- --template react
 cd ts_in_react-2-troubleshooting
 npm install
+npm install
+```
+
+## 1.1. Add Project to VSCode
+
+**This is the first item in subsection *"0.3.1. Things to Do Differently This Time"* above.**
+
+- [x] (1) Add project to VSCode as soon as it's been created
+
+**Note:** the code does not have any problems.
+
+## 1.2. Commit Project to Github
+
+```
+pwd   # /var/www/always_learning/always_learning_javascript
+
+ga vite/projects/2-rtr-typescript_in_react/ts_in_react-2-troubleshooting/
+git commit -m 'Adding new, just-npm-install-ed project in vite/projects/2-rtr-typescript_in_react/ts_in_react-2-troubleshooting/ .  For details, see vite/notes/2a-rtr-typescript_in_react-troubleshooting.md .'
 ```
 
 
 # 2. Add and Setup TypeScript
 
-Take the same steps as those in section *"3. Add and Setup TypeScript"* in `2-rtr-typescript_in_react.md`.
+Taking the same steps as those in section *"3. Add and Setup TypeScript"* in `2-rtr-typescript_in_react.md`.
+
+This is the first item in subsection *"0.3.1. Things to Do Differently This Time"* above.
+
+- [x] (2) Install TS **before** ESLint
+
 
 **Note:** subsequent sections contain more details - e.g. output from commands - because we have not yet performed these steps, and
 actually running these is *the main point of this project.*
@@ -303,7 +326,7 @@ You are here!
 
 # 3. Add ESLint
 
-Take the same steps as those in section *"2. Add ESLint"* in `2-rtr-typescript_in_react.md`.
+Taking the same steps as those in section *"2. Add ESLint"* in `2-rtr-typescript_in_react.md`.
 
 Running the following commands, which are adapted from section *"4. Linting with ESLint"*
 in `./1-rtr-fundamentals_of_react.md`:
