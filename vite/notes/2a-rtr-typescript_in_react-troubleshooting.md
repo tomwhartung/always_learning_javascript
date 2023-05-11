@@ -90,10 +90,10 @@ I am thinking that these problems could also be due to a configuration issue.
 
 ## 0.3. Restarting the Process
 
-### 0.3.1. Things to Do Differently This Time
+### 0.3.1. Things Done Differently This Time
 
-- (1) Add project to VSCode as soon as it's been created
-- (2) Install TS **before** ESLint
+- [x] (1) Add project to VSCode as soon as it's been created
+- [x] (2) Install TS **before** ESLint
 
 ### 0.3.2. Resources and References
 
@@ -106,10 +106,15 @@ I am thinking that these problems could also be due to a configuration issue.
 
 **References:**
 
+- (1) 
+
 
 # 1. Start With React
 
 Taking the same steps as those in section *"1. Start With React"* in `2-rtr-typescript_in_react.md`.
+For more information, see those notes.
+
+Commands:
 
 ```
 pwd   # /var/www/always_learning/always_learning_javascript/vite/projects/2-rtr-typescript_in_react
@@ -122,13 +127,15 @@ npm install
 
 ## 1.1. Add Project to VSCode
 
-**This is the first item in subsection *"0.3.1. Things to Do Differently This Time"* above.**
+**This is the first item in subsection *"0.3.1. Things Done Differently This Time"* above.**
 
 - [x] (1) Add project to VSCode as soon as it's been created
 
-**Note:** the code does not have any problems.
+**Note:** VSCode does not show that the code has any problems.
 
 ## 1.2. Commit Project to Github
+
+Commands:
 
 ```
 pwd   # /var/www/always_learning/always_learning_javascript
@@ -141,54 +148,43 @@ git commit -m 'Adding new, just-npm-install-ed project in vite/projects/2-rtr-ty
 # 2. Add and Setup TypeScript
 
 Taking the same steps as those in section *"3. Add and Setup TypeScript"* in `2-rtr-typescript_in_react.md`.
+For more information, see those notes.
 
-This is the first item in subsection *"0.3.1. Things to Do Differently This Time"* above.
+**This is the second item in subsection *"0.3.1. Things Done Differently This Time"* above.**
 
 - [x] (2) Install TS **before** ESLint
 
-
-**Note:** subsequent sections contain more details - e.g. output from commands - because we have not yet performed these steps, and
-actually running these is *the main point of this project.*
-
 ## 2.1. Install TypeScript
 
-Running the following commands, which are from the subsection *"TypeScript in React"* in chapter *"React Mantenance"* of the book *"The Road to React"*.
+Commands:
 
 ```
-$ pwd
-/var/www/always_learning/always_learning_javascript/vite/projects/2-rtr-typescript_in_react/ts_in_react-1
-$ npm install typescript @types/react @types/react-dom --save-dev
-
-changed 2 packages, and audited 458 packages in 5s
-
-106 packages are looking for funding
-  run `npm fund` for details
-
-found 0 vulnerabilities
-$
+pwd     # /var/www/always_learning/always_learning_javascript/vite/projects/2-rtr-typescript_in_react/ts_in_react-2-troubleshooting
+npm install typescript @types/react @types/react-dom --save-dev
 ```
 
-Update git with changes made to the `package*` files:
+### 2.1.1. VSCode Check
+
+VSCode does *not* show that the code has any problems.
+
+### 2.1.2. Commit Changes to Github
+
+Commands:
 
 ```
 pwd              # /var/www/always_learning/always_learning_javascript
-git diff vite/projects/2-rtr-typescript_in_react/ts_in_react-1/package-lock.json
 git add  vite/projects/2-rtr-typescript_in_react/ts_in_react-1/package-lock.json
 git commit -m 'Updating vite/projects/2-rtr-typescript_in_react/ts_in_react-1/package-lock.json with changes made by installing typescript.'
-git diff vite/projects/2-rtr-typescript_in_react/ts_in_react-1/package.json
 git add vite/projects/2-rtr-typescript_in_react/ts_in_react-1/package.json
 git commit -m 'Updating vite/projects/2-rtr-typescript_in_react/ts_in_react-1/package.json with changes made by installing typescript.'
 ```
 
 ## 2.2. Configure TypeScript
 
-Running the following commands, which are from the subsection *"TypeScript in React"* in chapter *"React Mantenance"* of the book *"The Road to React"*.
-
-**Note:** exit `cat` by pressing `Ctrl-D` on a new line.
+Commands:
 
 ```
-$ pwd
-/var/www/always_learning/always_learning_javascript/vite/projects/2-rtr-typescript_in_react/ts_in_react-1
+pwd   # /var/www/always_learning/always_learning_javascript/vite/projects/2-rtr-typescript_in_react/ts_in_react-2-troubleshooting
 $ cat > tsconfig.json
 {
   "compilerOptions": {
@@ -223,9 +219,88 @@ $ cat > tsconfig.node.json
 }
 ```
 
-Update git with the new `tsconfig*` files:
+### 2.2.1. VSCode Check
+
+**Note:** VSCode is now showing a problem with `tsconfig.node.json`:
+
+#### 2.2.1.1. VSCode Problem Details
 
 ```
+[{
+	"resource": "/var/www/always_learning/always_learning_javascript/vite/projects/2-rtr-typescript_in_react/ts_in_react-2-troubleshooting/tsconfig.node.json",
+	"owner": "typescript",
+	"severity": 8,
+	"message": "No inputs were found in config file '/var/www/always_learning/always_learning_javascript/vite/projects/2-rtr-typescript_in_react/ts_in_react-2-troubleshooting/tsconfig.node.json'. Specified 'include' paths were '[\"vite.config.ts\"]' and 'exclude' paths were '[]'.",
+	"source": "ts",
+	"startLineNumber": 1,
+	"startColumn": 1,
+	"endLineNumber": 1,
+	"endColumn": 2
+}]
+```
+
+#### 2.2.1.2. VSCode Problem Solution
+
+This [stackoverflow](https://stackoverflow.com/questions/41211566/tsconfig-json-buildno-inputs-were-found-in-config-file#41211721) post
+claims this is due to not having any `*.tsx` files in the project.
+
+- The top answer recommended `touch`ing a `test.tsx` or `test.ts` file
+  - This did not work
+- I tried renaming `App.jsx` to `App.tsx`
+  - This did not work
+- Another answer recommended restarting your editor
+  - A comment to this answer said that "works for VSC~
+  - **I tried it and it worked, yay!**
+
+### 2.2.2. Commit Changes to Github
+
+### 2.2.2.1. Commit Changes to `package*` Files
+
+Commands:
+
+```
+pwd              # /var/www/always_learning/always_learning_javascript
+git add vite/projects/2-rtr-typescript_in_react/ts_in_react-2-troubleshooting/package*
+git commit -m 'Updating vite/projects/2-rtr-typescript_in_react/ts_in_react-1/package* files with changes made by installing typescript.'
+
+### 2.2.2.2. Commit New `tsconfig*` Files
+
+Commands:
+
+```
+git add vite/projects/2-rtr-typescript_in_react/ts_in_react-2-troubleshooting/tsconfig.*
+git commit -m 'Adding vite/projects/2-rtr-typescript_in_react/ts_in_react-2-troubleshooting/tsconfig.* files copied from Road to React book.'
+```
+
+
+-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-
+You are here!
+-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-
+
+
+
+
+### 2.1.1. VSCode Now Shows Two Problems
+
+**Since I believe these problems are due to configuration, let's create those two files before trying to solve the problems.**
+
+- The files are there, it's just that ts can't find them
+- Without some sort of config, it seems obvious it doesn't know where to look
+
+## 2.1.1. VSCode Still Showing Two Problems
+
+
+**Let's see if we can fix those problems *NOW*!**
+
+
+## 2.1.1. Commit Changes to Github
+
+Commands:
+
+```
+Update git with changes made to the `package*` files:
+
+
 pwd              # /var/www/always_learning/always_learning_javascript
 git add vite/projects/2-rtr-typescript_in_react/ts_in_react-1/tsconfig.json
 git commit -m 'Adding vite/projects/2-rtr-typescript_in_react/ts_in_react-1/tsconfig.json copied from Road to React book.'
@@ -319,14 +394,11 @@ $
 
 **Note:** be sure to check out app in browser at [localhost:5173/](http://localhost:5173/) before quitting out of `npm run dev`!
 
--=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-
-You are here!
--=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-
-
 
 # 3. Add ESLint
 
 Taking the same steps as those in section *"2. Add ESLint"* in `2-rtr-typescript_in_react.md`.
+For more information, see those notes.
 
 Running the following commands, which are adapted from section *"4. Linting with ESLint"*
 in `./1-rtr-fundamentals_of_react.md`:
