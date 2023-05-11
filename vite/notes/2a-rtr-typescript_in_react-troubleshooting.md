@@ -4,6 +4,12 @@
 Had some issues with code installed based on commands gleaned from the section *Typescript in React* in the
 chapter *React Maintenance* in the *Road to React* e-book.
 
+**The goal of this file is to:**
+
+- Start the process described in `2-rtr-typescript_in_react.md` from scratch
+- Identify which step in the process causes these issues to arise
+- Fix the issues
+
 # 0. TypeScript in React - Issues
 
 When I got to the subsection *"3.3.4. Ensure ESLint and TS Work Ok"* in `2-rtr-typescript_in_react.md`,
@@ -14,17 +20,7 @@ I discovered I had some issues:
 
 Some initial efforts to fix these issues have proven to be unfruitful.
 
-## 0.1. Goal of This File
-
-**The goal of this file is to:**
-
-- Start the process described in `2-rtr-typescript_in_react.md` from scratch
-- Identify which step in the process causes these issues to arise
-- Fix the issues
-
-# 1. Issue Details
-
-## 1.1. ESLint doesn't work
+## 0.1. ESLint doesn't work - Details
 
 Following is what `npm` displays when I try to run `lint` on the command line:
 
@@ -51,13 +47,13 @@ A couple of initial comments:
   - An initial search for fixes leads me to believe that
 - Ultimately I want to be able to see lint issues in VSCode
 
-## 1.2. VSCode flags two problems in `App.tsx`
+## 0.2. VSCode flags two problems in `App.tsx` - Details
 
 The following subsections show the `.json` VSCode generates for the two problems it identifies.
 
 - It's apparent the two problems are related
 
-### 1.2.1. `Cannot find module './assets/react.svg' or its corresponding type declarations.`
+### 0.2.1. `Cannot find module './assets/react.svg' or its corresponding type declarations.`
 
 ```
 [{
@@ -73,7 +69,7 @@ The following subsections show the `.json` VSCode generates for the two problems
         "endColumn": 43
 }]
 
-### 1.2.2. `Cannot find module '/vite.svg' or its corresponding type declarations.`
+### 0.2.2. `Cannot find module '/vite.svg' or its corresponding type declarations.`
 
 ```
 [{
@@ -92,9 +88,14 @@ The following subsections show the `.json` VSCode generates for the two problems
 
 I am thinking that these problems could also be due to a configuration issue.
 
-# 2. Ideas, Resources, and References
+## 0.3. Restarting the Process
 
-**Idea:** maybe try installing ESLint **after** TS.
+**Things to do differently this time:**
+
+- Add project to VSCode as soon as it's been created
+- Try installing TS **before** ESLint
+
+### 0.3.1. Resources and References
 
 **Resources:**
 
@@ -106,15 +107,9 @@ I am thinking that these problems could also be due to a configuration issue.
 **References:**
 
 
-# 3. Restarting the Process
+# 1. Start With React
 
-Starting over in `var/www/always_learning/always_learning_javascript/vite/projects/2-rtr-typescript_in_react/ts_in_react-2-troubleshooting`.
-
-**Note:** unless an exception is noted, the following subsection numbers prefix the section numbers from `2-rtr-typescript_in_react.md` with a *"3."*.
-
-- E.g.: *"1. Start With React"* in `2-rtr-typescript_in_react.md` is *"3.1. Start With React"* in this file
-
-# 3.1. Start With React
+Take the same steps as those in section *"1. Start With React"* in `2-rtr-typescript_in_react.md`.
 
 ```
 $ pwd
@@ -125,42 +120,14 @@ npm install
 ```
 
 
--=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-
-You are here!
--=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-
+# 2. Add and Setup TypeScript
 
-
-# 2. Add ESLint
-
-Running the following commands, which are adapted from section *"4. Linting with ESLint"*
-in `./1-rtr-fundamentals_of_react.md`:
-
-```
-pwd                                               # var/www/always_learning/always_learning_javascript/vite/projects/2-rtr-typescript_in_react/ts_in_react-1
-npm install vite-plugin-eslint --save-dev         # install vite-plugin-eslint
-npm install eslint-config-react-app --save-dev    # install eslint-config-react-app
-npm run dev                                       # make sure it still runs ok
-cat .eslintrc.cjs                                 # ensure it's there and makes sense
-git diff package-lock.json                        # wow that is a lot of changes
-git diff package.json                             # just a few changes
-```
-
-Check the `vite/projects/2-rtr-typescript_in_react/ts_in_react-1/package*` files in to github:
-
-```
-pwd              # /var/www/always_learning/always_learning_javascript
-git add vite/projects/2-rtr-typescript_in_react/ts_in_react-1/package-lock.json
-git commit -m 'Updating vite/projects/2-rtr-typescript_in_react/ts_in_react-1/package-lock.json with changes made automatically by installing vite-plugin-eslint and eslint-config-react-app .'
-git add package.json
-git commit -m 'Updating vite/projects/2-rtr-typescript_in_react/ts_in_react-1/package.json with changes made automatically by installing vite-plugin-eslint and eslint-config-react-app .'
-```
-
-# 3. Add and Setup TypeScript
+Take the same steps as those in section *"3. Add and Setup TypeScript"* in `2-rtr-typescript_in_react.md`.
 
 **Note:** subsequent sections contain more details - e.g. output from commands - because we have not yet performed these steps, and
 actually running these is *the main point of this project.*
 
-## 3.1. Install TypeScript
+## 2.1. Install TypeScript
 
 Running the following commands, which are from the subsection *"TypeScript in React"* in chapter *"React Mantenance"* of the book *"The Road to React"*.
 
@@ -190,7 +157,7 @@ git add vite/projects/2-rtr-typescript_in_react/ts_in_react-1/package.json
 git commit -m 'Updating vite/projects/2-rtr-typescript_in_react/ts_in_react-1/package.json with changes made by installing typescript.'
 ```
 
-## 3.2. Configure TypeScript
+## 2.2. Configure TypeScript
 
 Running the following commands, which are from the subsection *"TypeScript in React"* in chapter *"React Mantenance"* of the book *"The Road to React"*.
 
@@ -243,12 +210,12 @@ git add vite/projects/2-rtr-typescript_in_react/ts_in_react-1/tsconfig.node.json
 git commit -m 'Adding vite/projects/2-rtr-typescript_in_react/ts_in_react-1/tsconfig.node.json copied from Road to React book.'
 ```
 
-## 3.3. Rename and Edit Source Files, and Ensure App Builds and Runs Ok
+## 2.3. Rename and Edit Source Files, and Ensure App Builds and Runs Ok
 
 These steps are from the subsection *"TypeScript in React"* in chapter *"React Mantenance"* of the
 book *"The Road to React"*.
 
-### 3.3.1. Rename and Edit `src/*.jsx` Source Files
+### 2.3.1. Rename and Edit `src/*.jsx` Source Files
 
 Run the following commands to **rename the `*.jsx` files to `*.tsx:**
 
@@ -259,7 +226,7 @@ git mv vite/projects/2-rtr-typescript_in_react/ts_in_react-1/src/main.jsx vite/p
 gc 'Renaming vite/projects/2-rtr-typescript_in_react/ts_in_react-1/src/main.jsx to vite/projects/2-rtr-typescript_in_react/ts_in_react-1/src/main.tsx .'
 ```
 
-### 3.3.2. Edit `index.html`
+### 2.3.2. Edit `index.html`
 
 Now edit `index.html`, changing `main.jsx` on line 11 to `main.tsx`:
 
@@ -285,7 +252,7 @@ $ git commit -m 'Changed "main.jsx" to "main.tsx" on line 11 of vite/projects/2-
 $
 ```
 
-### 3.3.3. Ensure App Builds and Runs Ok
+### 2.3.3. Ensure App Builds and Runs Ok
 
 Run these commands in the `vite/projects/2-rtr-typescript_in_react/ts_in_react-1/'` directory:
 
@@ -328,6 +295,38 @@ $
 ```
 
 **Note:** be sure to check out app in browser at [localhost:5173/](http://localhost:5173/) before quitting out of `npm run dev`!
+
+-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-
+You are here!
+-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-
+
+
+# 3. Add ESLint
+
+Take the same steps as those in section *"2. Add ESLint"* in `2-rtr-typescript_in_react.md`.
+
+Running the following commands, which are adapted from section *"4. Linting with ESLint"*
+in `./1-rtr-fundamentals_of_react.md`:
+
+```
+pwd                                               # var/www/always_learning/always_learning_javascript/vite/projects/2-rtr-typescript_in_react/ts_in_react-1
+npm install vite-plugin-eslint --save-dev         # install vite-plugin-eslint
+npm install eslint-config-react-app --save-dev    # install eslint-config-react-app
+npm run dev                                       # make sure it still runs ok
+cat .eslintrc.cjs                                 # ensure it's there and makes sense
+git diff package-lock.json                        # wow that is a lot of changes
+git diff package.json                             # just a few changes
+```
+
+Check the `vite/projects/2-rtr-typescript_in_react/ts_in_react-1/package*` files in to github:
+
+```
+pwd              # /var/www/always_learning/always_learning_javascript
+git add vite/projects/2-rtr-typescript_in_react/ts_in_react-1/package-lock.json
+git commit -m 'Updating vite/projects/2-rtr-typescript_in_react/ts_in_react-1/package-lock.json with changes made automatically by installing vite-plugin-eslint and eslint-config-react-app .'
+git add package.json
+git commit -m 'Updating vite/projects/2-rtr-typescript_in_react/ts_in_react-1/package.json with changes made automatically by installing vite-plugin-eslint and eslint-config-react-app .'
+```
 
 ### 3.3.4. Ensure ESLint and TS Work Ok
 
