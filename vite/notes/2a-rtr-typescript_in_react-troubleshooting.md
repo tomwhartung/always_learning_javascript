@@ -16,7 +16,7 @@ Some initial efforts to fix these issues have proven to be unfruitful.
 
 ## 0.1. Goal of This File
 
-The goal of this file is to:
+**The goal of this file is to:**
 
 - Start the process described in `2-rtr-typescript_in_react.md` from scratch
 - Identify which step in the process causes these issues to arise
@@ -90,47 +90,45 @@ The following subsections show the `.json` VSCode generates for the two problems
 }]
 ```
 
-# 1. Start With React
+I am thinking that these problems could also be due to a configuration issue.
 
-Running the following commands, which are adapted from section *"2. Setting up `vite` + `react`"*
-in `./1-rtr-fundamentals_of_react.md`:
+# 2. Ideas, Resources, and References
+
+**Idea:** maybe try installing ESLint **after** TS.
+
+**Resources:**
+
+- (1) The steps in the next section, "3. Restarting the Process", come from `2-rtr-typescript_in_react.md`
+- (2) [A post on medium](https://andrebnassis.medium.com/setting-eslint-on-a-react-typescript-project-2021-1190a43ffba)
+  - *"Setting [sic] ESLint on a React Typescript project (2022)"* has some good config pointers but uses `create-react-app`
+- (3) 
+
+**References:**
+
+
+# 3. Restarting the Process
+
+Starting over in `var/www/always_learning/always_learning_javascript/vite/projects/2-rtr-typescript_in_react/ts_in_react-2-troubleshooting`.
+
+**Note:** unless an exception is noted, the following subsection numbers prefix the section numbers from `2-rtr-typescript_in_react.md` with a *"3."*.
+
+- E.g.: *"1. Start With React"* in `2-rtr-typescript_in_react.md` is *"3.1. Start With React"* in this file
+
+# 3.1. Start With React
 
 ```
 $ pwd
-/var/www/always_learning/always_learning_javascript/vite/projects
-$ mkdir 2-rtr-typescript_in_react
-$ l
-total 12
--rw-r--r-- 1 tomh tomh  881 Apr 25 13:05 .gitignore
-drwxr-xr-x 3 tomh tomh 4096 Apr 26 13:16 1-rtr-fundamentals_of_react
-drwxr-xr-x 2 tomh tomh 4096 Apr 30 17:05 2-rtr-typescript_in_react
-$ cd 2-rtr-typescript_in_react/
-$ l
-total 0
-$ npm create vite@latest ts_in_react-1 -- --template react
-
-Scaffolding project in /var/www/always_learning/always_learning_javascript/vite/projects/2-rtr-typescript_in_react/ts_in_react-1...
-
-Done. Now run:
-
-  cd ts_in_react-1
-  npm install
-  npm run dev
-
-$ l
-$ total 4
-drwxr-xr-x 4 tomh tomh 4096 Apr 30 17:10 ts_in_react-1
-$ cd ts_in_react-1
-$ npm install
-
-added 240 packages, and audited 241 packages in 20s
-
-81 packages are looking for funding
-  run `npm fund` for details
-
-found 0 vulnerabilities
-$
+/var/www/always_learning/always_learning_javascript/vite/projects/2-rtr-typescript_in_react
+$ npm create vite@latest ts_in_react-2-troubleshooting -- --template react
+cd ts_in_react-2-troubleshooting
+npm install
 ```
+
+
+-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-
+You are here!
+-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-
+
 
 # 2. Add ESLint
 
