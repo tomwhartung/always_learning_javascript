@@ -156,6 +156,9 @@ For more information, see those notes.
 
 ## 2.1. Install TypeScript
 
+Taking the same steps as those in subsection *"3.1. Install TypeScript"* in `2-rtr-typescript_in_react.md`.
+For more information, see those notes.
+
 Commands:
 
 ```
@@ -180,6 +183,9 @@ git commit -m 'Updating vite/projects/2-rtr-typescript_in_react/ts_in_react-1/pa
 ```
 
 ## 2.2. Configure TypeScript
+
+Taking the same steps as those in subsection *"3.2. Configure TypeScript"* in `2-rtr-typescript_in_react.md`.
+For more information, see those notes.
 
 Commands:
 
@@ -241,8 +247,8 @@ $ cat > tsconfig.node.json
 
 #### 2.2.1.2. VSCode Problem Solution
 
-This [stackoverflow](https://stackoverflow.com/questions/41211566/tsconfig-json-buildno-inputs-were-found-in-config-file#41211721) post
-claims this is due to not having any `*.tsx` files in the project.
+[This stackoverflow](https://stackoverflow.com/questions/41211566/tsconfig-json-buildno-inputs-were-found-in-config-file#41211721)
+post claims this is due to not having any `*.tsx` files in the project.
 
 - The top answer recommended `touch`ing a `test.tsx` or `test.ts` file
   - This did not work
@@ -272,6 +278,89 @@ git add vite/projects/2-rtr-typescript_in_react/ts_in_react-2-troubleshooting/ts
 git commit -m 'Adding vite/projects/2-rtr-typescript_in_react/ts_in_react-2-troubleshooting/tsconfig.* files copied from Road to React book.'
 ```
 
+## 2.3. Rename and Edit Source Files, and Ensure App Builds and Runs Ok
+
+Taking the same steps as those in subsection *"3.3. Rename and Edit Source Files, and Ensure App Builds and Runs Ok"* in `2-rtr-typescript_in_react.md`.
+For more information, see those notes.
+
+### 2.3.1. Rename `src/App.jsx` to `src/App.tsx`
+
+Commands:
+
+```
+pwd              # /var/www/always_learning/always_learning_javascript
+git mv vite/projects/2-rtr-typescript_in_react/ts_in_react-2-troubleshooting/src/App.jsx vite/projects/2-rtr-typescript_in_react/ts_in_react-2-troubleshooting/src/App.tsx
+git commit -m 'Renaming vite/projects/2-rtr-typescript_in_react/ts_in_react-2-troubleshooting/src/App.jsx to vite/projects/2-rtr-typescript_in_react/ts_in_react-2-troubleshooting/src/App.tsx .'
+```
+
+#### 2.3.1.1. VSCode Check
+
+VSCode does *not* show that the code has any problems.
+
+### 2.3.2. Rename `src/main.jsx` to `src/main.tsx`
+
+```
+pwd              # /var/www/always_learning/always_learning_javascript
+git mv vite/projects/2-rtr-typescript_in_react/ts_in_react-2-troubleshooting/src/main.jsx vite/projects/2-rtr-typescript_in_react/ts_in_react-2-troubleshooting/src/main.tsx
+git commit -m 'Renaming vite/projects/2-rtr-typescript_in_react/ts_in_react-2-troubleshooting/src/main.jsx to vite/projects/2-rtr-typescript_in_react/ts_in_react-2-troubleshooting/src/main.tsx .'
+```
+
+#### 2.3.2.1. VSCode Check
+
+**Note:** VSCode is now showing a problem with `main.jsx`:
+
+##### 2.3.2.1.1. VSCode Problem Details
+
+```
+[{
+	"resource": "/var/www/always_learning/always_learning_javascript/vite/projects/2-rtr-typescript_in_react/ts_in_react-2-troubleshooting/src/main.tsx",
+	"owner": "typescript",
+	"code": "2345",
+	"severity": 8,
+	"message": "Argument of type 'HTMLElement | null' is not assignable to parameter of type 'Element | DocumentFragment'.\n  Type 'null' is not assignable to type 'Element | DocumentFragment'.",
+	"source": "ts",
+	"startLineNumber": 6,
+	"startColumn": 21,
+	"endLineNumber": 6,
+	"endColumn": 52
+}]```
+
+##### 2.3.2.1.2. VSCode Problem Solution
+
+[This stackoverflow](https://stackoverflow.com/questions/71808102/react-18-type-null-is-not-assignable-to-type-element-documentfragment)
+post claims this is due to the following type mismatch:
+
+- The `document.getElementById()` method returns an `HTMLElement`
+- The `createRoot` method expects an `Element | DocumentFragment` parameter
+
+The top-most and only answer suggests using an `as` cast, which indeed **fixes the problem.**
+
+Commands:
+
+```
+$ pwd
+/var/www/always_learning/always_learning_javascript/vite/projects/2-rtr-typescript_in_react/ts_in_react-2-troubleshooting
+$ git diff src/main.tsx
+diff --git a/vite/projects/2-rtr-typescript_in_react/ts_in_react-2-troubleshooting/src/main.tsx b/vite/projects/2-rtr-typescript_in_react/ts_in_react-2-troubleshooting/src/main.tsx
+index 54b39dd..e0c87d1 100644
+--- a/vite/projects/2-rtr-typescript_in_react/ts_in_react-2-troubleshooting/src/main.tsx
++++ b/vite/projects/2-rtr-typescript_in_react/ts_in_react-2-troubleshooting/src/main.tsx
+@@ -3,7 +3,7 @@ import ReactDOM from 'react-dom/client'
+ import App from './App.jsx'
+ import './index.css'
+
+-ReactDOM.createRoot(document.getElementById('root')).render(
++ReactDOM.createRoot(document.getElementById('root') as Element).render(
+   <React.StrictMode>
+     <App />
+   </React.StrictMode>,
+$ git add src/main.tsx
+$ git commit -m 'Added an "as" cast to src/main.tsx to fix a type mismatch.'
+[master a2d0a8b] Added an "as" cast to src/main.tsx to fix a type mismatch.
+ 1 file changed, 1 insertion(+), 1 deletion(-)
+$
+```
+
 
 -=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-
 You are here!
@@ -279,52 +368,7 @@ You are here!
 
 
 
-
-### 2.1.1. VSCode Now Shows Two Problems
-
-**Since I believe these problems are due to configuration, let's create those two files before trying to solve the problems.**
-
-- The files are there, it's just that ts can't find them
-- Without some sort of config, it seems obvious it doesn't know where to look
-
-## 2.1.1. VSCode Still Showing Two Problems
-
-
-**Let's see if we can fix those problems *NOW*!**
-
-
-## 2.1.1. Commit Changes to Github
-
-Commands:
-
-```
-Update git with changes made to the `package*` files:
-
-
-pwd              # /var/www/always_learning/always_learning_javascript
-git add vite/projects/2-rtr-typescript_in_react/ts_in_react-1/tsconfig.json
-git commit -m 'Adding vite/projects/2-rtr-typescript_in_react/ts_in_react-1/tsconfig.json copied from Road to React book.'
-git add vite/projects/2-rtr-typescript_in_react/ts_in_react-1/tsconfig.node.json
-git commit -m 'Adding vite/projects/2-rtr-typescript_in_react/ts_in_react-1/tsconfig.node.json copied from Road to React book.'
-```
-
-## 2.3. Rename and Edit Source Files, and Ensure App Builds and Runs Ok
-
-These steps are from the subsection *"TypeScript in React"* in chapter *"React Mantenance"* of the
-book *"The Road to React"*.
-
-### 2.3.1. Rename and Edit `src/*.jsx` Source Files
-
-Run the following commands to **rename the `*.jsx` files to `*.tsx:**
-
-```
-git mv vite/projects/2-rtr-typescript_in_react/ts_in_react-1/src/App.jsx vite/projects/2-rtr-typescript_in_react/ts_in_react-1/src/App.tsx
-gc 'Renaming vite/projects/2-rtr-typescript_in_react/ts_in_react-1/src/App.jsx to vite/projects/2-rtr-typescript_in_react/ts_in_react-1/src/App.tsx .'
-git mv vite/projects/2-rtr-typescript_in_react/ts_in_react-1/src/main.jsx vite/projects/2-rtr-typescript_in_react/ts_in_react-1/src/main.tsx
-gc 'Renaming vite/projects/2-rtr-typescript_in_react/ts_in_react-1/src/main.jsx to vite/projects/2-rtr-typescript_in_react/ts_in_react-1/src/main.tsx .'
-```
-
-### 2.3.2. Edit `index.html`
+### 2.3.3. Edit `index.html`
 
 Now edit `index.html`, changing `main.jsx` on line 11 to `main.tsx`:
 
@@ -393,6 +437,38 @@ $
 ```
 
 **Note:** be sure to check out app in browser at [localhost:5173/](http://localhost:5173/) before quitting out of `npm run dev`!
+
+
+-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-
+
+
+### 2.1.1. VSCode Now Shows Two Problems
+
+**Since I believe these problems are due to configuration, let's create those two files before trying to solve the problems.**
+
+- The files are there, it's just that ts can't find them
+- Without some sort of config, it seems obvious it doesn't know where to look
+
+## 2.1.1. VSCode Still Showing Two Problems
+
+
+**Let's see if we can fix those problems *NOW*!**
+
+
+## 2.1.1. Commit Changes to Github
+
+Commands:
+
+```
+Update git with changes made to the `package*` files:
+
+
+pwd              # /var/www/always_learning/always_learning_javascript
+git add vite/projects/2-rtr-typescript_in_react/ts_in_react-1/tsconfig.json
+git commit -m 'Adding vite/projects/2-rtr-typescript_in_react/ts_in_react-1/tsconfig.json copied from Road to React book.'
+git add vite/projects/2-rtr-typescript_in_react/ts_in_react-1/tsconfig.node.json
+git commit -m 'Adding vite/projects/2-rtr-typescript_in_react/ts_in_react-1/tsconfig.node.json copied from Road to React book.'
+```
 
 
 # 3. Add ESLint
