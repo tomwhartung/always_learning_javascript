@@ -131,11 +131,9 @@ npm install
 
 - [x] (1) Add project to VSCode as soon as it's been created
 
-**Note:** VSCode does not show that the code has any problems.
+VSCode does *not* show any problems in the project.
 
 ## 1.2. Commit Project to Github
-
-Commands:
 
 ```
 pwd   # /var/www/always_learning/always_learning_javascript
@@ -159,8 +157,6 @@ For more information, see those notes.
 Taking the same steps as those in subsection *"3.1. Install TypeScript"* in `2-rtr-typescript_in_react.md`.
 For more information, see those notes.
 
-Commands:
-
 ```
 pwd     # /var/www/always_learning/always_learning_javascript/vite/projects/2-rtr-typescript_in_react/ts_in_react-2-troubleshooting
 npm install typescript @types/react @types/react-dom --save-dev
@@ -168,26 +164,22 @@ npm install typescript @types/react @types/react-dom --save-dev
 
 ### 2.1.1. VSCode Check
 
-VSCode does *not* show that the code has any problems.
+VSCode does *not* show any problems in the project.
 
 ### 2.1.2. Commit Changes to Github
 
-Commands:
-
 ```
 pwd              # /var/www/always_learning/always_learning_javascript
-git add  vite/projects/2-rtr-typescript_in_react/ts_in_react-1/package-lock.json
-git commit -m 'Updating vite/projects/2-rtr-typescript_in_react/ts_in_react-1/package-lock.json with changes made by installing typescript.'
-git add vite/projects/2-rtr-typescript_in_react/ts_in_react-1/package.json
-git commit -m 'Updating vite/projects/2-rtr-typescript_in_react/ts_in_react-1/package.json with changes made by installing typescript.'
+git add  vite/projects/2-rtr-typescript_in_react/ts_in_react-2-troubleshooting/package-lock.json
+git commit -m 'Updating vite/projects/2-rtr-typescript_in_react/ts_in_react-2-troubleshooting/package-lock.json with changes made by installing typescript.'
+git add vite/projects/2-rtr-typescript_in_react/ts_in_react-2-troubleshooting/package.json
+git commit -m 'Updating vite/projects/2-rtr-typescript_in_react/ts_in_react-2-troubleshooting/package.json with changes made by installing typescript.'
 ```
 
 ## 2.2. Configure TypeScript
 
 Taking the same steps as those in subsection *"3.2. Configure TypeScript"* in `2-rtr-typescript_in_react.md`.
 For more information, see those notes.
-
-Commands:
 
 ```
 pwd   # /var/www/always_learning/always_learning_javascript/vite/projects/2-rtr-typescript_in_react/ts_in_react-2-troubleshooting
@@ -260,18 +252,14 @@ post claims this is due to not having any `*.tsx` files in the project.
 
 ### 2.2.2. Commit Changes to Github
 
-### 2.2.2.1. Commit Changes to `package*` Files
-
-Commands:
+#### 2.2.2.1. Commit Changes to `package*` Files
 
 ```
 pwd              # /var/www/always_learning/always_learning_javascript
 git add vite/projects/2-rtr-typescript_in_react/ts_in_react-2-troubleshooting/package*
-git commit -m 'Updating vite/projects/2-rtr-typescript_in_react/ts_in_react-1/package* files with changes made by installing typescript.'
+git commit -m 'Updating vite/projects/2-rtr-typescript_in_react/ts_in_react-2-troubleshooting/package* files with changes made by installing typescript.'
 
-### 2.2.2.2. Commit New `tsconfig*` Files
-
-Commands:
+#### 2.2.2.2. Commit New `tsconfig*` Files
 
 ```
 git add vite/projects/2-rtr-typescript_in_react/ts_in_react-2-troubleshooting/tsconfig.*
@@ -285,17 +273,20 @@ For more information, see those notes.
 
 ### 2.3.1. Rename `src/App.jsx` to `src/App.tsx`
 
-Commands:
-
 ```
 pwd              # /var/www/always_learning/always_learning_javascript
 git mv vite/projects/2-rtr-typescript_in_react/ts_in_react-2-troubleshooting/src/App.jsx vite/projects/2-rtr-typescript_in_react/ts_in_react-2-troubleshooting/src/App.tsx
-git commit -m 'Renaming vite/projects/2-rtr-typescript_in_react/ts_in_react-2-troubleshooting/src/App.jsx to vite/projects/2-rtr-typescript_in_react/ts_in_react-2-troubleshooting/src/App.tsx .'
-```
 
 #### 2.3.1.1. VSCode Check
 
-VSCode does *not* show that the code has any problems.
+VSCode does *not* show any problems in the project.
+
+#### 2.3.1.2. Commit Change to Github
+
+```
+pwd              # /var/www/always_learning/always_learning_javascript
+git commit -m 'Renaming vite/projects/2-rtr-typescript_in_react/ts_in_react-2-troubleshooting/src/App.jsx to vite/projects/2-rtr-typescript_in_react/ts_in_react-2-troubleshooting/src/App.tsx .'
+```
 
 ### 2.3.2. Rename `src/main.jsx` to `src/main.tsx`
 
@@ -335,8 +326,6 @@ post claims this is due to the following type mismatch:
 
 The top-most and only answer suggests using an `as` cast, which indeed **fixes the problem.**
 
-Commands:
-
 ```
 $ pwd
 /var/www/always_learning/always_learning_javascript/vite/projects/2-rtr-typescript_in_react/ts_in_react-2-troubleshooting
@@ -354,6 +343,15 @@ index 54b39dd..e0c87d1 100644
    <React.StrictMode>
      <App />
    </React.StrictMode>,
+$
+```
+
+##### 2.3.2.1.3. Commit Change to Github
+
+```
+$ pwd
+/var/www/always_learning/always_learning_javascript/vite/projects/2-rtr-typescript_in_react/ts_in_react-2-troubleshooting
+$
 $ git add src/main.tsx
 $ git commit -m 'Added an "as" cast to src/main.tsx to fix a type mismatch.'
 [master a2d0a8b] Added an "as" cast to src/main.tsx to fix a type mismatch.
@@ -361,24 +359,21 @@ $ git commit -m 'Added an "as" cast to src/main.tsx to fix a type mismatch.'
 $
 ```
 
-
--=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-
-You are here!
--=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-
-
-
-
 ### 2.3.3. Edit `index.html`
 
-Now edit `index.html`, changing `main.jsx` on line 11 to `main.tsx`:
+Change `main.jsx` to `main.tsx` on line 11 of `index.html`:
 
 ```
+$ pwd
+/var/www/always_learning/always_learning_javascript/vite/projects/2-rtr-typescript_in_react/ts_in_react-2-troubleshooting
+$
 $ vi index.html         # change "main.jsx" on line 11 to "main.tsx"
-$ git diff vite/projects/2-rtr-typescript_in_react/ts_in_react-1/index.html
-diff --git a/vite/projects/2-rtr-typescript_in_react/ts_in_react-1/index.html b/vite/projects/2-rtr-typescript_in_react/ts_in_react-1/index.html
+$
+$ git diff vite/projects/2-rtr-typescript_in_react/ts_in_react-2-troubleshooting/index.html
+diff --git a/vite/projects/2-rtr-typescript_in_react/ts_in_react-2-troubleshooting/index.html b/vite/projects/2-rtr-typescript_in_react/ts_in_react-2-troubleshooting/index.html
 index 79c4701..22365a1 100644
---- a/vite/projects/2-rtr-typescript_in_react/ts_in_react-1/index.html
-+++ b/vite/projects/2-rtr-typescript_in_react/ts_in_react-1/index.html
+--- a/vite/projects/2-rtr-typescript_in_react/ts_in_react-2-troubleshooting/index.html
++++ b/vite/projects/2-rtr-typescript_in_react/ts_in_react-2-troubleshooting/index.html
 @@ -8,6 +8,6 @@
    </head>
    <body>
@@ -387,59 +382,41 @@ index 79c4701..22365a1 100644
 +    <script type="module" src="/src/main.tsx"></script>
    </body>
  </html>
-$ git add vite/projects/2-rtr-typescript_in_react/ts_in_react-1/index.html
-$ git commit -m 'Changed "main.jsx" to "main.tsx" on line 11 of vite/projects/2-rtr-typescript_in_react/ts_in_react-1/index.html .'
-[master 5855ba4] Changed "main.jsx" to "main.tsx" on line 11 of vite/projects/2-rtr-typescript_in_react/ts_in_react-1/index.html .
+$
+```
+
+#### 2.3.3.1. VSCode Check
+
+VSCode does *not* show any problems in the project.
+
+#### 2.3.3.2. Commit Change to Github
+
+```
+$ pwd
+/var/www/always_learning/always_learning_javascript
+$
+$ git add vite/projects/2-rtr-typescript_in_react/ts_in_react-2-troubleshooting/index.html
+$ git commit -m 'Changed "main.jsx" to "main.tsx" on line 11 of vite/projects/2-rtr-typescript_in_react/ts_in_react-2-troubleshooting/index.html .'
+[master 5855ba4] Changed "main.jsx" to "main.tsx" on line 11 of vite/projects/2-rtr-typescript_in_react/ts_in_react-2-troubleshooting/index.html .
  1 file changed, 1 insertion(+), 1 deletion(-)
 $
 ```
 
-### 2.3.3. Ensure App Builds and Runs Ok
-
-Run these commands in the `vite/projects/2-rtr-typescript_in_react/ts_in_react-1/'` directory:
+### 2.3.4. Ensure App Builds and Runs Ok
 
 ```
-$ npm run
-Scripts available in ts_in_react-1@0.0.0 via `npm run-script`:
-  dev
-    vite
-  build
-    vite build
-  lint
-    eslint src --ext js,jsx --report-unused-disable-directives --max-warnings 0
-  preview
-    vite preview
-$ npm run build
-
-> ts_in_react-1@0.0.0 build
-> vite build
-
-vite v4.3.3 building for production...
-✓ 34 modules transformed.
-dist/index.html                   0.45 kB │ gzip:  0.30 kB
-dist/assets/react-35ef61ed.svg    4.13 kB │ gzip:  2.14 kB
-dist/assets/index-d526a0c5.css    1.42 kB │ gzip:  0.74 kB
-dist/assets/index-e92ae01e.js   143.41 kB │ gzip: 46.10 kB
-✓ built in 3.85s
-$ npm run dev
-
-> ts_in_react-1@0.0.0 build
-> vite build
-[Screen clears]
-
-  VITE v4.3.3  ready in 1331 ms
-
-  ➜  Local:   http://localhost:5173/
-  ➜  Network: use --host to expose
-  ➜  press h to show help
-[q]
-$
+pwd             # /var/www/always_learning/always_learning_javascript/vite/projects/2-rtr-typescript_in_react/ts_in_react-2-troubleshooting
+npm run         # Check my options
+npm run build   # No apparent build errors
+npm run dev     # Runs and reloads ok
 ```
 
-**Note:** be sure to check out app in browser at [localhost:5173/](http://localhost:5173/) before quitting out of `npm run dev`!
-
+Checked app in browser and every thing seems to be ok!
 
 -=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-
+You are here!
+-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-
+
 
 
 ### 2.1.1. VSCode Now Shows Two Problems
@@ -456,8 +433,6 @@ $
 
 
 ## 2.1.1. Commit Changes to Github
-
-Commands:
 
 ```
 Update git with changes made to the `package*` files:
