@@ -428,6 +428,7 @@ Taking the same steps as those in section *"2. Add ESLint"* in `2-rtr-typescript
 ```
 pwd                                               # var/www/always_learning/always_learning_javascript/vite/projects/2-rtr-typescript_in_react/ts_in_react-2-troubleshooting
 npm install vite-plugin-eslint --save-dev         # install vite-plugin-eslint
+npm install eslint --save-dev                     # install eslint dependencies **MAY HAVE MISSED THIS IN PREVIOUS EFFORTS**
 npm install eslint-config-react-app --save-dev    # install eslint-config-react-app
 cat .eslintrc.cjs                                 # ensure it's there and makes sense
 npm run dev                                       # make sure it still runs ok
@@ -524,18 +525,73 @@ $
 }]
 ```
 
+**Note:** for both of these, `"source": "ts",` so apparently they are TS errors?
+
 #### 4.1.1.2. VSCode Problem Analysis
 
-- The files are there, it's just that (???) TS (???) can't find them
+The errors are similar:
 
+-	"message": "Cannot find module './assets/react.svg' or its corresponding type declarations.",
+  - Note: starts with a `.`
+    - That is how it appears in `App.tsx`
+-	"message": "Cannot find module '/vite.svg' or its corresponding type declarations.",
+  - Note: does *not* start with a `.` - hmm...
+    - That is how it appears in `App.tsx`
+
+The files are there, it's just that TS (or VSCode??) can't find them:
+
+```
+$ pwd
+/var/www/always_learning/always_learning_javascript/vite/projects/2-rtr-typescript_in_react/ts_in_react-2-troubleshooting
+$
+$ l public/vite.svg  src/assets/react.svg
+-rw-r--r-- 1 tomh tomh 1497 May 11 13:38 public/vite.svg
+-rw-r--r-- 1 tomh tomh 4126 May 11 13:38 src/assets/react.svg
+```
+
+#### 4.1.1.3. VSCode Problem Investigation - VSCode Tips
+
+##### 4.1.1.3.1. Interesting Asides
+
+[This slackoverload post](https://stackoverflow.com/questions/64732623/typescript-cannot-find-module-or-its-corresponding-type-declarations)
+has some interesting ideas.
+
+- I already ran `npm install typescript @types/react @types/react-dom --save-dev`, so I don't think that's it
+- **Note:** to restart the typescript server in VSCode:
+  - Ctrl-Shift-P -> Typescript: Reload Project
+  - ??? OR ???
+  - View -> Command Palette [Ctrl-Shift-P] -> Typescript: Restart TS Server
+    - Good to know!
+
+##### 4.1.1.3.2. Solutions Tried
+
+**Editing paths in the `import` statements in `App.tsx`**
+
+- Tried adding `./`, no `.` or `/`, using `public/vite.svg`, using `../`, etc.
+  - Paths also changed in error messages
+  - Nothing really helped
+
+**Running `npm install eslint --save-dev`:**
+
+- I apparently did *not* run `npm install eslint --save-dev`
+  - A few search results recommend it
+  - It is actually also in the *"Road to React"* book, but not in my lists of the commands I ran
+    - I was surprised to see I apparently did not run it??
+  - This actually updated `"eslint":` in the package* files from version `"^8.38.0"` to `"^8.40.0"`
+
+
+
+-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-
+**From last time:**
 - Without some sort of config, it seems obvious it doesn't know where to look
 - This makes me think these problems are due to configuration
   - ??? let's create those two files before trying to solve the problems
   - **what two files???**
+-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-
 
-#### 4.1.1.3. VSCode Problem Solution
+#### 4.1.1.4. VSCode Problem Solution
 
-#### 4.1.1.4. Commit Change(s) to Github
+#### 4.1.1.5. Commit Change(s) to Github
 
 **See commands below!!!**
 
