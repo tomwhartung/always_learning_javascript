@@ -56,21 +56,28 @@ This involves doing quite a few things, so having a checklist is appropriate:
 
 - [x] Based on notes from the *Typescript in React* section in the *React Maintenance* chapter of the *Road to React* e-book
 - [x] Started with `vite@latest` setup with `--template react`
-- [x] Add ESLint
+- [x] Add new project into VSCode
+  - [x] See how things look in it
+  - [x] Check VSCode for problems
 - [x] Add typescript
 - [x] Add TS config files
-- [x] Test drive VSCode
-  - [x] See how things look in it
 - [x] Make updates per the *TypeScript in React* section of *React Maintenance* chapter of the *Road to React* ebook:
   - [x] Rename `.jsx` files to `.tsx`
   - [x] Edit `index.html` to reference `main.tsx` instead of `main.jsx`
+- [x] Check VSCode for problems
 - [x] Ensure you can still build and run the app
-- [ ] Generate a TS error
-- [ ] Generate an ESLint error
+- [x] Add ESLint
+- [x] Check VSCode for problems
+- [ ] Use VSCode to generate and fix an ESLint error
+- [ ] Use VSCode to generate and fix a TS error
 
 
 ### 2.2. Lessons Learned From the `2-rtr-typescript_in_react` Project
-**TBD**
+
+- Add initial project to VSCode
+  - It can find errors that are not obvious on the command line
+  - It's best to fix these errors asap
+- 
 
 
 # 3. `XXX` Project
