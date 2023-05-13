@@ -11,6 +11,12 @@ Adding TypeScript to React has several advantages:
 - Makes it easier to reorganize and refactor code
 - Improves developer experience
 
+# 0. Had to Start Over
+
+**Note:** I got some errors in VSCode and decided to start this project over, installing components
+in a different sequence.
+
+- For details, see `2a-rtr-typescript_in_react-troubleshooting.md` - and possibly some other files - in this directory
 
 # 1. Start With React
 
@@ -265,4 +271,12 @@ I had some issues the first time I went through all this:
 Had to take a little detour.
 
 - For details, see `2a-rtr-typescript_in_react-troubleshooting.md` in this directory
+
+#### 3.3.4.1. Generate and fix an ESLint error
+
+**Never attempted, due to having to take a detour.**
+
+#### 3.3.4.2. Generate and fix a TS error
+
+**Never attempted, due to having to take a detour.**
 
