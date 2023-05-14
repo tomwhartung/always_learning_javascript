@@ -579,6 +579,26 @@ has some interesting ideas.
     - I was surprised to see I apparently did not run it??
   - This actually updated `"eslint":` in the package* files from version `"^8.38.0"` to `"^8.40.0"`
 
+**Run `tsc` instead of depending on VSCode**
+
+- Get the same errors
+
+**RTFM: [What is a `tsconfig.json`?(https://www.typescriptlang.org/docs/handbook/tsconfig-json.html)**
+
+- Not finding much that is helpful, but a whole lot that is not relevant
+
+
+
+-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-
+You are here!
+-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-
+
+Things to look into trying:
+
+- If these are TS errors, why do they appear only after adding `eslint`?
+  - Or do they?
+  - Maybe try a new project: `ts_in_react-3-fresh_start`
+    - Be sure to **reload TS** (Ctrl+Shift+P) and *make sure* it is `eslint` that "causes" the errors
 
 
 -=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-
@@ -643,9 +663,6 @@ Checked app in browser and every thing seems to be ok!
 ```
 ```
 
--=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-
-You are here!
--=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-
 
 ## 4.2. Generate and fix a TS error
 ## 4.2.1. VSCode Check
