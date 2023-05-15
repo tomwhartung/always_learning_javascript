@@ -589,6 +589,8 @@ has some interesting ideas.
 
 **[This stackoverflow post](https://stackoverflow.com/questions/44717164/unable-to-import-svg-files-in-typescript#45887328)**
 
+**First try:** tried this, based on the second answer and a comment to the original post:
+
 ```
 // import reactLogo from './assets/react.svg'
 const reactLogo = require("./assets/react.svg");
@@ -614,6 +616,78 @@ Also, now have this new problem:
 ```
 
 Not sure I want to install this package **when hovering** VSCode wants me to not use the `require`.
+
+**Second try:**
+
+From the main answer, which says this works for webpack, which is why I didn't try it at first, but...:
+
+- 1. Create a file named `custom.d.ts` with the following contents:
+
+```
+declare module "*.svg" {
+  const content: React.FunctionComponent<React.SVGAttributes<SVGElement>>;
+  export default content;
+}
+```
+
+- 2. Update `tsconfig.js` to include it:
+
+```
+-  "include": ["src"],
++  "include": ["src", "src/custom.d.ts"],
+```
+
+This fixes the old problems but gives us two new problems:
+
+```
+[{
+	"resource": "/var/www/always_learning/always_learning_javascript/vite/projects/2-rtr-typescript_in_react/ts_in_react-2-troubleshooting/src/App.tsx",
+	"owner": "typescript",
+	"code": "2322",
+	"severity": 8,
+	"message": "Type 'FunctionComponent<SVGAttributes<SVGElement>>' is not assignable to type 'string'.",
+	"source": "ts",
+	"startLineNumber": 18,
+	"startColumn": 16,
+	"endLineNumber": 18,
+	"endColumn": 19,
+	"relatedInformation": [
+		{
+			"startLineNumber": 2235,
+			"startColumn": 9,
+			"endLineNumber": 2235,
+			"endColumn": 12,
+			"message": "The expected type comes from property 'src' which is declared here on type 'DetailedHTMLProps<ImgHTMLAttributes<HTMLImageElement>, HTMLImageElement>'",
+			"resource": "/var/www/always_learning/always_learning_javascript/vite/projects/2-rtr-typescript_in_react/ts_in_react-2-troubleshooting/node_modules/@types/react/index.d.ts"
+		}
+	]
+}]
+```
+
+```
+[{
+	"resource": "/var/www/always_learning/always_learning_javascript/vite/projects/2-rtr-typescript_in_react/ts_in_react-2-troubleshooting/src/App.tsx",
+	"owner": "typescript",
+	"code": "2322",
+	"severity": 8,
+	"message": "Type 'FunctionComponent<SVGAttributes<SVGElement>>' is not assignable to type 'string'.",
+	"source": "ts",
+	"startLineNumber": 21,
+	"startColumn": 16,
+	"endLineNumber": 21,
+	"endColumn": 19,
+	"relatedInformation": [
+		{
+			"startLineNumber": 2235,
+			"startColumn": 9,
+			"endLineNumber": 2235,
+			"endColumn": 12,
+			"message": "The expected type comes from property 'src' which is declared here on type 'DetailedHTMLProps<ImgHTMLAttributes<HTMLImageElement>, HTMLImageElement>'",
+			"resource": "/var/www/always_learning/always_learning_javascript/vite/projects/2-rtr-typescript_in_react/ts_in_react-2-troubleshooting/node_modules/@types/react/index.d.ts"
+		}
+	]
+}]
+```
 
 
 -=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-
