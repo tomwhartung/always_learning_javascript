@@ -587,6 +587,33 @@ has some interesting ideas.
 
 - Not finding much that is helpful, but a whole lot that is not relevant
 
+**[This stackoverflow post](https://stackoverflow.com/questions/44717164/unable-to-import-svg-files-in-typescript#45887328)**
+
+```
+// import reactLogo from './assets/react.svg'
+const reactLogo = require("./assets/react.svg");
+```
+
+Now **when hovering** it says it wants to convert the require to an import.
+
+Also, now have this new problem:
+
+```
+[{
+	"resource": "/var/www/always_learning/always_learning_javascript/vite/projects/2-rtr-typescript_in_react/ts_in_react-2-troubleshooting/src/App.tsx",
+	"owner": "typescript",
+	"code": "2580",
+	"severity": 8,
+	"message": "Cannot find name 'require'. Do you need to install type definitions for node? Try `npm i --save-dev @types/node`.",
+	"source": "ts",
+	"startLineNumber": 4,
+	"startColumn": 19,
+	"endLineNumber": 4,
+	"endColumn": 26
+}]
+```
+
+Not sure I want to install this package **when hovering** VSCode wants me to not use the `require`.
 
 
 -=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-
