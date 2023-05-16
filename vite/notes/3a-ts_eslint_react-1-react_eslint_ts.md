@@ -187,6 +187,8 @@ We have seen these before, and have two ways to fix them:
 }]
 ```
 
+**Not worrying about these right now,** because we know two ways to fix them.
+
 #### 2.6.1.2. The "Argument of type 'HTMLElement | null' is not assignable to ..." Problem
 
 We have seen this before, and can fix it:
@@ -206,6 +208,8 @@ We have seen this before, and can fix it:
 }]
 ```
 
+**Not worrying about this right now,** because we know how to fix this.
+
 #### 2.6.1.3. A New "No inputs were found in config file ..." Problem
 
 ```
@@ -222,7 +226,7 @@ We have seen this before, and can fix it:
 }]
 ```
 
-**Not worrying about these right now,** because editing `index.html` might change things.
+**Not worrying about this error right now,** because editing `index.html` fixes it
 
 ### 2.6.2. Command Line Check: `npm run lint`
 
@@ -258,7 +262,11 @@ Using VSCode to edit `index.html`.
 - This fixed the *"2.6.1.3. A New "No inputs were found in config file ..."* problem
 - The other three problems remain
 
-### 2.7.2. Updating Git
+### 2.7.2. Command Line Check: `npm run lint`
+
+Running `npm run lint` is still broken.
+
+### 2.8.2. Updating Git
 
 Renaming the files in VSCode kind of messed up my github!
 
@@ -276,7 +284,7 @@ Untracked files:
 $
 ```
 
-#### 2.7.2. Saved Copies of Original `*.jsx` Files as `*.jsx-before_renaming`
+#### 2.8.2. Saved Copies of Original `*.jsx` Files as `*.jsx-before_renaming`
 
 ```
 git checkout App.jsx                     # Get old copy before VSCode "deleted" it
@@ -288,9 +296,32 @@ git mv main.jsx main.jsx-before_renaming
 git commit ....                          # Inadvertently checked in with other changes
 ```
 
+#### 2.8.3. Just FYI ...:
+
+Using the `*.jsx-before_renaming` files to recreate the `*.jsx` files, like so:
+
+```
+cp main.jsx-before_renaming  main.jsx
+cp App.jsx-before_renaming App.jsx
+```
+
+Doesn't help to fix the problems.
+
+- There's no going back!
 
 
-## 2.8. Ensure App Runs OK
+-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-
+You are here!
+-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-
+
+
+## 2.9. Fixing the Problems
+
+
+-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-
+
+
+## 2.10. Ensure App Runs OK
 
 ```
 ```
@@ -298,8 +329,9 @@ git commit ....                          # Inadvertently checked in with other c
 ```
 ```
 
-### 2.8.1. VSCode Check
+### 2.10.1. VSCode Check
 
+### 2.10.2. Command Line Check: `npm run lint`
 
 ```
 ```
