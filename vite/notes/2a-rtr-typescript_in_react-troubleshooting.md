@@ -102,11 +102,21 @@ I am thinking that these problems could also be due to a configuration issue.
 - (1) The steps in the next section, "3. Restarting the Process", come from `2-rtr-typescript_in_react.md`
 - (2) [A post on medium](https://andrebnassis.medium.com/setting-eslint-on-a-react-typescript-project-2021-1190a43ffba)
   - *"Setting [sic] ESLint on a React Typescript project (2022)"* has some good config pointers but uses `create-react-app`
-- (3) 
 
 **References:**
 
-- (1) 
+These are listed in the order in which they appear in this file.
+
+- (1) [This stackoverflow post](https://stackoverflow.com/questions/41211566/tsconfig-json-buildno-inputs-were-found-in-config-file#41211721)
+  - claims this is due to not having any `*.tsx` files in the project
+- (2) [This stackoverflow post](https://stackoverflow.com/questions/71808102/react-18-type-null-is-not-assignable-to-type-element-documentfragment)
+  - claims this is due to the following type mismatch ...
+- (3) [This stackoverflow post ](https://stackoverflow.com/questions/71808102/react-18-type-null-is-not-assignable-to-type-element-documentfragment)
+  - claims this is due to the following type mismatch ...
+- (4) [This slackoverflow post](https://stackoverflow.com/questions/64732623/typescript-cannot-find-module-or-its-corresponding-type-declarations)
+  - has some interesting ideas
+- (5) **[This stackoverflow post](https://stackoverflow.com/questions/44717164/unable-to-import-svg-files-in-typescript#45887328)**
+  - has inspired a couple of *actual solutions* to the problems in VSCode
 
 
 # 1. Start With React
@@ -426,7 +436,7 @@ Taking the same steps as those in section *"2. Add ESLint"* in `2-rtr-typescript
 - For more information, see those notes
 
 ```
-pwd                                               # var/www/always_learning/always_learning_javascript/vite/projects/2-rtr-typescript_in_react/ts_in_react-2-troubleshooting
+pwd                                               # /var/www/always_learning/always_learning_javascript/vite/projects/2-rtr-typescript_in_react/ts_in_react-2-troubleshooting
 npm install vite-plugin-eslint --save-dev         # install vite-plugin-eslint
 npm install eslint --save-dev                     # install eslint dependencies **MAY HAVE MISSED THIS IN PREVIOUS EFFORTS**
 npm install eslint-config-react-app --save-dev    # install eslint-config-react-app
@@ -578,6 +588,8 @@ has some interesting ideas.
   - It is actually also in the *"Road to React"* book, but not in my lists of the commands I ran
     - I was surprised to see I apparently did not run it??
   - This actually updated `"eslint":` in the package* files from version `"^8.38.0"` to `"^8.40.0"`
+- **This is apparently a non-issue**
+  - See the referenc to this command in subsection *"2.3. Add ESLint"* in `3a-ts_eslint_react-1-react_eslint_ts.md`
 
 **Run `tsc` instead of depending on VSCode**
 
@@ -588,6 +600,7 @@ has some interesting ideas.
 - Not finding much that is helpful, but a whole lot that is not relevant
 
 **[This stackoverflow post](https://stackoverflow.com/questions/44717164/unable-to-import-svg-files-in-typescript#45887328)**
+has inspired a couple of actual solutions to the problems in VSCode.
 
 **First try:** tried this, based on the second answer and a comment to the original post:
 
