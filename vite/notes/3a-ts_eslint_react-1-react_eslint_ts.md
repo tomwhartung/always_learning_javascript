@@ -245,18 +245,22 @@ Please check for typing mistakes in the pattern.
 $
 ```
 
-**Not worrying about these right now,** because editing `index.html` might change things.
+**Not worrying about these right now,** because editing `index.html` is a big part of this step, and it just might change things.
 
 ## 2.7. Edit `index.html`
 
 Using VSCode to edit `index.html`.
 
+- Changed `main.jsx` to `main.tsx`
+
 ### 2.7.1. VSCode Check
 
+- This fixed the *"2.6.1.3. A New "No inputs were found in config file ..."* problem
+- The other three problems remain
 
-### 2.?.? 
+### 2.7.2. Updating Git
 
-This kind of messed up my github!
+Renaming the files in VSCode kind of messed up my github!
 
 ```
 $ git status
@@ -272,25 +276,31 @@ Untracked files:
 $
 ```
 
+#### 2.7.2. Saved Copies of Original `*.jsx` Files as `*.jsx-before_renaming`
+
 ```
-git checkout App.jsx
-Updated 1 path from the index
-tomh@jane: /var/www/always_learning/always_learning_javascript/vite/projects/3-ts_eslint_react-find_the_best_process/ts_eslint_react-1-react_eslint_ts/src
- $ diff  App.jsx  App.tsx
-tomh@jane: /var/www/always_learning/always_learning_javascript/vite/projects/3-ts_eslint_react-find_the_best_process/ts_eslint_react-1-react_eslint_ts/src
- $ l
-total 28
--rw-r--r-- 1 tomh tomh  606 May 15 16:12 App.css
--rw-r--r-- 1 tomh tomh  905 May 16 14:33 App.jsx
--rw-r--r-- 1 tomh tomh  905 May 15 16:12 App.tsx
-drwxr-xr-x 2 tomh tomh 4096 May 15 16:12 assets
--rw-r--r-- 1 tomh tomh 1195 May 15 16:12 index.css
--rw-r--r-- 1 tomh tomh  235 May 16 14:32 main.jsx
--rw-r--r-- 1 tomh tomh  235 May 15 16:12 main.tsx
-tomh@jane: /var/www/always_learning/always_learning_javascript/vite/projects/3-ts_eslint_react-find_the_best_process/ts_eslint_react-1-react_eslint_ts/src
- $ git mv App.jsx App.jsx-before_renaming
-tomh@jane: /var/www/always_learning/always_learning_javascript/vite/projects/3-ts_eslint_react-find_the_best_process/ts_eslint_react-1-react_eslint_ts/src
- $ git mv main.jsx main.jsx-before_renaming
+git checkout App.jsx                     # Get old copy before VSCode "deleted" it
+diff App.jsx App.tsx                     # Sanity check: no differences
+git mv App.jsx App.jsx-before_renaming
+git checkout main.jsx                    # Get old copy before VSCode "deleted" it
+diff main.jsx main.tsx                   # Sanity check: no differences
+git mv main.jsx main.jsx-before_renaming
+git commit ....                          # Inadvertently checked in with other changes
 ```
 
+
+
+## 2.8. Ensure App Runs OK
+
+```
+```
+
+```
+```
+
+### 2.8.1. VSCode Check
+
+
+```
+```
 
