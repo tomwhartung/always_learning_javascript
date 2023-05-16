@@ -46,9 +46,9 @@ $ npm run lint
 $
 ```
 
-## 2.2. Add to VSCode
+## 2.2. Add the New Project to VSCode
 
-No problems so far.
+- No problems so far.
 
 **Note:** We need to install ESLint before we can run `lint` in VSCode; see *"2.3.1. VSCode Check"* below.
 
@@ -76,10 +76,221 @@ git commit -m 'Adding new experimental project files in vite/projects/3-ts_eslin
 
 ### 2.3.1. VSCode Check
 
-The two lint problems now show up in VSCode.
+- The two lint problems now show up in VSCode and on the command line with `npm run lint`
 
+## 2.4. Install Typescript
 
 ```
+npm install typescript @types/react @types/react-dom --save-dev    # Claims: "up to date, audited 458 packages in 5s" BUT ...
+git diff package*                                                  # ... package* files now include typescript ....
+git add package*
+git commit -m 'Adding the package* files in vite/projects/3-ts_eslint_react-find_the_best_process/ts_eslint_react-1-react_eslint_ts because they now reference TS.'
+```
+
+### 2.4.1. VSCode Check
+
+- The two lint problems continue to show up in VSCode and on the command line with `npm run lint`
+- No TS problems, yet
+
+## 2.5. Configure Typescript
+
+Create the two TS config files `tsconfig.json` and `tsconfig.node.json` with the following contents:
+
+```
+pwd         # /var/www/always_learning/always_learning_javascript/vite/projects/3-ts_eslint_react-find_the_best_process/ts_eslint_react-1-react_eslint_ts
+cat > tsconfig.json
+{
+  "compilerOptions": {
+    "target": "ESNext",
+    "useDefineForClassFields": true,
+    "lib": ["DOM", "DOM.Iterable", "ESNext"],
+    "allowJs": false,
+    "skipLibCheck": true,
+    "esModuleInterop": false,
+    "allowSyntheticDefaultImports": true,
+    "strict": true,
+    "forceConsistentCasingInFileNames": true,
+    "module": "ESNext",
+    "moduleResolution": "Node",
+    "resolveJsonModule": true,
+    "isolatedModules": true,
+    "noEmit": true,
+    "jsx": "react-jsx"
+  },
+  "include": ["src"],
+  "references": [{ "path": "./tsconfig.node.json" }]
+}
+cat > tsconfig.node.json
+{
+  "compilerOptions": {
+    "composite": true,
+    "module": "ESNext",
+    "moduleResolution": "Node",
+    "allowSyntheticDefaultImports": true
+  },
+  "include": ["vite.config.ts"]
+}
+```
+
+```
+pwd                      # /var/www/always_learning/always_learning_javascript
+git add vite/projects/3-ts_eslint_react-find_the_best_process/ts_eslint_react-1-react_eslint_ts/tsconfig.*
+git commit -m 'Adding config files for TS: vite/projects/3-ts_eslint_react-find_the_best_process/ts_eslint_react-1-react_eslint_ts/tsconfig.* .'
+```
+
+### 2.5.1. VSCode Check
+
+- The two lint problems continue to show up in VSCode and on the command line with `npm run lint`
+- No TS problems, yet
+
+## 2.6. Rename `*.jsx` Files
+
+Use `F2` to rename files in VSCode:
+
+- `App.jsx` -> `App.tsx`
+- `main.jsx` -> `main.tsx`
+
+### 2.6.1. VSCode Check
+
+This caused 4 problems in VSCode.
+
+#### 2.6.1.1. Two "Cannot find module ..." Problems
+
+We have seen these before, and have two ways to fix them:
+
+- "Cannot find module './assets/react.svg' or its corresponding type declarations.",
+- "Cannot find module '/vite.svg' or its corresponding type declarations.",
+
+```
+[{
+	"resource": "/var/www/always_learning/always_learning_javascript/vite/projects/3-ts_eslint_react-find_the_best_process/ts_eslint_react-1-react_eslint_ts/src/App.tsx",
+	"owner": "typescript",
+	"code": "2307",
+	"severity": 8,
+	"message": "Cannot find module './assets/react.svg' or its corresponding type declarations.",
+	"source": "ts",
+	"startLineNumber": 2,
+	"startColumn": 23,
+	"endLineNumber": 2,
+	"endColumn": 43
+},{
+	"resource": "/var/www/always_learning/always_learning_javascript/vite/projects/3-ts_eslint_react-find_the_best_process/ts_eslint_react-1-react_eslint_ts/src/App.tsx",
+	"owner": "typescript",
+	"code": "2307",
+	"severity": 8,
+	"message": "Cannot find module '/vite.svg' or its corresponding type declarations.",
+	"source": "ts",
+	"startLineNumber": 3,
+	"startColumn": 22,
+	"endLineNumber": 3,
+	"endColumn": 33
+}]
+```
+
+#### 2.6.1.2. The "Argument of type 'HTMLElement | null' is not assignable to ..." Problem
+
+We have seen this before, and can fix it:
+
+```
+[{
+	"resource": "/var/www/always_learning/always_learning_javascript/vite/projects/3-ts_eslint_react-find_the_best_process/ts_eslint_react-1-react_eslint_ts/src/main.tsx",
+	"owner": "typescript",
+	"code": "2345",
+	"severity": 8,
+	"message": "Argument of type 'HTMLElement | null' is not assignable to parameter of type 'Element | DocumentFragment'.\n  Type 'null' is not assignable to type 'Element | DocumentFragment'.",
+	"source": "ts",
+	"startLineNumber": 6,
+	"startColumn": 21,
+	"endLineNumber": 6,
+	"endColumn": 52
+}]
+```
+
+#### 2.6.1.3. A New "No inputs were found in config file ..." Problem
+
+```
+[{
+	"resource": "/var/www/always_learning/always_learning_javascript/vite/projects/3-ts_eslint_react-find_the_best_process/ts_eslint_react-1-react_eslint_ts/tsconfig.node.json",
+	"owner": "typescript",
+	"severity": 8,
+	"message": "No inputs were found in config file '/var/www/always_learning/always_learning_javascript/vite/projects/3-ts_eslint_react-find_the_best_process/ts_eslint_react-1-react_eslint_ts/tsconfig.node.json'. Specified 'include' paths were '[\"vite.config.ts\"]' and 'exclude' paths were '[]'.",
+	"source": "ts",
+	"startLineNumber": 1,
+	"startColumn": 1,
+	"endLineNumber": 1,
+	"endColumn": 2
+}]
+```
+
+**Not worrying about these right now,** because editing `index.html` might change things.
+
+### 2.6.2. Command Line Check: `npm run lint`
+
+Installing TS broke lint:
+
+```
+$ npm run lint
+
+> ts_eslint_react-1-react_eslint_ts@0.0.0 lint
+> eslint src --ext js,jsx --report-unused-disable-directives --max-warnings 0
+
+
+Oops! Something went wrong! :(
+
+ESLint: 8.40.0
+
+No files matching the pattern "src" were found.
+Please check for typing mistakes in the pattern.
+
+$
+```
+
+**Not worrying about these right now,** because editing `index.html` might change things.
+
+## 2.7. Edit `index.html`
+
+Using VSCode to edit `index.html`.
+
+### 2.7.1. VSCode Check
+
+
+### 2.?.? 
+
+This kind of messed up my github!
+
+```
+$ git status
+. . .
+        deleted:    vite/projects/3-ts_eslint_react-find_the_best_process/ts_eslint_react-1-react_eslint_ts/src/App.jsx
+        deleted:    vite/projects/3-ts_eslint_react-find_the_best_process/ts_eslint_react-1-react_eslint_ts/src/main.jsx
+. . .
+Untracked files:
+. . .
+        vite/projects/3-ts_eslint_react-find_the_best_process/ts_eslint_react-1-react_eslint_ts/src/App.tsx
+        vite/projects/3-ts_eslint_react-find_the_best_process/ts_eslint_react-1-react_eslint_ts/src/main.tsx
+. . .
+$
+```
+
+```
+git checkout App.jsx
+Updated 1 path from the index
+tomh@jane: /var/www/always_learning/always_learning_javascript/vite/projects/3-ts_eslint_react-find_the_best_process/ts_eslint_react-1-react_eslint_ts/src
+ $ diff  App.jsx  App.tsx
+tomh@jane: /var/www/always_learning/always_learning_javascript/vite/projects/3-ts_eslint_react-find_the_best_process/ts_eslint_react-1-react_eslint_ts/src
+ $ l
+total 28
+-rw-r--r-- 1 tomh tomh  606 May 15 16:12 App.css
+-rw-r--r-- 1 tomh tomh  905 May 16 14:33 App.jsx
+-rw-r--r-- 1 tomh tomh  905 May 15 16:12 App.tsx
+drwxr-xr-x 2 tomh tomh 4096 May 15 16:12 assets
+-rw-r--r-- 1 tomh tomh 1195 May 15 16:12 index.css
+-rw-r--r-- 1 tomh tomh  235 May 16 14:32 main.jsx
+-rw-r--r-- 1 tomh tomh  235 May 15 16:12 main.tsx
+tomh@jane: /var/www/always_learning/always_learning_javascript/vite/projects/3-ts_eslint_react-find_the_best_process/ts_eslint_react-1-react_eslint_ts/src
+ $ git mv App.jsx App.jsx-before_renaming
+tomh@jane: /var/www/always_learning/always_learning_javascript/vite/projects/3-ts_eslint_react-find_the_best_process/ts_eslint_react-1-react_eslint_ts/src
+ $ git mv main.jsx main.jsx-before_renaming
 ```
 
 
