@@ -41,28 +41,34 @@ npm run lint
 
 ## 2.3. Install Typescript
 
--=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-
-You are here!
--=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-
-
 ```
-npm install typescript @types/react @types/react-dom --save-dev    # Claims: "up to date, audited 458 packages in 5s" BUT ...
+npm install typescript @types/react @types/react-dom --save-dev    # Claims: "added 1 package, and audited 242 packages in 10s"
 git diff package*                                                  # ... package* files now include typescript ....
 git add package*
-git commit -m 'Adding the package* files in vite/projects/3-ts_eslint_react-find_the_best_process/ts_eslint_react-1-react_eslint_ts because they now reference TS.'
+git commit -m 'Adding the package* files in vite/projects/3-ts_eslint_react-find_the_best_process/ts_eslint_react-2-react_ts_no_eslint because they now reference TS.'
 ```
 
-### 2.4.1. VSCode Check
+### 2.3.1. VSCode Check
 
-- The two lint problems continue to show up in VSCode and on the command line with `npm run lint`
 - No TS problems, yet
+- Adding `const greeting = 'Hi';` to `App.jsx` causes a lint problem in VSCode and on the command line with `npm run lint`
 
-## 2.5. Configure Typescript
+### 2.3.2. Command-Line Checks
+
+### 2.3.2.1. `npm run lint`
+
+- Adding `const greeting = 'Hi';` to `App.jsx` causes a lint problem in VSCode and on the command line with `npm run lint`
+
+### 2.3.2.2. `npm run dev`
+
+- App runs ok
+
+## 2.4. Configure Typescript
 
 Create the two TS config files `tsconfig.json` and `tsconfig.node.json` with the following contents:
 
 ```
-pwd         # /var/www/always_learning/always_learning_javascript/vite/projects/3-ts_eslint_react-find_the_best_process/ts_eslint_react-1-react_eslint_ts
+pwd         # /var/www/always_learning/always_learning_javascript/vite/projects/3-ts_eslint_react-find_the_best_process/ts_eslint_react-2-react_ts_no_eslint
 cat > tsconfig.json
 {
   "compilerOptions": {
@@ -99,16 +105,52 @@ cat > tsconfig.node.json
 
 ```
 pwd                      # /var/www/always_learning/always_learning_javascript
-git add vite/projects/3-ts_eslint_react-find_the_best_process/ts_eslint_react-1-react_eslint_ts/tsconfig.*
-git commit -m 'Adding config files for TS: vite/projects/3-ts_eslint_react-find_the_best_process/ts_eslint_react-1-react_eslint_ts/tsconfig.* .'
+git add vite/projects/3-ts_eslint_react-find_the_best_process/ts_eslint_react-2-react_ts_no_eslint/tsconfig.*
+git commit -m 'Adding config files for TS: vite/projects/3-ts_eslint_react-find_the_best_process/ts_eslint_react-2-react_ts_no_eslint/tsconfig.* .'
 ```
 
-### 2.5.1. VSCode Check
+### 2.4.1. VSCode Check
 
-- The two lint problems continue to show up in VSCode and on the command line with `npm run lint`
-- No TS problems, yet
+#### 2.4.1.1. Fixable TS Problem
 
-## 2.6. Rename `*.jsx` Files
+Get the following TS problem:
+
+```
+[{
+	"resource": "/var/www/always_learning/always_learning_javascript/vite/projects/3-ts_eslint_react-find_the_best_process/ts_eslint_react-2-react_ts_no_eslint/tsconfig.node.json",
+	"owner": "typescript",
+	"severity": 8,
+	"message": "No inputs were found in config file '/var/www/always_learning/always_learning_javascript/vite/projects/3-ts_eslint_react-find_the_best_process/ts_eslint_react-2-react_ts_no_eslint/tsconfig.node.json'. Specified 'include' paths were '[\"vite.config.ts\"]' and 'exclude' paths were '[]'.",
+	"source": "ts",
+	"startLineNumber": 1,
+	"startColumn": 1,
+	"endLineNumber": 1,
+	"endColumn": 2
+}]
+```
+
+**Note:** this will be fixed in the next step, when we rename the files and edit `index.html`
+
+#### 2.4.1.2. Lint Still Works
+
+- Adding `const greeting = 'Hi';` to `App.jsx` causes a lint problem in VSCode, as expected
+
+### 2.4.2. Command-Line Checks
+
+### 2.4.2.1. `npm run lint`
+
+- Adding `const greeting = 'Hi';` to `App.jsx` causes a lint problem on the command line with `npm run lint`, as expected
+
+### 2.4.2.2. `npm run dev`
+
+- App still runs ok
+
+
+-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-
+You are here!
+-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-
+
+## 2.5. Rename `*.jsx` Files
 
 Use `F2` to rename files in VSCode:
 
