@@ -68,6 +68,7 @@ The following subsections show the `.json` VSCode generates for the two problems
         "endLineNumber": 2,
         "endColumn": 43
 }]
+```
 
 ### 0.2.2. `Cannot find module '/vite.svg' or its corresponding type declarations.`
 
@@ -329,7 +330,8 @@ git commit -m 'Renaming vite/projects/2-rtr-typescript_in_react/ts_in_react-2-tr
 	"startColumn": 21,
 	"endLineNumber": 6,
 	"endColumn": 52
-}]```
+}]
+```
 
 ##### 2.3.2.1.2. VSCode Problem Solution
 
@@ -559,9 +561,9 @@ $ l public/vite.svg  src/assets/react.svg
 -rw-r--r-- 1 tomh tomh 4126 May 11 13:38 src/assets/react.svg
 ```
 
-#### 4.1.1.3. VSCode Problem Investigation - VSCode Tips
+### 4.1.1. VSCode Problem - Quest for Solutions
 
-##### 4.1.1.3.1. Interesting Asides
+#### 4.1.2.1. Interesting Asides - VSCode Tips
 
 [This slackoverload post](https://stackoverflow.com/questions/64732623/typescript-cannot-find-module-or-its-corresponding-type-declarations)
 has some interesting ideas.
@@ -573,15 +575,19 @@ has some interesting ideas.
   - View -> Command Palette [Ctrl-Shift-P] -> Typescript: Restart TS Server
     - Good to know!
 
-##### 4.1.1.3.2. Solutions Tried
+### 4.1.2. Solutions Tried
 
-**Editing paths in the `import` statements in `App.tsx`**
+#### 4.1.2.1. Solution Tried and Failed
+
+Editing paths in the `import` statements in `App.tsx`
 
 - Tried adding `./`, no `.` or `/`, using `public/vite.svg`, using `../`, etc.
   - Paths also changed in error messages
   - Nothing really helped
 
-**Running `npm install eslint --save-dev`:**
+#### 4.1.2.2. Solution Tried and Failed
+
+Running `npm install eslint --save-dev`:
 
 - I apparently did *not* run `npm install eslint --save-dev`
   - A few search results recommend it
@@ -591,18 +597,26 @@ has some interesting ideas.
 - **This is apparently a non-issue**
   - See the referenc to this command in subsection *"2.3. Add ESLint"* in `3a-ts_eslint_react-1-react_eslint_ts.md`
 
-**Run `tsc` instead of depending on VSCode**
+#### 4.1.2.3. Solution Tried and Didn't Help
+
+Run `tsc` instead of depending on VSCode.
 
 - Get the same errors
 
-**RTFM: [What is a `tsconfig.json`?(https://www.typescriptlang.org/docs/handbook/tsconfig-json.html)**
+#### 4.1.2.4. Solution Tried and Didn't Help
+
+RTFM: [What is a `tsconfig.json`?(https://www.typescriptlang.org/docs/handbook/tsconfig-json.html)
 
 - Not finding much that is helpful, but a whole lot that is not relevant
 
-**[This stackoverflow post](https://stackoverflow.com/questions/44717164/unable-to-import-svg-files-in-typescript#45887328)**
+#### 4.1.2.5. Solutions Tried - Two Fixes to `import` Problems
+
+[This stackoverflow post](https://stackoverflow.com/questions/44717164/unable-to-import-svg-files-in-typescript#45887328)
 has inspired a couple of actual solutions to the problems in VSCode.
 
-**First try:** tried this, based on the second answer and a comment to the original post:
+##### 4.1.2.5.1. Solution A - Change `import` to `require`
+
+First I tried this, based on the second answer and a comment to the original post:
 
 ```
 // import reactLogo from './assets/react.svg'
@@ -630,9 +644,9 @@ Also, now have this new problem:
 
 Not sure I want to install this package **when hovering** VSCode wants me to not use the `require`.
 
-**Second try:**
+##### 4.1.2.5.2. Solution B - Create a `custom.d.ts`
 
-From the main answer, which says this works for webpack, which is why I didn't try it at first, but...:
+Then I tried this, from the main answer - which says this works for webpack - which is why I didn't try it at first - but...:
 
 - 1. Create a file named `custom.d.ts` with the following contents:
 
@@ -723,9 +737,9 @@ Things to look into trying:
   - **what two files???**
 -=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-
 
-#### 4.1.1.4. VSCode Problem Solution
+ #### 4.1.1.4. VSCode Problem Solution
 
-#### 4.1.1.5. Commit Change(s) to Github
+ #### 4.1.1.5. Commit Change(s) to Github
 
 **See commands below!!!**
 
@@ -734,7 +748,7 @@ Things to look into trying:
 
 -=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-
 
-### 4.1.2. Ensure We Can Run Lint
+ ### 4.1.2. Ensure We Can Run Lint
 
 Running `npm run lint` now gives us the following error:
 
@@ -759,7 +773,7 @@ $
 
 -=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-
 
-## 4.1.3. Ensure App Builds and Runs Ok
+ ## 4.1.3. Ensure App Builds and Runs Ok
 
 ```
 pwd             # /var/www/always_learning/always_learning_javascript/vite/projects/2-rtr-typescript_in_react/ts_in_react-2-troubleshooting
@@ -770,7 +784,7 @@ npm run dev     # Runs and reloads ok
 
 Checked app in browser and every thing seems to be ok!
 
-### 4.1.4. Commit Change(s) to Github
+ ### 4.1.4. Commit Change(s) to Github
 
 **See commands below!!!**
 
@@ -778,24 +792,24 @@ Checked app in browser and every thing seems to be ok!
 ```
 
 
-## 4.2. Generate and fix a TS error
-## 4.2.1. VSCode Check
-## 4.2.2. 
-## 4.2.3. Ensure App Builds and Runs Ok
-## 4.2.4. Commit Change to Github
+ ## 4.2. Generate and fix a TS error
+ ## 4.2.1. VSCode Check
+ ## 4.2.2. 
+ ## 4.2.3. Ensure App Builds and Runs Ok
+ ## 4.2.4. Commit Change to Github
 
 
 -=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-
 Saving this markup in case adding ESLint causes these problems
 -=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-
 
-## 2.1.1. VSCode Still Showing Two Problems
+ ## 2.1.1. VSCode Still Showing Two Problems
 
 
 **Let's see if we can fix those problems *NOW*!**
 
 
-## 2.1.1. Commit Changes to Github
+ ## 2.1.1. Commit Changes to Github
 
 ```
 Update git with changes made to the `package*` files:
