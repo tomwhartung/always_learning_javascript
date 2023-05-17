@@ -6,8 +6,9 @@ This is the first experiment our quest to *find the best process* to use for bui
 # 1. Questions
 
 - Does installing TS break ESLint?
+  - Yes
 - Will the suggested `npm install ...` command fix the VSCode problems?
-- 
+  - Yes, but unfortunately it **breaks the app**
 
 # 2. Process
 
@@ -296,7 +297,7 @@ git mv main.jsx main.jsx-before_renaming
 git commit ....                          # Inadvertently checked in with other changes
 ```
 
-#### 2.8.3. Just FYI ...:
+#### 2.8.3. No Going Back
 
 Using the `*.jsx-before_renaming` files to recreate the `*.jsx` files, like so:
 
@@ -305,34 +306,112 @@ cp main.jsx-before_renaming  main.jsx
 cp App.jsx-before_renaming App.jsx
 ```
 
-Doesn't help to fix the problems.
-
-- There's no going back!
-
-
--=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-
-You are here!
--=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-
-
+Doesn't help to fix the problems.  **There's no going back!**
 
 ## 2.9. Fixing the Problems
 
+We don't know how to fix the lint error, but now we are certain it's caused by renaming the files.
 
--=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-
+### 2.9.1. Recap
 
+We do know how to fix the three VSCode problems:
 
-## 2.10. Ensure App Runs OK
+- 2.6.1.1. Two "Cannot find module ..." Problems
+  - Have two ways to fix this
+  - Finding the best way is our goal now
+  - See below
+- 2.6.1.2. The "Argument of type 'HTMLElement | null' is not assignable to ..." Problem
+  - Easy to fix with a cast
+
+### 2.9.2. The `require` Fix - Fixes the Problem, Breaks the App
+
+Trying *"4.1.2.5.1. Solution A - Change `import` to `require`"* from `2a-rtr-typescript_in_react-troubleshooting.md`, in an
+effort to answer these questions:
+
+- 1. Will this fix the problem or just let me use `require`?
+  - Fixes the problem but breaks the App
+- 2. If we do this, do we need still need to convert the `import` to a `require`?
+  - Yes
+- 3. If we do this, and it doesn't fix the problem, will we be able to eventually get rid of it?
+  - Not seeing a way out at this time
+
+**Note:** this "fix" causes an *"Uncaught ReferenceError: require is not defined"* error to show in the browser dev tools' console.
+
+#### 2.9.2.1. The `require` Fix - Step 1
+
+Install `@types/node`:
 
 ```
+$ pwd
+/var/www/always_learning/always_learning_javascript/vite/projects/3-ts_eslint_react-find_the_best_process/ts_eslint_react-1-react_eslint_ts
+$ npm i --save-dev @types/node
+added 1 package, and audited 459 packages in 5s
+
+106 packages are looking for funding
+  run `npm fund` for details
+
+found 0 vulnerabilities
+$ git diff package*
+diff --git a/vite/projects/3-ts_eslint_react-find_the_best_process/ts_eslint_react-1-react_eslint_ts/package-lock.json b/vite/projects/3-ts_eslint_react-find_the_best_process/ts_eslint_react-1-react_eslint_ts/package-lock.json
+index bf70ceb..33873f4 100644
+--- a/vite/projects/3-ts_eslint_react-find_the_best_process/ts_eslint_react-1-react_eslint_ts/package-lock.json
++++ b/vite/projects/3-ts_eslint_react-find_the_best_process/ts_eslint_react-1-react_eslint_ts/package-lock.json
+@@ -12,6 +12,7 @@
+         "react-dom": "^18.2.0"
+       },
+       "devDependencies": {
++        "@types/node": "^20.1.7",
+         "@types/react": "^18.2.6",
+         "@types/react-dom": "^18.2.4",
+         "@vitejs/plugin-react": "^4.0.0",
+@@ -2554,6 +2555,12 @@
+       "integrity": "sha512-dRLjCWHYg4oaA77cxO64oO+7JwCwnIzkZPdrrC71jQmQtlhM556pwKo5bUzqvZndkVbeFLIIi+9TC40JNF5hNQ==",
+       "dev": true
+     },
++    "node_modules/@types/node": {
++      "version": "20.1.7",
++      "resolved": "https://registry.npmjs.org/@types/node/-/node-20.1.7.tgz",
++      "integrity": "sha512-WCuw/o4GSwDGMoonES8rcvwsig77dGCMbZDrZr2x4ZZiNW4P/gcoZXe/0twgtobcTkmg9TuKflxYL/DuwDyJzg==",
++      "dev": true
++    },
+     "node_modules/@types/parse-json": {
+       "version": "4.0.0",
+       "resolved": "https://registry.npmjs.org/@types/parse-json/-/parse-json-4.0.0.tgz",
+diff --git a/vite/projects/3-ts_eslint_react-find_the_best_process/ts_eslint_react-1-react_eslint_ts/package.json b/vite/projects/3-ts_eslint_react-find_the_best_process/ts_eslint_react-1-react_eslint_ts/package.json
+index 42bb4b9..c14311b 100644
+--- a/vite/projects/3-ts_eslint_react-find_the_best_process/ts_eslint_react-1-react_eslint_ts/package.json
++++ b/vite/projects/3-ts_eslint_react-find_the_best_process/ts_eslint_react-1-react_eslint_ts/package.json
+@@ -14,6 +14,7 @@
+     "react-dom": "^18.2.0"
+   },
+   "devDependencies": {
++    "@types/node": "^20.1.7",
+     "@types/react": "^18.2.6",
+     "@types/react-dom": "^18.2.4",
+     "@vitejs/plugin-react": "^4.0.0",
+$
 ```
 
-```
-```
+#### 2.9.2.2. The `require` Fix - Step 2
 
-### 2.10.1. VSCode Check
+Edit `App.tsx` as follows:
 
-### 2.10.2. Command Line Check: `npm run lint`
+- Change `import reactLogo from './assets/react.svg'` to `const reactLogo = require("./assets/react.svg");`
+- Change `import viteLogo from '/vite.svg'` to `const viteLogo = require("/vite.svg");`
 
-```
-```
+### 2.9.3. VSCode Check
+
+This fixes the two *"Cannot find module ..."* problems!
+
+### 2.9.4. Command Line Check: `npm run lint`
+
+Lint does *not* work.
+
+### 2.9.5. Command Line Check: `npm run dev`
+
+The App does *not* work.
+
+### 2.9.6. Browser Dev Tools Console Check
+
+**Note:** this "fix" causes an *"Uncaught ReferenceError: require is not defined"* error to show in the browser dev tools' console.
 
