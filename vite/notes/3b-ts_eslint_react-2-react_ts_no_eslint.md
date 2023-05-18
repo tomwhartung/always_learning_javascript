@@ -3,10 +3,11 @@
 
 This is the second experiment our quest to *find the best process* to use for building *"the whole shebang."*
 
-# 1. Questions
+# 1. Questions - and Answers
 
 - Can I learn to live *without* ESLint?
-  - 
+  - **Maybe ...**
+  - However, having it would help make *"everything just exactly perfect"*
 - We can run `npm run lint` *before* installing TS
   - Will `npm run lint` work *after* installing TS, even without installing ESLint??
     - **NO**
@@ -63,6 +64,8 @@ git commit -m 'Adding the package* files in vite/projects/3-ts_eslint_react-find
 
 ## 2.4. Configure Typescript
 
+### 2.4.1. Create `tsconfig.json` and `tsconfig.node.json`
+
 Create the two TS config files `tsconfig.json` and `tsconfig.node.json` with the following contents:
 
 ```
@@ -107,9 +110,9 @@ git add vite/projects/3-ts_eslint_react-find_the_best_process/ts_eslint_react-2-
 git commit -m 'Adding config files for TS: vite/projects/3-ts_eslint_react-find_the_best_process/ts_eslint_react-2-react_ts_no_eslint/tsconfig.* .'
 ```
 
-### 2.4.1. VSCode Checks
+### 2.4.2. VSCode Checks
 
-#### 2.4.1.1. Fixable TS Problem
+#### 2.4.2.1. Fixable TS Problem
 
 Get the following TS problem:
 
@@ -129,11 +132,11 @@ Get the following TS problem:
 
 **Note:** this will be fixed in the next step, when we rename the files and edit `index.html`
 
-#### 2.4.1.2. Lint Still Works
+#### 2.4.2.2. Lint Still Works
 
 - Adding `const greeting = 'Hi';` to `App.jsx` causes a lint problem in VSCode, as expected
 
-### 2.4.2. Command-Line Checks
+### 2.4.3. Command-Line Checks
 
 - `npm run lint`
   - Adding `const greeting = 'Hi';` to `App.jsx` causes a lint problem on the command line with `npm run lint`, as expected
@@ -315,6 +318,9 @@ Update `tsconfig.json` to include `custom.d.ts`:
   - As described in *"4.1.2.5.2. Solution B - Create a `custom.d.ts`"* in 2a-rtr-typescript_in_react-troubleshooting.md
     - That fixes the old problems but gives us two new problems
   - Also: these new problems look fixable
+- **I WAS GETTING WORRIED!**
+- **WEIRD!!**
+- **REMEMBER THIS!!!**
 
 #### 2.7.3.3. Step 3 - Fix the Two New Problems
 
@@ -372,33 +378,46 @@ Update `tsconfig.json` to include `custom.d.ts`:
 
 ##### 2.7.3.3.2. The Two New Problems - Solutions
 
-#### 2.7.3.4. Command Line Check
+Update `App.tsx` to cast `reactLogo` and `viteLogo` as an `any` type:
 
-#### 2.7.3.3. Updating Git
+```
+$ pwd
+/var/www/always_learning/always_learning_javascript/vite/projects/3-ts_eslint_react-find_the_best_process/ts_eslint_react-2-react_ts_no_eslint/src
+$ git diff App.tsx
+. . .
+. . .
+-          <img src={viteLogo} className="logo" alt="Vite logo" />
++          <img src={viteLogo as any} className="logo" alt="Vite logo" />
+. . .
+. . .
+-          <img src={reactLogo} className="logo react" alt="React logo" />
++          <img src={reactLogo as any} className="logo react" alt="React logo" />
+. . .
+. . .
+$
+```
 
--=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-
-### 2.7.1. VSCode Check
-### 2.7.2. Command Line Check
-### 2.7.3. Updating Git
+#### 2.7.3.4. VSCode Check
 
--=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-
-You are here!
--=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-
+- "No problems have been detected in the workspace"
+  - Restarted VSCode to be sure
+- Linting still does not work
 
+#### 2.7.3.5. Command Line Check
 
-### 2.7.3. VSCode Check
+- `npm run lint` - is still broken
+- `npm run dev` - App still works ok
 
-This fixes the two *"Cannot find module ..."* problems!
+#### 2.7.3.6. Updating Git
 
-### 2.7.4. Command Line Check: `npm run lint`
+```
+pwd    # /var/www/always_learning/always_learning_javascript
 
-Lint does *not* work.
+git add vite/projects/3-ts_eslint_react-find_the_best_process/ts_eslint_react-2-react_ts_no_eslint/src/custom.d.ts
+git add vite/projects/3-ts_eslint_react-find_the_best_process/ts_eslint_react-2-react_ts_no_eslint/tsconfig.json
+git commit -m 'Adding vite/projects/3-ts_eslint_react-find_the_best_process/ts_eslint_react-2-react_ts_no_eslint/src/custom.d.ts and updating vite/projects/3-ts_eslint_react-find_the_best_process/ts_eslint_react-2-react_ts_no_eslint/tsconfig.json to include it.'
 
-### 2.7.5. Command Line Check: `npm run dev`
-
-The App does *not* work.
-
-### 2.7.6. Browser Dev Tools Console Check
-
-**Note:** this "fix" causes an *"Uncaught ReferenceError: require is not defined"* error to show in the browser dev tools' console.
+git add vite/projects/3-ts_eslint_react-find_the_best_process/ts_eslint_react-2-react_ts_no_eslint/src/App.tsx
+git commit -m 'Updated vite/projects/3-ts_eslint_react-find_the_best_process/ts_eslint_react-2-react_ts_no_eslint/src/App.tsx to cast viteLogo and reactLogo as any types, to "fix"/quell problems in VSCode.'
+```
 
