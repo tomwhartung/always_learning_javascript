@@ -10,6 +10,8 @@ This is the second experiment our quest to *find the best process* to use for bu
 - We can run `npm run lint` *before* installing TS
   - Will `npm run lint` work *after* installing TS??
     - 
+- Could installing `@types/node` fix the *"Cannot find module ... or its corresponding type declarations"* problems
+  - 
 
 # 2. Process
 
@@ -51,17 +53,13 @@ git commit -m 'Adding the package* files in vite/projects/3-ts_eslint_react-find
 ### 2.3.1. VSCode Check
 
 - No TS problems, yet
-- Adding `const greeting = 'Hi';` to `App.jsx` causes a lint problem in VSCode and on the command line with `npm run lint`
+- Adding `const greeting = 'Hi';` to `App.jsx` causes a lint problem in VSCode
 
 ### 2.3.2. Command-Line Checks
 
-### 2.3.2.1. `npm run lint`
+- Adding `const greeting = 'Hi';` to `App.jsx` causes a lint problem on the command line with `npm run lint`
 
-- Adding `const greeting = 'Hi';` to `App.jsx` causes a lint problem in VSCode and on the command line with `npm run lint`
-
-### 2.3.2.2. `npm run dev`
-
-- App runs ok
+- `npm run dev`: App runs ok
 
 ## 2.4. Configure Typescript
 
@@ -109,7 +107,7 @@ git add vite/projects/3-ts_eslint_react-find_the_best_process/ts_eslint_react-2-
 git commit -m 'Adding config files for TS: vite/projects/3-ts_eslint_react-find_the_best_process/ts_eslint_react-2-react_ts_no_eslint/tsconfig.* .'
 ```
 
-### 2.4.1. VSCode Check
+### 2.4.1. VSCode Checks
 
 #### 2.4.1.1. Fixable TS Problem
 
@@ -137,105 +135,61 @@ Get the following TS problem:
 
 ### 2.4.2. Command-Line Checks
 
-### 2.4.2.1. `npm run lint`
-
-- Adding `const greeting = 'Hi';` to `App.jsx` causes a lint problem on the command line with `npm run lint`, as expected
-
-### 2.4.2.2. `npm run dev`
-
-- App still runs ok
+- `npm run lint`
+  - Adding `const greeting = 'Hi';` to `App.jsx` causes a lint problem on the command line with `npm run lint`, as expected
+- `npm run dev`
+  - App still runs ok
 
 
--=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-
-You are here!
--=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-
+## 2.5. Rename `*.jsx` Files and Edit `index.html`
 
-## 2.5. Rename `*.jsx` Files
+### 2.5.1. Rename `*.jsx` files to `*.tsx`
 
-Use `F2` to rename files in VSCode:
+```
+git mv App.jsx App.tsx
+git mv main.jsx main.tsx
+```
 
-- `App.jsx` -> `App.tsx`
-- `main.jsx` -> `main.tsx`
+### 2.5.2. Edit `index.html`
 
-### 2.6.1. VSCode Check
+Using VSCode to change `main.jsx` to `main.tsx` in `index.html`.
 
-This caused 4 problems in VSCode.
+### 2.5.3. VSCode Check
 
-#### 2.6.1.1. Two "Cannot find module ..." Problems
+- The renaming caused 4 problems in VSCode
+- Editing `index.html` fixed one of these
 
-We have seen these before, and have two ways to fix them:
+#### 2.5.3.1. Two "Cannot find module ..." Problems
+
+We can use *"4.1.2.5.2. Solution B - Create a `custom.d.ts`"* in `2a-rtr-typescript_in_react-troubleshooting.md` to fix these:
 
 - "Cannot find module './assets/react.svg' or its corresponding type declarations.",
 - "Cannot find module '/vite.svg' or its corresponding type declarations.",
 
-```
-[{
-	"resource": "/var/www/always_learning/always_learning_javascript/vite/projects/3-ts_eslint_react-find_the_best_process/ts_eslint_react-1-react_eslint_ts/src/App.tsx",
-	"owner": "typescript",
-	"code": "2307",
-	"severity": 8,
-	"message": "Cannot find module './assets/react.svg' or its corresponding type declarations.",
-	"source": "ts",
-	"startLineNumber": 2,
-	"startColumn": 23,
-	"endLineNumber": 2,
-	"endColumn": 43
-},{
-	"resource": "/var/www/always_learning/always_learning_javascript/vite/projects/3-ts_eslint_react-find_the_best_process/ts_eslint_react-1-react_eslint_ts/src/App.tsx",
-	"owner": "typescript",
-	"code": "2307",
-	"severity": 8,
-	"message": "Cannot find module '/vite.svg' or its corresponding type declarations.",
-	"source": "ts",
-	"startLineNumber": 3,
-	"startColumn": 22,
-	"endLineNumber": 3,
-	"endColumn": 33
-}]
-```
+#### 2.5.3.2. The "Argument of type 'HTMLElement | null' is not assignable to ..." Problem
 
-**Not worrying about these right now,** because we know two ways to fix them.
+We can use *"2.3.2.1.2. VSCode Problem Solution"* in `2a-rtr-typescript_in_react-troubleshooting.md` to fix this:
 
-#### 2.6.1.2. The "Argument of type 'HTMLElement | null' is not assignable to ..." Problem
+- "Argument of type 'HTMLElement | null' is not assignable to parameter of type 'Element | DocumentFragment'."
+  - "Type 'null' is not assignable to type 'Element | DocumentFragment'.",
 
-We have seen this before, and can fix it:
+#### 2.5.3.3. Lint *Not* Working in VSCode
 
-```
-[{
-	"resource": "/var/www/always_learning/always_learning_javascript/vite/projects/3-ts_eslint_react-find_the_best_process/ts_eslint_react-1-react_eslint_ts/src/main.tsx",
-	"owner": "typescript",
-	"code": "2345",
-	"severity": 8,
-	"message": "Argument of type 'HTMLElement | null' is not assignable to parameter of type 'Element | DocumentFragment'.\n  Type 'null' is not assignable to type 'Element | DocumentFragment'.",
-	"source": "ts",
-	"startLineNumber": 6,
-	"startColumn": 21,
-	"endLineNumber": 6,
-	"endColumn": 52
-}]
-```
+- Adding `const greeting = 'Hi';` to `App.jsx` has no effect
 
-**Not worrying about this right now,** because we know how to fix this.
+### 2.5.4. Command-Line Checks
 
-#### 2.6.1.3. A New "No inputs were found in config file ..." Problem
+- `npm run lint`
+  - Adding `const greeting = 'Hi';` to `App.jsx` has no effect
+  - Getting this error:
+    - No files matching the pattern "src" were found.
+    - Please check for typing mistakes in the pattern.
+- `npm run dev`
+  - App still runs ok
 
-```
-[{
-	"resource": "/var/www/always_learning/always_learning_javascript/vite/projects/3-ts_eslint_react-find_the_best_process/ts_eslint_react-1-react_eslint_ts/tsconfig.node.json",
-	"owner": "typescript",
-	"severity": 8,
-	"message": "No inputs were found in config file '/var/www/always_learning/always_learning_javascript/vite/projects/3-ts_eslint_react-find_the_best_process/ts_eslint_react-1-react_eslint_ts/tsconfig.node.json'. Specified 'include' paths were '[\"vite.config.ts\"]' and 'exclude' paths were '[]'.",
-	"source": "ts",
-	"startLineNumber": 1,
-	"startColumn": 1,
-	"endLineNumber": 1,
-	"endColumn": 2
-}]
-```
+-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-
 
-**Not worrying about this error right now,** because editing `index.html` fixes it
-
-### 2.6.2. Command Line Check: `npm run lint`
+### 2.5.2. Command Line Check: `npm run lint`
 
 Installing TS broke lint:
 
@@ -258,15 +212,14 @@ $
 
 **Not worrying about these right now,** because editing `index.html` is a big part of this step, and it just might change things.
 
-## 2.7. Edit `index.html`
 
-Using VSCode to edit `index.html`.
-
-- Changed `main.jsx` to `main.tsx`
+-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-
+You are here!
+-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-
 
 ### 2.7.1. VSCode Check
 
-- This fixed the *"2.6.1.3. A New "No inputs were found in config file ..."* problem
+- This fixed the *"2.5.1.3. A New "No inputs were found in config file ..."* problem
 - The other three problems remain
 
 ### 2.7.2. Command Line Check: `npm run lint`
@@ -322,11 +275,11 @@ We don't know how to fix the lint error, but now we are certain it's caused by r
 
 We do know how to fix the three VSCode problems:
 
-- 2.6.1.1. Two "Cannot find module ..." Problems
+- 2.5.1.1. Two "Cannot find module ..." Problems
   - Have two ways to fix this
   - Finding the best way is our goal now
   - See below
-- 2.6.1.2. The "Argument of type 'HTMLElement | null' is not assignable to ..." Problem
+- 2.5.1.2. The "Argument of type 'HTMLElement | null' is not assignable to ..." Problem
   - Easy to fix with a cast
 
 ### 2.9.2. The `require` Fix - Fixes the Problem, Breaks the App
