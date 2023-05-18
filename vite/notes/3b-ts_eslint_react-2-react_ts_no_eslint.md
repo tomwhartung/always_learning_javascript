@@ -8,10 +8,10 @@ This is the second experiment our quest to *find the best process* to use for bu
 - Can I learn to live *without* ESLint?
   - 
 - We can run `npm run lint` *before* installing TS
-  - Will `npm run lint` work *after* installing TS??
-    - 
+  - Will `npm run lint` work *after* installing TS, even without installing ESLint??
+    - **NO**
 - Could installing `@types/node` fix the *"Cannot find module ... or its corresponding type declarations"* problems
-  - 
+  - **NO**
 
 # 2. Process
 
@@ -140,7 +140,6 @@ Get the following TS problem:
 - `npm run dev`
   - App still runs ok
 
-
 ## 2.5. Rename `*.jsx` Files and Edit `index.html`
 
 ### 2.5.1. Rename `*.jsx` files to `*.tsx`
@@ -187,62 +186,46 @@ We can use *"2.3.2.1.2. VSCode Problem Solution"* in `2a-rtr-typescript_in_react
 - `npm run dev`
   - App still runs ok
 
--=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-
+### 2.5.5. Commit Changes
 
-### 2.5.2. Command Line Check: `npm run lint`
-
-Installing TS broke lint:
+**Note:** the following commit includes the two `git mv ...` commands in *"2.5.1. Rename `*.jsx` files to `*.tsx`"* above.
 
 ```
-$ npm run lint
-
-> ts_eslint_react-1-react_eslint_ts@0.0.0 lint
-> eslint src --ext js,jsx --report-unused-disable-directives --max-warnings 0
-
-
-Oops! Something went wrong! :(
-
-ESLint: 8.40.0
-
-No files matching the pattern "src" were found.
-Please check for typing mistakes in the pattern.
-
-$
+git diff vite/projects/3-ts_eslint_react-find_the_best_process/ts_eslint_react-2-react_ts_no_eslint/index.html
+git add  vite/projects/3-ts_eslint_react-find_the_best_process/ts_eslint_react-2-react_ts_no_eslint/index.html
+git commit -m 'Renamed vite/projects/3-ts_eslint_react-find_the_best_process/ts_eslint_react-2-react_ts_no_eslint/src/*.jsx to vite/projects/3-ts_eslint_react-find_the_best_process/ts_eslint_react-2-react_ts_no_eslint/src/*.tsx , and changed "main.jsx" to "main.tsx" in vite/projects/3-ts_eslint_react-find_the_best_process/ts_eslint_react-2-react_ts_no_eslint/index.html .'
 ```
 
-**Not worrying about these right now,** because editing `index.html` is a big part of this step, and it just might change things.
+## 2.7. Try Installing `@types/node`
+
+```
+npm install --save-dev @types/node
+```
+
+As suspected, this did not fix anything.
+
+### 2.7.1. VSCode Check
+
+- The three problems remain
+- Linting still does not work
+
+### 2.7.2. Command Line Check
+
+- `npm run lint` - is still broken
+- `npm run dev` - App still works ok
+
+### 2.7.3. Updating Git
+
+```
+pwd    # /var/www/always_learning/always_learning_javascript
+git add vite/projects/3-ts_eslint_react-find_the_best_process/ts_eslint_react-2-react_ts_no_eslint/package*
+git commit -m 'Running "npm install --save-dev @types/node" updated the vite/projects/3-ts_eslint_react-find_the_best_process/ts_eslint_react-2-react_ts_no_eslint/package* files but did not fix any problems; nor did it create any new ones, so I guess that is a good thing.'
+```
 
 
 -=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-
 You are here!
 -=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-
-
-### 2.7.1. VSCode Check
-
-- This fixed the *"2.5.1.3. A New "No inputs were found in config file ..."* problem
-- The other three problems remain
-
-### 2.7.2. Command Line Check: `npm run lint`
-
-Running `npm run lint` is still broken.
-
-### 2.8.2. Updating Git
-
-Renaming the files in VSCode kind of messed up my github!
-
-```
-$ git status
-. . .
-        deleted:    vite/projects/3-ts_eslint_react-find_the_best_process/ts_eslint_react-1-react_eslint_ts/src/App.jsx
-        deleted:    vite/projects/3-ts_eslint_react-find_the_best_process/ts_eslint_react-1-react_eslint_ts/src/main.jsx
-. . .
-Untracked files:
-. . .
-        vite/projects/3-ts_eslint_react-find_the_best_process/ts_eslint_react-1-react_eslint_ts/src/App.tsx
-        vite/projects/3-ts_eslint_react-find_the_best_process/ts_eslint_react-1-react_eslint_ts/src/main.tsx
-. . .
-$
-```
 
 #### 2.8.2. Saved Copies of Original `*.jsx` Files as `*.jsx-before_renaming`
 
