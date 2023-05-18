@@ -646,9 +646,10 @@ Not sure I want to install this package **when hovering** VSCode wants me to not
 
 ##### 4.1.2.5.2. Solution B - Create a `custom.d.ts`
 
-Then I tried this, from the main answer - which says this works for webpack - which is why I didn't try it at first - but...:
+Then I tried this, from the main answer - which says this works for webpack - which is why I didn't try it at first - but
+apparently it works for vite as well:
 
-- 1. Create a file named `custom.d.ts` with the following contents:
+- Step 1. Create a file named `custom.d.ts` with the following contents:
 
 ```
 declare module "*.svg" {
@@ -657,7 +658,7 @@ declare module "*.svg" {
 }
 ```
 
-- 2. Update `tsconfig.js` to include it:
+- Step 2. Update `tsconfig.json` to include it:
 
 ```
 -  "include": ["src"],
@@ -716,109 +717,8 @@ This fixes the old problems but gives us two new problems:
 }]
 ```
 
+These problems look to be fixable.
 
--=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-
-You are here!
--=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-
-
-Things to look into trying:
-
-- If these are TS errors, why do they appear only after adding `eslint`?
-  - Or do they?
-  - Maybe try a new project: `ts_in_react-3-fresh_start`
-    - Be sure to **reload TS** (Ctrl+Shift+P) and *make sure* it is `eslint` that "causes" the errors
-
-
--=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-
-**From last time:**
-- Without some sort of config, it seems obvious it doesn't know where to look
-- This makes me think these problems are due to configuration
-  - ??? let's create those two files before trying to solve the problems
-  - **what two files???**
--=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-
-
- #### 4.1.1.4. VSCode Problem Solution
-
- #### 4.1.1.5. Commit Change(s) to Github
-
-**See commands below!!!**
-
-```
-```
-
--=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-
-
- ### 4.1.2. Ensure We Can Run Lint
-
-Running `npm run lint` now gives us the following error:
-
-```
-$ pwd
-/var/www/always_learning/always_learning_javascript/vite/projects/2-rtr-typescript_in_react/ts_in_react-2-troubleshooting
-$ npm run lint
-
-> ts_in_react-2-troubleshooting@0.0.0 lint
-> eslint src --ext js,jsx --report-unused-disable-directives --max-warnings 0
-
-
-Oops! Something went wrong! :(
-
-ESLint: 8.40.0
-
-No files matching the pattern "src" were found.
-Please check for typing mistakes in the pattern.
-
-$
-```
-
--=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-
-
- ## 4.1.3. Ensure App Builds and Runs Ok
-
-```
-pwd             # /var/www/always_learning/always_learning_javascript/vite/projects/2-rtr-typescript_in_react/ts_in_react-2-troubleshooting
-npm run         # Check my options
-npm run build   # No apparent build errors
-npm run dev     # Runs and reloads ok
-```
-
-Checked app in browser and every thing seems to be ok!
-
- ### 4.1.4. Commit Change(s) to Github
-
-**See commands below!!!**
-
-```
-```
-
-
- ## 4.2. Generate and fix a TS error
- ## 4.2.1. VSCode Check
- ## 4.2.2. 
- ## 4.2.3. Ensure App Builds and Runs Ok
- ## 4.2.4. Commit Change to Github
-
-
--=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-
-Saving this markup in case adding ESLint causes these problems
--=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-
-
- ## 2.1.1. VSCode Still Showing Two Problems
-
-
-**Let's see if we can fix those problems *NOW*!**
-
-
- ## 2.1.1. Commit Changes to Github
-
-```
-Update git with changes made to the `package*` files:
-
-
-pwd              # /var/www/always_learning/always_learning_javascript
-git add vite/projects/2-rtr-typescript_in_react/ts_in_react-1/tsconfig.json
-git commit -m 'Adding vite/projects/2-rtr-typescript_in_react/ts_in_react-1/tsconfig.json copied from Road to React book.'
-git add vite/projects/2-rtr-typescript_in_react/ts_in_react-1/tsconfig.node.json
-git commit -m 'Adding vite/projects/2-rtr-typescript_in_react/ts_in_react-1/tsconfig.node.json copied from Road to React book.'
-```
+- Indeed, I was able to figure out how to "fix"/quell the errors
+  - See subsection *"2.7.3.3.2. The Two New Problems - Solutions"* of 3b-ts_eslint_react-2-react_ts_no_eslint.md in this directory
 
