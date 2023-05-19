@@ -3,12 +3,17 @@
 
 This is the first experiment our quest to *find the best process* to use for building *"the whole shebang."*
 
-# 1. Questions
+# 1. Questions and Answers
 
 - Does installing TS break ESLint?
-  - Yes
+  - **YES**
 - Will the suggested `npm install ...` command fix the VSCode problems?
-  - Yes, but unfortunately it **breaks the app**
+  - **NO,**
+  - If `npm i[nstall] @types/node` is the "suggested command" then this is not demonstrated until the next project
+    - See *"2.6. Try Installing `@types/node`"* in 3b-ts_eslint_react-2-react_ts_no_eslint.md in this directory
+  - If `npm i[nstall] @types/node` is *not* the "suggested command" then I'm not sure what prompted this question ;-D
+- Will the change the `import`s to `require`s fix work?
+  - **NO,** and unfortunately it **breaks the app**
 
 # 2. Process
 
@@ -51,7 +56,7 @@ $
 
 - No problems so far.
 
-**Note:** We need to install ESLint before we can run `lint` in VSCode; see *"2.3.1. VSCode Check"* below.
+**Note:** Lint runs in VSCode even without installing ESLint.
 
 ## 2.3. Add ESLint
 
@@ -267,7 +272,7 @@ Using VSCode to edit `index.html`.
 
 Running `npm run lint` is still broken.
 
-### 2.8.2. Updating Git
+## 2.8. Updating Git
 
 Renaming the files in VSCode kind of messed up my github!
 
@@ -285,7 +290,7 @@ Untracked files:
 $
 ```
 
-#### 2.8.2. Saved Copies of Original `*.jsx` Files as `*.jsx-before_renaming`
+### 2.8.1. Saved Copies of Original `*.jsx` Files as `*.jsx-before_renaming`
 
 ```
 git checkout App.jsx                     # Get old copy before VSCode "deleted" it
@@ -297,7 +302,7 @@ git mv main.jsx main.jsx-before_renaming
 git commit ....                          # Inadvertently checked in with other changes
 ```
 
-#### 2.8.3. No Going Back
+#### 2.8.1.1. No Going Back!
 
 Using the `*.jsx-before_renaming` files to recreate the `*.jsx` files, like so:
 
