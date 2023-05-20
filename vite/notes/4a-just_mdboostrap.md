@@ -165,7 +165,20 @@ npm run start
 
 Rats!  Running `npm run start` causes a fatal error!!
 
+#### 1.4.1. VSCode Error
+
+> Unable to watch for file changes in this large workspace folder. Please follow the instructions link to resolve this issue.
+
+#### 1.4.2. Command Line Error
+
+Here's the main message:
+
+> Error: ENOSPC: System limit for number of file watchers reached, watch '/var/www/always_learning/always_learning_javascript/vite/projects/4-my_mdb_adventure/1-mdb_unzipped/public'
+
+Here's all of the output:
+
 ```
+$ npm run start
 Starting the development server...
 
 /var/www/always_learning/always_learning_javascript/vite/projects/4-my_mdb_adventure/1-mdb_unzipped/node_modules/react-scripts/scripts/start.js:19
@@ -197,6 +210,119 @@ Emitted 'error' event on FSWatcher instance at:
 }
 
 Node.js v18.16.0
+$
+```
+
+### 1.4.2. Fixes Applied
+
+#### 1.4.2.1. Check and Updgrade `npm`
+
+```
+$ npm -v
+9.6.5
+$ sudo npm install -g npm@latest
+[sudo] password for tomh:
+
+changed 48 packages in 9s
+
+27 packages are looking for funding
+  run `npm fund` for details
+$ npm -v
+9.6.7
+$
+```
+
+#### 1.4.2.2. Change `fs.inotify.max_user_watches`
+
+All of these pages:
+
+- [stackoverflow.com](https://stackoverflow.com/questions/55763428/react-native-error-enospc-system-limit-for-number-of-file-watchers-reached)
+- [stackoverflow.com](https://stackoverflow.com/questions/65300153/error-enospc-system-limit-for-number-of-file-watchers-reached-angular)
+- [code.visualstudio.com](https://code.visualstudio.com/docs/setup/linux#_visual-studio-code-is-unable-to-watch-for-file-changes-in-this-large-workspace-error-enospc)
+
+recommend the same fix:
+
+- Increasing the value of `fs.inotify.max_user_watches`
+
+Following is my process, which is a bit different from theirs, but accomplishes the same thing:
+
+```
+sudo su -
+cd /etc
+wc -l /etc/sysctl.conf                      # It's just 68 lines
+more sysctl.conf
+rlog sysctl.conf
+ci -l sysctl.conf
+grep -v '^#' sysctl.conf
+grep '^#' sysctl.conf
+grep '^#' sysctl.conf | wc -l               # 57 lines are comments
+grep -v '^#' sysctl.conf | wc -l            # 11 lines are blank
+cat /etc/sysctl.conf
+cat /proc/sys/fs/inotify/max_user_watches   # set to 8192
+rcsdiff /etc/sysctl.conf                    # not yet in RCS
+vi /etc/sysctl.conf                         # added lines below to the end of the file
+cat /proc/sys/fs/inotify/max_user_watches   # still 8192
+sysctl -p                                   # update the value
+cat /proc/sys/fs/inotify/max_user_watches   # now it's 524288, the maximum
+```
+
+Lines added to the end of `sysctl.conf`:
+
+```
+$ rd sysctl.conf
+===================================================================
+RCS file: RCS/sysctl.conf,v
+retrieving revision 1.1
+diff -r1.1 sysctl.conf
+68a69,85
+> ###################################################################
+> #
+> # CusTOMizations
+> # --------------
+> #
+> ###################################################################
+> #
+> # 2023-05-21:
+> #   Fix for "Error: ENOSPC: System limit for number of file watchers reached",
+> #   Got this error trying to run React+MDBoostrap
+> #   References:
+> #     https://stackoverflow.com/questions/55763428/react-native-error-enospc-system-limit-for-number-of-file-watchers-reached
+> #     https://stackoverflow.com/questions/65300153/error-enospc-system-limit-for-number-of-file-watchers-reached-angular
+> #     https://code.visualstudio.com/docs/setup/linux#_visual-studio-code-is-unable-to-watch-for-file-changes-in-this-large-workspace-error-enospc
+> #
+> fs.inotify.max_user_watches=524288
+>
+$ ci -l sysctl.conf
+RCS/sysctl.conf,v  <--  sysctl.conf
+new revision: 1.2; previous revision: 1.1
+enter log message, terminated with single '.' or end of file:
+>> Updated fs.inotify.max_user_watches at end of file.
+>> Comments include three references.
+>>
+done
+$
+```
+
+### 1.4.3. Runs OK
+
+Now it runs ok, but with a warning:
+
+```
+Compiled with warnings.
+
+Warning
+(8:22769) autoprefixer: Replace color-adjust to print-color-adjust. The color-adjust shorthand is currently deprecated.
+
+Search for the keywords to learn more about each warning.
+To ignore, add // eslint-disable-next-line to the line before.
+
+WARNING in ./node_modules/mdb-react-ui-kit/dist/css/mdb.min.css (./node_modules/css-loader/dist/cjs.js??ruleSet[1].rules[1].oneOf[5].use[1]!./node_modules/postcss-loader/dist/cjs.js??ruleSet[1].rules[1].oneOf[5].use[2]!./node_modules/source-map-loader/dist/cjs.js!./node_modules/mdb-react-ui-kit/dist/css/mdb.min.css)
+Module Warning (from ./node_modules/postcss-loader/dist/cjs.js):
+Warning
+
+(8:22769) autoprefixer: Replace color-adjust to print-color-adjust. The color-adjust shorthand is currently deprecated.
+
+webpack compiled with 1 warning
 ```
 
 ## 1.5. Step 5
