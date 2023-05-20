@@ -138,10 +138,70 @@ $
 
 ## 1.4. Step 4
 
-- [ ] 4. Run the application
+- [!] 4. Run the application
+  - 4.1. ERROR!
 
 ```
+$ npm run
+Lifecycle scripts included in mdb-react-template@6.0.0:
+  start
+    react-scripts start
+  test
+    react-scripts test
+
+available via `npm run-script`:
+  build
+    react-scripts build
+  eject
+    react-scripts eject
+```
+
+```
+pwd     # /var/www/always_learning/always_learning_javascript/vite/projects/4-my_mdb_adventure/1-mdb_unzipped
+npm run start
+```
+
+### 1.4.1. Error!
+
+Rats!  Running `npm run start` causes a fatal error!!
+
+```
+Starting the development server...
+
+/var/www/always_learning/always_learning_javascript/vite/projects/4-my_mdb_adventure/1-mdb_unzipped/node_modules/react-scripts/scripts/start.js:19
+  throw err;
+  ^
+
+Error: ENOSPC: System limit for number of file watchers reached, watch '/var/www/always_learning/always_learning_javascript/vite/projects/4-my_mdb_adventure/1-mdb_unzipped/public'
+    at FSWatcher.<computed> (node:internal/fs/watchers:247:19)
+    at Object.watch (node:fs:2343:34)
+    at createFsWatchInstance (/var/www/always_learning/always_learning_javascript/vite/projects/4-my_mdb_adventure/1-mdb_unzipped/node_modules/chokidar/lib/nodefs-handler.js:119:15)
+    at setFsWatchListener (/var/www/always_learning/always_learning_javascript/vite/projects/4-my_mdb_adventure/1-mdb_unzipped/node_modules/chokidar/lib/nodefs-handler.js:166:15)
+    at NodeFsHandler._watchWithNodeFs (/var/www/always_learning/always_learning_javascript/vite/projects/4-my_mdb_adventure/1-mdb_unzipped/node_modules/chokidar/lib/nodefs-handler.js:331:14)
+    at NodeFsHandler._handleDir (/var/www/always_learning/always_learning_javascript/vite/projects/4-my_mdb_adventure/1-mdb_unzipped/node_modules/chokidar/lib/nodefs-handler.js:567:19)
+    at process.processTicksAndRejections (node:internal/process/task_queues:95:5)
+    at async NodeFsHandler._addToNodeFs (/var/www/always_learning/always_learning_javascript/vite/projects/4-my_mdb_adventure/1-mdb_unzipped/node_modules/chokidar/lib/nodefs-handler.js:617:16)
+    at async /var/www/always_learning/always_learning_javascript/vite/projects/4-my_mdb_adventure/1-mdb_unzipped/node_modules/chokidar/index.js:451:21
+    at async Promise.all (index 0)
+Emitted 'error' event on FSWatcher instance at:
+    at FSWatcher._handleError (/var/www/always_learning/always_learning_javascript/vite/projects/4-my_mdb_adventure/1-mdb_unzipped/node_modules/chokidar/index.js:647:10)
+    at NodeFsHandler._addToNodeFs (/var/www/always_learning/always_learning_javascript/vite/projects/4-my_mdb_adventure/1-mdb_unzipped/node_modules/chokidar/lib/nodefs-handler.js:645:18)
+    at process.processTicksAndRejections (node:internal/process/task_queues:95:5)
+    at async /var/www/always_learning/always_learning_javascript/vite/projects/4-my_mdb_adventure/1-mdb_unzipped/node_modules/chokidar/index.js:451:21
+    at async Promise.all (index 0) {
+  errno: -28,
+  syscall: 'watch',
+  code: 'ENOSPC',
+  path: '/var/www/always_learning/always_learning_javascript/vite/projects/4-my_mdb_adventure/1-mdb_unzipped/public',
+  filename: '/var/www/always_learning/always_learning_javascript/vite/projects/4-my_mdb_adventure/1-mdb_unzipped/public'
+}
+
+Node.js v18.16.0
 ```
 
 ## 1.5. Step 5
+
+- [x] Explore docs
+
+>Explore our documentation (menu on the left). Choose components you like, copy it to your project and compose your website. And yes, it's that simple!
 
