@@ -16,8 +16,11 @@ For details, see that file.
 
 ```
 pwd                                 # /var/www/always_learning/always_learning_javascript/vite/projects
+cd 4-my_mdb_adventure
+pwd                                 # /var/www/always_learning/always_learning_javascript/vite/projects/4-my_mdb_adventure
 mkdir 2-mdb_and_ts
-cd 4-my_mdb_adventure/2-mdb_and_ts
+cp 0-downloaded/MDB5-REACT-UI-KIT-Free-6.0.0.zip 2-mdb_and_ts
+cd 2-mdb_and_ts
 pwd                                 # /var/www/always_learning/always_learning_javascript/vite/projects/4-my_mdb_adventure/2-mdb_and_ts
 unzip MDB5-REACT-UI-KIT-Free-6.0.0.zip
 npm install
