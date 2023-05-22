@@ -23,3 +23,9 @@ The adventure starts with
     - This totally broke `npm install`
     - Did not break the App but ... it is obviously unacceptable in its current state
 
+- [x] 3. Could MDB+React Already Include TS?
+  - This was a long shot but I "tried" it anyway
+  - Notes are in `4c-does_mdb_include_ts` in this directory
+  - Project is in `vite/projects/4-my_mdb_adventure/3-does_mdb_include_ts`
+  - **No,** but I found what I was looking for, hopefully
+
