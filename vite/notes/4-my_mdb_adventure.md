@@ -16,8 +16,10 @@ The adventure starts with
   - Notes are in `4a-just_mdboostrap.md` in this directory
   - Project is in `vite/projects/4-my_mdb_adventure/1-mdb_unzipped`
 
-- [ ] 2. Optional: Get MDB's `Range` component to work
-  - This is their [slider](https://mdbootstrap.com/docs/react/forms/range/)
-  - Notes are in `TBD` in this directory 
-  - Project is in `vite/projects/4-my_mdb_adventure/TBD` 
+- [x] 2. Add TypeScript to MDB's `MDB5-REACT-UI-KIT-Free-6.0.0`
+  - Notes are in `4b-mdb_and_ts.md` in this directory
+  - Project is in `vite/projects/4-my_mdb_adventure/2-mdb_and_ts`
+  - **This Failed**
+    - This totally broke `npm install`
+    - Did not break the App but ... it is obviously unacceptable in its current state
 
