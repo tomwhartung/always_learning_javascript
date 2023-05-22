@@ -78,10 +78,11 @@ For details, see that file.
 - [x] 3. Install dependencies
 
 ```
-pwd                                 # /var/www/always_learning/always_learning_javascript/vite/projects
-mkdir 2-mdb_and_ts
-cd 4-my_mdb_adventure/2-mdb_and_ts
-pwd                                 # /var/www/always_learning/always_learning_javascript/vite/projects/4-my_mdb_adventure/2-mdb_and_ts
+pwd                                 # /var/www/always_learning/always_learning_javascript/vite/projects/4-my_mdb_adventure
+mkdir 3-does_mdb_include_ts
+cp 0-downloaded/MDB5-REACT-UI-KIT-Free-6.0.0.zip  3-does_mdb_include_ts
+cd 3-does_mdb_include_ts
+pwd                                 # /var/www/always_learning/always_learning_javascript/vite/projects/4-my_mdb_adventure/3-does_mdb_include_ts
 unzip MDB5-REACT-UI-KIT-Free-6.0.0.zip
 npm install
 ```
@@ -107,6 +108,41 @@ npm run start   # it runs ok, but is quite slow to load...
 **Note:** Checked current version of project into github.
 
 # 2. Install TS
+
+Skipping the install, because that screwed us up last time.
+
+# 3. Configure TS
+
+Steps come from subsection `2.4. Configure Typescript` of `3b-ts_eslint_react-2-react_ts_no_eslint.md` in this directory.
+For details, see that file.
+
+- Create `tsconfig.json` with contents as specified in `2.4. Configure Typescript` of `3b-ts_eslint_react-2-react_ts_no_eslint.md`
+- Create `tsconfig.node.json` with contents as specified in `2.4. Configure Typescript` of `3b-ts_eslint_react-2-react_ts_no_eslint.md`
+
+# 3.1. Checks
+
+- VSCode looks good
+- `npm run start` - App still runs ok
+
+## 2.3. Rename `*.jsx` Files and Edit `index.html`
+
+### 2.3.1. Rename `*.jsx` files to `*.tsx`
+
+```
+git mv App.jsx App.tsx
+git mv main.jsx main.tsx
+```
+
+### 2.3.2. Edit `index.html`
+
+Using VSCode to change `main.jsx` to `main.tsx` in `index.html`.
+
+### 2.3.3. VSCode Check
+
+- The renaming caused 4 problems in VSCode
+- Editing `index.html` fixed one of these
+
+
 
 Steps come from subsection `2.3. Install Typescript` of `3b-ts_eslint_react-2-react_ts_no_eslint.md` in this directory.
 For details, see that file.
@@ -237,42 +273,4 @@ at least for now.
 -=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-
 Following notes saved for next time:
 -=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-
-
-## 2.2. Configure Typescript
-
-### 2.2.1. Create `tsconfig.json` and `tsconfig.node.json`
-
-### 2.2.2. VSCode Checks
-
-
-#### 2.2.2.2. Lint Still Works
-
-- Adding `const greeting = 'Hi';` to `App.jsx` causes a lint problem in VSCode, as expected
-
-### 2.2.3. Command-Line Checks
-
-- `npm run lint`
-  - Adding `const greeting = 'Hi';` to `App.jsx` causes a lint problem on the command line with `npm run lint`, as expected
-- `npm run dev`
-  - App still runs ok
-
-
-## 2.3. Rename `*.jsx` Files and Edit `index.html`
-
-### 2.3.1. Rename `*.jsx` files to `*.tsx`
-
-```
-git mv App.jsx App.tsx
-git mv main.jsx main.tsx
-```
-
-### 2.3.2. Edit `index.html`
-
-Using VSCode to change `main.jsx` to `main.tsx` in `index.html`.
-
-### 2.3.3. VSCode Check
-
-- The renaming caused 4 problems in VSCode
-- Editing `index.html` fixed one of these
-
 
