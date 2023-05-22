@@ -1,6 +1,67 @@
 
 # 4c-does_mdb_include_ts.md
 
+Using `vite` to install MDB-React, and then switching over to Typescript.
+
+**Note:** This seems like a long shot, but it would be nice if ....
+
+# 0. Why
+
+## 0.1. Running `npm install` Says ...
+
+... `npm ERR! Found: typescript@5.0.4`
+
+```
+$ npm install
+. . .
+npm ERR! While resolving: react-scripts@5.0.1
+npm ERR! Found: typescript@5.0.4
+npm ERR! node_modules/typescript
+npm ERR!   dev typescript@"^5.0.4" from the root project
+npm ERR!   peer typescript@">= 2.7" from fork-ts-checker-webpack-plugin@6.5.3
+npm ERR!   node_modules/fork-ts-checker-webpack-plugin
+. . .
+```
+
+## 0.2. Looking at `package*` Diffs ...
+
+... looks like it just added typescript:
+
+```
+$ git diff f6b55a6b86146d3e3472df19dc93a2f0b07d1936 package.json*
+diff --git a/vite/projects/4-my_mdb_adventure/2-mdb_and_ts/package.json b/vite/projects/4-my_mdb_adventure/2-mdb_and_ts/package.json
+index 698baa5..5859920 100644
+--- a/vite/projects/4-my_mdb_adventure/2-mdb_and_ts/package.json
++++ b/vite/projects/4-my_mdb_adventure/2-mdb_and_ts/package.json
+@@ -4,11 +4,11 @@
+   "description": "template for mdb-react-ui-kit",
+   "private": true,
+   "dependencies": {
++    "mdb-react-ui-kit": "6.0.0",
+     "react": "^18.1.0",
+     "react-dom": "^18.1.0",
+     "react-scripts": "5.0.1",
+-    "web-vitals": "^2.1.4",
+-    "mdb-react-ui-kit": "6.0.0"
++    "web-vitals": "^2.1.4"
+   },
+   "scripts": {
+     "start": "react-scripts start",
+@@ -33,5 +33,10 @@
+       "last 1 firefox version",
+       "last 1 safari version"
+     ]
++  },
++  "devDependencies": {
++    "@types/react": "^18.2.6",
++    "@types/react-dom": "^18.2.4",
++    "typescript": "^5.0.4"
+   }
+ }
+```
+
+**I know it's a long shot, but I have to be sure!**
+
 -=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-
 YOU ARE HERE
 -=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-
