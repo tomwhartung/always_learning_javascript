@@ -166,3 +166,50 @@ webpack compiled with 1 warning
 $
 ```
 
+# 3. Abandoning This Project
+
+Although the app runs, **`npm install` is clearly totally broken,** so I am **abandoning this project,**
+at least for now.
+
+-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-
+Following notes saved for next time:
+-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-
+
+## 2.2. Configure Typescript
+
+### 2.2.1. Create `tsconfig.json` and `tsconfig.node.json`
+
+### 2.2.2. VSCode Checks
+
+
+#### 2.2.2.2. Lint Still Works
+
+- Adding `const greeting = 'Hi';` to `App.jsx` causes a lint problem in VSCode, as expected
+
+### 2.2.3. Command-Line Checks
+
+- `npm run lint`
+  - Adding `const greeting = 'Hi';` to `App.jsx` causes a lint problem on the command line with `npm run lint`, as expected
+- `npm run dev`
+  - App still runs ok
+
+
+## 2.3. Rename `*.jsx` Files and Edit `index.html`
+
+### 2.3.1. Rename `*.jsx` files to `*.tsx`
+
+```
+git mv App.jsx App.tsx
+git mv main.jsx main.tsx
+```
+
+### 2.3.2. Edit `index.html`
+
+Using VSCode to change `main.jsx` to `main.tsx` in `index.html`.
+
+### 2.3.3. VSCode Check
+
+- The renaming caused 4 problems in VSCode
+- Editing `index.html` fixed one of these
+
+
