@@ -17,9 +17,7 @@ Running through the
 - Creating a *"first small project"*
 - See `vite/projects/4-my_mdb_adventure/4a-mdb_cli-quick_start`
 
-## Quick start - Process
-
-### Step 1 - download and setup MDB
+## Step 1 - download and setup MDB
 
 Downloaded `MDB5-STANDARD-UI-KIT-Free-6.3.1.zip` - the *MDB 5 download* file - from the
 [installation page](https://mdbootstrap.com/docs/standard/getting-started/installation/)
@@ -37,14 +35,14 @@ Added the project directory `vite/projects/4-my_mdb_adventure/4a-mdb_cli-quick_s
 
 **Note:** checked the  project directory into github, so that if I do something to change the files, I can see what's changed!
 
-### Step 2 - open `index.html` file
+## Step 2 - open `index.html` file
 
 Opened the `index.html` file in `vite/projects/4-my_mdb_adventure/4a-mdb_cli-quick_start/` in:
 
 - A browser tab
 - The VSCode code editor
 
-### Step 3 - prepare `index.html` file for the new project
+## Step 3 - prepare `index.html` file for the new project
 
 Removed all code between these two lines:
 
@@ -55,20 +53,33 @@ Removed all code between these two lines:
 
 Yes indeed, the page is now totally blank.
 
-### Step 4 - add navigation bar
+## Step 4 - add navigation bar
 
-```
-```
+Added HTML for navbar copied from the *"Basic example"* -> **</> SHOW CODE** -> code box on the
+[MDB Navbar page](https://mdbootstrap.com/docs/standard/navigation/navbar/) to `index.html`.
 
-### 
-```
-```
+## Step 5 - add jumbotron
 
-### 
-```
-```
+Added HTML for a Jumbotron from the Quick start tutorial to `index.html`.
 
-### 
-```
-```
+## Step 6 - add grid
+
+Added HTML for a grid with 1 row and 3 columns copied from the *"Basic example"* -> **</> SHOW CODE** -> code box on the
+[MDB Grid System page](https://mdbootstrap.com/docs/standard/layout/grid/) to `index.html`.
+
+## Step 7 - add cards
+
+Added HTML for three cards copied from:
+
+- The *"Image"* -> **</> SHOW CODE** -> code box
+- The *"Header and footer"* -> **</> SHOW CODE** -> code box
+- The *"Image with ripple"* -> **</> SHOW CODE** -> code box
+
+on the [MDB Cards page](https://mdbootstrap.com/docs/standard/components/cards/) to `index.html`.
+
+## Step 8 - add footer
+
+Added HTML for footer copied from the *"Basic example"* -> **</> SHOW CODE** -> code box on the
+[MDB Footer page](https://mdbootstrap.com/docs/standard/navigation/footer/) to `index.html`.
+
 
