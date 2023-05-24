@@ -123,13 +123,42 @@ $ which mdb
 $
 ```
 
-## Step 4 - 
+## Step 4 - log in to the MDB account in the terminal
+
+This logs us into **MDB Go.**
 
 ```
+$ mdb login
+? Enter your MDB username tomwhartung
+? Enter your MDB password **********
+Successfully logged in.
+$
 ```
 
-## Step 5 - 
+## Step 5 - rename the folder where your project is and navigate to it in terminal
 
 ```
+$ pwd
+/var/www/always_learning/always_learning_javascript/vite/projects/4-my_mdb_adventure/4a-mdb_cli-quick_start
+$
 ```
+
+## Step 6 - publish your project!
+
+```
+$ mdb publish
+? Required .mdb file not found. Create? Yes
+? Enter project name mdb-tutorial
+? Choose project type frontend
+? Choose default package manager npm
+Configuration saved.
+✔ Uploading files | 1.463 Mb
+Sent 1.463 Mb
+Your application is available at https://tomwhartung-mdb-tutorial.mdbgo.io [copied to clipboard]
+
+Info Your URL has been generated based on your username and project name. You can change it by providing the (sub)domain of your choice by running the following command: `mdb config domain <name>`.
+$
+```
+
+The [link provided](https://tomwhartung-mdb-tutorial.mdbgo.io) loads very slowly, but does eventually load!  Yay!!
 
