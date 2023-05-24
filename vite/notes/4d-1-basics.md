@@ -4,7 +4,11 @@
 Running through the
 [MDB CLI tutorial](https://mdbootstrap.com/learn/mdb-foundations/basics/introduction/).
 
-# [Key concepts](https://mdbootstrap.com/learn/mdb-foundations/basics/key-concepts/)
+# Page 1: [Introduction](https://mdbootstrap.com/learn/mdb-foundations/basics/introduction/)
+
+Includes a link to the [MDB community support forum](https://mdbootstrap.com/support/).
+
+# Page 2: [Key concepts](https://mdbootstrap.com/learn/mdb-foundations/basics/key-concepts/)
 
 - MDBootstrap == MDB == MDB UI KIT
 - Material Minimal: MDB's newest design system
@@ -12,7 +16,7 @@ Running through the
   - Material Minimal is Natural, Clear, and Scalable
 - MDB GO is a powerful platform, that offers free hosting and open-source deployment tool
 
-# [Quick start](https://mdbootstrap.com/learn/mdb-foundations/basics/quick-start/)
+# Page 3: [Quick start](https://mdbootstrap.com/learn/mdb-foundations/basics/quick-start/)
 
 - Creating a *"first small project"*
 - See `vite/projects/4-my_mdb_adventure/4a-mdb_cli-quick_start`
@@ -81,4 +85,51 @@ on the [MDB Cards page](https://mdbootstrap.com/docs/standard/components/cards/)
 
 Added HTML for footer copied from the *"Basic example"* -> **</> SHOW CODE** -> code box on the
 [MDB Footer page](https://mdbootstrap.com/docs/standard/navigation/footer/) to `index.html`.
+
+
+# Page 4: [Deploy your project](https://mdbootstrap.com/learn/mdb-foundations/basics/deploy-your-project/)
+
+## Step 1 - install Node.js
+
+```
+$ node -v
+v18.16.0
+$ npm -v
+9.6.7
+$
+```
+
+## Step 2 - create MDB account
+
+- User name: tomh...@gmail.com
+- Password: lolasif-it'sasecret!
+
+## Step 3 - install MDB CLI
+
+- The `-g` means this gets installed** *g*lobally,** which means we must use `sudo` to run the command
+- This adds the `mdb` command to our `$PATH`
+
+```
+$ sudo npm install -g mdb-cli
+[sudo] password for tomh:
+npm WARN deprecated core-js@2.6.12: core-js@<3.23.3 is no longer maintained and not recommended for usage due to the number of issues. Because of the V8 engine whims, feature detection in old core-js versions could cause a slowdown up to 100x even if nothing is polyfilled. Some versions have web compatibility issues. Please, upgrade your dependencies to the actual version of core-js.
+
+added 155 packages in 17s
+
+11 packages are looking for funding
+  run `npm fund` for details
+$ which mdb
+/usr/bin/mdb
+$
+```
+
+## Step 4 - 
+
+```
+```
+
+## Step 5 - 
+
+```
+```
 
