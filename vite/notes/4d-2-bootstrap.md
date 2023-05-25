@@ -234,30 +234,107 @@ Replace the current code in `index.html` with this basic structure:
 
 # Page 8: [Hero Image](https://mdbootstrap.com/learn/mdb-foundations/bootstrap/hero-image/)
 
-Skipping this: *I seriously hate these things!*
+**Skipping this,** because I am have no plans to create a call to action anytime soon.
 
 # Page 9: [Flexbox](https://mdbootstrap.com/learn/mdb-foundations/bootstrap/flexbox/)
+
+Walks through the creation of a *"flexbox"*, which in this case is precisely a:
+
+- *"Call to action. One big heading, one subheading and one button will be best."*
+- Step 3 explains it entails using the `.d-flex` class to help center the call to action
+- **TODO:** study all this someday when I actually need to create a call to action
+  - Seriously, I vaguely remember strugging a bit with these things
+
+# Page 10: [Text & spacing](https://mdbootstrap.com/learn/mdb-foundations/bootstrap/text-and-spacing/)
+
+Walks through making these changes to the call to action:
+
+- Step 1 - change the color of the text
+  - e.g., `.text-white` class
+- Step 2 - center the text
+  - `.text-center` class
+- Step 3 - add spacing
+  - margin classes: `m-3`, `mb-4`, etc.
+  - **Note:** it's *"margin-start"* and *"margin-end"*, **not** right and left
+    - Use `ms-2` to add some margin to the left
+    - Use `me-4` to add some margin to the right
+
+# Page 11: [Masks](https://mdbootstrap.com/learn/mdb-foundations/bootstrap/masks/)
+
+> Masks alter the visibility of an element by either partially or fully hiding it.
+
+```
+  <!-- Mask -->
+  <div class="mask" style="background-color: hsla(0, 0%, 0%, 0.6)">
+```
+
+Useful when making a call to action, which I am not doing right now.
+
+# Page 12: [Buttons](https://mdbootstrap.com/learn/mdb-foundations/bootstrap/buttons/)
+
+- Use `.btn` and `.btn-*` classes with `button` elements
+- To use `.btn` and `.btn-*` classes with `a`nchor elements, add `role="button"`
+- *Always* include the `.btn` class along with a `.btn-*` class
+
+# Page 13: [Carousel](https://mdbootstrap.com/learn/mdb-foundations/bootstrap/carousel/)
+
+**Skipping this:** *I seriously hate these things!*
+
+# Page 14: [Rounded corners]() 
+## Step 1 - 
+```
+```
+# Page 15: [Shadows]() 
+## Step 1 - 
+```
+```
+# Page 16: [Icons and lists]() 
 ## Step 1 - 
 ```
 ```
 
-# Page 10: [Text & spacing]() 
+# Page 17: [Grid tips and tricks]() 
 ## Step 1 - 
 ```
 ```
 
-# Page 11: [Masks]() 
+# Page 18: [Cards]() 
 ## Step 1 - 
 ```
 ```
 
-# Page 12: [Buttons]() 
+# Page 19: [Reorder columns]() 
 ## Step 1 - 
 ```
 ```
 
-# Page 13: []() 
-# Page 14: []() 
-# Page 15: []() 
-# Page 16: []() 
+# Page 20: [Sizing]() 
+## Step 1 - 
+```
+```
+
+# Page 21: [Forms]() 
+## Step 1 - 
+```
+```
+
+# Page 22: [Badges]() 
+## Step 1 - 
+```
+```
+
+# Page 23: [Footer]() 
+## Step 1 - 
+```
+```
+
+# Page 24: [Deploy]() 
+## Step 1 - 
+```
+```
+
+# Page 25: [Repository]() 
+## Step 1 - 
+```
+```
 
