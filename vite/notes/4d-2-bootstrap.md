@@ -280,17 +280,50 @@ Useful when making a call to action, which I am not doing right now.
 
 **Skipping this:** *I seriously hate these things!*
 
-# Page 14: [Rounded corners]() 
-## Step 1 - 
+# Page 14: [Rounded corners](https://mdbootstrap.com/learn/mdb-foundations/bootstrap/rounded-corners/)
+
+- Use `rounded-*` classes to give any element rounded corners
+  - `rounded-0`- square corners
+  - `rounded-5`- medium roundness
+  - `rounded-9`- high roundness
+
+# Page 15: [Shadows](https://mdbootstrap.com/learn/mdb-foundations/bootstrap/shadows/)
+
+Shadows in Material Minimal are very subtle and minimal
+
+- `.shadow-0` - no shadows
+- `.shadow-3` - medium shadows
+- `.shadow-5` - max shadows
+- `.shadow-[0-5]-strong` - strong shadows
+  - Strong shadows work best with images
+- `.hover-shadow` - shadows only when hovering
+
+# Page 16: [Icons and lists](https://mdbootstrap.com/learn/mdb-foundations/bootstrap/icons-and-lists/)
+
+## Icons
+
+- Includes link to the [MDB icon search page](https://mdbootstrap.com/docs/standard/content-styles/icons/#section-icon-search)
+- Use `.fas` for **f**ont **a**wesome **s**olid icons
+- Use `.far` for **f**ont **a**wesome **r**egular icons
+- Use `.fa-xs`, `.fa-sm`, `fa-lg`, `.fa-2x` ... `.fa-10x` to set the size
+- Use `.text-*` to change the color
+- Examples:
+
 ```
+<i class="fas fa-gem"></i>
+<i class="fas fa-gem fa-5x"></i>
 ```
-# Page 15: [Shadows]() 
-## Step 1 - 
+
+## Lists
+
+This example creates a list using white checkmarks in round green circles as bullets:
+
 ```
-```
-# Page 16: [Icons and lists]() 
-## Step 1 - 
-```
+<ul class="list-unstyled">
+  <li class="mb-1"><i class="fas fa-check-circle me-2 text-success"></i>Hundreds of additional quality components</li>
+  <li class="mb-1"><i class="fas fa-check-circle me-2 text-success"></i>Much better design</li>
+  <li class="mb-1"><i class="fas fa-check-circle me-2 text-success"></i>Integration with TypeScript</li>
+</ul>
 ```
 
 # Page 17: [Grid tips and tricks]() 
