@@ -326,24 +326,71 @@ This example creates a list using white checkmarks in round green circles as bul
 </ul>
 ```
 
-# Page 17: [Grid tips and tricks]() 
-## Step 1 - 
+# Page 17: [Grid tips and tricks](https://mdbootstrap.com/learn/mdb-foundations/bootstrap/grid-tips-and-tricks/)
+
+- Shows how to use a gutter class to provide spacing
+- **Usually added to the `row`**
+- `.gx-1` min horizontal space between cols
+- `.gx-5` max horizontal space between cols
+- `.gy-1` min vertical space between cols
+- `.gy-5` max vertical space between cols
+- For details see the [gutters documentation page](https://mdbootstrap.com/docs/standard/layout/gutters/)
+
 ```
+<!-- Gutter example -->
+<div class="row gx-5">
+<!-- Gutter example with breakpoint -->
+<!-- Adds the space only on extra large screens -->
+<div class="row gx-xl-5">
 ```
 
-# Page 18: [Cards]() 
-## Step 1 - 
+To make **bottom margins *responsive*,** combine a default bottom margin with a larger one that uses a breakpoint:
+
 ```
+<!-- Gap will be 10 on larger screens and default to 5 on smaller ones -->
+<section class="mb-5 mb-lg-10">
 ```
 
-# Page 19: [Reorder columns]() 
-## Step 1 - 
+# Page 18: [Cards](https://mdbootstrap.com/learn/mdb-foundations/bootstrap/cards/)
+
+- Have used these before and they are pretty cool
+- **TODO:** come back and use this page as a reference when I actually need to create some cards
+
+# Page 19: [Reorder columns](https://mdbootstrap.com/learn/mdb-foundations/bootstrap/reorder-columns/)
+
+- Use `.order-[1-5]` classes to specify the sequence a row of cards should appear in
+  - Default is left-to-right
+- Use `.order-[bkpt]-*` classes to move a middle card to the top on smaller screens
+  - `bkpt` = `sm`, `md`, `lg`, `xl`
+- The column defined second:
+  - `.order-1`: appears first by default
+  - `.order-lg-2`: appears second - in the middle - on large screens
+
 ```
+<div class="row gx-xl-5">
+  <div class="col-lg-4 col-md-6 mb-4 mb-lg-0 order-2 order-lg-1">
+  </div>
+  <div class="col-lg-4 col-md-12 mb-4 mb-lg-0 order-1 order-lg-2">
+  </div>
+  <div class="col-lg-4 col-md-6 mb-4 mb-lg-0 order-3 order-lg-3">
+  </div>
+</div>
 ```
 
-# Page 20: [Sizing]() 
-## Step 1 - 
+# Page 20: [Sizing](https://mdbootstrap.com/learn/mdb-foundations/bootstrap/sizing/)
+
+- Use `.w-*` and `.h-*` classes to define an element's size relative to its parent
+  - Available width classes: `.w-25` `.w-50` `.w-75` `.w-100` `.w-auto`
+  - Available height classes: `.h-25` `.h-50` `.h-75` `.h-100` `.h-auto`
+
+Looks like a staircase:
+
 ```
+<div class="w-25">Width 25%</div>
+<div class="w-50">Width 50%</div>
+<div class="w-75">Width 75%</div>
+<div class="w-100">Width 100%</div>
+<div class="w-auto">Width auto</div>
 ```
 
 # Page 21: [Forms]() 
