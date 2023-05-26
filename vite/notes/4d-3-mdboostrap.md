@@ -328,7 +328,7 @@ This page walks you through how to apply this CSS to your image:
 - The `skew` CSS property allows skewing an image on the X or Y axis
   - Skew along X axis: `<img style="transform: skewX(12deg);" ...`
 
-The tutorial recommends using something like `rotate-lg` then add css such as the following:
+The tutorial recommends using something like `rotate-lg` then add css such as the following ...:
 
 ```
 @media (min-width: 992px) {
@@ -338,20 +338,42 @@ The tutorial recommends using something like `rotate-lg` then add css such as th
 }
 ```
 
-to the `<head>` section.
+... to the `<head>` section of your `index.html`.
 
 # Page 19: [Hover effects](https://mdbootstrap.com/learn/mdb-foundations/mdb-ui-kit/hover-effects/)
-- 
+
+- A word of caution: elements that are hidden until the user hovers are not mobile-friendly and therefore **unacceptable**
+- Gentle effects that are decorative rather than functional are totally ok
+- Three ways to respond to the user hovering over an image:
+  - Overlay: see the [MDB masks docs](https://mdbootstrap.com/docs/standard/content-styles/masks/)
+  - Zoom: add the `.hover-zoom` class
+  - Shadow: add the `.hover-shadow` class
+- Yes you can combine these, just don't overdo it!
+- *"Overlay over mask"*
+  - To overlay text over an image that uses a mask, see the last section on this page of the tutorial
+
+# Page 20: [Elevation](https://mdbootstrap.com/learn/mdb-foundations/mdb-ui-kit/elevation/)
+
+- The term *"elevation"* refers to where an element lays on the z-axis
+  - These distances are measure in density-independent pixesl or *"dps"*
+- Steps take us through using the `.shadow-5-strong` to make a set of images look like their hovering over some text in the background
+  - The tutorial uses this specific technique to create the *"Happy clients"* section of the demo
+  - Link to demo: [ascensus-mdb-uikit-tutorial.mdbgo.io](https://ascensus-mdb-uikit-tutorial.mdbgo.io/)
+  - The *"Happy clients"* section is down a ways
+
+# Page 21: [Dividers](https://mdbootstrap.com/learn/mdb-foundations/mdb-ui-kit/dividers/)
+
+The following tags define a basic divider, an MDB divider, and a blurry divider:
+
 ```
+<hr>
+<hr class="hr">
+<hr class="hr hr-blurry">
 ```
-# Page 20: [Elevation]() 
-- 
-```
-```
-# Page 21: [Dividers]() 
-- 
-```
-```
+
+To learn how to use the `.vr` class to define a vertical divider, see the *"Vertical divider"* subsection on this page.
+The tutorial also explains how to make vertical dividers blurry.
+
 # Page 22: [Google maps]() 
 - 
 ```
