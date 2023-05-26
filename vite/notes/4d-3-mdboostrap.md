@@ -6,24 +6,22 @@ Running through MDB's
 
 # Page 1: [About MDBootstrap](https://mdbootstrap.com/learn/mdb-foundations/mdb-ui-kit/about/)
 
-- 
-```
-```
+- Adds many components to those that Bootstrap provides
+- *"Much better design than Bootstrap"*
+- Integrated with Material Design
+- Integrated with popular JS libraries like **React,** and **Typescript**
 
-# Page 2: [Download & setup]() 
+# Page 2: [Download & setup](https://mdbootstrap.com/learn/mdb-foundations/mdb-ui-kit/download-and-setup/)
 
-- 
-```
-```
-## Step 1 - 
-## Step 2 - 
-## Step 3 - 
-## Step 4 - 
-## Step 5 - 
-## Step 6 - 
-## Step 7 - 
-## Step 8 - 
-
+- [x] Already downloaded and saved as `vite/projects/4-my_mdb_adventure/0-downloaded/MDB5-STANDARD-UI-KIT-Free-6.3.1.zip`
+- [x] Copied into `vite/projects/4-my_mdb_adventure/4c-mdb_cli-mdbootstrap/` and unpacked
+- [x] Open index.html file
+  - [x] Open in browser
+  - [x] Open in VSCode
+- [x] Prepare `index.html` file for the new project
+  - [x] Removed all code between these two lines:
+    - `<!-- Start your project here-->`
+    - `<!-- End your project here-->`
 
 # Page 3: [MDB CLI]() 
 
