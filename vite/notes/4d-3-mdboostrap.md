@@ -154,11 +154,73 @@ When creating each and every element, the designer should consider this question
 
 The user should be able to quickly identify which elements on a page are the most important.
 
+> "Remember: there should be only one key action in a given view, represented, for example, by a primary button. Never use more than 1 primary button in a given view, otherwise you will confuse your user."
 
-# Page 8: [Nested flexbox]() 
-- 
-```
-```
+> "The secondary and tetiary buttons, however, can appear many times (but be careful not to overdo them as well)."
+
+## Contrast
+
+> "Material Minimal strictly follows Web Content Accessibility Guidelines (WCAG)"
+
+- This section includes link to a [contrast measurement tool](https://contrast-ratio.com/#%23285192-on-%23d7e3f4)
+
+**TODO:** Check out this tool someday!!
+
+## Shadows
+
+- Shadows are more subtle in Material Minimal than they are in Classic Material Design
+  - You can use a five point scale to specify the intensity
+  - The default is level 4
+
+## Roundings
+
+Rounded corners are pleasing to the eye and make elements more organic and friendly.
+
+## Whitespace
+
+Whitespace around elements give them *"room to breathe."*
+
+- MDB provides extra scale for the bottom margin of elements
+  - [For more click here](https://mdbootstrap.com/docs/standard/utilities/spacing/#section-extra-scale-for-the-bottom-margin)
+
+## Details
+
+- Good use of Hierarchy allows the User to find what's relevant quickly, while still having plenty of details if that's what they want
+
+## Photos
+
+- Photos can enhance a site's **naturalness**
+
+## Effects
+
+- Effects should be subtle
+- For example, hover effects include
+  - Overlay - hovering the mouse blurs the image slightly
+  - Zoom - hovering the mouse gives the user a slightly closer look
+  - Shadow - hovering the mouse adds a shadow, making the photo appear to rise
+
+## Detailed specification
+
+Material Minimal is fully mature and well-documented.
+
+# Page 8: [Nested flexbox](https://mdbootstrap.com/learn/mdb-foundations/mdb-ui-kit/nested-flexbox/)
+
+- **Important notes:**
+  - *"Flexbox"* means using the `.d-flex` class
+  - To include more than one element inside a flexbox, use an enclosing `<div class="">`
+- The last tutorial used flexbox to create a call to action or *"CTA"*
+- This tutorial will use flexbox to create a complex layout
+  - This complex layout will contain at least one CTA
+  - It also requires adding multiple flexboxes, one inside another
+- Flexbox can help center content in a column
+- This feature of MDB also includes a `.flex-column` class
+  - Not really diving into details here...
+- Links to more information:
+  - [Flexbox documentation page](https://mdbootstrap.com/docs/standard/layout/flexbox/))
+  - [Flexbox generator](https://mdbootstrap.com/docs/standard/tools/builders/flexbox/)
+
+> "For complex concepts such as nested flexbox, there is no better way to consolidate knowledge than simply experimenting."
+
 # Page 9: [Sticky navbar]() 
 - 
 ```
