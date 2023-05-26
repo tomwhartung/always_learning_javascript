@@ -272,31 +272,75 @@ I feel it is worthwhile to examine the steps used in this process.
 Overall, the process proceeds from top-level elements to the finer details of the smaller elements,
 essentially proceding from general to specific.
 
-# Page 13: [Responsive images]()
-- 
+# Page 13: [Responsive images](https://mdbootstrap.com/learn/mdb-foundations/mdb-ui-kit/responsive-images/)
+
+- To make images responsive, use the `.img-fluid` class
+  - This is like using `max-width: 100%;` and `height: auto;`
+  - In other words, the image scales with the width of the parent element
+- Much of this page is about what looks like a rather subtle bug found when using images in cards
+
+# Page 14: [Modals](https://mdbootstrap.com/learn/mdb-foundations/mdb-ui-kit/modals/)
+
+- It's easy to misuse modals, e.g., in ads
+- This page promises it will teach us *"how to use them correctly"*
+  - They deliver, to an extent, on this promise in the demo at the end of the next page
+  - I.e., the demo shows how to position the modal, so that the user can just click wherever they want to dismiss it (*)
+
+# Page 15: [Modals advanced features](https://mdbootstrap.com/learn/mdb-foundations/mdb-ui-kit/modals-advanced-features/)
+
+Following is a list of the steps on this page steps that I am not going to follow at this time.
+
+- [ ] Step 1 - change the size of the modal
+- [ ] Step 2 - modify the content of the modal
+- [ ] Step 3 - add the other 2 modals
+- [ ] Step 4 - update the triggers
+
+** (*) Note:** the demo at the end of this page is pretty cool.
+
+# Page 16: [Cascading effect](https://mdbootstrap.com/learn/mdb-foundations/mdb-ui-kit/cascading-effect/)
+
+- Here the term *"cascading"* refers to using a negative margin so that one card can overlap the one next to it
+- In this case, the card on the left contains text and overlaps a photo in the card to the right of it
+  - The example uses `.me-lg-n5` on the leftmost card
+    - The `-lg-` breakpoint causes this effect to appear on large screens only
+
+Demo is at [ascensus-mdb-uikit-tutorial.mdbgo.io/](https://ascensus-mdb-uikit-tutorial.mdbgo.io/#)
+
+# Page 17: [Filters](https://mdbootstrap.com/learn/mdb-foundations/mdb-ui-kit/filters/)
+
+- The term *"filter"* refers to using the `filter` or `backdrop-filter` CSS property
+  - You can use these to blur or shift the color of an element, usually an image
+- MDB offers an [Instagram filters CSS generator](https://mdbootstrap.com/docs/standard/tools/design/instagram-filters/)
+  - The generator gives you the CSS for a specified filter
+
+This page walks you through how to apply this CSS to your image:
+
+- [ ] Step 1 - add partial transparency to the card
+- [ ] Step 2 - add a filter and create a glass effect
+
+# Page 18: [Transforms](https://mdbootstrap.com/learn/mdb-foundations/mdb-ui-kit/transforms/)
+
+- The `transform` CSS property allows web sites to rotate, scale, skew, etc. images
+  - For example: `<img style="transform: rotate(45deg);" ...`
+  - `<img style="transform: scale(.75);" ...`
+- The `translate` CSS property allows shifting an image horizontally or vertically
+  - Shift horizontally: `<img style="transform: translateX(80px);" ...`
+- The `skew` CSS property allows skewing an image on the X or Y axis
+  - Skew along X axis: `<img style="transform: skewX(12deg);" ...`
+
+The tutorial recommends using something like `rotate-lg` then add css such as the following:
+
 ```
+@media (min-width: 992px) {
+  .rotate-lg {
+    transform: rotate(6deg);
+  }
+}
 ```
-# Page 14: [Modals]() 
-- 
-```
-```
-# Page 15: [Modals advanced features]() 
-- 
-```
-```
-# Page 16: [Cascading effect]() 
-- 
-```
-```
-# Page 17: [Filters]() 
-- 
-```
-```
-# Page 18: [Transforms]() 
-- 
-```
-```
-# Page 19: [Hover effects]() 
+
+to the `<head>` section.
+
+# Page 19: [Hover effects](https://mdbootstrap.com/learn/mdb-foundations/mdb-ui-kit/hover-effects/)
 - 
 ```
 ```
