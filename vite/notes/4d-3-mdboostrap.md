@@ -221,23 +221,58 @@ Material Minimal is fully mature and well-documented.
 
 > "For complex concepts such as nested flexbox, there is no better way to consolidate knowledge than simply experimenting."
 
-# Page 9: [Sticky navbar]() 
-- 
-```
-```
-# Page 10: [Logo]() 
-- 
-```
-```
-# Page 11: [Animated navbar]() 
-- 
-```
-```
-# Page 12: [Cascading cards]() 
-- 
-```
-```
-# Page 13: [Responsive images]() 
+# Page 9: [Sticky navbar](https://mdbootstrap.com/learn/mdb-foundations/mdb-ui-kit/sticky-navbar/)
+
+- The term *"sticky"* refers to the fact that this nav bar will remain visible at the top of the screen even when the user scrolls down
+  - To make something *"stick"* to the top of the page, use the class `.fixed-top`
+  - To make something *"stick"* to the bottom of the page, use the class `.fixed-bottom`
+- For other ways to position things and make them sticky, see:
+  - [MDB position utilities](https://mdbootstrap.com/docs/standard/utilities/position/)
+
+# Page 10: [Logo](https://mdbootstrap.com/learn/mdb-foundations/mdb-ui-kit/logo/)
+
+I won't be doing this, but it's interesting to see the steps in the process:
+
+- [ ] Step 1 - use the [Logo generator page](https://mdbootstrap.com/docs/standard/tools/design/logo-generator/) to create a logo
+- [ ] Step 2 - take a screenshot
+- [ ] Step 3 - cut out the background
+  - The tutorial recommends using the [photopea site](https://www.photopea.com/) to do this
+- [ ] Step 4 - compress your logo
+- [ ] Step 5 - add logo to the navbar
+
+Interesting!
+
+# Page 11: [Animated navbar](https://mdbootstrap.com/learn/mdb-foundations/mdb-ui-kit/animated-navbar/)
+
+- Shows how to cause the color of a navbar to change when the user scrolls down on the page
+- Good to know this is possible, but I am not interested in diving into how it works right now!
+- **TODO:** check this out, if I decide to do it
+
+# Page 12: [Cascading cards](https://mdbootstrap.com/learn/mdb-foundations/mdb-ui-kit/cascading-cards/)
+
+- The term *"cascading"* refers to making the photo in a card appear *above* the card's top border
+  - This is done by adding a *negative top margin* to the images
+    - That is in turn done by adding an **`n`** to one of the `mt-*` margin-top classes, e.g., `mt-n1`
+    - In this case, they use `mt-n3`
+  - TBH I did not notice this effect the first time I looked at the page
+    - Indeed it is so subtle as to be barely noticalble, even though now I know to look for it!
+
+Although I want to stay focused on the end goal here and not get bogged down,
+I feel it is worthwhile to examine the steps used in this process.
+
+- [ ] Step 1 - add an empty "My projects" section
+- [ ] Step 2 - add grid with 3 columns
+- [ ] Step 3 - add a card to each column
+- [ ] Step 4 - customize the content of the cards
+- [ ] Step 5 - add a margin to the image
+- [ ] Step 6 - add shadows and roundings
+- [ ] Step 7 - add a negative margin
+- [ ] Step 8 - align card heights and rounding
+
+Overall, the process proceeds from top-level elements to the finer details of the smaller elements,
+essentially proceding from general to specific.
+
+# Page 13: [Responsive images]()
 - 
 ```
 ```
