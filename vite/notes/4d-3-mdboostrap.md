@@ -75,27 +75,86 @@ drwxr-xr-x 4 tomh tomh   4096 May 26 13:14 src
 At the very end of this page, the tutorial recommends renaming this directory, so that is what I will do:
 
 ```
-mv mdb5-free-standard mdb-uikit-tutorial
+$ pwd
+/var/www/always_learning/always_learning_javascript/vite/projects/4-my_mdb_adventure/4c-mdb_cli-mdbootstrap
+$ mv mdb5-free-standard mdb-uikit-tutorial
+$ gs .
+On branch master
+Your branch is ahead of 'origin/master' by 3 commits.
+  (use "git push" to publish your local commits)
+
+Untracked files:
+  (use "git add <file>..." to include in what will be committed)
+        mdb-uikit-tutorial/
+
+nothing added to commit but untracked files present (use "git add" to track)
+$ git add mdb-uikit-tutorial/
+. . .
+. . .
+. . .
+$ git commit -m 'Adding directory mdb-uikit-tutorial/ to the vite/projects/4-my_mdb_adventure/4c-mdb_cli-mdbootstrap/ project .  For details, see vite/notes/4d-3-mdboostrap.md .'
+[master 1f5131f] Adding directory mdb-uikit-tutorial/ to the vite/projects/4-my_mdb_adventure/4c-mdb_cli-mdbootstrap/ project .  For details, see vite/notes/4d-3-mdboostrap.md .
+ 386 files changed, 49293 insertions(+)
+. . .
+. . .
+. . .
+$
 ```
 
+# Page 4: [Create a Portfolio](https://mdbootstrap.com/learn/mdb-foundations/mdb-ui-kit/create-portfolio/)
 
-# Page 4: [Create a Portfolio]() 
-- 
-```
-```
+- [x] Visited link to demo we will be creating: [ascensus-mdb-uikit-tutorial.mdbgo.io](https://ascensus-mdb-uikit-tutorial.mdbgo.io/)
+- [x] Added basic structure code to `index.html`
 
-# Page 5: [Split screen]() 
-- 
-```
-```
-# Page 6: [Half carousel]() 
-- 
-```
-```
-# Page 7: [Material Minimal]() 
-- 
-```
-```
+# Page 5: [Split screen](https://mdbootstrap.com/learn/mdb-foundations/mdb-ui-kit/split-screen/)
+
+I am not going to go through these steps, but I think it is worthwhile to take at the look at the process we can take to achieve this effect:
+
+- [ ] Step 1 - create a 2 columns grid
+- [ ] Step 2 - set a height to the columns
+- [ ] Step 3 - remove the spacing
+- [ ] Step 4 - clean up the code
+  - Remove color classes that enable easy visualization of the elements added and changed
+
+# Page 6: [Half carousel](https://mdbootstrap.com/learn/mdb-foundations/mdb-ui-kit/half-carousel/)
+
+Because I absolutely *detest* carousels, I am totally skipping all this nonsense!
+
+# Page 7: [Material Minimal](https://mdbootstrap.com/learn/mdb-foundations/mdb-ui-kit/material-minimal/)
+
+- *"Material Minimal"* is *"an improved version"* of Google's Classic Material Design
+  - See below for more about Google's Classic Material Design
+- *"Material Minimal"* is the *MDB Design system*
+
+> A design system is a set of standards to manage design at scale by reducing redundancy while creating a shared language and visual consistency across different pages and channels - Therese Fessenden
+
+## Classic Material Design
+
+- *"Material is the metaphor"*
+- *"Material Design is inspired by the physical world and its textures"*
+- *"Material surfaces reimagine the mediums of paper and ink"*
+- With [Material Design Version 3](https://m3.material.io/), Google moved to *"put people at the center"*
+
+## About Material Minimal
+
+- Material Minimal's core values are:
+  - Natural - *"inspired by the physical world"*
+  - Clear - *"needs to breathe"*
+  - Scalable - *"grows with your project"*
+
+This inspires a list of *"some of its most important priniciples"*, which appear in this subsection of the page.
+
+## Accessibility and usefulness
+
+When creating each and every element, the designer should consider this question:
+
+> "Is this really helpful to the user? Or is it just to satisfy my vanity and need for artistic expression?"
+
+## Hierarchy
+
+The user should be able to quickly identify which elements on a page are the most important.
+
+
 # Page 8: [Nested flexbox]() 
 - 
 ```
@@ -169,6 +228,15 @@ mv mdb5-free-standard mdb-uikit-tutorial
 - 
 ```
 ```
+- [ ] Step 1 - 
+- [ ] Step 2 - 
+- [ ] Step 3 - 
+- [ ] Step 4 - 
+- [ ] Step 5 - 
+- [ ] Step 6 - 
+- [ ] Step 7 - 
+- [ ] Step 8 - 
+
 ## Step 1 - 
 ## Step 2 - 
 ## Step 3 - 
