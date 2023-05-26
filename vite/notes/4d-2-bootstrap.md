@@ -393,28 +393,42 @@ Looks like a staircase:
 <div class="w-auto">Width auto</div>
 ```
 
-# Page 21: [Forms]() 
-## Step 1 - 
+# Page 21: [Forms](https://mdbootstrap.com/learn/mdb-foundations/bootstrap/forms/)
+
+- **TODO:** come back to this page when I actually need to create a form
+
+# Page 22: [Badges](https://mdbootstrap.com/learn/mdb-foundations/bootstrap/badges/)
+
+- The `.badge` class to highlight one or more items in a group
+- Also requires a color class, e.g., `badge-secondary`
+- Use `.rounded-pill` to max out rounded corners
+
 ```
+<h2>Example heading <span class="badge badge-primary">New</span></h2>
+<!-- With icon: -->
+<div class="badge badge-primary p-3 rounded-4">
+  <i class="fas fa-chart-pie"></i>
+</div>
 ```
 
-# Page 22: [Badges]() 
-## Step 1 - 
-```
-```
+# Page 23: [Footer](https://mdbootstrap.com/learn/mdb-foundations/bootstrap/footer/)
 
-# Page 23: [Footer]() 
-## Step 1 - 
-```
-```
+Reviews how to create the most popular footer components:
 
-# Page 24: [Deploy]() 
-## Step 1 - 
-```
-```
+- Copyrights
+- Links
+- Text
+- Images
+- Icons
+- Colors
 
-# Page 25: [Repository]() 
-## Step 1 - 
-```
-```
+# Page 24: [Deploy](https://mdbootstrap.com/learn/mdb-foundations/bootstrap/deploy/)
+
+Reviews how to deploy the project.
+
+- I have not been keeping up with the changes, so will not be doing this
+
+# Page 25: [Repository](https://mdbootstrap.com/learn/mdb-foundations/bootstrap/repository/)
+
+Shows how to use git.
 
