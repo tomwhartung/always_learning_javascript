@@ -81,49 +81,34 @@ $
 
 # Page 6: [Publish and update project](https://mdbootstrap.com/learn/mdb-foundations/mdb-go/publish-update-project/)
 
-- 
-```
-```
-# Page 7: [Custom domains]() 
+- Have done this before, but not doing this at this time
+  - For details, see *"Step 4"* in section *"Page 4: [Deploy your project]"* of `4d-1-basics.md`
+  - **Note:** in addition to deploying new code, running `mdb publish` will also deploy updated code
 
-- 
-```
-```
-# Page 8: [Repository]() 
+# Page 7: [Custom domains](https://mdbootstrap.com/learn/mdb-foundations/mdb-go/custom-domains/)
 
-- 
-```
-```
-# Page 9: [Git basics]() 
+- Using an external domain name is possible only with paid accounts
+- To change the subdomain used for a free account, see the code box below
+  - I.e. to change the `yourname` in `https://yourname.mdbgo.io/`
 
-- 
 ```
+mdb config domain <your_new_name.mdbgo.io>
 ```
-# Page 10: [Collaboration]() 
+# Page 8: [Repository](https://mdbootstrap.com/learn/mdb-foundations/mdb-go/repository/)
 
-- 
-```
-```
-# Page 11: [FTP/SFTP]() 
+- Using a repository is possible only with paid accounts
+- Fortunately I am quite familiar with git
 
-- 
-```
-```
-- [ ] Step 1 - 
-- [ ] Step 2 - 
-- [ ] Step 3 - 
-- [ ] Step 4 - 
-- [ ] Step 5 - 
-- [ ] Step 6 - 
-- [ ] Step 7 - 
-- [ ] Step 8 - 
+# Page 9: [Git basics](https://mdbootstrap.com/learn/mdb-foundations/mdb-go/git-basics/)
 
-## Step 1 - 
-## Step 2 - 
-## Step 3 - 
-## Step 4 - 
-## Step 5 - 
-## Step 6 - 
-## Step 7 - 
-## Step 8 - 
+- Fortunately, I am already quite familiar with git
+
+# Page 10: [Collaboration](https://mdbootstrap.com/learn/mdb-foundations/mdb-go/collaboration/)
+
+- Shows how to share your code with others, and even transfer ownership
+
+# Page 11: [FTP/SFTP](https://mdbootstrap.com/learn/mdb-foundations/mdb-go/sftp/)
+
+- Shows how to use FTP in MDB GO
+- At this time, I cannot imagine that I would want to use this feature
 
