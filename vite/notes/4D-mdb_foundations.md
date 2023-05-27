@@ -18,6 +18,8 @@ Running through the
   - Notes: `4d-3-mdbootstrap.md` in this directory
   - Project: `vite/projects/4-my_mdb_adventure/4c-mdb_cli-mdbootstrap`
 
-- [ ] Notes and projects for [MDB Go](https://mdbootstrap.com/learn/mdb-foundations/mdb-go/about/)
+- [x] Notes and projects for [MDB Go](https://mdbootstrap.com/learn/mdb-foundations/mdb-go/about/)
+  - Notes: `4d-4-mdb_go.md` in this directory
+  - Project: `vite/projects/4-my_mdb_adventure/4d-mdb_cli-mdb_go`
 
 - [ ] Notes and projects for [MDB advanced features](https://mdbootstrap.com/learn/mdb-foundations/mdb-advanced-features/about/)
