@@ -374,38 +374,40 @@ The following tags define a basic divider, an MDB divider, and a blurry divider:
 To learn how to use the `.vr` class to define a vertical divider, see the *"Vertical divider"* subsection on this page.
 The tutorial also explains how to make vertical dividers blurry.
 
-# Page 22: [Google maps]() 
-- 
-```
-```
-# Page 23: [Social media buttons]() 
-- 
-```
-```
-# Page 24: [Animations]() 
-- 
-```
-```
-# Page 25: [Deployment and repository]() 
+# Page 22: [Google maps](https://mdbootstrap.com/learn/mdb-foundations/mdb-ui-kit/google-maps/)
 
-- 
-```
-```
-- [ ] Step 1 - 
-- [ ] Step 2 - 
-- [ ] Step 3 - 
-- [ ] Step 4 - 
-- [ ] Step 5 - 
-- [ ] Step 6 - 
-- [ ] Step 7 - 
-- [ ] Step 8 - 
+Skipping this section because I have no plans to use a map any time soon.
 
-## Step 1 - 
-## Step 2 - 
-## Step 3 - 
-## Step 4 - 
-## Step 5 - 
-## Step 6 - 
-## Step 7 - 
-## Step 8 - 
+# Page 23: [Social media buttons](https://mdbootstrap.com/learn/mdb-foundations/mdb-ui-kit/social-media-buttons/)
+
+- I've done this before, so notes will be minimal
+- Use the [Icon Search](https://mdbootstrap.com/docs/standard/content-styles/icons/#section-icon-search) to find the icons
+- Use the [size classes](https://mdbootstrap.com/docs/standard/content-styles/icons/#section-basic-usage) to set the sizes
+- Use `.btn-floating` to make a floating button
+- Use inline CSS to set the colors
+  - See example (1) below
+- Use `text-white` to remove a button's pre-defined colors
+  - See example (2) below
+
+```
+<!-- Example (1): Github Icon -->
+<i class="fab fa-github fa-2x" style="color: #333333;"></i>
+<!-- Example (2): Facebook Button -->
+<a class="btn text-white" style="background-color: #3b5998;" href="#!" role="button">
+  <i class="fab fa-facebook-f"></i>
+</a>
+```
+
+This page walks readers through creating a footer.
+
+# Page 24: [Animations](https://mdbootstrap.com/learn/mdb-foundations/mdb-ui-kit/animations/)
+
+- Animations include fading, sliding, zooming, and more
+- These animations are for users of MDB Pro
+
+# Page 25: [Deployment and repository](https://mdbootstrap.com/learn/mdb-foundations/mdb-ui-kit/deployment-and-repository/)
+
+- Have been through this before, not doing it again
+  - For detailed notes, see `4d-1-basics.md` in this directory
+- To manage hosting of any sites I upload, use [mdbgo.com](https://mdbgo.com/)
 
