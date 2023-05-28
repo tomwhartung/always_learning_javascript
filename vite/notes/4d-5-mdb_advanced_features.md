@@ -111,17 +111,107 @@ Note that:
   - For example: `$color-primary: #3B71CA;`
 
 ## 3.3. Nesting
-- 
+
+- *Nesting* allows us to organize CSS hierarchically, much as we organize HTML
+- Following is an example of some Scss:
+
 ```
+nav {
+  ul {
+    margin: 0;
+    padding: 0;
+    list-style: none;
+  }
+
+  li { display: inline-block; }
+
+  a {
+    display: block;
+    padding: 6px 12px;
+    text-decoration: none;
+  }
+}
 ```
+
+- The preceding Scss compiles into the following CSS:
+```
+nav ul {
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
+nav li {
+  display: inline-block;
+}
+nav a {
+  display: block;
+  padding: 6px 12px;
+  text-decoration: none;
+}
+```
+
 ## 3.4. Modules
-- 
+
+- The following example shows how to use the Scss `@use` directive to allow one file to include another:
+
 ```
+// styles.scss file
+
+@use 'base';     /* includes a file named "_base.scss"
+
+.inverse {
+  background-color: base.$primary-color;
+  color: white;
+}
 ```
 ## 3.5. Mixins
-- 
+
+*Mixins* are kind of like functions, in that they allow including predefined styles and
+substituting different values for a variable.
+
+- *Mixins* allow the reuse of a set of styles with different values for certain variables
+- The following code shows how to use a *mixin* in Scss, and what the resultant CSS looks like:
+
 ```
+@mixin theme($theme: DarkGray) {
+  background: $theme;
+  box-shadow: 0 0 1px rgba($theme, .25);
+  color: #fff;
+}
+
+.info {
+  @include theme;
+}
+.alert {
+  @include theme($theme: DarkRed);
+}
+.success {
+  @include theme($theme: DarkGreen);
+}
 ```
+
+The resultant CSS:
+
+```
+.info {
+  background: DarkGray;
+  box-shadow: 0 0 1px rgba(169, 169, 169, 0.25);
+  color: #fff;
+}
+
+.alert {
+  background: DarkRed;
+  box-shadow: 0 0 1px rgba(139, 0, 0, 0.25);
+  color: #fff;
+}
+
+.success {
+  background: DarkGreen;
+  box-shadow: 0 0 1px rgba(0, 100, 0, 0.25);
+  color: #fff;
+}
+```
+
 ## 3.6. Extend/Inheritance
 - 
 ```
