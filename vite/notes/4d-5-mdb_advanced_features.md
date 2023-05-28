@@ -62,9 +62,9 @@ npm start
 - [x] 2.3.2. Open directory in VSCode and open file `index.html`
 - [x] 2.3.3. Edit `index.html` to say some sort of greeting
 
-# Page 3: [Sass/scss](https://mdbootstrap.com/learn/mdb-foundations/mdb-advanced-features/sass-scss/)
+# Page 3: [SASS/SCSS](https://mdbootstrap.com/learn/mdb-foundations/mdb-advanced-features/sass-scss/)
 
-Sass/scss provides web designers with these additional features:
+SASS/SCSS provides web designers with these additional features:
 
 - Variables
 - Nesting
@@ -73,9 +73,9 @@ Sass/scss provides web designers with these additional features:
 - Extend/Inheritance
 - Operators
 
-## 3.1. How to use scss in MDB?
+## 3.1. How to use SCSS in MDB?
 
-Scss requires a preprocessor to turn it into CSS that browsers can understand.
+SCSS requires a preprocessor to turn it into CSS that browsers can understand.
 
 - The following process shows how to ensure vite is running this preprocessor:
 
@@ -102,18 +102,18 @@ body {
 Note that:
 
 - The code above initializes a variable, which is not allowed in CSS
-- The code above works, turning the background red and proving that vite is preprocessing scss code
+- The code above works, turning the background red and proving that vite is preprocessing SCSS code
 
 ## 3.2. Variables
 
 - The latest version of CSS supports variables, but many older browsers do not
-- In Scss, use a dollar sign `$` and a colon `:` to declare a variable
+- In SCSS, use a dollar sign `$` and a colon `:` to declare a variable
   - For example: `$color-primary: #3B71CA;`
 
 ## 3.3. Nesting
 
 - *Nesting* allows us to organize CSS hierarchically, much as we organize HTML
-- Following is an example of some Scss:
+- Following is an example of some SCSS:
 
 ```
 nav {
@@ -133,7 +133,7 @@ nav {
 }
 ```
 
-- The preceding Scss compiles into the following CSS:
+- The preceding SCSS compiles into the following CSS:
 ```
 nav ul {
   margin: 0;
@@ -152,7 +152,7 @@ nav a {
 
 ## 3.4. Modules
 
-- The following example shows how to use the Scss `@use` directive to allow one file to include another:
+- The following example shows how to use the SCSS `@use` directive to allow one file to include another:
 
 ```
 // styles.scss file
@@ -170,7 +170,7 @@ nav a {
 substituting different values for a variable.
 
 - *Mixins* allow the reuse of a set of styles with different values for certain variables
-- The following code shows how to use a *mixin* in Scss, and what the resultant CSS looks like:
+- The following code shows how to use a *mixin* in SCSS, and what the resultant CSS looks like:
 
 ```
 @mixin theme($theme: DarkGray) {
@@ -213,13 +213,113 @@ The resultant CSS:
 ```
 
 ## 3.6. Extend/Inheritance
-- 
+
+- Use the `@extend` directive *"to transfer a set of CSS attributes from one selector to another"*
+- The following sample SCSS shows how to use placeholder classes to create a message system:
+
 ```
+/* This CSS will print because %message-shared is extended. */
+%message-shared {                  // Note "%" instead of "."
+  border: 1px solid #ccc;
+  padding: 10px;
+  color: #333;
+}
+
+// This CSS won't print because %equal-heights is never extended.
+%equal-heights {                  // Note "%" instead of "."
+  display: flex;
+  flex-wrap: wrap;
+}
+
+.message {
+  @extend .message-shared;
+}
+
+.success {
+  @extend .message-shared;
+  border-color: green;
+}
+
+.error {
+  @extend .message-shared;
+  border-color: red;
+}
+
+.warning {
+  @extend .message-shared;
+  border-color: yellow;
+}
 ```
+
+The resultant output CSS:
+
+```
+/* This CSS will print because .message-shared is extended. */
+.message, .success, .error, .warning {
+  border: 1px solid #ccc;
+  padding: 10px;
+  color: #333;
+}
+
+.success {
+  border-color: green;
+}
+
+.error {
+  border-color: red;
+}
+
+.warning {
+  border-color: yellow;
+}
+```
+
+**Notes:**
+
+- Extending nested classes *"can cause unintended selectors in your CSS"*
+- The `%equal-heights` class is never "printed" because it is never extended
+
 ## 3.7. Operators
-- 
+
+- The math operators that SCSS supports include:
+  - `+`, `-`, `*`, and `%`
+  - `math.div()`
+
+This SCSS, and the CSS following it, shows how to use a few of these operators:
+
 ```
+.container {
+  display: flex;
+}
+
+article[role="main"] {
+  width: math.div(600px, 960px) * 100%;
+}
+
+aside[role="complementary"] {
+  width: math.div(300px, 960px) * 100%;
+  margin-left: auto;
+}
 ```
+
+```
+.container {
+  display: flex;
+}
+
+article[role="main"] {
+  width: 62.5%;
+}
+
+aside[role="complementary"] {
+  width: 31.25%;
+  margin-left: auto;
+}
+```
+
+This page ends with a link to the
+[official guide](https://sass-lang.com/guide)
+of the SASS language.
 
 # Page 4: [Optimization]() 
 - 
