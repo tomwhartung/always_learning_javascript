@@ -17,7 +17,7 @@ Most of this page is an overview of subsequent pages.
 
 While I am used to using vite with React, this page shows how to use vite alone.
 
-- [x] Step 1 - Launch the terminal and download Vite starter via MDB CLI
+- [x] Step 2.1 - Launch the terminal and download Vite starter via MDB CLI
 
 Project is in `vite/projects/4-my_mdb_adventure/4e-mdb_cli-mdb_advanced_features`.
 
@@ -36,7 +36,7 @@ $ mv mdb5-free-standard-vite 4e-mdb_cli-mdb_advanced_features
 $ rmdir tmp
 $
 ```
-- [x] Step 2 - Install dependencies
+- [x] Step 2.2 - Install dependencies
 
 ```
 $ cd 4e-mdb_cli-mdb_advanced_features/
@@ -52,20 +52,85 @@ added 673 packages, and audited 674 packages in 39s
 found 0 vulnerabilities
 $
 ```
-- [x] Step 3 - Launch Vite
+- [x] Step 2.3 - Launch Vite
 
 ```
 npm start
 ```
 
-- [x] 3.1. Visit app at [localhost:8080](http://localhost:8080/).
-- [x] 3.2. Open directory in VSCode and open file `index.html`
+- [x] 2.3.1. Visit app at [localhost:8080](http://localhost:8080/).
+- [x] 2.3.2. Open directory in VSCode and open file `index.html`
+- [x] 2.3.3. Edit `index.html` to say some sort of greeting
 
-# Page 3: [Sass/scss]() 
+# Page 3: [Sass/scss](https://mdbootstrap.com/learn/mdb-foundations/mdb-advanced-features/sass-scss/)
 
+Sass/scss provides web designers with these additional features:
+
+- Variables
+- Nesting
+- Modules
+- Mixins
+- Extend/Inheritance
+- Operators
+
+## 3.1. How to use scss in MDB?
+
+Scss requires a preprocessor to turn it into CSS that browsers can understand.
+
+- The following process shows how to ensure vite is running this preprocessor:
+
+- [ ] Step 3.1.1. - open `src/scss/style.scss` and find the following line in it:
+
+```
+@import 'mdb-ui-kit/css/mdb.min.css';
+```
+
+In the project I have, this is the only line in the file!
+
+- [ ] Step 3.1.2. - add the following code to *just **before** *this line:
+
+```
+$color: red;
+
+body {
+    background-color: $color;
+}
+
+@import 'mdb-ui-kit/css/mdb.min.css';   /* Note: this line already exists in src/scss/style.scss */
+```
+
+Note that:
+
+- The code above initializes a variable, which is not allowed in CSS
+- The code above works, turning the background red and proving that vite is preprocessing scss code
+
+## 3.2. Variables
+
+- The latest version of CSS supports variables, but many older browsers do not
+- In Scss, use a dollar sign `$` and a colon `:` to declare a variable
+  - For example: `$color-primary: #3B71CA;`
+
+## 3.3. Nesting
 - 
 ```
 ```
+## 3.4. Modules
+- 
+```
+```
+## 3.5. Mixins
+- 
+```
+```
+## 3.6. Extend/Inheritance
+- 
+```
+```
+## 3.7. Operators
+- 
+```
+```
+
 # Page 4: [Optimization]() 
 - 
 ```
@@ -82,19 +147,15 @@ npm start
 - 
 ```
 ```
-# Page 7: [RTL]() 
+# Page 8: [RTL]() 
 - 
 ```
 ```
-# Page 7: [VSC snippets]() 
+# Page 9: [VSC snippets]() 
 - 
 ```
 ```
-# Page 7: [Theming and dark mode]() 
-- 
-```
-```
-# Page 7: []() 
+# Page 10: [Theming and dark mode]() 
 - 
 ```
 ```
