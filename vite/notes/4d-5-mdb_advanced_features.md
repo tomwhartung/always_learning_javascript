@@ -344,10 +344,75 @@ $
 For more information about *optimization,* see the MDB
 [optimization docs](https://mdbootstrap.com/docs/standard/getting-started/optimization/).
 
-# Page 5: [Utility API]() 
-- 
+# Page 5: [Utility API](https://mdbootstrap.com/learn/mdb-foundations/mdb-advanced-features/utility-api/)
+
+- A *"utility-first approach"* to CSS entails *"writing code with 'small' CSS classes ... instead of creating 'big' classes"*
+  - These classes *"closely correspond to and constrained to a given CSS property"*
+  - For example, using a `.bg-red` class to represent `background-color: red;`
+- This looks kind of cool, an I don't want to dive into it right now, but will take a few moments to list the steps:
+
+- Step 1 - import source files
+  - In `/src/scss/style.scss`:
+    - Change `@import 'mdb-ui-kit/css/mdb.min.css';` to `@import 'mdb-ui-kit/src/scss/mdb.free.scss';`
+- Step 2 - create utility
+  - Their example  rotates elements by using the `transform` CSS property
+  - For the source SCSS and resultant generated CSS, see the two code boxes below (*)
+- Step 3 - use the newly created utility classes in HTML
+  - An example of how to add the class to a line of HTML:
+    - `<img class="transform-90" src="https://mdbootstrap.com/img/new/avatars/2.jpg">`
+- Step 4 - make it responsive
+  - Adding `responsive: true` adds responsive classes containing the infix `-lg-`, etc.
+- Step 5 - add state
+  - By adding `state: hover` or `state: focus` to the `"transform"`
+
+(*) This code box shows the source SCSS:
+
 ```
+$utilities: (
+  "transform": (
+    property: transform,
+    values: (
+      0: rotate(0deg),
+      10: rotate(10deg),
+      30: rotate(30deg),
+      45: rotate(45deg),
+      90: rotate(90deg),
+      180: rotate(180deg),
+    )
+  )
+);
+
+@import 'mdb-ui-kit/src/scss/mdb.free.scss';
 ```
+
+(*) This code box shows the generated CSS:
+
+```
+.transform-0 {
+  transform: rotate(0deg) !important
+}
+
+.transform-10 {
+  transform: rotate(10deg) !important
+}
+
+.transform-30 {
+  transform: rotate(30deg) !important
+}
+
+.transform-45 {
+  transform: rotate(45deg) !important
+}
+
+.transform-90 {
+  transform: rotate(90deg) !important
+}
+
+.transform-180 {
+  transform: rotate(180deg) !important
+}
+```
+
 # Page 6: [Customization]() 
 - 
 ```
