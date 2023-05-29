@@ -12,36 +12,54 @@ The project directory for these notes is ``.
 Possibly the closest option.
 Start with it, then try adding what I need.
 
+## 1.1. Installing `mdb5-free-standard-vite`
+
+```
+$ pwd
+/var/www/always_learning/always_learning_javascript/vite/projects/4-my_mdb_adventure
+$ mdb init
+? Choose project to initialize mdb5-free-standard-vite
+[====================================================================================================] 0.0 s
+Project starter will be downloaded to /var/www/always_learning/always_learning_javascript/vite/projects/4-my_mdb_adventure/mdb5-free-standard-vite folder
+Success Download completed.
+$ mv mdb5-free-standard-vite 5-vite_react_mdb-for_reals
+$ cd  5-vite_react_mdb-for_reals
+$ pwd
+/var/www/always_learning/always_learning_javascript/vite/projects/4-my_mdb_adventure/5-vite_react_mdb-for_reals
+$ npm install
+
+added 673 packages, and audited 674 packages in 1m
+
+84 packages are looking for funding
+  run `npm fund` for details
+
+found 0 vulnerabilities
+
+$
+```
+
+**VSCode Check:** Everything looks ok!
+
+### 1.1.1. What `mdb5-free-standard-vite` Contains
+
+MDB's [Vite Integration page](https://mdbootstrap.com/docs/standard/getting-started/vite-integration/)
+lists the following features in this package:
+
+- Bundling via Vite v3.1.0
+- ES6+ Support via babel-cli v7.18.10
+- SASS Support via sass v1.54.8
+- Linting via eslint-webpack-plugin v3.2.0
+- Unit Testing via Jest v29.0.2
+- Code Formatting via Prettier v2.7.1
+- Unused CSS removed via PurgeCSS v5.0.0
+- Deploy via MDB CLI latest version
+
+**Note:** React and TS are missing from this list!
 
 -=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-
 Saving the following notes for next time:
 -=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-
 
-
-# 1. Install MDB
-
-Steps come from `4a-just_mdboostrap.md` in this directory.
-For details, see that file.
-
-## 1.1. Steps 1, 2, & 3
-
-- [x] 1. Download `MDB5-REACT-UI-KIT-Free-6.0.0.zip`.
-- [x] 2. Unzip download and and open in VSCode
-- [x] 3. Install dependencies
-
-```
-pwd                                 # /var/www/always_learning/always_learning_javascript/vite/projects
-cd 4-my_mdb_adventure
-pwd                                 # /var/www/always_learning/always_learning_javascript/vite/projects/4-my_mdb_adventure
-mkdir 2-mdb_and_ts
-cp 0-downloaded/MDB5-REACT-UI-KIT-Free-6.0.0.zip 2-mdb_and_ts
-cd 2-mdb_and_ts
-pwd                                 # /var/www/always_learning/always_learning_javascript/vite/projects/4-my_mdb_adventure/2-mdb_and_ts
-unzip MDB5-REACT-UI-KIT-Free-6.0.0.zip
-npm install
-```
-
-**Note:** running `npm install` displays five warnings and "`6 high severity vulnerabilities`".
 
 ### 1.1.1. VSCode Check
 
@@ -72,32 +90,6 @@ For details, see that file.
 $ pwd
 /var/www/always_learning/always_learning_javascript/vite/projects/4-my_mdb_adventure/2-mdb_and_ts
 $ npm install typescript @types/react @types/react-dom --save-dev
-npm WARN ERESOLVE overriding peer dependency
-npm WARN While resolving: mdb-react-template@6.0.0
-npm WARN Found: typescript@5.0.4
-npm WARN node_modules/typescript
-npm WARN   peer typescript@">= 2.7" from fork-ts-checker-webpack-plugin@6.5.3
-npm WARN   node_modules/fork-ts-checker-webpack-plugin
-npm WARN     fork-ts-checker-webpack-plugin@"^6.5.0" from react-dev-utils@12.0.1
-npm WARN     node_modules/react-dev-utils
-npm WARN   2 more (tsutils, the root project)
-npm WARN
-npm WARN Could not resolve dependency:
-npm WARN peerOptional typescript@"^3.2.1 || ^4" from react-scripts@5.0.1
-npm WARN node_modules/react-scripts
-npm WARN   react-scripts@"5.0.1" from the root project
-
-up to date, audited 1436 packages in 19s
-
-235 packages are looking for funding
-  run `npm fund` for details
-
-6 high severity vulnerabilities
-
-To address all issues (including breaking changes), run:
-  npm audit fix --force
-
-Run `npm audit` for details.
 $
 ```
 
@@ -111,42 +103,6 @@ git diff package*  # ... but the package* files have been updated ...
 
 ```
 $ npm install
-npm ERR! code ERESOLVE
-npm ERR! ERESOLVE could not resolve
-npm ERR!
-npm ERR! While resolving: react-scripts@5.0.1
-npm ERR! Found: typescript@5.0.4
-npm ERR! node_modules/typescript
-npm ERR!   dev typescript@"^5.0.4" from the root project
-npm ERR!   peer typescript@">= 2.7" from fork-ts-checker-webpack-plugin@6.5.3
-npm ERR!   node_modules/fork-ts-checker-webpack-plugin
-npm ERR!     fork-ts-checker-webpack-plugin@"^6.5.0" from react-dev-utils@12.0.1
-npm ERR!     node_modules/react-dev-utils
-npm ERR!       react-dev-utils@"^12.0.1" from react-scripts@5.0.1
-npm ERR!       node_modules/react-scripts
-npm ERR!         react-scripts@"5.0.1" from the root project
-npm ERR!   1 more (tsutils)
-npm ERR!
-npm ERR! Could not resolve dependency:
-npm ERR! peerOptional typescript@"^3.2.1 || ^4" from react-scripts@5.0.1
-npm ERR! node_modules/react-scripts
-npm ERR!   react-scripts@"5.0.1" from the root project
-npm ERR!
-npm ERR! Conflicting peer dependency: typescript@4.9.5
-npm ERR! node_modules/typescript
-npm ERR!   peerOptional typescript@"^3.2.1 || ^4" from react-scripts@5.0.1
-npm ERR!   node_modules/react-scripts
-npm ERR!     react-scripts@"5.0.1" from the root project
-npm ERR!
-npm ERR! Fix the upstream dependency conflict, or retry
-npm ERR! this command with --force or --legacy-peer-deps
-npm ERR! to accept an incorrect (and potentially broken) dependency resolution.
-npm ERR!
-npm ERR!
-npm ERR! For a full report see:
-npm ERR! /home/tomh/.npm/_logs/2023-05-21T20_27_23_963Z-eresolve-report.txt
-
-npm ERR! A complete log of this run can be found in: /home/tomh/.npm/_logs/2023-05-21T20_27_23_963Z-debug-0.log
 $
 ```
 
@@ -161,33 +117,6 @@ it seems to me that doing so and getting all these errors is indicative of a **s
 
 ### 2.1.2. Command-Line Check
 
-App runs ok, but compiles with a warning:
-
-```
-$ npm run dev
-Compiled with warnings.
-
-Warning
-(8:22769) autoprefixer: Replace color-adjust to print-color-adjust. The color-adjust shorthand is currently deprecated.
-
-Search for the keywords to learn more about each warning.
-To ignore, add // eslint-disable-next-line to the line before.
-
-WARNING in ./node_modules/mdb-react-ui-kit/dist/css/mdb.min.css (./node_modules/css-loader/dist/cjs.js??ruleSet[1].rules[1].oneOf[5].use[1]!./node_modules/postcss-loader/dist/cjs.js??ruleSet[1].rules[1].oneOf[5].use[2]!./node_modules/source-map-loader/dist/cjs.js!./node_modules/mdb-react-ui-kit/dist/css/mdb.min.css)
-Module Warning (from ./node_modules/postcss-loader/dist/cjs.js):
-Warning
-
-(8:22769) autoprefixer: Replace color-adjust to print-color-adjust. The color-adjust shorthand is currently deprecated.
-
-webpack compiled with 1 warning
-
-$
-```
-
-# 3. Abandoning This Project
-
-Although the app runs, **`npm install` is clearly totally broken,** so I am **abandoning this project,**
-at least for now.
 
 ## 2.2. Configure Typescript
 
