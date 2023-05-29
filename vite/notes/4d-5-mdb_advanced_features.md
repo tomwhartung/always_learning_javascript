@@ -463,32 +463,28 @@ new Translator;
 
 **Note:** Here is a link to the [MDB Internationalization Demo](https://mdb-standard-i18n.mdbgo.io/)
 
-# Page 8: [RTL]() 
-- 
-```
-```
-# Page 9: [VSC snippets]() 
-- 
-```
-```
-# Page 10: [Theming and dark mode]() 
-- 
-```
-```
+# Page 8: [RTL](https://mdbootstrap.com/learn/mdb-foundations/mdb-advanced-features/rtl/)
 
-- [ ] Step 1 - 
-- [ ] Step 2 - 
-- [ ] Step 3 - 
-- [ ] Step 4 - 
-- [ ] Step 5 - 
-- [ ] Step 6 - 
-- [ ] Step 7 - 
-- [ ] Step 8 - 
-## Step 1 - 
-## Step 2 - 
-## Step 3 - 
-## Step 4 - 
-## Step 5 - 
-## Step 6 - 
-## Step 7 - 
-## Step 8 - 
+- This page shows how to support languages read from Right-to-Left
+  - Nice and good to know, but I am focused on another goal right now!
+
+# Page 9: [VSC snippets](https://mdbootstrap.com/learn/mdb-foundations/mdb-advanced-features/vsc-snippets/)
+
+- This page shows how to install and use a VSCode extension named *"MDB 5 Standard snippets"*
+- [x] Step 1 - install Visual Studio Code
+  - Done, weeks ago
+- [x] Step 2 - install MDB snippet extension
+  - Found and installed in my install of VSCode
+- [x] Step 3 - test if it works
+  - As suggested, I tried typing `mdbc` for an MDB Card
+  - Yes it works, and I can see how it would save *a lot* of typing!
+
+**Note:** Starting about halfway down,
+[this Page of the tutorial](https://mdbootstrap.com/learn/mdb-foundations/mdb-advanced-features/vsc-snippets/)
+contains a list of *"Available snippets"*.
+
+# Page 10: [Theming and dark mode](https://mdbootstrap.com/learn/mdb-foundations/mdb-advanced-features/theming-and-dark-mode/)
+
+- This feature is available only in **MDB Pro**
+- Should I ever decide to purchase **MDB Pro,** this page provides a discount code
+
