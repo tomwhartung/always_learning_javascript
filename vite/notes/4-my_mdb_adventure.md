@@ -29,7 +29,7 @@ The adventure starts with
   - Project is in `vite/projects/4-my_mdb_adventure/3-does_mdb_include_ts`
   - **No,** but I found what I was looking for, hopefully
 
-- [ ] 4. Start [haha] with MDB CLI
+- [x] 4. Start [haha] with MDB CLI
   - This option appears second, and the first, manual download option is giving me trouble
   - **"CLI installation is the most efficient way to use MDB."**
     - [Their MDB CLI page](https://mdbootstrap.com/learn/mdb-foundations/basics/introduction/)
