@@ -22,4 +22,8 @@ Running through the
   - Notes: `4d-4-mdb_go.md` in this directory
   - Project: `vite/projects/4-my_mdb_adventure/4d-mdb_cli-mdb_go`
 
-- [ ] Notes and projects for [MDB advanced features](https://mdbootstrap.com/learn/mdb-foundations/mdb-advanced-features/about/)
+- [x] Notes and projects for [MDB advanced features](https://mdbootstrap.com/learn/mdb-foundations/mdb-advanced-features/about/)
+  - Includes a lesson about vite
+  - Notes: `4d-5-mdb_advanced_features.md` in this directory
+  - Project: `vite/projects/4-my_mdb_adventure/4e-mdb_cli-mdb_advanced_features`
+
