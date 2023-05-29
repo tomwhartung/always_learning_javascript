@@ -1,1 +1,7 @@
-@import 'mdb-ui-kit/css/mdb.min.css';
+$color: lightblue;
+
+body {
+    background-color: $color;
+}
+
+@import 'mdb-ui-kit/css/mdb.min.css';   /* Note: this line already exists in src/scss/style.scss */
