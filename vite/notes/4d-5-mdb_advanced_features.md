@@ -413,14 +413,56 @@ $utilities: (
 }
 ```
 
-# Page 6: [Customization]() 
-- 
+# Page 6: [Customization](https://mdbootstrap.com/learn/mdb-foundations/mdb-advanced-features/customization/)
+
+- This page shows how to override defaults by editing `/src/scss/styles.scss`
+- This technique makes it easy to change the default values for an entire site in just one place
+- The example shows how to override the default value for rounding corners in cards and buttons
+
+- Step 1 - have a look at the API tab
+  - Pages describing elements in the MDB documentation generally have an "API" tab
+    - Ensure you are looking at the "API" tab
+    - Under *"SCSS variables,"* click on "</> SHOW CODE" to see the default values
+  - For example, see the [MDB cards page](https://mdbootstrap.com/docs/standard/components/cards/#docsTabsAPI)
+    - This opens to the "API" tab
+- Step 2 - modify the selected variable in the `/src/scss/styles.scss` file
+  - See the default value we want to change: `$card-border-radius: 0.5rem;`
+  - The following code box shows how to update `/src/scss/styles.scss` to set this default to `1rem`
+
 ```
+$card-border-radius: 1rem;
+@import 'mdb-ui-kit/src/scss/mdb.free.scss';
 ```
-# Page 7: [Internationalization (i18n)]() 
-- 
+
+# Page 7: [Internationalization (i18n)](https://mdbootstrap.com/learn/mdb-foundations/mdb-advanced-features/internationalization/)
+
+- This page shows how to enable translation of your site to a set of languages
+- This example uses vite and builds on the project we have already started
+  - See the project in `vite/projects/4-my_mdb_adventure/4e-mdb_cli-mdb_advanced_features`
+- This is quite cool but I see no reason to go through these steps at this time
+  - However, here is a list of the steps involved:
+
+- Step 1 - install dependencies
+  - Run `npm install ...` to install:
+    - `i18next` - *"a very popular internationalization framework"*
+    - `i18next-fetch-backend` - *"plugin to load resources using the fetch API"*
+- Step 2 - prepare structure
+- Step 3 - add translated content
+  - Create a `*.json` file for each language you want to support
+  - The example shows an `en.json`, `pl.json`, `ja.json`, and a `de.json`
+- Step 4 - import i18next and finish the configuration
+  - The page shows the changes that need to be made to `/src/js/i18n.js`
+- Step 5 - import the Translator
+  - Add the lines in the following code box to `/src/js/i18n.js`
+- Step 6 - add example HTML content
+
 ```
+import Translator from './i18n';
+new Translator;
 ```
+
+**Note:** Here is a link to the [MDB Internationalization Demo](https://mdb-standard-i18n.mdbgo.io/)
+
 # Page 8: [RTL]() 
 - 
 ```
