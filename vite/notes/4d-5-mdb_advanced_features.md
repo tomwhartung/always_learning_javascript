@@ -321,10 +321,29 @@ This page ends with a link to the
 [official guide](https://sass-lang.com/guide)
 of the SASS language.
 
-# Page 4: [Optimization]() 
-- 
+# Page 4: [Optimization](https://mdbootstrap.com/docs/standard/getting-started/optimization/)
+
+- Shows how to use the PurgeCSS tool to *"**reduce the weight** of an MDBootstrap package by **up to 90%**"*
+  - It works by removing CSS and JS that is not used
+- This is very easy to do with vite - simply run `build`
+
 ```
+$ npm run build
+
+> mdb-starter-vite@1.0.0 build
+> vite build
+
+vite v3.2.7 building for production...
+✓ 7 modules transformed.
+../dist/index.html         1.79 KiB
+../dist/assets/index.css   43.65 KiB / gzip: 9.47 KiB
+../dist/assets/index.js    152.41 KiB / gzip: 46.12 KiB
+$
 ```
+
+For more information about *optimization,* see the MDB
+[optimization docs](https://mdbootstrap.com/docs/standard/getting-started/optimization/).
+
 # Page 5: [Utility API]() 
 - 
 ```
