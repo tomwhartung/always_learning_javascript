@@ -77,24 +77,27 @@ This involves doing quite a few things, so having a checklist is appropriate:
 - Add initial project to VSCode
   - It can find errors that are not obvious on the command line
   - It's best to fix these errors asap
-- 
 
+# 3. `3-ts_eslint_react-find_the_best_process.md` Project
 
-# 3. `XXX` Project
+Notes for the `vite/projects/3-ts_eslint_react-find_the_best_process/*` projects are in
+`notes/3*-ts_eslint_react*` files.
 
-**The goal is to build the `whole_shebang`.**
+## 3.1. Overview of the `3-ts_eslint_react-find_the_best_process` Project
 
-**TODO:** create projects with these or perhaps similar names:
+- Found the best process for combining Vite + React + Typescript
+- Unfortuately, this process does not include MDBootstrap
 
-- 3-vite_mdb_only
-  - See [MDB 5 Vite Integration](https://mdbootstrap.com/docs/standard/getting-started/vite-integration/)
-- 4-react_mdb_only
-- 5-whole_shebang
-  - react, typescript, eslint, mdb
+# 4. `4-my_mdb_adventure` Project
 
-**REMEMBER:**
+Notes for the `vite/projects/4-my_mdb_adventure/*` projects are in
+`notes/4*` files.
 
-- Be sure to keep `whole_shebang/notes/1-whole_shebang-commands.md` updated with any and all commands run
-- Ultimately `whole_shebang/projects/1-whole_shebang` should be as minimal as possible
-  - Work out all issues *here* and *not* when doing `whole_shebang/projects/1-whole_shebang`
+## 4.1. Overview of the `4-my_mdb_adventure` Project
+
+- [x] Went through all relevant MDB tutorials
+  - Note that *"relevant"* means *most* of them
+- [!] Discovered I cannot use vite with MDB and React
+  - Rats!
+  - Switching focus to the mdbootstrap directory
 
