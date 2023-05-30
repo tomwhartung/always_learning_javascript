@@ -37,3 +37,18 @@ The adventure starts with
   - Projects:
     - See the list in `4D-mdb_foundations.md` in this directory
 
+- [!] 5. I thought I saw something about Vite + MDB + React???
+  - **YES!!**
+    - [Vite Integration -> Vite Starter](https://mdbootstrap.com/docs/standard/getting-started/vite-integration/#section-vite-starter)
+  - Notes are in `4e-vite_react_mdb-for_reals.md` in this directory
+  - Project is in `vite/projects/4-my_mdb_adventure/5-vite_react_mdb-for_reals`
+    - **This idea *failed!* **
+    - It looks like we are stuck with using `create-react-app`
+    - **Rats!**
+
+- [x] 6. Is there another way to add TS to MDB+React?
+  - Yes, but not if I want to use vite
+  - So, we are saying good-bye to this `vite` directory ...
+
+... and moving on to the `mdbootstrap` directory!
+
