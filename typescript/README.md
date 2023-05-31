@@ -3,7 +3,7 @@
 
 This is the `README.md` file for the `typescript` directory in the `always_learning_javascript` repository.
 
-# Learning Typescript
+# Learning TypeScript
 
 The plan is to:
 
@@ -25,26 +25,35 @@ Hopefully by the time I get through the above steps, I will be ready to work on 
 
 The `typescript/notes/1-w3schools/` directory has notes from the w3schools tutorial.
 
-# 2. Typescriptlang.org Docs
+# 2. TypeScriptlang.org Docs
 
 The `typescript/notes/2-typescriptlang/` directory has notes gleaned from
 the [TypeScript Documentation](https://www.typescriptlang.org/docs/).
 
-# 3. Typescript and React
+# 3. TypeScript and React
 
 The `typescript/projects/` directory has code using:
 
 - 0-my-test_tsc - just typescript without react, i.e. using `tsc`
 
-# 4. Using Typescript, React and Vite
+# 4. Using TypeScript, React and Vite
 
-The `vite/` directory has code inspired by the *Road to React* e-book.
+The `vite/` directory has:
 
-# 5. Using Typescript, React, Vite, and MDB
+- 1. Code inspired by the *Road to React* e-book
+- 2. A lot of projects that use TypeScript
 
-Try this page:
+# 5. Using TypeScript, React, Vite, and MDB
+
+When I tried this page:
 
 - [MDB 5 Vite Integration](https://mdbootstrap.com/docs/standard/getting-started/vite-integration/)
 
-The `whole_shebang/` directory is where I am planning to put code using all of these components.
+I found that I could not get vite, react, and mdb to work together.  Rats!
+
+# 6. Finding the Best Compromise
+
+The `whole_shebang/` directory is where I am planning to put code using as many of these components as possible.
+
+- Unfortunately, at this time it looks like we will need to forego using vite
 
