@@ -27,5 +27,5 @@ There are at least a couple of different ways to get these three to work togethe
   - We can run `npm run lint` *before* installing TS
     - Will `npm run lint` work *after* installing TS?
     - **NO**
-  - **This is our best-so-far effort**
+  -  So far, this is our **best version**
 
