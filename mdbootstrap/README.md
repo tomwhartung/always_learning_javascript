@@ -9,19 +9,24 @@ Convinced I need to use MDB + React.
 
 - The purpose of this directory is to test if I can still use TypeScript and Lint.
 
-# Much, Much More About MDB
+# To Find Much, Much More About MDB
 
 Most of my notes about MDB, including notes for most of the tutorials on the site, are:
 
 - In the `vite` directory, in the `vite/notes/4*` files
+- **Why?**
+  - Unfortunately, after going through all that, I assumed that:
+    - Since I can use MDB + Vite
+    - And I can use MDB + React
+    - That I can use MDB + React + Vite
+  - Unfortunately, that assumption proved to be **wrong!**  **Rats!!**
 
-**Why?**
+# Best So Far
 
-Unfortunately, after going through all that, I assumed that:
+Remember, the how-to for our best shot so far at getting everything we want is in:
 
-- Since I can use MDB + Vite
-- And I can use MDB + React
-- That I can use MDB + React + Vite
+- `vite/notes/3-ts_eslint_react-find_the_best_process.md`
 
-Unfortunately, that assumption proved to be **wrong!**  **Rats!!**
+# Notes and Projects
 
+- [ ] Trying MDB's process [using `npm`](https://mdbootstrap.com/docs/react/getting-started/installation/#section-npm)
