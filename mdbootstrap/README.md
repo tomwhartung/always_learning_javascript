@@ -29,4 +29,8 @@ Remember, the how-to for our best shot so far at getting everything we want is i
 
 # Notes and Projects
 
-- [ ] Trying MDB's process [using `npm`](https://mdbootstrap.com/docs/react/getting-started/installation/#section-npm)
+- [x] Project 1: Getting Started Using NPM
+  - Trying MDB's process [using `npm`](https://mdbootstrap.com/docs/react/getting-started/installation/#section-npm)
+  - Notes are in `mdbootstrap/notes/1-react-getting_started-npm.md`
+  - Project is in `mdboostrap/projects/1-react-getting_started-npm`
+- [ ] Project 2: Re-trying Using MDB CLI
