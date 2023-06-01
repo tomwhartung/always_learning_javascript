@@ -99,131 +99,113 @@ $
 
 Everything looks ok!
 
-
--=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-
-You Are Here
--=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-
-
 ## 2.2. MDB installation
 
 ### 2.2.1. Step 1 - Setup MDB, Install Font Awesome, `import` CSS files, Roboto font
 
+#### 2.2.1.1. Setup MDB
+
 ```
 $ pwd
 /var/www/always_learning/always_learning_javascript/mdbootstrap/projects/1-react-getting_started-npm
-$ mdb init
-$ npm install
+$ npm i mdb-react-ui-kit
+
+added 6 packages, and audited 1502 packages in 12s
+
+235 packages are looking for funding
+  run `npm fund` for details
+
+6 high severity vulnerabilities
+
+To address all issues (including breaking changes), run:
+  npm audit fix --force
+
+Run `npm audit` for details.
 $
 ```
 
-### 1.1.1. Step 1
-
-**VSCode Check:** Everything looks ok!
-
-### 1.1.1. What `mdb5-free-...` Contains 
-
-
--=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-
-You Are Here
--=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-
-
--=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-
-Saving the following notes for next time:
--=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-
-
-
-### 1.1.1. VSCode Check
-
-All files colored in Green; "No problems have been detected in the workspace"; restarted VSCode to be sure!
-
-## 1.2. Steps 4 & 5
-
-- [x] 4. Run the application
-- [x] Explore docs
+#### 2.2.1.2. Install Font Awesome
 
 ```
-npm run         # we can start, test, build, or eject
-npm run start   # it runs ok, but is quite slow to load...
-```
+$ npm i @fortawesome/fontawesome-free
 
-**VSCode Check:** Looking good!
+added 1 package, and audited 1503 packages in 12s
 
-**Note:** Checked current version of project into github.
+235 packages are looking for funding
+  run `npm fund` for details
 
-# 2. Install TS
+6 high severity vulnerabilities
 
-Steps come from subsection `2.3. Install Typescript` of `3b-ts_eslint_react-2-react_ts_no_eslint.md` in this directory.
-For details, see that file.
+To address all issues (including breaking changes), run:
+  npm audit fix --force
 
-## 2.1. Commands
-
-```
-$ pwd
-/var/www/always_learning/always_learning_javascript/vite/projects/4-my_mdb_adventure/2-mdb_and_ts
-$ npm install typescript @types/react @types/react-dom --save-dev
+Run `npm audit` for details.
 $
 ```
 
-At first I thought maybe MDBoostrap includes TS ...
+#### 2.2.1.3. `import` CSS files
+
+Adding these lines to `index.js`, before it imports `App.js`:
 
 ```
-git diff package*  # ... but the package* files have been updated ...
+import 'mdb-react-ui-kit/dist/css/mdb.min.css';
+import "@fortawesome/fontawesome-free/css/all.min.css";
 ```
 
-... **and now things look to be totally broken!**
+#### 2.2.1.4. Roboto font
+
+Adding this line between the `<head>` and `</head>` tags in `public/index.html`:
 
 ```
-$ npm install
-$
+<link href="https://fonts.googleapis.com/css?family=Roboto:300,400,500,700&display=swap" rel="stylesheet" />
 ```
 
-**Note:** the original procedure did *not* call for running `npm install` at this juncture, *but*
-it seems to me that doing so and getting all these errors is indicative of a **serious issue.**
-
-### 2.1.1. VSCode Check
-
-- No TS problems, yet
-- Adding `const greeting = 'Hi';` to `App.jsx` does *not* cause a lint problem in VSCode
-  - Note that `npm run` does *not* include the option to run `lint`
-
-### 2.1.2. Command-Line Check
-
-
-## 2.2. Configure Typescript
-
-### 2.2.1. Create `tsconfig.json` and `tsconfig.node.json`
-
-### 2.2.2. VSCode Checks
-
-
-#### 2.2.2.2. Lint Still Works
-
-- Adding `const greeting = 'Hi';` to `App.jsx` causes a lint problem in VSCode, as expected
-
-### 2.2.3. Command-Line Checks
-
-- `npm run lint`
-  - Adding `const greeting = 'Hi';` to `App.jsx` causes a lint problem on the command line with `npm run lint`, as expected
-- `npm run dev`
-  - App still runs ok
-
-
-## 2.3. Rename `*.jsx` Files and Edit `index.html`
-
-### 2.3.1. Rename `*.jsx` files to `*.tsx`
+Adding these lines to the top of `src/index.css`:
 
 ```
-git mv App.jsx App.tsx
-git mv main.jsx main.tsx
+body {
+  font-family: Roboto, Helvetica, Arial, sans-serif;
+}
 ```
 
-### 2.3.2. Edit `index.html`
+### 2.2.2. Step 2 - Launch App
 
-Using VSCode to change `main.jsx` to `main.tsx` in `index.html`.
+```
+npm start
+```
 
-### 2.3.3. VSCode Check
+### 2.2.3. VSCode Check
 
-- The renaming caused 4 problems in VSCode
-- Editing `index.html` fixed one of these
+Everything looks ok!
 
+# 3. Assessment
+
+- Looks like a regular React app
+- Seeing eslint in `package.json` and `package-lock.json`
+- Seeing typescript in `package-lock.json`
+
+## 3.1. Relevant Files
+
+These are files that I *might* want to change when writing my app:
+
+- `public/index.html`
+- `src/App.css`
+- `src/App.js`
+- `src/index.css`
+- `src/index.js`
+
+I could be wrong, but it seems like sometimes I don't see all of these....
+
+### 3.1.1. What, No `.jsx` Files?
+
+Why are there no `.jsx` files?
+
+## 3.2. Sanity Checks
+
+- [x] Edit `src/App.js` to say "Hi"
+- [x] Test Linting
+  - Add this line to `src/App.js`:
+    -`const test_linting = 'Test Linting';`
+  - [x] Check for warning in VSCode
+  - [x] Check for warning in terminal running `npm start`
 
