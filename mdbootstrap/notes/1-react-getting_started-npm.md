@@ -16,15 +16,93 @@ The project directory for these notes is `mdbootstrap/projects/1-react-getting_s
 
 The process mentions that they are using [yarn](https://yarnpkg.com/).
 
+### 2.1.1. Commands and Output
+
 ```
 $ pwd
 /var/www/always_learning/always_learning_javascript/mdbootstrap/projects
 $ npx create-react-app 1-react-getting_started-npm
+
+Creating a new React app in /var/www/always_learning/always_learning_javascript/mdbootstrap/projects/1-react-getting_started-npm.
+
+Installing packages. This might take a couple of minutes.
+Installing react, react-dom, and react-scripts with cra-template...
+
+
+added 1434 packages in 1m
+
+234 packages are looking for funding
+  run `npm fund` for details
+
+Installing template dependencies using npm...
+
+added 62 packages, and changed 1 package in 14s
+
+234 packages are looking for funding
+  run `npm fund` for details
+Removing template package using npm...
+
+
+removed 1 package, and audited 1496 packages in 9s
+
+234 packages are looking for funding
+  run `npm fund` for details
+
+6 high severity vulnerabilities
+
+To address all issues (including breaking changes), run:
+  npm audit fix --force
+
+Run `npm audit` for details.
+
+Success! Created 1-react-getting_started-npm at /var/www/always_learning/always_learning_javascript/mdbootstrap/projects/1-react-getting_started-npm
+Inside that directory, you can run several commands:
+
+  npm start
+    Starts the development server.
+
+  npm run build
+    Bundles the app into static files for production.
+
+  npm test
+    Starts the test runner.
+
+  npm run eject
+    Removes this tool and copies build dependencies, configuration files
+    and scripts into the app directory. If you do this, you can’t go back!
+
+We suggest that you begin by typing:
+
+  cd 1-react-getting_started-npm
+  npm start
+
+Happy hacking!
 $ cd 1-react-getting_started-npm
 $ pwd
 /var/www/always_learning/always_learning_javascript/mdbootstrap/projects/1-react-getting_started-npm
+$ npm start
+Compiled successfully!
+
+You can now view 1-react-getting_started-npm in the browser.
+
+  Local:            http://localhost:3000
+  On Your Network:  http://10.0.1.113:3000
+
+Note that the development build is not optimized.
+To create a production build, use npm run build.
+
+webpack compiled successfully
 $
 ```
+
+### 2.1.2. VSCode Check
+
+Everything looks ok!
+
+
+-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-
+You Are Here
+-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-
 
 ## 2.2. MDB installation
 
