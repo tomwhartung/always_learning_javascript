@@ -1,6 +1,8 @@
 import React from 'react';
 import { MDBBtn, MDBContainer } from 'mdb-react-ui-kit';
 
+const test_linting = 'Test Linting';
+
 function App() {
   return (
     <MDBContainer fluid>
@@ -26,6 +28,7 @@ function App() {
           >
             Start MDB tutorial
           </MDBBtn>
+          <p>Hi there can you see me??</p>
         </div>
       </div>
     </MDBContainer>
