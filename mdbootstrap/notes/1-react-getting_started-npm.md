@@ -181,6 +181,7 @@ Everything looks ok!
 # 3. Assessment
 
 - Looks like a regular React app
+  - Page displayed focuses on MDB
 - Seeing eslint in `package.json` and `package-lock.json`
 - Seeing typescript in `package-lock.json`
 
@@ -194,7 +195,7 @@ These are files that I *might* want to change when writing my app:
 - `src/index.css`
 - `src/index.js`
 
-I could be wrong, but it seems like sometimes I don't see all of these....
+I could be wrong, but it seems like sometimes I don't see all of these files in these downloads....
 
 ### 3.1.1. What, No `.jsx` Files?
 
@@ -205,7 +206,7 @@ Why are there no `.jsx` files?
 - [x] Edit `src/App.js` to say "Hi"
 - [x] Test Linting
   - Add this line to `src/App.js`:
-    -`const test_linting = 'Test Linting';`
+    - `const test_linting = 'Test Linting';`
   - [x] Check for warning in VSCode
   - [x] Check for warning in terminal running `npm start`
 
