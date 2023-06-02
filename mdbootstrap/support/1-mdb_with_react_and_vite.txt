@@ -1,0 +1,29 @@
+
+Submitted on 6/1/2023:
+----------------------
+**Hoped-for behavior**
+
+I would like to use MDB, React and Vite (as well as TypeScript) together.
+
+**Actual behavior**
+
+I have learned how to use MDB CLI to get MDB + React and MDB + Vite, but have not yet figured out how to get all three.
+
+Am I missing something obvious? Is there a way to get all three manually?
+
+**Resources (screenshots, code snippets etc.)**
+
+1.  Run mdb init
+2.  Scroll through the list
+3.  Find React, and Standard + Vite, but I cannot find both together
+
+Thanks in advance for any assistance anyone can offer!
+
+Answered on 6/2/2023:
+---------------------
+Unfortunately, we do not have a ready-made starter for MDB React + Vite at the moment. But you can do it easily.
+Execute the command:
+  npm init vite@latest -- --template react-ts
+and add the MDB React, e.g. with npm:
+  npm i mdb-react-ui-kit
+
