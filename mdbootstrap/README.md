@@ -33,4 +33,11 @@ Remember, the how-to for our best shot so far at getting everything we want is i
   - Trying MDB's process [using `npm`](https://mdbootstrap.com/docs/react/getting-started/installation/#section-npm)
   - Notes are in `mdbootstrap/notes/1-react-getting_started-npm.md`
   - Project is in `mdboostrap/projects/1-react-getting_started-npm`
-- [ ] Project 2: Re-trying Using MDB CLI
+- [x] Project 2: Re-trying Using MDB CLI
+  - Use `mdb init` command to install `mdb5-free-react`
+  - Want to compare these results with what's in Project 1
+  - Notes are in `mdbootstrap/notes/2-react-using_mdb_cli.md`
+  - Project is in `mdboostrap/projects/2-react-using_mdb_cli`
+- [ ] Project 3: Try manual process suggested by MDB Support
+
+
