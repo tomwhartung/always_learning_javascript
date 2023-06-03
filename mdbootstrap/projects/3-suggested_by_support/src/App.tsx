@@ -3,6 +3,8 @@ import reactLogo from './assets/react.svg'
 import viteLogo from '/vite.svg'
 import './App.css'
 
+const test_linting = 'Test Linting';
+
 function App() {
   const [count, setCount] = useState(0)
 
@@ -27,6 +29,9 @@ function App() {
       </div>
       <p className="read-the-docs">
         Click on the Vite and React logos to learn more
+      </p>
+      <p className="read-the-docs">
+        And click <a href="https://mdbootstrap.com/docs/standard/getting-started/">here</a> to learn even more!
       </p>
     </>
   )
