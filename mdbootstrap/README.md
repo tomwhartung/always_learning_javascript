@@ -32,12 +32,19 @@ Remember, the how-to for our best shot so far at getting everything we want is i
 - [x] Project 1: Getting Started Using NPM
   - Trying MDB's process [using `npm`](https://mdbootstrap.com/docs/react/getting-started/installation/#section-npm)
   - Notes are in `mdbootstrap/notes/1-react-getting_started-npm.md`
-  - Project is in `mdboostrap/projects/1-react-getting_started-npm`
+  - Project is in `mdbootstrap/projects/1-react-getting_started-npm`
 - [x] Project 2: Re-trying Using MDB CLI
   - Use `mdb init` command to install `mdb5-free-react`
   - Want to compare these results with what's in Project 1
   - Notes are in `mdbootstrap/notes/2-react-using_mdb_cli.md`
-  - Project is in `mdboostrap/projects/2-react-using_mdb_cli`
-- [ ] Project 3: Try manual process suggested by MDB Support
+  - Project is in `mdbootstrap/projects/2-react-using_mdb_cli`
+- [x] Project 3: Try manual process suggested by MDB Support
+  - Suggested process is in `mdbootstrap/support/1-mdb_with_react_and_vite.txt`
+  - Notes are in `mdbootstrap/notes/3-suggested_by_support.md`
+  - Project is in `mdbootstrap/projects/3-suggested_by_support`
+- [x] Project 4: Compare Results of Project 1 `npm` Version, Project 2 `mdb init` Version, and Project 3 Support Version
+  - Notes are in `mdbootstrap/notes/4-mdb_ts_eslint_react-find_the_best_process.md`
+  - Project is in `mdbootstrap/projects/4-mdb_ts_eslint_react-find_the_best_process`
+- [ ] Project 5: Get MDB's `Range` component to work
 
 
