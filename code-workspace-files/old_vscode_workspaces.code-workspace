@@ -1,0 +1,53 @@
+{
+	"folders": [
+		{
+			"path": "../vite/projects/2-rtr-typescript_in_react"
+		},
+		{
+			"path": "../vite/projects/3-ts_eslint_react-find_the_best_process/ts_eslint_react-1-react_eslint_ts"
+		},
+		{
+			"path": "../vite/projects/3-ts_eslint_react-find_the_best_process/ts_eslint_react-2-react_ts_no_eslint"
+		},
+		{
+			"path": "../vite/projects/4-my_mdb_adventure/1-mdb_unzipped"
+		},
+		{
+			"path": "../vite/projects/4-my_mdb_adventure/2-mdb_and_ts"
+		},
+		{
+			"path": "../vite/projects/4-my_mdb_adventure/3-does_mdb_include_ts"
+		},
+		{
+			"path": "../vite/projects/4-my_mdb_adventure/4a-mdb_cli-quick_start"
+		},
+		{
+			"path": "../vite/projects/4-my_mdb_adventure/4b-mdb_cli-bootstrap"
+		},
+		{
+			"path": "../vite/projects/4-my_mdb_adventure/4c-mdb_cli-mdbootstrap"
+		},
+		{
+			"path": "../vite/projects/4-my_mdb_adventure/4d-mdb_cli-mdb_go"
+		},
+		{
+			"path": "../vite/projects/4-my_mdb_adventure/4e-mdb_cli-mdb_advanced_features"
+		},
+		{
+			"path": "../vite/projects/4-my_mdb_adventure/5-vite_react_mdb-for_reals"
+		},
+		{
+			"path": "../mdbootstrap/projects/1-react-getting_started-npm"
+		},
+		{
+			"path": "../mdbootstrap/projects/2-react-using_mdb_cli"
+		},
+		{
+			"path": "../mdbootstrap/projects/3-suggested_by_support"
+		},
+		{
+			"path": "../mdbootstrap/projects/4-mdb_ts_eslint_react-find_the_best_process"
+		}
+	],
+	"settings": {}
+}
