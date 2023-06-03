@@ -58,7 +58,6 @@ up to date, audited 216 packages in 2s
   run `npm fund` for details
 
 found 0 vulnerabilities
-tomh@jane: /var/www/always_learning/always_learning_javascript/mdbootstrap/projects/4-mdb_ts_eslint_react-find_the_best_process
 $ npm run dev
 
 > vite-project@0.0.0 dev
