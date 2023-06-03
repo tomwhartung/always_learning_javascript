@@ -1,0 +1,49 @@
+import { useState } from 'react'
+// 
+// TODO: Test this other solution in a new project 
+//   https://stackoverflow.com/questions/44717164/unable-to-import-svg-files-in-typescript#45887328
+// -> Will it work without the custom.d.ts file??? 
+// 
+// import * as reactLogo from './assets/react.svg'
+// import * as viteLogo from '/vite.svg'
+// PROBABLY NOT!!!
+//   See no errors in VSCode or on command line, BUT ... 
+//     App is broken and there are multiple errors on the JS Console 
+
+import reactLogo from './assets/react.svg'
+import viteLogo from '/vite.svg'
+
+import './App.css'
+
+const need_to_fix_linting = 'Hi';
+
+function App() {
+  const [count, setCount] = useState(0)
+
+  return (
+    <>
+      <div>
+        <a href="https://vitejs.dev" target="_blank" rel="noreferrer">
+          <img src={viteLogo as any} className="logo" alt="Vite logo" />
+        </a>
+        <a href="https://react.dev" target="_blank" rel="noreferrer">
+          <img src={reactLogo as any} className="logo react" alt="React logo" />
+        </a>
+      </div>
+      <h1>Vite + React</h1>
+      <div className="card">
+        <button onClick={() => setCount((count) => count + 1)}>
+          count is {count}
+        </button>
+        <p>
+          Edit <code>src/App.tsx</code> and save to test HMR
+        </p>
+      </div>
+      <p className="read-the-docs">
+        Click on the Vite and React logos to learn more
+      </p>
+    </>
+  )
+}
+
+export default App
