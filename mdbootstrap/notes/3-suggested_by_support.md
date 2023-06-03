@@ -104,3 +104,61 @@ Everything looks ok!
 
 # 3. Assessment
 
+- Looks like the Vite + React App from "long ago", before I started messing with MDB
+  - Focus of the web page that is displayed is on Vite + React
+- Seeing eslint in *both* `package-lock.json` *and* in `package.json`
+- Seeing typescript in *both* `package-lock.json` *and* in `package.json`
+
+## 3.1. Relevant Files
+
+These are files that I *might* want to change when writing my app:
+
+- `.gitignore` - *YES!!*
+- `src/App.css`
+- `src/App.tsx
+- `src/index.css
+- `src/main.tsx`
+
+**YES!** Finally seeing `.tsx` files, that btw feature the TS and JSX I have been studying about for the past few weeks!!
+
+## 3.2. Sanity Checks Part 2
+
+- [x] Edit `src/App.tsx` to say "Hi"
+- [x] Test Linting
+  - Add this line to `src/App.js`:
+    - `const test_linting = 'Test Linting';`
+  - [x] Check for warning in VSCode
+  - [x] Check for warning in terminal when running `npm lint`
+    - This flags the error *and* displays another interesting message as well - see code box below
+
+```
+$ pwd
+/var/www/always_learning/always_learning_javascript/mdbootstrap/projects/3-suggested_by_support
+$ npm run lint
+
+> vite-project@0.0.0 lint
+> eslint src --ext ts,tsx --report-unused-disable-directives --max-warnings 0
+
+=============
+
+WARNING: You are currently running a version of TypeScript which is not officially supported by @typescript-eslint/typescript-estree.
+
+You may find that it works just fine, or you may not.
+
+SUPPORTED TYPESCRIPT VERSIONS: >=3.3.1 <5.1.0
+
+YOUR TYPESCRIPT VERSION: 5.1.3
+
+Please only submit bug reports when using the officially supported version.
+
+=============
+
+/var/www/always_learning/always_learning_javascript/mdbootstrap/projects/3-suggested_by_support/src/App.tsx
+  6:7  warning  'test_linting' is assigned a value but never used  @typescript-eslint/no-unused-vars
+
+✖ 1 problem (0 errors, 1 warning)
+
+ESLint found too many warnings (maximum: 0).
+$
+```
+
