@@ -45,6 +45,10 @@ Remember, the how-to for our best shot so far at getting everything we want is i
 - [x] Project 4: Compare Results of Project 1 `npm` Version, Project 2 `mdb init` Version, and Project 3 Support Version
   - Notes are in `mdbootstrap/notes/4-mdb_ts_eslint_react-find_the_best_process.md`
   - Project is in `mdbootstrap/projects/4-mdb_ts_eslint_react-find_the_best_process`
-- [ ] Project 5: Get MDB's `Range` component to work
-
+- [x] Project 5: Get MDB's `Range` component to work
+  - This is their [slider](https://mdbootstrap.com/docs/react/forms/range/)
+  - Notes are in `mdbootstrap/notes/5-try_to_get_slider_to_work.md`
+  - Project is in `mdbootstrap/projects/5-try_to_get_slider_to_work`
+- [ ] Project 6: Get multiple `MySlider` components to work
+  - This builds on Project 5
 
