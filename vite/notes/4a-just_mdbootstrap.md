@@ -1,5 +1,5 @@
 
-# 4a-just_mdboostrap.md
+# 4a-just_mdbootstrap.md
 
 Using `vite` to install mdbootstrap.
 

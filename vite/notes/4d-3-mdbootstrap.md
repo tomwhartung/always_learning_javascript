@@ -1,5 +1,5 @@
 
-# 4d-3-mdboostrap.md
+# 4d-3-mdbootstrap.md
 
 Running through MDB's
 [MDBootstrap tutorial](https://mdbootstrap.com/learn/mdb-foundations/mdb-ui-kit/about/).
@@ -92,8 +92,8 @@ $ git add mdb-uikit-tutorial/
 . . .
 . . .
 . . .
-$ git commit -m 'Adding directory mdb-uikit-tutorial/ to the vite/projects/4-my_mdb_adventure/4c-mdb_cli-mdbootstrap/ project .  For details, see vite/notes/4d-3-mdboostrap.md .'
-[master 1f5131f] Adding directory mdb-uikit-tutorial/ to the vite/projects/4-my_mdb_adventure/4c-mdb_cli-mdbootstrap/ project .  For details, see vite/notes/4d-3-mdboostrap.md .
+$ git commit -m 'Adding directory mdb-uikit-tutorial/ to the vite/projects/4-my_mdb_adventure/4c-mdb_cli-mdbootstrap/ project .  For details, see vite/notes/4d-3-mdbootstrap.md .'
+[master 1f5131f] Adding directory mdb-uikit-tutorial/ to the vite/projects/4-my_mdb_adventure/4c-mdb_cli-mdbootstrap/ project .  For details, see vite/notes/4d-3-mdbootstrap.md .
  386 files changed, 49293 insertions(+)
 . . .
 . . .

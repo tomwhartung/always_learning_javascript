@@ -5,7 +5,7 @@ Using `vite` to install mdbootstrap, and then adding Typescript.
 
 # 1. Install MDB
 
-Steps come from `4a-just_mdboostrap.md` in this directory.
+Steps come from `4a-just_mdbootstrap.md` in this directory.
 For details, see that file.
 
 ## 1.1. Steps 1, 2, & 3
