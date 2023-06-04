@@ -5,6 +5,8 @@ Ok, now it is time to finally try to get something done....
 
 # 1. Setup
 
+The code for this project is in the `mdbootstrap/projects/5-try_to_get_slider_to_work` directory in this repo.
+
 ## 1.1. Commands
 
 ```

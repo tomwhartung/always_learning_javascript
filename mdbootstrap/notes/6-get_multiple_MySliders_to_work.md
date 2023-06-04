@@ -34,7 +34,36 @@ npm run dev                                    # Start development server; press
 - See `5-try_to_get_slider_to_work.md` in this directory
 - See the files in the top-level `reactjs` directory in this repo
 
-## 3.2. Results
+## 3.2. Process
 
-- See the `MyRange` and `App` function components in `src/App.tsx`:
+Right or wrong, I am in the habit of explaining what I'm doing as I go along, so
+will just keep on doing that for the time being....
+
+### 3.2.0. Add `mdb.min.css` to `index.html`:
+
+- [x] 0.1. Add the code in the following code box to inside the `<head>...</head>` element in `index.html`:
+
+```
+<!-- MDB -->
+<link rel="stylesheet" href="/node_modules/mdb-react-ui-kit/dist/css/mdb.min.css" />
+```
+
+**Note:** I am not sure whether this is the *"proper"* place, file, or path to use!
+I searched the project directory for files named `mdb.min.*` and found this one, and adding the code above to `index.html` worked, so ...!!
+
+### 3.2.1. Step 1: Replace demo code in `App.tsx` with code to use one `MySlider` in a single `card`
+
+  - [x] 1.1. Add MySlider function component from `5-try_to_get_slider_to_work` project
+  - [x] 1.2. Remove demo code in `App` function component
+  - [x] 1.3. Add code to use one slider in the one `card` to the `App` function component
+
+### 3.2.2. Step 2: Create a grid of four columns
+
+- [x] 2.1. Create a `container`
+- [x] 2.2. Create a `row`
+- [x] 2.3. Create four `col-md-3`s
+
+## 3.3. Results
+
+- See the `MySlider` and `App` function components in `src/App.tsx`:
 
