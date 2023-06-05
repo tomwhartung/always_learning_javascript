@@ -9,7 +9,7 @@ function MySlider() {
     <MDBRange
       defaultValue={50}
       id='customRange'
-      label='My First MDBRange Component'
+      label='My [Fix Me!!] MySlider Component'
     />
   );
 }
@@ -21,13 +21,41 @@ function App() {
   return (
     <>
       <h1>My Four <code>MySlider</code>s App</h1>
-      <div className="card">
-        <MySlider />
-        <p>
-          Try using one MySlider in each card.
-        </p>
-      </div>
-      <div>
+      <div className="container">
+        <div className="row">
+          <div className="col-md-3">
+            <div className="card">
+              <MySlider />
+              <p>
+                First MySlider in the first card.
+              </p>
+            </div>
+          </div>
+          <div className="col-md-3">
+            <div className="card">
+              <MySlider />
+              <p>
+                Second MySlider in the second card.
+              </p>
+            </div>
+          </div>
+          <div className="col-md-3">
+            <div className="card">
+              <MySlider />
+              <p>
+                Third MySlider in the third card.
+              </p>
+            </div>
+          </div>
+          <div className="col-md-3">
+            <div className="card">
+              <MySlider />
+              <p>
+                Fourth MySlider in the fourth card.
+              </p>
+            </div>
+          </div>
+        </div>
       </div>
     </>
   )
