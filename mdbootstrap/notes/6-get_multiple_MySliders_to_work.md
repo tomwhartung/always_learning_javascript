@@ -51,6 +51,10 @@ will just keep on doing that for the time being....
 **Note:** I am not sure whether this is the *"proper"* place, file, or path to use!
 I searched the project directory for files named `mdb.min.*` and found this one, and adding the code above to `index.html` worked, so ...!!
 
+**Note:** We may want to add Font Awesome, Google Fonts Roboto, and maybe others.
+For details, see the
+[bootstrap download and setup page](https://mdbootstrap.com/learn/mdb-foundations/bootstrap/download-and-setup/).
+
 ### 3.2.1. Step 1: Replace demo code in `App.tsx` with code to use one `MySlider` in a single `card`
 
   - [x] 1.1. Add MySlider function component from `5-try_to_get_slider_to_work` project
@@ -62,6 +66,37 @@ I searched the project directory for files named `mdb.min.*` and found this one,
 - [x] 2.1. Create a `container`
 - [x] 2.2. Create a `row`
 - [x] 2.3. Create four `col-md-3`s
+
+### 3.2.3. Step 3: Use `props` to Set the `MySlider`s' `label`s
+
+This
+[pluralsight.com post](https://www.pluralsight.com/guides/defining-props-in-react-function-component-with-typescript)
+helped me figure how to do this.
+
+- [ ] 3.1. Create an `interface` named `SliderProps`
+- [ ] 3.2. Add a member named `ordinal` of type `string` to `SliderProps`
+- [ ] 3.3. Update the `MySlider` function component to accept a `props` argument of type `SliderProps`
+- [ ] 3.4. Update the `MySlider` function component to use the `props.ordinal` to set a new variable named `slider_label`
+- [ ] 3.5. Update the `MySlider` function component to use `slider_label` to set the `label` on the `MDBRange` component
+- [ ] 3.6. Update the `MySlider` tags in the `MyContainer` function component to pass in values for the `ordinal` property
+
+### 3.2.4. Step 4: 
+
+- [ ] 4.1. 
+- [ ] 4.2. 
+- [ ] 4.3. 
+
+### 3.2.5. Step 5: 
+
+- [ ] 5.1. 
+- [ ] 5.2. 
+- [ ] 5.3. 
+
+### 3.2.6. Step 6: 
+
+- [ ] 6.1. 
+- [ ] 6.2. 
+- [ ] 6.3. 
 
 ## 3.3. Results
 
