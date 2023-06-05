@@ -3,12 +3,12 @@ import './App.css'
 // import { useState } from 'react'
 import { MDBRange } from 'mdb-react-ui-kit';
 
-interface SliderProps {
+interface MySliderCardProps {
   ordinal: string;
 }
 
 // MySlider: function component interface to the MDBRange component
-function MySlider( props:SliderProps ) {
+function MySlider( props:MySliderCardProps ) {
   const slider_label="The " + props.ordinal + " MySlider Component";
   return (
     <MDBRange
@@ -19,42 +19,34 @@ function MySlider( props:SliderProps ) {
   );
 }
 
+// MySliderCard: function component interface to the MDBRange component
+function MySliderCard( props:MySliderCardProps ) {
+  return (
+    <div className="card">
+      <MySlider ordinal={props.ordinal} />
+      <p>
+        {props.ordinal} MySlider in the {props.ordinal.toLowerCase()} card.
+      </p>
+    </div>
+  )
+}
+
 // MyContainer: function component containing an MDB container
 function MyContainer() {
   return (
     <div className="container">
       <div className="row">
         <div className="col-md-3">
-          <div className="card">
-            <MySlider ordinal="First" />
-            <p>
-              First MySlider in the first card.
-            </p>
-          </div>
+          <MySliderCard ordinal="First" />
         </div>
         <div className="col-md-3">
-          <div className="card">
-            <MySlider ordinal="Second" />
-            <p>
-              Second MySlider in the second card.
-            </p>
-          </div>
+          <MySliderCard ordinal="Second" />
         </div>
         <div className="col-md-3">
-          <div className="card">
-            <MySlider ordinal="Third" />
-            <p>
-              Third MySlider in the third card.
-            </p>
-          </div>
+          <MySliderCard ordinal="Third" />
         </div>
         <div className="col-md-3">
-          <div className="card">
-            <MySlider ordinal="Fourth" />
-            <p>
-              Fourth MySlider in the fourth card.
-            </p>
-          </div>
+          <MySliderCard ordinal="Fourth" />
         </div>
       </div>
       <div className="row mt-4 d-flex justify-content-center">
