@@ -73,18 +73,19 @@ This
 [pluralsight.com post](https://www.pluralsight.com/guides/defining-props-in-react-function-component-with-typescript)
 helped me figure how to do this.
 
-- [ ] 3.1. Create an `interface` named `SliderProps`
-- [ ] 3.2. Add a member named `ordinal` of type `string` to `SliderProps`
-- [ ] 3.3. Update the `MySlider` function component to accept a `props` argument of type `SliderProps`
-- [ ] 3.4. Update the `MySlider` function component to use the `props.ordinal` to set a new variable named `slider_label`
-- [ ] 3.5. Update the `MySlider` function component to use `slider_label` to set the `label` on the `MDBRange` component
-- [ ] 3.6. Update the `MySlider` tags in the `MyContainer` function component to pass in values for the `ordinal` property
+- [x] 3.1. Create an `interface` named `MySliderProps`
+- [x] 3.2. Add a member named `ordinal` of type `string` to `MySliderProps`
+- [x] 3.3. Update the `MySlider` function component to accept a `props` argument of type `MySliderProps`
+- [x] 3.4. Update the `MySlider` function component to use the `props.ordinal` to set a new variable named `slider_label`
+- [x] 3.5. Update the `MySlider` function component to use `slider_label` to set the `label` on the `MDBRange` component
+- [x] 3.6. Update the `MySlider` tags in the `MyContainer` function component to pass in values for the `ordinal` property
 
-### 3.2.4. Step 4: 
+### 3.2.4. Step 4: Create `MySliderCard` Component and Refactor `MyContainer` to Use It
 
-- [ ] 4.1. 
-- [ ] 4.2. 
-- [ ] 4.3. 
+- [x] 4.1. Create `MySliderCard` component based on markup for the `card` elements in `MyContainer`
+- [x] 4.2. Refactor `MyContainer` to use the new `MySliderCard`
+- [x] 4.3. Rename `MySliderProps` to `MySliderCardProps`
+- [x] 4.4. Pass values for the `ordinal` prop from `MyContainer` through `MySliderCard` to `MySlider`
 
 ### 3.2.5. Step 5: 
 
