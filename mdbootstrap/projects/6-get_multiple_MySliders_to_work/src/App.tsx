@@ -3,13 +3,18 @@ import './App.css'
 // import { useState } from 'react'
 import { MDBRange } from 'mdb-react-ui-kit';
 
+interface SliderProps {
+  ordinal: string;
+}
+
 // MySlider: function component interface to the MDBRange component
-function MySlider() {
+function MySlider( props:SliderProps ) {
+  const slider_label="The " + props.ordinal + " MySlider Component";
   return (
     <MDBRange
       defaultValue={50}
       id='customRange'
-      label='My [Fix Me!!] MySlider Component'
+      label={slider_label}
     />
   );
 }
@@ -21,7 +26,7 @@ function MyContainer() {
       <div className="row">
         <div className="col-md-3">
           <div className="card">
-            <MySlider />
+            <MySlider ordinal="First" />
             <p>
               First MySlider in the first card.
             </p>
@@ -29,7 +34,7 @@ function MyContainer() {
         </div>
         <div className="col-md-3">
           <div className="card">
-            <MySlider />
+            <MySlider ordinal="Second" />
             <p>
               Second MySlider in the second card.
             </p>
@@ -37,7 +42,7 @@ function MyContainer() {
         </div>
         <div className="col-md-3">
           <div className="card">
-            <MySlider />
+            <MySlider ordinal="Third" />
             <p>
               Third MySlider in the third card.
             </p>
@@ -45,7 +50,7 @@ function MyContainer() {
         </div>
         <div className="col-md-3">
           <div className="card">
-            <MySlider />
+            <MySlider ordinal="Fourth" />
             <p>
               Fourth MySlider in the fourth card.
             </p>
