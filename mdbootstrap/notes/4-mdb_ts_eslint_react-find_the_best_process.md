@@ -91,7 +91,7 @@ $
   - [x] 1. Add `const test_linting = 'Test Linting';` to `App.tsx`
   - [x] 2. Confirm lint errors show up in VSCode
   - [x] 3. Confirm lint errors show up when running `npm run lint`
-  - [x] 4. Uncomment line added so we no longer see these errors
+  - [x] 4. Delete or comment out the line added so we no longer see these errors
 - [x] Test saying "Hi"
   - [x] 1. Add `<h2>Hi!  Bonjour!  Hola!</h2>` to value returned in `function App()` `App.tsx`
   - [x] 2. Confirm this shows up in browser
