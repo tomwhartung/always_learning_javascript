@@ -1,6 +1,6 @@
 import './App.css'
 
-// import { useState } from 'react'
+import { ChangeEvent, useState } from 'react'
 import { MDBRange } from 'mdb-react-ui-kit';
 
 interface MySliderCardProps {
@@ -9,13 +9,26 @@ interface MySliderCardProps {
 
 // MySlider: function component interface to the MDBRange component
 function MySlider( props:MySliderCardProps ) {
-  const slider_label="The " + props.ordinal + " MySlider Component";
+  const [sliderValue, setSliderValue] = useState(0)
+  const sliderLabel="The " + props.ordinal + " MySlider Component";
+  const sliderId= props.ordinal.toLowerCase() + "MySlider";
+
+  function handleChange(evt:ChangeEvent) {
+    if ( evt != null ) {
+      console.log("Value of " + sliderId + " is now " + evt.target.nodeValue);
+    }
+    console.log("Value is changing!");
+  }
   return (
-    <MDBRange
-      defaultValue={50}
-      id='customRange'
-      label={slider_label}
-    />
+    <>
+      <MDBRange
+        defaultValue={50}
+        id={sliderId}
+        label={sliderLabel}
+        onChange={handleChange}
+      />
+      <p>sliderValue = {sliderValue}</p>
+    </>
   );
 }
 
@@ -109,8 +122,6 @@ function MyContainer() {
 
 // App: this App's "mainline" component
 function App() {
-  // const [count, setCount] = useState(0)
-
   return (
     <>
       <h1>My Four <code>MySlider</code>s App</h1>
