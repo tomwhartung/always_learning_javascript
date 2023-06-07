@@ -9,15 +9,14 @@ interface MySliderCardProps {
 
 // MySlider: function component interface to the MDBRange component
 function MySlider( props:MySliderCardProps ) {
-  const [sliderValue, setSliderValue] = useState(0)
+  const [value, setValue] = useState(0)
   const sliderLabel="The " + props.ordinal + " MySlider Component";
   const sliderId= props.ordinal.toLowerCase() + "MySlider";
 
   function handleChange(evt:ChangeEvent) {
-    if ( evt != null ) {
-      console.log("Value of " + sliderId + " is now " + evt.target.nodeValue);
-    }
-    console.log("Value is changing!");
+    const val = (evt.target as HTMLInputElement).value;
+    console.log("Value of " + sliderId + " is now " + val);
+    setValue(Number(val));
   }
   return (
     <>
@@ -27,7 +26,7 @@ function MySlider( props:MySliderCardProps ) {
         label={sliderLabel}
         onChange={handleChange}
       />
-      <p>sliderValue = {sliderValue}</p>
+      <p>sliderValue = {value}</p>
     </>
   );
 }
