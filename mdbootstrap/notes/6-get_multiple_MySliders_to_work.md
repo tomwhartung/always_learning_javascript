@@ -87,17 +87,32 @@ helped me figure how to do this.
 - [x] 4.3. Rename `MySliderProps` to `MySliderCardProps`
 - [x] 4.4. Pass values for the `ordinal` prop from `MyContainer` through `MySliderCard` to `MySlider`
 
-### 3.2.5. Step 5: 
+### 3.2.5. Step 5: Get the `value` of each `MySlider` and Display it in the `card`
 
-- [ ] 5.1. 
-- [ ] 5.2. 
-- [ ] 5.3. 
+- [x] 5.1. Add event handler function `handleChange(evt:ChangeEvent)` in the `MySlider` component
+- [x] 5.2. Add `onChange={handleChange}` property to markup for `MDBRange` in the `MySlider` component
+- [x] 5.3. Add state variable `value` to `MySlider` component
+- [x] 5.4. Update `handleChange` to get the `value` from `evt.target`
+- [x] 5.5. Update `handleChange` to log the `value` to the `console`
+- [x] 5.5. Update the markup returned by the `MySlider` component to display the `value`
 
 ### 3.2.6. Step 6: 
 
 - [ ] 6.1. 
 - [ ] 6.2. 
 - [ ] 6.3. 
+
+### 3.2.7. Step 7: 
+
+- [ ] 7.1. 
+- [ ] 7.2. 
+- [ ] 7.3. 
+
+### 3.2.8. Step 8: 
+
+- [ ] 8.1. 
+- [ ] 8.2. 
+- [ ] 8.3. 
 
 ## 3.3. Results
 
