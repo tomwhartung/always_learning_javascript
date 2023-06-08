@@ -24,7 +24,7 @@ function MySlider( props:MySliderCardProps ) {
 
   function handleChange(evt:ChangeEvent) {
     const val = (evt.target as HTMLInputElement).value;
-    console.log("Value of " + sliderId + " is now " + val);
+    // console.log("Value of " + sliderId + " is now " + val);
     setValue(Number(val));
   }
   return (
@@ -42,12 +42,15 @@ function MySlider( props:MySliderCardProps ) {
 
 // MySliderCard: function component interface to the MDBRange component
 function MySliderCard( props:MySliderCardProps ) {
-  // const ordinal : string = fourOrdinals[props.sliderNum];
+  const ordinal : string = fourOrdinals[props.sliderNum]
+  // if ( props.sliderNum <= 4 ) {
+  //   ordinal.toLowerCase();
+  // }
   return (
     <div className="card">
       <MySlider sliderNum={props.sliderNum} />
       <p>
-        MySlider-{props.sliderNum} in the ... card.
+        MySlider-{props.sliderNum} in the {ordinal} card.
       </p>
     </div>
   )
@@ -57,9 +60,8 @@ function MySliderCard( props:MySliderCardProps ) {
 function MyContainer() {
   const sliderCols = [];
   for ( let colNum = 1; colNum <= 4; colNum++ ) {
-    console.log("colnum = " + colNum);
     sliderCols.push(
-      <div className="col-md-3"><MySliderCard sliderNum={colNum} /></div>
+      <div key={colNum} className="col-md-3"><MySliderCard sliderNum={colNum} /></div>
     );
   }
   return (
