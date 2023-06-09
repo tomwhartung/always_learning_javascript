@@ -3,24 +3,23 @@ import './App.css'
 import { ChangeEvent, useState } from 'react'
 import { MDBRange } from 'mdb-react-ui-kit';
 
-// enum Ordinals {
-//  
-// }
 const fourOrdinals: readonly string[] = [
+  "Zeroeth",
   "First",
   "Second",
   "Third",
-  "Fourth"
+  "Fourth",
+  "Fifth"
 ];
 interface MySliderCardProps {
-  sliderNum: number;
+  sliderNo: number;
 }
 
 // MySlider: function component interface to the MDBRange component
 function MySlider( props:MySliderCardProps ) {
   const [value, setValue] = useState(0)
-  const sliderLabel = fourOrdinals[props.sliderNum] + " MySlider Component";
-  const sliderId = "myslider-" + Number(props.sliderNum);
+  const sliderLabel = fourOrdinals[props.sliderNo + 1] + " MySlider Component";
+  const sliderId = "myslider-" + Number(props.sliderNo);
 
   function handleChange(evt:ChangeEvent) {
     const val = (evt.target as HTMLInputElement).value;
@@ -42,15 +41,15 @@ function MySlider( props:MySliderCardProps ) {
 
 // MySliderCard: function component interface to the MDBRange component
 function MySliderCard( props:MySliderCardProps ) {
-  const ordinal : string = fourOrdinals[props.sliderNum]
-  // if ( props.sliderNum <= 4 ) {
-  //   ordinal.toLowerCase();
-  // }
+  const ordinal = fourOrdinals[props.sliderNo + 1];
+  // console.log( "props.sliderNo = " + props.sliderNo );
+  const lcOrd = ordinal.toLowerCase();
+
   return (
     <div className="card">
-      <MySlider sliderNum={props.sliderNum} />
+      <MySlider sliderNo={props.sliderNo} />
       <p>
-        MySlider-{props.sliderNum} in the {ordinal} card.
+        "myslider-{props.sliderNo}" in the {lcOrd} card.
       </p>
     </div>
   )
@@ -59,9 +58,9 @@ function MySliderCard( props:MySliderCardProps ) {
 // MyContainer: function component containing an MDB container
 function MyContainer() {
   const sliderCols = [];
-  for ( let colNum = 1; colNum <= 4; colNum++ ) {
+  for ( let col = 0; col < 4; col++ ) {
     sliderCols.push(
-      <div key={colNum} className="col-md-3"><MySliderCard sliderNum={colNum} /></div>
+      <div key={col} className="col-md-3"><MySliderCard sliderNo={col} /></div>
     );
   }
   return (
