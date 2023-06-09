@@ -96,11 +96,25 @@ helped me figure how to do this.
 - [x] 5.5. Update `handleChange` to log the `value` to the `console`
 - [x] 5.5. Update the markup returned by the `MySlider` component to display the `value`
 
-### 3.2.6. Step 6: 
+### 3.2.6. Step 6: Update `MyContainer` to Use a `for` Loop to Create the `MySliderCard` Components
 
-- [ ] 6.1. 
-- [ ] 6.2. 
-- [ ] 6.3. 
+- [x] 6.1. Add new constants to near the top of `App.tsx`
+  - [x] 6.1.1. Add `numberOfSliderCards` and set it equal to **4**
+  - [x] 6.1.2.  Add `ordinalsArray` containing words representing the position of each of the cards and their sliders
+- [x] 6.2. Update the `MySliderCardProps` interface to contain the `sliderNo` instead of the `ordinal`
+- [x] 6.3. Change the list of columns containing `MySliderCard`s in `MyContainer` to use a `for` loop to generate a list of `MySliderCard`s
+  - [x] 6.3.1. Declare a `sliderCols` array in `MyContainer`
+  - [x] 6.3.2. Add a `for` loop to `push` the markup for each of the `numberOfSliderCards` columns onto the `sliderCols` array
+  - [x] 6.3.3. The `div` element for each of these columns must contain a `key` attribute
+  - [x] 6.3.4. Each of these columns must contain a `MySliderCard` element nested in its `div` element
+  - [x] 6.3.5. Each of these `MySliderCard` elements must pass `sliderNo` prop, which equals the `col` index used in the `for` loop
+  - [x] 6.3.6. Replace the existing list of `div`s with a reference to the `{sliderCols}` array
+- [x] 6.4. Update the `MySliderCard` component to pass the `sliderNo` prop and display the `sliderNo` along with its `ordinal`
+  - [x] 6.4.1. Add 1 to the `sliderNo` to get the correct `ordinal`
+  - [x] 6.4.2. Convert the `ordinal` to lower case
+  - [x] 6.4.3. Change the `<MySlider ...>` tag to use the `sliderNo` prop instead of the `ordinal`
+  - [x] 6.4.4. Update the text below the `MySlider` to display an appropriate message
+- [x] 6.5. Update the `MySlider` component to use the `sliderNo` to set the `sliderLabel` and `sliderId`
 
 ### 3.2.7. Step 7: 
 
@@ -113,6 +127,12 @@ helped me figure how to do this.
 - [ ] 8.1. 
 - [ ] 8.2. 
 - [ ] 8.3. 
+
+### 3.2.9. Step 9: 
+
+- [ ] 9.1. 
+- [ ] 9.2. 
+- [ ] 9.3. 
 
 ## 3.3. Results
 
