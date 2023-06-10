@@ -118,15 +118,30 @@ helped me figure how to do this.
 
 ### 3.2.7. Step 7: Lift State up, From the `MySlider` Component to the `MyContainer` Component
 
-- Reference:
+- References:
   - React.dev [lifting state up page](https://react.dev/learn/tutorial-tic-tac-toe#lifting-state-up)
+  - [App.js](https://github.com/tomwhartung/always_learning_javascript/blob/master/reactjs/projects/ttt-my_way-app/src/App.js) done *"my_way"*
 - Overview:
   - Move state from single value in `MySlider` to array of values in
   - Pass state values from `MyContainer` to `MySlider` as props
+  - **The tricky part is calling the event handler in `MyContainer` from the slider in `MySlider`**
+- These names follow the pattern used in naming event handler functions in the *"References"* above
+  - `onSliderChange` - prop specifying the function to call
+    - Add to `MySliderCardProps`
+    - Specify as a prop (attribute) in the `MySliderCard` tag
+    - Use as the value of the `onChange` attribute for the `MDBRange` tag in the `MySlider` component function
+  - `handleChange` - new event handler in the `MyContainer` component
+    - Should be close to what we have now as the `handleChange` function in the `MySlider` component function
+    - Used in the arrow function which is the value of the `onSliderChange` prop in the `MyContainer` component
+  - 
 
-- [ ] 7.1. 
-- [ ] 7.2. 
+- [x] 7.1. Add a state Array variable to the `MyContainer` Component
+  - [x] `const [values, setValues] = useState(Array(numberOfSliderCards).fill(defaultValue));`
+- [x] 7.2. Add `onSliderChange` to the `MySliderCardProps` interface
+  - [x] `onSliderChange: (evt: ChangeEvent<Element>) => void;`
 - [ ] 7.3. 
+- [ ] 7.4. 
+- [ ] 7.5. 
 
 ### 3.2.8. Step 8: 
 
