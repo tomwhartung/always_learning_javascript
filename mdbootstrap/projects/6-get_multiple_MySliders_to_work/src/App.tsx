@@ -1,10 +1,16 @@
+//
+// App.jsx: Main file for the 6-get_multiple_MySliders_to_work project
+// -------------------------------------------------------------------
+//
 import './App.css'
 
-import { ChangeEvent, useState } from 'react'
+import { ChangeEvent, useState } from 'react';
 import { MDBRange } from 'mdb-react-ui-kit';
 
 // Important constants
-const numberOfSliderCards = 4;   // Warning: Do not make this greater than or equal to the number of elements in ordinalsArray!
+const numberOfSliderCards = 4;      // Warning: Do not make this greater
+                                    // than or equal to the number of
+                                    // elements in ordinalsArray!
 const ordinalsArray: readonly string[] = [
   "Zeroeth",
   "First",
@@ -12,8 +18,10 @@ const ordinalsArray: readonly string[] = [
   "Third",
   "Fourth",
   "Fifth",
-  "Sixth"
+  "Sixth",
 ];
+
+// Important types
 interface MySliderCardProps {
   sliderNo: number;
 }
