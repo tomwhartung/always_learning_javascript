@@ -8,6 +8,7 @@ import { ChangeEvent, useState } from 'react';
 import { MDBRange } from 'mdb-react-ui-kit';
 
 // Important constants
+const defaultValue = 50;
 const numberOfSliderCards = 4;      // Warning: Do not make this greater
                                     // than or equal to the number of
                                     // elements in ordinalsArray!
@@ -24,6 +25,7 @@ const ordinalsArray: readonly string[] = [
 // Important types
 interface MySliderCardProps {
   sliderNo: number;
+  onSliderChange: (evt: ChangeEvent<Element>) => void;
 }
 
 // MySlider: function component interface to the MDBRange component
@@ -58,7 +60,7 @@ function MySliderCard( props:MySliderCardProps ) {
 
   return (
     <div className="card">
-      <MySlider sliderNo={props.sliderNo} />
+      <MySlider sliderNo={props.sliderNo} onSliderChange={props.onSliderChange} />
       <p>
         "myslider-{props.sliderNo}" in the {lcOrd} card.
       </p>
@@ -68,10 +70,18 @@ function MySliderCard( props:MySliderCardProps ) {
 
 // MyContainer: function component containing an MDB container
 function MyContainer() {
+  const [values, setValues] = useState(Array(numberOfSliderCards).fill(defaultValue));
   const sliderCols = [];
+
+  function handleSliderChange(evt:ChangeEvent) {
+    // const val = (evt.target as HTMLInputElement).value;
+    // console.log("Value of " + sliderId + " is now " + val);
+    // setValue(Number(val));
+  }
+
   for ( let col = 0; col < numberOfSliderCards; col++ ) {
     sliderCols.push(
-      <div key={col} className="col-md-3"><MySliderCard sliderNo={col} /></div>
+      <div key={col} className="col-md-3"><MySliderCard sliderNo={col} onSliderChange={handleSliderChange} /></div>
     );
   }
   return (
