@@ -116,7 +116,13 @@ helped me figure how to do this.
   - [x] 6.4.4. Update the text below the `MySlider` to display an appropriate message
 - [x] 6.5. Update the `MySlider` component to use the `sliderNo` to set the `sliderLabel` and `sliderId`
 
-### 3.2.7. Step 7: 
+### 3.2.7. Step 7: Lift State up, From the `MySlider` Component to the `MyContainer` Component
+
+- Reference:
+  - React.dev [lifting state up page](https://react.dev/learn/tutorial-tic-tac-toe#lifting-state-up)
+- Overview:
+  - Move state from single value in `MySlider` to array of values in
+  - Pass state values from `MyContainer` to `MySlider` as props
 
 - [ ] 7.1. 
 - [ ] 7.2. 
