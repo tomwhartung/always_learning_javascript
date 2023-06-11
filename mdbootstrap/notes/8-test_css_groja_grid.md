@@ -1,20 +1,20 @@
 
-# 7-test_css_groja_grid.md
+# 8-test_css_groja_grid.md
 
 Testing my idea of using CSS to set the colors in a grid of squares.
 
 # 1. Setup
 
-The code for this project is in the `mdbootstrap/projects/7-test_css_groja_grid` directory in this repo.
+The code for this project is in the `mdbootstrap/projects/8-test_css_groja_grid` directory in this repo.
 
 ## 1.1. Commands
 
 ```
 pwd                                            # /var/www/always_learning/always_learning_javascript/mdbootstrap/projects
                                                # Start with vite
-npm init vite@latest -- --template react-ts    # *Note:* set project name to "7-test_css_groja_grid"
+npm init vite@latest -- --template react-ts    # *Note:* set project name to "8-test_css_groja_grid"
 
-cd  7-test_css_groja_grid                      # /var/www/always_learning/always_learning_javascript/mdbootstrap/projects/7-test_css_groja_grid
+cd  8-test_css_groja_grid                      # /var/www/always_learning/always_learning_javascript/mdbootstrap/projects/8-test_css_groja_grid
 npm i mdb-react-ui-kit                         # Add mdb and react
 npm run dev                                    # Start development server; press "q" to quit
 ```
@@ -41,11 +41,6 @@ npm run dev                                    # Start development server; press
 <!-- MDB -->
 <link rel="stylesheet" href="/node_modules/mdb-react-ui-kit/dist/css/mdb.min.css" />
 ```
-
--=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-
-We are here
--=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-
-
 **Note:** I am not sure whether this is the *"proper"* place, file, or path to use!
 I searched the project directory for files named `mdb.min.*` and found this one, and adding the code above to `index.html` worked, so ...!!
 
