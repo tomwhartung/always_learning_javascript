@@ -31,7 +31,7 @@ interface MySliderCardProps {
 
 // MySlider: function component interface to the MDBRange component
 function MySlider( props:MySliderCardProps ) {
-  const [value, setValue] = useState(0)
+  const [value, setValue] = useState(defaultValue)
   const sliderLabel = ordinalsArray[props.sliderNo + 1] + " MySlider Component";
   const sliderId = "myslider-" + Number(props.sliderNo);
 
@@ -40,13 +40,15 @@ function MySlider( props:MySliderCardProps ) {
     // console.log("Value of " + sliderId + " is now " + val);
     setValue(Number(val));
   }
+
+  //      onChange={props.onSliderChange}
   return (
     <>
       <MDBRange
         defaultValue={defaultValue}
         id={sliderId}
         label={sliderLabel}
-        onChange={props.onSliderChange}
+        onChange={handleChange}
       />
       <p>sliderValue = {value}</p>
     </>
@@ -84,7 +86,7 @@ function MyContainer() {
   //      onSliderChange={() => handleSliderChange( (this as MySlider).onChange )} />
   return (
     <div className="container">
-      <div className="row">
+      <div className="row d-flex justify-content-center">
         <div key={slNo} className="col-md-6">
           <MySliderCard
             sliderNo={slNo}
