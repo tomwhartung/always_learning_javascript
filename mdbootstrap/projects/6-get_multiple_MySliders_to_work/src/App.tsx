@@ -1,6 +1,6 @@
 //
-// App.jsx: Main file for the 6-get_multiple_MySliders_to_work project
-// -------------------------------------------------------------------
+// src/App.tsx: Main file for the 6-get_multiple_MySliders_to_work project
+// -----------------------------------------------------------------------
 //
 import './App.css'
 
@@ -30,7 +30,7 @@ interface MySliderCardProps {
 
 // MySlider: function component interface to the MDBRange component
 function MySlider( props:MySliderCardProps ) {
-  const [value, setValue] = useState(0)
+  const [value, setValue] = useState(defaultValue)
   const sliderLabel = ordinalsArray[props.sliderNo + 1] + " MySlider Component";
   const sliderId = "myslider-" + Number(props.sliderNo);
 
@@ -42,7 +42,7 @@ function MySlider( props:MySliderCardProps ) {
   return (
     <>
       <MDBRange
-        defaultValue={50}
+        defaultValue={defaultValue}
         id={sliderId}
         label={sliderLabel}
         onChange={handleChange}
