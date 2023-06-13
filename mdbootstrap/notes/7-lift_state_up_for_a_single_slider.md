@@ -53,6 +53,31 @@ For details, see the
 - [x] Load into VSCode
 - [x] Run `npm run lint`
 
+# 3. Process
+
+- [x] 3.1. Remove all but one card from `MyContainer`
+- [ ] 3.2. Lift state up for just the one card from `MySlider` to `MySliderCard`
+  - [x] 3.2.1. Move definition of state variable `const [value...` from `MySlider` to `MySliderCard`
+  - [x] 3.2.2. Move definition of event handler `handleChange` from `MySlider` to `MySliderCard`
+  - [x] 3.2.3. Change the `onChange` attribute of the `MDBRange` tag to use `props.onSliderChange` instead of `handleChange`
+  - [x] 3.2.4. Add new member `sliderVal: number` to `MySliderCardProps`
+  - [x] 3.2.5. Update the `p` tag in `MySlider` to display `sliderValue = {props.sliderVal}`
+  - [x] 3.2.6. Add new prop `sliderVal={props.sliderVal}` to the `MySlider` tag in `MySliderCard`
+  - [x] 3.2.7. Update `MySliderCard` to accept only the `sliderNo` prop
+    - Make a copy of `MySliderCardProps` and name it `MyCardProps`
+    - Change `MySliderCardProps` to have only the `sliderNo` member
+    - Update `MySliderCard`'s signature to accept a `MySliderCardProps`
+    - Update the `MySlider` tag in `MySliderCard` to:
+      - Pass the `sliderNo` on as a `MySlider` prop
+      - Use the local value of `value` for the `MySlider` tag's `sliderVal` prop
+      - Use the local function named `handleChange` for the `MySlider` tag's `onSliderChange` prop
+    - `MyContainer`'s `MySliderCard` tag to ...   
+  - [x] 3.2.8. Comment out all of the `logSliderChange` function in `MyContainer`
+  - [x] 3.2.9. This gets us a clean compile, so commit these changes!
+  - [ ] 3.2.10. 
+- [ ] 3.3. Lift state up for just the one card again from `MySliderCard` to `MyComponent`
+- [ ] 3.4. Figure out how to put the new tag for `MySliderCard` in a loop
+
 
 -=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-
 We are here!
