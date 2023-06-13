@@ -83,7 +83,7 @@ function MySliderCard( props:MySliderCardProps ) {
         onSliderChange={handleChange}
       />
       <p>
-        "myslider-{props.sliderNo}" in the {lcOrd} card.
+        Value of "myslider-{props.sliderNo}" in the {lcOrd} card is {value}.
       </p>
     </div>
   )
