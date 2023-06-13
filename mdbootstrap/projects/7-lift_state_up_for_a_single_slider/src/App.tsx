@@ -24,46 +24,64 @@ const ordinalsArray: readonly string[] = [
 ];
 
 // Important types
-interface MySliderCardProps {
+interface MySliderProps {
   sliderNo: number;
   onSliderChange: (evt: ChangeEvent<Element>) => void;
+  sliderVal: number;
+}
+interface MySliderCardProps {
+  sliderNo: number;
 }
 
 // MySlider: function component interface to the MDBRange component
-function MySlider( props:MySliderCardProps ) {
-  const [value, setValue] = useState(defaultValue)
+function MySlider( props:MySliderProps ) {
+  // const [value, setValue] = useState(defaultValue)
   const sliderLabel = ordinalsArray[props.sliderNo + 1] + " MySlider Component";
   const sliderId = "myslider-" + Number(props.sliderNo);
 
-  function handleChange(evt:ChangeEvent) {
-    const val = (evt.target as HTMLInputElement).value;
-    // console.log("Value of " + sliderId + " is now " + val);
-    setValue(Number(val));
-  }
+  // function handleChange(evt:ChangeEvent) {
+  //   const val = (evt.target as HTMLInputElement).value;
+  //   console.log("Value of " + sliderId + " is now " + val);
+  //   setValue(Number(val));
+  // }
 
-  //      onChange={props.onSliderChange}
+  //      onChange={handleChange}
   return (
     <>
       <MDBRange
         defaultValue={defaultValue}
         id={sliderId}
         label={sliderLabel}
-        onChange={handleChange}
+        onChange={props.onSliderChange}
       />
-      <p>sliderValue = {value}</p>
+      <p>sliderValue = {props.sliderVal}</p>
     </>
   );
 }
 
 // MySliderCard: function component interface to the MDBRange component
 function MySliderCard( props:MySliderCardProps ) {
-  const ordinal = ordinalsArray[props.sliderNo + 1];
+  const [value, setValue] = useState(defaultValue)
+  // const ordinal = ordinalsArray[props.sliderNo + 1];
   // console.log( "props.sliderNo = " + props.sliderNo );
+  const ordinal = ordinalsArray[props.sliderNo + 1];
+  console.log( "props.sliderNo = " + props.sliderNo );
   const lcOrd = ordinal.toLowerCase();
 
+  function handleChange(evt:ChangeEvent) {
+    const val = (evt.target as HTMLInputElement).value;
+    console.log("Value of this slider is now " + val);
+    setValue(Number(val));
+  }
+
+  //    sliderNo={props.sliderNo}
   return (
     <div className="card">
-      <MySlider sliderNo={props.sliderNo} onSliderChange={props.onSliderChange} />
+      <MySlider
+        sliderNo={props.sliderNo}
+        sliderVal={value}
+        onSliderChange={handleChange}
+      />
       <p>
         "myslider-{props.sliderNo}" in the {lcOrd} card.
       </p>
@@ -77,20 +95,21 @@ function MyContainer() {
   const slNo = 0;
 
   // function handleSliderChange(evt: ChangeEvent) {
-  function logSliderChange(slNo: number) {
-    // const val = (evt.target as HTMLInputElement).value;
-    console.log("logSliderChange: slNo = " + slNo);
-    // setValue(Number(val));
-  }
+  // function logSliderChange(slNo: number) {
+  //   const val = (evt.target as HTMLInputElement).value;
+  //   console.log("logSliderChange: slNo = " + slNo);
+  //   setValue(Number(val));
+  // }
 
-  //      onSliderChange={() => handleSliderChange( (this as MySlider).onChange )} />
+  //      onSliderChange={() => handleSliderChange( (this as MySlider).onChange )}
+  //      onSliderChange={() => logSliderChange(slNo)}
   return (
     <div className="container">
       <div className="row d-flex justify-content-center">
         <div key={slNo} className="col-md-6">
           <MySliderCard
             sliderNo={slNo}
-            onSliderChange={() => logSliderChange(slNo)} />
+          />
         </div>
       </div>
       <div className="row mt-4 d-flex justify-content-center">
