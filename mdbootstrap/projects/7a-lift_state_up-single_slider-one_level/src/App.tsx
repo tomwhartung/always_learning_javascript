@@ -1,6 +1,6 @@
 //
-// App.tsx: Main file for the 6-get_multiple_MySliders_to_work project
-// -------------------------------------------------------------------
+// src/App.tsx: Main file for the 7a-lift_state_up-single_slider-one_level
+// -----------------------------------------------------------------------
 //
 import './App.css'
 
