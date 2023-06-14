@@ -49,6 +49,19 @@ Remember, the how-to for our best shot so far at getting everything we want is i
   - This is their [slider](https://mdbootstrap.com/docs/react/forms/range/)
   - Notes are in `mdbootstrap/notes/5-try_to_get_slider_to_work.md`
   - Project is in `mdbootstrap/projects/5-try_to_get_slider_to_work`
-- [ ] Project 6: Get multiple `MySlider` components to work
-  - This builds on Project 5
 
+- [x] Project 6: Get multiple `MySlider` components to work
+  - This builds on Project 5
+  - Notes are in `mdbootstrap/notes/6-get_multiple_MySliders_to_work.md`
+  - Project is in `mdbootstrap/projects/6-get_multiple_MySliders_to_work`
+
+- [ ] Project 7: Take Baby Steps in Lifting State up Multiple Levels for Multiple Components
+  - In Project 6, lifting state up proved to be difficult
+    - In project 7 we work on figuring out how to lift the state up for just one slider
+  - Breaking this down into 4 steps
+    - The first step is trivial, so it's really kinda sorta just 3 steps
+    - Overview notes are in `mdbootstrap/notes/7-lift_state_up_for_a_single_slider.md`
+  - [x] Steps 3.1. and 3.2. - Lift State Up One Level for One Slider
+    - Notes are in `mdbootstrap/notes/7a-lift_state_up-single_slider-one_level.md`
+    - Project is in `mdbootstrap/projects/7a-lift_state_up-single_slider-one_level`
+  - [ ] Step 3.3. - Lift State Up Two Levels for One Slider
