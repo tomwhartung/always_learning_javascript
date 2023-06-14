@@ -78,33 +78,15 @@ In this step we work on lifting state up for a single slider an additional level
   - [x] 3.3.8. Add an `sliderVal={value}` attribute to the `MySliderCard` tag in `MyContainer`
   - [x] 3.3.9. Comment out the definition of the `MySliderCardProps` interface
   - [x] 3.3.10. This gets us a clean compile, so commit these changes!
-  - [x] 3.3.10. Test what we have!  OMG it works - at least inside the `MySlider` component...
-
-  - [ ] 3.3.11. Test that the value is getting up from `MySlider` to `MySliderCard`
-    - [ ] Change the `<p>TODO...` tag in the second row of `MyComponent` to display `Value of slider number {slNo} = {value}`
-    - [ ] Move the slider on the web page back-and-forth
-    - [ ] Confirm the `<p>Value of...` tag in the second row displays the correct value
-
-
-    - [?] Change `MySliderCardProps` to have only the `sliderNo` member
-    - [?] Update `MySliderCard`'s signature to accept a `MySliderCardProps`
-    - [?] Update the `MySlider` tag in `MySliderCard` to:
-      - [?] Pass the `sliderNo` on as a `MySlider` prop
-      - [?] Use the local value of `value` for the `MySlider` tag's `sliderVal` prop
-      - [?] Use the local function named `handleChange` for the `MySlider` tag's `onSliderChange` prop
-    - [?] Update the `MySliderCard` tag in `MyContainer` to use just the `sliderNo` prop
-
-
-
--=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-
-We are here!
-Thinking these steps may be somewhat similar to what we did last time, so we will use them as a starting point
--=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-
-
+  - [x] 3.3.10. Ensure that what we have so far works
+  - [x] 3.3.11. Test that the value is getting up from `MySlider` to `MySliderCard`
+    - [x] Change the `<p>TODO...` tag in the second row of `MyComponent` to display `Value of slider number {slNo} = {value}`
+    - [x] Move the slider on the web page back-and-forth
+    - [x] Confirm the `<p>Value of...` tag in the second row displays the correct value
 
 ## 3.4. Details for Step 3.4.
 
 In this step we work on being able to create multiple sliders in a `for` loop.
 
-- See details in `7c-TBD` 
+- See details in `7c-lift_state_up-multiple_sliders-two_levels.md`
 
