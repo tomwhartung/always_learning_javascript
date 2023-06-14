@@ -68,35 +68,41 @@ For these details, see `7a-lift_state_up-single_slider-one_level.md`.
 In this step we work on lifting state up for a single slider an additional level.
 
 - [ ] 3.3. Lift state up for just the one card again from `MySliderCard` to `MyComponent`
+  - [ ] 3.3.1. Move definition of state variable `const [value...` from `MySliderCard` to `MyContainer`
+  - [ ] 3.3.2. Move definition of event handler `handleChange` from `MySliderCard` to `MyContainer`
+  - [ ] 3.3.3. Change the type of the argument passed to `MySliderCard` from `props:MySliderCardProps` to `props:MySliderProps`
+  - [ ] 3.3.4. Change the `sliderVal` attribute of the `MySlider` tag in `MySliderCard` to use `props.sliderVal` instead of `value`
+  - [ ] 3.3.5. Change the `onChange` attribute of the `MySlider` tag in `MySliderCard` to use `props.onSliderChange` instead of `handleChange`
+  - [ ] 3.3.6. Change the `<p>...` tag in `MySliderCard` to use `props.sliderVal` instead of `value`
+
+    - **Save typing! See comments above the tag!!**
+  - [ ] 3.3.7. Add an `onChange={handleChange}` attribute to the `MySliderCard` tag in `MyContainer`
+  - [ ] 3.3.8. Add an `sliderVal={value}` attribute to the `MySliderCard` tag in `MyContainer`
+
+    - [?] Change `MySliderCardProps` to have only the `sliderNo` member
+    - [?] Update `MySliderCard`'s signature to accept a `MySliderCardProps`
+    - [?] Update the `MySlider` tag in `MySliderCard` to:
+      - [?] Pass the `sliderNo` on as a `MySlider` prop
+      - [?] Use the local value of `value` for the `MySlider` tag's `sliderVal` prop
+      - [?] Use the local function named `handleChange` for the `MySlider` tag's `onSliderChange` prop
+    - [?] Update the `MySliderCard` tag in `MyContainer` to use just the `sliderNo` prop
+
+
+  - [ ] 3.3.8. Comment out the definition of the `MySliderCardProps` interface
+
+  - [ ] 3.3.9. This gets us a clean compile, so commit these changes!
+  - [ ] 3.3.10. Test what we have!  OMG it works - at least inside the `MySlider` component...
+
+  - [ ] 3.3.11. Test that the value is getting up from `MySlider` to `MySliderCard`
+    - [ ] Change the `<p>TODO...` tag in the second row of `MyComponent` to display `Value of slider number {slNo} = {value}`
+    - [ ] Move the slider on the web page back-and-forth
+    - [ ] Confirm the `<p>Value of...` tag in the second row displays the correct value
+
 
 -=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-
 We are here!
 Thinking these steps may be somewhat similar to what we did last time, so we will use them as a starting point
 -=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-
-
-- [ ] 3.3. Lift state up for just the one card from `MySlider` to `MySliderCard`
-  - [ ] 3.3.1. Move definition of state variable `const [value...` from `MySlider` to `MySliderCard`
-  - [ ] 3.3.2. Move definition of event handler `handleChange` from `MySlider` to `MySliderCard`
-  - [ ] 3.3.3. Change the `onChange` attribute of the `MDBRange` tag to use `props.onSliderChange` instead of `handleChange`
-  - [ ] 3.3.4. Add new member `sliderVal: number` to `MySliderCardProps`
-  - [ ] 3.3.5. Update the `p` tag in `MySlider` to display `sliderValue = {props.sliderVal}`
-  - [ ] 3.3.6. Add new prop `sliderVal={props.sliderVal}` to the `MySlider` tag in `MySliderCard`
-  - [ ] 3.3.7. Update `MySliderCard` to accept only the `sliderNo` prop
-    - [ ] Make a copy of `MySliderCardProps` and name it `MyCardProps`
-    - [ ] Change `MySliderCardProps` to have only the `sliderNo` member
-    - [ ] Update `MySliderCard`'s signature to accept a `MySliderCardProps`
-    - [ ] Update the `MySlider` tag in `MySliderCard` to:
-      - [ ] Pass the `sliderNo` on as a `MySlider` prop
-      - [ ] Use the local value of `value` for the `MySlider` tag's `sliderVal` prop
-      - [ ] Use the local function named `handleChange` for the `MySlider` tag's `onSliderChange` prop
-    - [ ] Update the `MySliderCard` tag in `MyContainer` to use just the `sliderNo` prop
-  - [ ] 3.3.8. Comment out all of the `logSliderChange` function in `MyContainer`
-  - [ ] 3.3.9. This gets us a clean compile, so commit these changes!
-  - [ ] 3.3.10. Test what we have!  OMG it works - at least inside the `MySlider` component...
-  - [ ] 3.3.11. Test that the value is getting up from `MySlider` to `MySliderCard`
-    - [ ] Update the `<p>` tag in `MySliderCard` to display the value of the `value` state variable
-    - [ ] Move the slider in `MySlider`
-    - [ ] Confirm the `<p>` tag in `MySliderCard` displays the correct value
 
 
 ## 3.4. Details for Step 3.4.
