@@ -35,17 +35,9 @@ interface MySliderCardProps {
 
 // MySlider: function component interface to the MDBRange component
 function MySlider( props:MySliderProps ) {
-  // const [value, setValue] = useState(defaultValue)
   const sliderLabel = ordinalsArray[props.sliderNo + 1] + " MySlider Component";
   const sliderId = "myslider-" + Number(props.sliderNo);
 
-  // function handleChange(evt:ChangeEvent) {
-  //   const val = (evt.target as HTMLInputElement).value;
-  //   console.log("Value of " + sliderId + " is now " + val);
-  //   setValue(Number(val));
-  // }
-
-  //      onChange={handleChange}
   return (
     <>
       <MDBRange
@@ -62,8 +54,6 @@ function MySlider( props:MySliderProps ) {
 // MySliderCard: function component interface to the MDBRange component
 function MySliderCard( props:MySliderCardProps ) {
   const [value, setValue] = useState(defaultValue)
-  // const ordinal = ordinalsArray[props.sliderNo + 1];
-  // console.log( "props.sliderNo = " + props.sliderNo );
   const ordinal = ordinalsArray[props.sliderNo + 1];
   console.log( "props.sliderNo = " + props.sliderNo );
   const lcOrd = ordinal.toLowerCase();
@@ -74,7 +64,6 @@ function MySliderCard( props:MySliderCardProps ) {
     setValue(Number(val));
   }
 
-  //    sliderNo={props.sliderNo}
   return (
     <div className="card">
       <MySlider
@@ -103,6 +92,10 @@ function MyContainer() {
 
   //      onSliderChange={() => handleSliderChange( (this as MySlider).onChange )}
   //      onSliderChange={() => logSliderChange(slNo)}
+  //
+  //      sliderVal={value}
+  //      onSliderChange={handleChange}
+
   return (
     <div className="container">
       <div className="row d-flex justify-content-center">
