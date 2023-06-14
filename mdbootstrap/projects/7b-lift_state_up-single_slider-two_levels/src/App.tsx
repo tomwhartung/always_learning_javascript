@@ -29,9 +29,9 @@ interface MySliderProps {
   onSliderChange: (evt: ChangeEvent<Element>) => void;
   sliderVal: number;
 }
-interface MySliderCardProps {
-  sliderNo: number;
-}
+// interface MySliderCardProps {
+//   sliderNo: number;
+// }
 
 // MySlider: function component interface to the MDBRange component
 function MySlider( props:MySliderProps ) {
@@ -52,27 +52,27 @@ function MySlider( props:MySliderProps ) {
 }
 
 // MySliderCard: function component interface to the MDBRange component
-function MySliderCard( props:MySliderCardProps ) {
-  const [value, setValue] = useState(defaultValue)
+function MySliderCard( props:MySliderProps ) {
+  // const [value, setValue] = useState(defaultValue)
   const ordinal = ordinalsArray[props.sliderNo + 1];
   console.log( "props.sliderNo = " + props.sliderNo );
   const lcOrd = ordinal.toLowerCase();
 
-  function handleChange(evt:ChangeEvent) {
-    const val = (evt.target as HTMLInputElement).value;
-    console.log("Value of this slider is now " + val);
-    setValue(Number(val));
-  }
+// function handleChange(evt:ChangeEvent) {
+//   const val = (evt.target as HTMLInputElement).value;
+//   console.log("Value of this slider is now " + val);
+//   setValue(Number(val));
+// }
 
   return (
     <div className="card">
       <MySlider
         sliderNo={props.sliderNo}
-        sliderVal={value}
-        onSliderChange={handleChange}
+        sliderVal={props.sliderVal}
+        onSliderChange={props.onSliderChange}
       />
       <p>
-        Value of "myslider-{props.sliderNo}" in the {lcOrd} card is {value}.
+        Value of "myslider-{props.sliderNo}" in the {lcOrd} card is {props.sliderVal}.
       </p>
     </div>
   )
@@ -80,7 +80,7 @@ function MySliderCard( props:MySliderCardProps ) {
 
 // MyContainer: function component containing an MDB container
 function MyContainer() {
-  // const [value, setValue] = useState(defaultValue);
+  const [value, setValue] = useState(defaultValue)
   const slNo = 0;
 
   // function handleSliderChange(evt: ChangeEvent) {
@@ -90,11 +90,11 @@ function MyContainer() {
   //   setValue(Number(val));
   // }
 
-  //      onSliderChange={() => handleSliderChange( (this as MySlider).onChange )}
-  //      onSliderChange={() => logSliderChange(slNo)}
-  //
-  //      sliderVal={value}
-  //      onSliderChange={handleChange}
+  function handleChange(evt:ChangeEvent) {
+    const val = (evt.target as HTMLInputElement).value;
+    console.log("Value of this slider is now " + val);
+    setValue(Number(val));
+  }
 
   return (
     <div className="container">
@@ -102,6 +102,8 @@ function MyContainer() {
         <div key={slNo} className="col-md-6">
           <MySliderCard
             sliderNo={slNo}
+            sliderVal={value}
+            onSliderChange={handleChange}
           />
         </div>
       </div>
