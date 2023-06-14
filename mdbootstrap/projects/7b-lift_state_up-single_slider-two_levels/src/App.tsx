@@ -110,7 +110,7 @@ function MyContainer() {
       <div className="row mt-4 d-flex justify-content-center">
         <div className="col-md-8">
           <div className="card">
-            <p>TODO: Summarize the results here</p>
+            <p>Value of slider number {slNo} = {value}</p>
             <p>This is example 1 of how to center 8 column units</p>
             <p>
              This is an example of a paragraph with a lot of content.
@@ -126,7 +126,7 @@ function MyContainer() {
         </div>
         <div className="col-md-8">
           <div className="card">
-            <p>TODO: Summarize the results here</p>
+            <p>Value of slider number {slNo} = {value}</p>
             <p>This is example 2 of how to center 8 column units</p>
           </div>
         </div>
@@ -136,7 +136,7 @@ function MyContainer() {
         </div>
         <div className="col-md-8">
           <div className="card">
-            <p>TODO: Summarize the results here</p>
+            <p>Value of slider number {slNo} = {value}</p>
             <p>This is example 3 of how to center 8 cols between 2+2=4</p>
             <p>
              This is an example of a paragraph with a lot of content.
@@ -154,7 +154,7 @@ function MyContainer() {
         </div>
         <div className="col-md-8">
           <div className="card">
-            <p>TODO: Summarize the results here</p>
+            <p>Value of slider number {slNo} = {value}</p>
             <p>This is example 4 of how to center 8 cols between 2+2=4</p>
           </div>
         </div>
