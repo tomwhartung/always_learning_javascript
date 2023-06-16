@@ -77,8 +77,17 @@ In this step we work on being able to use the state in `MyComponent` in multiple
 - [ ] Then, create 2-3-4 sliders in a `for` loop
 
 - [ ] 3.4. Use the state in `MyComponent` in multiple `MySlider`s in multiple `MySliderCard`s
-  - [ ] 3.4.1. 
-  - [ ] 3.4.2. 
+  - [x] 3.4.1. In a list
+    - [x] 3.4.1.1. Make new variables and functions in `MyContainer`:
+      - `value1`, `setValue1`, `slNo1`, and `handleChange1`
+      - `value2`, `setValue2`, `slNo2`, and `handleChange2`
+    - [x] 3.4.1.2. Make a copy of lines that use these variables and functions:
+      - `value`, `setValue`, `slNo`, and `handleChange`
+    - [x] 3.4.1.3. Make one copy of the code use `value1`, etc.
+    - [x] 3.4.1.4. Make the other copy of the code use `value2`, etc.
+    - [x] 3.4.1.5. Test it -- it works!
+  - [ ] 3.4.2. Using an array of state variables in a `for` loop
+
   - [ ] 3.4.3. 
   - [ ] 3.4.4. 
   - [ ] 3.4.5. 
