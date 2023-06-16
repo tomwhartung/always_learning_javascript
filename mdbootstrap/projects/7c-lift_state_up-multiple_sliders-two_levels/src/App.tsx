@@ -7,9 +7,24 @@ import './App.css'
 import { ChangeEvent, useState } from 'react';
 import { MDBRange } from 'mdb-react-ui-kit';
 
+// Important types
+interface MySliderProps {
+  sliderNo: number;
+  onSliderChange: (evt: ChangeEvent<Element>) => void;
+  sliderVal: number;
+}
+interface SliderValue {
+  slNo: number;
+  value: number;
+}
+
 // Important constants
 const defaultValue = 50;
-// const numberOfSliderCards = 2;      // Warning: Do not make this greater
+const defaultSliderValue: SliderValue = {
+  slNo: 0,
+  value: defaultValue,
+};
+const numberOfSliderCards = 2;      // Warning: Do not make this greater
                                     // than or equal to the number of
                                     // elements in ordinalsArray!
 const ordinalsArray: readonly string[] = [
@@ -21,13 +36,6 @@ const ordinalsArray: readonly string[] = [
   "Fifth",
   "Sixth",
 ];
-
-// Important types
-interface MySliderProps {
-  sliderNo: number;
-  onSliderChange: (evt: ChangeEvent<Element>) => void;
-  sliderVal: number;
-}
 
 // MySlider: function component interface to the MDBRange component
 function MySlider( props:MySliderProps ) {
@@ -70,11 +78,19 @@ function MySliderCard( props:MySliderProps ) {
 // MyContainer: function component containing an MDB container
 function MyContainer() {
   // const [value, setValue] = useState(defaultValue)
-  // const [value, setValue] = useState([Array(numberOfSliderCards).fill(defaultValue)]);
   // const [value, setValue] = useState(Array(numberOfSliderCards).fill(defaultValue));
-  // const [values, setValues] = useState<Array<values: number[]>>([]);
-  const [value1, setValue1] = useState(defaultValue)
-  const [value2, setValue2] = useState(defaultValue)
+  const [value1, setValue1] = useState(defaultValue);
+  const [value2, setValue2] = useState(defaultValue);
+
+// const [values, setValues] = useState<number[]>([]);
+  const [values, setValues] = useState([defaultValue]);
+  const [sliderValues, setSliderValues] = useState<SliderValue[]>([]);
+
+// Huh.  This causes a "Too many re-renders" error in the JS Console.  Hmmm-K.  Good to know!
+// for ( let slNo = 0; slNo < numberOfSliderCards; slNo++ ) {
+//   setValues(previousValues => [...previousValues, defaultValue]);
+//   setSliderValues(previousSliderValues => [...previousSliderValues, defaultSliderValue]);
+// }
   const slNo1 = 0;
   const slNo2 = 1;
 
@@ -100,6 +116,22 @@ function MyContainer() {
           />
         </div>
         <div key={slNo2} className="col-md-3">
+          <MySliderCard
+            sliderNo={slNo2}
+            sliderVal={value2}
+            onSliderChange={handleChange2}
+          />
+        </div>
+      </div>
+      <div className="row d-flex justify-content-center">
+        <div className="col-md-3">
+          <MySliderCard
+            sliderNo={slNo1}
+            sliderVal={value1}
+            onSliderChange={handleChange1}
+          />
+        </div>
+        <div className="col-md-3">
           <MySliderCard
             sliderNo={slNo2}
             sliderVal={value2}
