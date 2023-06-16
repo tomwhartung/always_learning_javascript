@@ -87,6 +87,26 @@ In this step we work on being able to use the state in `MyComponent` in multiple
     - [x] 3.4.1.4. Make the other copy of the code use `value2`, etc.
     - [x] 3.4.1.5. Test it -- it works!
   - [ ] 3.4.2. Using an array of state variables in a `for` loop
+    - I am starting off using two arrays:
+      - `values[]` - an array of `number`s
+      - `sliderValues[]` - an array of `SliderValue` objects
+    - [x] 3.4.2.1. Declare a `SliderValue` interface with two members:
+      - `slNo: number;`
+      - `value: number;`
+    - [x] 3.4.2.2. Figure out how to declare an array of state variables that will hold numeric `values`
+      - `const [values, setValues] = useState([defaultValue]);`
+    - [x] 3.4.2.3. Figure out how to declare an array of state variables using the `SliderValue` interface
+      - `const [sliderValues, setSliderValues] = useState<SliderValue[]>([]);`
+    - [!] 3.4.2.4. Try to initialize both the `values` and `sliderValues` arrays to their `defaultValue`s
+      - Writing a `for` loop to initialize them caused a *"Too many re-renders"* error
+      - There are ways to fix this, but it's no biggie?
+        - [Using error boundaries](https://react.dev/reference/react/Component#catching-rendering-errors-with-an-error-boundary)
+      - Leaving this code commented-out for now...
+    - [ ] 3.4.2.5. 
+    - [ ] 3.4.2.6. 
+    - [ ] 3.4.2.7. 
+    - [ ] 3.4.2.8. 
+    - [ ] 3.4.2.9. 
 
   - [ ] 3.4.3. 
   - [ ] 3.4.4. 
