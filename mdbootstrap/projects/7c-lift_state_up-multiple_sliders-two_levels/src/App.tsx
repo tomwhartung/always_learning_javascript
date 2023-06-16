@@ -9,9 +9,9 @@ import { MDBRange } from 'mdb-react-ui-kit';
 
 // Important constants
 const defaultValue = 50;
-// const numberOfSliderCards = 4;      // Warning: Do not make this greater
-//                                     // than or equal to the number of
-//                                     // elements in ordinalsArray!
+// const numberOfSliderCards = 2;      // Warning: Do not make this greater
+                                    // than or equal to the number of
+                                    // elements in ordinalsArray!
 const ordinalsArray: readonly string[] = [
   "Zeroeth",
   "First",
@@ -69,35 +69,60 @@ function MySliderCard( props:MySliderProps ) {
 
 // MyContainer: function component containing an MDB container
 function MyContainer() {
-  const [value, setValue] = useState(defaultValue)
-  const slNo = 0;
+  // const [value, setValue] = useState(defaultValue)
+  // const [value, setValue] = useState([Array(numberOfSliderCards).fill(defaultValue)]);
+  // const [value, setValue] = useState(Array(numberOfSliderCards).fill(defaultValue));
+  // const [values, setValues] = useState<Array<values: number[]>>([]);
+  const [value1, setValue1] = useState(defaultValue)
+  const [value2, setValue2] = useState(defaultValue)
+  const slNo1 = 0;
+  const slNo2 = 1;
 
-  function handleChange(evt:ChangeEvent) {
+  function handleChange1(evt:ChangeEvent) {
     const val = (evt.target as HTMLInputElement).value;
   // console.log("Value of this slider is now " + val);
-    setValue(Number(val));
+    setValue1(Number(val));
+  }
+  function handleChange2(evt:ChangeEvent) {
+    const val = (evt.target as HTMLInputElement).value;
+  // console.log("Value of this slider is now " + val);
+    setValue2(Number(val));
   }
 
   return (
     <div className="container">
       <div className="row d-flex justify-content-center">
-        <div key={slNo} className="col-md-6">
+        <div key={slNo1} className="col-md-3">
           <MySliderCard
-            sliderNo={slNo}
-            sliderVal={value}
-            onSliderChange={handleChange}
+            sliderNo={slNo1}
+            sliderVal={value1}
+            onSliderChange={handleChange1}
+          />
+        </div>
+        <div key={slNo2} className="col-md-3">
+          <MySliderCard
+            sliderNo={slNo2}
+            sliderVal={value2}
+            onSliderChange={handleChange2}
           />
         </div>
       </div>
       <div className="row mt-4 d-flex justify-content-center">
-        <div className="col-md-8">
+        <div className="col-md-3">
           <div className="card">
-            <p>Value of slider number {slNo} = {value}</p>
+            <p>Value of slider number {slNo1} = {value1}</p>
             <p>Nothing to see here.</p>
             <p>
              This is an example of a empty paragraph.
              LOL but I jest!
             </p>
+          </div>
+        </div>
+        <div className="col-md-3">
+          <div className="card">
+            <p>Value of slider number {slNo2} = {value2}</p>
+            <p></p>
+            <p>LOL but I jest!</p>
           </div>
         </div>
       </div>
