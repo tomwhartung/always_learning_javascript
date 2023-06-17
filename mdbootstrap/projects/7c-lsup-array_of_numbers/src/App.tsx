@@ -16,7 +16,7 @@ interface MySliderProps {
 
 // Important constants
 const defaultValue = 50;
-const numberOfSliderCards = 2;      // Warning: Do not make this greater
+const numberOfSliderCards = 4;      // Warning: Do not make this greater
                                     // than or equal to the number of
                                     // elements in ordinalsArray!
 const ordinalsArray: readonly string[] = [
@@ -76,7 +76,7 @@ function MyContainer() {
 
 // const [values, setValues] = useState<number[]>([]);
   const [values, setValues] = useState([defaultValue]);
-// const sliderNumberCols = [];
+  const sliderNumberCols = [];
 
 // Huh.  This causes a "Too many re-renders" error in the JS Console.  Hmmm-K.  Good to know!
 // for ( let slNo = 0; slNo < numberOfSliderCards; slNo++ ) {
@@ -97,43 +97,28 @@ function MyContainer() {
   function handleChangeNumber(evt:ChangeEvent, col:number) {
     const val = (evt.target as HTMLInputElement).value;
   // console.log("Value of this slider is now " + val);
-  // setValues(Number(val));
     const nextValues = values.slice();
     nextValues[col] = Number(val);
     setValues(nextValues);
   }
 
-// for ( let col = 0; col < numberOfSliderCards; col++ ) {
-//   sliderNumberCols.push(
-//     <div key={col} className="col-md-3">
-//       <MySliderCard
-//        sliderNo={col}
-//        sliderVal={values[col]}
-//        onSliderChange={ () => handleChangeNumber(col) }
-//       />
-//     </div>
-//   );
-// }
+  for ( let col = 0; col < numberOfSliderCards; col++ ) {
+    sliderNumberCols.push(
+      <div key={col} className="col-md-3">
+        <MySliderCard
+         sliderNo={col}
+         sliderVal={values[col]}
+         onSliderChange={ (evt) => handleChangeNumber(evt,col) }
+        />
+      </div>
+    );
+  }
 
-  // {sliderNumberCols}
   return (
     <div className="container">
       <div className="row d-flex justify-content-center">
-        <h3>Array of Numbers</h3>
-        <div key={0} className="col-md-3">
-          <MySliderCard
-           sliderNo={0}
-           sliderVal={values[0]}
-           onSliderChange={ (evt) => handleChangeNumber(evt,0) }
-          />
-        </div>
-        <div key={1} className="col-md-3">
-          <MySliderCard
-           sliderNo={1}
-           sliderVal={values[1]}
-           onSliderChange={ (evt) => handleChangeNumber(evt,1) }
-          />
-        </div>
+        <h3>Array of Numbers - `for` Loop Version</h3>
+        {sliderNumberCols}
       </div>
       <div className="row d-flex justify-content-center">
         <h3>Hard-coded List - Not an Array</h3>
