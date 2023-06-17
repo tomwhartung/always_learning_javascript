@@ -15,14 +15,14 @@ interface MySliderProps {
 }
 interface SliderValue {
   slNo: number;
-  value: number;
+  slVal: number;
 }
 
 // Important constants
 const defaultValue = 50;
 const defaultSliderValue: SliderValue = {
   slNo: 0,
-  value: defaultValue,
+  slVal: defaultValue,
 };
 const numberOfSliderCards = 2;      // Warning: Do not make this greater
                                     // than or equal to the number of
@@ -96,6 +96,9 @@ function MyContainer() {
 //   setSliderValues(previousSliderValues => [...previousSliderValues, defaultSliderValue]);
 // }
 
+//  const previousSliderValues = defaultSliderValue;
+//  setSliderValues([...previousSliderValues, defaultSliderValue]);
+
 // function handleChange1(evt:ChangeEvent) {
   function handleChange1(evt:ChangeEvent) {
     const val = (evt.target as HTMLInputElement).value;
@@ -116,14 +119,14 @@ function MyContainer() {
     nextValues[col] = Number(val);
     setValues(nextValues);
   }
-  function handleChangeObject(evt:ChangeEvent) {
+  function handleChangeObject(evt:ChangeEvent, col:number) {
     const val = (evt.target as HTMLInputElement).value;
-  // console.log("Value of this slider is now " + val);
-  // setSliderValues(Number(val));
-  const nextSliderValues = sliderValues.slice();
-  nextSliderValues[0] = { slNo: 0, value: Number(val) };
-  setSliderValues(nextSliderValues);
-}
+    // console.log("Value of this slider is now " + val);
+    // setSliderValues(Number(val));
+    const nextSliderValues = sliderValues.slice();
+    nextSliderValues[col] = { slNo: col, slVal: Number(val) };
+    setSliderValues(nextSliderValues);
+  }
 
 // for ( let col = 0; col < numberOfSliderCards; col++ ) {
 //   sliderNumberCols.push(
@@ -172,7 +175,12 @@ function MyContainer() {
       </div>
       <div className="row d-flex justify-content-center">
         <h3>Array of SliderValue Objects</h3>
-        <div className="col-md-3">
+        <div key={2} className="col-md-3">
+          <MySliderCard
+            sliderNo={Number(0)}
+            sliderVal={sliderValues[0].slVal}
+            onSliderChange={ (evt) => handleChangeObject(evt,0) }
+          />
         </div>
         <div className="col-md-3">
         </div>
