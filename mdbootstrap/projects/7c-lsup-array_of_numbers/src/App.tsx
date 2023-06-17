@@ -27,6 +27,14 @@ const ordinalsArray: readonly string[] = [
   "Fourth",
   "Fifth",
   "Sixth",
+  "Seventh",
+  "Eighth",
+  "Ninth",
+  "Tenth",
+  "Eleventh",
+  "Twelfth",
+  "Thirteenth",
+  "Fourteenth",
 ];
 
 // MySlider: function component interface to the MDBRange component
@@ -50,7 +58,7 @@ function MySlider( props:MySliderProps ) {
 // MySliderCard: function component interface to the MDBRange component
 function MySliderCard( props:MySliderProps ) {
   const ordinal = ordinalsArray[props.sliderNo + 1];
-  console.log( "props.sliderNo = " + props.sliderNo );
+// console.log( "props.sliderNo = " + props.sliderNo );
   const lcOrd = ordinal.toLowerCase();
 
   return (
@@ -71,8 +79,8 @@ function MySliderCard( props:MySliderProps ) {
 function MyContainer() {
   const [value1, setValue1] = useState(defaultValue);
   const [value2, setValue2] = useState(defaultValue);
-  const slNo1 = 0;
-  const slNo2 = 1;
+  const slNo1 = numberOfSliderCards + 0;
+  const slNo2 = numberOfSliderCards + 1;
 
 // const [values, setValues] = useState<number[]>([]);
   const [values, setValues] = useState([defaultValue]);
@@ -83,15 +91,15 @@ function MyContainer() {
 //   setValues(previousValues => [...previousValues, defaultValue]);
 // }
 
-  function handleChange1(evt:ChangeEvent) {
+  function handleChangeSingleValues( evt:ChangeEvent, slNo:number ) {
     const val = (evt.target as HTMLInputElement).value;
-  // console.log("Value of this slider is now " + val);
-    setValue1(Number(val));
-  }
-  function handleChange2(evt:ChangeEvent) {
-    const val = (evt.target as HTMLInputElement).value;
-  // console.log("Value of this slider is now " + val);
-    setValue2(Number(val));
+    console.log("Value of single slider slNo = " + slNo + " is now " + val);
+    if ( slNo == slNo1 ) {
+      setValue1(Number(val));
+    } else
+    if ( slNo == slNo2 ) {
+      setValue2(Number(val));
+    }
   }
 
   function handleChangeNumber(evt:ChangeEvent, col:number) {
@@ -126,14 +134,14 @@ function MyContainer() {
           <MySliderCard
             sliderNo={slNo1}
             sliderVal={value1}
-            onSliderChange={() => handleChange1}
+            onSliderChange={ (evt) => handleChangeSingleValues(evt,slNo1) }
           />
         </div>
         <div className="col-md-3">
           <MySliderCard
             sliderNo={slNo2}
             sliderVal={value2}
-            onSliderChange={handleChange2}
+            onSliderChange={ (evt) => handleChangeSingleValues(evt,slNo2) }
           />
         </div>
       </div>
