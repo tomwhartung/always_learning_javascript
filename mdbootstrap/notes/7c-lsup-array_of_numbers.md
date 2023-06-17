@@ -89,52 +89,20 @@ In this step we work on being able to use the state in `MyComponent` in multiple
     - [x] 3.4.1.3. Make one copy of the code use `value1`, etc.
     - [x] 3.4.1.4. Make the other copy of the code use `value2`, etc.
     - [x] 3.4.1.5. Test it -- it works!
-  - [ ] 3.4.2. Using an array of state variables in a `for` loop
-    - Start off using an array of numbers named `values[]`
+  - [x] 3.4.2. Using an array of state variables in a `for` loop
+    - Use an array of numbers named `values[]` for the slider state variables
     - [x] 3.4.2.1. Figure out how to declare an array of state variables that will hold numeric `values`
       - `const [values, setValues] = useState([defaultValue]);`
-    - [x] 3.4.2.2. Initialize the `values` array to contain `defaultValue`s
-      - [!] Writing a `for` loop to initialize them caused a *"Too many re-renders"* error
-      - There are ways to fix this, but it's no biggie?
-        - [Using error boundaries](https://react.dev/reference/react/Component#catching-rendering-errors-with-an-error-boundary)
-      - Leaving this code commented-out for now...
-    - [ ] 3.4.2.5. 
-    - [ ] 3.4.2.6. 
-    - [ ] 3.4.2.7. 
-    - [ ] 3.4.2.8. 
-    - [ ] 3.4.2.9. 
-
-  - [ ] 3.4.3. 
-  - [ ] 3.4.4. 
-  - [ ] 3.4.5. 
-  - [ ] 3.4.6. 
-
--=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-
-**NOTE:** If we get this to work, we should rename all occurrences of "lift_state_up_for_a_single_slider", because
-we will have lifted state up for multiple sliders in this project:
-
-```
-tomh@jane: /var/www/always_learning/always_learning_javascript/mdbootstrap
- $ gredt lift_state_up_for_a_single_slider
-Searching for "lift_state_up_for_a_single_slider" in files under "/var/www/always_learning/always_learning_javascript/mdbootstrap"
-
-README.md:63:    - Overview notes are in `mdbootstrap/notes/7-lift_state_up_for_a_single_slider.md`
-notes/6-get_multiple_MySliders_to_work.md:148:  - [ ] See `7-lift_state_up_for_a_single_slider.md` in this directory
-notes/7-lift_state_up_for_a_single_slider.md:2:# 7-lift_state_up_for_a_single_slider.md
-notes/7-lift_state_up_for_a_single_slider.md:23:npm init vite@latest -- --template react-ts    # *Note:* set project name to "7-lift_state_up_for_a_single_slider"
-notes/7-lift_state_up_for_a_single_slider.md:25:cd 7-lift_state_up_for_a_single_slider         # /var/www/always_learning/always_learning_javascript/mdbootstrap/projects/7-lift_state_up_for_a_single_slider
-notes/7-lift_state_up_for_a_single_slider.md:30:**Note:** the `7-lift_state_up_for_a_single_slider` was later renamed to `7a-lift_state_up-single_slider-one_level`,
-notes/7-lift_state_up_for_a_single_slider.md:48:$ diff 6-get_multiple_MySliders_to_work/index.html 7-lift_state_up_for_a_single_slider/index.html
-notes/7-lift_state_up_for_a_single_slider.md:52:$ cp 6-get_multiple_MySliders_to_work/index.html 7-lift_state_up_for_a_single_slider/index.html
-notes/7-lift_state_up_for_a_single_slider.md:53:$ diff 6-get_multiple_MySliders_to_work/index.html 7-lift_state_up_for_a_single_slider/index.html
-notes/7a-lift_state_up-single_slider-one_level.md:4:Details about changes that went into Steps 3.1. and 3.2. of the process in `7-lift_state_up_for_a_single_slider`.
-notes/7b-lift_state_up-single_slider-two_levels.md:4:Details for Step 3.3. in `7-lift_state_up_for_a_single_slider.md`.
-projects/7a-lift_state_up-single_slider-one_level/node_modules/.package-lock.json:2:  "name": "7-lift_state_up_for_a_single_slider",
-projects/7a-lift_state_up-single_slider-one_level/package-lock.json:2:  "name": "7-lift_state_up_for_a_single_slider",
-projects/7a-lift_state_up-single_slider-one_level/package-lock.json:8:      "name": "7-lift_state_up_for_a_single_slider",
-projects/7a-lift_state_up-single_slider-one_level/package.json:2:  "name": "7-lift_state_up_for_a_single_slider",
-tomh@jane: /var/www/always_learning/always_learning_javascript/mdbootstrap
- $
-```
--=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-
+    - [x] 3.4.2.2. Figure out how to declare a `handleChangeArrayOfNumbers` event handler function
+    - [x] 3.4.2.3. Figure out how to call the `handleChangeArrayOfNumbers` event handler
+      - Must use an arrow function so we can pass in the array subscript
+    - [x] 3.4.2.4. Write a `for` loop to construct markup for a set of columns containing `MySliderCards`
+    - [x] 3.4.2.5. Declare a `MySliderResultProps` interface with two members:
+      - `slNo: number;`
+      - `slVal: number;`
+    - [x] 3.4.2.6. Create a `MySliderResultsCard` function component to display the slider values
+    - [x] 3.4.2.7. Write a `for` loop to construct markup for a set of columns containing `MySliderResultsCards`
+    - [x] 3.4.2.8. Cleanup code for the sliders in the hard-coded list
+      - [x] Use an arrow function to consolidate the two event handlers into one
+    - [x] 3.4.2.9. Get it working, clean up the code, and make it look half-decent
 
