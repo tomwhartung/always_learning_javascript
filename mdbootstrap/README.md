@@ -67,7 +67,10 @@ Remember, the how-to for our best shot so far at getting everything we want is i
   - [x] Step 3.3. - Lift State Up Two Levels for One Slider
     - Notes are in `mdbootstrap/notes/7b-lift_state_up-single_slider-two_levels.md`
     - Project is in `mdbootstrap/projects/7b-lift_state_up-single_slider-two_levels`
-  - [ ] Step 3.4. - Lift State Up Two Levels for Multiple Sliders
-  - [ ] Step 3.5. - Create new `MyFinalRow` component
-
+  - [ ] Step 3.4. - Lift State Up Two Levels for Multiple Sliders Using an Array of Numbers
+    - Notes are in `mdbootstrap/notes/7c-lsup-array_of_numbers.md`
+    - Project is in `mdbootstrap/projects/7c-lsup-array_of_numbers`
+  - [ ] Step 3.5. - Lift State Up Two Levels for Multiple Sliders Using an Array of Objects
+    - Notes are in `mdbootstrap/notes/7d-lsup-array_of_objects.md`
+    - Project is in `mdbootstrap/projects/7d-lsup-array_of_objects`
 

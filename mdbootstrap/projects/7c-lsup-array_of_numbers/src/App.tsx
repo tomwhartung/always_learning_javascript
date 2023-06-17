@@ -13,17 +13,9 @@ interface MySliderProps {
   onSliderChange: (evt: ChangeEvent<Element>) => void;
   sliderVal: number;
 }
-interface SliderValue {
-  slNo: number;
-  slVal: number;
-}
 
 // Important constants
 const defaultValue = 50;
-const defaultSliderValue: SliderValue = {
-  slNo: 0,
-  slVal: defaultValue,
-};
 const numberOfSliderCards = 2;      // Warning: Do not make this greater
                                     // than or equal to the number of
                                     // elements in ordinalsArray!
@@ -77,8 +69,6 @@ function MySliderCard( props:MySliderProps ) {
 
 // MyContainer: function component containing an MDB container
 function MyContainer() {
-  // const [value, setValue] = useState(defaultValue)
-  // const [value, setValue] = useState(Array(numberOfSliderCards).fill(defaultValue));
   const [value1, setValue1] = useState(defaultValue);
   const [value2, setValue2] = useState(defaultValue);
   const slNo1 = 0;
@@ -86,20 +76,13 @@ function MyContainer() {
 
 // const [values, setValues] = useState<number[]>([]);
   const [values, setValues] = useState([defaultValue]);
-  const [sliderValues, setSliderValues] = useState<SliderValue[]>([]);
 // const sliderNumberCols = [];
-// const sliderObjectCols = [];
 
 // Huh.  This causes a "Too many re-renders" error in the JS Console.  Hmmm-K.  Good to know!
 // for ( let slNo = 0; slNo < numberOfSliderCards; slNo++ ) {
 //   setValues(previousValues => [...previousValues, defaultValue]);
-//   setSliderValues(previousSliderValues => [...previousSliderValues, defaultSliderValue]);
 // }
 
-//  const previousSliderValues = defaultSliderValue;
-//  setSliderValues([...previousSliderValues, defaultSliderValue]);
-
-// function handleChange1(evt:ChangeEvent) {
   function handleChange1(evt:ChangeEvent) {
     const val = (evt.target as HTMLInputElement).value;
   // console.log("Value of this slider is now " + val);
@@ -119,14 +102,6 @@ function MyContainer() {
     nextValues[col] = Number(val);
     setValues(nextValues);
   }
-  function handleChangeObject(evt:ChangeEvent, col:number) {
-    const val = (evt.target as HTMLInputElement).value;
-    // console.log("Value of this slider is now " + val);
-    // setSliderValues(Number(val));
-    const nextSliderValues = sliderValues.slice();
-    nextSliderValues[col] = { slNo: col, slVal: Number(val) };
-    setSliderValues(nextSliderValues);
-  }
 
 // for ( let col = 0; col < numberOfSliderCards; col++ ) {
 //   sliderNumberCols.push(
@@ -140,20 +115,7 @@ function MyContainer() {
 //   );
 // }
 
-// for ( let col = 0; col < numberOfSliderCards; col++ ) {
-//   sliderObjectCols.push(
-//     <div key={col} className="col-md-3">
-//       <MySliderCard
-//        sliderNo={col}
-//        sliderVal={sliderValues[col].value}
-//        onSliderChange={ () => handleChangeObject(col) }
-//       />
-//     </div>
-//   );
-// }
-
   // {sliderNumberCols}
-  // {sliderObjectCols}
   return (
     <div className="container">
       <div className="row d-flex justify-content-center">
@@ -171,18 +133,6 @@ function MyContainer() {
            sliderVal={values[1]}
            onSliderChange={ (evt) => handleChangeNumber(evt,1) }
           />
-        </div>
-      </div>
-      <div className="row d-flex justify-content-center">
-        <h3>Array of SliderValue Objects</h3>
-        <div key={2} className="col-md-3">
-          <MySliderCard
-            sliderNo={Number(0)}
-            sliderVal={sliderValues[0].slVal}
-            onSliderChange={ (evt) => handleChangeObject(evt,0) }
-          />
-        </div>
-        <div className="col-md-3">
         </div>
       </div>
       <div className="row d-flex justify-content-center">
