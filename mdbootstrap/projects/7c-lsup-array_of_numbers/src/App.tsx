@@ -13,6 +13,10 @@ interface MySliderProps {
   onSliderChange: (evt: ChangeEvent<Element>) => void;
   sliderVal: number;
 }
+interface MySliderResultProps {
+  slNo: number;
+  slVal: number;
+}
 
 // Important constants
 const defaultValue = 50;
@@ -74,6 +78,16 @@ function MySliderCard( props:MySliderProps ) {
     </div>
   )
 }
+// MySliderResultsCard: function component to display the slider values
+function MySliderResultsCard( props:MySliderResultProps ) {
+  return (
+    <>
+      <div className="card">
+        <p>Value of slider number {props.slNo} = {props.slVal}</p>
+      </div>
+    </>
+  );
+}
 
 // MyContainer: function component containing an MDB container
 function MyContainer() {
@@ -84,7 +98,6 @@ function MyContainer() {
 
 // const [values, setValues] = useState<number[]>([]);
   const [values, setValues] = useState([defaultValue]);
-  const sliderNumberCols = [];
 
 // Huh.  This causes a "Too many re-renders" error in the JS Console.  Hmmm-K.  Good to know!
 // for ( let slNo = 0; slNo < numberOfSliderCards; slNo++ ) {
@@ -110,6 +123,8 @@ function MyContainer() {
     setValues(nextValues);
   }
 
+  // Construct markup for a series of MySliderCards
+  const sliderNumberCols = [];
   for ( let col = 0; col < numberOfSliderCards; col++ ) {
     sliderNumberCols.push(
       <div key={col} className="col-md-3">
@@ -121,12 +136,28 @@ function MyContainer() {
       </div>
     );
   }
+  // Construct markup for a series of MySliderResultsCards
+  const sliderResultCols = [];
+  for ( let col = 0; col < numberOfSliderCards; col++ ) {
+    sliderResultCols.push(
+      <div key={col} className="col-md-3">
+        <MySliderResultsCard
+         slNo={col}
+         slVal={values[col]}
+        />
+      </div>
+    );
+  }
 
   return (
     <div className="container">
       <div className="row d-flex justify-content-center">
         <h3>Array of Numbers - `for` Loop Version</h3>
         {sliderNumberCols}
+      </div>
+      <div className="row d-flex justify-content-center">
+        <h3>Array of Numbers - `ResultCol`s</h3>
+        {sliderResultCols}
       </div>
       <div className="row d-flex justify-content-center">
         <h3>Hard-coded List - Not an Array</h3>
@@ -149,18 +180,11 @@ function MyContainer() {
         <div className="col-md-3">
           <div className="card">
             <p>Value of slider number {slNo1} = {value1}</p>
-            <p>Nothing to see here.</p>
-            <p>
-             This is an example of a empty paragraph.
-             LOL but I jest!
-            </p>
           </div>
         </div>
         <div className="col-md-3">
           <div className="card">
             <p>Value of slider number {slNo2} = {value2}</p>
-            <p></p>
-            <p>LOL but I jest!</p>
           </div>
         </div>
       </div>
