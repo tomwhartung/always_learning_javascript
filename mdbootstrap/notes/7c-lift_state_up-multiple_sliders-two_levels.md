@@ -113,3 +113,32 @@ In this step we work on being able to use the state in `MyComponent` in multiple
   - [ ] 3.4.5. 
   - [ ] 3.4.6. 
 
+-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-
+**NOTE:** If we get this to work, we should rename all occurrences of "lift_state_up_for_a_single_slider", because
+we will have lifted state up for multiple sliders in this project:
+
+```
+tomh@jane: /var/www/always_learning/always_learning_javascript/mdbootstrap
+ $ gredt lift_state_up_for_a_single_slider
+Searching for "lift_state_up_for_a_single_slider" in files under "/var/www/always_learning/always_learning_javascript/mdbootstrap"
+
+README.md:63:    - Overview notes are in `mdbootstrap/notes/7-lift_state_up_for_a_single_slider.md`
+notes/6-get_multiple_MySliders_to_work.md:148:  - [ ] See `7-lift_state_up_for_a_single_slider.md` in this directory
+notes/7-lift_state_up_for_a_single_slider.md:2:# 7-lift_state_up_for_a_single_slider.md
+notes/7-lift_state_up_for_a_single_slider.md:23:npm init vite@latest -- --template react-ts    # *Note:* set project name to "7-lift_state_up_for_a_single_slider"
+notes/7-lift_state_up_for_a_single_slider.md:25:cd 7-lift_state_up_for_a_single_slider         # /var/www/always_learning/always_learning_javascript/mdbootstrap/projects/7-lift_state_up_for_a_single_slider
+notes/7-lift_state_up_for_a_single_slider.md:30:**Note:** the `7-lift_state_up_for_a_single_slider` was later renamed to `7a-lift_state_up-single_slider-one_level`,
+notes/7-lift_state_up_for_a_single_slider.md:48:$ diff 6-get_multiple_MySliders_to_work/index.html 7-lift_state_up_for_a_single_slider/index.html
+notes/7-lift_state_up_for_a_single_slider.md:52:$ cp 6-get_multiple_MySliders_to_work/index.html 7-lift_state_up_for_a_single_slider/index.html
+notes/7-lift_state_up_for_a_single_slider.md:53:$ diff 6-get_multiple_MySliders_to_work/index.html 7-lift_state_up_for_a_single_slider/index.html
+notes/7a-lift_state_up-single_slider-one_level.md:4:Details about changes that went into Steps 3.1. and 3.2. of the process in `7-lift_state_up_for_a_single_slider`.
+notes/7b-lift_state_up-single_slider-two_levels.md:4:Details for Step 3.3. in `7-lift_state_up_for_a_single_slider.md`.
+projects/7a-lift_state_up-single_slider-one_level/node_modules/.package-lock.json:2:  "name": "7-lift_state_up_for_a_single_slider",
+projects/7a-lift_state_up-single_slider-one_level/package-lock.json:2:  "name": "7-lift_state_up_for_a_single_slider",
+projects/7a-lift_state_up-single_slider-one_level/package-lock.json:8:      "name": "7-lift_state_up_for_a_single_slider",
+projects/7a-lift_state_up-single_slider-one_level/package.json:2:  "name": "7-lift_state_up_for_a_single_slider",
+tomh@jane: /var/www/always_learning/always_learning_javascript/mdbootstrap
+ $
+```
+-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-
+
