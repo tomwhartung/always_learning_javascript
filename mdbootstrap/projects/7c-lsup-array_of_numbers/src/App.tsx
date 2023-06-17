@@ -61,9 +61,7 @@ function MySlider( props:MySliderProps ) {
 
 // MySliderCard: function component interface to the MDBRange component
 function MySliderCard( props:MySliderProps ) {
-  const ordinal = ordinalsArray[props.sliderNo + 1];
-  const lcOrd = ordinal.toLowerCase();
-
+  //  <p>Value of "myslider-{props.sliderNo}" in the {lcOrd} card is {props.sliderVal}.</p>
   return (
     <div className="card">
       <MySlider
@@ -71,18 +69,18 @@ function MySliderCard( props:MySliderProps ) {
         sliderVal={props.sliderVal}
         onSliderChange={props.onSliderChange}
       />
-      <p>
-        Value of "myslider-{props.sliderNo}" in the {lcOrd} card is {props.sliderVal}.
-      </p>
     </div>
   )
 }
 // MySliderResultsCard: function component to display the slider values
 function MySliderResultsCard( props:MySliderResultProps ) {
+  const ordinal = ordinalsArray[props.slNo + 1];
+  const lcOrd = ordinal.toLowerCase();
+
   return (
     <>
       <div className="card">
-        <p>Value of slider number {props.slNo} = {props.slVal}</p>
+        <p>Value of the {lcOrd} slider = {props.slVal}</p>
       </div>
     </>
   );
@@ -94,6 +92,10 @@ function MyContainer() {
   const [value2, setValue2] = useState(defaultValue);
   const slNo1 = numberOfSliderCards + 0;
   const slNo2 = numberOfSliderCards + 1;
+  const ordinal1 = ordinalsArray[slNo1 + 1];
+  const ordinal2 = ordinalsArray[slNo2 + 1];
+  const lcOrd1 = ordinal1.toLowerCase();
+  const lcOrd2 = ordinal2.toLowerCase();
 
   const [values, setValues] = useState([defaultValue]);
 
@@ -112,10 +114,9 @@ function MyContainer() {
       setValue2(Number(val));
     }
   }
-
-  function handleChangeNumber(evt:ChangeEvent, col:number) {
+  function handleChangeArrayOfNumbers( evt:ChangeEvent, col:number ) {
     const val = (evt.target as HTMLInputElement).value;
-  // console.log("Value of this slider is now " + val);
+    console.log("Value of slider in column " + col + " is now " + val);
     const nextValues = values.slice();
     nextValues[col] = Number(val);
     setValues(nextValues);
@@ -129,7 +130,7 @@ function MyContainer() {
         <MySliderCard
          sliderNo={col}
          sliderVal={values[col] ?? defaultValue}
-         onSliderChange={ (evt) => handleChangeNumber(evt,col) }
+         onSliderChange={ (evt) => handleChangeArrayOfNumbers(evt,col) }
         />
       </div>
     );
@@ -149,16 +150,16 @@ function MyContainer() {
 
   return (
     <div className="container">
-      <div className="row d-flex justify-content-center">
-        <h3>Array of Numbers - `for` Loop Version</h3>
+      <div className="row mt-4 d-flex justify-content-center">
+        <h3>`MySliderCard`s Using an Array of Numbers</h3>
         {sliderNumberCols}
       </div>
-      <div className="row d-flex justify-content-center">
-        <h3>Array of Numbers - `ResultCol`s</h3>
+      <div className="row mt-4 d-flex justify-content-center">
+        <h3>`MySliderResultsCard`s Using an Array of Numbers</h3>
         {sliderResultCols}
       </div>
-      <div className="row d-flex justify-content-center">
-        <h3>Hard-coded List - Not an Array</h3>
+      <div className="row mt-4 d-flex justify-content-center">
+        <h3>Hard-coded List of `MySlider`s</h3>
         <div className="col-md-3">
           <MySliderCard
             sliderNo={slNo1}
@@ -177,12 +178,12 @@ function MyContainer() {
       <div className="row mt-4 d-flex justify-content-center">
         <div className="col-md-3">
           <div className="card">
-            <p>Value of slider number {slNo1} = {value1}</p>
+            <p>Value of the {lcOrd1} slider = {value1}</p>
           </div>
         </div>
         <div className="col-md-3">
           <div className="card">
-            <p>Value of slider number {slNo2} = {value2}</p>
+            <p>Value of the {lcOrd2} slider = {value2}</p>
           </div>
         </div>
       </div>
