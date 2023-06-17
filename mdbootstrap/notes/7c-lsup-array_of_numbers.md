@@ -1,11 +1,14 @@
 
-# 7c-lift_state_up-multiple_sliders-two_levels.md
+# 7c-lsup-array_of_numbers.md
 
 Details for Step 3.4. in `7-lift_state_up_for_a_single_slider.md`.
 
 # 1. Setup
 
-The code for this project is in the `mdbootstrap/projects/7c-lift_state_up-multiple_sliders-two_levels` directory in this repo.
+The code for this project is in the `mdbootstrap/projects/7c-lsup-array_of_numbers` directory in this repo.
+
+**Note:** this file and its corresponding project were originally named `7c-lift_state_up-multiple_sliders-two_levels` then
+later changed to `7c-lsup-array_of_numbers`.
 
 ## 1.1. Initial Setup
 
@@ -14,9 +17,9 @@ The code for this project is in the `mdbootstrap/projects/7c-lift_state_up-multi
 ```
 pwd                                              # /var/www/always_learning/always_learning_javascript/mdbootstrap/projects
                                                  # Start with vite
-npm init vite@latest -- --template react-ts      # *Note:* set project name to "7c-lift_state_up-multiple_sliders-two_levels"
+npm init vite@latest -- --template react-ts      # *Note:* set project name to "7c-lsup-array_of_numbers"
 
-cd 7c-lift_state_up-multiple_sliders-two_levels  # /var/www/always_learning/always_learning_javascript/mdbootstrap/projects/7c-lift_state_up-multiple_sliders-two_levels
+cd 7c-lsup-array_of_numbers                      # /var/www/always_learning/always_learning_javascript/mdbootstrap/projects/7c-lsup-array_of_numbers
 npm i mdb-react-ui-kit                           # Add mdb and react
 npm run dev                                      # Start development server; press "q" to quit
 ```
@@ -29,10 +32,10 @@ npm run dev                                      # Start development server; pre
 cd ..
 pwd              # /var/www/always_learning/always_learning_javascript/mdbootstrap/projects
 
-cp 7b-lift_state_up-single_slider-two_levels/index.html 7c-lift_state_up-multiple_sliders-two_levels
-cp 7b-lift_state_up-single_slider-two_levels/src/App.tsx 7c-lift_state_up-multiple_sliders-two_levels/src/App.tsx
+cp 7b-lift_state_up-single_slider-two_levels/index.html 7c-lsup-array_of_numbers
+cp 7b-lift_state_up-single_slider-two_levels/src/App.tsx 7c-lsup-array_of_numbers/src/App.tsx
 
-cd 7c-lift_state_up-multiple_sliders-two_levels  # /var/www/always_learning/always_learning_javascript/mdbootstrap/projects/7c-lift_state_up-multiple_sliders-two_levels
+cd 7c-lsup-array_of_numbers                      # /var/www/always_learning/always_learning_javascript/mdbootstrap/projects/7c-lsup-array_of_numbers
 npm run lint                                     # Ensure there are no linting errors or warnings
 npm run dev                                      # Start development server; press "q" to quit
 ```
@@ -73,8 +76,8 @@ In this step we work on lifting state up for a single slider an additional level
 
 In this step we work on being able to use the state in `MyComponent` in multiple sliders:
 
-- [ ] First, create 2-3-4 sliders in a list
-- [ ] Then, create 2-3-4 sliders in a `for` loop
+- [x] First, create 2-3-4 sliders in a list
+- [ ] Then, create 2-3-4 sliders in a `for` loop using an array of numeric `values`
 
 - [ ] 3.4. Use the state in `MyComponent` in multiple `MySlider`s in multiple `MySliderCard`s
   - [x] 3.4.1. In a list
@@ -87,18 +90,11 @@ In this step we work on being able to use the state in `MyComponent` in multiple
     - [x] 3.4.1.4. Make the other copy of the code use `value2`, etc.
     - [x] 3.4.1.5. Test it -- it works!
   - [ ] 3.4.2. Using an array of state variables in a `for` loop
-    - I am starting off using two arrays:
-      - `values[]` - an array of `number`s
-      - `sliderValues[]` - an array of `SliderValue` objects
-    - [x] 3.4.2.1. Declare a `SliderValue` interface with two members:
-      - `slNo: number;`
-      - `value: number;`
-    - [x] 3.4.2.2. Figure out how to declare an array of state variables that will hold numeric `values`
+    - Start off using an array of numbers named `values[]`
+    - [x] 3.4.2.1. Figure out how to declare an array of state variables that will hold numeric `values`
       - `const [values, setValues] = useState([defaultValue]);`
-    - [x] 3.4.2.3. Figure out how to declare an array of state variables using the `SliderValue` interface
-      - `const [sliderValues, setSliderValues] = useState<SliderValue[]>([]);`
-    - [!] 3.4.2.4. Try to initialize both the `values` and `sliderValues` arrays to their `defaultValue`s
-      - Writing a `for` loop to initialize them caused a *"Too many re-renders"* error
+    - [x] 3.4.2.2. Initialize the `values` array to contain `defaultValue`s
+      - [!] Writing a `for` loop to initialize them caused a *"Too many re-renders"* error
       - There are ways to fix this, but it's no biggie?
         - [Using error boundaries](https://react.dev/reference/react/Component#catching-rendering-errors-with-an-error-boundary)
       - Leaving this code commented-out for now...
