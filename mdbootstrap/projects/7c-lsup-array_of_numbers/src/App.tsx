@@ -1,6 +1,6 @@
 //
-// src/App.tsx: Main file for the 7b-lift_state_up-single_slider-two_levels
-// ------------------------------------------------------------------------
+// src/App.tsx: Main file for the 7c-lsup-array_of_numbers project
+// ---------------------------------------------------------------
 //
 import './App.css'
 
@@ -62,7 +62,6 @@ function MySlider( props:MySliderProps ) {
 // MySliderCard: function component interface to the MDBRange component
 function MySliderCard( props:MySliderProps ) {
   const ordinal = ordinalsArray[props.sliderNo + 1];
-// console.log( "props.sliderNo = " + props.sliderNo );
   const lcOrd = ordinal.toLowerCase();
 
   return (
@@ -96,7 +95,6 @@ function MyContainer() {
   const slNo1 = numberOfSliderCards + 0;
   const slNo2 = numberOfSliderCards + 1;
 
-// const [values, setValues] = useState<number[]>([]);
   const [values, setValues] = useState([defaultValue]);
 
 // Huh.  This causes a "Too many re-renders" error in the JS Console.  Hmmm-K.  Good to know!
@@ -123,27 +121,27 @@ function MyContainer() {
     setValues(nextValues);
   }
 
-  // Construct markup for a series of MySliderCards
+  // Construct markup for a set of columns containing MySliderCards
   const sliderNumberCols = [];
   for ( let col = 0; col < numberOfSliderCards; col++ ) {
     sliderNumberCols.push(
       <div key={col} className="col-md-3">
         <MySliderCard
          sliderNo={col}
-         sliderVal={values[col]}
+         sliderVal={values[col] ?? defaultValue}
          onSliderChange={ (evt) => handleChangeNumber(evt,col) }
         />
       </div>
     );
   }
-  // Construct markup for a series of MySliderResultsCards
+  // Construct markup for a set of columns containing MySliderResultsCards
   const sliderResultCols = [];
   for ( let col = 0; col < numberOfSliderCards; col++ ) {
     sliderResultCols.push(
       <div key={col} className="col-md-3">
         <MySliderResultsCard
          slNo={col}
-         slVal={values[col]}
+         slVal={values[col] ?? defaultValue}
         />
       </div>
     );
