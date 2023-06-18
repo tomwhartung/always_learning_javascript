@@ -177,14 +177,16 @@ function MyContainer() {
       </div>
       <div className="row mt-4 d-flex justify-content-center">
         <div className="col-md-3">
-          <div className="card">
-            <p>Value of the {lcOrd1} slider = {value1}</p>
-          </div>
+          <MySliderResultsCard
+            slNo={slNo1}
+            slVal={value1}
+          />
         </div>
         <div className="col-md-3">
-          <div className="card">
-            <p>Value of the {lcOrd2} slider = {value2}</p>
-          </div>
+          <MySliderResultsCard
+            slNo={slNo2}
+            slVal={value2}
+          />
         </div>
       </div>
     </div>
