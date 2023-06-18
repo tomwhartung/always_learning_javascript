@@ -1,6 +1,6 @@
 //
-// src/App.tsx: Main file for the 7b-lift_state_up-single_slider-two_levels
-// ------------------------------------------------------------------------
+// src/App.tsx: Main file for the 7d-lsup-array_of_objects project
+// ---------------------------------------------------------------
 //
 import './App.css'
 
@@ -24,7 +24,7 @@ const defaultSliderValue: SliderValue = {
   slNo: 0,
   slVal: defaultValue,
 };
-const numberOfSliderCards = 2;      // Warning: Do not make this greater
+// const numberOfSliderCards = 2;      // Warning: Do not make this greater
                                     // than or equal to the number of
                                     // elements in ordinalsArray!
 const ordinalsArray: readonly string[] = [
@@ -84,10 +84,7 @@ function MyContainer() {
   const slNo1 = 0;
   const slNo2 = 1;
 
-// const [values, setValues] = useState<number[]>([]);
-  const [values, setValues] = useState([defaultValue]);
   const [sliderValues, setSliderValues] = useState<SliderValue[]>([]);
-// const sliderNumberCols = [];
 // const sliderObjectCols = [];
 
 // Huh.  This causes a "Too many re-renders" error in the JS Console.  Hmmm-K.  Good to know!
@@ -99,7 +96,6 @@ function MyContainer() {
 //  const previousSliderValues = defaultSliderValue;
 //  setSliderValues([...previousSliderValues, defaultSliderValue]);
 
-// function handleChange1(evt:ChangeEvent) {
   function handleChange1(evt:ChangeEvent) {
     const val = (evt.target as HTMLInputElement).value;
   // console.log("Value of this slider is now " + val);
@@ -111,14 +107,6 @@ function MyContainer() {
     setValue2(Number(val));
   }
 
-  function handleChangeNumber(evt:ChangeEvent, col:number) {
-    const val = (evt.target as HTMLInputElement).value;
-  // console.log("Value of this slider is now " + val);
-  // setValues(Number(val));
-    const nextValues = values.slice();
-    nextValues[col] = Number(val);
-    setValues(nextValues);
-  }
   function handleChangeObject(evt:ChangeEvent, col:number) {
     const val = (evt.target as HTMLInputElement).value;
     // console.log("Value of this slider is now " + val);
@@ -128,57 +116,28 @@ function MyContainer() {
     setSliderValues(nextSliderValues);
   }
 
-// for ( let col = 0; col < numberOfSliderCards; col++ ) {
-//   sliderNumberCols.push(
-//     <div key={col} className="col-md-3">
-//       <MySliderCard
-//        sliderNo={col}
-//        sliderVal={values[col]}
-//        onSliderChange={ () => handleChangeNumber(col) }
-//       />
-//     </div>
-//   );
-// }
+  // Construct markup for a set of columns containing MySliderCards
+  // for ( let col = 0; col < numberOfSliderCards; col++ ) {
+  //   sliderObjectCols.push(
+  //     <div key={col} className="col-md-3">
+  //       <MySliderCard
+  //        sliderNo={col}
+  //        sliderVal={sliderValues[col].value}
+  //        onSliderChange={ () => handleChangeObject(col) }
+  //       />
+  //     </div>
+  //   );
+  // }
 
-// for ( let col = 0; col < numberOfSliderCards; col++ ) {
-//   sliderObjectCols.push(
-//     <div key={col} className="col-md-3">
-//       <MySliderCard
-//        sliderNo={col}
-//        sliderVal={sliderValues[col].value}
-//        onSliderChange={ () => handleChangeObject(col) }
-//       />
-//     </div>
-//   );
-// }
-
-  // {sliderNumberCols}
   // {sliderObjectCols}
   return (
     <div className="container">
-      <div className="row d-flex justify-content-center">
-        <h3>Array of Numbers</h3>
-        <div key={0} className="col-md-3">
-          <MySliderCard
-           sliderNo={0}
-           sliderVal={values[0]}
-           onSliderChange={ (evt) => handleChangeNumber(evt,0) }
-          />
-        </div>
-        <div key={1} className="col-md-3">
-          <MySliderCard
-           sliderNo={1}
-           sliderVal={values[1]}
-           onSliderChange={ (evt) => handleChangeNumber(evt,1) }
-          />
-        </div>
-      </div>
       <div className="row d-flex justify-content-center">
         <h3>Array of SliderValue Objects</h3>
         <div key={2} className="col-md-3">
           <MySliderCard
             sliderNo={Number(0)}
-            sliderVal={sliderValues[0].slVal}
+            sliderVal={sliderValues[0].slVal ?? defaultSliderValue.slVal}
             onSliderChange={ (evt) => handleChangeObject(evt,0) }
           />
         </div>
