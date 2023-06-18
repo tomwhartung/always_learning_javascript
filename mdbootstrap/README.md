@@ -55,22 +55,32 @@ Remember, the how-to for our best shot so far at getting everything we want is i
   - Notes are in `mdbootstrap/notes/6-get_multiple_MySliders_to_work.md`
   - Project is in `mdbootstrap/projects/6-get_multiple_MySliders_to_work`
 
-- [ ] Project 7: Take Baby Steps in Lifting State up Multiple Levels for Multiple Components
+- [x] Project 7: Take Baby Steps in Lifting State up Multiple Levels for Multiple Components
   - In Project 6, lifting state up proved to be difficult
     - In project 7 we work on figuring out how to lift the state up for just one slider
   - Breaking this down into 4 steps
     - The first step is trivial, so it's really kinda sorta just 3 steps
-    - Overview notes are in `mdbootstrap/notes/7-lift_state_up_for_a_single_slider.md`
+    - Overview notes are in `mdbootstrap/notes/7-lift_state_way_up_for_multiple_sliders.md`
   - [x] Steps 3.1. and 3.2. - Lift State Up One Level for One Slider
     - Notes are in `mdbootstrap/notes/7a-lift_state_up-single_slider-one_level.md`
     - Project is in `mdbootstrap/projects/7a-lift_state_up-single_slider-one_level`
   - [x] Step 3.3. - Lift State Up Two Levels for One Slider
     - Notes are in `mdbootstrap/notes/7b-lift_state_up-single_slider-two_levels.md`
     - Project is in `mdbootstrap/projects/7b-lift_state_up-single_slider-two_levels`
-  - [ ] Step 3.4. - Lift State Up Two Levels for Multiple Sliders Using an Array of Numbers
+  - [x] Step 3.4. - Lift State Up Two Levels for Multiple Sliders Using an Array of Numbers
+    - **Note: This is the *best-so-far* version**
     - Notes are in `mdbootstrap/notes/7c-lsup-array_of_numbers.md`
     - Project is in `mdbootstrap/projects/7c-lsup-array_of_numbers`
-  - [ ] Step 3.5. - Lift State Up Two Levels for Multiple Sliders Using an Array of Objects
+  - [!] Step 3.5. - Lift State Up Two Levels for Multiple Sliders Using an Array of Objects
+    - Got a clean compile but this is broken due to a browser error
+      - Error message: "Uncaught TypeError: Cannot read properties of undefined (reading slVal)"
+    - **The root of the problem seems to be that:**
+      - I cannot (easily) figure out how to *initialize objects used as state variables*
+        - And I can see *no reason* to figure out how to do that at this time.
+      - It is trivial to initialize single values (numbers) used as state variables
+      - See details in `mdbootstrap/notes/7c-lsup-array_of_numbers.md`
     - Notes are in `mdbootstrap/notes/7d-lsup-array_of_objects.md`
     - Project is in `mdbootstrap/projects/7d-lsup-array_of_objects`
+
+- [ ] Project 8: Test My Idea of Using CSS to Set the Colors of Squares in a Small Grid
 
