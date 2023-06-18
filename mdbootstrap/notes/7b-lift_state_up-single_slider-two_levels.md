@@ -1,7 +1,7 @@
 
 # 7b-lift_state_up-single_slider-two_levels.md
 
-Details for Step 3.3. in `7-lift_state_up_for_a_single_slider.md`.
+Details for Step 3.3. in `7-lift_state_way_up_for_multiple_sliders.md`.
 
 # 1. Setup
 
@@ -67,7 +67,7 @@ For these details, see `7a-lift_state_up-single_slider-one_level.md`.
 
 In this step we work on lifting state up for a single slider an additional level.
 
-- [ ] 3.3. Lift state up for just the one card again from `MySliderCard` to `MyComponent`
+- [x] 3.3. Lift state up for just the one card again from `MySliderCard` to `MyComponent`
   - [x] 3.3.1. Move definition of state variable `const [value...` from `MySliderCard` to `MyContainer`
   - [x] 3.3.2. Move definition of event handler `handleChange` from `MySliderCard` to `MyContainer`
   - [x] 3.3.3. Change the type of the argument passed to `MySliderCard` from `props:MySliderCardProps` to `props:MySliderProps`
@@ -86,7 +86,18 @@ In this step we work on lifting state up for a single slider an additional level
 
 ## 3.4. Details for Step 3.4.
 
-In this step we work on being able to create multiple sliders in a `for` loop.
+In this step we work on being able to lift state up multiple levels for multiple sliders using an array of numbers
+as the state variable.
 
-- See details in `7c-lift_state_up-multiple_sliders-two_levels.md`
+- Ultimately figured out how to create multiple sliders in a `for` loop!  YES!!
+- See details in `7c-lsup-array_of_numbers.md`
+
+## 3.5. Details for Step 3.5.
+
+In this step we work on being able to lift state up multiple levels for multiple sliders using an array of objects.
+as the state variable
+
+- Decided to abandon this project!
+  - Don't need to do this and time's a-wastin!  Want to get on with other stuff!!
+- See details in `7d-lsup-array_of_objects.md`
 

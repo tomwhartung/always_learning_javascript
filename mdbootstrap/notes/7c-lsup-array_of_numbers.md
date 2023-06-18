@@ -1,7 +1,7 @@
 
 # 7c-lsup-array_of_numbers.md
 
-Details for Step 3.4. in `7-lift_state_up_for_a_single_slider.md`.
+Details for Step 3.4. in `7-lift_state_way_up_for_multiple_sliders.md`.
 
 # 1. Setup
 

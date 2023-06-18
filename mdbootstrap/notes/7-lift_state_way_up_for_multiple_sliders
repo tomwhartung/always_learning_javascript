@@ -1,9 +1,11 @@
 
-# 7-lift_state_up_for_a_single_slider.md
+# 7-lift_state_way_up_for_multiple_sliders.md
 
 Lifting state up two levels for an array of components - as begun in `6-get_multiple_MySliders_to_work.md`, proved to be extremely challenging.
 
 - In this project we *divide and conquer* by breaking the task in Project 6 down into *"baby steps"*
+
+**Note:** this file was originally named `7-lift_state_up_for_a_single_slider.md`.
 
 # 1. Setup
 
@@ -20,6 +22,31 @@ The code for this project is in:
     - Ready to move on
 
 ## 1.1. Commands
+
+### 1.1.1. What Is the Truth??
+
+**Note:** although this project was originally named `7-lift_state_up_for_a_single_slider`,
+it was later renamed to `7a-lift_state_up-single_slider-one_level`.
+
+- The commands in `7a-lift_state_up-single_slider-one_level.md` tell one story ...
+- ... and the output of running `gredt` for `7-lift_state_up_for_a_single_slider` tells another:
+
+```
+$ gredt 7-lift_state_up_for_a_single_slider
+Searching for "7-lift_state_up_for_a_single_slider" in files under "/var/www/always_learning/always_learning_javascript/mdbootstrap"
+. . .
+. . .
+. . .
+projects/7a-lift_state_up-single_slider-one_level/node_modules/.package-lock.json:2:  "name": "7-lift_state_up_for_a_single_slider",
+projects/7a-lift_state_up-single_slider-one_level/package-lock.json:2:  "name": "7-lift_state_up_for_a_single_slider",
+projects/7a-lift_state_up-single_slider-one_level/package-lock.json:8:      "name": "7-lift_state_up_for_a_single_slider",
+projects/7a-lift_state_up-single_slider-one_level/package.json:2:  "name": "7-lift_state_up_for_a_single_slider",
+$
+```
+
+In this case, I don't thing we need to worry too much about *The Truth,* because it's time to move on!
+
+### 1.1.2. Project Setup - Before Renaming Things
 
 All of these sub-projects are set up similarly, by running these commands:
 
@@ -108,8 +135,8 @@ as the state variable.
 
 ## 3.5. Details for Step 3.5.
 
-In this step we work on being able to lift state up multiple levels for multiple sliders using an array of objects.
-as the state variable
+In this step we work on being able to lift state up multiple levels for multiple sliders using an array of objects
+as the state variable.
 
 - Decided to abandon this project!
 - Details are in `7c-lsup-array_of_numbers.md`

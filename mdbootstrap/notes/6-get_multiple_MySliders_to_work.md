@@ -145,7 +145,7 @@ helped me figure how to do this.
   - [!] This turned out to be more complicated that I thought!
   - [!] Stepping back for a bit to try lifting state up for a single slider
 - [!] 7.4. Decided to abandon this project!
-  - [!] See `7-lift_state_up_for_a_single_slider.md` in this directory
+  - [!] See `7-lift_state_way_up_for_multiple_sliders.md` in this directory
 
 ## 3.3. Results
 

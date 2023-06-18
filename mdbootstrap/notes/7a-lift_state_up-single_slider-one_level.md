@@ -1,7 +1,7 @@
 
 # 7a-lift_state_up-single_slider-one_level.md
 
-Details about changes that went into Steps 3.1. and 3.2. of the process in `7-lift_state_up_for_a_single_slider`.
+Details about changes that went into Steps 3.1. and 3.2. of the process in `7-lift_state_way_up_for_multiple_sliders.md`.
 
 # 1. Setup
 
