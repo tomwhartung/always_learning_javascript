@@ -133,29 +133,29 @@ helped me figure how to do this.
   - `handleChange` - new event handler in the `MyContainer` component
     - Should be close to what we have now as the `handleChange` function in the `MySlider` component function
     - Used in the arrow function which is the value of the `onSliderChange` prop in the `MyContainer` component
-  - 
 
 - [x] 7.1. Add a state Array variable to the `MyContainer` Component
   - [x] `const [values, setValues] = useState(Array(numberOfSliderCards).fill(defaultValue));`
 - [x] 7.2. Add `onSliderChange` to the `MySliderCardProps` interface
   - [x] `onSliderChange: (evt: ChangeEvent<Element>) => void;`
-- [ ] 7.3. 
-- [ ] 7.4. 
-- [ ] 7.5. 
-
-### 3.2.8. Step 8: 
-
-- [ ] 8.1. 
-- [ ] 8.2. 
-- [ ] 8.3. 
-
-### 3.2.9. Step 9: 
-
-- [ ] 9.1. 
-- [ ] 9.2. 
-- [ ] 9.3. 
+- [x] 7.3. Add `onSliderChange` as a prop to all `MySliderCard` and `MySlider` tags
+  - [x] 7.3.1. In `MySliderCard` add `onSliderChange={props.onSliderChange}` to the `MySlider` tag
+  - [x] 7.3.2. In `MyContainer` add `onSliderChange={() => handleSliderChange(col)}` to the `MySliderCard` tag
+- [!] 7.3.yikes!
+  - [!] This turned out to be more complicated that I thought!
+  - [!] Stepping back for a bit to try lifting state up for a single slider
+- [!] 7.4. Decided to abandon this project!
+  - [!] See `7-lift_state_up_for_a_single_slider.md` in this directory
 
 ## 3.3. Results
 
-- See the `MySlider` and `App` function components in `src/App.tsx`:
+Had to use the *divide-and-conquer* strategy and take *baby steps* to get *very close* to what we wanted to do.
+
+- See `src/App.tsx` in the `mdbootstrap/projects/7c-lsup-array_of_numbers/` project
+
+This is not an ideal solution!
+
+- For example, see `mdbootstrap/notes/7d-lsup-array_of_objects.md` in this directory.
+
+But it's close enough for now!
 
