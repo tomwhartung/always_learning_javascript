@@ -14,7 +14,7 @@ pwd                                            # /var/www/always_learning/always
                                                # Start with vite
 npm init vite@latest -- --template react-ts    # *Note:* set project name to "7a-lift_state_up-single_slider-one_level"
 
-cd 7a-lift_state_up-single_slider-one_level         # /var/www/always_learning/always_learning_javascript/mdbootstrap/projects/7a-lift_state_up-single_slider-one_level
+cd 7a-lift_state_up-single_slider-one_level    # /var/www/always_learning/always_learning_javascript/mdbootstrap/projects/7a-lift_state_up-single_slider-one_level
 npm i mdb-react-ui-kit                         # Add mdb and react
 npm run dev                                    # Start development server; press "q" to quit
 ```
@@ -95,6 +95,29 @@ In this step we work on lifting state up for a single slider just one level.
   - [x] 3.2.10. Test what we have!  OMG it works - at least inside the `MySlider` component...
   - [x] 3.2.11. Test that the value is getting up from `MySlider` to `MySliderCard`
     - [x] Update the `<p>` tag in `MySliderCard` to display the value of the `value` state variable
-    - [x] Move the slider in `MySlider`
+    - [x] Move the slider in the web page back-and-forth
     - [x] Confirm the `<p>` tag in `MySliderCard` displays the correct value
+
+## 3.3. Details for Step 3.3.
+
+In this step we work on lifting state up for a single slider an additional level.
+
+- See details in `7b-lift_state_up-single_slider-two_levels.md`.
+
+## 3.4. Details for Step 3.4.
+
+In this step we work on being able to lift state up multiple levels for multiple sliders using an array of numbers
+as the state variable.
+
+- Ultimately figured out how to create multiple sliders in a `for` loop!  YES!!
+- See details in `7c-lsup-array_of_numbers.md`
+
+## 3.5. Details for Step 3.5.
+
+In this step we work on being able to lift state up multiple levels for multiple sliders using an array of objects.
+as the state variable
+
+- Decided to abandon this project!
+  - Don't need to do this and time's a-wastin!  Want to get on with other stuff!!
+- See details in `7d-lsup-array_of_objects.md`
 
