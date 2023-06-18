@@ -102,7 +102,8 @@ function MyContainer() {
   const slNo1 = 0;
   const slNo2 = 1;
 
-  const [sliderValues, setSliderValues] = useState<SliderValue[]>([]);
+// const [sliderValues, setSliderValues] = useState<SliderValue[]>([]);
+  const [sliderValues, setSliderValues] = useState<typeof defaultSliderValue[]>([]);
 // const sliderObjectCols = [];
 
 // Huh.  This causes a "Too many re-renders" error in the JS Console.  Hmmm-K.  Good to know!
@@ -148,6 +149,7 @@ function MyContainer() {
 
   // {sliderObjectCols}
   //        sliderVal={sliderValues[0].slVal ?? defaultSliderValue.slVal}
+  //        sliderVal={defaultSliderValue.slVal}
   return (
     <div className="container">
       <div className="row d-flex justify-content-center">
@@ -155,7 +157,7 @@ function MyContainer() {
         <div key={2} className="col-md-3">
           <MySliderCard
             sliderNo={Number(0)}
-            sliderVal={defaultSliderValue.slVal}
+            sliderVal={sliderValues[0].slVal ?? defaultSliderValue.slVal}
             onSliderChange={ (evt) => handleChangeObject(evt,0) }
           />
         </div>
