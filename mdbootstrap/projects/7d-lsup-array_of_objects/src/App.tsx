@@ -17,6 +17,10 @@ interface SliderValue {
   slNo: number;
   slVal: number;
 }
+interface MySliderResultProps {
+  slNo: number;
+  slVal: number;
+}
 
 // Important constants
 const defaultValue = 50;
@@ -75,6 +79,20 @@ function MySliderCard( props:MySliderProps ) {
   )
 }
 
+// MySliderResultsCard: function component to display the slider values
+function MySliderResultsCard( props:MySliderResultProps ) {
+  const ordinal = ordinalsArray[props.slNo + 1];
+  const lcOrd = ordinal.toLowerCase();
+
+  return (
+    <>
+      <div className="card">
+        <p>Value of the {lcOrd} slider = {props.slVal}</p>
+      </div>
+    </>
+  );
+}
+
 // MyContainer: function component containing an MDB container
 function MyContainer() {
   // const [value, setValue] = useState(defaultValue)
@@ -96,17 +114,16 @@ function MyContainer() {
 //  const previousSliderValues = defaultSliderValue;
 //  setSliderValues([...previousSliderValues, defaultSliderValue]);
 
-  function handleChange1(evt:ChangeEvent) {
+  function handleChangeSingleValues( evt:ChangeEvent, slNo:number ) {
     const val = (evt.target as HTMLInputElement).value;
-  // console.log("Value of this slider is now " + val);
-    setValue1(Number(val));
+    console.log("Value of single slider slNo = " + slNo + " is now " + val);
+    if ( slNo == slNo1 ) {
+      setValue1(Number(val));
+    } else
+    if ( slNo == slNo2 ) {
+      setValue2(Number(val));
+    }
   }
-  function handleChange2(evt:ChangeEvent) {
-    const val = (evt.target as HTMLInputElement).value;
-  // console.log("Value of this slider is now " + val);
-    setValue2(Number(val));
-  }
-
   function handleChangeObject(evt:ChangeEvent, col:number) {
     const val = (evt.target as HTMLInputElement).value;
     // console.log("Value of this slider is now " + val);
@@ -130,6 +147,7 @@ function MyContainer() {
   // }
 
   // {sliderObjectCols}
+  //        sliderVal={sliderValues[0].slVal ?? defaultSliderValue.slVal}
   return (
     <div className="container">
       <div className="row d-flex justify-content-center">
@@ -137,7 +155,7 @@ function MyContainer() {
         <div key={2} className="col-md-3">
           <MySliderCard
             sliderNo={Number(0)}
-            sliderVal={sliderValues[0].slVal ?? defaultSliderValue.slVal}
+            sliderVal={defaultSliderValue.slVal}
             onSliderChange={ (evt) => handleChangeObject(evt,0) }
           />
         </div>
@@ -150,34 +168,29 @@ function MyContainer() {
           <MySliderCard
             sliderNo={slNo1}
             sliderVal={value1}
-            onSliderChange={() => handleChange1}
+            onSliderChange={(evt) => handleChangeSingleValues(evt,slNo1)}
           />
         </div>
         <div className="col-md-3">
           <MySliderCard
             sliderNo={slNo2}
             sliderVal={value2}
-            onSliderChange={handleChange2}
+            onSliderChange={(evt) => handleChangeSingleValues(evt,slNo2)}
           />
         </div>
       </div>
       <div className="row mt-4 d-flex justify-content-center">
         <div className="col-md-3">
-          <div className="card">
-            <p>Value of slider number {slNo1} = {value1}</p>
-            <p>Nothing to see here.</p>
-            <p>
-             This is an example of a empty paragraph.
-             LOL but I jest!
-            </p>
-          </div>
+          <MySliderResultsCard
+            slNo={slNo1}
+            slVal={value1}
+          />
         </div>
         <div className="col-md-3">
-          <div className="card">
-            <p>Value of slider number {slNo2} = {value2}</p>
-            <p></p>
-            <p>LOL but I jest!</p>
-          </div>
+          <MySliderResultsCard
+            slNo={slNo2}
+            slVal={value2}
+          />
         </div>
       </div>
     </div>
