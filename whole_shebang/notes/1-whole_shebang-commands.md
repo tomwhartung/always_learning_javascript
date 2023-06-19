@@ -8,39 +8,96 @@ A list of commands I can run to initialize a minimal "Hello world"-type project 
 These are the components I am currently planning to use when starting a new project:
 
 - Vite with Reactjs
-- ESLint
-- TypeScript
 - MDB
+- TypeScript
+- ESLint
 
 # 2. Commands to Create *"The Whole Shebang"*
 
 **Note:** this summary omits git commands, but those are included below in section *"3. *"The Whole Shebang"* Step-by-Step".*
 
+## 2.1. Optional: Upgrade `npm`
+
 ```
 npm -v                                                       # Check current version of `npm`
 sudo npm install -g npm@latest                               # Upgrade current version of `npm`
-npm create vite@latest <project-name> -- --template react    # Initialize a React project named "<project-name>"
-cd <project-name>                                            # Change into the project's directory
-npm install                                                  # Install dependencies
-npm run dev                                                  # Run "Hello-world"-type template program using React, type "q" to exit
+```
 
-# End of this step; consider updating git here; see below for specific commands
+## 2.2. Create New Project Using Vite, React, TypeScript, and MDB
 
-npm install vite-plugin-eslint --save-dev         # install vite-plugin-eslint
-npm install eslint-config-react-app --save-dev    # install eslint-config-react-app
-npm run dev                                       # make sure it still runs ok
-cat .eslintrc.cjs                                 # ensure it's there and makes sense
+Prerequisites:
 
-# End of this step; consider updating git here; see below for specific commands
-
-npm install typescript @types/react @types/react-dom --save-dev   # install typescript
-cat > tsconfig.json                                               # default contents appear below
-cat > tsconfig.node.json                                          # default contents appear below
-
-
-# End of this step; consider updating git here; see below for specific commands
+- cd [into the directory in which you want to work on the project]
+- Think of a good [project_name] for the project
 
 ```
+npm init vite@latest -- --template react-ts    # *Note:* asks for a [project_name]
+cd [project_name]
+npm i mdb-react-ui-kit
+npm run dev
+```
+
+This is the end of this step, so consider updating git here.
+
+## 2.3. Add MDB, Font Awesome, and Google Fonts Roboto
+
+Reference:
+
+- [MDB Download and Setup Page](https://mdbootstrap.com/learn/mdb-foundations/bootstrap/download-and-setup/)
+
+
+### 2.3.2. Update `index.html`:
+
+Add the code in the following code box to `index.html`.
+Inside the `<head>...</head>` element and just before the `<title>...` tag is a good place.
+
+```
+    <!-- MDB icon -->
+    <link rel="icon" href="img/mdb-favicon.ico" type="image/x-icon" />
+    <!-- Font Awesome -->
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css"
+    />
+    <!-- Google Fonts Roboto -->
+    <link
+      rel="stylesheet"
+      href="https://fonts.googleapis.com/css2?family=Roboto:wght@300;400;500;700;900&display=swap"
+    />
+    <!-- MDB -->
+    <link rel="stylesheet" href="/node_modules/mdb-react-ui-kit/dist/css/mdb.min.css" />
+```
+
+This is the end of this step, so consider updating git here.
+
+**Note:** the path above for `mdb.min.css` differs from that used in the reference.
+For details, see the subsection *"2.4. Optional: Consolidate `*.css` Files Into a Single Directory"* below.
+
+## 2.4. Sanity Checks
+
+- [ ] Run `npm run lint` inside the [project_name] directory
+- [ ] Run `npm run dev` inside the [project_name] directory
+- [ ] Check in browser at http://localhost:5173/
+- [ ] Load into VSCode
+
+This is the end of this step and successful completion indicates a stable setup, so *definitely* consider updating git here.
+
+## 2.4. Optional: Consolidate `*.css` Files Into a Single Directory
+
+### 2.4.1. Link the ... 
+
+```
+<link rel="stylesheet" href="/node_modules/mdb-react-ui-kit/dist/css/mdb.min.css" />
+    <link rel="stylesheet" href="css/mdb.min.css" />
+```
+
+```
+
+-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-
+We are here. 
+I am thinking we don't need *any* of the following! 
+But we don't need to delete it just yet.... 
+-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-
 
 # 3. *"The Whole Shebang"* Step-by-Step
 
@@ -71,6 +128,7 @@ Commands:
 
 ```
 npm install vite-plugin-eslint --save-dev         # install vite-plugin-eslint
+npm install eslint --save-dev                     # install eslint dependencies **MAY HAVE MISSED THIS IN PREVIOUS EFFORTS**
 npm install eslint-config-react-app --save-dev    # install eslint-config-react-app
 npm run dev                                       # make sure it still runs ok
 cat .eslintrc.cjs                                 # ensure it's there and makes sense
@@ -189,6 +247,8 @@ npm run         # check that available commands include dev, build, lint, and pr
 npm run build   # build the app
 npm run dev     # run the app in a browser window
 ```
+
+### 3.3.5. Optional: Ensure ESLint and TS Work Ok
 
 ## 3.4. Add MDB
 
