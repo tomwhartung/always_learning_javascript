@@ -14,7 +14,7 @@ These are the components I am currently planning to use when starting a new proj
 
 # 2. Commands to Create *"The Whole Shebang"*
 
-**Note:** this summary omits git commands, but those are included below in section *"3. *"The Whole Shebang"* Step-by-Step".*
+**Note:** this summary omits git commands.  You are on your own there!
 
 ## 2.1. Optional: Upgrade `npm`
 
@@ -37,7 +37,7 @@ npm i mdb-react-ui-kit
 npm run dev
 ```
 
-This is the end of this step, so consider updating git here.
+This is the end of this step, so consider updating git at this point.
 
 ## 2.3. Add MDB, Font Awesome, and Google Fonts Roboto
 
@@ -68,36 +68,81 @@ Inside the `<head>...</head>` element and just before the `<title>...` tag is a 
     <link rel="stylesheet" href="/node_modules/mdb-react-ui-kit/dist/css/mdb.min.css" />
 ```
 
-This is the end of this step, so consider updating git here.
+This is the end of this step, so consider updating git at this point.
 
 **Note:** the path above for `mdb.min.css` differs from that used in the reference.
 For details, see the subsection *"2.4. Optional: Consolidate `*.css` Files Into a Single Directory"* below.
 
 ## 2.4. Sanity Checks
 
-- [ ] Run `npm run lint` inside the [project_name] directory
-- [ ] Run `npm run dev` inside the [project_name] directory
-- [ ] Check in browser at http://localhost:5173/
-- [ ] Load into VSCode
+- [x] Run `npm run lint` inside the [project_name] directory
+- [x] Run `npm run dev` inside the [project_name] directory
+- [x] Check in browser at http://localhost:5173/
+- [x] Load into VSCode
 
 This is the end of this step and successful completion indicates a stable setup, so *definitely* consider updating git here.
 
-## 2.4. Optional: Consolidate `*.css` Files Into a Single Directory
+## 2.4. Optional: Cleanup Soon-to-Be-Cruft
 
-### 2.4.1. Link the ... 
+I see no need to do this when I'm just messing around learning stuff.
+But if I want to get serious I should consider:
+
+- Deleting the following files, and
+- Removing all references to them from `src/App.tsx`
 
 ```
-<link rel="stylesheet" href="/node_modules/mdb-react-ui-kit/dist/css/mdb.min.css" />
-    <link rel="stylesheet" href="css/mdb.min.css" />
+public/vite.svg
+src/assets/react.svg
 ```
 
+## 2.5. Optional: Consolidate `*.css` Files Into a Single Directory
+
+Before doing this, be sure to see section "3. Folder Organization and Other Tips" below.
+
+### 2.5.1. Copy or Link `/node_modules/mdb-react-ui-kit/dist/css/mdb.min.css` to `css/mdb.min.css`??
+
+The [MDB Download and Setup Page](https://mdbootstrap.com/learn/mdb-foundations/bootstrap/download-and-setup/) offers the
+following example code for loading  the `mdb.min.css` file:
+
+```
+<link rel="stylesheet" href="css/mdb.min.css" />
 ```
 
--=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-
-We are here. 
-I am thinking we don't need *any* of the following! 
-But we don't need to delete it just yet.... 
--=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-
+Meanwhile, the little sample app mixes the `.css` files in with the others under `src/`:
+
+```
+$ l  src/*.css
+-rw-r--r-- 1 tomh tomh  606 Jun 19 13:56 src/App.css
+-rw-r--r-- 1 tomh tomh 1195 Jun 19 13:56 src/index.css
+$ l  src/*.*
+-rw-r--r-- 1 tomh tomh  606 Jun 19 13:56 src/App.css
+-rw-r--r-- 1 tomh tomh  905 Jun 19 13:56 src/App.tsx
+-rw-r--r-- 1 tomh tomh 1195 Jun 19 13:56 src/index.css
+-rw-r--r-- 1 tomh tomh  250 Jun 19 13:56 src/main.tsx
+-rw-r--r-- 1 tomh tomh   38 Jun 19 13:56 src/vite-env.d.ts
+$
+```
+
+So ..., well I'm not sure what to think about that!
+
+# 3. Folder Organization and Other Tips
+
+Here are some links to blog posts about this:
+
+- [Tips for Organizing React Projects](https://dev.to/chrisachard/tips-for-organizing-react-projects-191)
+  - In item 8 he says to store `*.css` files with the components that use them
+    - [This post](https://scrimba.com/articles/react-project-structure/) has an example of how that might look
+  - However the first tip probably has the best overall advice:
+
+> "First, and above all else: do what works for you and your team.
+> There is a lot of advice out there, and much of it conflicts.
+> Don't feel anxiety about not doing it "the right way".
+> If it works for you and your team - then that is the "right way".
+
+- This post about [React Architecture](https://www.taniarascia.com/react-architecture-directory-structure/):
+  - Also has some thoughts I might want to look at some day once things get *really* complicated...
+- And here's one about a [better way](https://www.freecodecamp.org/news/a-better-way-to-structure-react-projects/)
+
 
 # 3. *"The Whole Shebang"* Step-by-Step
 
