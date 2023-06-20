@@ -10,31 +10,59 @@ import './App.css'
 // Important constants
 const gridSize = 3;   // number of rows and columns in the grid
 
+// const gridRows = 3;   // number of rows in the grid
+// const gridCols = 3;   // number of columns in the grid
+
 // ResponsiveSquare: A square in the grid that responds to clicks
 function ResponsiveSquare() {
   return (
-    <div>
-      I am a ResponsiveSquare
-    </div>
+    <button className='grid-square text-white'>
+      RSq
+    </button>
   )
 }
 // MyGridOfSquares: the grid of responsive squares that are the main feature of this project
 function MyGridOfSquares () {
-  const gridSquares = [];
-  for( let row=0; row < gridSize; row++ ) {
-    for( let col=0; col < gridSize; col++ ) {
-      gridSquares.push(
-        <ResponsiveSquare />
-      )
-    }
-  }
+  const rowOfSquares = [];
 
+  for ( let col = 0; col < gridSize; col++ ) {
+    rowOfSquares.push(
+      <ResponsiveSquare />
+    );
+  }
+// const gridSize : number = 3;   // number of rows and columns in the grid
+// const gridSquares = [];
+// for ( let row=0; row < gridRows; row++ ) {
+//   gridSquares.push(
+//     <div className='grid-row'> 
+//   );
+//   for ( let col = 0; col < 3; col++ ) {
+//     // if ( col == 0 ) {
+//     // }
+//     gridSquares.push(
+//       <ResponsiveSquare />
+//     );
+//     gridSquares.push(
+//       </div>
+//     );
+//   }
+// }
+
+  //    {gridSquares}
   return (
-    <div className="row mt-3">
+    <div className='row mt-3'>
       <div className="col-12">
         <h4 className='mt-3'><code>MyGridOfSquares</code></h4>
         <div className="card">
-        {gridSquares}
+          <div className='grid-row'> 
+            {rowOfSquares}
+          </div>
+          <div className='grid-row'> 
+            {rowOfSquares}
+          </div>
+          <div className='grid-row'> 
+            {rowOfSquares}
+          </div>
         </div>
       </div>
     </div>
