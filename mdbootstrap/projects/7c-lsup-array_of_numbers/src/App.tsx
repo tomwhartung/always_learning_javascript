@@ -92,10 +92,6 @@ function MyContainer() {
   const [value2, setValue2] = useState(defaultValue);
   const slNo1 = numberOfSliderCards + 0;
   const slNo2 = numberOfSliderCards + 1;
-  const ordinal1 = ordinalsArray[slNo1 + 1];
-  const ordinal2 = ordinalsArray[slNo2 + 1];
-  const lcOrd1 = ordinal1.toLowerCase();
-  const lcOrd2 = ordinal2.toLowerCase();
 
   const [values, setValues] = useState([defaultValue]);
 
