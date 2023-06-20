@@ -6,6 +6,12 @@ import { useState } from 'react'
 import './App.css'
 
 // Important types
+// enum Color {
+//   Blue = "#0000FF",
+//   Green = "#00FF00",
+//   Red = "#FF0000",
+//   Yellow = "#FFFF00",
+// }
 
 // Important constants
 const gridSize = 3;   // number of rows and columns in the grid
@@ -24,35 +30,28 @@ function ResponsiveSquare() {
 // MyGridOfSquares: the grid of responsive squares that are the main feature of this project
 function MyGridOfSquares () {
   const rowOfSquares = [];
-
   for ( let col = 0; col < gridSize; col++ ) {
     rowOfSquares.push(
-      <ResponsiveSquare />
+      <ResponsiveSquare key={col} />
     );
   }
 // const gridSize : number = 3;   // number of rows and columns in the grid
-// const gridSquares = [];
-// for ( let row=0; row < gridRows; row++ ) {
-//   gridSquares.push(
-//     <div className='grid-row'> 
-//   );
-//   for ( let col = 0; col < 3; col++ ) {
-//     // if ( col == 0 ) {
-//     // }
-//     gridSquares.push(
-//       <ResponsiveSquare />
-//     );
-//     gridSquares.push(
-//       </div>
-//     );
-//   }
-// }
+  const gridSquares = [];
+  for ( let row=0; row < 3; row++ ) {
+//   gridSquares.push( <div> );
+//   gridSquares.push( <div className="grid-row"> );
+//   gridSquares.push( <div className='grid-row'> );
+    for ( let col = 0; col < 3; col++ ) {
+      gridSquares.push( <ResponsiveSquare /> );
+    }
+//  gridSquares.push( "</div>" );
+//  gridSquares.push( </div> );
+  }
 
-  //    {gridSquares}
   return (
     <div className='row mt-3'>
-      <div className="col-12">
-        <h4 className='mt-3'><code>MyGridOfSquares</code></h4>
+      <div className="col-6">
+        <h4 className='mt-3'>Three <code>rowOfSquares</code>es</h4>
         <div className="card">
           <div className='grid-row'> 
             {rowOfSquares}
@@ -63,6 +62,12 @@ function MyGridOfSquares () {
           <div className='grid-row'> 
             {rowOfSquares}
           </div>
+        </div>
+      </div>
+      <div className="col-6">
+        <h4 className='mt-3'>One <code>gridSquares</code></h4>
+        <div className="card">
+          {gridSquares}
         </div>
       </div>
     </div>
