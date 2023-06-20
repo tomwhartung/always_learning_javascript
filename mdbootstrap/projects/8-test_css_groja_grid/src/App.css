@@ -5,6 +5,25 @@
   text-align: center;
 }
 
-.card {
-  padding: 2em;
+/* By default, code is red! Yikes! */
+code {
+  color: black;
+  font-weight: bold;
+}
+
+.grid-square {
+  background: #0000FF;
+  border-radius: 0;
+  float: left;
+  font-size: 12px;
+  font-weight: bold;
+  height: 100px;
+  padding: 0;
+  text-align: center;
+  width: 100px;
+}
+.grid-row:after {
+  clear: both;
+  content: '';
+  display: table;
 }
