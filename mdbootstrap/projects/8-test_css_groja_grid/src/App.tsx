@@ -28,7 +28,15 @@ function ResponsiveSquare() {
   )
 }
 // MyGridOfSquares: the grid of responsive squares that are the main feature of this project
+//   This version contains two attempts:
+//     Both initially achieve the appearance I was going for, but
+//       neither of which works very well, because they are not easily scalable:
+// (1) Under "Three rowOfSquareses" on the page: 
+//  Each rowOfSquares array contains three ResponsiveSquare elements, i.e. ResponsiveSquare ResponsiveSquare ResponsiveSquare
+// (2) Under "One gridSquares" on the page:
+//  The gridSquares array contains three "grid-row"s, each of which contains three ResponsiveSquare elements
 function MyGridOfSquares () {
+// This gives the appearance of working, but is not really scalable:
   const rowOfSquares = [];
   for ( let col = 0; col < gridSize; col++ ) {
     rowOfSquares.push(
@@ -38,14 +46,25 @@ function MyGridOfSquares () {
 // const gridSize : number = 3;   // number of rows and columns in the grid
   const gridSquares = [];
   for ( let row=0; row < 3; row++ ) {
+// The original idea was to do something like this, but trying to
+//  mix `div` and `ResponsiveQuare` elements like this causes weird errors:
 //   gridSquares.push( <div> );
 //   gridSquares.push( <div className="grid-row"> );
 //   gridSquares.push( <div className='grid-row'> );
-    for ( let col = 0; col < 3; col++ ) {
-      gridSquares.push( <ResponsiveSquare /> );
-    }
-//  gridSquares.push( "</div>" );
+//   for ( let col = 0; col < 3; col++ ) {
+//     // if ( col == 0 ) {
+//     // }
+//     gridSquares.push( <ResponsiveSquare /> );
+//   }
+//   gridSquares.push( "</div>" );
 //  gridSquares.push( </div> );
+// This gives the appearance of working, but is not really scalable:
+    gridSquares.push(
+      <div className="grid-row">
+        <ResponsiveSquare />
+        <ResponsiveSquare />
+        <ResponsiveSquare />
+      </div> );
   }
 
   return (
