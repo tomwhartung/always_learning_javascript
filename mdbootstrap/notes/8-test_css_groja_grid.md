@@ -38,3 +38,27 @@ npm run dev                                    # Start development server; press
 - Copied over my favorite icon `favicon.ico` file from the `joomoowebsites` repo
   - Updated `index.html` to use it
 
+# 3. Test Idea of Using CSS to Set Colors in a Grid of Squares
+
+## 3.1. Resources
+
+- The project `mdbootstrap/projects/7c-lsup-array_of_numbers` shows how I like to create a container with rows and columns
+- The project `reactjs/projects/ttt-my_way-app` might have some ideas with respect to creating the grid of squares
+
+## 3.2. Process
+
+### 3.2.1.
+
+- [x] Step 0: Remove crufty code I do not want to use from `App.tsx` and `App.css`
+  - Keep the old count-the-clicks functionality around in a separate component for the time being
+- [x] Step 1: Create a `MyContainer` function component to hold most of the page's content
+- [x] Step 2: Create a `MyGridOfSquares` function component to hold the grid of squares that I will be focusing on for the time being
+- [x] Step 3: Create a `ResponsiveSquare` function component to represent an individual square
+  - This requires getting some styles from the code for the tic-tac-toe tutorial in `reactjs/projects/ttt-my_way-app`
+- [ ] Step 4: Try using a `for` loop to render the squares, three to a row
+  - Unable to get this to work! 
+  - Thinking I may need to do this the old-fashioned way!! 
+- [ ] Step 5: 
+- [ ] Step 6: 
+- [ ] Step 7: 
+
