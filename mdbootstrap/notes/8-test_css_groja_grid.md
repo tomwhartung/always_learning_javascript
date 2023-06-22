@@ -55,10 +55,10 @@ npm run dev                                    # Start development server; press
 - [x] Step 2: Create a `MyGridOfSquares` function component to hold the grid of squares that I will be focusing on for the time being
 - [x] Step 3: Create a `ResponsiveSquare` function component to represent an individual square
   - This requires getting some styles from the code for the tic-tac-toe tutorial in `reactjs/projects/ttt-my_way-app`
-- [ ] Step 4: Try using a `for` loop to render the squares, three to a row
-  - Unable to get this to work! 
-  - Thinking I may need to do this the old-fashioned way!! 
-- [ ] Step 5: 
-- [ ] Step 6: 
-- [ ] Step 7: 
+- [!] Step 4: Try using a `for` loop to render the squares, three to a row
+  - Unable to get this to work!  Unable to create the grid in a loop!
+    - Could only create the grid by hard-coding at least a row of it, making it unscalable
+  - **For details, see comments in the code:**
+    - Near and in the `MyGridOfSquares` function component in `mdbootstrap/projects/8-test_css_groja_grid/src/App.tsx`
+  - Abandoning this project!  Thinking I may need to do this the "old-fashioned" way and use actual graphics commands!!
 
