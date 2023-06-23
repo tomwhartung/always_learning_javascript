@@ -81,6 +81,12 @@ Remember, the how-to for our best shot so far at getting everything we want is i
       - See details in `mdbootstrap/notes/7c-lsup-array_of_numbers.md`
     - Notes are in `mdbootstrap/notes/7d-lsup-array_of_objects.md`
     - Project is in `mdbootstrap/projects/7d-lsup-array_of_objects`
-
-- [ ] Project 8: Test My Idea of Using CSS to Set the Colors of Squares in a Small Grid
+- [!] Project 8: Test My Idea of Using CSS to Set the Colors of Squares in a Small Grid
+  - Was unable to get this to work as desired
+    - Was forced to list at least a row of the components rather than create them all in a nested `for` loop
+    - This means it is impossible to scale up the experiment as desired
+    - For details and code that I could not get to work, see the file `App.tsx` in the code for this project:
+      - I.e., see `mdbootstrap/projects/8-test_css_groja_grid/src/App.tsx`
+  - Notes are in `mdbootstrap/notes/8-test_css_groja_grid.md`
+  - Project is in `mdbootstrap/projects/8-test_css_groja_grid`
 
