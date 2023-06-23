@@ -132,6 +132,8 @@ Here are some links to blog posts about this:
 - [Tips for Organizing React Projects](https://dev.to/chrisachard/tips-for-organizing-react-projects-191)
   - In item 8 he says to store `*.css` files with the components that use them
     - [This post](https://scrimba.com/articles/react-project-structure/) has an example of how that might look
+    - Another article recommended putting all 3rd-party code in the `public` directory
+      - So maybe we should put `mdb.min.css` there?
   - However the first tip probably has the best overall advice:
 
 > "First, and above all else: do what works for you and your team.
@@ -143,6 +145,12 @@ Here are some links to blog posts about this:
   - Also has some thoughts I might want to look at some day once things get *really* complicated...
 - And here's one about a [better way](https://www.freecodecamp.org/news/a-better-way-to-structure-react-projects/)
 
+# 4. MDB Basics
+
+- At some place near the top level we need to have a `container`
+  - The `container` needs to have one or more `row`s
+  - Each `row` needs to have one or more `col`s
+  - In most apps, each `col` probably should have a `card`
 
 # 3. *"The Whole Shebang"* Step-by-Step
 
