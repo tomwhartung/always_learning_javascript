@@ -55,7 +55,7 @@ Reference:
 - [MDB Download and Setup Page](https://mdbootstrap.com/learn/mdb-foundations/bootstrap/download-and-setup/)
 
 
-### 2.3.2. Update `index.html`:
+### 2.3.1. Update `index.html`:
 
 Add the code in the following code box to `index.html`.
 Inside the `<head>...</head>` element, being sure to replace the existing `<title>...` tag, is a good place.
