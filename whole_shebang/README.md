@@ -1,11 +1,7 @@
 
-# README.md
+# whole_shebang/README.md
 
-This is the `README.md` file for the `whole_shebang` directory in the `always_learning_javascript` repository.
-
-# 1. The Whole Shebang
-
-The plan is to get to where I can start a new project with all of these components working together:
+The plan is to get to where I can easily start a new project with all of these components working together:
 
 - Reactjs
 - Vite
@@ -13,7 +9,29 @@ The plan is to get to where I can start a new project with all of these componen
 - TypeScript
 - MDB
 
-For a list of commands I can run to initialize a minimal "Hello world"-type project with these components, see:
+# Projects
 
-- `./1-whole_shebang-commands.md`
+- [x] Project 1 - The Whole Shebang
+  - Goal:
+    - Get just the components above downloaded and installed
+  - Notes:
+    - `whole_shebang/notes/1-whole_shebang.md`
+  - Project:
+    - `whole_shebang/projects/1-whole_shebang`
+  - Results:
+    - Assembled a list of commands that initialize a "Hello world"-type project with the key components
 
+- [x] Project 2 - The Whole Shebang With (`wsw_`) Graphics
+  - Goal:
+    - [x] Single page with simple canvas
+  - References:
+    - `mdn/projects/5-the_simplest_canvas` in the `always_learning_computer_graphics` repo
+  - Notes:
+    - `whole_shebang/notes/2-wsw_graphics`
+  - Project:
+    - `whole_shebang/projects/2-wsw_graphics`
+  - Results:
+    - Straightforward, but got two warnings in VSCode that I did not get when working on `5-the_simplest_canvas`
+      - The warnings were very easy to fix
+
+- [ ] Project 3 - The Whole Shebang With (`wsw_`) Sliders 
