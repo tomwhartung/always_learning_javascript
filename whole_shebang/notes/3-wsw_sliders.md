@@ -88,3 +88,13 @@ l */*/*.svg                   # Should display "ls: cannot access '*/*/*.svg': N
 
 Check in the code before making any changes to it.
 
+## 1.8. Fix the Problems
+
+Fix the problems by appending `.toString()` to each of the numbers in the `console.log()` statements
+flagged by VSCode.
+
+## 1.9. Update github
+
+This is the end of this process, and successful completion indicates we are ready to make some customizations,
+so *definitely* update git here!
+
