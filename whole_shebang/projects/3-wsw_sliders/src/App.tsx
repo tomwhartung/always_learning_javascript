@@ -62,7 +62,7 @@ const squareSize = 15;    // Size of each square
 const gridSize = 19;      // No. of squares in each row and column
 const canvasWidth = ( squareSize * gridSize ) + ( 2 * gridTopX );
 const canvasHeight = ( squareSize * gridSize ) + ( 2 * gridTopY );
-console.log( "canvasWidth = " + canvasWidth + ", canvasHeight = " + canvasHeight );
+console.log( "canvasWidth = " + canvasWidth.toString() + ", canvasHeight = " + canvasHeight.toString() );
 
 // ************************************************************************************************
 // globalProps: A TEMPORARY GLOBAL variable to be replaced by a Context whatever in a later Project
@@ -93,8 +93,8 @@ const draw = (context: CanvasRenderingContext2D) => {
   let squareTopY = gridTopY;
   let randomColorLetter = "B";
   const opacityPercent = globalProps.opacityPercent;
-// console.log( "draw: globalProps.opacityPercent = " + globalProps.opacityPercent );
-// console.log( "draw: opacityPercent = " + opacityPercent );
+// console.log( "draw: globalProps.opacityPercent = " + globalProps.opacityPercent.toString() );
+// console.log( "draw: opacityPercent = " + opacityPercent.toString() );
 
   for ( let row=0; row < gridSize; row++ ) {
     squareTopY = gridTopY + (row * squareSize);
@@ -103,15 +103,15 @@ const draw = (context: CanvasRenderingContext2D) => {
     // console.log( "randomColorLetter = " + randomColorLetter );
       squareTopX = gridTopX + (col * squareSize);
       if ( randomColorLetter == "B" ) {
-        context.fillStyle = "rgba(0, 0, 255, " + opacityPercent + ")";
+        context.fillStyle = "rgba(0, 0, 255, " + opacityPercent.toString() + ")";
       } else if ( randomColorLetter == "G" ) {
-        context.fillStyle = "rgba(0, 255, 0, " + opacityPercent + ")";
+        context.fillStyle = "rgba(0, 255, 0, " + opacityPercent.toString() + ")";
       } else if ( randomColorLetter == "R" ) {
-        context.fillStyle = "rgba(255, 0, 0, " + opacityPercent + ")";
+        context.fillStyle = "rgba(255, 0, 0, " + opacityPercent.toString() + ")";
       } else if ( randomColorLetter == "Y" ) {
-        context.fillStyle = "rgba(255, 255, 0, " + opacityPercent + ")";
+        context.fillStyle = "rgba(255, 255, 0, " + opacityPercent.toString() + ")";
       } else {
-        context.fillStyle = "rgb(255, 255, 255, " + opacityPercent + ")";
+        context.fillStyle = "rgb(255, 255, 255, " + opacityPercent.toString() + ")";
       }
       context.fillRect( squareTopX, squareTopY, squareSize, squareSize );
     }
@@ -155,13 +155,18 @@ function getRandomPrimaryColor() {
 // MySlider: function component interface to the MDBRange component
 function MySlider( props:MySliderProps ) {
   const sliderOppositeValue = 100 - props.sliderVal;
-  const sliderId = "myslider-" + Number(props.sliderNo);
-  let sliderLabel = sliderOppositeValue + "% " + grojaesqueImagePropNames[props.sliderNo] + ": " + props.sliderVal + "%";
+  const sliderId = "myslider-" + props.sliderNo.toString();
+  let sliderLabel = sliderOppositeValue.toString() + "% " +
+                    grojaesqueImagePropNames[props.sliderNo] + ": " +
+                    props.sliderVal.toString() + "%";
 
   if ( props.sliderNo == 0 ) {
-    sliderLabel = grojaesqueImagePropNames[props.sliderNo] + ": " +  props.sliderVal;
+    sliderLabel = grojaesqueImagePropNames[props.sliderNo] + ": " +
+                  props.sliderVal.toString();
 // } else {
-//   const sliderLabel = sliderOppositeValue + grojaesqueImagePropNames[props.sliderNo] + ": " +  props.sliderVal;
+//   const sliderLabel = sliderOppositeValue.toString() +
+//                       grojaesqueImagePropNames[props.sliderNo] + ": " +
+//                       props.sliderVal.toString();
   }
 
   return (
@@ -205,15 +210,12 @@ function FixedSizeImageCards( props:GrojaesqueImageProps ) {
     const rect = (event.target as HTMLElement).getBoundingClientRect();
     const pixelX = Math.round( event.clientX - rect.left );
     const pixelY = Math.round( event.clientY - rect.top );
-    console.log( "Click on the FixedSizeImage at pixel coords (" + pixelX + ", " + pixelY + ")" );
+    console.log( "Click on the FixedSizeImage at pixel coords (" + pixelX.toString() + ", " + pixelY.toString() + ")" );
     logSquareCoords( pixelX, pixelY );
   }
   function logSquareCoords( pixelX: number, pixelY: number ) {
     let squareX = 0;
     let squareY = 0;
-  // const diffX = pixelX - gridTopX;
-  // const diffY = pixelY - gridTopY;
-  // console.log( "(diffX, diffY) = (" + diffX + ", " + diffY + ")" );
     squareX = Math.floor( ( pixelX - gridTopX ) / squareSize );
     squareY = Math.floor( ( pixelY - gridTopY ) / squareSize );
     if ( squareX < 0 && squareY < 0 ) {
@@ -233,7 +235,7 @@ function FixedSizeImageCards( props:GrojaesqueImageProps ) {
     } else if ( squareY >= gridSize ) {
       console.log( "You clicked on the lower border, not on a square" );
     } else {
-      console.log( "Pixel coords correspond to squareCoords (" + squareX + ", " + squareY + ")" );
+      console.log( "Pixel coords correspond to squareCoords (" + squareX.toString() + ", " + squareY.toString() + ")" );
     }
   }
 
@@ -264,7 +266,7 @@ function FixedContainer() {
 
   function handleChangeArrayOfNumbers( evt:ChangeEvent, col:number ) {
     const val = (evt.target as HTMLInputElement).value;
-  // console.log("Value of slider in column " + col + " is now " + val);
+  // console.log( "Value of slider in column " + col.toString() + " is now " + val.toString() );
     const nextValues = values.slice();
     nextValues[col] = Number(val);
     setValues(nextValues);
@@ -316,7 +318,7 @@ function DFlexImageCards( props:GrojaesqueImageProps ) {
     const rect = (event.target as HTMLElement).getBoundingClientRect();
     const pixelX = Math.round( event.clientX - rect.left );
     const pixelY = Math.round( event.clientY - rect.top );
-    console.log( "Click on resizable image at (" + pixelX + ", " + pixelY + ")" );
+    console.log( "Click on resizable image at (" + pixelX.toString() + ", " + pixelY.toString() + ")" );
   }
 
   return (
@@ -350,7 +352,7 @@ function DFlexContainer() {
 
   function handleChangeArrayOfNumbers( evt:ChangeEvent, col:number ) {
     const val = (evt.target as HTMLInputElement).value;
-  // console.log("Value of slider in column " + col + " is now " + val);
+  // console.log( "Value of slider in column " + col.toString() + " is now " + val.toString() );
     const nextValues = values.slice();
     nextValues[col] = Number(val);
     setValues(nextValues);
