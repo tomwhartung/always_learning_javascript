@@ -49,6 +49,15 @@ The plan is to get to where I can easily start a new project with all of these c
     - Really just copied the code from the following project and it worked ok:
       - `mdn/projects/4-canvas_with_sliders` in the `always_learning_computer_graphics` repo
 
-- [ ] Project 4 - The Whole Shebang With (`wsw_`) Navbar 
+- [ ] Project 4 - The Whole Shebang With (`wsw_`) Navbar
 
+- [x] Project 5 - The Whole Shebang "Hello world"-type App
+  - Goal:
+    - Download and install the components above and delete cruft
+  - Notes:
+    - `whole_shebang/notes/5-whole_shebang_no_cruft.md`
+  - Project:
+    - `whole_shebang/projects/5-whole_shebang_no_cruft`
+  - Results:
+    - Assembled a list of commands that initialize a "Hello world"-type project with the key components
 
