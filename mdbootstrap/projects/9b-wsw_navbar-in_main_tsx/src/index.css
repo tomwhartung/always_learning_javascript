@@ -67,3 +67,14 @@ button:focus-visible {
     background-color: #f9f9f9;
   }
 }
+/*                */
+/* CusTOMizations */
+/* -------------- */
+/*                */
+.navbar {
+  position: fixed;
+  margin: 0 0 3em 0;
+  padding: 0;
+  top: 0px;
+  width: 100%;
+}
