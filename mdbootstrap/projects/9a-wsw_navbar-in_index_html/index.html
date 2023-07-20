@@ -20,6 +20,27 @@
     <title>Vite + React + TS + MDB</title>
   </head>
   <body>
+    <!-- Navbar -->
+    <nav class="navbar fixed-top navbar-expand navbar-light bg-light">
+      <!-- Container wrapper - for centering -->
+      <div class="container-fluid justify-content-center">
+        <!-- Extra div - needed for centering (?!?) -->
+        <div class="">
+          <!-- Centered Options -->
+          <ul class="navbar-nav me-auto mb-2 mb-lg-0">
+            <li class="nav-item">
+              <a class="nav-link" href="#">En</a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link" href="#">Fr</a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link" href="#">Es</a>
+            </li>
+          </ul><!-- End Centered Options -->
+        </div><!-- End Extra div -->
+      </div><!-- End Container wrapper -->
+    </nav><!-- End Navbar -->
     <div id="root"></div>
     <script type="module" src="/src/main.tsx"></script>
   </body>
