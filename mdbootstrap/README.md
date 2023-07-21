@@ -90,3 +90,35 @@ Remember, the how-to for our best shot so far at getting everything we want is i
   - Notes are in `mdbootstrap/notes/8-test_css_groja_grid.md`
   - Project is in `mdbootstrap/projects/8-test_css_groja_grid`
 
+- [ ] Project 9: Figure out where to put navbar code
+  - Is it best to put it in `index.html` or `src/main.tsx`?
+    - After examining our requirements, the answer is: **both!**
+  - References:
+    - https://mdbootstrap.com/docs/standard/navigation/navbar/
+    - Project 5 in `whole_shebang` in this repo
+      - `whole_shebang/notes/5-whole_shebang_no_cruft.md`
+      - `whole_shebang/projects/5-whole_shebang_no_cruft`
+    - One or more `react-router-dom` tutorial pages
+      - For projects `9b-wsw_navbar-in_main_tsx` and `9c-wsw_navbar-two_different_navbars`
+  - Notes are in:
+    - [ ] `mdbootstrap/notes/9-wsw_navbar.md`
+      - Contains general information applicable to all of these `9*` projects
+    - [x] `mdbootstrap/notes/9a-wsw_navbar-in_index_html.md`
+      - Shows how we can put a navbar in `index.html` that supports "mutually exclusive" options
+      - Uses multiple languages to demonstrate how we plan to handle multiple quiz types
+    - [ ] `mdbootstrap/notes/9b-wsw_navbar-in_main_tsx.md`
+      - Shows how we can put a navbar in `src/main.tsx` that supports different "pages" in a single page app
+        - Each page displays a different phrase:
+          - Hello,
+          - How are you?
+          - Goodbye!
+      - Uses multiple phrases in a language to demonstrate how we plan to handle creating, displaying, and editing an image
+    - [ ] `mdbootstrap/notes/9c-wsw_navbar-two_different_navbars.md`
+      - Combines the menus used in:
+        - `mdbootstrap/notes/9a-wsw_navbar-in_index_html.md` and
+        - `mdbootstrap/notes/9b-wsw_navbar-in_main_tsx.md`
+  - Projects are in:
+    - [x] `mdbootstrap/projects/9a-wsw_navbar-in_index_html`
+    - [ ] `mdbootstrap/projects/9b-wsw_navbar-in_main_tsx`
+    - [ ] `mdbootstrap/projects/9c-wsw_navbar-two_different_navbars`
+
