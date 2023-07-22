@@ -17,6 +17,11 @@ ReactDOM.createRoot(document.getElementById('root')!).render(
         <div className="container-fluid justify-content-center">
           <ul className="navbar-nav mb-lg-0">
             <li className="nav-item">
+              <a className="nav-link link-secondary" href="index.html">
+                <i className="fas fa-house"></i>
+              </a>
+            </li>
+            <li className="nav-item">
               <Link className="nav-link" to="Am">AM</Link>
             </li>
             <li className="nav-item">
