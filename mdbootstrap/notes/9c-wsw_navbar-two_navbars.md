@@ -47,9 +47,14 @@ npm run lint
 npm run dev
 ```
 
-## 3.3. Copy Files From the `9a-wsw_navbar-in_index_html` Subproject
+## 3.3. Add First Navbar
 
-These files give us a huge head start on what we want to do.
+Add the first Navbar to the `index*.html` files.
+
+- This Navbar allows switching between languages
+  - We are using these languages to simulate switching between different quiz types
+- We do this by copying files from the `9a-wsw_navbar-in_index_html` subproject
+- These files give us a huge head start on what we want to do
 
 Run the commands in the code box below to:
 
@@ -80,7 +85,7 @@ Run the commands in the code box below to:
 
 
 ```
-pwd                                            # /var/www/always_learning/always_learning_javascript/mdbootstrap/projects
+pwd   # /var/www/always_learning/always_learning_javascript/mdbootstrap/projects
 cp 9a-wsw_navbar-in_index_html/index*.html 9c-wsw_navbar-two_navbars/
 cp 9a-wsw_navbar-in_index_html/src/*.tsx 9c-wsw_navbar-two_navbars/src/
 cp 9a-wsw_navbar-in_index_html/src/*.css 9c-wsw_navbar-two_navbars/src/
@@ -115,4 +120,185 @@ rm public/vite.svg src/assets/react.svg
 ## 3.6. Update github
 
 Update git now, before changing anything else.
+
+
+# 4. Add Second Navbar
+
+The second Navbar allows displaying different messages in the selected language.
+
+- The second Navbar uses components defined in `react-router-dom`
+- Displaying the different messages simulate performing different operations on an image for the selected quiz type
+- We do this by copying code from the `9b-wsw_navbar-in_main_tsx` subproject
+
+## 4.1. Create Trivial Components for Testing the Menus
+
+### 4.1.1. Create Trivial Components for Testing the Menus
+
+Make a new directory under `src` for each language, and populate these directories with
+files from the `9b-wsw_navbar-in_main_tsx` subproject.
+
+- In the `src` directory we will create subdirectories named `en`, `es`, and `fr`
+- In each of these directories we will create files named `Am.tsx`, `Midnight.tsx`, `Noon.tsx`, and `Pm.tsx`
+
+```
+pwd      # /var/www/always_learning/always_learning_javascript/mdbootstrap/projects/9c-wsw_navbar-two_navbars/src
+mkdir en es fr
+cp ../../9b-wsw_navbar-in_main_tsx/src/Am.tsx en/
+cp ../../9b-wsw_navbar-in_main_tsx/src/Pm.tsx en/
+cp ../../9b-wsw_navbar-in_main_tsx/src/Midnight.tsx en/
+cp ../../9b-wsw_navbar-in_main_tsx/src/Noon.tsx en/
+cp  en/* es
+cp  en/* fr
+l */*.tsx        # Should show 12 files, four in each of the three subdirectories
+vi es/*.tsx      # Translate the English text in each of these files to Spanish (*)
+vi fr/*.tsx      # Translate the English text in each of these files to French (*)
+```
+
+(*) Following is a list of the translations:
+
+- en/Am.tsx: Good morning!
+- es/Am.tsx: ¡Buen día!
+- fr/Am.tsx: Bonjour!
+- en/Midnight.tsx: Good night!
+- es/Midnight.tsx: ¡Buenas noches!
+- fr/Midnight.tsx: Bonne nuit!
+- en/Noon.tsx: It's lunchtime!
+- es/Noon.tsx: ¡Es hora del almuerzo!
+- fr/Noon.tsx: C'est l'heure du déjeuner!
+- en/Pm.tsx: Goodbye!
+- es/Pm.tsx: ¡Adiós!
+- fr/Pm.tsx: Au revoir!
+
+### 4.1.2. Fix the `import ...` Statement in Each Trivial Component
+
+In each of these files, change `import './App.css'` to `import '../App.css'`.
+
+## 4.2. Optional: Move Each `src/App[EF]*` Component Into Its Proper Directory
+
+**Note:** I am *not doing this* because it requires changing a lot of `import` statements,
+which makes it more trouble than it's worth!
+
+```
+git mv AppEn.tsx en
+git mv AppEs.tsx es
+git mv AppFr.tsx fr
+```
+
+Also update the:
+
+- Corresponding `import App ...` statements in `main-*.tsx`
+- `import App.css` statements in each `src/*/App*.tsx` file
+
+**What a bunch of hassle for very little gain!**
+
+## 4.3. Import the Trivial Components
+
+### 4.3.1. Import the English Components
+
+Add the following `import` statements for these new components to after the `import AppEn ...` statement in `main-en.tsx`
+
+```
+import Am from './en/Am.tsx'
+import Noon from './en/Noon.tsx'
+import Pm from './en/Pm.tsx'
+import Midnight from './en/Midnight.tsx'
+```
+
+**Note:** these `import` statements cause some problems to appear in VSCode.  We will fix those momentarily.
+
+### 4.3.2. Import the Spanish Components
+
+Add the following `import` statements for these new components to after the `import AppEs ...` statement in `main-es.tsx`
+
+```
+import Am from './es/Am.tsx'
+import Noon from './es/Noon.tsx'
+import Pm from './es/Pm.tsx'
+import Midnight from './es/Midnight.tsx'
+```
+
+**Note:** these `import` statements cause some problems to appear in VSCode.  We will fix those momentarily.
+
+### 4.3.3. Import the French Components
+
+Add the following `import` statements for these new components to after the `import AppFr ...` statement in `main-fr.tsx`
+
+```
+import Am from './fr/Am.tsx'
+import Noon from './fr/Noon.tsx'
+import Pm from './fr/Pm.tsx'
+import Midnight from './fr/Midnight.tsx'
+```
+
+**Note:** these `import` statements cause some problems to appear in VSCode.  We will fix those momentarily.
+
+## 4.4. Add `react-router-dom` Components
+
+For details, see `9b-wsw_navbar-in_main_tsx.md` in this directory.
+
+### 4.4.1. Import Required React Router Components
+
+Add the `import` statement below to near the top of each `main-*.tsx` file to get the
+required components from `react-router-dom`:
+
+```
+import { BrowserRouter, Link, Routes, Route } from 'react-router-dom'
+```
+
+**Note:** this causes a total of *39 problems* to appear in VSCode!
+
+- Again, we will fix those momentarily!!
+
+### 4.4.2. Add the Navbar Code to Each `main-*.tsx` File
+
+Add the following code to just after the opening `<React.StrictMode>` tag in each `main-*.tsx` file:
+
+```
+<BrowserRouter>
+  <nav className="navbar fixed-top navbar-expand navbar-light bg-light">
+    <div className="container-fluid justify-content-center">
+      <ul className="navbar-nav mb-lg-0">
+        <li className="nav-item">
+          <Link className="nav-link" to="Am">AM</Link>
+        </li>
+        <li className="nav-item">
+          <Link className="nav-link" to="Noon">Noon</Link>
+        </li>
+        <li className="nav-item">
+          <Link className="nav-link" to="Pm">PM</Link>
+        </li>
+        <li className="nav-item">
+          <Link className="nav-link" to="Midnight">Midnight</Link>
+        </li>
+      </ul>
+    </div>
+  </nav>
+  <div className="container d-flex justify-content-center">
+    <Routes>
+      <Route path="/Am" element={<Am />} />
+      <Route path="/Noon" element={<Noon />} />
+      <Route path="/Pm" element={<Pm />} />
+      <Route path="/Midnight" element={<Midnight />} />
+    </Routes>
+  </div>
+</BrowserRouter>
+```
+
+**Voilà!** this fixes all 39 VSCode errors!!
+
+- For details about how we created this code, see `9b-wsw_navbar-in_main_tsx.md` in this directory.
+
+## 4.5. Test the Menu
+
+In the browser, click on the menu options at the top of the page to test the new menu.
+
+- It works for me today
+- If it doesn't work for you, search google or whatever and find what changed!
+
+**Note:** the *"Hello, world"* text that comes from the `<App /> element defined in `App.tsx` stays on the
+page while the text above that - for example, *"Good morning!"* - changes when you click on a menu option.
+
+## 4.5. Update Github
+
+Check all these files into github, without further ado.
 
