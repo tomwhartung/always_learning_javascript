@@ -1,7 +1,7 @@
 
 # 9-wsw_navbar.md
 
-This file contains information that is common to all of these projects:
+This file contains information that is common to all of these subprojects:
 
 - `9a-wsw_navbar-in_index_html.md`
 - `9b-wsw_navbar-in_main_tsx.md`
@@ -9,15 +9,26 @@ This file contains information that is common to all of these projects:
 
 # 1. Goals
 
-## 1.1. Original Goal
+Original goal:
 
-- [ ] Decide whether it is best to add the navbar code to `index.html` or `src/main.tsx`
+- [x] Decide whether it is best to add the navbar code to `index.html` or `src/main.tsx`
 
-## 1.2. Ultimate Goals
+Actual goal:
 
-- [ ] Experiment with different ways of approaching navigation in the app I ultimately want to create
+- [x] Experiment with different ways of approaching navigation in the app I ultimately want to create
 
-# 2. Big Picture Considerations
+# 2. Result:
+
+- [x] Use a menu based on html in `index.html` to allow selection of a language
+  - In the new app, a menu of this type will allow selection of a quiz type
+- [x] Use menus based on `react-router-dom` to allow selection of phrases within a language
+  - In the new app, a menu of this type will allow selection of options to create and process an image
+
+# 3. Process
+
+This section describes how and why I decided to structure these menus the way.
+
+## 3.1. Big Picture Considerations
 
 Looking at the *"Big Picture,"* I want to support **multiple quiz types.**
 
@@ -34,13 +45,14 @@ Also, looking at the *"Big Picture,"* I want to support **Progressive Web Apps.*
   - I believe each PWA corresponds to just one SPA
 - It's too early to tell how this might impact navigation
 
-## 2.1. React Router
+## 3.2. React Router
 
 Looking at the React Router package, it looks to be how we want to go for *each quiz type.*
 
-## 2.2. More Initial Impressions
+## 3.3. More Initial Impressions
 
-These are the reasons why I want to look into using multiple ways of handling navigation:
+These are the reasons why and the subprojects I created to decide to use the two techniques of
+handling navigation in my future project:
 
 - `9a-wsw_navbar-in_index_html.md`
   - This is looking like it is the way to go for navigation between quiz types
@@ -52,15 +64,5 @@ These are the reasons why I want to look into using multiple ways of handling na
 - `9c-wsw_navbar-multiple_index_files.md`
   - This looks like using multiple `index-*.html` files is how we want to handle multiple quiz types
   - Then within each `index-*.html` we would use React Router for navigation
-  - Thus would be a combination of `9a-wsw_navbar-in_index_html` and `9b-wsw_navbar-in_main_tsx`
-
-# 3. Process
-
-- Step 1. Create two projects that are identical *except* the file in which we place the navbar code
-  - `9a-wsw_navbar-in_index_html.md` - puts the navbar code in `index.html`
-  - `9b-wsw_navbar-in_main_tsx.md` - puts the navbar code in `src/main.tsx`
-- Step 2. Create a list of "pros" for each project
-  - Note that the "pros" for one project are essentially "cons" for the other project
-    - In other words, adding "cons" would be redundant!
-- Step 3. Review these lists and make a decision
+  - Thus this subproject is a combination of `9a-wsw_navbar-in_index_html` and `9b-wsw_navbar-in_main_tsx`
 
