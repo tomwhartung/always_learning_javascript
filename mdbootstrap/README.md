@@ -90,7 +90,7 @@ Remember, the how-to for our best shot so far at getting everything we want is i
   - Notes are in `mdbootstrap/notes/8-test_css_groja_grid.md`
   - Project is in `mdbootstrap/projects/8-test_css_groja_grid`
 
-- [ ] Project 9: Figure out where to put navbar code
+- [x] Project 9: Figure out where to put navbar code
   - Is it best to put it in `index.html` or `src/main.tsx`?
     - After examining our requirements, the answer is: **both!**
   - References:
@@ -103,9 +103,10 @@ Remember, the how-to for our best shot so far at getting everything we want is i
       - For projects `9b-wsw_navbar-in_main_tsx` and `9c-wsw_navbar-two_navbars`
       - There are several of these; see Chrome -> Bookmarks -> techie new -> react -> react router dom
       - Dated 12/6/21, this one is the latest: https://www.copycat.dev/blog/react-js-navigation/
-      - Other `react-router-dom` tutorial pages?
+      - For other `react-router-dom` tutorial pages see:
+        - Chrome -> bookmarks -> techie new -> react -> react-router-dom
   - Notes are in:
-    - [ ] `mdbootstrap/notes/9-wsw_navbar.md`
+    - [x] `mdbootstrap/notes/9-wsw_navbar.md`
       - Contains general information applicable to all of these `9*` projects
     - [x] `mdbootstrap/notes/9a-wsw_navbar-in_index_html.md`
       - Shows how we can put a navbar in `index.html` that supports "mutually exclusive" options
@@ -119,14 +120,22 @@ Remember, the how-to for our best shot so far at getting everything we want is i
           - Menu option "Noon": It's lunchtime!
           - Menu option "PM": Goodbye!
           - Menu option "Midnight": Good night!
-    - [ ] `mdbootstrap/notes/9c-wsw_navbar-two_navbars.md`
-      - Uses menus to access multiple phrases in different languages
-      - Demonstrates how we plan to create menus allowing users to create, display, and edit an image
+    - [x] `mdbootstrap/notes/9c-wsw_navbar-two_navbars.md`
+      - This project demonstrates how we plan to:
+        - Allow selection from a set of quiz types
+        - Allow users to create menus allowing users to create, display, and edit an image for a given quiz type
+      - Uses two menus to access multiple phrases in different languages
+        - The menu allowing language selection is in `index.html`
+          - This menu simulates how we will support different quiz types
+          - Once a use selects a language/quiz type, a new menu replaces this menu
+        - The menu allowing the user to see different phrases in a language is in the three `src/main-*.tsx` files
+          - This menu simulates how we will support different options for a specific quiz type
+          - This menu includes an option to go to the Home page and select a different language (future: quiz type)
       - Combines the menuing techniques used in:
         - `mdbootstrap/notes/9a-wsw_navbar-in_index_html.md` and
         - `mdbootstrap/notes/9b-wsw_navbar-in_main_tsx.md`
   - Projects are in:
     - [x] `mdbootstrap/projects/9a-wsw_navbar-in_index_html`
     - [x] `mdbootstrap/projects/9b-wsw_navbar-in_main_tsx`
-    - [ ] `mdbootstrap/projects/9c-wsw_navbar-two_navbars`
+    - [x] `mdbootstrap/projects/9c-wsw_navbar-two_navbars`
 
