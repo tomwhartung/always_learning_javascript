@@ -3,7 +3,7 @@
 
 # 1. Goal
 
-- [ ] Combine menuing techniques used in `9a-wsw_navbar-in_index_html` and `9b-wsw_navbar-in_main_tsx`
+- [x] Combine menuing techniques used in `9a-wsw_navbar-in_index_html` and `9b-wsw_navbar-in_main_tsx`
 
 # 2. Process
 
@@ -298,7 +298,41 @@ In the browser, click on the menu options at the top of the page to test the new
 **Note:** the *"Hello, world"* text that comes from the `<App /> element defined in `App.tsx` stays on the
 page while the text above that - for example, *"Good morning!"* - changes when you click on a menu option.
 
-## 4.5. Update Github
+## 4.6. Update Github
 
 Check all these files into github, without further ado.
+
+## 4.7. Add an Option to Go to the Home Page
+
+Add an option to go to the Home page to each language-specific page.
+This allows the user to change to a different language.
+
+- In our future app it will allow them to change the quiz type
+- Once they are in a language - future quiz type - they will need to go Home to switch to a different language/quiz type
+
+Add the following code to the top of the menu - after the opening `<ul ...` tag - in each `src/main-*.html` file:
+
+```
+<li className="nav-item">
+  <a className="nav-link link-secondary" href="index.html">
+    <i className="fas fa-house"></i>
+  </a>
+</li>
+```
+
+## 4.8. Delete the Menus in the `index-*.html` Files
+
+The menus in the `index-*.html` files are still there, but are hidden by the ones we added in the `main-*.tsx` files.
+
+- This means we can delete *all* the code between and including the opening `<nav ...`  and the closing `</nav>` tags from each of the three `index-*.html` files
+
+**Note:** do *not* delete the menu in the original, main `index.html` file, that is now our Home page!
+
+## 4.9. Update Github
+
+Check all these files into github, without further ado.
+
+# 5. Common Notes
+
+For notes that apply to all of the `9?-*` projects see `9-wsw_navbar` in this directory.
 
