@@ -84,3 +84,13 @@ git rm public/vite.svg src/assets/react.svg
 
 Update git now, before changing anything else.
 
+# 2. Add MDB Navbars
+
+## 2.1. Install `react-router-dom`
+
+One of our Navbars use the `react-router-dom` package, so run the following command to install that.
+
+```
+npm install react-router-dom --save            # New, as of the 9b-wsw_navbar-in_main_tsx subproject!
+```
+
