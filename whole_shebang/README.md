@@ -49,7 +49,30 @@ The plan is to get to where I can easily start a new project with all of these c
     - Really just copied the code from the following project and it worked ok:
       - `mdn/projects/4-canvas_with_sliders` in the `always_learning_computer_graphics` repo
 
-- [ ] Project 4 - The Whole Shebang With (`wsw_`) Navbar
+- [x] Project 4 - The Whole Shebang With (`wsw_`) Navbar
+  - Goal:
+    - [x] Figure out how I want to use Navbars in my new site
+      - Technically speaking, this was accomplished in Project 9 under `mdbootstrap`
+      - The *"real"* goal of this project is to put all that in a more accessible place
+      - For details, see `mdbootstrap/notes/9c-wsw_navbar-two_navbars.md`
+  - References:
+    - Source of raw html & documentation about how it works is here:
+      - https://mdbootstrap.com/docs/standard/navigation/navbar/
+    - Project 9 in the `mdbootstrap` directory in this repo
+      - `mdbootstrap/notes/9a-wsw_navbar-in_index_html.md`
+      - `mdbootstrap/projects/9a-wsw_navbar-in_index_html`
+      - `mdbootstrap/notes/9b-wsw_navbar-in_main_tsx.md`
+      - `mdbootstrap/projects/9b-wsw_navbar-in_main_tsx`
+      - **`mdbootstrap/notes/9c-wsw_navbar-two_navbars.md`**
+      - **`mdbootstrap/projects/9c-wsw_navbar-two_navbars`**
+  - Notes:
+    - `whole_shebang/notes/4-wsw_navbar.md`
+  - Project:
+    - `whole_shebang/projects/4-wsw_navbar`
+  - Results:
+    - After starting this project, I got sidetracked into working on Project 9 under `mdbootstrap`
+    - After some deliberation and experimentation, it became clear that I would want to use two types of Navbars
+    - This project is really just a copy of the `9c-wsw_navbar-two_navbars` project under `mdbootstrap`
 
 - [x] Project 5 - The Whole Shebang "Hello world"-type App
   - Goal:
