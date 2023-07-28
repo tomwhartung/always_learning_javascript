@@ -1,5 +1,5 @@
 
-# 4-wsw_navbar.md
+# 6-wsw_navbar_graphics_sliders.md
 
 - Commands run in `1-whole_shebang` to initialize a minimal "Hello world"-type project using:
   - Vite with Reactjs
@@ -22,87 +22,32 @@ sudo npm install -g npm@latest                               # Upgrade current v
 ## 1.2. Create New Project Using Vite, React, TypeScript, and MDB
 
 ```
-pwd                                            # /var/www/always_learning/always_learning_javascript/whole_shebang/projects
-npm init vite@latest -- --template react-ts    # Use '4-wsw_navbar' for the [project_name]
-cd 4-wsw_navbar
+pwd                                          # /var/www/always_learning/always_learning_javascript/whole_shebang/projects
+npm init vite@latest -- --template react-ts  # Use '6-wsw_navbar_graphics_sliders' for the [project_name]
+cd 6-wsw_navbar_graphics_sliders
 npm i mdb-react-ui-kit
+npm i react-router-dom --save                # New - used for menus we will add later
 npm run lint
 npm run dev
 ```
 
-## 1.3. Add MDB, Font Awesome, and Google Fonts Roboto
+## 1.3. Load Into VSCode
 
-Update `index.html`:
+Load the new project directory into VSCode and use Shift-Ctrl-M to ensure there are no problems.
 
-```
-pwd   # /var/www/always_learning/always_learning_javascript/whole_shebang/projects
-diff 1-whole_shebang/index.html 4-wsw_navbar/index.html
-cp 1-whole_shebang/index.html 4-wsw_navbar/index.html
-```
-
-## 1.4. Sanity Checks
-
-- [x] Run `npm run lint` inside the [project_name] directory
-- [x] Run `npm run dev` inside the [project_name] directory
-- [x] Load into VSCode
-  - [x] Press **Ctrl+Shift+M** or click on [Menu icon ->] View -> Problems
-  - [x] Give it a little time to analyze all the code and check for issues
-- [x] Check that the `App` is working in the browser at [http://localhost:5173/](http://localhost:5173/)
-
-If using git, commit this project now.
-
-## 1.5. Cleanup Cruft
-
-### 1.5.1. Cleanup Logo Cruft
-
-- [x] Remove all references to `public/vite.svg` and `src/assets/react.svg` from `index.html` and `src/App.tsx`
-  - [x] Should be no references in `index.html`
-  - [x] Remove all `import` lines from `src/App.tsx` that reference "react" and "svg" files
-  - [x] Remove all code from the App component in `src/App.tsx` except that which returns "<h1>Hello, world</h1>"
+## 1.4. Commit to Github
 
 ```
-grep svg index.html src/*.*
-vi src/App.tsx                # See notes above
+pwd          # /var/www/always_learning/always_learning_javascript/
+git add whole_shebang/projects/6-wsw_navbar_graphics_sliders/
+git commit -m 'Adding whole_shebang/projects/6-wsw_navbar_graphics_sliders/ , which contains the latest npm versions of the packages needed for this project.'
 ```
 
-- [x] Delete `public/vite.svg` and `src/assets/react.svg`
-  - **Note:** If files already checked into git, use `git rm`
+# 2. Add MDB Navbars and Test Components
 
-```
-rm public/vite.svg src/assets/react.svg
-### **************************************
-### OR, IF FILES ALREADY CHECKED INTO GIT:
-### **************************************
-git rm public/vite.svg src/assets/react.svg
-```
+We start by copying the Navbars and trivial components used in `whole_shebang/projects/4-wsw_navbar/`.
 
-### 1.5.2. Cleanup CSS Cruft
-
-- Delete everything from `src/App.css` *except* the first rule defining styles for `#root`
-
-## 1.6. Update github
-
-Update git now, before changing anything else.
-
-# 2. Add MDB Navbars
-
-## 2.1. Install `react-router-dom`
-
-One of our Navbars use the `react-router-dom` package, so run the following command to install that.
-
-```
-npm install react-router-dom --save            # New, as of the 9b-wsw_navbar-in_main_tsx subproject!
-```
-
-## 2.2. Copy Files From `mdbootstrap/projects/9c-wsw_navbar-two_navbars`
-
-I have decided that the `mdbootstrap/projects/9c-wsw_navbar-two_navbars` project implements menus the way we will want
-to do them for the main site I will be working on.
-
-- Therefore it is ok to just copy those files over to this project
-- For details about why and how, see that project
-
-### 2.2.1. Copy the `index*.html` Files
+## 2.1. Copy the `index*.html` Files
 
 The `index*.html` files contain the home page's top menu options:
 
@@ -111,120 +56,162 @@ The `index*.html` files contain the home page's top menu options:
 - Es - Pages in Spanish
 - Fr - Pages in French
 
-```
-pwd       # /var/www/always_learning/always_learning_javascript
-ls -al mdbootstrap/projects/9c-wsw_navbar-two_navbars/index*.html
-cp  mdbootstrap/projects/9c-wsw_navbar-two_navbars/index*.html whole_shebang/projects/4-wsw_navbar/
-git add  whole_shebang/projects/4-wsw_navbar/
-git commit -m 'Copied the mdbootstrap/projects/9c-wsw_navbar-two_navbars/index*.html files to whole_shebang/projects/4-wsw_navbar/ .'
-```
-
-### 2.2.2. Copy the Language-Specific Files
-
-These files define trivial components we use for testing the menus.
-
-### 2.2.2.1. Copy the English `mdbootstrap/projects/9c-wsw_navbar-two_navbars/src/en/*` Files
+**We will update these later.**
+For now, run the following commands to copy them as-is.
 
 ```
-pwd # /var/www/always_learning/always_learning_javascript
-ls -al mdbootstrap/projects/9c-wsw_navbar-two_navbars/src/en/
-cp -r  mdbootstrap/projects/9c-wsw_navbar-two_navbars/src/en/ whole_shebang/projects/4-wsw_navbar/src/
-git add whole_shebang/projects/4-wsw_navbar/src/en/
-git commit -m 'Copied the English language files in mdbootstrap/projects/9c-wsw_navbar-two_navbars/src/en/ to whole_shebang/projects/4-wsw_navbar/src/en .'
+pwd       # /var/www/always_learning/always_learning_javascript/whole_shebang/projects/
+ls -al 4-wsw_navbar/index*.html
+cp 4-wsw_navbar/index*.html 6-wsw_navbar_graphics_sliders/
+cd ../..
+pwd       # /var/www/always_learning/always_learning_javascript/
+git add whole_shebang/projects/6-wsw_navbar_graphics_sliders/
+git commit -m 'Copied the whole_shebang/projects/4-wsw_navbar/index*.html files to whole_shebang/projects/6-wsw_navbar_graphics_sliders/ .'
 ```
 
-### 2.2.2.2. Copy the Spanish `mdbootstrap/projects/9c-wsw_navbar-two_navbars/src/es/*` Files
+## 2.2. Copy the Language-Specific Files
+
+These files define the trivial components we use for testing the menus.
+
+### 2.2.1. Copy the English `4-wsw_navbar/src/en/*` Files
 
 ```
-pwd       # /var/www/always_learning/always_learning_javascript
-ls -al mdbootstrap/projects/9c-wsw_navbar-two_navbars/src/es/
-cp -r mdbootstrap/projects/9c-wsw_navbar-two_navbars/src/es/ whole_shebang/projects/4-wsw_navbar/src/
-git add  whole_shebang/projects/4-wsw_navbar/src/es/
-git commit -m 'Copied the Spanglish language files in mdbootstrap/projects/9c-wsw_navbar-two_navbars/src/es/ to whole_shebang/projects/4-wsw_navbar/src/es .'
+pwd       # /var/www/always_learning/always_learning_javascript/whole_shebang/projects
+ls -al 4-wsw_navbar/src/en/
+cp -r  4-wsw_navbar/src/en/ 6-wsw_navbar_graphics_sliders/src/
+cd ../..
+pwd       # /var/www/always_learning/always_learning_javascript/
+git add whole_shebang/projects/6-wsw_navbar_graphics_sliders/src/en/
+git commit -m 'Copied the English language files in whole_shebang/projects/4-wsw_navbar/src/en/ to whole_shebang/projects/6-wsw_navbar_graphics_sliders/src/en .'
 ```
 
-### 2.2.2.3. Copy the French `mdbootstrap/projects/9c-wsw_navbar-two_navbars/src/fr/*` Files
+### 2.2.2. Copy the Spanish `4-wsw_navbar/src/es/*` Files
 
 ```
-pwd       # /var/www/always_learning/always_learning_javascript
-ls -al mdbootstrap/projects/9c-wsw_navbar-two_navbars/src/fr/
-cp -r mdbootstrap/projects/9c-wsw_navbar-two_navbars/src/fr/ whole_shebang/projects/4-wsw_navbar/src/
-git add whole_shebang/projects/4-wsw_navbar/src/fr/
-git commit -m 'Copied the French language files in mdbootstrap/projects/9c-wsw_navbar-two_navbars/src/fr/ to whole_shebang/projects/4-wsw_navbar/src/fr .'
+pwd       # /var/www/always_learning/always_learning_javascript/whole_shebang/projects
+ls -al 4-wsw_navbar/src/es/
+cp -r 4-wsw_navbar/src/es/ 6-wsw_navbar_graphics_sliders/src/
+cd ../..
+pwd       # /var/www/always_learning/always_learning_javascript/
+git add  whole_shebang/projects/6-wsw_navbar_graphics_sliders/src/es/
+git commit -m 'Copied the Spanglish language files in whole_shebang/projects/4-wsw_navbar/src/es/ to whole_shebang/projects/6-wsw_navbar_graphics_sliders/src/es .'
+```
+
+### 2.2.3. Copy the French `4-wsw_navbar/src/fr/*` Files
+
+```
+pwd       # /var/www/always_learning/always_learning_javascript/whole_shebang/projects
+ls -al 4-wsw_navbar/src/fr/
+cp -r 4-wsw_navbar/src/fr/ whole_shebang/projects/6-wsw_navbar_graphics_sliders/src/
+cd ../..
+pwd       # /var/www/always_learning/always_learning_javascript/
+git add whole_shebang/projects/6-wsw_navbar_graphics_sliders/src/fr/
+git commit -m 'Copied the French language files in whole_shebang/projects/4-wsw_navbar/src/fr/ to whole_shebang/projects/6-wsw_navbar_graphics_sliders/src/fr .'
 ```
 
 
-### 2.2.3. Copy the `src/main*.tsx` Files
+## 2.3. Copy the `src/main*.tsx` Files
 
 ```
-pwd       # /var/www/always_learning/always_learning_javascript
-l mdbootstrap/projects/9c-wsw_navbar-two_navbars/src/main*
-cp  mdbootstrap/projects/9c-wsw_navbar-two_navbars/src/main* whole_shebang/projects/4-wsw_navbar/src/
-git add  whole_shebang/projects/4-wsw_navbar/src/main*
-git commit -m 'Copied the mdbootstrap/projects/9c-wsw_navbar-two_navbars/src/main* files to whole_shebang/projects/4-wsw_navbar/src/ .'
+pwd       # /var/www/always_learning/always_learning_javascript/whole_shebang/projects
+l 4-wsw_navbar/src/main*
+cp  4-wsw_navbar/src/main* 6-wsw_navbar_graphics_sliders/src/
+cd ../..
+pwd       # /var/www/always_learning/always_learning_javascript/
+git add  whole_shebang/projects/6-wsw_navbar_graphics_sliders/src/main*
+git commit -m 'Copied the whole_shebang/projects/4-wsw_navbar/src/main* files to whole_shebang/projects/6-wsw_navbar_graphics_sliders/src/ .'
 ```
 
-### 2.2.4. Copy the `src/App*.tsx` Files
+## 2.4. Copy the `src/App*.tsx` Files
 
 These files provide "Hello world" text on the home page for each language.
 
 - Note that this text remains visible after clicking on the time-related options in the top menu for each language-specific page
 
 ```
-pwd       # /var/www/always_learning/always_learning_javascript
-l mdbootstrap/projects/9c-wsw_navbar-two_navbars/src/App*.tsx
-cp mdbootstrap/projects/9c-wsw_navbar-two_navbars/src/App*.tsx whole_shebang/projects/4-wsw_navbar/src/
-git add whole_shebang/projects/4-wsw_navbar/src/App*
-git commit -m 'Copied the mdbootstrap/projects/9c-wsw_navbar-two_navbars/src/App*.tsx files to whole_shebang/projects/4-wsw_navbar/src/ .'
+pwd       # /var/www/always_learning/always_learning_javascript/whole_shebang/projects
+l 4-wsw_navbar/src/App*.tsx
+cp 4-wsw_navbar/src/App*.tsx 6-wsw_navbar_graphics_sliders/src/
+cd ../..
+pwd       # /var/www/always_learning/always_learning_javascript/
+git add whole_shebang/projects/6-wsw_navbar_graphics_sliders/src/App*
+git commit -m 'Copied the whole_shebang/projects/4-wsw_navbar/src/App*.tsx files to whole_shebang/projects/6-wsw_navbar_graphics_sliders/src/ .'
 ```
 
-### 2.2.5. Copy the `src/*.css` Files
+## 2.5. Copy the `src/*.css` Files
 
 These files provide some basic styles for the app.
 
 ```
-pwd       # /var/www/always_learning/always_learning_javascript
-l mdbootstrap/projects/9c-wsw_navbar-two_navbars/src/*.css
-cp mdbootstrap/projects/9c-wsw_navbar-two_navbars/src/*.css whole_shebang/projects/4-wsw_navbar/src/
-git add whole_shebang/projects/4-wsw_navbar/src/*.css
-git commit -m 'Copied the mdbootstrap/projects/9c-wsw_navbar-two_navbars/src/*.css files to whole_shebang/projects/4-wsw_navbar/src/ .'
+pwd       # /var/www/always_learning/always_learning_javascript/whole_shebang/projects
+l 4-wsw_navbar/src/*.css
+cp 4-wsw_navbar/src/*.css 6-wsw_navbar_graphics_sliders/src/
+cd ../..
+pwd       # /var/www/always_learning/always_learning_javascript/
+git add whole_shebang/projects/6-wsw_navbar_graphics_sliders/src/*.css
+git commit -m 'Copied the whole_shebang/projects/4-wsw_navbar/src/*.css files to whole_shebang/projects/6-wsw_navbar_graphics_sliders/src/ .'
 ```
 
-### 2.2.6. Check for Differences
+## 2.6. Cleanup Logo Cruft
+
+Ensure there are no lingering references to `*.svg` files, and delete the ones installed by `npm`
+
+```
+cd 6-wsw_navbar_graphics_sliders
+pwd                              # /var/www/always_learning/always_learning_javascript/whole_shebang/projects/6-wsw_navbar_graphics_sliders
+grep svg index.html src/*.*
+git rm public/vite.svg src/assets/react.svg
+cd ../../..
+pwd       # /var/www/always_learning/always_learning_javascript/
+git commit -m 'Removed whole_shebang/projects/6-wsw_navbar_graphics_sliders/public/vite.svg and whole_shebang/projects/6-wsw_navbar_graphics_sliders/src/assets/react.svg because they are crufty and unneeded.'
+```
+
+## 2.7. Check for Differences
 
 Run the following series of `diff` commands to ensure we haven't forgotten anything:
 
 - It's ok to ignore differences in files like `.eslintrc.cjs` and `package*.json`
   - These are no doubt due to having run `npm install` at different times
   - That is why it's best to start each new project fresh
-- I don't know why there's a `README.md` file in `mdbootstrap/projects/9c-wsw_navbar-two_navbars/` ...
+- I don't know why there's a `README.md` file in `whole_shebang/projects/6-wsw_navbar_graphics_sliders/` ...
   - ... but *not* one in `whole_shebang/projects/4-wsw_navbar/`
   - *Not* going to worry about this, becuase `README.md` is *not a source file*
 
 ```
-diff mdbootstrap/projects/9c-wsw_navbar-two_navbars/ whole_shebang/projects/4-wsw_navbar/
-diff mdbootstrap/projects/9c-wsw_navbar-two_navbars/src/ whole_shebang/projects/4-wsw_navbar/src/
-diff mdbootstrap/projects/9c-wsw_navbar-two_navbars/src/en/ whole_shebang/projects/4-wsw_navbar/src/en
-diff mdbootstrap/projects/9c-wsw_navbar-two_navbars/src/es/ whole_shebang/projects/4-wsw_navbar/src/es
-diff mdbootstrap/projects/9c-wsw_navbar-two_navbars/src/fr whole_shebang/projects/4-wsw_navbar/src/fr
+pwd       # /var/www/always_learning/always_learning_javascript/whole_shebang/projects
+
+diff 4-wsw_navbar/ 6-wsw_navbar_graphics_sliders/
+diff 4-wsw_navbar/src/ 6-wsw_navbar_graphics_sliders/src/
+diff 4-wsw_navbar/src/en/ 6-wsw_navbar_graphics_sliders/src/en
+diff 4-wsw_navbar/src/es/ 6-wsw_navbar_graphics_sliders/src/es
+diff 4-wsw_navbar/src/fr 6-wsw_navbar_graphics_sliders/src/fr
 ```
 
-## 2.3. Sanity Checks
+## 2.8. Sanity Checks
 
-- [x] Load into VSCode
+- [x] Check VSCode
   - [x] Press **Ctrl+Shift+M** or click on [Menu icon ->] View -> Problems
   - [x] Give it a little time to analyze all the code and check for issues
-- [x] Run `npm run lint` inside the `9c-wsw_navbar-two_navbars` directory
-- [x] Run `npm run dev` inside the `9c-wsw_navbar-two_navbars` directory
+- [x] Run `npm run lint` inside the `6-wsw_navbar_graphics_sliders` directory
+- [x] Run `npm run dev` inside the `6-wsw_navbar_graphics_sliders` directory
 - [x] Check that the `App` is working in the browser
 
-**Note:** at this point, the app should work just like the app in `mdbootstrap/projects/9c-wsw_navbar-two_navbars`.
+**Note:** at this point, the app should work just like the app in `whole_shebang/projects/4-wsw_navbar`.
 
 
-# 3. MDB Basics
+# 3. Rename Languages to Quiz Types
 
-- At some place near the top level we need to have a `container`
-  - The `container` needs to have one or more `row`s
-  - Each `row` needs to have one or more `col`s
-  - In most apps, each `col` probably should have a `card`
+## 3.1. Rename Options, `index-*` Files, and `href` Attributes
+
+Rename the options in `index.html`, and  as follows:
+
+- Rename the "En" option to "Big 5"
+  - Rename `index-en.html` to `index-big5.html`
+  - Update the option's `href` value in `index.html` accordingly
+- Rename the "Es" option to "Jungian"
+  - Rename `index-es.html` to `index-jungian.html`
+  - Update the option's `href` value in `index.html` accordingly
+- Rename the "Fr" option to "Enneagram"
+  - Rename `index-fr.html` to `index-enneagram.html`
+  - Update the option's `href` value in `index.html` accordingly
 
