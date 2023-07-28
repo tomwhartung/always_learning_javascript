@@ -2,8 +2,8 @@ import '../App.css'
 
 function View() {
   return (
-    <div id="noon">
-      <h1>It's lunchtime!</h1>
+    <div id="view">
+      <h1>This is the View page</h1>
     </div>
   )
 }

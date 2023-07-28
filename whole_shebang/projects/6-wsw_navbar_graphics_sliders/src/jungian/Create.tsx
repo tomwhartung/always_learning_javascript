@@ -2,8 +2,8 @@ import '../App.css'
 
 function Create() {
   return (
-    <div id="am">
-      <h1>¡Buen día!</h1>
+    <div id="create">
+      <h1>This is the Create page</h1>
     </div>
   )
 }
