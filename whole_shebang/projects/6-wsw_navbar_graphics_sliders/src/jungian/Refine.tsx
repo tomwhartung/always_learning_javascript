@@ -1,11 +1,11 @@
 import '../App.css'
 
-function Pm() {
+function Refine() {
   return (
     <div id="pm">
-      <h1>Au revoir!</h1>
+      <h1>¡Adiós!</h1>
     </div>
   )
 }
 
-export default Pm
+export default Refine

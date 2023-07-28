@@ -3,10 +3,10 @@ import ReactDOM from 'react-dom/client'
 import { BrowserRouter, Link, Routes, Route } from 'react-router-dom'
 
 import AppEnneagram from './AppEnneagram.tsx'
-import Am from './enneagram/Am.tsx'
-import Noon from './enneagram/Noon.tsx'
-import Pm from './enneagram/Pm.tsx'
-import Midnight from './enneagram/Midnight.tsx'
+import Create from './enneagram/Create.tsx'
+import View from './enneagram/View.tsx'
+import Refine from './enneagram/Refine.tsx'
+import Help from './enneagram/Help.tsx'
 
 import './index.css'
 
@@ -22,26 +22,26 @@ ReactDOM.createRoot(document.getElementById('root')!).render(
               </a>
             </li>
             <li className="nav-item">
-              <Link className="nav-link" to="Am">AM</Link>
+              <Link className="nav-link" to="Create">Create</Link>
             </li>
             <li className="nav-item">
-              <Link className="nav-link" to="Noon">Noon</Link>
+              <Link className="nav-link" to="View">View</Link>
             </li>
             <li className="nav-item">
-              <Link className="nav-link" to="Pm">PM</Link>
+              <Link className="nav-link" to="Refine">Refine</Link>
             </li>
             <li className="nav-item">
-              <Link className="nav-link" to="Midnight">Midnight</Link>
+              <Link className="nav-link" to="Help">Help</Link>
             </li>
           </ul>
         </div>
       </nav>
       <div className="container d-flex justify-content-center">
         <Routes>
-          <Route path="/Am" element={<Am />} />
-          <Route path="/Noon" element={<Noon />} />
-          <Route path="/Pm" element={<Pm />} />
-          <Route path="/Midnight" element={<Midnight />} />
+          <Route path="/Create" element={<Create />} />
+          <Route path="/View" element={<View />} />
+          <Route path="/Refine" element={<Refine />} />
+          <Route path="/Help" element={<Help />} />
         </Routes>
       </div>
     </BrowserRouter>

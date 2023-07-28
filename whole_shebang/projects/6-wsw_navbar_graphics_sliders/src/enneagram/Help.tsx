@@ -1,11 +1,11 @@
 import '../App.css'
 
-function Midnight() {
+function Help() {
   return (
     <div id="midnight">
-      <h1>Good night!</h1>
+      <h1>Bonne nuit!</h1>
     </div>
   )
 }
 
-export default Midnight
+export default Help

@@ -1,6 +1,6 @@
 import '../App.css'
 
-function Am() {
+function Create() {
   return (
     <div id="am">
       <h1>¡Buen día!</h1>
@@ -8,4 +8,4 @@ function Am() {
   )
 }
 
-export default Am
+export default Create

@@ -1,11 +1,11 @@
 import '../App.css'
 
-function Am() {
+function Create() {
   return (
     <div id="am">
-      <h1>Good morning!</h1>
+      <h1>Bonjour!</h1>
     </div>
   )
 }
 
-export default Am
+export default Create

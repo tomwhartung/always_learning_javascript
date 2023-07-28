@@ -1,6 +1,6 @@
 import '../App.css'
 
-function Noon() {
+function View() {
   return (
     <div id="noon">
       <h1>C'est l'heure du déjeuner!</h1>
@@ -8,4 +8,4 @@ function Noon() {
   )
 }
 
-export default Noon
+export default View

@@ -1,6 +1,6 @@
 import '../App.css'
 
-function Midnight() {
+function Help() {
   return (
     <div id="midnight">
       <h1>¡Buenas noches!</h1>
@@ -8,4 +8,4 @@ function Midnight() {
   )
 }
 
-export default Midnight
+export default Help
