@@ -3,10 +3,10 @@ import ReactDOM from 'react-dom/client'
 import { BrowserRouter, Link, Routes, Route } from 'react-router-dom'
 
 import AppBig5 from './AppBig5.tsx'
-import Am from './en/Am.tsx'
-import Noon from './en/Noon.tsx'
-import Pm from './en/Pm.tsx'
-import Midnight from './en/Midnight.tsx'
+import Am from './big5/Am.tsx'
+import Noon from './big5/Noon.tsx'
+import Pm from './big5/Pm.tsx'
+import Midnight from './big5/Midnight.tsx'
 
 import './index.css'
 

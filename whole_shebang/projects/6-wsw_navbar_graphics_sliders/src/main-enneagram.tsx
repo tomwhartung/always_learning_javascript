@@ -3,10 +3,10 @@ import ReactDOM from 'react-dom/client'
 import { BrowserRouter, Link, Routes, Route } from 'react-router-dom'
 
 import AppEnneagram from './AppEnneagram.tsx'
-import Am from './fr/Am.tsx'
-import Noon from './fr/Noon.tsx'
-import Pm from './fr/Pm.tsx'
-import Midnight from './fr/Midnight.tsx'
+import Am from './enneagram/Am.tsx'
+import Noon from './enneagram/Noon.tsx'
+import Pm from './enneagram/Pm.tsx'
+import Midnight from './enneagram/Midnight.tsx'
 
 import './index.css'
 

@@ -3,10 +3,10 @@ import ReactDOM from 'react-dom/client'
 import { BrowserRouter, Link, Routes, Route } from 'react-router-dom'
 
 import AppJungian from './AppJungian.tsx'
-import Am from './es/Am.tsx'
-import Noon from './es/Noon.tsx'
-import Pm from './es/Pm.tsx'
-import Midnight from './es/Midnight.tsx'
+import Am from './jungian/Am.tsx'
+import Noon from './jungian/Noon.tsx'
+import Pm from './jungian/Pm.tsx'
+import Midnight from './jungian/Midnight.tsx'
 
 import './index.css'
 
