@@ -121,9 +121,9 @@ git commit -m 'Copied the mdbootstrap/projects/9c-wsw_navbar-two_navbars/index*.
 
 ### 2.2.2. Copy the Language-Specific Files
 
-These files define trivial components we use for testing the menus.
+These files define the trivial components we use for testing the menus.
 
-### 2.2.2.1. Copy the English `mdbootstrap/projects/9c-wsw_navbar-two_navbars/src/en/*` Files
+#### 2.2.2.1. Copy the English `mdbootstrap/projects/9c-wsw_navbar-two_navbars/src/en/*` Files
 
 ```
 pwd # /var/www/always_learning/always_learning_javascript
@@ -133,7 +133,7 @@ git add whole_shebang/projects/4-wsw_navbar/src/en/
 git commit -m 'Copied the English language files in mdbootstrap/projects/9c-wsw_navbar-two_navbars/src/en/ to whole_shebang/projects/4-wsw_navbar/src/en .'
 ```
 
-### 2.2.2.2. Copy the Spanish `mdbootstrap/projects/9c-wsw_navbar-two_navbars/src/es/*` Files
+#### 2.2.2.2. Copy the Spanish `mdbootstrap/projects/9c-wsw_navbar-two_navbars/src/es/*` Files
 
 ```
 pwd       # /var/www/always_learning/always_learning_javascript
@@ -143,7 +143,7 @@ git add  whole_shebang/projects/4-wsw_navbar/src/es/
 git commit -m 'Copied the Spanglish language files in mdbootstrap/projects/9c-wsw_navbar-two_navbars/src/es/ to whole_shebang/projects/4-wsw_navbar/src/es .'
 ```
 
-### 2.2.2.3. Copy the French `mdbootstrap/projects/9c-wsw_navbar-two_navbars/src/fr/*` Files
+#### 2.2.2.3. Copy the French `mdbootstrap/projects/9c-wsw_navbar-two_navbars/src/fr/*` Files
 
 ```
 pwd       # /var/www/always_learning/always_learning_javascript
@@ -214,8 +214,8 @@ diff mdbootstrap/projects/9c-wsw_navbar-two_navbars/src/fr whole_shebang/project
 - [x] Load into VSCode
   - [x] Press **Ctrl+Shift+M** or click on [Menu icon ->] View -> Problems
   - [x] Give it a little time to analyze all the code and check for issues
-- [x] Run `npm run lint` inside the `9c-wsw_navbar-two_navbars` directory
-- [x] Run `npm run dev` inside the `9c-wsw_navbar-two_navbars` directory
+- [x] Run `npm run lint` inside the `4-wsw_navbar` directory
+- [x] Run `npm run dev` inside the `4-wsw_navbar` directory
 - [x] Check that the `App` is working in the browser
 
 **Note:** at this point, the app should work just like the app in `mdbootstrap/projects/9c-wsw_navbar-two_navbars`.
