@@ -2,7 +2,7 @@ import React from 'react'
 import ReactDOM from 'react-dom/client'
 import { BrowserRouter, Link, Routes, Route } from 'react-router-dom'
 
-import AppEn from './AppEn.tsx'
+import AppBig5 from './AppBig5.tsx'
 import Am from './en/Am.tsx'
 import Noon from './en/Noon.tsx'
 import Pm from './en/Pm.tsx'
@@ -45,6 +45,6 @@ ReactDOM.createRoot(document.getElementById('root')!).render(
         </Routes>
       </div>
     </BrowserRouter>
-    <AppEn />
+    <AppBig5 />
   </React.StrictMode>,
 )

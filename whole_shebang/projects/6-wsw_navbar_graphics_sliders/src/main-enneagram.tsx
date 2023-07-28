@@ -2,7 +2,7 @@ import React from 'react'
 import ReactDOM from 'react-dom/client'
 import { BrowserRouter, Link, Routes, Route } from 'react-router-dom'
 
-import AppFr from './AppFr.tsx'
+import AppEnneagram from './AppEnneagram.tsx'
 import Am from './fr/Am.tsx'
 import Noon from './fr/Noon.tsx'
 import Pm from './fr/Pm.tsx'
@@ -45,6 +45,6 @@ ReactDOM.createRoot(document.getElementById('root')!).render(
         </Routes>
       </div>
     </BrowserRouter>
-    <AppFr />
+    <AppEnneagram />
   </React.StrictMode>,
 )

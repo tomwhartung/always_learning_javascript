@@ -2,7 +2,7 @@ import React from 'react'
 import ReactDOM from 'react-dom/client'
 import { BrowserRouter, Link, Routes, Route } from 'react-router-dom'
 
-import AppEs from './AppEs.tsx'
+import AppJungian from './AppJungian.tsx'
 import Am from './es/Am.tsx'
 import Noon from './es/Noon.tsx'
 import Pm from './es/Pm.tsx'
@@ -45,6 +45,6 @@ ReactDOM.createRoot(document.getElementById('root')!).render(
         </Routes>
       </div>
     </BrowserRouter>
-    <AppEs />
+    <AppJungian />
   </React.StrictMode>,
 )
