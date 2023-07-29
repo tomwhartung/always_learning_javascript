@@ -3,7 +3,8 @@ import '../App.css'
 function View() {
   return (
     <div id="view">
-      <h1>This is the View page</h1>
+      <h2>View</h2>
+      <p>This is the View page.</p>
     </div>
   )
 }

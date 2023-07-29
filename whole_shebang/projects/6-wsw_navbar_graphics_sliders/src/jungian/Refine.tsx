@@ -3,7 +3,8 @@ import '../App.css'
 function Refine() {
   return (
     <div id="refine">
-      <h1>This is the Refine page</h1>
+      <h2>Refine</h2>
+      <p>This is the Refine page.</p>
     </div>
   )
 }
