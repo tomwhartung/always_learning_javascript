@@ -47,8 +47,10 @@ ReactDOM.createRoot(document.getElementById('root')!).render(
         </div>
       </div>
     </BrowserRouter>
-    <div className="row">
-      <AppBig5 />
+    <div className="container-fluid">
+      <div className="row">
+        <AppBig5 />
+      </div>
     </div>
   </React.StrictMode>,
 )
