@@ -36,15 +36,21 @@ ReactDOM.createRoot(document.getElementById('root')!).render(
           </ul>
         </div>
       </nav>
-      <div className="container d-flex justify-content-center">
-        <Routes>
-          <Route path="/Create" element={<Create />} />
-          <Route path="/View" element={<View />} />
-          <Route path="/Refine" element={<Refine />} />
-          <Route path="/Help" element={<Help />} />
-        </Routes>
+      <div className="container-fluid">
+        <div className="row">
+          <Routes>
+            <Route path="/Create" element={<Create />} />
+            <Route path="/View" element={<View />} />
+            <Route path="/Refine" element={<Refine />} />
+            <Route path="/Help" element={<Help />} />
+          </Routes>
+        </div>
       </div>
     </BrowserRouter>
-    <AppEnneagram />
+    <div className="container-fluid">
+      <div className="row">
+        <AppEnneagram />
+      </div>
+    </div>
   </React.StrictMode>,
 )
