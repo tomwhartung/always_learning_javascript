@@ -1,11 +1,11 @@
 import './App.css'
 
-function AppEs() {
+function AppJungian() {
   return (
-    <div id="app">
-      <h2>Hola, Mundo</h2>
+    <div id="app-jungian">
+      <h2>Jungian: Much like the MBTI(r)</h2>
     </div>
   )
 }
 
-export default AppEs
+export default AppJungian

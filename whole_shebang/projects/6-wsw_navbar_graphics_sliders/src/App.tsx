@@ -3,9 +3,9 @@ import './App.css'
 function App() {
   return (
     <div id="app">
-      <h2>En - English: Home page</h2>
-      <h2>Es - Espagnol: Página de inicio</h2>
-      <h2>Fr - Français: Page d'accueil</h2>
+      <h2>Big 5: The OCEAN types</h2>
+      <h2>Jungian: Much like the MBTI(r)</h2>
+      <h2>Ennegram: A model supporting 9 types of people</h2>
     </div>
   )
 }

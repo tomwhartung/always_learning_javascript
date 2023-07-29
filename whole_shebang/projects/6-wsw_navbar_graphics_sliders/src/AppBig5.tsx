@@ -1,11 +1,11 @@
 import './App.css'
 
-function AppEn() {
+function AppBig5() {
   return (
-    <div id="app">
-      <h2>Hello, world</h2>
+    <div id="app-big5">
+      <h2>Big 5: The OCEAN types</h2>
     </div>
   )
 }
 
-export default AppEn
+export default AppBig5

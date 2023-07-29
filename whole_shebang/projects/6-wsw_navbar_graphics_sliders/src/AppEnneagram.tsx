@@ -1,11 +1,11 @@
 import './App.css'
 
-function AppFr() {
+function AppEnneagram() {
   return (
-    <div id="app">
-      <h2>Bonjour le monde</h2>
+    <div id="app-enneagram">
+      <h2>Ennegram: A model supporting 9 types of people</h2>
     </div>
   )
 }
 
-export default AppFr
+export default AppEnneagram
