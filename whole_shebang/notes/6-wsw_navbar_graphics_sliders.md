@@ -203,15 +203,264 @@ diff 4-wsw_navbar/src/fr 6-wsw_navbar_graphics_sliders/src/fr
 
 ## 3.1. Rename Options, `index-*` Files, and `href` Attributes
 
-Rename the options in `index.html`, and  as follows:
+Run the following commands, per the **detailed instructions** below, to
 
-- Rename the "En" option to "Big 5"
-  - Rename `index-en.html` to `index-big5.html`
-  - Update the option's `href` value in `index.html` accordingly
-- Rename the "Es" option to "Jungian"
-  - Rename `index-es.html` to `index-jungian.html`
-  - Update the option's `href` value in `index.html` accordingly
-- Rename the "Fr" option to "Enneagram"
-  - Rename `index-fr.html` to `index-enneagram.html`
-  - Update the option's `href` value in `index.html` accordingly
+- [x] 1. Rename the options in `index.html`
+- [x] 2. Rename the `index-*.html` files
+- [x] 3. Update the `href` attributes in `index.html`
+
+```
+pwd                                 # /var/www/always_learning/always_learning_javascript/whole_shebang/projects/6-wsw_navbar_graphics_sliders/
+vi index.html                       # Change the options' text
+git mv index-en.html index-big5.html
+git mv index-es.html index-jungian.html
+git mv index-fr.html index-enneagram.html
+vi index.html                       # Change the options' href values
+git commit -m '....'                # Replace '....' with a good description of the changes
+```
+
+Following are **detailed instructions:**
+
+- [x] 1. Rename the "En" option to "Big 5"
+  - [x] 1.1. Rename `index-en.html` to `index-big5.html`
+  - [x] 1.2. Update the option's `href` value in `index.html` accordingly
+- [x] 2. Rename the "Es" option to "Jungian"
+  - [x] 2.1. Rename `index-es.html` to `index-jungian.html`
+  - [x] 2.2. Update the option's `href` value in `index.html` accordingly
+- [x] 3. Rename the "Fr" option to "Enneagram"
+  - [x] 3.1. Rename `index-fr.html` to `index-enneagram.html`
+  - [x] 3.2. Update the option's `href` value in `index.html` accordingly
+
+## 3.2. Rename `src/main-*.tsx` Files and Update the `index-*.html` Files Accordingly
+
+Run the commands below to rename the `src/main-*.tsx` files and update the `index-*.html` files as
+described in the **detailed instructions:**
+
+```
+pwd         # /var/www/always_learning/always_learning_javascript/whole_shebang/projects/6-wsw_navbar_graphics_sliders/src
+git mv main-en.tsx main-big5.tsx
+git mv main-es.tsx main-jungian.tsx
+git mv main-fr.tsx main-enneagram.tsx
+cd ..
+pwd                      # /var/www/always_learning/always_learning_javascript/whole_shebang/projects/6-wsw_navbar_graphics_sliders
+vi index-big5.html       # Update the src attribute of the <script tag near the end of the file
+vi index-enneagram.html  # Update the src attribute of the <script tag near the end of the file
+vi index-jungian.html    # Update the src attribute of the <script tag near the end of the file
+git add index-*          # The commands renaming the main-* files are already added to this commit
+git commit -m '...'      # Replace '....' with a good description of the changes
+```
+
+Following are the **detailed instructions:**
+
+- [x] 1. Rename `src/main-en.html` to `src/main-big5.html`
+  - [x] 1.1. Update the value of the `<script` tag's `src` attribute in `index-big5.html` accordingly
+- [x] 2. Rename `src/main-es.html` to `src/main-jungian.html`
+  - [x] 2.1. Update the value of the `<script` tag's `src` attribute in `index-jungian.html` accordingly
+- [x] 3. Rename `src/main-fr.html` to `src/main-enneagram.html`
+  - [x] 3.1. Update the value of the `<script` tag's `src` attribute in `index-enneagram.html` accordingly
+
+## 3.3. Rename the `src/App[EF]*` Files and Update the `src/main-*.tsx Files
+
+Run the commands below to rename the `src/App*.tsx` files and update the `src/main-*.html` files as
+described in the **detailed instructions:**
+
+```
+pwd         # /var/www/always_learning/always_learning_javascript/whole_shebang/projects/6-wsw_navbar_graphics_sliders/src
+git mv AppEn.tsx AppBig5.tsx
+git mv AppEs.tsx AppJungian.tsx
+git mv AppFr.tsx AppEnneagram.tsx
+vi AppBig5.tsx         # Rename the function from AppEn to AppBig5
+vi AppJungian.tsx      # Rename the function from AppEs to AppJungian
+vi AppEnneagram.tsx    # Rename the function from AppFr to AppEnneagram
+vi main-big5.tsx       # Change all 3 occurrences of "AppEn" to "AppBig5"
+vi main-jungian.tsx    # Change all 3 occurrences of "AppEs" to "AppJungian"
+vi main-enneagram.tsx  # Change all 3 occurrences of "AppFr" to "AppEnneagram"
+git add App* main-*
+git commit -m '....'   # Replace '....' with a good description of the changes
+```
+
+Following are the **detailed instructions:**
+
+- Rename `src/AppEn.html` to `src/AppBig5.html`
+  - Change the name of the function `src/AppBig5.html` in accordingly
+  - Change all 3 occurrences of "AppEn" in `main-big5.tsx` to "AppBig5"
+- Rename `src/AppEs.html` to `src/AppJungian.html`
+  - Change the name of the function in `src/AppJungian.html` accordingly
+  - Change all 3 occurrences of "AppEs" in `main-jungian.tsx` to "AppJungian"
+- Rename `src/AppFr.html` to `src/AppEnneagram.html`
+  - Change the name of the function in `src/AppEnneagram.html` accordingly
+  - Change all 3 occurrences of "AppFr" in `main-enneagram.tsx` to "AppEnneagram"
+
+## 3.4. Rename the `src/[ef]*` Subdirectories, and Update the `src/main-*` Files Accordingly
+
+Run the commands below to rename the `src/[ef]*` subdirectories and update the `src/main-*.html` files as
+described in the **detailed instructions:**
+
+```
+pwd         # /var/www/always_learning/always_learning_javascript/whole_shebang/projects/6-wsw_navbar_graphics_sliders/src
+git mv en big5
+git mv es jungian
+git mv fr enneagram
+vi main-big5.tsx       # Change all 4 occurrences of "en/" to "big5/"
+vi main-jungian.tsx    # Change all 4 occurrences of "es/" to "jungian/"
+vi main-enneagram.tsx  # Change all 4 occurrences of "fr/" to "enneagram/"
+git add [bej]*/* main-*
+git commit -m '....'   # Replace '....' with a good description of the changes
+```
+
+Following are the **detailed instructions:**
+
+- Rename `src/en/` to `src/big5/`
+  - Change all 4 occurrences of "fr/" in the `import` statements to "big5/"
+- Rename `src/es/` to `src/jungian/`
+  - Change all 4 occurrences of "fr/" in the `import` statements to "jungian/"
+- Rename `src/fr/` to `src/enneagram/`
+  - Change all 4 occurrences of "fr/" in the `import` statements to "enneagram/"
+
+## 3.5. Rename the `src/[bej]*/*.tsx` Files and Update the `src/main-*.tsx Files Accordingly
+
+Run the commands below to make the changes as described in the **detailed instructions:**
+
+- [x] 1. Rename the `src/[bej]*/*.tsx` files
+- [x] 2. Update values in the `src/[bej]*/*.tsx` files to match their new names
+- [x] 3. Update the `src/main-*.html` files to reference the correct file and component names
+
+```
+pwd           # /var/www/always_learning/always_learning_javascript/whole_shebang/projects/6-wsw_navbar_graphics_sliders/src
+cd big5       # /var/www/always_learning/always_learning_javascript/whole_shebang/projects/6-wsw_navbar_graphics_sliders/src/big5
+git mv Am.tsx Create.tsx
+git mv Noon.tsx View.tsx
+git mv Pm.tsx Refine.tsx
+git mv Midnight.tsx Help.tsx
+vi *.tsx                   # Change the name of the function and value of the "export default" statement in each file to match the file name
+cd ..                      # /var/www/always_learning/always_learning_javascript/whole_shebang/projects/6-wsw_navbar_graphics_sliders/src
+cd jungian                 # /var/www/always_learning/always_learning_javascript/whole_shebang/projects/6-wsw_navbar_graphics_sliders/src/jungian
+git mv Am.tsx Create.tsx
+git mv Noon.tsx View.tsx
+git mv Pm.tsx Refine.tsx
+git mv Midnight.tsx Help.tsx
+vi *.tsx                   # Change the name of the function and value of the "export default" statement in each file to match the file name
+cd ..                      # /var/www/always_learning/always_learning_javascript/whole_shebang/projects/6-wsw_navbar_graphics_sliders/src
+cd enneagram               # /var/www/always_learning/always_learning_javascript/whole_shebang/projects/6-wsw_navbar_graphics_sliders/src/enneagram
+git mv Am.tsx Create.tsx
+git mv Noon.tsx View.tsx
+git mv Pm.tsx Refine.tsx
+git mv Midnight.tsx Help.tsx
+vi *.tsx                   # Change the name of the function and value of the "export default" statement in each file to match the file name
+cd ..                      # /var/www/always_learning/always_learning_javascript/whole_shebang/projects/6-wsw_navbar_graphics_sliders/src
+
+vi main-*.tsx  # Change all occurrences of "Am" and "AM" to "Create"
+vi main-*.tsx  # Change all occurrences of "Noon" to "View"
+vi main-*.tsx  # Change all occurrences of "Pm" and "PM" to "Refine"
+vi main-*.tsx  # Change all occurrences of "Midnight" to "Help"
+git add [bej]*/* main-*
+git commit -m '....'   # Replace '....' with a good description of the changes
+```
+
+Following are the **detailed instructions:**
+
+- Rename the files in `src/big5/` as follows:
+  - Rename `Am.tsx` to `Create.tsx`
+  - Rename `Noon.tsx` to `View.tsx`
+  - Rename `Pm.tsx` to `Refine.tsx`
+  - Rename `Midnight.tsx` to `Help.tsx`
+- Update the files in `src/big5/` as follows:
+  - Change both occurrences of "Am" in `Create.tsx` to "Create"
+  - Change both occurrences of "Noon" in `View.tsx` to "View"
+  - Change both occurrences of "Pm" in `Refine.tsx` to "Refine"
+  - Change both occurrences of "Midnight" in `Help.tsx` to "Help"
+- Rename the files in `src/jungian/` as follows:
+  - Rename `Am.tsx` to `Create.tsx`
+  - Rename `Noon.tsx` to `View.tsx`
+  - Rename `Pm.tsx` to `Refine.tsx`
+  - Rename `Midnight.tsx` to `Help.tsx`
+- Update the files in `src/jungian/` as follows:
+  - Change both occurrences of "Am" in `Create.tsx` to "Create"
+  - Change both occurrences of "Noon" in `View.tsx` to "View"
+  - Change both occurrences of "Pm" in `Refine.tsx` to "Refine"
+  - Change both occurrences of "Midnight" in `Help.tsx` to "Help"
+- Rename the files in `src/enneagram/` as follows:
+  - Rename `Am.tsx` to `Create.tsx`
+  - Rename `Noon.tsx` to `View.tsx`
+  - Rename `Pm.tsx` to `Refine.tsx`
+  - Rename `Midnight.tsx` to `Help.tsx`
+- Update the files in `src/enneagram/` as follows:
+  - Change both occurrences of "Am" in `Create.tsx` to "Create"
+  - Change both occurrences of "Noon" in `View.tsx` to "View"
+  - Change both occurrences of "Pm" in `Refine.tsx` to "Refine"
+  - Change both occurrences of "Midnight" in `Help.tsx` to "Help"
+- Update the `src/main-*.tsx` files as follows:
+  - Change all occurrences of "Am" and "AM" in all 3 `main-*.tsx` files to "Create"
+  - Change all occurrences of "Noon" in all 3 `main-*.tsx` files to "View"
+  - Change all occurrences of "Pm" and "PM" in all 3 `main-*.tsx` files to "Refine"
+  - Change all occurrences of "Midnight" in all 3 `main-*.tsx` files to "Help"
+
+## 3.6. Update the `src/[bej]*/*.tsx` Files
+
+Run the commands below to make the changes as described in the **detailed instructions:**
+
+```
+pwd           # /var/www/always_learning/always_learning_javascript/whole_shebang/projects/6-wsw_navbar_graphics_sliders/src
+vi */Create.tsx        # Update the div tags as in step 1. described below
+vi */View.tsx          # Update the div tags as in step 1. described below
+vi */Refine.tsx        # Update the div tags as in step 1. described below
+vi */Help.tsx          # Update the div tags as in step 1. described below
+vi */Create.tsx        # Update the h1 tags as in step 2. described below
+vi */View.tsx          # Update the h1 tags as in step 2. described below
+vi */Refine.tsx        # Update the h1 tags as in step 2. described below
+vi */Help.tsx          # Update the h1 tags as in step 2. described below
+git add src/*/*
+git commit -m '....'   # Replace '....' with a good description of the changes
+```
+
+Following are the **detailed instructions:**
+
+- [x] 1. Update the `id` attributes of the `<div ...` tags in each file to match a lowercase version of the file's basename
+  - Change `<div id="am">` in all `src/*/Create.txs` files to `<div id="create">`
+  - Change `<div id="noon">` in all `src/*/View.txs` files to `<div id="view">`
+  - Change `<div id="pm">` in all `src/*/Refine.txs` files to `<div id="refine">`
+  - Change `<div id="midnight">` in all `src/*/Help.txs` files to `<div id="help">`
+- [x] 2. Update the text of the `<h1>` tags in each file to match the file's name
+  - Change the text in the `<h1>` tag in all `src/*/Create.txs` files to "This is the Create page"
+  - Change the text in the `<h1>` tag in all `src/*/View.txs` files to "This is the View page"
+  - Change the text in the `<h1>` tag in all `src/*/Refine.txs` files to "This is the Refine page"
+  - Change the text in the `<h1>` tag in all `src/*/Help.txs` files to "This is the Help page"
+
+## 3.7. Update the `src/App*` Files
+
+Update the `src/App*` files:
+
+- [x] 1. Ensure the function name and "export default" statement in each file matches the file name
+- [x] 2. Update the `id` attributes of the `div` tags to equal a lowercase version of the file's basename
+  - E.g., Use `id="app-big5"` in the `<div ...>` tag in `AppBig5.tsx`
+- [x] 3. Update the text -- e.g., "Hello, world", etc. -- to something more appropriate
+
+Hopefully you do not need more ** *"detailed instructions"* ** at this point!
+
+```
+pwd       # /var/www/always_learning/always_learning_javascript/whole_shebang/projects/6-wsw_navbar_graphics_sliders/src
+vi App*.tsx
+git add App*.tsx
+git commit -m '....'   # Replace '....' with a good description of the changes
+```
+
+## 3.8. Sanity Checks
+
+- [x] Check VSCode
+  - [x] Press **Ctrl+Shift+M** or click on [Menu icon ->] View -> Problems
+  - [x] Give it a little time to analyze all the code and check for issues
+- [x] Run `npm run lint` inside the `6-wsw_navbar_graphics_sliders` directory
+- [x] Run `npm run dev` inside the `6-wsw_navbar_graphics_sliders` directory
+- [x] Check that the `App` is working in the browser
+
+
+# 4. TODO: MDB Basics
+
+If you want to use the structure of this project for realsies, you should make these additional changes,
+provided that they are indeed appropriate:
+
+- At some place near the top level we need to have a `container`
+  - The `container` needs to have one or more `row`s
+  - Each `row` needs to have one or more `col`s
+  - In most apps, each `col` probably should have a `card`
 
