@@ -3,7 +3,8 @@ import '../App.css'
 function Help() {
   return (
     <div id="help">
-      <h1>This is the Help page</h1>
+      <h2>Help</h2>
+      <p>This is the Help page.</p>
     </div>
   )
 }
