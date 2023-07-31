@@ -6,6 +6,7 @@ function App() {
       <h2>Big 5: The OCEAN types</h2>
       <h2>Jungian: Much like the MBTI&reg;</h2>
       <h2>Ennegram: A model supporting 9 types of people</h2>
+      <h2>Sun Signs: For fans of astrology</h2>
     </div>
   )
 }
