@@ -454,13 +454,31 @@ git commit -m '....'   # Replace '....' with a good description of the changes
 - [x] Check that the `App` is working in the browser
 
 
-# 4. TODO: MDB Basics
+# 4. Add a Few Basic MDB CSS Classes
 
-If you want to use the structure of this project for realsies, you should make these additional changes,
-provided that they are indeed appropriate:
+In the interest of starting to structure this project for realsies, make a few additional changes.
 
-- At some place near the top level we need to have a `container`
-  - The `container` needs to have one or more `row`s
-  - Each `row` needs to have one or more `col`s
-  - In most apps, each `col` probably should have a `card`
+- Put the two main pieces of code in the `main-*.tsx` files in a `container`
+- Each `container` should have at least one `row`
+
+We may want to make these additional changes, but I see no reason to do so right now:
+
+- Each `row` should have one or more `col`s
+- In most apps, each `col` probably should have a `card`
+
+As we add the graphics and sliders, we may want to do add some `cols`s and `card`s.
+
+# 5. Add Graphics
+
+Add the simplistic graphics from the `2-wsw_graphics` project to the Big 5 and Enneagram options.
+
+# 6. Add a Sun Signs Option
+
+Add a `sun_signs` option based on the code used for the `big_5` and `enneagram` options.
+
+- [x] 1. Add the four standard files to new `src/sun_signs` directory
+- [x] 2. Add `src/AppSunSigns.tsx`
+- [x] 3. Add `src/main-sun_signs.tsx`
+- [x] 4. Create `index-sun_signs.html`
+- [x] 5. Add "Sun Signs" option to `index.html`
 
