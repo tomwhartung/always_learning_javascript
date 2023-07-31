@@ -1,5 +1,6 @@
 import './App.css'
 
+// AppJungian: the "mainline" component for this quiz type
 function AppJungian() {
   return (
     <div id="app-jungian">
