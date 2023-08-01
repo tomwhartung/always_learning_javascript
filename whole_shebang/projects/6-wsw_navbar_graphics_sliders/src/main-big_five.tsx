@@ -3,10 +3,10 @@ import ReactDOM from 'react-dom/client'
 import { BrowserRouter, Link, Routes, Route } from 'react-router-dom'
 
 import AppBigFive from './AppBigFive.tsx'
-import Create from './big5/Create.tsx'
-import View from './big5/View.tsx'
-import Refine from './big5/Refine.tsx'
-import Help from './big5/Help.tsx'
+import Create from './big_five/Create.tsx'
+import View from './big_five/View.tsx'
+import Refine from './big_five/Refine.tsx'
+import Help from './big_five/Help.tsx'
 
 import './index.css'
 
