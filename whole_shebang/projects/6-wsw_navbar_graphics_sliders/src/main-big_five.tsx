@@ -8,8 +8,6 @@ import View from './big_five/View.tsx'
 import Refine from './big_five/Refine.tsx'
 import Help from './big_five/Help.tsx'
 
-import './index.css'
-
 ReactDOM.createRoot(document.getElementById('root')!).render(
   <React.StrictMode>
     <BrowserRouter>
@@ -18,7 +16,7 @@ ReactDOM.createRoot(document.getElementById('root')!).render(
           <ul className="navbar-nav mb-lg-0">
             <li className="nav-item">
               <a className="nav-link link-secondary" href="index.html">
-                <i className="fas fa-house"></i>
+                <i className="fas fa-house"></i>&nbsp;Home
               </a>
             </li>
             <li className="nav-item">

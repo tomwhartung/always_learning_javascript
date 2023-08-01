@@ -8,8 +8,6 @@ import View from './sun_signs/View.tsx'
 import Refine from './sun_signs/Refine.tsx'
 import Help from './sun_signs/Help.tsx'
 
-import './index.css'
-
 ReactDOM.createRoot(document.getElementById('root')!).render(
   <React.StrictMode>
     <BrowserRouter>
@@ -18,7 +16,7 @@ ReactDOM.createRoot(document.getElementById('root')!).render(
           <ul className="navbar-nav mb-lg-0">
             <li className="nav-item">
               <a className="nav-link link-secondary" href="index.html">
-                <i className="fas fa-house"></i>
+                <i className="fas fa-house"></i>&nbsp;Home
               </a>
             </li>
             <li className="nav-item">
