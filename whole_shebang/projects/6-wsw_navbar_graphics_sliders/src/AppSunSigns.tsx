@@ -42,7 +42,7 @@ function AppSunSigns() {
   }
 
   return (
-    <div id="app-sunsigns">
+    <div id="app-sun-signs">
       <h2>Sun Signs: The Astrological signs</h2>
       <div className="col">
         <Canvas
