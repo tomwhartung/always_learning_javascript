@@ -2,7 +2,7 @@ import React from 'react'
 import ReactDOM from 'react-dom/client'
 import { BrowserRouter, Link, Routes, Route } from 'react-router-dom'
 
-import AppBig5 from './AppBig5.tsx'
+import AppBigFive from './AppBigFive.tsx'
 import Create from './big5/Create.tsx'
 import View from './big5/View.tsx'
 import Refine from './big5/Refine.tsx'
@@ -49,7 +49,7 @@ ReactDOM.createRoot(document.getElementById('root')!).render(
     </BrowserRouter>
     <div className="container-fluid">
       <div className="row">
-        <AppBig5 />
+        <AppBigFive />
       </div>
     </div>
   </React.StrictMode>,

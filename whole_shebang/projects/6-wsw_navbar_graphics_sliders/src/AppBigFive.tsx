@@ -29,8 +29,8 @@ const draw = (context: CanvasRenderingContext2D) => {
   context.fillRect(150, 100, 50, 50);
 };
 
-// AppBig5: the "mainline" component for this quiz type
-function AppBig5() {
+// AppBigFive: the "mainline" component for this quiz type
+function AppBigFive() {
   const width = canvasWidth;
   const height = canvasHeight;
 
@@ -42,7 +42,7 @@ function AppBig5() {
   }
 
   return (
-    <div id="app-big5">
+    <div id="app-big-five">
       <h2>Big 5: The OCEAN types</h2>
       <div className="col">
         <Canvas
@@ -56,4 +56,4 @@ function AppBig5() {
   )
 }
 
-export default AppBig5
+export default AppBigFive
