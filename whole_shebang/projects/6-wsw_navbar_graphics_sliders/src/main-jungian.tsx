@@ -8,6 +8,8 @@ import View from './jungian/View.tsx'
 import Refine from './jungian/Refine.tsx'
 import Help from './jungian/Help.tsx'
 
+import './index.css'
+
 ReactDOM.createRoot(document.getElementById('root')!).render(
   <React.StrictMode>
     <BrowserRouter>

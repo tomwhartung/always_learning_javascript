@@ -8,6 +8,8 @@ import View from './enneagram/View.tsx'
 import Refine from './enneagram/Refine.tsx'
 import Help from './enneagram/Help.tsx'
 
+import './index.css'
+
 ReactDOM.createRoot(document.getElementById('root')!).render(
   <React.StrictMode>
     <BrowserRouter>

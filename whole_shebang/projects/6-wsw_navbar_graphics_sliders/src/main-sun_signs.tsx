@@ -8,6 +8,8 @@ import View from './sun_signs/View.tsx'
 import Refine from './sun_signs/Refine.tsx'
 import Help from './sun_signs/Help.tsx'
 
+import './index.css'
+
 ReactDOM.createRoot(document.getElementById('root')!).render(
   <React.StrictMode>
     <BrowserRouter>
