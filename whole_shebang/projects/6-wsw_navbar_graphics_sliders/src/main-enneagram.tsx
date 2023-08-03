@@ -9,6 +9,7 @@ import Refine from './enneagram/Refine.tsx'
 import Help from './enneagram/Help.tsx'
 
 import './index.css'
+import './customizations.css'
 
 ReactDOM.createRoot(document.getElementById('root')!).render(
   <React.StrictMode>
