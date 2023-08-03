@@ -1,0 +1,17 @@
+/*                */
+/* CusTOMizations */
+/* -------------- */
+/*                */
+.navbar {
+  margin: 0 0 3em 0;
+  padding: 0;
+  top: 0px;
+  width: 100%;
+}
+/*
+ * Not using this rule right now...
+ */
+a.current-page {
+  font-weight: bold;
+  text-decoration: underline;
+}
