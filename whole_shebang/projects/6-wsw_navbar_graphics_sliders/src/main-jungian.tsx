@@ -9,6 +9,7 @@ import Refine from './jungian/Refine.tsx'
 import Help from './jungian/Help.tsx'
 
 import './index.css'
+import './customizations.css'
 
 ReactDOM.createRoot(document.getElementById('root')!).render(
   <React.StrictMode>
