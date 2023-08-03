@@ -9,6 +9,7 @@ import Refine from './big_five/Refine.tsx'
 import Help from './big_five/Help.tsx'
 
 import './index.css'
+import './customizations.css'
 
 ReactDOM.createRoot(document.getElementById('root')!).render(
   <React.StrictMode>
