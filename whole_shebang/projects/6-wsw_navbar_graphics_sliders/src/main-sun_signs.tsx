@@ -9,6 +9,7 @@ import Refine from './sun_signs/Refine.tsx'
 import Help from './sun_signs/Help.tsx'
 
 import './index.css'
+import './customizations.css'
 
 ReactDOM.createRoot(document.getElementById('root')!).render(
   <React.StrictMode>
