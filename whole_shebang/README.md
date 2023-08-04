@@ -84,3 +84,25 @@ The plan is to get to where I can easily start a new project with all of these c
   - Results:
     - Assembled a list of commands that initialize a "Hello world"-type project with the key components
 
+- [x] Project 6 - The Whole Shebang With (`wsw_`) Navbar, Graphics, and Sliders
+  - Goals:
+    - [x] Navigate to these `index-*.html` pages:
+      - [x] `index-big_five.html`
+      - [x] `index-jungian.html`
+      - [x] `index-enneagram.html`
+      - [x] `index-sun_signs.html`
+    - [x] Once on one of the above pages, navigate to these pages:
+      - [x] An "About" page saying a little about each quiz type
+      - [x] For the `jungian` quiz type: a page with sliders controlling a canvas
+      - [x] For all other quiz types: a page with a simple canvas
+  - References:
+    - Projects 2, 3, and 4
+  - Notes:
+    - `whole_shebang/notes/6-wsw_navbar_graphics_sliders.md`
+  - Project:
+    - `whole_shebang/projects/6-wsw_navbar_graphics_sliders`
+  - Results:
+    - It's ugly, but "pretty doesn't get the job done"
+    - In this case, the job is to provide a starting point for a new project
+    - And that is what we have here, a good starting point!
+
