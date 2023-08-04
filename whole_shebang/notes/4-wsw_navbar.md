@@ -30,7 +30,7 @@ npm run lint
 npm run dev
 ```
 
-## 1.3. Add MDB, Font Awesome, and Google Fonts Roboto
+## 1.3. Add MDB, Font Awesome, Google Fonts Roboto, and Copy Over `src/favicon.ico`
 
 Update `index.html`:
 
@@ -38,6 +38,13 @@ Update `index.html`:
 pwd   # /var/www/always_learning/always_learning_javascript/whole_shebang/projects
 diff 1-whole_shebang/index.html 4-wsw_navbar/index.html
 cp 1-whole_shebang/index.html 4-wsw_navbar/index.html
+```
+
+Copy over the `src/favicon.ico` file, which is referenced in `index.html`:
+
+```
+pwd   # /var/www/always_learning/always_learning_javascript/whole_shebang/projects/
+cp 1-whole_shebang/src/favicon.ico 4-wsw_navbar/src/
 ```
 
 ## 1.4. Sanity Checks
