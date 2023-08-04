@@ -43,7 +43,7 @@ function AppBigFive() {
 
   return (
     <div id="app-big-five">
-      <h2>Big 5: The OCEAN types</h2>
+      <h2>Big Five: The OCEAN types</h2>
       <div className="col">
         <Canvas
           draw={draw}
