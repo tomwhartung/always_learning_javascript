@@ -36,7 +36,7 @@ npm run dev
 
 This is the end of the first step, so consider updating git at this point.
 
-## 1.3. Add MDB, Font Awesome, and Google Fonts Roboto
+## 1.3. Add MDB, Font Awesome, Google Fonts Roboto, and Copy Over `src/favicon.ico`
 
 Update `index.html`:
 
@@ -44,6 +44,13 @@ Update `index.html`:
 pwd   # /var/www/always_learning/always_learning_javascript/whole_shebang/projects/3-wsw_sliders
 diff /var/www/always_learning/always_learning_computer_graphics/mdn/projects/4-canvas_with_sliders/index.html index.html
 cp /var/www/always_learning/always_learning_computer_graphics/mdn/projects/4-canvas_with_sliders/index.html index.html
+```
+
+Copy over the `src/favicon.ico` file, which is referenced in `index.html`:
+
+```
+pwd   # /var/www/always_learning/always_learning_javascript/whole_shebang/projects/
+cp 1-whole_shebang/src/favicon.ico 3-wsw_sliders/src/
 ```
 
 This is the end of the second step, so consider updating git at this point.
