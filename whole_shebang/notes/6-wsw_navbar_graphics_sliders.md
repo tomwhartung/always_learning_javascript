@@ -63,6 +63,7 @@ For now, run the following commands to copy them as-is.
 pwd       # /var/www/always_learning/always_learning_javascript/whole_shebang/projects/
 ls -al 4-wsw_navbar/index*.html
 cp 4-wsw_navbar/index*.html 6-wsw_navbar_graphics_sliders/
+cp 4-wsw_navbar/src/favicon.ico 6-wsw_navbar_graphics_sliders/src/
 cd ../..
 pwd       # /var/www/always_learning/always_learning_javascript/
 git add whole_shebang/projects/6-wsw_navbar_graphics_sliders/
@@ -482,4 +483,21 @@ Add a `sun_signs` option based on the code used for the `big_5` and `enneagram` 
 - [x] 4. Create `index-sun_signs.html`
 - [x] 5. Add "Sun Signs" option to `index.html`
 - [x] 6. Add `app-sun-signs` to `src/App.css`
+
+# 7. Add Graphics and Sliders
+
+Add the graphics and sliders from the `3-wsw_sliders` project to the Jungian option.
+
+## 7.1. Copying Code From `whole_shebang/projects/3-wsw_sliders/src/App.tsx`
+
+Adding the graphics with the sliders in the `3-wsw_sliders` project is simply a matter of
+copying the code over from `whole_shebang/projects/3-wsw_sliders/src/App.tsx`
+and into `whole_shebang/projects/6-wsw_navbar_graphics_sliders/src/jungian/Create.tsx`.
+
+This proved to be easy enough, with the only update needed being that `./Canvas.tsx`
+is now in `../lib/Canvas.tsx`.
+
+- There are many changes that could be made to this code, but ...
+- But in reality these whole_shebang projects are intended to be used as starting points, not as finished products, and so ...
+- And so technically we can consider this project to be "completed"!
 
