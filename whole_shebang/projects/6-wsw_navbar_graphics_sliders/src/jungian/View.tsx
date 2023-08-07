@@ -21,10 +21,10 @@ console.log( "canvasWidth = " + canvasWidth.toString() + ", canvasHeight = " + c
 // globalProps: A TEMPORARY GLOBAL variable to be replaced by a Context whatever in a later Project
 // ************************************************************************************************
 const globalProps: GrojaesqueImagePercents = {
-  opacityPercent: valueToPct( defaultValue ),
-  blueVsYellowPercent: valueToPct( defaultValue ),
-  greenVsRedPercent: valueToPct( defaultValue ),
-  bAndYVsGandRPercent: valueToPct( defaultValue ),
+  opacityPercent: valueToPct( defaultSliderValue ),
+  blueVsYellowPercent: valueToPct( defaultSliderValue ),
+  greenVsRedPercent: valueToPct( defaultSliderValue ),
+  bAndYVsGandRPercent: valueToPct( defaultSliderValue ),
 }
 
 // draw: Add a "groja-esque" grid of blue, green, red, and yellow squares
@@ -125,7 +125,7 @@ function MySlider( props:MySliderProps ) {
   return (
     <>
       <MDBRange
-        defaultValue={defaultValue}
+        defaultValue={defaultSliderValue}
         id={sliderId}
         label=""
         onChange={props.onSliderChange}
@@ -215,7 +215,7 @@ function FixedSizeImageCards( props:GrojaesqueImageProps ) {
 
 // FixedContainer: function component containing an MDB container
 function FixedContainer() {
-  const [values, setValues] = useState([defaultValue]);
+  const [values, setValues] = useState([defaultSliderValue]);
 
   function handleChangeArrayOfNumbers( evt:ChangeEvent, col:number ) {
     const val = (evt.target as HTMLInputElement).value;
@@ -232,7 +232,7 @@ function FixedContainer() {
       <div key={col} className="col-md-3">
         <MySliderCard
          sliderNo={col}
-         sliderVal={values[col] ?? defaultValue}
+         sliderVal={values[col] ?? defaultSliderValue}
          onSliderChange={ (evt) => handleChangeArrayOfNumbers(evt,col) }
         />
       </div>
@@ -247,10 +247,10 @@ function FixedContainer() {
       </div>
       <div className="row mt-4">
         <FixedSizeImageCards
-          opacityValue={values[0] ?? defaultValue}
-          blueVsYellowValue={values[1] ?? defaultValue}
-          greenVsRedValue={values[2] ?? defaultValue}
-          bAndYVsGandRValue={values[3] ?? defaultValue} />
+          opacityValue={values[0] ?? defaultSliderValue}
+          blueVsYellowValue={values[1] ?? defaultSliderValue}
+          greenVsRedValue={values[2] ?? defaultSliderValue}
+          bAndYVsGandRValue={values[3] ?? defaultSliderValue} />
       </div>
     </div>
   )
@@ -301,7 +301,7 @@ function DFlexImageCards( props:GrojaesqueImageProps ) {
 
 // DFlexContainer: function component containing a "d-flex" MDB container
 function DFlexContainer() {
-  const [values, setValues] = useState([defaultValue]);
+  const [values, setValues] = useState([defaultSliderValue]);
 
   function handleChangeArrayOfNumbers( evt:ChangeEvent, col:number ) {
     const val = (evt.target as HTMLInputElement).value;
@@ -318,7 +318,7 @@ function DFlexContainer() {
       <div key={col} className="col-md-3">
         <MySliderCard
          sliderNo={col}
-         sliderVal={values[col] ?? defaultValue}
+         sliderVal={values[col] ?? defaultSliderValue}
          onSliderChange={ (evt) => handleChangeArrayOfNumbers(evt,col) }
         />
       </div>
@@ -333,10 +333,10 @@ function DFlexContainer() {
       </div>
       <div className="row mt-4 d-flex justify-content-center">
         <DFlexImageCards
-          opacityValue={values[0] ?? defaultValue}
-          blueVsYellowValue={values[1] ?? defaultValue}
-          greenVsRedValue={values[2] ?? defaultValue}
-          bAndYVsGandRValue={values[3] ?? defaultValue} />
+          opacityValue={values[0] ?? defaultSliderValue}
+          blueVsYellowValue={values[1] ?? defaultSliderValue}
+          greenVsRedValue={values[2] ?? defaultSliderValue}
+          bAndYVsGandRValue={values[3] ?? defaultSliderValue} />
       </div>
     </div>
   )

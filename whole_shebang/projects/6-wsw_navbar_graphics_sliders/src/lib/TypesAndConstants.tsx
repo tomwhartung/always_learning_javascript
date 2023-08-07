@@ -8,5 +8,5 @@ interface MySliderProps {
 }
 
 // Important constants
-const defaultValue = 50;
+const defaultSliderValue = 50;
 
