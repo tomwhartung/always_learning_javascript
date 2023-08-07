@@ -9,7 +9,7 @@
 
 import { MDBRange } from 'mdb-react-ui-kit';
 import * as GlobalValues from '../lib/TypesAndConstants.tsx';
-import * as JungianValues from './JungianTypesAndConstants.tsx';
+import * as JungianLib from '../lib/JungianLib.tsx';
 
 // 
 // // ************************************************************************************************
@@ -28,15 +28,15 @@ function MySlider( props:GlobalValues.SliderProps ) {
   const sliderOppositeValue = 100 - props.sliderVal;
   const sliderId = "myslider-" + props.sliderNo.toString();
   let sliderLabel = sliderOppositeValue.toString() + "% " +
-                    JungianValues.jungianImagePropNames[props.sliderNo] + ": " +
+                    JungianLib.jungianImagePropNames[props.sliderNo] + ": " +
                     props.sliderVal.toString() + "%";
 
   if ( props.sliderNo == 0 ) {
-    sliderLabel = JungianValues.jungianImagePropNames[props.sliderNo] + ": " +
+    sliderLabel = JungianLib.jungianImagePropNames[props.sliderNo] + ": " +
                   props.sliderVal.toString();
 // } else {
 //   const sliderLabel = sliderOppositeValue.toString() +
-//                       JungianValues.jungianImagePropNames[props.sliderNo] + ": " +
+//                       JungianLib.jungianImagePropNames[props.sliderNo] + ": " +
 //                       props.sliderVal.toString();
   }
 

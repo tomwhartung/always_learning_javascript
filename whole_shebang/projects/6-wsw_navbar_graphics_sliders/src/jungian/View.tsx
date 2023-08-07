@@ -9,18 +9,18 @@ import { ChangeEvent, useState } from 'react';
 import Canvas from '../lib/Canvas.tsx';
 import {defaultSliderValue} from '../lib/TypesAndConstants.tsx';
 import SliderCard from './SliderCard.tsx';
-import * as JungianValues from './JungianTypesAndConstants.tsx';
+import * as JungianLib from '../lib/JungianLib.tsx';
 
 const squareSize = 15;    // Size of each square
 const gridSize = 19;      // No. of squares in each row and column
-const canvasWidth = ( squareSize * gridSize ) + ( 2 * JungianValues.gridTopX );
-const canvasHeight = ( squareSize * gridSize ) + ( 2 * JungianValues.gridTopY );
+const canvasWidth = ( squareSize * gridSize ) + ( 2 * JungianLib.gridTopX );
+const canvasHeight = ( squareSize * gridSize ) + ( 2 * JungianLib.gridTopY );
 console.log( "canvasWidth = " + canvasWidth.toString() + ", canvasHeight = " + canvasHeight.toString() );
 
 // ************************************************************************************************
 // globalProps: A TEMPORARY GLOBAL variable to be replaced by a Context whatever in a later Project
 // ************************************************************************************************
-const globalProps: JungianValues.JungianImagePercents = {
+const globalProps: JungianLib.JungianImagePercents = {
   opacityPercent: valueToPct( defaultSliderValue ),
   blueVsYellowPercent: valueToPct( defaultSliderValue ),
   greenVsRedPercent: valueToPct( defaultSliderValue ),
@@ -31,8 +31,8 @@ const globalProps: JungianValues.JungianImagePercents = {
 const draw = (context: CanvasRenderingContext2D) => {
   const width = canvasWidth;
   const height = canvasHeight;
-  const innerSquareWidth = canvasWidth - ( 2 * JungianValues.gridTopX );
-  const innerSquareHeight = canvasHeight - ( 2 * JungianValues.gridTopY );
+  const innerSquareWidth = canvasWidth - ( 2 * JungianLib.gridTopX );
+  const innerSquareHeight = canvasHeight - ( 2 * JungianLib.gridTopY );
 
   // Paint it all black
   context.fillStyle = "rgb(0, 0, 0)";
@@ -40,21 +40,21 @@ const draw = (context: CanvasRenderingContext2D) => {
 
   // Paint the inner square white
   context.fillStyle = "rgb(255, 255, 255)";
-  context.fillRect(JungianValues.gridTopY, JungianValues.gridTopY, innerSquareWidth, innerSquareHeight);
+  context.fillRect(JungianLib.gridTopY, JungianLib.gridTopY, innerSquareWidth, innerSquareHeight);
 
-  let squareTopX = JungianValues.gridTopX;
-  let squareTopY = JungianValues.gridTopY;
+  let squareTopX = JungianLib.gridTopX;
+  let squareTopY = JungianLib.gridTopY;
   let randomColorLetter = "B";
   const opacityPercent = globalProps.opacityPercent;
 // console.log( "draw: globalProps.opacityPercent = " + globalProps.opacityPercent.toString() );
 // console.log( "draw: opacityPercent = " + opacityPercent.toString() );
 
   for ( let row=0; row < gridSize; row++ ) {
-    squareTopY = JungianValues.gridTopY + (row * squareSize);
+    squareTopY = JungianLib.gridTopY + (row * squareSize);
     for ( let col=0; col < gridSize; col++ ){
       randomColorLetter = getRandomPrimaryColor();
     // console.log( "randomColorLetter = " + randomColorLetter );
-      squareTopX = JungianValues.gridTopX + (col * squareSize);
+      squareTopX = JungianLib.gridTopX + (col * squareSize);
       if ( randomColorLetter == "B" ) {
         context.fillStyle = "rgba(0, 0, 255, " + opacityPercent.toString() + ")";
       } else if ( randomColorLetter == "G" ) {
@@ -83,21 +83,21 @@ function getRandomPrimaryColor() {
   const greenVsRedPercent = globalProps.greenVsRedPercent;
   const bAndYVsGandRPercent = globalProps.bAndYVsGandRPercent;
   let randomFloat = Math.random();
-  let randomColorLetter = JungianValues.colorLetters[4];  // default is INVALID!
+  let randomColorLetter = JungianLib.colorLetters[4];  // default is INVALID!
 
   if ( randomFloat <= bAndYVsGandRPercent ) {
     randomFloat = Math.random();
     if ( randomFloat <= blueVsYellowPercent ) {
-      randomColorLetter = JungianValues.colorLetters[0];
+      randomColorLetter = JungianLib.colorLetters[0];
     } else {
-      randomColorLetter = JungianValues.colorLetters[3];
+      randomColorLetter = JungianLib.colorLetters[3];
     }
   } else {
     randomFloat = Math.random();
     if ( randomFloat <= greenVsRedPercent ) {
-      randomColorLetter = JungianValues.colorLetters[1];
+      randomColorLetter = JungianLib.colorLetters[1];
     } else {
-      randomColorLetter = JungianValues.colorLetters[2];
+      randomColorLetter = JungianLib.colorLetters[2];
     }
   }
 
@@ -105,7 +105,7 @@ function getRandomPrimaryColor() {
 }
 
 // FixedSizeImageCards: function component to display a jungian image
-function FixedSizeImageCards( props:JungianValues.JungianImageProps ) {
+function FixedSizeImageCards( props:JungianLib.JungianImageProps ) {
   const width = canvasWidth;
   const height = canvasHeight;
 
@@ -125,8 +125,8 @@ function FixedSizeImageCards( props:JungianValues.JungianImageProps ) {
   function logSquareCoords( pixelX: number, pixelY: number ) {
     let squareX = 0;
     let squareY = 0;
-    squareX = Math.floor( ( pixelX - JungianValues.gridTopX ) / squareSize );
-    squareY = Math.floor( ( pixelY - JungianValues.gridTopY ) / squareSize );
+    squareX = Math.floor( ( pixelX - JungianLib.gridTopX ) / squareSize );
+    squareY = Math.floor( ( pixelY - JungianLib.gridTopY ) / squareSize );
     if ( squareX < 0 && squareY < 0 ) {
       console.log( "You clicked on the upper-left corner, not on a square" );
     } else if ( squareX < 0 && squareY >= gridSize) {
@@ -152,10 +152,10 @@ function FixedSizeImageCards( props:JungianValues.JungianImageProps ) {
     <>
       <div className="row mt-4">
         <div className="col-md-4 align-items-center">
-          <p>{JungianValues.jungianImagePropLabels[0]}: {props.opacityValue}</p>
-          <p>{JungianValues.jungianImagePropLabels[1]}: {props.blueVsYellowValue}</p>
-          <p>{JungianValues.jungianImagePropLabels[2]}: {props.greenVsRedValue}</p>
-          <p>{JungianValues.jungianImagePropLabels[3]}: {props.bAndYVsGandRValue}</p>
+          <p>{JungianLib.jungianImagePropLabels[0]}: {props.opacityValue}</p>
+          <p>{JungianLib.jungianImagePropLabels[1]}: {props.blueVsYellowValue}</p>
+          <p>{JungianLib.jungianImagePropLabels[2]}: {props.greenVsRedValue}</p>
+          <p>{JungianLib.jungianImagePropLabels[3]}: {props.bAndYVsGandRValue}</p>
         </div>
         <div className="col-md-8">
           <Canvas
@@ -183,7 +183,7 @@ function FixedContainer() {
 
   // Construct markup for a set of columns containing SliderCards
   const sliderNumberCols = [];
-  for ( let col = 0; col < JungianValues.numberOfSliderCards; col++ ) {
+  for ( let col = 0; col < JungianLib.numberOfSliderCards; col++ ) {
     sliderNumberCols.push(
       <div key={col} className="col-md-3">
         <SliderCard
@@ -213,7 +213,7 @@ function FixedContainer() {
 }
 
 // DFlexImageCards: function component to display a jungian image
-function DFlexImageCards( props:JungianValues.JungianImageProps ) {
+function DFlexImageCards( props:JungianLib.JungianImageProps ) {
   const width = canvasWidth;
   const height = canvasHeight;
 
@@ -235,10 +235,10 @@ function DFlexImageCards( props:JungianValues.JungianImageProps ) {
       <div className="row mt-4 d-flex justify-content-center">
         <div className="col-md-4 align-items-center">
           <div className="card jungian-canvas">
-            <p>{JungianValues.jungianImagePropLabels[0]}: {props.opacityValue}</p>
-            <p>{JungianValues.jungianImagePropLabels[1]}: {props.blueVsYellowValue}</p>
-            <p>{JungianValues.jungianImagePropLabels[2]}: {props.greenVsRedValue}</p>
-            <p>{JungianValues.jungianImagePropLabels[3]}: {props.bAndYVsGandRValue}</p>
+            <p>{JungianLib.jungianImagePropLabels[0]}: {props.opacityValue}</p>
+            <p>{JungianLib.jungianImagePropLabels[1]}: {props.blueVsYellowValue}</p>
+            <p>{JungianLib.jungianImagePropLabels[2]}: {props.greenVsRedValue}</p>
+            <p>{JungianLib.jungianImagePropLabels[3]}: {props.bAndYVsGandRValue}</p>
           </div>
         </div>
         <div className="col-md-8">
@@ -269,7 +269,7 @@ function DFlexContainer() {
 
   // Construct markup for a set of columns containing SliderCards
   const sliderNumberCols = [];
-  for ( let col = 0; col < JungianValues.numberOfSliderCards; col++ ) {
+  for ( let col = 0; col < JungianLib.numberOfSliderCards; col++ ) {
     sliderNumberCols.push(
       <div key={col} className="col-md-3">
         <SliderCard
