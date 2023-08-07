@@ -2,14 +2,14 @@
 // JungianTypesAndConstants.tsx: types and constants used by the Jungian quiz type
 //
 // JungianImageProps: values that come from the sliders
-interface JungianImageProps {
+export interface JungianImageProps {
   opacityValue: number;           // [0 .. 100]
   blueVsYellowValue: number;      // [0 .. 100]
   greenVsRedValue: number;        // [0 .. 100]
   bAndYVsGandRValue: number;      // [0 .. 100]
 }
 // JungianImagePercents: slider values as percentages, used to create the image
-interface JungianImagePercents {
+export interface JungianImagePercents {
   opacityPercent: number;           // [0.0 .. 1.0]
   blueVsYellowPercent: number;      // [0.0 .. 1.0]
   greenVsRedPercent: number;        // [0.0 .. 1.0]
