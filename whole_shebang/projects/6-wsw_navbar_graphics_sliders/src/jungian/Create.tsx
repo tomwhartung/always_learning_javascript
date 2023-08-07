@@ -1,58 +1,15 @@
+//
+// Create.tsx: code for the Create option
+//
 import '../App.css'
 
 import { ChangeEvent, useState } from 'react';
 import { MDBRange } from 'mdb-react-ui-kit';
 
 import Canvas from '../lib/Canvas.tsx';
+import '../lib/TypesAndConstants.tsx';
+import './JungianTypesAndConstants.tsx';
 
-// Important types
-interface MySliderProps {
-  sliderNo: number;
-  onSliderChange: (evt: ChangeEvent<Element>) => void;
-  sliderVal: number;
-}
-// GrojaesqueImageProps: values that come from the sliders
-interface GrojaesqueImageProps {
-  opacityValue: number;           // [0 .. 100]
-  blueVsYellowValue: number;      // [0 .. 100]
-  greenVsRedValue: number;        // [0 .. 100]
-  bAndYVsGandRValue: number;      // [0 .. 100]
-}
-// GrojaesqueImagePercents: slider values as percentages, used to create the image
-interface GrojaesqueImagePercents {
-  opacityPercent: number;           // [0.0 .. 1.0]
-  blueVsYellowPercent: number;      // [0.0 .. 1.0]
-  greenVsRedPercent: number;        // [0.0 .. 1.0]
-  bAndYVsGandRPercent: number;      // [0.0 .. 1.0]
-}
-
-// Important constants
-const defaultValue = 50;
-const numberOfSliderCards = 4;      // Warning: Do not make this greater
-                                    // than or equal to the number of
-                                    // elements in grojaesqueImagePropNames
-                                    // and grojaesqueImagePropLabels
-const grojaesqueImagePropLabels: readonly string[] = [
-  "Opacity",
-  "B vs Y",
-  "G vs R",
-  "B&Y vs G&R",
-];
-const grojaesqueImagePropNames: readonly string[] = [
-  "Opacity",
-  "Y vs B",
-  "R vs G",
-  "G&R vs B&Y",
-];
-const colorLetters = [
-  "B",   // Blue
-  "G",   // Green
-  "R",   // Red
-  "Y",   // Yellow
-  "X",   // Invalid!
-];
-const gridTopX = 10;      // X location of top left corner of grid
-const gridTopY = 10;      // Y location of top left corner of grid
 const squareSize = 15;    // Size of each square
 const gridSize = 19;      // No. of squares in each row and column
 const canvasWidth = ( squareSize * gridSize ) + ( 2 * gridTopX );
