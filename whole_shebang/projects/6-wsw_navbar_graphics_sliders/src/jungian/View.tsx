@@ -5,16 +5,16 @@
 import '../App.css'
 
 import { ChangeEvent, useState } from 'react';
-import { MDBRange } from 'mdb-react-ui-kit';
 
 import Canvas from '../lib/Canvas.tsx';
-import '../lib/TypesAndConstants.tsx';
-import './JungianTypesAndConstants.tsx';
+import {defaultSliderValue} from '../lib/TypesAndConstants.tsx';
+import SliderCard from './SliderCard.tsx';
+import * as JungianValues from './JungianTypesAndConstants.tsx';
 
 const squareSize = 15;    // Size of each square
 const gridSize = 19;      // No. of squares in each row and column
-const canvasWidth = ( squareSize * gridSize ) + ( 2 * gridTopX );
-const canvasHeight = ( squareSize * gridSize ) + ( 2 * gridTopY );
+const canvasWidth = ( squareSize * gridSize ) + ( 2 * JungianValues.gridTopX );
+const canvasHeight = ( squareSize * gridSize ) + ( 2 * JungianValues.gridTopY );
 console.log( "canvasWidth = " + canvasWidth.toString() + ", canvasHeight = " + canvasHeight.toString() );
 
 // ************************************************************************************************
@@ -31,8 +31,8 @@ const globalProps: JungianImagePercents = {
 const draw = (context: CanvasRenderingContext2D) => {
   const width = canvasWidth;
   const height = canvasHeight;
-  const innerSquareWidth = canvasWidth - ( 2 * gridTopX );
-  const innerSquareHeight = canvasHeight - ( 2 * gridTopY );
+  const innerSquareWidth = canvasWidth - ( 2 * JungianValues.gridTopX );
+  const innerSquareHeight = canvasHeight - ( 2 * JungianValues.gridTopY );
 
   // Paint it all black
   context.fillStyle = "rgb(0, 0, 0)";
@@ -40,21 +40,21 @@ const draw = (context: CanvasRenderingContext2D) => {
 
   // Paint the inner square white
   context.fillStyle = "rgb(255, 255, 255)";
-  context.fillRect(gridTopY, gridTopY, innerSquareWidth, innerSquareHeight);
+  context.fillRect(JungianValues.gridTopY, JungianValues.gridTopY, innerSquareWidth, innerSquareHeight);
 
-  let squareTopX = gridTopX;
-  let squareTopY = gridTopY;
+  let squareTopX = JungianValues.gridTopX;
+  let squareTopY = JungianValues.gridTopY;
   let randomColorLetter = "B";
   const opacityPercent = globalProps.opacityPercent;
 // console.log( "draw: globalProps.opacityPercent = " + globalProps.opacityPercent.toString() );
 // console.log( "draw: opacityPercent = " + opacityPercent.toString() );
 
   for ( let row=0; row < gridSize; row++ ) {
-    squareTopY = gridTopY + (row * squareSize);
+    squareTopY = JungianValues.gridTopY + (row * squareSize);
     for ( let col=0; col < gridSize; col++ ){
       randomColorLetter = getRandomPrimaryColor();
     // console.log( "randomColorLetter = " + randomColorLetter );
-      squareTopX = gridTopX + (col * squareSize);
+      squareTopX = JungianValues.gridTopX + (col * squareSize);
       if ( randomColorLetter == "B" ) {
         context.fillStyle = "rgba(0, 0, 255, " + opacityPercent.toString() + ")";
       } else if ( randomColorLetter == "G" ) {
@@ -83,69 +83,25 @@ function getRandomPrimaryColor() {
   const greenVsRedPercent = globalProps.greenVsRedPercent;
   const bAndYVsGandRPercent = globalProps.bAndYVsGandRPercent;
   let randomFloat = Math.random();
-  let randomColorLetter = colorLetters[4];  // default is INVALID!
+  let randomColorLetter = JungianValues.colorLetters[4];  // default is INVALID!
 
   if ( randomFloat <= bAndYVsGandRPercent ) {
     randomFloat = Math.random();
     if ( randomFloat <= blueVsYellowPercent ) {
-      randomColorLetter = colorLetters[0];
+      randomColorLetter = JungianValues.colorLetters[0];
     } else {
-      randomColorLetter = colorLetters[3];
+      randomColorLetter = JungianValues.colorLetters[3];
     }
   } else {
     randomFloat = Math.random();
     if ( randomFloat <= greenVsRedPercent ) {
-      randomColorLetter = colorLetters[1];
+      randomColorLetter = JungianValues.colorLetters[1];
     } else {
-      randomColorLetter = colorLetters[2];
+      randomColorLetter = JungianValues.colorLetters[2];
     }
   }
 
   return randomColorLetter;
-}
-
-
-// MySlider: function component interface to the MDBRange component
-function MySlider( props:SliderProps ) {
-  const sliderOppositeValue = 100 - props.sliderVal;
-  const sliderId = "myslider-" + props.sliderNo.toString();
-  let sliderLabel = sliderOppositeValue.toString() + "% " +
-                    jungianImagePropNames[props.sliderNo] + ": " +
-                    props.sliderVal.toString() + "%";
-
-  if ( props.sliderNo == 0 ) {
-    sliderLabel = jungianImagePropNames[props.sliderNo] + ": " +
-                  props.sliderVal.toString();
-// } else {
-//   const sliderLabel = sliderOppositeValue.toString() +
-//                       jungianImagePropNames[props.sliderNo] + ": " +
-//                       props.sliderVal.toString();
-  }
-
-  return (
-    <>
-      <MDBRange
-        defaultValue={defaultSliderValue}
-        id={sliderId}
-        label=""
-        onChange={props.onSliderChange}
-      />
-      <p>{sliderLabel}</p>
-    </>
-  );
-}
-
-// MySliderCard: function component interface to the MDBRange component
-function MySliderCard( props:SliderProps ) {
-  return (
-    <div className="card">
-      <MySlider
-        sliderNo={props.sliderNo}
-        sliderVal={props.sliderVal}
-        onSliderChange={props.onSliderChange}
-      />
-    </div>
-  )
 }
 
 // FixedSizeImageCards: function component to display a jungian image
@@ -169,8 +125,8 @@ function FixedSizeImageCards( props:JungianImageProps ) {
   function logSquareCoords( pixelX: number, pixelY: number ) {
     let squareX = 0;
     let squareY = 0;
-    squareX = Math.floor( ( pixelX - gridTopX ) / squareSize );
-    squareY = Math.floor( ( pixelY - gridTopY ) / squareSize );
+    squareX = Math.floor( ( pixelX - JungianValues.gridTopX ) / squareSize );
+    squareY = Math.floor( ( pixelY - JungianValues.gridTopY ) / squareSize );
     if ( squareX < 0 && squareY < 0 ) {
       console.log( "You clicked on the upper-left corner, not on a square" );
     } else if ( squareX < 0 && squareY >= gridSize) {
@@ -196,10 +152,10 @@ function FixedSizeImageCards( props:JungianImageProps ) {
     <>
       <div className="row mt-4">
         <div className="col-md-4 align-items-center">
-          <p>{jungianImagePropLabels[0]}: {props.opacityValue}</p>
-          <p>{jungianImagePropLabels[1]}: {props.blueVsYellowValue}</p>
-          <p>{jungianImagePropLabels[2]}: {props.greenVsRedValue}</p>
-          <p>{jungianImagePropLabels[3]}: {props.bAndYVsGandRValue}</p>
+          <p>{JungianValues.jungianImagePropLabels[0]}: {props.opacityValue}</p>
+          <p>{JungianValues.jungianImagePropLabels[1]}: {props.blueVsYellowValue}</p>
+          <p>{JungianValues.jungianImagePropLabels[2]}: {props.greenVsRedValue}</p>
+          <p>{JungianValues.jungianImagePropLabels[3]}: {props.bAndYVsGandRValue}</p>
         </div>
         <div className="col-md-8">
           <Canvas
@@ -225,12 +181,12 @@ function FixedContainer() {
     setValues(nextValues);
   }
 
-  // Construct markup for a set of columns containing MySliderCards
+  // Construct markup for a set of columns containing SliderCards
   const sliderNumberCols = [];
-  for ( let col = 0; col < numberOfSliderCards; col++ ) {
+  for ( let col = 0; col < JungianValues.numberOfSliderCards; col++ ) {
     sliderNumberCols.push(
       <div key={col} className="col-md-3">
-        <MySliderCard
+        <SliderCard
          sliderNo={col}
          sliderVal={values[col] ?? defaultSliderValue}
          onSliderChange={ (evt) => handleChangeArrayOfNumbers(evt,col) }
@@ -279,10 +235,10 @@ function DFlexImageCards( props:JungianImageProps ) {
       <div className="row mt-4 d-flex justify-content-center">
         <div className="col-md-4 align-items-center">
           <div className="card jungian-canvas">
-            <p>{jungianImagePropLabels[0]}: {props.opacityValue}</p>
-            <p>{jungianImagePropLabels[1]}: {props.blueVsYellowValue}</p>
-            <p>{jungianImagePropLabels[2]}: {props.greenVsRedValue}</p>
-            <p>{jungianImagePropLabels[3]}: {props.bAndYVsGandRValue}</p>
+            <p>{JungianValues.jungianImagePropLabels[0]}: {props.opacityValue}</p>
+            <p>{JungianValues.jungianImagePropLabels[1]}: {props.blueVsYellowValue}</p>
+            <p>{JungianValues.jungianImagePropLabels[2]}: {props.greenVsRedValue}</p>
+            <p>{JungianValues.jungianImagePropLabels[3]}: {props.bAndYVsGandRValue}</p>
           </div>
         </div>
         <div className="col-md-8">
@@ -311,12 +267,12 @@ function DFlexContainer() {
     setValues(nextValues);
   }
 
-  // Construct markup for a set of columns containing MySliderCards
+  // Construct markup for a set of columns containing SliderCards
   const sliderNumberCols = [];
-  for ( let col = 0; col < numberOfSliderCards; col++ ) {
+  for ( let col = 0; col < JungianValues.numberOfSliderCards; col++ ) {
     sliderNumberCols.push(
       <div key={col} className="col-md-3">
-        <MySliderCard
+        <SliderCard
          sliderNo={col}
          sliderVal={values[col] ?? defaultSliderValue}
          onSliderChange={ (evt) => handleChangeArrayOfNumbers(evt,col) }
