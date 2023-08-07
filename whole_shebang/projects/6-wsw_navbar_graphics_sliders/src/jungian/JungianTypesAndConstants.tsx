@@ -17,29 +17,30 @@ interface JungianImagePercents {
 }
 
 // Important constants
-const numberOfSliderCards = 4;      // Warning: Do not make this greater
+export const numberOfSliderCards = 4;      // Warning: Do not make this greater
                                     // than or equal to the number of
                                     // elements in jungianImagePropNames
                                     // and jungianImagePropLabels
-const jungianImagePropLabels: readonly string[] = [
+export const jungianImagePropLabels: readonly string[] = [
   "Opacity",
   "B vs Y",
   "G vs R",
   "B&Y vs G&R",
 ];
-const jungianImagePropNames: readonly string[] = [
+export const jungianImagePropNames: readonly string[] = [
   "Opacity",
   "Y vs B",
   "R vs G",
   "G&R vs B&Y",
 ];
-const colorLetters = [
+export const colorLetters = [
   "B",   // Blue
   "G",   // Green
   "R",   // Red
   "Y",   // Yellow
   "X",   // Invalid!
 ];
-const gridTopX = 10;      // X location of top left corner of grid
-const gridTopY = 10;      // Y location of top left corner of grid
+
+export const gridTopX = 10;      // X location of top left corner of grid
+export const gridTopY = 10;      // Y location of top left corner of grid
 
