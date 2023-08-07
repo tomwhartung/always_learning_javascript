@@ -20,7 +20,7 @@ console.log( "canvasWidth = " + canvasWidth.toString() + ", canvasHeight = " + c
 // ************************************************************************************************
 // globalProps: A TEMPORARY GLOBAL variable to be replaced by a Context whatever in a later Project
 // ************************************************************************************************
-const globalProps: GrojaesqueImagePercents = {
+const globalProps: JungianImagePercents = {
   opacityPercent: valueToPct( defaultSliderValue ),
   blueVsYellowPercent: valueToPct( defaultSliderValue ),
   greenVsRedPercent: valueToPct( defaultSliderValue ),
@@ -110,15 +110,15 @@ function MySlider( props:MySliderProps ) {
   const sliderOppositeValue = 100 - props.sliderVal;
   const sliderId = "myslider-" + props.sliderNo.toString();
   let sliderLabel = sliderOppositeValue.toString() + "% " +
-                    grojaesqueImagePropNames[props.sliderNo] + ": " +
+                    jungianImagePropNames[props.sliderNo] + ": " +
                     props.sliderVal.toString() + "%";
 
   if ( props.sliderNo == 0 ) {
-    sliderLabel = grojaesqueImagePropNames[props.sliderNo] + ": " +
+    sliderLabel = jungianImagePropNames[props.sliderNo] + ": " +
                   props.sliderVal.toString();
 // } else {
 //   const sliderLabel = sliderOppositeValue.toString() +
-//                       grojaesqueImagePropNames[props.sliderNo] + ": " +
+//                       jungianImagePropNames[props.sliderNo] + ": " +
 //                       props.sliderVal.toString();
   }
 
@@ -148,8 +148,8 @@ function MySliderCard( props:MySliderProps ) {
   )
 }
 
-// FixedSizeImageCards: function component to display a grojaesque image
-function FixedSizeImageCards( props:GrojaesqueImageProps ) {
+// FixedSizeImageCards: function component to display a jungian image
+function FixedSizeImageCards( props:JungianImageProps ) {
   const width = canvasWidth;
   const height = canvasHeight;
 
@@ -196,10 +196,10 @@ function FixedSizeImageCards( props:GrojaesqueImageProps ) {
     <>
       <div className="row mt-4">
         <div className="col-md-4 align-items-center">
-          <p>{grojaesqueImagePropLabels[0]}: {props.opacityValue}</p>
-          <p>{grojaesqueImagePropLabels[1]}: {props.blueVsYellowValue}</p>
-          <p>{grojaesqueImagePropLabels[2]}: {props.greenVsRedValue}</p>
-          <p>{grojaesqueImagePropLabels[3]}: {props.bAndYVsGandRValue}</p>
+          <p>{jungianImagePropLabels[0]}: {props.opacityValue}</p>
+          <p>{jungianImagePropLabels[1]}: {props.blueVsYellowValue}</p>
+          <p>{jungianImagePropLabels[2]}: {props.greenVsRedValue}</p>
+          <p>{jungianImagePropLabels[3]}: {props.bAndYVsGandRValue}</p>
         </div>
         <div className="col-md-8">
           <Canvas
@@ -256,8 +256,8 @@ function FixedContainer() {
   )
 }
 
-// DFlexImageCards: function component to display a grojaesque image
-function DFlexImageCards( props:GrojaesqueImageProps ) {
+// DFlexImageCards: function component to display a jungian image
+function DFlexImageCards( props:JungianImageProps ) {
   const width = canvasWidth;
   const height = canvasHeight;
 
@@ -278,15 +278,15 @@ function DFlexImageCards( props:GrojaesqueImageProps ) {
     <>
       <div className="row mt-4 d-flex justify-content-center">
         <div className="col-md-4 align-items-center">
-          <div className="card grojaesque-canvas">
-            <p>{grojaesqueImagePropLabels[0]}: {props.opacityValue}</p>
-            <p>{grojaesqueImagePropLabels[1]}: {props.blueVsYellowValue}</p>
-            <p>{grojaesqueImagePropLabels[2]}: {props.greenVsRedValue}</p>
-            <p>{grojaesqueImagePropLabels[3]}: {props.bAndYVsGandRValue}</p>
+          <div className="card jungian-canvas">
+            <p>{jungianImagePropLabels[0]}: {props.opacityValue}</p>
+            <p>{jungianImagePropLabels[1]}: {props.blueVsYellowValue}</p>
+            <p>{jungianImagePropLabels[2]}: {props.greenVsRedValue}</p>
+            <p>{jungianImagePropLabels[3]}: {props.bAndYVsGandRValue}</p>
           </div>
         </div>
         <div className="col-md-8">
-          <div className="card grojaesque-canvas">
+          <div className="card jungian-canvas">
             <Canvas
               draw={draw}
               onClick={handleImageClick}

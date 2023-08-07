@@ -1,15 +1,15 @@
 // 
 // JungianTypesAndConstants.tsx: types and constants used by the Jungian quiz type
 //
-// GrojaesqueImageProps: values that come from the sliders
-interface GrojaesqueImageProps {
+// JungianImageProps: values that come from the sliders
+interface JungianImageProps {
   opacityValue: number;           // [0 .. 100]
   blueVsYellowValue: number;      // [0 .. 100]
   greenVsRedValue: number;        // [0 .. 100]
   bAndYVsGandRValue: number;      // [0 .. 100]
 }
-// GrojaesqueImagePercents: slider values as percentages, used to create the image
-interface GrojaesqueImagePercents {
+// JungianImagePercents: slider values as percentages, used to create the image
+interface JungianImagePercents {
   opacityPercent: number;           // [0.0 .. 1.0]
   blueVsYellowPercent: number;      // [0.0 .. 1.0]
   greenVsRedPercent: number;        // [0.0 .. 1.0]
@@ -19,15 +19,15 @@ interface GrojaesqueImagePercents {
 // Important constants
 const numberOfSliderCards = 4;      // Warning: Do not make this greater
                                     // than or equal to the number of
-                                    // elements in grojaesqueImagePropNames
-                                    // and grojaesqueImagePropLabels
-const grojaesqueImagePropLabels: readonly string[] = [
+                                    // elements in jungianImagePropNames
+                                    // and jungianImagePropLabels
+const jungianImagePropLabels: readonly string[] = [
   "Opacity",
   "B vs Y",
   "G vs R",
   "B&Y vs G&R",
 ];
-const grojaesqueImagePropNames: readonly string[] = [
+const jungianImagePropNames: readonly string[] = [
   "Opacity",
   "Y vs B",
   "R vs G",
