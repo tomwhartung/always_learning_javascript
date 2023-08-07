@@ -19,7 +19,7 @@ console.log( "canvasWidth = " + canvasWidth.toString() + ", canvasHeight = " + c
 // ************************************************************************************************
 // globalProps: A TEMPORARY GLOBAL variable to be replaced by a Context whatever in a later Project
 // ************************************************************************************************
-const globalProps: JungianImagePercents = {
+const globalProps: JungianValues.JungianImagePercents = {
   opacityPercent: valueToPct( defaultSliderValue ),
   blueVsYellowPercent: valueToPct( defaultSliderValue ),
   greenVsRedPercent: valueToPct( defaultSliderValue ),
@@ -105,7 +105,7 @@ function getRandomPrimaryColor() {
 
 
 // FixedSizeImageCards: function component to display a jungian image
-function FixedSizeImageCards( props:JungianImageProps ) {
+function FixedSizeImageCards( props:JungianValues.JungianImageProps ) {
   const width = canvasWidth;
   const height = canvasHeight;
 
@@ -213,7 +213,7 @@ function FixedContainer() {
 }
 
 // DFlexImageCards: function component to display a jungian image
-function DFlexImageCards( props:JungianImageProps ) {
+function DFlexImageCards( props:JungianValues.JungianImageProps ) {
   const width = canvasWidth;
   const height = canvasHeight;
 
