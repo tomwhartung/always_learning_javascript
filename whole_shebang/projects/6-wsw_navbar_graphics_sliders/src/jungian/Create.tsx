@@ -105,7 +105,7 @@ function getRandomPrimaryColor() {
 
 
 // MySlider: function component interface to the MDBRange component
-function MySlider( props:MySliderProps ) {
+function MySlider( props:SliderProps ) {
   const sliderOppositeValue = 100 - props.sliderVal;
   const sliderId = "myslider-" + props.sliderNo.toString();
   let sliderLabel = sliderOppositeValue.toString() + "% " +
@@ -135,7 +135,7 @@ function MySlider( props:MySliderProps ) {
 }
 
 // MySliderCard: function component interface to the MDBRange component
-function MySliderCard( props:MySliderProps ) {
+function MySliderCard( props:SliderProps ) {
   return (
     <div className="card">
       <MySlider
