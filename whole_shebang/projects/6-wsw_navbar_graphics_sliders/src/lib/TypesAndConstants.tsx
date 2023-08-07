@@ -1,12 +1,11 @@
 // 
 // TypesAndConstants.tsx: types and constants used by all quiz types
 //
-interface MySliderProps {
+interface SliderProps {
   sliderNo: number;
   onSliderChange: (evt: ChangeEvent<Element>) => void;
   sliderVal: number;
 }
 
-// Important constants
-const defaultSliderValue = 50;
+export const defaultSliderValue = 50;
 
