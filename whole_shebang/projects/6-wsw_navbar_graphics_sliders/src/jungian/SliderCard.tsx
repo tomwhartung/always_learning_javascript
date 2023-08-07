@@ -8,7 +8,7 @@
 // 
 
 import { MDBRange } from 'mdb-react-ui-kit';
-import {defaultSliderValue} from '../lib/TypesAndConstants.tsx';
+import * as GlobalValues from '../lib/TypesAndConstants.tsx';
 import * as JungianValues from './JungianTypesAndConstants.tsx';
 
 // 
@@ -16,15 +16,15 @@ import * as JungianValues from './JungianTypesAndConstants.tsx';
 // // globalProps: A TEMPORARY GLOBAL variable to be replaced by a Context whatever in a later Project
 // // ************************************************************************************************
 // const globalProps: JungianImagePercents = {
-//   opacityPercent: valueToPct( defaultSliderValue ),
-//   blueVsYellowPercent: valueToPct( defaultSliderValue ),
-//   greenVsRedPercent: valueToPct( defaultSliderValue ),
-//   bAndYVsGandRPercent: valueToPct( defaultSliderValue ),
+//   opacityPercent: valueToPct( GlobalValues.defaultSliderValue ),
+//   blueVsYellowPercent: valueToPct( GlobalValues.defaultSliderValue ),
+//   greenVsRedPercent: valueToPct( GlobalValues.defaultSliderValue ),
+//   bAndYVsGandRPercent: valueToPct( GlobalValues.defaultSliderValue ),
 // }
 // 
 
 // MySlider: function component interface to the MDBRange component
-function MySlider( props:SliderProps ) {
+function MySlider( props:GlobalValues.SliderProps ) {
   const sliderOppositeValue = 100 - props.sliderVal;
   const sliderId = "myslider-" + props.sliderNo.toString();
   let sliderLabel = sliderOppositeValue.toString() + "% " +
@@ -43,7 +43,7 @@ function MySlider( props:SliderProps ) {
   return (
     <>
       <MDBRange
-        defaultValue={defaultSliderValue}
+        defaultValue={GlobalValues.defaultSliderValue}
         id={sliderId}
         label=""
         onChange={props.onSliderChange}
@@ -54,7 +54,7 @@ function MySlider( props:SliderProps ) {
 }
 
 // SliderCardySliderCard: function component interface to the MDBRange component
-function SliderCard( props:SliderProps ) {
+function SliderCard( props:GlobalValues.SliderProps ) {
   return (
     <div className="card">
       <MySlider
