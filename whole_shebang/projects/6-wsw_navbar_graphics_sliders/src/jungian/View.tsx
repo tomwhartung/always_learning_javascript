@@ -59,114 +59,6 @@ const draw = (context: CanvasRenderingContext2D) => {
   }
 };
 
-// FixedSizeImageCards: function component to display a jungian image
-function FixedSizeImageCards( props:JungianLib.JungianImageProps ) {
-  const width = canvasWidth;
-  const height = canvasHeight;
-
-  // **TEMPORARILY** Save the raw slider values as percentages in a **GLOBAL OBJECT**
-  JungianLib.globalProps.opacityPercent = JungianLib.valueToPct( props.opacityValue );
-  JungianLib.globalProps.blueVsYellowPercent = JungianLib.valueToPct( props.blueVsYellowValue );
-  JungianLib.globalProps.greenVsRedPercent = JungianLib.valueToPct( props.greenVsRedValue );
-  JungianLib.globalProps.bAndYVsGandRPercent = JungianLib.valueToPct( props.bAndYVsGandRValue );
-
-  function handleImageClick(event: React.MouseEvent<HTMLElement>) {
-    const rect = (event.target as HTMLElement).getBoundingClientRect();
-    const pixelX = Math.round( event.clientX - rect.left );
-    const pixelY = Math.round( event.clientY - rect.top );
-    console.log( "Click on the FixedSizeImage at pixel coords (" + pixelX.toString() + ", " + pixelY.toString() + ")" );
-    logSquareCoords( pixelX, pixelY );
-  }
-  function logSquareCoords( pixelX: number, pixelY: number ) {
-    let squareX = 0;
-    let squareY = 0;
-    squareX = Math.floor( ( pixelX - JungianLib.gridTopX ) / squareSize );
-    squareY = Math.floor( ( pixelY - JungianLib.gridTopY ) / squareSize );
-    if ( squareX < 0 && squareY < 0 ) {
-      console.log( "You clicked on the upper-left corner, not on a square" );
-    } else if ( squareX < 0 && squareY >= gridSize) {
-      console.log( "You clicked on the lower-left corner, not on a square" );
-    } else if ( squareX >= gridSize && squareY < 0 ) {
-      console.log( "You clicked on the upper-right corner, not on a square" );
-    } else if ( squareX >= gridSize && squareY >= gridSize) {
-      console.log( "You clicked on the lower-right corner, not on a square" );
-    } else if ( squareX < 0 ) {
-      console.log( "You clicked on the left-side border, not on a square" );
-    } else if ( squareY < 0 ) {
-      console.log( "You clicked on the upper border, not on a square" );
-    } else if ( squareX >= gridSize ) {
-      console.log( "You clicked on the right-side border, not on a square" );
-    } else if ( squareY >= gridSize ) {
-      console.log( "You clicked on the lower border, not on a square" );
-    } else {
-      console.log( "Pixel coords correspond to squareCoords (" + squareX.toString() + ", " + squareY.toString() + ")" );
-    }
-  }
-
-  return (
-    <>
-      <div className="row mt-4">
-        <div className="col-md-4 align-items-center">
-          <p>{JungianLib.jungianImagePropLabels[0]}: {props.opacityValue}</p>
-          <p>{JungianLib.jungianImagePropLabels[1]}: {props.blueVsYellowValue}</p>
-          <p>{JungianLib.jungianImagePropLabels[2]}: {props.greenVsRedValue}</p>
-          <p>{JungianLib.jungianImagePropLabels[3]}: {props.bAndYVsGandRValue}</p>
-        </div>
-        <div className="col-md-8">
-          <Canvas
-            draw={draw}
-            onClick={handleImageClick}
-            width={width}
-            height={height} />
-        </div>
-      </div>
-    </>
-  );
-}
-
-// FixedContainer: function component containing an MDB container
-function FixedContainer() {
-  const [values, setValues] = useState([defaultSliderValue]);
-
-  function handleChangeArrayOfNumbers( evt:ChangeEvent, col:number ) {
-    const val = (evt.target as HTMLInputElement).value;
-  // console.log( "Value of slider in column " + col.toString() + " is now " + val.toString() );
-    const nextValues = values.slice();
-    nextValues[col] = Number(val);
-    setValues(nextValues);
-  }
-
-  // Construct markup for a set of columns containing SliderCards
-  const sliderNumberCols = [];
-  for ( let col = 0; col < JungianLib.numberOfSliderCards; col++ ) {
-    sliderNumberCols.push(
-      <div key={col} className="col-md-3">
-        <SliderCard
-         sliderNo={col}
-         sliderVal={values[col] ?? defaultSliderValue}
-         onSliderChange={ (evt) => handleChangeArrayOfNumbers(evt,col) }
-        />
-      </div>
-    );
-  }
-
-  return (
-    <div className="container">
-      <h4>FixedContainer:</h4>
-      <div className="row mt-4">
-        {sliderNumberCols}
-      </div>
-      <div className="row mt-4">
-        <FixedSizeImageCards
-          opacityValue={values[0] ?? defaultSliderValue}
-          blueVsYellowValue={values[1] ?? defaultSliderValue}
-          greenVsRedValue={values[2] ?? defaultSliderValue}
-          bAndYVsGandRValue={values[3] ?? defaultSliderValue} />
-      </div>
-    </div>
-  )
-}
-
 // DFlexImageCards: function component to display a jungian image
 function DFlexImageCards( props:JungianLib.JungianImageProps ) {
   const width = canvasWidth;
@@ -253,12 +145,11 @@ function DFlexContainer() {
   )
 }
 
+// View: default "mainline" component for this menu option
 function View() {
   return (
     <div id="view">
       <h2>View</h2>
-      <FixedContainer />
-      <hr />
       <DFlexContainer />
     </div>
   )
