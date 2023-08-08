@@ -2,7 +2,6 @@
 // Create.tsx: code for the Create option
 //
 import '../App.css'
-
 import { ChangeEvent, useState } from 'react';
 
 import Canvas from '../lib/Canvas.tsx';
@@ -15,16 +14,6 @@ const gridSize = 19;      // No. of squares in each row and column
 const canvasWidth = ( squareSize * gridSize ) + ( 2 * JungianLib.gridTopX );
 const canvasHeight = ( squareSize * gridSize ) + ( 2 * JungianLib.gridTopY );
 console.log( "canvasWidth = " + canvasWidth.toString() + ", canvasHeight = " + canvasHeight.toString() );
-
-// ************************************************************************************************
-// globalProps: A TEMPORARY GLOBAL variable to be replaced by a Context whatever in a later Project
-// ************************************************************************************************
-const globalProps: JungianLib.JungianImagePercents = {
-  opacityPercent: valueToPct( defaultSliderValue ),
-  blueVsYellowPercent: valueToPct( defaultSliderValue ),
-  greenVsRedPercent: valueToPct( defaultSliderValue ),
-  bAndYVsGandRPercent: valueToPct( defaultSliderValue ),
-}
 
 // draw: Add a "groja-esque" grid of blue, green, red, and yellow squares
 const draw = (context: CanvasRenderingContext2D) => {
@@ -44,14 +33,14 @@ const draw = (context: CanvasRenderingContext2D) => {
   let squareTopX = JungianLib.gridTopX;
   let squareTopY = JungianLib.gridTopY;
   let randomColorLetter = "B";
-  const opacityPercent = globalProps.opacityPercent;
-// console.log( "draw: globalProps.opacityPercent = " + globalProps.opacityPercent.toString() );
+  const opacityPercent = JungianLib.globalProps.opacityPercent;
+// console.log( "draw: JungianLib.globalProps.opacityPercent = " + JungianLib.globalProps.opacityPercent.toString() );
 // console.log( "draw: opacityPercent = " + opacityPercent.toString() );
 
   for ( let row=0; row < gridSize; row++ ) {
     squareTopY = JungianLib.gridTopY + (row * squareSize);
     for ( let col=0; col < gridSize; col++ ){
-      randomColorLetter = getRandomPrimaryColor();
+      randomColorLetter = JungianLib.getRandomPrimaryColor();
     // console.log( "randomColorLetter = " + randomColorLetter );
       squareTopX = JungianLib.gridTopX + (col * squareSize);
       if ( randomColorLetter == "B" ) {
@@ -70,50 +59,16 @@ const draw = (context: CanvasRenderingContext2D) => {
   }
 };
 
-// valueToPct: convert a slider value [0 - 100] to a percentage of opacity [0.0 - 1.00]
-function valueToPct( value: number ) : number {
-  const percent = value / 100;
-  return ( percent );
-}
-
-// getRandomPrimaryColor: return a single character, "B", "G", "R", or "Y"
-function getRandomPrimaryColor() {
-  const blueVsYellowPercent = globalProps.blueVsYellowPercent;
-  const greenVsRedPercent = globalProps.greenVsRedPercent;
-  const bAndYVsGandRPercent = globalProps.bAndYVsGandRPercent;
-  let randomFloat = Math.random();
-  let randomColorLetter = JungianLib.colorLetters[4];  // default is INVALID!
-
-  if ( randomFloat <= bAndYVsGandRPercent ) {
-    randomFloat = Math.random();
-    if ( randomFloat <= blueVsYellowPercent ) {
-      randomColorLetter = JungianLib.colorLetters[0];
-    } else {
-      randomColorLetter = JungianLib.colorLetters[3];
-    }
-  } else {
-    randomFloat = Math.random();
-    if ( randomFloat <= greenVsRedPercent ) {
-      randomColorLetter = JungianLib.colorLetters[1];
-    } else {
-      randomColorLetter = JungianLib.colorLetters[2];
-    }
-  }
-
-  return randomColorLetter;
-}
-
-
 // FixedSizeImageCards: function component to display a jungian image
 function FixedSizeImageCards( props:JungianLib.JungianImageProps ) {
   const width = canvasWidth;
   const height = canvasHeight;
 
   // **TEMPORARILY** Save the raw slider values as percentages in a **GLOBAL OBJECT**
-  globalProps.opacityPercent = valueToPct( props.opacityValue );
-  globalProps.blueVsYellowPercent = valueToPct( props.blueVsYellowValue );
-  globalProps.greenVsRedPercent = valueToPct( props.greenVsRedValue );
-  globalProps.bAndYVsGandRPercent = valueToPct( props.bAndYVsGandRValue );
+  JungianLib.globalProps.opacityPercent = JungianLib.valueToPct( props.opacityValue );
+  JungianLib.globalProps.blueVsYellowPercent = JungianLib.valueToPct( props.blueVsYellowValue );
+  JungianLib.globalProps.greenVsRedPercent = JungianLib.valueToPct( props.greenVsRedValue );
+  JungianLib.globalProps.bAndYVsGandRPercent = JungianLib.valueToPct( props.bAndYVsGandRValue );
 
   function handleImageClick(event: React.MouseEvent<HTMLElement>) {
     const rect = (event.target as HTMLElement).getBoundingClientRect();
@@ -218,10 +173,10 @@ function DFlexImageCards( props:JungianLib.JungianImageProps ) {
   const height = canvasHeight;
 
   // **TEMPORARILY** Save the raw slider values as percentages in a **GLOBAL OBJECT**
-  globalProps.opacityPercent = valueToPct( props.opacityValue );
-  globalProps.blueVsYellowPercent = valueToPct( props.blueVsYellowValue );
-  globalProps.greenVsRedPercent = valueToPct( props.greenVsRedValue );
-  globalProps.bAndYVsGandRPercent = valueToPct( props.bAndYVsGandRValue );
+  JungianLib.globalProps.opacityPercent = JungianLib.valueToPct( props.opacityValue );
+  JungianLib.globalProps.blueVsYellowPercent = JungianLib.valueToPct( props.blueVsYellowValue );
+  JungianLib.globalProps.greenVsRedPercent = JungianLib.valueToPct( props.greenVsRedValue );
+  JungianLib.globalProps.bAndYVsGandRPercent = JungianLib.valueToPct( props.bAndYVsGandRValue );
 
   function handleImageClick(event: React.MouseEvent<HTMLElement>) {
     const rect = (event.target as HTMLElement).getBoundingClientRect();
