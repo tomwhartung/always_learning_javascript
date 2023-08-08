@@ -167,99 +167,12 @@ function FixedContainer() {
   )
 }
 
-// DFlexImageCards: function component to display a jungian image
-function DFlexImageCards( props:JungianLib.JungianImageProps ) {
-  const width = canvasWidth;
-  const height = canvasHeight;
-
-  // **TEMPORARILY** Save the raw slider values as percentages in a **GLOBAL OBJECT**
-  JungianLib.globalProps.opacityPercent = JungianLib.valueToPct( props.opacityValue );
-  JungianLib.globalProps.blueVsYellowPercent = JungianLib.valueToPct( props.blueVsYellowValue );
-  JungianLib.globalProps.greenVsRedPercent = JungianLib.valueToPct( props.greenVsRedValue );
-  JungianLib.globalProps.bAndYVsGandRPercent = JungianLib.valueToPct( props.bAndYVsGandRValue );
-
-  function handleImageClick(event: React.MouseEvent<HTMLElement>) {
-    const rect = (event.target as HTMLElement).getBoundingClientRect();
-    const pixelX = Math.round( event.clientX - rect.left );
-    const pixelY = Math.round( event.clientY - rect.top );
-    console.log( "Click on resizable image at (" + pixelX.toString() + ", " + pixelY.toString() + ")" );
-  }
-
-  return (
-    <>
-      <div className="row mt-4 d-flex justify-content-center">
-        <div className="col-md-4 align-items-center">
-          <div className="card jungian-canvas">
-            <p>{JungianLib.jungianImagePropLabels[0]}: {props.opacityValue}</p>
-            <p>{JungianLib.jungianImagePropLabels[1]}: {props.blueVsYellowValue}</p>
-            <p>{JungianLib.jungianImagePropLabels[2]}: {props.greenVsRedValue}</p>
-            <p>{JungianLib.jungianImagePropLabels[3]}: {props.bAndYVsGandRValue}</p>
-          </div>
-        </div>
-        <div className="col-md-8">
-          <div className="card jungian-canvas">
-            <Canvas
-              draw={draw}
-              onClick={handleImageClick}
-              width={width}
-              height={height} />
-          </div>
-        </div>
-      </div>
-    </>
-  );
-}
-
-// DFlexContainer: function component containing a "d-flex" MDB container
-function DFlexContainer() {
-  const [values, setValues] = useState([defaultSliderValue]);
-
-  function handleChangeArrayOfNumbers( evt:ChangeEvent, col:number ) {
-    const val = (evt.target as HTMLInputElement).value;
-  // console.log( "Value of slider in column " + col.toString() + " is now " + val.toString() );
-    const nextValues = values.slice();
-    nextValues[col] = Number(val);
-    setValues(nextValues);
-  }
-
-  // Construct markup for a set of columns containing SliderCards
-  const sliderNumberCols = [];
-  for ( let col = 0; col < JungianLib.numberOfSliderCards; col++ ) {
-    sliderNumberCols.push(
-      <div key={col} className="col-md-3">
-        <SliderCard
-         sliderNo={col}
-         sliderVal={values[col] ?? defaultSliderValue}
-         onSliderChange={ (evt) => handleChangeArrayOfNumbers(evt,col) }
-        />
-      </div>
-    );
-  }
-
-  return (
-    <div className="container">
-      <h4>DFlexContainer:</h4>
-      <div className="row mt-4 d-flex justify-content-center">
-        {sliderNumberCols}
-      </div>
-      <div className="row mt-4 d-flex justify-content-center">
-        <DFlexImageCards
-          opacityValue={values[0] ?? defaultSliderValue}
-          blueVsYellowValue={values[1] ?? defaultSliderValue}
-          greenVsRedValue={values[2] ?? defaultSliderValue}
-          bAndYVsGandRValue={values[3] ?? defaultSliderValue} />
-      </div>
-    </div>
-  )
-}
-
+// Create: default "mainline" component for this menu option
 function Create() {
   return (
     <div id="create">
       <h2>Create</h2>
       <FixedContainer />
-      <hr />
-      <DFlexContainer />
     </div>
   )
 }
