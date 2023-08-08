@@ -8,6 +8,10 @@
   top: 0px;
   width: 100%;
 }
+.top-row {
+  margin-top: 50px;
+}
+
 /*
  * Not using this rule right now...
  */

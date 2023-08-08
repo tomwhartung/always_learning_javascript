@@ -38,7 +38,7 @@ ReactDOM.createRoot(document.getElementById('root')!).render(
         </div>
       </nav>
       <div className="container-fluid">
-        <div className="row">
+        <div className="row top-row">
           <Routes>
             <Route path="/Create" element={<Create />} />
             <Route path="/View" element={<View />} />
