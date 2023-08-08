@@ -7,7 +7,7 @@ import '../App.css'
 import { ChangeEvent, useState } from 'react';
 
 import Canvas from '../lib/Canvas.tsx';
-import {defaultSliderValue} from '../lib/TypesAndConstants.tsx';
+import {defaultSliderValue} from '../lib/SliderLib.tsx';
 import SliderCard from './SliderCard.tsx';
 import * as JungianLib from '../lib/JungianLib.tsx';
 

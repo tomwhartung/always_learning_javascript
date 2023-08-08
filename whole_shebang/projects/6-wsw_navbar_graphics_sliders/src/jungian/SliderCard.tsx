@@ -8,7 +8,7 @@
 // 
 
 import { MDBRange } from 'mdb-react-ui-kit';
-import * as GlobalValues from '../lib/TypesAndConstants.tsx';
+import * as SliderLib from '../lib/SliderLib.tsx';
 import * as JungianLib from '../lib/JungianLib.tsx';
 
 // 
@@ -16,15 +16,15 @@ import * as JungianLib from '../lib/JungianLib.tsx';
 // // globalProps: A TEMPORARY GLOBAL variable to be replaced by a Context whatever in a later Project
 // // ************************************************************************************************
 // const globalProps: JungianImagePercents = {
-//   opacityPercent: valueToPct( GlobalValues.defaultSliderValue ),
-//   blueVsYellowPercent: valueToPct( GlobalValues.defaultSliderValue ),
-//   greenVsRedPercent: valueToPct( GlobalValues.defaultSliderValue ),
-//   bAndYVsGandRPercent: valueToPct( GlobalValues.defaultSliderValue ),
+//   opacityPercent: valueToPct( SliderLib.defaultSliderValue ),
+//   blueVsYellowPercent: valueToPct( SliderLib.defaultSliderValue ),
+//   greenVsRedPercent: valueToPct( SliderLib.defaultSliderValue ),
+//   bAndYVsGandRPercent: valueToPct( SliderLib.defaultSliderValue ),
 // }
 // 
 
 // MySlider: function component interface to the MDBRange component
-function MySlider( props:GlobalValues.SliderProps ) {
+function MySlider( props:SliderLib.SliderProps ) {
   const sliderOppositeValue = 100 - props.sliderVal;
   const sliderId = "myslider-" + props.sliderNo.toString();
   let sliderLabel = sliderOppositeValue.toString() + "% " +
@@ -43,7 +43,7 @@ function MySlider( props:GlobalValues.SliderProps ) {
   return (
     <>
       <MDBRange
-        defaultValue={GlobalValues.defaultSliderValue}
+        defaultValue={SliderLib.defaultSliderValue}
         id={sliderId}
         label=""
         onChange={props.onSliderChange}
@@ -54,7 +54,7 @@ function MySlider( props:GlobalValues.SliderProps ) {
 }
 
 // SliderCardySliderCard: function component interface to the MDBRange component
-function SliderCard( props:GlobalValues.SliderProps ) {
+function SliderCard( props:SliderLib.SliderProps ) {
   return (
     <div className="card">
       <MySlider

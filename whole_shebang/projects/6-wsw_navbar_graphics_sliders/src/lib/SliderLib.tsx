@@ -1,5 +1,5 @@
 // 
-// TypesAndConstants.tsx: types and constants used by all quiz types
+// SliderLib.tsx: types and constants used by quiz types that use sliders
 //
 import { ChangeEvent } from 'react';
 
