@@ -1,6 +1,6 @@
 import './App.css'
 
-import Canvas from './lib/Canvas.tsx';
+import Canvas from './lib/CanvasLib.tsx';
 
 const canvasWidth = 200;
 const canvasHeight = 200;
