@@ -9,18 +9,12 @@ import {defaultSliderValue} from '../lib/SliderLib.tsx';
 import SliderCard from './SliderCard.tsx';
 import * as JungianLib from '../lib/JungianLib.tsx';
 
-const squareSize = 15;    // Size of each square
-const gridSize = 19;      // No. of squares in each row and column
-const canvasWidth = ( squareSize * gridSize ) + ( 2 * JungianLib.gridTopX );
-const canvasHeight = ( squareSize * gridSize ) + ( 2 * JungianLib.gridTopY );
-console.log( "canvasWidth = " + canvasWidth.toString() + ", canvasHeight = " + canvasHeight.toString() );
-
 // draw: Add a "groja-esque" grid of blue, green, red, and yellow squares
 const draw = (context: CanvasRenderingContext2D) => {
-  const width = canvasWidth;
-  const height = canvasHeight;
-  const innerSquareWidth = canvasWidth - ( 2 * JungianLib.gridTopX );
-  const innerSquareHeight = canvasHeight - ( 2 * JungianLib.gridTopY );
+  const width = JungianLib.canvasWidth;
+  const height = JungianLib.canvasHeight;
+  const innerSquareWidth = JungianLib.canvasWidth - ( 2 * JungianLib.gridTopX );
+  const innerSquareHeight = JungianLib.canvasHeight - ( 2 * JungianLib.gridTopY );
 
   // Paint it all black
   context.fillStyle = "rgb(0, 0, 0)";
@@ -37,12 +31,12 @@ const draw = (context: CanvasRenderingContext2D) => {
 // console.log( "draw: JungianLib.globalProps.opacityPercent = " + JungianLib.globalProps.opacityPercent.toString() );
 // console.log( "draw: opacityPercent = " + opacityPercent.toString() );
 
-  for ( let row=0; row < gridSize; row++ ) {
-    squareTopY = JungianLib.gridTopY + (row * squareSize);
-    for ( let col=0; col < gridSize; col++ ){
+  for ( let row=0; row < JungianLib.gridSize; row++ ) {
+    squareTopY = JungianLib.gridTopY + (row * JungianLib.squareSize);
+    for ( let col=0; col < JungianLib.gridSize; col++ ){
       randomColorLetter = JungianLib.getRandomPrimaryColor();
     // console.log( "randomColorLetter = " + randomColorLetter );
-      squareTopX = JungianLib.gridTopX + (col * squareSize);
+      squareTopX = JungianLib.gridTopX + (col * JungianLib.squareSize);
       if ( randomColorLetter == "B" ) {
         context.fillStyle = "rgba(0, 0, 255, " + opacityPercent.toString() + ")";
       } else if ( randomColorLetter == "G" ) {
@@ -54,15 +48,15 @@ const draw = (context: CanvasRenderingContext2D) => {
       } else {
         context.fillStyle = "rgb(255, 255, 255, " + opacityPercent.toString() + ")";
       }
-      context.fillRect( squareTopX, squareTopY, squareSize, squareSize );
+      context.fillRect( squareTopX, squareTopY, JungianLib.squareSize, JungianLib.squareSize );
     }
   }
 };
 
 // DFlexImageCards: function component to display a jungian image
 function DFlexImageCards( props:JungianLib.JungianImageProps ) {
-  const width = canvasWidth;
-  const height = canvasHeight;
+  const width = JungianLib.canvasWidth;
+  const height = JungianLib.canvasHeight;
 
   // **TEMPORARILY** Save the raw slider values as percentages in a **GLOBAL OBJECT**
   JungianLib.globalProps.opacityPercent = JungianLib.valueToPct( props.opacityValue );
