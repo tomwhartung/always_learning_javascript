@@ -35,7 +35,7 @@ export interface JungianImagePercents {
   bAndYVsGandRPercent: number;      // [0.0 .. 1.0]
 }
 
-// Constants
+// Constant Arrays
 export const numberOfSliderCards = 4;  // Warning: Do not make this greater
                                        // than or equal to the number of
                                        // elements in jungianImagePropNames
@@ -60,8 +60,16 @@ export const colorLetters = [
   "X",   // Invalid!
 ];
 
+// Constant Values
+// Note: At some point, we may want to make some of these variables set by the user
+export const squareSize = 15;    // Size of each square
+export const gridSize = 19;      // No. of squares in each row and column
+
 export const gridTopX = 10;      // X location of top left corner of grid
 export const gridTopY = 10;      // Y location of top left corner of grid
+
+export const canvasWidth = ( squareSize * gridSize ) + ( 2 * gridTopX );
+export const canvasHeight = ( squareSize * gridSize ) + ( 2 * gridTopY );
 
 // Functions:
 // ----------
