@@ -1,3 +1,6 @@
+//
+// App.tsx: Basic App content for the Home page
+//
 import './App.css'
 
 function App() {
