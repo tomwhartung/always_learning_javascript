@@ -1,3 +1,6 @@
+//
+// main-big_five.tsx: main jsx module referenced in ../index-big_five.html
+//
 import React from 'react'
 import ReactDOM from 'react-dom/client'
 import { BrowserRouter, Link, Routes, Route } from 'react-router-dom'
