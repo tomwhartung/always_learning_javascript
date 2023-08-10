@@ -1,3 +1,6 @@
+//
+// main-enneagram.tsx: main jsx module referenced in ../index-enneagram.html
+//
 import React from 'react'
 import ReactDOM from 'react-dom/client'
 import { BrowserRouter, Link, Routes, Route } from 'react-router-dom'
