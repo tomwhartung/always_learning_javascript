@@ -3,6 +3,7 @@
 //
 import '../App.css'
 import { ChangeEvent, useState } from 'react';
+import { useEffect } from 'react';
 
 import Canvas from '../lib/CanvasLib.tsx';
 import {defaultSliderValue} from '../lib/SliderLib.tsx';
@@ -122,6 +123,13 @@ function DFlexContainer() {
     );
   }
 
+  useEffect(() => {
+    const storedString = JSON.parse(localStorage.getItem( 'storedString' ));
+    if ( storedString ) {
+      console.log( "storedString = '" + storedString + "'" );
+    }
+  }, [values]);
+  
   return (
     <div className="container">
       <h4>DFlexContainer:</h4>
