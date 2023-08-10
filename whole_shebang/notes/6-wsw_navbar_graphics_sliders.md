@@ -490,6 +490,8 @@ Add the graphics and sliders from the `3-wsw_sliders` project to the Jungian opt
 
 ## 7.1. Copying Code From `whole_shebang/projects/3-wsw_sliders/src/App.tsx`
 
+### 7.1.1. Add Code to `Create.tsx`
+
 Adding the graphics with the sliders in the `3-wsw_sliders` project is simply a matter of
 copying the code over from `whole_shebang/projects/3-wsw_sliders/src/App.tsx`
 and into `whole_shebang/projects/6-wsw_navbar_graphics_sliders/src/jungian/Create.tsx`.
@@ -497,7 +499,38 @@ and into `whole_shebang/projects/6-wsw_navbar_graphics_sliders/src/jungian/Creat
 This proved to be easy enough, with the only update needed being that `./Canvas.tsx`
 is now in `../lib/Canvas.tsx`.
 
-- There are many changes that could be made to this code, but ...
-- But in reality these whole_shebang projects are intended to be used as starting points, not as finished products, and so ...
-- And so technically we can consider this project to be "completed"!
+### 7.1.2. Add Code to `View.tsx`
+
+Now that we've added the code to `Create.tsx`, we can add the same code to `View.tsx`.
+
+This proved to be easy enough, but now we have a lot of duplicate code that needs to be refactored!
+
+# 8. Refactoring
+
+Break as much duplicated code as possible out of `src/jungian/Create.tsx` and `src/jungian/View.tsx`.
+
+Guidelines:
+
+- For now, leave the `draw()` function as-is in both
+  - We will update this function in `src/jungian/View.tsx` later
+- Put any code that might be useful to other quiz types in its own library file
+  - For example: `src/lib/SliderLib.tsx`
+- Put code looks to be useful only to the Jungian quiz type in `src/lib/Jungian.tsx`
+- Rename `src/lib/Canvas.tsx` to `src/lib/CanvasLib.tsx` for consistency
+
+# 9. Splitting up the Two Main Components
+
+The goal is to have:
+
+- The fixed-size image in `src/jungian/Create.tsx`
+- The d-flex image in `src/jungian/View.tsx`
+
+The high-level process is:
+
+- [x] 1. Remove the `DFlexContainer` component from `src/jungian/Create.tsx` leaving only the `FixedContainer` component
+  - The same goes for children used exclusively by one but not both of the two components
+- [x] 2. Remove the `FixedContainer` component from `src/jungian/View.tsx` leaving only the `DFlexContainer` component
+  - The same goes for children used exclusively by one but not both of the two components
+
+A detailed process is beyond the scope of this document.
 
