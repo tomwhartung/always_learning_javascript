@@ -3,6 +3,7 @@
 //
 import '../App.css'
 import { ChangeEvent, useState } from 'react';
+import { useEffect } from 'react';
 
 import Canvas from '../lib/CanvasLib.tsx';
 import {defaultSliderValue} from '../lib/SliderLib.tsx';
@@ -129,6 +130,11 @@ function FixedContainer() {
     nextValues[col] = Number(val);
     setValues(nextValues);
   }
+
+  const testString = "test string";
+  useEffect(() => {
+    localStorage.setItem('storedString', JSON.stringify(testString));
+  }, [values]);
 
   // Construct markup for a set of columns containing SliderCards
   const sliderNumberCols = [];
