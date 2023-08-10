@@ -1,3 +1,6 @@
+//
+// AppEnneagram.tsx: basic app content for the first page of the Enneagram quiz type
+//
 import './App.css'
 
 import Canvas from './lib/CanvasLib.tsx';

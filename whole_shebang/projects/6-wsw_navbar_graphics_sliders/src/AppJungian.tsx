@@ -1,3 +1,6 @@
+//
+// AppJungian.tsx: basic app content for the first page of the Jungian quiz type
+//
 import './App.css'
 
 // AppJungian: the "mainline" component for this quiz type

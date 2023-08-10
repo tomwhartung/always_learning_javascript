@@ -1,3 +1,6 @@
+//
+// AppBigFive.tsx: basic app content for the first page of the Big Five quiz type
+//
 import './App.css'
 
 import Canvas from './lib/CanvasLib.tsx';
