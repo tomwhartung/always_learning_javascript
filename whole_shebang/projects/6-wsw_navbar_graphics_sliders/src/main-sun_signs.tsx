@@ -1,3 +1,6 @@
+//
+// main-sun_signs.tsx: main jsx module referenced in ../index-sun_signs.html
+//
 import React from 'react'
 import ReactDOM from 'react-dom/client'
 import { BrowserRouter, Link, Routes, Route } from 'react-router-dom'
