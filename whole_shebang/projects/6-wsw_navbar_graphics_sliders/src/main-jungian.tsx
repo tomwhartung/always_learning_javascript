@@ -1,3 +1,6 @@
+//
+// main-jungian.tsx: main jsx module referenced in ../index-jungian.html
+//
 import React from 'react'
 import ReactDOM from 'react-dom/client'
 import { BrowserRouter, Link, Routes, Route } from 'react-router-dom'
