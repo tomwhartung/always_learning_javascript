@@ -2,12 +2,19 @@
 // View.tsx: code for the View option
 //
 import '../App.css'
-import { useState, useEffect } from 'react';
+import { useEffect } from 'react';
 
 import Canvas from '../lib/CanvasLib.tsx';
 import {defaultSliderValue} from '../lib/SliderLib.tsx';
 import * as JungianLib from '../lib/JungianLib.tsx';
 
+// These are the values we save in localStorage:
+let sliderValues = [
+  defaultSliderValue,
+  defaultSliderValue,
+  defaultSliderValue,
+  defaultSliderValue,
+];
 let imageString: string[] = [];
 
 // draw: Add a "groja-esque" grid of blue, green, red, and yellow squares
@@ -60,11 +67,8 @@ function DFlexImageCards( props:JungianLib.JungianImageProps ) {
   const width = JungianLib.canvasWidth;
   const height = JungianLib.canvasHeight;
 
-  // **TEMPORARILY** Save the raw slider values as percentages in a **GLOBAL OBJECT**
+  // **TEMPORARILY** Save the raw opacityPercent slider value as a percentage in a **GLOBAL OBJECT**
   JungianLib.globalProps.opacityPercent = JungianLib.valueToPct( props.opacityValue );
-  JungianLib.globalProps.blueVsYellowPercent = JungianLib.valueToPct( props.blueVsYellowValue );
-  JungianLib.globalProps.greenVsRedPercent = JungianLib.valueToPct( props.greenVsRedValue );
-  JungianLib.globalProps.bAndYVsGandRPercent = JungianLib.valueToPct( props.bAndYVsGandRValue );
 
   function handleImageClick(event: React.MouseEvent<HTMLElement>) {
     const rect = (event.target as HTMLElement).getBoundingClientRect();
@@ -78,10 +82,10 @@ function DFlexImageCards( props:JungianLib.JungianImageProps ) {
       <div className="row mt-4 d-flex justify-content-center">
         <div className="col-md-4 align-items-center">
           <div className="card jungian-canvas">
-            <p>{JungianLib.jungianImagePropLabels[0]}: {props.opacityValue}</p>
-            <p>{JungianLib.jungianImagePropLabels[1]}: {props.blueVsYellowValue}</p>
-            <p>{JungianLib.jungianImagePropLabels[2]}: {props.greenVsRedValue}</p>
-            <p>{JungianLib.jungianImagePropLabels[3]}: {props.bAndYVsGandRValue}</p>
+            <p>{JungianLib.jungianImagePropLabels[0]}: {sliderValues[0]}</p>
+            <p>{JungianLib.jungianImagePropLabels[1]}: {sliderValues[1]}</p>
+            <p>{JungianLib.jungianImagePropLabels[2]}: {sliderValues[2]}</p>
+            <p>{JungianLib.jungianImagePropLabels[3]}: {sliderValues[3]}</p>
           </div>
         </div>
         <div className="col-md-8">
@@ -100,25 +104,16 @@ function DFlexImageCards( props:JungianLib.JungianImageProps ) {
 
 // DFlexContainer: function component containing a "d-flex" MDB container
 function DFlexContainer() {
-  const [values, setValues] = useState([defaultSliderValue]);
-
-  useEffect(() => {
-    const rawStoredValue = localStorage.getItem( 'imageString' );
-    if ( rawStoredValue ) {
-      imageString = JSON.parse( rawStoredValue );
-      console.log( "View: imageString = '" + imageString + "'" );
-    }
-  }, [values]);
   
   return (
     <div className="container">
       <h4>DFlexContainer:</h4>
       <div className="row mt-4 d-flex justify-content-center">
         <DFlexImageCards
-          opacityValue={values[0] ?? defaultSliderValue}
-          blueVsYellowValue={values[1] ?? defaultSliderValue}
-          greenVsRedValue={values[2] ?? defaultSliderValue}
-          bAndYVsGandRValue={values[3] ?? defaultSliderValue} />
+          opacityValue={sliderValues[0] ?? defaultSliderValue}
+          blueVsYellowValue={sliderValues[1] ?? defaultSliderValue}
+          greenVsRedValue={sliderValues[2] ?? defaultSliderValue}
+          bAndYVsGandRValue={sliderValues[3] ?? defaultSliderValue} />
       </div>
     </div>
   )
@@ -126,6 +121,22 @@ function DFlexContainer() {
 
 // View: default "mainline" component for this menu option
 function View() {
+  useEffect(() => {
+    const rawStoredSliderValues = localStorage.getItem( 'sliderValues' );
+    if ( rawStoredSliderValues ) {
+      sliderValues = JSON.parse( rawStoredSliderValues );
+      console.log( "View: sliderValues[0] = " + sliderValues[0] );
+      console.log( "View: sliderValues[1] = " + sliderValues[1] );
+      console.log( "View: sliderValues[2] = " + sliderValues[2] );
+      console.log( "View: sliderValues[3] = " + sliderValues[3] );
+    }
+    const rawStoredImageString = localStorage.getItem( 'imageString' );
+    if ( rawStoredImageString ) {
+      imageString = JSON.parse( rawStoredImageString );
+      console.log( "View: imageString = '" + imageString + "'" );
+    }
+  }, []);
+
   return (
     <div id="view">
       <h2>View</h2>
