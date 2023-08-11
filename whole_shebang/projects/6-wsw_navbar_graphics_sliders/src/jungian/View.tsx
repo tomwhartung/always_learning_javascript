@@ -10,6 +10,8 @@ import {defaultSliderValue} from '../lib/SliderLib.tsx';
 import SliderCard from './SliderCard.tsx';
 import * as JungianLib from '../lib/JungianLib.tsx';
 
+let imageString: string[] = [];
+
 // draw: Add a "groja-esque" grid of blue, green, red, and yellow squares
 const draw = (context: CanvasRenderingContext2D) => {
   const width = JungianLib.canvasWidth;
@@ -27,7 +29,8 @@ const draw = (context: CanvasRenderingContext2D) => {
 
   let squareTopX = JungianLib.gridTopX;
   let squareTopY = JungianLib.gridTopY;
-  let randomColorLetter = "B";
+  let colorLetter = "B";
+  let imgStrIdx = 0;
   const opacityPercent = JungianLib.globalProps.opacityPercent;
 // console.log( "draw: JungianLib.globalProps.opacityPercent = " + JungianLib.globalProps.opacityPercent.toString() );
 // console.log( "draw: opacityPercent = " + opacityPercent.toString() );
@@ -35,16 +38,16 @@ const draw = (context: CanvasRenderingContext2D) => {
   for ( let row=0; row < JungianLib.gridSize; row++ ) {
     squareTopY = JungianLib.gridTopY + (row * JungianLib.squareSize);
     for ( let col=0; col < JungianLib.gridSize; col++ ){
-      randomColorLetter = JungianLib.getRandomPrimaryColor();
-    // console.log( "randomColorLetter = " + randomColorLetter );
+      colorLetter = imageString[imgStrIdx++];
+    //console.log( "colorLetter = " + colorLetter );
       squareTopX = JungianLib.gridTopX + (col * JungianLib.squareSize);
-      if ( randomColorLetter == "B" ) {
+      if ( colorLetter == "B" ) {
         context.fillStyle = "rgba(0, 0, 255, " + opacityPercent.toString() + ")";
-      } else if ( randomColorLetter == "G" ) {
+      } else if ( colorLetter == "G" ) {
         context.fillStyle = "rgba(0, 255, 0, " + opacityPercent.toString() + ")";
-      } else if ( randomColorLetter == "R" ) {
+      } else if ( colorLetter == "R" ) {
         context.fillStyle = "rgba(255, 0, 0, " + opacityPercent.toString() + ")";
-      } else if ( randomColorLetter == "Y" ) {
+      } else if ( colorLetter == "Y" ) {
         context.fillStyle = "rgba(255, 255, 0, " + opacityPercent.toString() + ")";
       } else {
         context.fillStyle = "rgb(255, 255, 255, " + opacityPercent.toString() + ")";
@@ -124,11 +127,10 @@ function DFlexContainer() {
   }
 
   useEffect(() => {
-    const rawStoredValue = localStorage.getItem( 'storedString' );
-    let storedString = "";
+    const rawStoredValue = localStorage.getItem( 'imageString' );
     if ( rawStoredValue ) {
-      storedString = JSON.parse( rawStoredValue );
-      console.log( "storedString = '" + storedString + "'" );
+      imageString = JSON.parse( rawStoredValue );
+      console.log( "View: imageString = '" + imageString + "'" );
     }
   }, [values]);
   
