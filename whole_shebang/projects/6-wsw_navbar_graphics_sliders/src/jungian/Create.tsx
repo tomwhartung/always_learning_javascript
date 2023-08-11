@@ -2,14 +2,20 @@
 // Create.tsx: code for the Create option
 //
 import '../App.css'
-import { ChangeEvent, useState } from 'react';
-import { useEffect } from 'react';
+import { ChangeEvent, useState, useEffect } from 'react';
 
 import Canvas from '../lib/CanvasLib.tsx';
 import {defaultSliderValue} from '../lib/SliderLib.tsx';
 import SliderCard from './SliderCard.tsx';
 import * as JungianLib from '../lib/JungianLib.tsx';
 
+// These are the values we save in localStorage:
+let sliderValues = [
+  defaultSliderValue,
+  defaultSliderValue,
+  defaultSliderValue,
+  defaultSliderValue,
+];
 let imageString: string[];
 
 // draw: Add a "groja-esque" grid of blue, green, red, and yellow squares
@@ -64,11 +70,8 @@ function FixedSizeImageCards( props:JungianLib.JungianImageProps ) {
   const width = JungianLib.canvasWidth;
   const height = JungianLib.canvasHeight;
 
-  // **TEMPORARILY** Save the raw slider values as percentages in a **GLOBAL OBJECT**
+  // **TEMPORARILY** Save the raw opacityPercent slider value as a percentage in a **GLOBAL OBJECT**
   JungianLib.globalProps.opacityPercent = JungianLib.valueToPct( props.opacityValue );
-  JungianLib.globalProps.blueVsYellowPercent = JungianLib.valueToPct( props.blueVsYellowValue );
-  JungianLib.globalProps.greenVsRedPercent = JungianLib.valueToPct( props.greenVsRedValue );
-  JungianLib.globalProps.bAndYVsGandRPercent = JungianLib.valueToPct( props.bAndYVsGandRValue );
 
   function handleImageClick(event: React.MouseEvent<HTMLElement>) {
     const rect = (event.target as HTMLElement).getBoundingClientRect();
@@ -130,7 +133,7 @@ function FixedContainer() {
 
   function handleChangeArrayOfNumbers( evt:ChangeEvent, col:number ) {
     const val = (evt.target as HTMLInputElement).value;
-    console.log( "Value of slider number " + col.toString() + " is now " + val.toString() );
+  //console.log( "Value of slider number " + col.toString() + " is now " + val.toString() );
     const nextSliderValues = sliderValues.slice();
     nextSliderValues[col] = Number(val);
     setSliderValues(nextSliderValues);
@@ -141,7 +144,7 @@ function FixedContainer() {
     localStorage.setItem( 'imageString', JSON.stringify(imageString) );
   }, [sliderValues]);
 
-  // Construct markup for a set of columns containing SliderCards
+  // Construct markup for the SliderCards
   const sliderNumberCols = [];
   for ( let col = 0; col < JungianLib.numberOfSliderCards; col++ ) {
     sliderNumberCols.push(
@@ -174,6 +177,24 @@ function FixedContainer() {
 
 // Create: default "mainline" component for this menu option
 function Create() {
+  // If localStorage already has sliderValues and an imageString
+  //   We want to use those values!
+  useEffect(() => {
+    const rawStoredSliderValues = localStorage.getItem( 'sliderValues' );
+    if ( rawStoredSliderValues ) {
+      sliderValues = JSON.parse( rawStoredSliderValues );
+      console.log( "Create() in Create.tsx: sliderValues[0] = " + sliderValues[0] );
+      console.log( "Create() in Create.tsx: sliderValues[1] = " + sliderValues[1] );
+      console.log( "Create() in Create.tsx: sliderValues[2] = " + sliderValues[2] );
+      console.log( "Create() in Create.tsx: sliderValues[3] = " + sliderValues[3] );
+    }
+    const rawStoredImageString = localStorage.getItem( 'imageString' );
+    if ( rawStoredImageString ) {
+      imageString = JSON.parse( rawStoredImageString );
+      console.log( "View: imageString = '" + imageString + "'" );
+    }
+  }, []);
+
   return (
     <div id="create">
       <h2>Create</h2>
