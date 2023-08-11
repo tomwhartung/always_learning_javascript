@@ -2,12 +2,10 @@
 // View.tsx: code for the View option
 //
 import '../App.css'
-import { ChangeEvent, useState } from 'react';
-import { useEffect } from 'react';
+import { useState, useEffect } from 'react';
 
 import Canvas from '../lib/CanvasLib.tsx';
 import {defaultSliderValue} from '../lib/SliderLib.tsx';
-import SliderCard from './SliderCard.tsx';
 import * as JungianLib from '../lib/JungianLib.tsx';
 
 let imageString: string[] = [];
@@ -104,28 +102,6 @@ function DFlexImageCards( props:JungianLib.JungianImageProps ) {
 function DFlexContainer() {
   const [values, setValues] = useState([defaultSliderValue]);
 
-  function handleChangeArrayOfNumbers( evt:ChangeEvent, col:number ) {
-    const val = (evt.target as HTMLInputElement).value;
-  // console.log( "Value of slider in column " + col.toString() + " is now " + val.toString() );
-    const nextValues = values.slice();
-    nextValues[col] = Number(val);
-    setValues(nextValues);
-  }
-
-  // Construct markup for a set of columns containing SliderCards
-  const sliderNumberCols = [];
-  for ( let col = 0; col < JungianLib.numberOfSliderCards; col++ ) {
-    sliderNumberCols.push(
-      <div key={col} className="col-md-3">
-        <SliderCard
-         sliderNo={col}
-         sliderVal={values[col] ?? defaultSliderValue}
-         onSliderChange={ (evt) => handleChangeArrayOfNumbers(evt,col) }
-        />
-      </div>
-    );
-  }
-
   useEffect(() => {
     const rawStoredValue = localStorage.getItem( 'imageString' );
     if ( rawStoredValue ) {
@@ -137,9 +113,6 @@ function DFlexContainer() {
   return (
     <div className="container">
       <h4>DFlexContainer:</h4>
-      <div className="row mt-4 d-flex justify-content-center">
-        {sliderNumberCols}
-      </div>
       <div className="row mt-4 d-flex justify-content-center">
         <DFlexImageCards
           opacityValue={values[0] ?? defaultSliderValue}
