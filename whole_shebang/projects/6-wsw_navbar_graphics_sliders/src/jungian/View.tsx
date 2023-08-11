@@ -124,8 +124,10 @@ function DFlexContainer() {
   }
 
   useEffect(() => {
-    const storedString = JSON.parse(localStorage.getItem( 'storedString' ));
-    if ( storedString ) {
+    const rawStoredValue = localStorage.getItem( 'storedString' );
+    let storedString = "";
+    if ( rawStoredValue ) {
+      storedString = JSON.parse( rawStoredValue );
       console.log( "storedString = '" + storedString + "'" );
     }
   }, [values]);
