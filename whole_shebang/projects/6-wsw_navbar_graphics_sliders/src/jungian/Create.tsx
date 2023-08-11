@@ -126,19 +126,20 @@ function FixedSizeImageCards( props:JungianLib.JungianImageProps ) {
 
 // FixedContainer: function component containing an MDB container
 function FixedContainer() {
-  const [values, setValues] = useState([defaultSliderValue]);
+  const [sliderValues, setSliderValues] = useState([defaultSliderValue]);
 
   function handleChangeArrayOfNumbers( evt:ChangeEvent, col:number ) {
     const val = (evt.target as HTMLInputElement).value;
-  // console.log( "Value of slider in column " + col.toString() + " is now " + val.toString() );
-    const nextValues = values.slice();
-    nextValues[col] = Number(val);
-    setValues(nextValues);
+    console.log( "Value of slider number " + col.toString() + " is now " + val.toString() );
+    const nextSliderValues = sliderValues.slice();
+    nextSliderValues[col] = Number(val);
+    setSliderValues(nextSliderValues);
   }
 
   useEffect(() => {
-    localStorage.setItem('imageString', JSON.stringify(imageString));
-  }, [values]);
+    localStorage.setItem( 'sliderValues', JSON.stringify(sliderValues) );
+    localStorage.setItem( 'imageString', JSON.stringify(imageString) );
+  }, [sliderValues]);
 
   // Construct markup for a set of columns containing SliderCards
   const sliderNumberCols = [];
@@ -147,7 +148,7 @@ function FixedContainer() {
       <div key={col} className="col-md-3">
         <SliderCard
          sliderNo={col}
-         sliderVal={values[col] ?? defaultSliderValue}
+         sliderVal={sliderValues[col] ?? defaultSliderValue}
          onSliderChange={ (evt) => handleChangeArrayOfNumbers(evt,col) }
         />
       </div>
@@ -162,10 +163,10 @@ function FixedContainer() {
       </div>
       <div className="row mt-4">
         <FixedSizeImageCards
-          opacityValue={values[0] ?? defaultSliderValue}
-          blueVsYellowValue={values[1] ?? defaultSliderValue}
-          greenVsRedValue={values[2] ?? defaultSliderValue}
-          bAndYVsGandRValue={values[3] ?? defaultSliderValue} />
+          opacityValue={sliderValues[0] ?? defaultSliderValue}
+          blueVsYellowValue={sliderValues[1] ?? defaultSliderValue}
+          greenVsRedValue={sliderValues[2] ?? defaultSliderValue}
+          bAndYVsGandRValue={sliderValues[3] ?? defaultSliderValue} />
       </div>
     </div>
   )
