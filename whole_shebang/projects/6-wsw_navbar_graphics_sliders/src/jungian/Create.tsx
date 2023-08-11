@@ -10,6 +10,8 @@ import {defaultSliderValue} from '../lib/SliderLib.tsx';
 import SliderCard from './SliderCard.tsx';
 import * as JungianLib from '../lib/JungianLib.tsx';
 
+let imageString: string[];
+
 // draw: Add a "groja-esque" grid of blue, green, red, and yellow squares
 const draw = (context: CanvasRenderingContext2D) => {
   const width = JungianLib.canvasWidth;
@@ -32,6 +34,7 @@ const draw = (context: CanvasRenderingContext2D) => {
 // console.log( "draw: JungianLib.globalProps.opacityPercent = " + JungianLib.globalProps.opacityPercent.toString() );
 // console.log( "draw: opacityPercent = " + opacityPercent.toString() );
 
+  imageString = [];
   for ( let row=0; row < JungianLib.gridSize; row++ ) {
     squareTopY = JungianLib.gridTopY + (row * JungianLib.squareSize);
     for ( let col=0; col < JungianLib.gridSize; col++ ){
@@ -50,8 +53,10 @@ const draw = (context: CanvasRenderingContext2D) => {
         context.fillStyle = "rgb(255, 255, 255, " + opacityPercent.toString() + ")";
       }
       context.fillRect( squareTopX, squareTopY, JungianLib.squareSize, JungianLib.squareSize );
+      imageString.push( randomColorLetter );
     }
   }
+  console.log( "Create: imageString: " + imageString )
 };
 
 // FixedSizeImageCards: function component to display a jungian image
@@ -131,9 +136,8 @@ function FixedContainer() {
     setValues(nextValues);
   }
 
-  const testString = "test string";
   useEffect(() => {
-    localStorage.setItem('storedString', JSON.stringify(testString));
+    localStorage.setItem('imageString', JSON.stringify(imageString));
   }, [values]);
 
   // Construct markup for a set of columns containing SliderCards
