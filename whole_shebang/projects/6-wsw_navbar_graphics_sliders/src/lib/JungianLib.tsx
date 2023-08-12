@@ -63,7 +63,8 @@ export const colorLetters = [
 // Constant Values
 // Note: At some point, we may want to make some of these variables set by the user
 export const squareSize = 15;    // Size of each square
-export const gridSize = 19;      // No. of squares in each row and column
+// export const gridSize = 19;      // No. of squares in each row and column
+export const gridSize = 5;      // No. of squares in each row and column
 
 export const gridTopX = 10;      // X location of top left corner of grid
 export const gridTopY = 10;      // Y location of top left corner of grid
@@ -80,10 +81,10 @@ export function valueToPct( value: number ) : number {
 }
 
 // getRandomPrimaryColor: return a single character, "B", "G", "R", or "Y"
-export function getRandomPrimaryColor() {
-  const blueVsYellowPercent = globalProps.blueVsYellowPercent;
-  const greenVsRedPercent = globalProps.greenVsRedPercent;
-  const bAndYVsGandRPercent = globalProps.bAndYVsGandRPercent;
+export function getRandomPrimaryColor( sliderValues: JungianImageProps ) {
+  const blueVsYellowPercent = valueToPct( sliderValues.blueVsYellowValue );
+  const greenVsRedPercent = valueToPct( sliderValues.greenVsRedValue );
+  const bAndYVsGandRPercent = valueToPct( sliderValues.bAndYVsGandRValue );
   let randomFloat = Math.random();
   let randomColorLetter = colorLetters[4];  // default is INVALID!
 
