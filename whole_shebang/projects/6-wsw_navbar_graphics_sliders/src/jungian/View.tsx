@@ -9,12 +9,7 @@ import {defaultSliderValue} from '../lib/SliderLib.tsx';
 import * as JungianLib from '../lib/JungianLib.tsx';
 
 // These are the values we save in localStorage:
-let sliderValues = [
-  defaultSliderValue,
-  defaultSliderValue,
-  defaultSliderValue,
-  defaultSliderValue,
-];
+let savedSliderValues: JungianLib.JungianImageProps;
 let imageString: string[] = [];
 
 // draw: Add a "groja-esque" grid of blue, green, red, and yellow squares
@@ -82,10 +77,10 @@ function DFlexImageCards( props:JungianLib.JungianImageProps ) {
       <div className="row mt-4 d-flex justify-content-center">
         <div className="col-md-4 align-items-center">
           <div className="card jungian-canvas">
-            <p>{JungianLib.jungianImagePropLabels[0]}: {sliderValues[0]}</p>
-            <p>{JungianLib.jungianImagePropLabels[1]}: {sliderValues[1]}</p>
-            <p>{JungianLib.jungianImagePropLabels[2]}: {sliderValues[2]}</p>
-            <p>{JungianLib.jungianImagePropLabels[3]}: {sliderValues[3]}</p>
+            <p>{JungianLib.jungianImagePropLabels[0]}: {savedSliderValues.opacityValue}</p>
+            <p>{JungianLib.jungianImagePropLabels[1]}: {savedSliderValues.blueVsYellowValue}</p>
+            <p>{JungianLib.jungianImagePropLabels[2]}: {savedSliderValues.greenVsRedValue}</p>
+            <p>{JungianLib.jungianImagePropLabels[3]}: {savedSliderValues.bAndYVsGandRValue}</p>
           </div>
         </div>
         <div className="col-md-8">
@@ -110,10 +105,10 @@ function DFlexContainer() {
       <h4>DFlexContainer:</h4>
       <div className="row mt-4 d-flex justify-content-center">
         <DFlexImageCards
-          opacityValue={sliderValues[0] ?? defaultSliderValue}
-          blueVsYellowValue={sliderValues[1] ?? defaultSliderValue}
-          greenVsRedValue={sliderValues[2] ?? defaultSliderValue}
-          bAndYVsGandRValue={sliderValues[3] ?? defaultSliderValue} />
+          opacityValue={savedSliderValues.opacityValue ?? defaultSliderValue}
+          blueVsYellowValue={savedSliderValues.blueVsYellowValue ?? defaultSliderValue}
+          greenVsRedValue={savedSliderValues.greenVsRedValue ?? defaultSliderValue}
+          bAndYVsGandRValue={savedSliderValues.bAndYVsGandRValue ?? defaultSliderValue} />
       </div>
     </div>
   )
@@ -124,16 +119,20 @@ function View() {
   useEffect(() => {
     const rawStoredSliderValues = localStorage.getItem( 'sliderValues' );
     if ( rawStoredSliderValues ) {
-      sliderValues = JSON.parse( rawStoredSliderValues );
-      console.log( "View: sliderValues[0] = " + sliderValues[0] );
-      console.log( "View: sliderValues[1] = " + sliderValues[1] );
-      console.log( "View: sliderValues[2] = " + sliderValues[2] );
-      console.log( "View: sliderValues[3] = " + sliderValues[3] );
+      savedSliderValues = JSON.parse( rawStoredSliderValues );
+      console.log( "View() in View.tsx: savedSliderValues.opacityValue = " + savedSliderValues.opacityValue );
+      console.log( "View() in View.tsx: savedSliderValues.blueVsYellowValue = " + savedSliderValues.blueVsYellowValue );
+      console.log( "View() in View.tsx: savedSliderValues.greenVsRedValue = " + savedSliderValues.greenVsRedValue );
+      console.log( "View() in View.tsx: savedSliderValues.bAndYVsGandRValue = " + savedSliderValues.bAndYVsGandRValue );
+    } else {
+       console.log( "View() in View.tsx: sliderValues NOT FOUND in localStorage!!!" );
     }
     const rawStoredImageString = localStorage.getItem( 'imageString' );
     if ( rawStoredImageString ) {
       imageString = JSON.parse( rawStoredImageString );
-      console.log( "View: imageString = '" + imageString + "'" );
+      console.log( "View() in View.tsx: imageString = '" + imageString + "'" );
+    } else {
+       console.log( "View() in View.tsx: imageString NOT FOUND in localStorage!!!" );
     }
   }, []);
 
