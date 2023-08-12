@@ -32,7 +32,11 @@ function JungianMenuAndPages() {
   useEffect(() => {
     const rawStoredSliderValues = localStorage.getItem( 'sliderValues' );
     if ( rawStoredSliderValues ) {
-      savedSliderValues = JSON.parse( rawStoredSliderValues );
+      const storedSliderValues = JSON.parse( rawStoredSliderValues );
+      savedSliderValues.opacityValue = storedSliderValues[0];
+      savedSliderValues.blueVsYellowValue = storedSliderValues[1];
+      savedSliderValues.greenVsRedValue = storedSliderValues[2];
+      savedSliderValues.bAndYVsGandRValue = storedSliderValues[3];
       console.log( "JungianMenuAndPages() in JungianMenuAndPages.tsx: savedSliderValues.opacityValue = " + savedSliderValues.opacityValue );
       console.log( "JungianMenuAndPages() in JungianMenuAndPages.tsx: savedSliderValues.blueVsYellowValue = " + savedSliderValues.blueVsYellowValue );
       console.log( "JungianMenuAndPages() in JungianMenuAndPages.tsx: savedSliderValues.greenVsRedValue = " + savedSliderValues.greenVsRedValue );
