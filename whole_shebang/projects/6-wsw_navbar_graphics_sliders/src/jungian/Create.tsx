@@ -10,13 +10,13 @@ import SliderCard from './SliderCard.tsx';
 import * as JungianLib from '../lib/JungianLib.tsx';
 
 // These are the values we save in localStorage:
-let sliderValues = [
-  defaultSliderValue,
-  defaultSliderValue,
-  defaultSliderValue,
-  defaultSliderValue,
-];
-let imageString: string[];
+let savedSliderValues: JungianLib.JungianImageProps = {
+  opacityValue: defaultSliderValue,
+  blueVsYellowValue: defaultSliderValue,
+  greenVsRedValue: defaultSliderValue,
+  bAndYVsGandRValue: defaultSliderValue,
+};
+let imageString: string[] = [];
 
 // draw: Add a "groja-esque" grid of blue, green, red, and yellow squares
 const draw = (context: CanvasRenderingContext2D) => {
@@ -35,38 +35,63 @@ const draw = (context: CanvasRenderingContext2D) => {
 
   let squareTopX = JungianLib.gridTopX;
   let squareTopY = JungianLib.gridTopY;
-  let randomColorLetter = "B";
+  let colorLetter = "B";
   const opacityPercent = JungianLib.globalProps.opacityPercent;
 // console.log( "draw: JungianLib.globalProps.opacityPercent = " + JungianLib.globalProps.opacityPercent.toString() );
 // console.log( "draw: opacityPercent = " + opacityPercent.toString() );
 
-  imageString = [];
-  for ( let row=0; row < JungianLib.gridSize; row++ ) {
-    squareTopY = JungianLib.gridTopY + (row * JungianLib.squareSize);
-    for ( let col=0; col < JungianLib.gridSize; col++ ){
-      randomColorLetter = JungianLib.getRandomPrimaryColor();
-    // console.log( "randomColorLetter = " + randomColorLetter );
-      squareTopX = JungianLib.gridTopX + (col * JungianLib.squareSize);
-      if ( randomColorLetter == "B" ) {
-        context.fillStyle = "rgba(0, 0, 255, " + opacityPercent.toString() + ")";
-      } else if ( randomColorLetter == "G" ) {
-        context.fillStyle = "rgba(0, 255, 0, " + opacityPercent.toString() + ")";
-      } else if ( randomColorLetter == "R" ) {
-        context.fillStyle = "rgba(255, 0, 0, " + opacityPercent.toString() + ")";
-      } else if ( randomColorLetter == "Y" ) {
-        context.fillStyle = "rgba(255, 255, 0, " + opacityPercent.toString() + ")";
-      } else {
-        context.fillStyle = "rgb(255, 255, 255, " + opacityPercent.toString() + ")";
+  if ( imageString.length > 0 ) {
+    let imgStrIdx = 0;
+    console.log( "draw() in Create.tsx: drawing the image saved in localStorage!" );
+    for ( let row=0; row < JungianLib.gridSize; row++ ) {
+      squareTopY = JungianLib.gridTopY + (row * JungianLib.squareSize);
+      for ( let col=0; col < JungianLib.gridSize; col++ ){
+        colorLetter = imageString[imgStrIdx++];
+      //console.log( "colorLetter = " + colorLetter );
+        squareTopX = JungianLib.gridTopX + (col * JungianLib.squareSize);
+        if ( colorLetter == "B" ) {
+          context.fillStyle = "rgba(0, 0, 255, " + opacityPercent.toString() + ")";
+        } else if ( colorLetter == "G" ) {
+          context.fillStyle = "rgba(0, 255, 0, " + opacityPercent.toString() + ")";
+        } else if ( colorLetter == "R" ) {
+          context.fillStyle = "rgba(255, 0, 0, " + opacityPercent.toString() + ")";
+        } else if ( colorLetter == "Y" ) {
+          context.fillStyle = "rgba(255, 255, 0, " + opacityPercent.toString() + ")";
+        } else {
+          context.fillStyle = "rgb(255, 255, 255, " + opacityPercent.toString() + ")";
+        }
+        context.fillRect( squareTopX, squareTopY, JungianLib.squareSize, JungianLib.squareSize );
       }
-      context.fillRect( squareTopX, squareTopY, JungianLib.squareSize, JungianLib.squareSize );
-      imageString.push( randomColorLetter );
+    }
+  } else {
+    console.log( "draw() in Create.tsx: imageString.length is 0, generating a new image!" );
+    for ( let row=0; row < JungianLib.gridSize; row++ ) {
+      squareTopY = JungianLib.gridTopY + (row * JungianLib.squareSize);
+      for ( let col=0; col < JungianLib.gridSize; col++ ){
+        colorLetter = JungianLib.getRandomPrimaryColor( savedSliderValues );
+      // console.log( "colorLetter = " + colorLetter );
+        squareTopX = JungianLib.gridTopX + (col * JungianLib.squareSize);
+        if ( colorLetter == "B" ) {
+          context.fillStyle = "rgba(0, 0, 255, " + opacityPercent.toString() + ")";
+        } else if ( colorLetter == "G" ) {
+          context.fillStyle = "rgba(0, 255, 0, " + opacityPercent.toString() + ")";
+        } else if ( colorLetter == "R" ) {
+          context.fillStyle = "rgba(255, 0, 0, " + opacityPercent.toString() + ")";
+        } else if ( colorLetter == "Y" ) {
+          context.fillStyle = "rgba(255, 255, 0, " + opacityPercent.toString() + ")";
+        } else {
+          context.fillStyle = "rgb(255, 255, 255, " + opacityPercent.toString() + ")";
+        }
+        context.fillRect( squareTopX, squareTopY, JungianLib.squareSize, JungianLib.squareSize );
+        imageString.push( colorLetter );
+      }
     }
   }
   console.log( "Create: imageString: " + imageString )
 };
 
 // FixedSizeImageCards: function component to display a jungian image
-function FixedSizeImageCards( props:JungianLib.JungianImageProps ) {
+function FixedSizeImageCards( props: JungianLib.JungianImageProps ) {
   const width = JungianLib.canvasWidth;
   const height = JungianLib.canvasHeight;
 
@@ -129,20 +154,22 @@ function FixedSizeImageCards( props:JungianLib.JungianImageProps ) {
 
 // FixedContainer: function component containing an MDB container
 function FixedContainer() {
-  const [sliderValues, setSliderValues] = useState([defaultSliderValue]);
+  const [inputSliderValues, setInputSliderValues] = useState([defaultSliderValue]);
 
   function handleChangeArrayOfNumbers( evt:ChangeEvent, col:number ) {
     const val = (evt.target as HTMLInputElement).value;
   //console.log( "Value of slider number " + col.toString() + " is now " + val.toString() );
-    const nextSliderValues = sliderValues.slice();
+    const nextSliderValues = inputSliderValues.slice();
     nextSliderValues[col] = Number(val);
-    setSliderValues(nextSliderValues);
+    setInputSliderValues(nextSliderValues);
+    imageString = [];    // When a slider value changes, we need to draw a new image
   }
 
   useEffect(() => {
-    localStorage.setItem( 'sliderValues', JSON.stringify(sliderValues) );
+    localStorage.setItem( 'sliderValues', JSON.stringify(inputSliderValues) );
     localStorage.setItem( 'imageString', JSON.stringify(imageString) );
-  }, [sliderValues]);
+    console.log( "FixedContainer in Create.tsx: saved inputSliderValues as sliderValues and imageString as imageString." );
+  }, [inputSliderValues]);
 
   // Construct markup for the SliderCards
   const sliderNumberCols = [];
@@ -151,7 +178,7 @@ function FixedContainer() {
       <div key={col} className="col-md-3">
         <SliderCard
          sliderNo={col}
-         sliderVal={sliderValues[col] ?? defaultSliderValue}
+         sliderVal={inputSliderValues[col] ?? defaultSliderValue}
          onSliderChange={ (evt) => handleChangeArrayOfNumbers(evt,col) }
         />
       </div>
@@ -166,10 +193,10 @@ function FixedContainer() {
       </div>
       <div className="row mt-4">
         <FixedSizeImageCards
-          opacityValue={sliderValues[0] ?? defaultSliderValue}
-          blueVsYellowValue={sliderValues[1] ?? defaultSliderValue}
-          greenVsRedValue={sliderValues[2] ?? defaultSliderValue}
-          bAndYVsGandRValue={sliderValues[3] ?? defaultSliderValue} />
+          opacityValue={inputSliderValues[0] ?? defaultSliderValue}
+          blueVsYellowValue={inputSliderValues[1] ?? defaultSliderValue}
+          greenVsRedValue={inputSliderValues[2] ?? defaultSliderValue}
+          bAndYVsGandRValue={inputSliderValues[3] ?? defaultSliderValue} />
       </div>
     </div>
   )
@@ -177,21 +204,25 @@ function FixedContainer() {
 
 // Create: default "mainline" component for this menu option
 function Create() {
-  // If localStorage already has sliderValues and an imageString
+  // If localStorage already has savedSliderValues and an imageString
   //   We want to use those values!
   useEffect(() => {
     const rawStoredSliderValues = localStorage.getItem( 'sliderValues' );
     if ( rawStoredSliderValues ) {
-      sliderValues = JSON.parse( rawStoredSliderValues );
-      console.log( "Create() in Create.tsx: sliderValues[0] = " + sliderValues[0] );
-      console.log( "Create() in Create.tsx: sliderValues[1] = " + sliderValues[1] );
-      console.log( "Create() in Create.tsx: sliderValues[2] = " + sliderValues[2] );
-      console.log( "Create() in Create.tsx: sliderValues[3] = " + sliderValues[3] );
+      savedSliderValues = JSON.parse( rawStoredSliderValues );
+      console.log( "Create() in Create.tsx: savedSliderValues.opacityValue = " + savedSliderValues.opacityValue );
+      console.log( "Create() in Create.tsx: savedSliderValues.blueVsYellowValue = " + savedSliderValues.blueVsYellowValue );
+      console.log( "Create() in Create.tsx: savedSliderValues.greenVsRedValue = " + savedSliderValues.greenVsRedValue );
+      console.log( "Create() in Create.tsx: savedSliderValues.bAndYVsGandRValue = " + savedSliderValues.bAndYVsGandRValue );
+    } else {
+       console.log( "Create() in Create.tsx: sliderValues NOT FOUND in localStorage!!!" );
     }
     const rawStoredImageString = localStorage.getItem( 'imageString' );
     if ( rawStoredImageString ) {
       imageString = JSON.parse( rawStoredImageString );
-      console.log( "View: imageString = '" + imageString + "'" );
+      console.log( "Create() in Create.tsx: imageString = '" + imageString + "'" );
+    } else {
+       console.log( "Create() in Create.tsx: imageString NOT FOUND in localStorage!!!" );
     }
   }, []);
 
