@@ -1,21 +1,30 @@
 // 
 // JungianLib.tsx: types and constants used by the Jungian quiz type
 //
+import * as SliderLib from './SliderLib.tsx';
 
 // -----------------
 // TEMPORARY GLOBAL:
 // -----------------
-import { defaultSliderValue } from './SliderLib.tsx'
+// import { defaultSliderValue } from './SliderLib.tsx'
 // ***************************************************************************************************************
 // globalProps: A TEMPORARY GLOBAL variable to be replaced by a Context or local db or whatever in a later Project
 // ***************************************************************************************************************
 export const globalProps: JungianImagePercents = {
-  opacityPercent: valueToPct( defaultSliderValue ),
-  blueVsYellowPercent: valueToPct( defaultSliderValue ),
-  greenVsRedPercent: valueToPct( defaultSliderValue ),
-  bAndYVsGandRPercent: valueToPct( defaultSliderValue ),
+  opacityPercent: valueToPct( SliderLib.defaultSliderValue ),
+  blueVsYellowPercent: valueToPct( SliderLib.defaultSliderValue ),
+  greenVsRedPercent: valueToPct( SliderLib.defaultSliderValue ),
+  bAndYVsGandRPercent: valueToPct( SliderLib.defaultSliderValue ),
 }
 
+// These are the values we save in localStorage:
+let savedSliderValues: JungianImageProps = {
+  opacityValue: SliderLib.defaultSliderValue,
+  blueVsYellowValue: SliderLib.defaultSliderValue,
+  greenVsRedValue: SliderLib.defaultSliderValue,
+  bAndYVsGandRValue: SliderLib.defaultSliderValue,
+};
+let imageString: string[] = [];
 
 // Types:
 // ------
@@ -64,7 +73,7 @@ export const colorLetters = [
 // Note: At some point, we may want to make some of these variables set by the user
 export const squareSize = 15;    // Size of each square
 // export const gridSize = 19;      // No. of squares in each row and column
-export const gridSize = 5;      // No. of squares in each row and column
+export const gridSize = 3;      // No. of squares in each row and column
 
 export const gridTopX = 10;      // X location of top left corner of grid
 export const gridTopY = 10;      // Y location of top left corner of grid
