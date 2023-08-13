@@ -64,7 +64,7 @@ const draw = (context: CanvasRenderingContext2D) => {
       }
     }
   } else {
-    console.log( "draw() in Create.tsx: imageString.length is 0, generating a new image!" );
+  //console.log( "draw() in Create.tsx: imageString.length is 0, generating a new image!" );
     for ( let row=0; row < JungianLib.gridSize; row++ ) {
       squareTopY = JungianLib.gridTopY + (row * JungianLib.squareSize);
       for ( let col=0; col < JungianLib.gridSize; col++ ){
@@ -87,7 +87,7 @@ const draw = (context: CanvasRenderingContext2D) => {
       }
     }
   }
-  console.log( "Create: imageString: " + imageString )
+//console.log( "Create: imageString: " + imageString )
 };
 
 // FixedSizeImageCards: function component to display a jungian image
@@ -167,8 +167,9 @@ function FixedContainer() {
 
   useEffect(() => {
     localStorage.setItem( 'sliderValues', JSON.stringify(inputSliderValues) );
-    localStorage.setItem( 'imageString', JSON.stringify(imageString) );
-    console.log( "FixedContainer in Create.tsx: saved inputSliderValues as sliderValues and imageString as imageString." );
+    console.log( "FixedContainer in Create.tsx: saved inputSliderValues as sliderValues." );
+  //localStorage.setItem( 'imageString', JSON.stringify(imageString) );
+  //console.log( "FixedContainer in Create.tsx: saved imageString as imageString." );
   }, [inputSliderValues]);
 
   // Construct markup for the SliderCards
@@ -203,28 +204,35 @@ function FixedContainer() {
 }
 
 // Create: default "mainline" component for this menu option
-function Create() {
-  // If localStorage already has savedSliderValues and an imageString
-  //   We want to use those values!
-  useEffect(() => {
-    const rawStoredSliderValues = localStorage.getItem( 'sliderValues' );
-    if ( rawStoredSliderValues ) {
-      savedSliderValues = JSON.parse( rawStoredSliderValues );
-      console.log( "Create() in Create.tsx: savedSliderValues.opacityValue = " + savedSliderValues.opacityValue );
-      console.log( "Create() in Create.tsx: savedSliderValues.blueVsYellowValue = " + savedSliderValues.blueVsYellowValue );
-      console.log( "Create() in Create.tsx: savedSliderValues.greenVsRedValue = " + savedSliderValues.greenVsRedValue );
-      console.log( "Create() in Create.tsx: savedSliderValues.bAndYVsGandRValue = " + savedSliderValues.bAndYVsGandRValue );
-    } else {
-       console.log( "Create() in Create.tsx: sliderValues NOT FOUND in localStorage!!!" );
-    }
-    const rawStoredImageString = localStorage.getItem( 'imageString' );
-    if ( rawStoredImageString ) {
-      imageString = JSON.parse( rawStoredImageString );
-      console.log( "Create() in Create.tsx: imageString = '" + imageString + "'" );
-    } else {
-       console.log( "Create() in Create.tsx: imageString NOT FOUND in localStorage!!!" );
-    }
-  }, []);
+// function Create( props: JungianLib.JungianImageProps ) {
+function Create( {opacityValue, blueVsYellowValue, greenVsRedValue, bAndYVsGandRValue} ) {
+//   // If localStorage already has savedSliderValues and an imageString
+//   //   We want to use those values!
+//   useEffect(() => {
+//     const rawStoredSliderValues = localStorage.getItem( 'sliderValues' );
+//     if ( rawStoredSliderValues ) {
+//       savedSliderValues = JSON.parse( rawStoredSliderValues );
+//       console.log( "Create() in Create.tsx: savedSliderValues.opacityValue = " + savedSliderValues.opacityValue );
+//       console.log( "Create() in Create.tsx: savedSliderValues.blueVsYellowValue = " + savedSliderValues.blueVsYellowValue );
+//       console.log( "Create() in Create.tsx: savedSliderValues.greenVsRedValue = " + savedSliderValues.greenVsRedValue );
+//       console.log( "Create() in Create.tsx: savedSliderValues.bAndYVsGandRValue = " + savedSliderValues.bAndYVsGandRValue );
+//     } else {
+//        console.log( "Create() in Create.tsx: sliderValues NOT FOUND in localStorage!!!" );
+//     }
+//     const rawStoredImageString = localStorage.getItem( 'imageString' );
+//     if ( rawStoredImageString ) {
+//       imageString = JSON.parse( rawStoredImageString );
+//       console.log( "Create() in Create.tsx: imageString = '" + imageString + "'" );
+//     } else {
+//        console.log( "Create() in Create.tsx: imageString NOT FOUND in localStorage!!!" );
+//     }
+//   }, []);
+
+  console.log( "Create() in Create.tsx: passed-in opacityValue = '" + opacityValue + "'" );
+  console.log( "Create() in Create.tsx: passed-in blueVsYellowValue = '" + blueVsYellowValue + "'" );
+  console.log( "Create() in Create.tsx: passed-in greenVsRedValue = '" + greenVsRedValue + "'" );
+  console.log( "Create() in Create.tsx: passed-in bAndYVsGandRValue = '" + bAndYVsGandRValue + "'" );
+//console.log( "Create() in Create.tsx: passed-in imageString = '" + imageString + "'" );
 
   return (
     <div id="create">
