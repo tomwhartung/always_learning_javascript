@@ -534,3 +534,26 @@ The high-level process is:
 
 A detailed process is beyond the scope of this document.
 
+# 10. Utilize Local Storage
+
+The goal is to:
+
+- In `src/jungian/Create.tsx`, save the data needed to reproduce the image in JavaScript local storage
+  - Actually, use the interface provided by React to do this
+- In `src/jungian/View.tsx`, use the data stored in JavaScript local storage to reproduce the image
+  - Again, use the interface provided by React to do this
+  - This image should be read-only, so deactivate the sliders
+  - We will probably eventually want to use the Score Scales used in seeourminds.com, but don't worry about that right now
+
+## 10.1. Major Frustrations
+
+I tried creating a new file, `whole_shebang/projects/6-wsw_navbar_graphics_sliders/src/JungianPage.tsx`, which contains
+the quiz-specific menu and thus a component that is a parent to the `Create.tsx` page and other pages.
+
+The idea was to get the values from localStorage in this parent component and pass them on to `Create.tsx` and other pages,
+as we do with state variables.
+
+- It's clear that this idea will not work
+- I can see the values in local storage in Chrome's developer tools and in the useEffect call, but ...
+- ... these values somehow get reset to the default values before I can pass them on to the other pages
+
