@@ -10,7 +10,7 @@ import SliderCard from './SliderCard.tsx';
 import * as JungianLib from '../lib/JungianLib.tsx';
 
 // These are the values we save in localStorage:
-let savedSliderValues: JungianLib.JungianImageProps = {
+const savedSliderValues: JungianLib.JungianImageProps = {
   opacityValue: defaultSliderValue,
   blueVsYellowValue: defaultSliderValue,
   greenVsRedValue: defaultSliderValue,
@@ -68,8 +68,9 @@ const draw = (context: CanvasRenderingContext2D) => {
     for ( let row=0; row < JungianLib.gridSize; row++ ) {
       squareTopY = JungianLib.gridTopY + (row * JungianLib.squareSize);
       for ( let col=0; col < JungianLib.gridSize; col++ ){
+        console.log( "draw() in Create.tsx: calling JungianLib.getRandomPrimaryColor = " + colorLetter );
         colorLetter = JungianLib.getRandomPrimaryColor( savedSliderValues );
-      // console.log( "colorLetter = " + colorLetter );
+        console.log( "draw() in Create.tsx: colorLetter = " + colorLetter );
         squareTopX = JungianLib.gridTopX + (col * JungianLib.squareSize);
         if ( colorLetter == "B" ) {
           context.fillStyle = "rgba(0, 0, 255, " + opacityPercent.toString() + ")";
@@ -172,6 +173,11 @@ function FixedContainer() {
   //console.log( "FixedContainer in Create.tsx: saved imageString as imageString." );
   }, [inputSliderValues]);
 
+  savedSliderValues.opacityValue = inputSliderValues[0];
+  savedSliderValues.blueVsYellowValue = inputSliderValues[1];
+  savedSliderValues.greenVsRedValue = inputSliderValues[2];
+  savedSliderValues.bAndYVsGandRValue = inputSliderValues[3];
+
   // Construct markup for the SliderCards
   const sliderNumberCols = [];
   for ( let col = 0; col < JungianLib.numberOfSliderCards; col++ ) {
@@ -205,35 +211,7 @@ function FixedContainer() {
 
 // Create: default "mainline" component for this menu option
 // function Create( props: JungianLib.JungianImageProps ) {
-function Create( {opacityValue, blueVsYellowValue, greenVsRedValue, bAndYVsGandRValue} ) {
-//   // If localStorage already has savedSliderValues and an imageString
-//   //   We want to use those values!
-//   useEffect(() => {
-//     const rawStoredSliderValues = localStorage.getItem( 'sliderValues' );
-//     if ( rawStoredSliderValues ) {
-//       savedSliderValues = JSON.parse( rawStoredSliderValues );
-//       console.log( "Create() in Create.tsx: savedSliderValues.opacityValue = " + savedSliderValues.opacityValue );
-//       console.log( "Create() in Create.tsx: savedSliderValues.blueVsYellowValue = " + savedSliderValues.blueVsYellowValue );
-//       console.log( "Create() in Create.tsx: savedSliderValues.greenVsRedValue = " + savedSliderValues.greenVsRedValue );
-//       console.log( "Create() in Create.tsx: savedSliderValues.bAndYVsGandRValue = " + savedSliderValues.bAndYVsGandRValue );
-//     } else {
-//        console.log( "Create() in Create.tsx: sliderValues NOT FOUND in localStorage!!!" );
-//     }
-//     const rawStoredImageString = localStorage.getItem( 'imageString' );
-//     if ( rawStoredImageString ) {
-//       imageString = JSON.parse( rawStoredImageString );
-//       console.log( "Create() in Create.tsx: imageString = '" + imageString + "'" );
-//     } else {
-//        console.log( "Create() in Create.tsx: imageString NOT FOUND in localStorage!!!" );
-//     }
-//   }, []);
-
-  console.log( "Create() in Create.tsx: passed-in opacityValue = '" + opacityValue + "'" );
-  console.log( "Create() in Create.tsx: passed-in blueVsYellowValue = '" + blueVsYellowValue + "'" );
-  console.log( "Create() in Create.tsx: passed-in greenVsRedValue = '" + greenVsRedValue + "'" );
-  console.log( "Create() in Create.tsx: passed-in bAndYVsGandRValue = '" + bAndYVsGandRValue + "'" );
-//console.log( "Create() in Create.tsx: passed-in imageString = '" + imageString + "'" );
-
+function Create() {
   return (
     <div id="create">
       <h2>Create</h2>
