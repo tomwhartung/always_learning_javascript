@@ -16,7 +16,10 @@ const savedSliderValues: JungianLib.JungianImageProps = {
   greenVsRedValue: defaultSliderValue,
   bAndYVsGandRValue: defaultSliderValue,
 };
-let imageString: string[] = [];
+let savedImageString = "";
+
+const defaultImageString = "";
+let imageCharArray: string[] = [];
 
 // draw: Add a "groja-esque" grid of blue, green, red, and yellow squares
 const draw = (context: CanvasRenderingContext2D) => {
@@ -40,13 +43,14 @@ const draw = (context: CanvasRenderingContext2D) => {
 // console.log( "draw: JungianLib.globalProps.opacityPercent = " + JungianLib.globalProps.opacityPercent.toString() );
 // console.log( "draw: opacityPercent = " + opacityPercent.toString() );
 
-  if ( imageString.length > 0 ) {
+  if ( savedImageString.length > 0 ) {
+    imageCharArray = savedImageString.split( "" );
     let imgStrIdx = 0;
     console.log( "draw() in Create.tsx: drawing the image saved in localStorage!" );
     for ( let row=0; row < JungianLib.gridSize; row++ ) {
       squareTopY = JungianLib.gridTopY + (row * JungianLib.squareSize);
       for ( let col=0; col < JungianLib.gridSize; col++ ){
-        colorLetter = imageString[imgStrIdx++];
+        colorLetter = imageCharArray[imgStrIdx++];
       //console.log( "colorLetter = " + colorLetter );
         squareTopX = JungianLib.gridTopX + (col * JungianLib.squareSize);
         if ( colorLetter == "B" ) {
@@ -64,7 +68,7 @@ const draw = (context: CanvasRenderingContext2D) => {
       }
     }
   } else {
-  //console.log( "draw() in Create.tsx: imageString.length is 0, generating a new image!" );
+  //console.log( "draw() in Create.tsx: imageCharArray.length is 0, generating a new image!" );
     for ( let row=0; row < JungianLib.gridSize; row++ ) {
       squareTopY = JungianLib.gridTopY + (row * JungianLib.squareSize);
       for ( let col=0; col < JungianLib.gridSize; col++ ){
@@ -84,11 +88,11 @@ const draw = (context: CanvasRenderingContext2D) => {
           context.fillStyle = "rgb(255, 255, 255, " + opacityPercent.toString() + ")";
         }
         context.fillRect( squareTopX, squareTopY, JungianLib.squareSize, JungianLib.squareSize );
-        imageString.push( colorLetter );
+        imageCharArray.push( colorLetter );
       }
     }
   }
-//console.log( "Create: imageString: " + imageString )
+//console.log( "Create: imageCharArray: " + imageCharArray )
 };
 
 // FixedSizeImageCards: function component to display a jungian image
@@ -156,6 +160,7 @@ function FixedSizeImageCards( props: JungianLib.JungianImageProps ) {
 // FixedContainer: function component containing an MDB container
 function FixedContainer() {
   const [inputSliderValues, setInputSliderValues] = useState([defaultSliderValue]);
+  const [currentImageString, setCurrentImageString] = useState(defaultImageString);
 
   function handleChangeArrayOfNumbers( evt:ChangeEvent, col:number ) {
     const val = (evt.target as HTMLInputElement).value;
@@ -163,19 +168,14 @@ function FixedContainer() {
     const nextSliderValues = inputSliderValues.slice();
     nextSliderValues[col] = Number(val);
     setInputSliderValues(nextSliderValues);
-    imageString = [];    // When a slider value changes, we need to draw a new image
+    imageCharArray = [];                  // When a slider value changes, we need to draw a new image
+    setCurrentImageString(defaultImageString);   // When a slider value changes, we need to draw a new image
   }
 
   useEffect(() => {
     const rawStoredSliderValues = localStorage.getItem( 'sliderValues' );
     if ( rawStoredSliderValues ) {
       console.log( "First useEffect in FixedContainer() in Create.tsx: found some rawStoredSliderValues!" );
-  //  const savedSldrVals = [
-  //    savedSliderValues.opacityValue,
-  //    savedSliderValues.blueVsYellowValue,
-  //    savedSliderValues.greenVsRedValue,
-  //    savedSliderValues.bAndYVsGandRValue,
-  //  ];
       const parsedSliderValues = JSON.parse( rawStoredSliderValues );
       console.log( "First useEffect in FixedContainer() in Create.tsx: parsedSliderValues[0] = " + parsedSliderValues[0] );
       console.log( "First useEffect in FixedContainer() in Create.tsx: parsedSliderValues[1] = " + parsedSliderValues[1] );
@@ -190,7 +190,6 @@ function FixedContainer() {
 
 
   useEffect(() => {
-  //console.log( "Second useEffect in FixedContainer in Create.tsx: ready to save inputSliderValues as sliderValues, or not!" );
     console.log( "Second useEffect in FixedContainer in Create.tsx: inputSliderValues.length = " + inputSliderValues.length );
     if ( inputSliderValues.length > 3 ) {
       localStorage.setItem( 'sliderValues', JSON.stringify(inputSliderValues) );
@@ -198,14 +197,19 @@ function FixedContainer() {
     } else {
       console.log( "Second useEffect in FixedContainer in Create.tsx: did NOT save inputSliderValues as sliderValues!" );
     }
-  //localStorage.setItem( 'imageString', JSON.stringify(imageString) );
-  //console.log( "FixedContainer in Create.tsx: saved imageString as imageString." );
+    const thisImageString = imageCharArray.join('');
+    console.log( "Second useEffect in FixedContainer in Create.tsx: ready to save imageCharArray->thisImageString as currentImageString..." );
+    console.log( "Second useEffect in FixedContainer in Create.tsx: imageCharArray.toString() = " + imageCharArray.toString() );
+    console.log( "Second useEffect in FixedContainer in Create.tsx: thisImageString = " + thisImageString );
+    localStorage.setItem( 'currentImageString', JSON.stringify(thisImageString) );
+    console.log( "FixedContainer in Create.tsx: saved imageCharArray->thisImageString as currentImageString." );
   }, [inputSliderValues]);
 
   savedSliderValues.opacityValue = inputSliderValues[0];
   savedSliderValues.blueVsYellowValue = inputSliderValues[1];
   savedSliderValues.greenVsRedValue = inputSliderValues[2];
   savedSliderValues.bAndYVsGandRValue = inputSliderValues[3];
+  savedImageString = currentImageString;
 
   // Construct markup for the SliderCards
   const sliderNumberCols = [];
