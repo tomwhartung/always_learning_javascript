@@ -9,8 +9,14 @@ import {defaultSliderValue} from '../lib/SliderLib.tsx';
 import * as JungianLib from '../lib/JungianLib.tsx';
 
 // These are the values we save in localStorage:
-let savedSliderValues: JungianLib.JungianImageProps;
-let imageString: string[] = [];
+let savedSliderValues: JungianLib.JungianImageProps = {
+  opacityValue: defaultSliderValue,
+  blueVsYellowValue: defaultSliderValue,
+  greenVsRedValue: defaultSliderValue,
+  bAndYVsGandRValue: defaultSliderValue,
+};
+
+const imageString: string[] = [];
 
 // draw: Add a "groja-esque" grid of blue, green, red, and yellow squares
 const draw = (context: CanvasRenderingContext2D) => {
@@ -62,8 +68,21 @@ function DFlexImageCards( props:JungianLib.JungianImageProps ) {
   const width = JungianLib.canvasWidth;
   const height = JungianLib.canvasHeight;
 
-  // **TEMPORARILY** Save the raw opacityPercent slider value as a percentage in a **GLOBAL OBJECT**
-  JungianLib.globalProps.opacityPercent = JungianLib.valueToPct( props.opacityValue );
+  // useEffect(() => {
+  //   const rawStoredSliderValues = localStorage.getItem( 'sliderValues' );
+  //   if ( rawStoredSliderValues ) {
+  //     savedSliderValues = JSON.parse( rawStoredSliderValues );
+  //     console.log( "DFlexImageCards() in View.tsx: savedSliderValues.opacityValue = " + savedSliderValues.opacityValue );
+  //     console.log( "DFlexImageCards() in View.tsx: savedSliderValues.blueVsYellowValue = " + savedSliderValues.blueVsYellowValue );
+  //     console.log( "DFlexImageCards() in View.tsx: savedSliderValues.greenVsRedValue = " + savedSliderValues.greenVsRedValue );
+  //     console.log( "DFlexImageCards() in View.tsx: savedSliderValues.bAndYVsGandRValue = " + savedSliderValues.bAndYVsGandRValue );
+  //   } else {
+  //      console.log( "DFlexImageCards() in View.tsx: sliderValues NOT FOUND in localStorage!!!" );
+  //   }
+  // }, []);
+
+  // // **TEMPORARILY** Save the raw opacityPercent slider value as a percentage in a **GLOBAL OBJECT**
+  // JungianLib.globalProps.opacityPercent = JungianLib.valueToPct( props.opacityValue );
 
   function handleImageClick(event: React.MouseEvent<HTMLElement>) {
     const rect = (event.target as HTMLElement).getBoundingClientRect();
@@ -77,10 +96,10 @@ function DFlexImageCards( props:JungianLib.JungianImageProps ) {
       <div className="row mt-4 d-flex justify-content-center">
         <div className="col-md-4 align-items-center">
           <div className="card jungian-canvas">
-            <p>{JungianLib.jungianImagePropLabels[0]}: {savedSliderValues.opacityValue}</p>
-            <p>{JungianLib.jungianImagePropLabels[1]}: {savedSliderValues.blueVsYellowValue}</p>
-            <p>{JungianLib.jungianImagePropLabels[2]}: {savedSliderValues.greenVsRedValue}</p>
-            <p>{JungianLib.jungianImagePropLabels[3]}: {savedSliderValues.bAndYVsGandRValue}</p>
+            <p>{JungianLib.jungianImagePropLabels[0]}: {props.opacityValue}</p>
+            <p>{JungianLib.jungianImagePropLabels[1]}: {props.blueVsYellowValue}</p>
+            <p>{JungianLib.jungianImagePropLabels[2]}: {props.greenVsRedValue}</p>
+            <p>{JungianLib.jungianImagePropLabels[3]}: {props.bAndYVsGandRValue}</p>
           </div>
         </div>
         <div className="col-md-8">
@@ -99,7 +118,26 @@ function DFlexImageCards( props:JungianLib.JungianImageProps ) {
 
 // DFlexContainer: function component containing a "d-flex" MDB container
 function DFlexContainer() {
-  
+  useEffect(() => {
+    const rawStoredSliderValues = localStorage.getItem( 'sliderValues' );
+    if ( rawStoredSliderValues ) {
+      savedSliderValues = JSON.parse( rawStoredSliderValues );
+      console.log( "DFlexContainer() in View.tsx: savedSliderValues.opacityValue = " + savedSliderValues.opacityValue );
+      console.log( "DFlexContainer() in View.tsx: savedSliderValues.blueVsYellowValue = " + savedSliderValues.blueVsYellowValue );
+      console.log( "DFlexContainer() in View.tsx: savedSliderValues.greenVsRedValue = " + savedSliderValues.greenVsRedValue );
+      console.log( "DFlexContainer() in View.tsx: savedSliderValues.bAndYVsGandRValue = " + savedSliderValues.bAndYVsGandRValue );
+    } else {
+       console.log( "DFlexContainer() in View.tsx: sliderValues NOT FOUND in localStorage!!!" );
+    }
+  //const rawStoredImageString = localStorage.getItem( 'imageString' );
+  //if ( rawStoredImageString ) {
+  //  imageString = JSON.parse( rawStoredImageString );
+  //  console.log( "View() in View.tsx: imageString = '" + imageString + "'" );
+  //} else {
+  //   console.log( "View() in View.tsx: imageString NOT FOUND in localStorage!!!" );
+  //}
+  }, []);
+
   return (
     <div className="container">
       <h4>DFlexContainer:</h4>
@@ -116,26 +154,6 @@ function DFlexContainer() {
 
 // View: default "mainline" component for this menu option
 function View() {
-  useEffect(() => {
-    const rawStoredSliderValues = localStorage.getItem( 'sliderValues' );
-    if ( rawStoredSliderValues ) {
-      savedSliderValues = JSON.parse( rawStoredSliderValues );
-      console.log( "View() in View.tsx: savedSliderValues.opacityValue = " + savedSliderValues.opacityValue );
-      console.log( "View() in View.tsx: savedSliderValues.blueVsYellowValue = " + savedSliderValues.blueVsYellowValue );
-      console.log( "View() in View.tsx: savedSliderValues.greenVsRedValue = " + savedSliderValues.greenVsRedValue );
-      console.log( "View() in View.tsx: savedSliderValues.bAndYVsGandRValue = " + savedSliderValues.bAndYVsGandRValue );
-    } else {
-       console.log( "View() in View.tsx: sliderValues NOT FOUND in localStorage!!!" );
-    }
-    const rawStoredImageString = localStorage.getItem( 'imageString' );
-    if ( rawStoredImageString ) {
-      imageString = JSON.parse( rawStoredImageString );
-      console.log( "View() in View.tsx: imageString = '" + imageString + "'" );
-    } else {
-       console.log( "View() in View.tsx: imageString NOT FOUND in localStorage!!!" );
-    }
-  }, []);
-
   return (
     <div id="view">
       <h2>View</h2>
