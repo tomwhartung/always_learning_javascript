@@ -68,9 +68,9 @@ const draw = (context: CanvasRenderingContext2D) => {
     for ( let row=0; row < JungianLib.gridSize; row++ ) {
       squareTopY = JungianLib.gridTopY + (row * JungianLib.squareSize);
       for ( let col=0; col < JungianLib.gridSize; col++ ){
-        console.log( "draw() in Create.tsx: calling JungianLib.getRandomPrimaryColor = " + colorLetter );
+      //console.log( "draw() in Create.tsx: calling JungianLib.getRandomPrimaryColor = " + colorLetter );
         colorLetter = JungianLib.getRandomPrimaryColor( savedSliderValues );
-        console.log( "draw() in Create.tsx: colorLetter = " + colorLetter );
+      //console.log( "draw() in Create.tsx: colorLetter = " + colorLetter );
         squareTopX = JungianLib.gridTopX + (col * JungianLib.squareSize);
         if ( colorLetter == "B" ) {
           context.fillStyle = "rgba(0, 0, 255, " + opacityPercent.toString() + ")";
@@ -167,8 +167,37 @@ function FixedContainer() {
   }
 
   useEffect(() => {
-    localStorage.setItem( 'sliderValues', JSON.stringify(inputSliderValues) );
-    console.log( "FixedContainer in Create.tsx: saved inputSliderValues as sliderValues." );
+    const rawStoredSliderValues = localStorage.getItem( 'sliderValues' );
+    if ( rawStoredSliderValues ) {
+      console.log( "First useEffect in FixedContainer() in Create.tsx: found some rawStoredSliderValues!" );
+  //  const savedSldrVals = [
+  //    savedSliderValues.opacityValue,
+  //    savedSliderValues.blueVsYellowValue,
+  //    savedSliderValues.greenVsRedValue,
+  //    savedSliderValues.bAndYVsGandRValue,
+  //  ];
+      const parsedSliderValues = JSON.parse( rawStoredSliderValues );
+      console.log( "First useEffect in FixedContainer() in Create.tsx: parsedSliderValues[0] = " + parsedSliderValues[0] );
+      console.log( "First useEffect in FixedContainer() in Create.tsx: parsedSliderValues[1] = " + parsedSliderValues[1] );
+      console.log( "First useEffect in FixedContainer() in Create.tsx: parsedSliderValues[2] = " + parsedSliderValues[2] );
+      console.log( "First useEffect in FixedContainer() in Create.tsx: parsedSliderValues[3] = " + parsedSliderValues[3] );
+      console.log( "First useEffect in FixedContainer() in Create.tsx: Calling setInputSliderValues..." );
+      setInputSliderValues( parsedSliderValues );
+    } else {
+       console.log( "FixedContainer() in Create.tsx: sliderValues NOT FOUND in localStorage!!!" );
+    }
+  }, []);
+
+
+  useEffect(() => {
+  //console.log( "Second useEffect in FixedContainer in Create.tsx: ready to save inputSliderValues as sliderValues, or not!" );
+    console.log( "Second useEffect in FixedContainer in Create.tsx: inputSliderValues.length = " + inputSliderValues.length );
+    if ( inputSliderValues.length > 3 ) {
+      localStorage.setItem( 'sliderValues', JSON.stringify(inputSliderValues) );
+      console.log( "Second useEffect in FixedContainer in Create.tsx: saved inputSliderValues as sliderValues." );
+    } else {
+      console.log( "Second useEffect in FixedContainer in Create.tsx: did NOT save inputSliderValues as sliderValues!" );
+    }
   //localStorage.setItem( 'imageString', JSON.stringify(imageString) );
   //console.log( "FixedContainer in Create.tsx: saved imageString as imageString." );
   }, [inputSliderValues]);
