@@ -7,7 +7,7 @@ import * as SliderLib from '../lib/SliderLib.tsx';
 import * as JungianLib from '../lib/JungianLib.tsx';
 
 // JungianSlider: Jungian-specific wrapper for the MDBRange component
-function JungianSlider( props:SliderLib.SliderProps ) {
+function JungianSlider( props: SliderLib.SliderProps ) {
   const sliderOppositeValue = 100 - props.sliderVal;
   const sliderId = "myslider-" + props.sliderNo.toString();
   let sliderLabel = sliderOppositeValue.toString() + "% " +
@@ -23,10 +23,12 @@ function JungianSlider( props:SliderLib.SliderProps ) {
 //                       props.sliderVal.toString();
   }
 
+//console.log( "JungianSlider in SliderCard.tsx: props.sliderVal = " + props.sliderVal );
+
   return (
     <>
       <MDBRange
-        defaultValue={SliderLib.defaultSliderValue}
+        defaultValue={props.sliderVal ?? SliderLib.defaultSliderValue}
         id={sliderId}
         label=""
         onChange={props.onSliderChange}
