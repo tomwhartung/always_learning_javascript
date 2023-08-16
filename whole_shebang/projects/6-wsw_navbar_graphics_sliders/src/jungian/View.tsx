@@ -9,12 +9,18 @@ import {defaultSliderValue} from '../lib/SliderLib.tsx';
 import * as JungianLib from '../lib/JungianLib.tsx';
 
 // These are the values we save in localStorage:
-let savedSliderValues: JungianLib.JungianImageProps = {
-  opacityValue: defaultSliderValue,
-  blueVsYellowValue: defaultSliderValue,
-  greenVsRedValue: defaultSliderValue,
-  bAndYVsGandRValue: defaultSliderValue,
-};
+// let savedSliderValues: JungianLib.JungianImageProps = {
+//   opacityValue: defaultSliderValue,
+//   blueVsYellowValue: defaultSliderValue,
+//   greenVsRedValue: defaultSliderValue,
+//   bAndYVsGandRValue: defaultSliderValue,
+// };
+let savedSliderValues = [
+  defaultSliderValue,
+  defaultSliderValue,
+  defaultSliderValue,
+  defaultSliderValue,
+];
 
 // const imageString = "";
 
