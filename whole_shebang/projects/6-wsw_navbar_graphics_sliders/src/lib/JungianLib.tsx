@@ -17,15 +17,6 @@ export const globalProps: JungianImagePercents = {
   bAndYVsGandRPercent: valueToPct( SliderLib.defaultSliderValue ),
 }
 
-// These are the values we save in localStorage:
-let savedSliderValues: JungianImageProps = {
-  opacityValue: SliderLib.defaultSliderValue,
-  blueVsYellowValue: SliderLib.defaultSliderValue,
-  greenVsRedValue: SliderLib.defaultSliderValue,
-  bAndYVsGandRValue: SliderLib.defaultSliderValue,
-};
-let imageString: string[] = [];
-
 // Types:
 // ------
 // JungianImageProps: values that come from the Jungian sliders
@@ -96,6 +87,10 @@ export function getRandomPrimaryColor( sliderValues: JungianImageProps ) {
   const bAndYVsGandRPercent = valueToPct( sliderValues.bAndYVsGandRValue );
   let randomFloat = Math.random();
   let randomColorLetter = colorLetters[4];  // default is INVALID!
+
+  // console.log( "getRandomPrimaryColor: blueVsYellowPercent = " + blueVsYellowPercent );
+  // console.log( "getRandomPrimaryColor: greenVsRedPercent = " + greenVsRedPercent );
+  // console.log( "getRandomPrimaryColor: bAndYVsGandRPercent = " + bAndYVsGandRPercent );
 
   if ( randomFloat <= bAndYVsGandRPercent ) {
     randomFloat = Math.random();
