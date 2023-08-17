@@ -159,15 +159,15 @@ function FixedSizeImageCards( props: JungianLib.JungianImageProps ) {
 
 // FixedContainer: function component containing an MDB container
 function FixedContainer() {
-  const [inputSliderValues, setInputSliderValues] = useState([defaultSliderValue]);
+  const [currentSliderValues, setCurrentSliderValues] = useState([defaultSliderValue]);
   const [currentImageString, setCurrentImageString] = useState(defaultImageString);
 
   function handleChangeArrayOfNumbers( evt:ChangeEvent, col:number ) {
     const val = (evt.target as HTMLInputElement).value;
   //console.log( "Value of slider number " + col.toString() + " is now " + val.toString() );
-    const nextSliderValues = inputSliderValues.slice();
+    const nextSliderValues = currentSliderValues.slice();
     nextSliderValues[col] = Number(val);
-    setInputSliderValues(nextSliderValues);
+    setCurrentSliderValues(nextSliderValues);
     imageCharArray = [];                  // When a slider value changes, we need to draw a new image
     setCurrentImageString(defaultImageString);   // When a slider value changes, we need to draw a new image
   }
@@ -175,40 +175,37 @@ function FixedContainer() {
   useEffect(() => {
     const rawStoredSliderValues = localStorage.getItem( 'sliderValues' );
     if ( rawStoredSliderValues ) {
-      console.log( "First useEffect in FixedContainer() in Create.tsx: found some rawStoredSliderValues!" );
+    //console.log( "First useEffect in FixedContainer() in Create.tsx: found some rawStoredSliderValues!" );
       const parsedSliderValues = JSON.parse( rawStoredSliderValues );
-      console.log( "First useEffect in FixedContainer() in Create.tsx: parsedSliderValues[0] = " + parsedSliderValues[0] );
-      console.log( "First useEffect in FixedContainer() in Create.tsx: parsedSliderValues[1] = " + parsedSliderValues[1] );
-      console.log( "First useEffect in FixedContainer() in Create.tsx: parsedSliderValues[2] = " + parsedSliderValues[2] );
-      console.log( "First useEffect in FixedContainer() in Create.tsx: parsedSliderValues[3] = " + parsedSliderValues[3] );
-      console.log( "First useEffect in FixedContainer() in Create.tsx: Calling setInputSliderValues..." );
-      setInputSliderValues( parsedSliderValues );
+    //console.log( "First useEffect in FixedContainer() in Create.tsx: Calling setCurrentSliderValues..." );
+      setCurrentSliderValues( parsedSliderValues );
     } else {
-       console.log( "FixedContainer() in Create.tsx: sliderValues NOT FOUND in localStorage!!!" );
+      console.log( "FixedContainer() in Create.tsx: sliderValues NOT FOUND in localStorage, saving default values..." );
+      setCurrentSliderValues( [ defaultSliderValue, defaultSliderValue, defaultSliderValue, defaultSliderValue ] );
     }
   }, []);
 
 
   useEffect(() => {
-    console.log( "Second useEffect in FixedContainer in Create.tsx: inputSliderValues.length = " + inputSliderValues.length );
-    if ( inputSliderValues.length > 3 ) {
-      localStorage.setItem( 'sliderValues', JSON.stringify(inputSliderValues) );
-      console.log( "Second useEffect in FixedContainer in Create.tsx: saved inputSliderValues as sliderValues." );
+    console.log( "Second useEffect in FixedContainer in Create.tsx: currentSliderValues.length = " + currentSliderValues.length );
+    if ( currentSliderValues.length > 3 ) {
+      localStorage.setItem( 'sliderValues', JSON.stringify(currentSliderValues) );
+      console.log( "Second useEffect in FixedContainer in Create.tsx: saved currentSliderValues as sliderValues." );
     } else {
-      console.log( "Second useEffect in FixedContainer in Create.tsx: did NOT save inputSliderValues as sliderValues!" );
+      console.log( "Second useEffect in FixedContainer in Create.tsx: did NOT save currentSliderValues as sliderValues!" );
     }
     const thisImageString = imageCharArray.join('');
-    console.log( "Second useEffect in FixedContainer in Create.tsx: ready to save imageCharArray->thisImageString as currentImageString..." );
+    console.log( "Second useEffect in FixedContainer in Create.tsx: ready to save imageCharArray->thisImageString as imageString..." );
     console.log( "Second useEffect in FixedContainer in Create.tsx: imageCharArray.toString() = " + imageCharArray.toString() );
     console.log( "Second useEffect in FixedContainer in Create.tsx: thisImageString = " + thisImageString );
-    localStorage.setItem( 'currentImageString', JSON.stringify(thisImageString) );
-    console.log( "FixedContainer in Create.tsx: saved imageCharArray->thisImageString as currentImageString." );
-  }, [inputSliderValues]);
+    localStorage.setItem( 'imageString', JSON.stringify(thisImageString) );
+    console.log( "FixedContainer in Create.tsx: saved imageCharArray->thisImageString as imageString." );
+  }, [currentSliderValues]);
 
-  savedSliderValues.opacityValue = inputSliderValues[0];
-  savedSliderValues.blueVsYellowValue = inputSliderValues[1];
-  savedSliderValues.greenVsRedValue = inputSliderValues[2];
-  savedSliderValues.bAndYVsGandRValue = inputSliderValues[3];
+  savedSliderValues.opacityValue = currentSliderValues[0];
+  savedSliderValues.blueVsYellowValue = currentSliderValues[1];
+  savedSliderValues.greenVsRedValue = currentSliderValues[2];
+  savedSliderValues.bAndYVsGandRValue = currentSliderValues[3];
   savedImageString = currentImageString;
 
   // Construct markup for the SliderCards
@@ -218,7 +215,7 @@ function FixedContainer() {
       <div key={col} className="col-md-3">
         <SliderCard
          sliderNo={col}
-         sliderVal={inputSliderValues[col] ?? defaultSliderValue}
+         sliderVal={currentSliderValues[col] ?? defaultSliderValue}
          onSliderChange={ (evt) => handleChangeArrayOfNumbers(evt,col) }
         />
       </div>
@@ -233,10 +230,10 @@ function FixedContainer() {
       </div>
       <div className="row mt-4">
         <FixedSizeImageCards
-          opacityValue={inputSliderValues[0] ?? defaultSliderValue}
-          blueVsYellowValue={inputSliderValues[1] ?? defaultSliderValue}
-          greenVsRedValue={inputSliderValues[2] ?? defaultSliderValue}
-          bAndYVsGandRValue={inputSliderValues[3] ?? defaultSliderValue} />
+          opacityValue={currentSliderValues[0] ?? defaultSliderValue}
+          blueVsYellowValue={currentSliderValues[1] ?? defaultSliderValue}
+          greenVsRedValue={currentSliderValues[2] ?? defaultSliderValue}
+          bAndYVsGandRValue={currentSliderValues[3] ?? defaultSliderValue} />
       </div>
     </div>
   )
