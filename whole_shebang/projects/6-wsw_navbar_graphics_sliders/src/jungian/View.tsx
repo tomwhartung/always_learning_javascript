@@ -36,7 +36,8 @@ const draw = (context: CanvasRenderingContext2D) => {
   console.log( "draw() in View.tsx: savedImageString = '" + savedImageString + "'" );
 
   if ( savedImageString.length == 0 ) {
-    console.log( "Image string not found in local storage!  You must Create an image before you can View it." );
+    console.log( "draw() in View.tsx: Image string not found in local storage!  You must Create an image before you can View it!!" );
+    console.log( "draw() in View.tsx: Umm, the code should be catching this error before getting to this point!!!" );
   } else {
     for ( let row=0; row < JungianLib.gridSize; row++ ) {
       squareTopY = JungianLib.gridTopY + (row * JungianLib.squareSize);
@@ -61,8 +62,8 @@ const draw = (context: CanvasRenderingContext2D) => {
   }
 };
 
-// DFlexImageCards: function component to display a jungian image
-function DFlexImageCards( props:JungianLib.JungianImageProps ) {
+// DFlexViewSliderValuesAndImage: function component to display a jungian image
+function DFlexViewSliderValuesAndImage( props:JungianLib.JungianImageProps ) {
   const width = JungianLib.canvasWidth;
   const height = JungianLib.canvasHeight;
 
@@ -73,10 +74,10 @@ function DFlexImageCards( props:JungianLib.JungianImageProps ) {
     console.log( "Click on resizable image at (" + pixelX.toString() + ", " + pixelY.toString() + ")" );
   }
 
-  console.log( "DFlexImageCards() in View.tsx: props.opacityValue = " + props.opacityValue );
-  console.log( "DFlexImageCards() in View.tsx: props.blueVsYellowValue = " + props.blueVsYellowValue );
-  console.log( "DFlexImageCards() in View.tsx: props.greenVsRedValue = " + props.greenVsRedValue );
-  console.log( "DFlexImageCards() in View.tsx: props.bAndYVsGandRValue = " + props.bAndYVsGandRValue );
+  console.log( "DFlexViewSliderValuesAndImage() in View.tsx: props.opacityValue = " + props.opacityValue );
+  console.log( "DFlexViewSliderValuesAndImage() in View.tsx: props.blueVsYellowValue = " + props.blueVsYellowValue );
+  console.log( "DFlexViewSliderValuesAndImage() in View.tsx: props.greenVsRedValue = " + props.greenVsRedValue );
+  console.log( "DFlexViewSliderValuesAndImage() in View.tsx: props.bAndYVsGandRValue = " + props.bAndYVsGandRValue );
 
   return (
     <>
@@ -134,11 +135,15 @@ function DFlexContainer() {
   console.log( "DFlexContainer() in View.tsx: currentSliderValues[2] = " + currentSliderValues[2] );
   console.log( "DFlexContainer() in View.tsx: currentSliderValues[3] = " + currentSliderValues[3] );
 
+  if ( savedImageString.length == 0 ) {
+    console.log( "DFlexContainer() in View.tsx: ERROR: unable to draw savedImageString!!" );
+  }
+
   return (
     <div className="container">
       <h4>DFlexContainer:</h4>
       <div className="row mt-4 d-flex justify-content-center">
-        <DFlexImageCards
+        <DFlexViewSliderValuesAndImage
           opacityValue={currentSliderValues[0] ?? defaultSliderValue}
           blueVsYellowValue={currentSliderValues[1] ?? defaultSliderValue}
           greenVsRedValue={currentSliderValues[2] ?? defaultSliderValue}
