@@ -8,7 +8,7 @@ import Canvas from '../lib/CanvasLib.tsx';
 import {defaultSliderValue} from '../lib/SliderLib.tsx';
 import * as JungianLib from '../lib/JungianLib.tsx';
 
-let imageString = "";
+let savedImageString = "";
 
 // draw: Add a "groja-esque" grid of blue, green, red, and yellow squares
 const draw = (context: CanvasRenderingContext2D) => {
@@ -33,26 +33,30 @@ const draw = (context: CanvasRenderingContext2D) => {
   const opacityPercent = JungianLib.globalProps.opacityPercent;
 // console.log( "draw: JungianLib.globalProps.opacityPercent = " + JungianLib.globalProps.opacityPercent.toString() );
 // console.log( "draw: opacityPercent = " + opacityPercent.toString() );
-  console.log( "draw() in View.tsx: imageString = '" + imageString + "'" );
+  console.log( "draw() in View.tsx: savedImageString = '" + savedImageString + "'" );
 
-  for ( let row=0; row < JungianLib.gridSize; row++ ) {
-    squareTopY = JungianLib.gridTopY + (row * JungianLib.squareSize);
-    for ( let col=0; col < JungianLib.gridSize; col++ ){
-      colorLetter = imageCharArray[imgStrIdx++];
-    //console.log( "colorLetter = " + colorLetter );
-      squareTopX = JungianLib.gridTopX + (col * JungianLib.squareSize);
-      if ( colorLetter == "B" ) {
-        context.fillStyle = "rgba(0, 0, 255, " + opacityPercent.toString() + ")";
-      } else if ( colorLetter == "G" ) {
-        context.fillStyle = "rgba(0, 255, 0, " + opacityPercent.toString() + ")";
-      } else if ( colorLetter == "R" ) {
-        context.fillStyle = "rgba(255, 0, 0, " + opacityPercent.toString() + ")";
-      } else if ( colorLetter == "Y" ) {
-        context.fillStyle = "rgba(255, 255, 0, " + opacityPercent.toString() + ")";
-      } else {
-        context.fillStyle = "rgb(255, 255, 255, " + opacityPercent.toString() + ")";
+  if ( savedImageString.length == 0 ) {
+    console.log( "Image string not found in local storage!  You must Create an image before you can View it." );
+  } else {
+    for ( let row=0; row < JungianLib.gridSize; row++ ) {
+      squareTopY = JungianLib.gridTopY + (row * JungianLib.squareSize);
+      for ( let col=0; col < JungianLib.gridSize; col++ ){
+        colorLetter = imageCharArray[imgStrIdx++];
+      //console.log( "colorLetter = " + colorLetter );
+        squareTopX = JungianLib.gridTopX + (col * JungianLib.squareSize);
+        if ( colorLetter == "B" ) {
+          context.fillStyle = "rgba(0, 0, 255, " + opacityPercent.toString() + ")";
+        } else if ( colorLetter == "G" ) {
+          context.fillStyle = "rgba(0, 255, 0, " + opacityPercent.toString() + ")";
+        } else if ( colorLetter == "R" ) {
+          context.fillStyle = "rgba(255, 0, 0, " + opacityPercent.toString() + ")";
+        } else if ( colorLetter == "Y" ) {
+          context.fillStyle = "rgba(255, 255, 0, " + opacityPercent.toString() + ")";
+        } else {
+          context.fillStyle = "rgb(255, 255, 255, " + opacityPercent.toString() + ")";
+        }
+        context.fillRect( squareTopX, squareTopY, JungianLib.squareSize, JungianLib.squareSize );
       }
-      context.fillRect( squareTopX, squareTopY, JungianLib.squareSize, JungianLib.squareSize );
     }
   }
 };
@@ -118,8 +122,8 @@ function DFlexContainer() {
     }
     const rawStoredImageString = localStorage.getItem( 'imageString' );
     if ( rawStoredImageString ) {
-      imageString = JSON.parse( rawStoredImageString );
-      console.log( "View() in View.tsx: imageString = '" + imageString + "'" );
+      savedImageString = JSON.parse( rawStoredImageString );
+      console.log( "View() in View.tsx: savedImageString = '" + savedImageString + "'" );
     } else {
        console.log( "View() in View.tsx: imageString NOT FOUND in localStorage!!!" );
     }
