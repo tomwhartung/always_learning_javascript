@@ -82,11 +82,6 @@ function DFlexImageCards( props:JungianLib.JungianImageProps ) {
     console.log( "Click on resizable image at (" + pixelX.toString() + ", " + pixelY.toString() + ")" );
   }
 
-  console.log( "DFlexImageCards() in View.tsx: savedSliderValues[0] = " + savedSliderValues[0] );
-  console.log( "DFlexImageCards() in View.tsx: savedSliderValues[1] = " + savedSliderValues[1] );
-  console.log( "DFlexImageCards() in View.tsx: savedSliderValues[2] = " + savedSliderValues[2] );
-  console.log( "DFlexImageCards() in View.tsx: savedSliderValues[3] = " + savedSliderValues[3] );
-
   console.log( "DFlexImageCards() in View.tsx: props.opacityValue = " + props.opacityValue );
   console.log( "DFlexImageCards() in View.tsx: props.blueVsYellowValue = " + props.blueVsYellowValue );
   console.log( "DFlexImageCards() in View.tsx: props.greenVsRedValue = " + props.greenVsRedValue );
@@ -158,10 +153,10 @@ function DFlexContainer() {
       <h4>DFlexContainer:</h4>
       <div className="row mt-4 d-flex justify-content-center">
         <DFlexImageCards
-          opacityValue={savedSliderValues[0] ?? defaultSliderValue}
-          blueVsYellowValue={savedSliderValues[1] ?? defaultSliderValue}
-          greenVsRedValue={savedSliderValues[2] ?? defaultSliderValue}
-          bAndYVsGandRValue={savedSliderValues[3] ?? defaultSliderValue} />
+          opacityValue={currentSliderValues[0] ?? defaultSliderValue}
+          blueVsYellowValue={currentSliderValues[1] ?? defaultSliderValue}
+          greenVsRedValue={currentSliderValues[2] ?? defaultSliderValue}
+          bAndYVsGandRValue={currentSliderValues[3] ?? defaultSliderValue} />
       </div>
     </div>
   )
