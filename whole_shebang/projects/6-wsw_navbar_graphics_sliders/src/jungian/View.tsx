@@ -8,20 +8,6 @@ import Canvas from '../lib/CanvasLib.tsx';
 import {defaultSliderValue} from '../lib/SliderLib.tsx';
 import * as JungianLib from '../lib/JungianLib.tsx';
 
-// These are the values we save in localStorage:
-// let savedSliderValues: JungianLib.JungianImageProps = {
-//   opacityValue: defaultSliderValue,
-//   blueVsYellowValue: defaultSliderValue,
-//   greenVsRedValue: defaultSliderValue,
-//   bAndYVsGandRValue: defaultSliderValue,
-// };
-let savedSliderValues = [
-  defaultSliderValue,
-  defaultSliderValue,
-  defaultSliderValue,
-  defaultSliderValue,
-];
-
 // const imageString = "";
 
 // draw: Add a "groja-esque" grid of blue, green, red, and yellow squares
@@ -120,12 +106,12 @@ function DFlexContainer() {
     const rawStoredSliderValues = localStorage.getItem( 'sliderValues' );
     if ( rawStoredSliderValues ) {
       console.log( "useEffect() in DFlexContainer() in View.tsx: found rawStoredSliderValues.toString()  = " + rawStoredSliderValues.toString() );
-      savedSliderValues = JSON.parse( rawStoredSliderValues );
-      console.log( "useEffect in DFlexContainer() in View.tsx: savedSliderValues[0] = " + savedSliderValues[0] );
-      console.log( "useEffect in DFlexContainer() in View.tsx: savedSliderValues[1] = " + savedSliderValues[1] );
-      console.log( "useEffect in DFlexContainer() in View.tsx: savedSliderValues[2] = " + savedSliderValues[2] );
-      console.log( "useEffect in DFlexContainer() in View.tsx: savedSliderValues[3] = " + savedSliderValues[3] );
-      setCurrentSliderValues( savedSliderValues );
+      const storedSliderValues = JSON.parse( rawStoredSliderValues );
+      console.log( "useEffect in DFlexContainer() in View.tsx: storedSliderValues[0] = " + storedSliderValues[0] );
+      console.log( "useEffect in DFlexContainer() in View.tsx: storedSliderValues[1] = " + storedSliderValues[1] );
+      console.log( "useEffect in DFlexContainer() in View.tsx: storedSliderValues[2] = " + storedSliderValues[2] );
+      console.log( "useEffect in DFlexContainer() in View.tsx: storedSliderValues[3] = " + storedSliderValues[3] );
+      setCurrentSliderValues( storedSliderValues );
     } else {
        console.log( "useEffect() in DFlexContainer() in View.tsx: sliderValues NOT FOUND in localStorage!!!" );
     }
@@ -137,11 +123,6 @@ function DFlexContainer() {
   //   console.log( "View() in View.tsx: imageString NOT FOUND in localStorage!!!" );
   //}
   }, []);
-
-  console.log( "DFlexContainer() in View.tsx: savedSliderValues[0] = " + savedSliderValues[0] );
-  console.log( "DFlexContainer() in View.tsx: savedSliderValues[1] = " + savedSliderValues[1] );
-  console.log( "DFlexContainer() in View.tsx: savedSliderValues[2] = " + savedSliderValues[2] );
-  console.log( "DFlexContainer() in View.tsx: savedSliderValues[3] = " + savedSliderValues[3] );
 
   console.log( "DFlexContainer() in View.tsx: currentSliderValues[0] = " + currentSliderValues[0] );
   console.log( "DFlexContainer() in View.tsx: currentSliderValues[1] = " + currentSliderValues[1] );
