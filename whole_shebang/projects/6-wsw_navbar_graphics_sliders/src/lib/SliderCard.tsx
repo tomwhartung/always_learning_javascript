@@ -25,7 +25,7 @@ function JungianSlider( props: SliderLib.SliderProps ) {
 
   const initialSliderVal = ( 0 <= props.sliderVal && props.sliderVal <= 100 ) ? props.sliderVal : SliderLib.defaultSliderValue;
 //console.log( "JungianSlider in SliderCard.tsx: props.sliderVal = " + props.sliderVal );
-  console.log( "JungianSlider in SliderCard.tsx: initialSliderVal = " + initialSliderVal );
+//console.log( "JungianSlider in SliderCard.tsx: initialSliderVal = " + initialSliderVal );
 
   return (
     <>
