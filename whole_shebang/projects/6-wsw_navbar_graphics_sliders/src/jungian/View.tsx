@@ -2,7 +2,7 @@
 // View.tsx: code for the View option
 //
 import '../App.css'
-import { useEffect } from 'react';
+import { useEffect, useState } from 'react';
 
 import Canvas from '../lib/CanvasLib.tsx';
 import {defaultSliderValue} from '../lib/SliderLib.tsx';
@@ -75,21 +75,19 @@ function DFlexImageCards( props:JungianLib.JungianImageProps ) {
   const width = JungianLib.canvasWidth;
   const height = JungianLib.canvasHeight;
 
-  // useEffect(() => {
-  //   const rawStoredSliderValues = localStorage.getItem( 'sliderValues' );
-  //   if ( rawStoredSliderValues ) {
-  //     savedSliderValues = JSON.parse( rawStoredSliderValues );
-  //     console.log( "DFlexImageCards() in View.tsx: savedSliderValues.opacityValue = " + savedSliderValues.opacityValue );
-  //     console.log( "DFlexImageCards() in View.tsx: savedSliderValues.blueVsYellowValue = " + savedSliderValues.blueVsYellowValue );
-  //     console.log( "DFlexImageCards() in View.tsx: savedSliderValues.greenVsRedValue = " + savedSliderValues.greenVsRedValue );
-  //     console.log( "DFlexImageCards() in View.tsx: savedSliderValues.bAndYVsGandRValue = " + savedSliderValues.bAndYVsGandRValue );
-  //   } else {
-  //      console.log( "DFlexImageCards() in View.tsx: sliderValues NOT FOUND in localStorage!!!" );
-  //   }
-  // }, []);
-
-  // // **TEMPORARILY** Save the raw opacityPercent slider value as a percentage in a **GLOBAL OBJECT**
-  // JungianLib.globalProps.opacityPercent = JungianLib.valueToPct( props.opacityValue );
+  useEffect(() => {
+    const rawStoredSliderValues = localStorage.getItem( 'sliderValues' );
+    if ( rawStoredSliderValues ) {
+      console.log( "useEffect() in DFlexContainer() in View.tsx: found rawStoredSliderValues.toString()  = " + rawStoredSliderValues.toString() );
+      savedSliderValues = JSON.parse( rawStoredSliderValues );
+      console.log( "useEffect() in DFlexImageCards() in View.tsx: savedSliderValues[0] = " + savedSliderValues[0] );
+      console.log( "useEffect() in DFlexImageCards() in View.tsx: savedSliderValues[1] = " + savedSliderValues[1] );
+      console.log( "useEffect() in DFlexImageCards() in View.tsx: savedSliderValues[2] = " + savedSliderValues[2] );
+      console.log( "useEffect() in DFlexImageCards() in View.tsx: savedSliderValues[3] = " + savedSliderValues[3] );
+    } else {
+       console.log( "useEffect() in DFlexImageCards() in View.tsx: sliderValues NOT FOUND in localStorage!!!" );
+    }
+  }, []);
 
   function handleImageClick(event: React.MouseEvent<HTMLElement>) {
     const rect = (event.target as HTMLElement).getBoundingClientRect();
@@ -97,6 +95,16 @@ function DFlexImageCards( props:JungianLib.JungianImageProps ) {
     const pixelY = Math.round( event.clientY - rect.top );
     console.log( "Click on resizable image at (" + pixelX.toString() + ", " + pixelY.toString() + ")" );
   }
+
+  console.log( "DFlexImageCards() in View.tsx: savedSliderValues[0] = " + savedSliderValues[0] );
+  console.log( "DFlexImageCards() in View.tsx: savedSliderValues[1] = " + savedSliderValues[1] );
+  console.log( "DFlexImageCards() in View.tsx: savedSliderValues[2] = " + savedSliderValues[2] );
+  console.log( "DFlexImageCards() in View.tsx: savedSliderValues[3] = " + savedSliderValues[3] );
+
+  console.log( "DFlexImageCards() in View.tsx: props.opacityValue = " + props.opacityValue );
+  console.log( "DFlexImageCards() in View.tsx: props.blueVsYellowValue = " + props.blueVsYellowValue );
+  console.log( "DFlexImageCards() in View.tsx: props.greenVsRedValue = " + props.greenVsRedValue );
+  console.log( "DFlexImageCards() in View.tsx: props.bAndYVsGandRValue = " + props.bAndYVsGandRValue );
 
   return (
     <>
@@ -125,17 +133,20 @@ function DFlexImageCards( props:JungianLib.JungianImageProps ) {
 
 // DFlexContainer: function component containing a "d-flex" MDB container
 function DFlexContainer() {
+  const [currentSliderValues, setCurrentSliderValues] = useState([defaultSliderValue]);
+
   useEffect(() => {
     const rawStoredSliderValues = localStorage.getItem( 'sliderValues' );
     if ( rawStoredSliderValues ) {
-      console.log( "DFlexContainer() in View.tsx: found rawStoredSliderValues.toString()  = " + rawStoredSliderValues.toString() );
+      console.log( "useEffect() in DFlexContainer() in View.tsx: found rawStoredSliderValues.toString()  = " + rawStoredSliderValues.toString() );
       savedSliderValues = JSON.parse( rawStoredSliderValues );
       console.log( "useEffect in DFlexContainer() in View.tsx: savedSliderValues[0] = " + savedSliderValues[0] );
       console.log( "useEffect in DFlexContainer() in View.tsx: savedSliderValues[1] = " + savedSliderValues[1] );
       console.log( "useEffect in DFlexContainer() in View.tsx: savedSliderValues[2] = " + savedSliderValues[2] );
       console.log( "useEffect in DFlexContainer() in View.tsx: savedSliderValues[3] = " + savedSliderValues[3] );
+      setCurrentSliderValues( savedSliderValues );
     } else {
-       console.log( "DFlexContainer() in View.tsx: sliderValues NOT FOUND in localStorage!!!" );
+       console.log( "useEffect() in DFlexContainer() in View.tsx: sliderValues NOT FOUND in localStorage!!!" );
     }
   //const rawStoredImageString = localStorage.getItem( 'imageString' );
   //if ( rawStoredImageString ) {
@@ -150,6 +161,11 @@ function DFlexContainer() {
   console.log( "DFlexContainer() in View.tsx: savedSliderValues[1] = " + savedSliderValues[1] );
   console.log( "DFlexContainer() in View.tsx: savedSliderValues[2] = " + savedSliderValues[2] );
   console.log( "DFlexContainer() in View.tsx: savedSliderValues[3] = " + savedSliderValues[3] );
+
+  console.log( "DFlexContainer() in View.tsx: currentSliderValues[0] = " + currentSliderValues[0] );
+  console.log( "DFlexContainer() in View.tsx: currentSliderValues[1] = " + currentSliderValues[1] );
+  console.log( "DFlexContainer() in View.tsx: currentSliderValues[2] = " + currentSliderValues[2] );
+  console.log( "DFlexContainer() in View.tsx: currentSliderValues[3] = " + currentSliderValues[3] );
 
   return (
     <div className="container">
