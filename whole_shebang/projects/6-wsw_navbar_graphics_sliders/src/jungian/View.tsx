@@ -8,7 +8,7 @@ import Canvas from '../lib/CanvasLib.tsx';
 import {defaultSliderValue} from '../lib/SliderLib.tsx';
 import * as JungianLib from '../lib/JungianLib.tsx';
 
-// const imageString = "";
+let imageString = "";
 
 // draw: Add a "groja-esque" grid of blue, green, red, and yellow squares
 const draw = (context: CanvasRenderingContext2D) => {
@@ -33,6 +33,7 @@ const draw = (context: CanvasRenderingContext2D) => {
   const opacityPercent = JungianLib.globalProps.opacityPercent;
 // console.log( "draw: JungianLib.globalProps.opacityPercent = " + JungianLib.globalProps.opacityPercent.toString() );
 // console.log( "draw: opacityPercent = " + opacityPercent.toString() );
+  console.log( "draw() in View.tsx: imageString = '" + imageString + "'" );
 
   for ( let row=0; row < JungianLib.gridSize; row++ ) {
     squareTopY = JungianLib.gridTopY + (row * JungianLib.squareSize);
@@ -115,13 +116,13 @@ function DFlexContainer() {
     } else {
        console.log( "useEffect() in DFlexContainer() in View.tsx: sliderValues NOT FOUND in localStorage!!!" );
     }
-  //const rawStoredImageString = localStorage.getItem( 'imageString' );
-  //if ( rawStoredImageString ) {
-  //  imageString = JSON.parse( rawStoredImageString );
-  //  console.log( "View() in View.tsx: imageString = '" + imageString + "'" );
-  //} else {
-  //   console.log( "View() in View.tsx: imageString NOT FOUND in localStorage!!!" );
-  //}
+    const rawStoredImageString = localStorage.getItem( 'imageString' );
+    if ( rawStoredImageString ) {
+      imageString = JSON.parse( rawStoredImageString );
+      console.log( "View() in View.tsx: imageString = '" + imageString + "'" );
+    } else {
+       console.log( "View() in View.tsx: imageString NOT FOUND in localStorage!!!" );
+    }
   }, []);
 
   console.log( "DFlexContainer() in View.tsx: currentSliderValues[0] = " + currentSliderValues[0] );
