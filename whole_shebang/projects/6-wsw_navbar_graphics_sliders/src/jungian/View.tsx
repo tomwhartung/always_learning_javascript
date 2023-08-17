@@ -75,20 +75,6 @@ function DFlexImageCards( props:JungianLib.JungianImageProps ) {
   const width = JungianLib.canvasWidth;
   const height = JungianLib.canvasHeight;
 
-  useEffect(() => {
-    const rawStoredSliderValues = localStorage.getItem( 'sliderValues' );
-    if ( rawStoredSliderValues ) {
-      console.log( "useEffect() in DFlexContainer() in View.tsx: found rawStoredSliderValues.toString()  = " + rawStoredSliderValues.toString() );
-      savedSliderValues = JSON.parse( rawStoredSliderValues );
-      console.log( "useEffect() in DFlexImageCards() in View.tsx: savedSliderValues[0] = " + savedSliderValues[0] );
-      console.log( "useEffect() in DFlexImageCards() in View.tsx: savedSliderValues[1] = " + savedSliderValues[1] );
-      console.log( "useEffect() in DFlexImageCards() in View.tsx: savedSliderValues[2] = " + savedSliderValues[2] );
-      console.log( "useEffect() in DFlexImageCards() in View.tsx: savedSliderValues[3] = " + savedSliderValues[3] );
-    } else {
-       console.log( "useEffect() in DFlexImageCards() in View.tsx: sliderValues NOT FOUND in localStorage!!!" );
-    }
-  }, []);
-
   function handleImageClick(event: React.MouseEvent<HTMLElement>) {
     const rect = (event.target as HTMLElement).getBoundingClientRect();
     const pixelX = Math.round( event.clientX - rect.left );
