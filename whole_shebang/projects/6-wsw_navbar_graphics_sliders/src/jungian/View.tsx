@@ -34,11 +34,9 @@ const draw = (context: CanvasRenderingContext2D) => {
 // console.log( "draw: JungianLib.globalProps.opacityPercent = " + JungianLib.globalProps.opacityPercent.toString() );
 // console.log( "draw: opacityPercent = " + opacityPercent.toString() );
   console.log( "draw() in View.tsx: savedImageString = '" + savedImageString + "'" );
+  console.log( "draw() in View.tsx: savedImageString.length = '" + savedImageString.length + "'" );
 
-  if ( savedImageString.length == 0 ) {
-    console.log( "draw() in View.tsx: Image string not found in local storage!  You must Create an image before you can View it!!" );
-    console.log( "draw() in View.tsx: Umm, the code should be catching this error before getting to this point!!!" );
-  } else {
+  if ( savedImageString.length > 0 ) {
     for ( let row=0; row < JungianLib.gridSize; row++ ) {
       squareTopY = JungianLib.gridTopY + (row * JungianLib.squareSize);
       for ( let col=0; col < JungianLib.gridSize; col++ ){
@@ -113,10 +111,10 @@ function DFlexContainer() {
     if ( rawStoredSliderValues ) {
       console.log( "useEffect() in DFlexContainer() in View.tsx: found rawStoredSliderValues.toString()  = " + rawStoredSliderValues.toString() );
       const storedSliderValues = JSON.parse( rawStoredSliderValues );
-      console.log( "useEffect in DFlexContainer() in View.tsx: storedSliderValues[0] = " + storedSliderValues[0] );
-      console.log( "useEffect in DFlexContainer() in View.tsx: storedSliderValues[1] = " + storedSliderValues[1] );
-      console.log( "useEffect in DFlexContainer() in View.tsx: storedSliderValues[2] = " + storedSliderValues[2] );
-      console.log( "useEffect in DFlexContainer() in View.tsx: storedSliderValues[3] = " + storedSliderValues[3] );
+      // console.log( "useEffect in DFlexContainer() in View.tsx: storedSliderValues[0] = " + storedSliderValues[0] );
+      // console.log( "useEffect in DFlexContainer() in View.tsx: storedSliderValues[1] = " + storedSliderValues[1] );
+      // console.log( "useEffect in DFlexContainer() in View.tsx: storedSliderValues[2] = " + storedSliderValues[2] );
+      // console.log( "useEffect in DFlexContainer() in View.tsx: storedSliderValues[3] = " + storedSliderValues[3] );
       setCurrentSliderValues( storedSliderValues );
     } else {
        console.log( "useEffect() in DFlexContainer() in View.tsx: sliderValues NOT FOUND in localStorage!!!" );
@@ -124,25 +122,29 @@ function DFlexContainer() {
     const rawStoredImageString = localStorage.getItem( 'imageString' );
     if ( rawStoredImageString ) {
       savedImageString = JSON.parse( rawStoredImageString );
-      console.log( "View() in View.tsx: savedImageString = '" + savedImageString + "'" );
+      console.log( "DFlexContainer() in View.tsx: savedImageString = '" + savedImageString + "'" );
     } else {
-       console.log( "View() in View.tsx: imageString NOT FOUND in localStorage!!!" );
+       console.log( "DFlexContainer() in View.tsx: imageString NOT FOUND in localStorage!!!" );
     }
   }, []);
 
-  console.log( "DFlexContainer() in View.tsx: currentSliderValues[0] = " + currentSliderValues[0] );
-  console.log( "DFlexContainer() in View.tsx: currentSliderValues[1] = " + currentSliderValues[1] );
-  console.log( "DFlexContainer() in View.tsx: currentSliderValues[2] = " + currentSliderValues[2] );
-  console.log( "DFlexContainer() in View.tsx: currentSliderValues[3] = " + currentSliderValues[3] );
+  // console.log( "DFlexContainer() in View.tsx: currentSliderValues[0] = " + currentSliderValues[0] );
+  // console.log( "DFlexContainer() in View.tsx: currentSliderValues[1] = " + currentSliderValues[1] );
+  // console.log( "DFlexContainer() in View.tsx: currentSliderValues[2] = " + currentSliderValues[2] );
+  // console.log( "DFlexContainer() in View.tsx: currentSliderValues[3] = " + currentSliderValues[3] );
 
-  if ( savedImageString.length == 0 ) {
-    console.log( "DFlexContainer() in View.tsx: ERROR: unable to draw savedImageString!!" );
+  let createOrRefineMessage = "";
+
+  if ( savedImageString.length === 0 ) {
+    createOrRefineMessage = "You must use the Create option to create an image before you can View it.";
+  } else {
+    createOrRefineMessage = "You can now use the Refine option to refine your image.";
   }
 
   return (
     <div className="container">
-      <h4>DFlexContainer:</h4>
-      <div className="row mt-4 d-flex justify-content-center">
+      <div className="row mt-2 d-flex justify-content-center">
+        <h5>{createOrRefineMessage}</h5>
         <DFlexViewSliderValuesAndImage
           opacityValue={currentSliderValues[0] ?? defaultSliderValue}
           blueVsYellowValue={currentSliderValues[1] ?? defaultSliderValue}
