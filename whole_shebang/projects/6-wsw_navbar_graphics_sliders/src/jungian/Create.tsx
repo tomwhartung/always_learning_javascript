@@ -204,34 +204,45 @@ function FixedContainer() {
     drawFreshImage = true;                  // When a slider value changes, we need to draw a new image
   }
 
+  // First useEffect: runs once
+  //   Fetches values from local storage, initializing them if they're not set
+  //   Sets currentSliderValues to values from local storage
   useEffect(() => {
     console.log( "Top of first useEffect in FixedContainer() in Create.tsx" );
     const rawStoredSliderValues = localStorage.getItem( 'sliderValues' );
     if ( rawStoredSliderValues ) {
-      console.log( "First useEffect in FixedContainer() in Create.tsx: found some rawStoredSliderValues!" );
+      console.log( "First useEffect in FixedContainer() in Create.tsx: found the rawStoredSliderValues" );
       const parsedSliderValues = JSON.parse( rawStoredSliderValues );
-      console.log( "First useEffect in FixedContainer() in Create.tsx: Calling setCurrentSliderValues..." );
+      console.log( "First useEffect: parsedSliderValues.toString() = " + parsedSliderValues.toString() );
       setCurrentSliderValues( parsedSliderValues );
     } else {
-      console.log( "First useEffect in FixedContainer() in Create.tsx: sliderValues NOT FOUND in localStorage, saving default values..." );
-      setCurrentSliderValues( [ defaultSliderValue, defaultSliderValue, defaultSliderValue, defaultSliderValue ] );
+      console.log( "First useEffect in FixedContainer() in Create.tsx: sliderValues NOT FOUND in localStorage" );
+      console.log( "First useEffect: saving default values for sliderValues in localStorage" );
+      // setCurrentSliderValues( defaultSliderValues );
+      const defaultSliderValues = [ defaultSliderValue, defaultSliderValue, defaultSliderValue, defaultSliderValue ];
+      localStorage.setItem( 'sliderValues', JSON.stringify(defaultSliderValues) );
+      setCurrentSliderValues( defaultSliderValues );
+      // storedSliderValues = defaultSliderValues;
     }
     const rawStoredImageString = localStorage.getItem( 'imageString' );
     if ( rawStoredImageString && rawStoredImageString.length > 0 ) {
-      storedImageString = JSON.parse( rawStoredImageString );
-      console.log( "First useEffect in FixedContainer() in Create.tsx: storedImageString = '" + storedImageString + "'" );
+      console.log( "First useEffect in FixedContainer() in Create.tsx: found the rawStoredImageString" );
+      const parsedImageString = JSON.parse( rawStoredImageString );
+      console.log( "First useEffect: parsedImageString = '" + parsedImageString + "'" );
       // setCurrentImageString(storedImageString);
     } else {
       console.log( "First useEffect in FixedContainer() in Create.tsx: imageString NOT FOUND in localStorage" );
-      console.log( "imageString NOT FOUND so setting drawFreshImage = true" );
-      console.log( "imageString NOT FOUND so setting storedImageString and currentImageString = defaultImageString" );
-      storedImageString = defaultImageString;
+      console.log( "First useEffect: saving defaultImageString for imageString in localStorage" );
+      // console.log( "imageString NOT FOUND so setting drawFreshImage = true" );
+      // drawFreshImage = true;
+      localStorage.setItem( 'imageString', JSON.stringify(defaultImageString) );
+      // storedImageString = defaultImageString;
       // setCurrentImageString(storedImageString);
-      drawFreshImage = true;
     }
     console.log( "Exiting first useEffect in FixedContainer() in Create.tsx" );
   }, []);
 
+  // Second useEffect
   useEffect(() => {
     console.log( "Top of second useEffect in FixedContainer() in Create.tsx" );
     console.log( "Second useEffect in FixedContainer in Create.tsx: currentSliderValues.length = " + currentSliderValues.length );
