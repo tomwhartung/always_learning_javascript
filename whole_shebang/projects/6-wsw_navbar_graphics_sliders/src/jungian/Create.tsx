@@ -163,7 +163,7 @@ function FixedSizeImageCards( props: JungianLib.JungianImageProps ) {
 // FixedContainer: function component containing an MDB container
 function FixedContainer() {
   const [currentSliderValues, setCurrentSliderValues] = useState([defaultSliderValue]);
-  const [currentImageString, setCurrentImageString] = useState(defaultImageString);
+  // const [currentImageString, setCurrentImageString] = useState(defaultImageString);
 
   function handleChangeArrayOfNumbers( evt:ChangeEvent, col:number ) {
     const val = (evt.target as HTMLInputElement).value;
@@ -189,13 +189,14 @@ function FixedContainer() {
       setCurrentSliderValues( [ defaultSliderValue, defaultSliderValue, defaultSliderValue, defaultSliderValue ] );
     }
     const rawStoredImageString = localStorage.getItem( 'imageString' );
-    if ( rawStoredImageString ) {
+    if ( rawStoredImageString && rawStoredImageString.length > 0 ) {
       storedImageString = JSON.parse( rawStoredImageString );
       console.log( "First useEffect in FixedContainer() in Create.tsx: storedImageString = '" + storedImageString + "'" );
-      setCurrentImageString(defaultImageString);
+      // setCurrentImageString(storedImageString);
     } else {
       console.log( "First useEffect in FixedContainer() in Create.tsx: imageString NOT FOUND in localStorage" );
-      console.log( "First useEffect in FixedContainer() in Create.tsx: setting drawFreshImage = true" );
+      console.log( "imageString NOT FOUND so setting drawFreshImage = true and storedImageString = defaultImageString" );
+      storedImageString = defaultImageString;
       drawFreshImage = true;
     }
   }, []);
@@ -221,12 +222,12 @@ function FixedContainer() {
   storedSliderValues.greenVsRedValue = currentSliderValues[2];
   storedSliderValues.bAndYVsGandRValue = currentSliderValues[3];
 
-  if ( currentImageString.length !== 0 ) {
-    storedImageString = currentImageString;
+  // if ( currentImageString.length !== 0 ) {
+  //   storedImageString = currentImageString;
   // } else {
   //   console.log( "FixedContainer in Create.tsx: setting drawFreshImage = true because it seems like the thing to do." );
   //   drawFreshImage = true;
-  }
+  // }
 
   // Construct markup for the SliderCards
   const sliderNumberCols = [];
