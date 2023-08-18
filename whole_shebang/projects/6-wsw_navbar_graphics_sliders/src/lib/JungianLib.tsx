@@ -137,18 +137,18 @@ export const drawStoredImageString = (context: CanvasRenderingContext2D, storedI
   const opacityPercent = globalProps.opacityPercent;
   // console.log( "draw: globalProps.opacityPercent = " + globalProps.opacityPercent.toString() );
   // console.log( "draw: opacityPercent = " + opacityPercent.toString() );
-  // console.log( "draw() in View.tsx: storedImageString = '" + storedImageString + "'" );
-  console.log( "draw() in View.tsx: storedImageString.length = '" + storedImageString.length + "'" );
+  // console.log( "draw() in JungianLib.tsx: storedImageString = '" + storedImageString + "'" );
+  console.log( "draw() in JungianLib.tsx: storedImageString.length = '" + storedImageString.length + "'" );
 
   if ( storedImageString.length > 0 ) {
-    console.log( "draw() in View.tsx: top of the for loop" );
+    console.log( "draw() in JungianLib.tsx: top of the for loop" );
     imageCharArray = storedImageString.split( "" );
     for ( let row=0; row < gridSize; row++ ) {
       squareTopY = gridTopY + (row * squareSize);
       for ( let col=0; col < gridSize; col++ ){
         colorLetter = imageCharArray[imgStrIdx++];
-        // console.log( "for loop in draw() in View.tsx: imgStrIdx = " + imgStrIdx );
-        // console.log( "for loop in draw() in View.tsx: colorLetter = " + colorLetter );
+        // console.log( "for loop in draw() in JungianLib.tsx: imgStrIdx = " + imgStrIdx );
+        // console.log( "for loop in draw() in JungianLib.tsx: colorLetter = " + colorLetter );
         squareTopX = gridTopX + (col * squareSize);
         if ( colorLetter == "B" ) {
           context.fillStyle = "rgba(0, 0, 255, " + opacityPercent.toString() + ")";
