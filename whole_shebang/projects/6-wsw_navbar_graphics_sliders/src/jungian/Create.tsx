@@ -10,13 +10,13 @@ import SliderCard from '../lib/SliderCard.tsx';
 import * as JungianLib from '../lib/JungianLib.tsx';
 
 // These are the slider values we use when drawing the image
-const savedSliderValues: JungianLib.JungianImageProps = {
+const storedSliderValues: JungianLib.JungianImageProps = {
   opacityValue: defaultSliderValue,
   blueVsYellowValue: defaultSliderValue,
   greenVsRedValue: defaultSliderValue,
   bAndYVsGandRValue: defaultSliderValue,
 };
-let savedImageString = "";
+let storedImageString = "";
 
 const defaultImageString = "";
 let imageCharArray: string[] = [];
@@ -43,9 +43,9 @@ const draw = (context: CanvasRenderingContext2D) => {
 // console.log( "draw: JungianLib.globalProps.opacityPercent = " + JungianLib.globalProps.opacityPercent.toString() );
 // console.log( "draw: opacityPercent = " + opacityPercent.toString() );
 
-  if ( savedImageString.length > 0 ) {
-    console.log( "draw() in Create.tsx: savedImageString.length = " + savedImageString.length + " > 0" );
-    imageCharArray = savedImageString.split( "" );
+  if ( storedImageString.length > 0 ) {
+    console.log( "draw() in Create.tsx: storedImageString.length = " + storedImageString.length + " > 0" );
+    imageCharArray = storedImageString.split( "" );
     let imgStrIdx = 0;
     console.log( "draw() in Create.tsx: drawing the image saved in localStorage!" );
     for ( let row=0; row < JungianLib.gridSize; row++ ) {
@@ -69,7 +69,7 @@ const draw = (context: CanvasRenderingContext2D) => {
       }
     }
   } else {
-    console.log( "draw() in Create.tsx: savedImageString.length = " + savedImageString.length + " == 0 - generating a new image!" );
+    console.log( "draw() in Create.tsx: storedImageString.length = " + storedImageString.length + " == 0 - generating a new image!" );
     console.log( "draw() in Create.tsx - 1: imageCharArray.length = " + imageCharArray.length );
     imageCharArray = [];
     console.log( "draw() in Create.tsx - 2: imageCharArray.length = " + imageCharArray.length + " == 0 - generating a new image!" );
@@ -77,7 +77,7 @@ const draw = (context: CanvasRenderingContext2D) => {
       squareTopY = JungianLib.gridTopY + (row * JungianLib.squareSize);
       for ( let col=0; col < JungianLib.gridSize; col++ ){
       //console.log( "draw() in Create.tsx: calling JungianLib.getRandomPrimaryColor = " + colorLetter );
-        colorLetter = JungianLib.getRandomPrimaryColor( savedSliderValues );
+        colorLetter = JungianLib.getRandomPrimaryColor( storedSliderValues );
       //console.log( "draw() in Create.tsx: colorLetter = " + colorLetter );
         squareTopX = JungianLib.gridTopX + (col * JungianLib.squareSize);
         if ( colorLetter == "B" ) {
@@ -206,11 +206,11 @@ function FixedContainer() {
     console.log( "FixedContainer in Create.tsx: saved imageCharArray->thisImageString as imageString." );
   }, [currentSliderValues]);
 
-  savedSliderValues.opacityValue = currentSliderValues[0];
-  savedSliderValues.blueVsYellowValue = currentSliderValues[1];
-  savedSliderValues.greenVsRedValue = currentSliderValues[2];
-  savedSliderValues.bAndYVsGandRValue = currentSliderValues[3];
-  savedImageString = currentImageString;
+  storedSliderValues.opacityValue = currentSliderValues[0];
+  storedSliderValues.blueVsYellowValue = currentSliderValues[1];
+  storedSliderValues.greenVsRedValue = currentSliderValues[2];
+  storedSliderValues.bAndYVsGandRValue = currentSliderValues[3];
+  storedImageString = currentImageString;
 
   // Construct markup for the SliderCards
   const sliderNumberCols = [];
