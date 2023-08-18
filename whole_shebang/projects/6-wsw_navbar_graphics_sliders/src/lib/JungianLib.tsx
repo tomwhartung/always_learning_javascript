@@ -63,7 +63,8 @@ export const colorLetters = [
 // Constant Values
 // Note: At some point, we may want to make some of these variables set by the user
 export const squareSize = 15;    // Size of each square
-export const gridSize = 19;      // No. of squares in each row and column
+// export const gridSize = 19;      // No. of squares in each row and column
+export const gridSize = 4;      // No. of squares in each row and column
 
 export const gridTopX = 4;       // X location of top left corner of grid
 export const gridTopY = 4;       // Y location of top left corner of grid
@@ -109,4 +110,57 @@ export function getRandomPrimaryColor( sliderValues: JungianImageProps ) {
 
   return randomColorLetter;
 }
+
+// drawStoredImageString: Add a "groja-esque" grid of blue, green, red, and yellow squares
+export const drawStoredImageString = (context: CanvasRenderingContext2D, storedImageString: string) => {
+  const width = canvasWidth;
+  const height = canvasHeight;
+  const innerSquareWidth = canvasWidth - ( 2 * gridTopX );
+  const innerSquareHeight = canvasHeight - ( 2 * gridTopY );
+  let imageCharArray: string[] = [];
+
+  // Paint it all black
+  context.fillStyle = "rgb(0, 0, 0)";
+  context.fillRect(0, 0, width, height);
+
+  // Paint the inner square white
+  context.fillStyle = "rgb(255, 255, 255)";
+  context.fillRect(gridTopY, gridTopY, innerSquareWidth, innerSquareHeight);
+
+  let squareTopX = gridTopX;
+  let squareTopY = gridTopY;
+  let colorLetter = "B";
+  let imgStrIdx = 0;
+  const opacityPercent = globalProps.opacityPercent;
+  // console.log( "draw: globalProps.opacityPercent = " + globalProps.opacityPercent.toString() );
+  // console.log( "draw: opacityPercent = " + opacityPercent.toString() );
+  // console.log( "draw() in View.tsx: storedImageString = '" + storedImageString + "'" );
+  console.log( "draw() in View.tsx: storedImageString.length = '" + storedImageString.length + "'" );
+
+  if ( storedImageString.length > 0 ) {
+    console.log( "draw() in View.tsx: top of the for loop" );
+    imageCharArray = storedImageString.split( "" );
+    for ( let row=0; row < gridSize; row++ ) {
+      squareTopY = gridTopY + (row * squareSize);
+      for ( let col=0; col < gridSize; col++ ){
+        colorLetter = imageCharArray[imgStrIdx++];
+        // console.log( "for loop in draw() in View.tsx: imgStrIdx = " + imgStrIdx );
+        // console.log( "for loop in draw() in View.tsx: colorLetter = " + colorLetter );
+        squareTopX = gridTopX + (col * squareSize);
+        if ( colorLetter == "B" ) {
+          context.fillStyle = "rgba(0, 0, 255, " + opacityPercent.toString() + ")";
+        } else if ( colorLetter == "G" ) {
+          context.fillStyle = "rgba(0, 255, 0, " + opacityPercent.toString() + ")";
+        } else if ( colorLetter == "R" ) {
+          context.fillStyle = "rgba(255, 0, 0, " + opacityPercent.toString() + ")";
+        } else if ( colorLetter == "Y" ) {
+          context.fillStyle = "rgba(255, 255, 0, " + opacityPercent.toString() + ")";
+        } else {
+          context.fillStyle = "rgb(255, 255, 255, " + opacityPercent.toString() + ")";
+        }
+        context.fillRect( squareTopX, squareTopY, squareSize, squareSize );
+      }
+    }
+  }
+};
 
