@@ -49,7 +49,7 @@ const draw = (context: CanvasRenderingContext2D) => {
 
   if ( drawFreshImage ) {
     if ( JungianLib.logLogicFlow ) {
-      console.log( "draw() in Create.tsx: drawing a Fresh Image" );
+      console.log( "draw() in Create.tsx: drawFreshImage is true so we are drawing a Fresh Image" );
     }
     imageCharArray = [];
     console.log( "draw() in Create.tsx: imageCharArray.length = " + imageCharArray.length );
@@ -76,6 +76,10 @@ const draw = (context: CanvasRenderingContext2D) => {
       }
     }
     console.log( "draw() in Create.tsx: finished drawing Fresh Image, imageCharArray: " + imageCharArray )
+    console.log( "draw(): finished drawing Fresh Image so setting drawFreshImage = false" );
+    console.log( "draw(): finished drawing Fresh Image so setting storedImageString to imageCharArray.join()" );
+    drawFreshImage = false;
+    storedImageString = imageCharArray.join('');
   } else if ( storedImageString.length > 0 ) {
     if ( JungianLib.logLogicFlow ) {
       console.log( "draw() in Create.tsx: drawing storedImageString = " + storedImageString );
@@ -200,7 +204,7 @@ function FixedContainer() {
     setCurrentSliderValues(nextSliderValues);
     // imageCharArray = [];                  // When a slider value changes, we need to draw a new image
     // setCurrentImageString(defaultImageString);   // When a slider value changes, we need to draw a new image
-    console.log( "handleChangeArrayOfNumbers in FixedContainer: setting drawFreshImage = true because presumably a slider was moved" );
+    console.log( "handleChangeArrayOfNumbers in FixedContainer: setting drawFreshImage = true BECAUSE PRESUMABLY A SLIDER WAS MOVED" );
     drawFreshImage = true;                  // When a slider value changes, we need to draw a new image
   }
 
@@ -229,7 +233,6 @@ function FixedContainer() {
       console.log( "First useEffect in FixedContainer() in Create.tsx: found the rawStoredImageString" );
       const parsedImageString = JSON.parse( rawStoredImageString );
       console.log( "First useEffect: parsedImageString = '" + parsedImageString + "'" );
-      // setCurrentImageString(storedImageString);
     } else {
       console.log( "First useEffect in FixedContainer() in Create.tsx: imageString NOT FOUND in localStorage" );
       console.log( "First useEffect: saving defaultImageString for imageString in localStorage" );
@@ -242,7 +245,7 @@ function FixedContainer() {
     console.log( "Exiting first useEffect in FixedContainer() in Create.tsx" );
   }, []);
 
-  // Second useEffect
+  // Second useEffect: runs when the user moves a slider
   useEffect(() => {
     console.log( "Top of second useEffect in FixedContainer() in Create.tsx" );
     console.log( "Second useEffect in FixedContainer in Create.tsx: currentSliderValues.length = " + currentSliderValues.length );
@@ -257,7 +260,8 @@ function FixedContainer() {
     console.log( "Second useEffect in FixedContainer in Create.tsx: imageCharArray.toString() = " + imageCharArray.toString() );
     console.log( "Second useEffect in FixedContainer in Create.tsx: thisImageString = " + thisImageString );
     localStorage.setItem( 'imageString', JSON.stringify(thisImageString) );
-    console.log( "FixedContainer in Create.tsx: saved imageCharArray->thisImageString in local storage as imageString." );
+    console.log( "Second useEffect in FixedContainer in Create.tsx: saved imageCharArray->thisImageString in local storage as imageString." );
+    // storedImageString = thisImageString;
     console.log( "Exiting second useEffect in FixedContainer() in Create.tsx" );
   }, [currentSliderValues]);
 
