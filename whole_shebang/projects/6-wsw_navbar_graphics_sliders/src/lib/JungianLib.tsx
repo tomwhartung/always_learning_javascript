@@ -63,11 +63,10 @@ export const colorLetters = [
 // Constant Values
 // Note: At some point, we may want to make some of these variables set by the user
 export const squareSize = 15;    // Size of each square
-// export const gridSize = 19;      // No. of squares in each row and column
-export const gridSize = 3;      // No. of squares in each row and column
+export const gridSize = 19;      // No. of squares in each row and column
 
-export const gridTopX = 10;      // X location of top left corner of grid
-export const gridTopY = 10;      // Y location of top left corner of grid
+export const gridTopX = 4;       // X location of top left corner of grid
+export const gridTopY = 4;       // Y location of top left corner of grid
 
 export const canvasWidth = ( squareSize * gridSize ) + ( 2 * gridTopX );
 export const canvasHeight = ( squareSize * gridSize ) + ( 2 * gridTopY );
