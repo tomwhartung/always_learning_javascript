@@ -12,55 +12,7 @@ let storedImageString = "";
 
 // draw: Add a "groja-esque" grid of blue, green, red, and yellow squares
 const draw = (context: CanvasRenderingContext2D) => {
-  const width = JungianLib.canvasWidth;
-  const height = JungianLib.canvasHeight;
-  const innerSquareWidth = JungianLib.canvasWidth - ( 2 * JungianLib.gridTopX );
-  const innerSquareHeight = JungianLib.canvasHeight - ( 2 * JungianLib.gridTopY );
-  let imageCharArray: string[] = [];
-
-  // Paint it all black
-  context.fillStyle = "rgb(0, 0, 0)";
-  context.fillRect(0, 0, width, height);
-
-  // Paint the inner square white
-  context.fillStyle = "rgb(255, 255, 255)";
-  context.fillRect(JungianLib.gridTopY, JungianLib.gridTopY, innerSquareWidth, innerSquareHeight);
-
-  let squareTopX = JungianLib.gridTopX;
-  let squareTopY = JungianLib.gridTopY;
-  let colorLetter = "B";
-  let imgStrIdx = 0;
-  const opacityPercent = JungianLib.globalProps.opacityPercent;
-  // console.log( "draw: JungianLib.globalProps.opacityPercent = " + JungianLib.globalProps.opacityPercent.toString() );
-  // console.log( "draw: opacityPercent = " + opacityPercent.toString() );
-  // console.log( "draw() in View.tsx: storedImageString = '" + storedImageString + "'" );
-  console.log( "draw() in View.tsx: storedImageString.length = '" + storedImageString.length + "'" );
-
-  if ( storedImageString.length > 0 ) {
-    console.log( "draw() in View.tsx: top of the for loop" );
-    imageCharArray = storedImageString.split( "" );
-    for ( let row=0; row < JungianLib.gridSize; row++ ) {
-      squareTopY = JungianLib.gridTopY + (row * JungianLib.squareSize);
-      for ( let col=0; col < JungianLib.gridSize; col++ ){
-        colorLetter = imageCharArray[imgStrIdx++];
-        // console.log( "for loop in draw() in View.tsx: imgStrIdx = " + imgStrIdx );
-        // console.log( "for loop in draw() in View.tsx: colorLetter = " + colorLetter );
-        squareTopX = JungianLib.gridTopX + (col * JungianLib.squareSize);
-        if ( colorLetter == "B" ) {
-          context.fillStyle = "rgba(0, 0, 255, " + opacityPercent.toString() + ")";
-        } else if ( colorLetter == "G" ) {
-          context.fillStyle = "rgba(0, 255, 0, " + opacityPercent.toString() + ")";
-        } else if ( colorLetter == "R" ) {
-          context.fillStyle = "rgba(255, 0, 0, " + opacityPercent.toString() + ")";
-        } else if ( colorLetter == "Y" ) {
-          context.fillStyle = "rgba(255, 255, 0, " + opacityPercent.toString() + ")";
-        } else {
-          context.fillStyle = "rgb(255, 255, 255, " + opacityPercent.toString() + ")";
-        }
-        context.fillRect( squareTopX, squareTopY, JungianLib.squareSize, JungianLib.squareSize );
-      }
-    }
-  }
+  JungianLib.drawStoredImageString( context, storedImageString );
 };
 
 // DFlexViewSliderValuesAndImage: function component to display a jungian image
