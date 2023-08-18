@@ -8,7 +8,7 @@ import Canvas from '../lib/CanvasLib.tsx';
 import {defaultSliderValue} from '../lib/SliderLib.tsx';
 import * as JungianLib from '../lib/JungianLib.tsx';
 
-let savedImageString = "";
+let storedImageString = "";
 
 // draw: Add a "groja-esque" grid of blue, green, red, and yellow squares
 const draw = (context: CanvasRenderingContext2D) => {
@@ -16,7 +16,7 @@ const draw = (context: CanvasRenderingContext2D) => {
   const height = JungianLib.canvasHeight;
   const innerSquareWidth = JungianLib.canvasWidth - ( 2 * JungianLib.gridTopX );
   const innerSquareHeight = JungianLib.canvasHeight - ( 2 * JungianLib.gridTopY );
-  const imageCharArray: string[] = [];
+  let imageCharArray: string[] = [];
 
   // Paint it all black
   context.fillStyle = "rgb(0, 0, 0)";
@@ -31,17 +31,20 @@ const draw = (context: CanvasRenderingContext2D) => {
   let colorLetter = "B";
   let imgStrIdx = 0;
   const opacityPercent = JungianLib.globalProps.opacityPercent;
-// console.log( "draw: JungianLib.globalProps.opacityPercent = " + JungianLib.globalProps.opacityPercent.toString() );
-// console.log( "draw: opacityPercent = " + opacityPercent.toString() );
-  console.log( "draw() in View.tsx: savedImageString = '" + savedImageString + "'" );
-  console.log( "draw() in View.tsx: savedImageString.length = '" + savedImageString.length + "'" );
+  // console.log( "draw: JungianLib.globalProps.opacityPercent = " + JungianLib.globalProps.opacityPercent.toString() );
+  // console.log( "draw: opacityPercent = " + opacityPercent.toString() );
+  // console.log( "draw() in View.tsx: storedImageString = '" + storedImageString + "'" );
+  console.log( "draw() in View.tsx: storedImageString.length = '" + storedImageString.length + "'" );
 
-  if ( savedImageString.length > 0 ) {
+  if ( storedImageString.length > 0 ) {
+    console.log( "draw() in View.tsx: top of the for loop" );
+    imageCharArray = storedImageString.split( "" );
     for ( let row=0; row < JungianLib.gridSize; row++ ) {
       squareTopY = JungianLib.gridTopY + (row * JungianLib.squareSize);
       for ( let col=0; col < JungianLib.gridSize; col++ ){
         colorLetter = imageCharArray[imgStrIdx++];
-      //console.log( "colorLetter = " + colorLetter );
+        // console.log( "for loop in draw() in View.tsx: imgStrIdx = " + imgStrIdx );
+        // console.log( "for loop in draw() in View.tsx: colorLetter = " + colorLetter );
         squareTopX = JungianLib.gridTopX + (col * JungianLib.squareSize);
         if ( colorLetter == "B" ) {
           context.fillStyle = "rgba(0, 0, 255, " + opacityPercent.toString() + ")";
@@ -121,10 +124,10 @@ function DFlexContainer() {
     }
     const rawStoredImageString = localStorage.getItem( 'imageString' );
     if ( rawStoredImageString ) {
-      savedImageString = JSON.parse( rawStoredImageString );
-      console.log( "DFlexContainer() in View.tsx: savedImageString = '" + savedImageString + "'" );
-    } else {
-       console.log( "DFlexContainer() in View.tsx: imageString NOT FOUND in localStorage!!!" );
+      storedImageString = JSON.parse( rawStoredImageString );
+      //   console.log( "DFlexContainer() in View.tsx: storedImageString = '" + storedImageString + "'" );
+      // } else {
+      //    console.log( "DFlexContainer() in View.tsx: imageString NOT FOUND in localStorage!!!" );
     }
   }, []);
 
@@ -135,7 +138,7 @@ function DFlexContainer() {
 
   let createOrRefineMessage = "";
 
-  if ( savedImageString.length === 0 ) {
+  if ( storedImageString.length === 0 ) {
     createOrRefineMessage = "You must use the Create option to create an image before you can View it.";
   } else {
     createOrRefineMessage = "You can now use the Refine option to refine your image.";
