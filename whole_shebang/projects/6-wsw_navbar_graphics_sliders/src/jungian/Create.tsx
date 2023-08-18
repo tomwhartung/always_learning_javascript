@@ -47,7 +47,7 @@ const draw = (context: CanvasRenderingContext2D) => {
   if ( drawFreshImage ) {
     console.log( "draw() in Create.tsx: drawing a Fresh Image" );
     imageCharArray = [];
-    console.log( "draw() in Create.tsx: imageCharArray.toString = " + imageCharArray.toString );
+    console.log( "draw() in Create.tsx: imageCharArray.length = " + imageCharArray.length );
     for ( let row=0; row < JungianLib.gridSize; row++ ) {
       squareTopY = JungianLib.gridTopY + (row * JungianLib.squareSize);
       for ( let col=0; col < JungianLib.gridSize; col++ ){
@@ -173,6 +173,7 @@ function FixedContainer() {
     setCurrentSliderValues(nextSliderValues);
     // imageCharArray = [];                  // When a slider value changes, we need to draw a new image
     // setCurrentImageString(defaultImageString);   // When a slider value changes, we need to draw a new image
+    console.log( "handleChangeArrayOfNumbers in FixedContainer: setting drawFreshImage = true because presumably a slider was moved" );
     drawFreshImage = true;                  // When a slider value changes, we need to draw a new image
   }
 
@@ -220,10 +221,11 @@ function FixedContainer() {
   storedSliderValues.greenVsRedValue = currentSliderValues[2];
   storedSliderValues.bAndYVsGandRValue = currentSliderValues[3];
 
-  if ( currentImageString.length === 0 ) {
-    drawFreshImage = true;
-  } else {
+  if ( currentImageString.length !== 0 ) {
     storedImageString = currentImageString;
+  // } else {
+  //   console.log( "FixedContainer in Create.tsx: setting drawFreshImage = true because it seems like the thing to do." );
+  //   drawFreshImage = true;
   }
 
   // Construct markup for the SliderCards
