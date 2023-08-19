@@ -212,7 +212,9 @@ function FixedContainer() {
   //   Fetches values from local storage, initializing them if they're not set
   //   Sets currentSliderValues to values from local storage
   useEffect(() => {
-    console.log( "Top of first useEffect in FixedContainer() in Create.tsx" );
+    if ( JungianLib.logLogicFlow ) {
+      console.log( "Top of first useEffect in FixedContainer() in Create.tsx" );
+    }
     const rawStoredSliderValues = localStorage.getItem( 'sliderValues' );
     if ( rawStoredSliderValues ) {
       console.log( "First useEffect in FixedContainer() in Create.tsx: found the rawStoredSliderValues" );
@@ -229,6 +231,7 @@ function FixedContainer() {
       // storedSliderValues = defaultSliderValues;
     }
     const rawStoredImageString = localStorage.getItem( 'imageString' );
+    console.log( "First useEffect in FixedContainer() in Create.tsx: rawStoredImageString = " + rawStoredImageString );
     if ( rawStoredImageString && rawStoredImageString.length > 0 ) {
       console.log( "First useEffect in FixedContainer() in Create.tsx: found the rawStoredImageString" );
       const parsedImageString = JSON.parse( rawStoredImageString );
@@ -242,12 +245,16 @@ function FixedContainer() {
       // storedImageString = defaultImageString;
       // setCurrentImageString(storedImageString);
     }
-    console.log( "Exiting first useEffect in FixedContainer() in Create.tsx" );
+    if ( JungianLib.logLogicFlow ) {
+      console.log( "Exiting first useEffect in FixedContainer() in Create.tsx" );
+    }
   }, []);
 
   // Second useEffect: runs when the user moves a slider
   useEffect(() => {
-    console.log( "Top of second useEffect in FixedContainer() in Create.tsx" );
+    if ( JungianLib.logLogicFlow ) {
+      console.log( "Top of second useEffect in FixedContainer() in Create.tsx" );
+    }
     console.log( "Second useEffect in FixedContainer in Create.tsx: currentSliderValues.length = " + currentSliderValues.length );
     if ( currentSliderValues.length > 3 ) {
       localStorage.setItem( 'sliderValues', JSON.stringify(currentSliderValues) );
@@ -255,14 +262,20 @@ function FixedContainer() {
     } else {
       console.log( "Second useEffect in FixedContainer in Create.tsx: did NOT save currentSliderValues as sliderValues!" );
     }
-    const thisImageString = imageCharArray.join('');
-    console.log( "Second useEffect in FixedContainer in Create.tsx: ready to save imageCharArray->thisImageString as imageString..." );
-    console.log( "Second useEffect in FixedContainer in Create.tsx: imageCharArray.toString() = " + imageCharArray.toString() );
-    console.log( "Second useEffect in FixedContainer in Create.tsx: thisImageString = " + thisImageString );
-    localStorage.setItem( 'imageString', JSON.stringify(thisImageString) );
-    console.log( "Second useEffect in FixedContainer in Create.tsx: saved imageCharArray->thisImageString in local storage as imageString." );
+    if ( imageCharArray.length > JungianLib.gridSize ) {
+      const thisImageString = imageCharArray.join('');
+      console.log( "Second useEffect in FixedContainer in Create.tsx: ready to save imageCharArray->thisImageString as imageString..." );
+      console.log( "Second useEffect in FixedContainer in Create.tsx: imageCharArray.toString() = " + imageCharArray.toString() );
+      console.log( "Second useEffect in FixedContainer in Create.tsx: thisImageString = " + thisImageString );
+      localStorage.setItem( 'imageString', JSON.stringify(thisImageString) );
+      console.log( "Second useEffect in FixedContainer in Create.tsx: saved imageCharArray->thisImageString in local storage as imageString." );
+    } else {
+      console.log( "Second useEffect in FixedContainer in Create.tsx: did NOT save imageCharArray as imageString!" );
+    }
     // storedImageString = thisImageString;
-    console.log( "Exiting second useEffect in FixedContainer() in Create.tsx" );
+    if ( JungianLib.logLogicFlow ) {
+      console.log( "Exiting second useEffect in FixedContainer() in Create.tsx" );
+    }
   }, [currentSliderValues]);
 
   storedSliderValues.opacityValue = currentSliderValues[0];
