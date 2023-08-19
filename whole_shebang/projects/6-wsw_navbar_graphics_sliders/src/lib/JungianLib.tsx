@@ -61,6 +61,9 @@ export const colorLetters = [
 ];
 
 // Constant Values
+
+export const logLogicFlow = true;
+
 // Note: At some point, we may want to make some of these variables set by the user
 export const squareSize = 15;    // Size of each square
 // export const gridSize = 19;      // No. of squares in each row and column
