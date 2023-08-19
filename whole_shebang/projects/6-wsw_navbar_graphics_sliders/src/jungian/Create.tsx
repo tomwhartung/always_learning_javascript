@@ -236,6 +236,7 @@ function FixedContainer() {
       console.log( "First useEffect in FixedContainer() in Create.tsx: found the rawStoredImageString" );
       const parsedImageString = JSON.parse( rawStoredImageString );
       console.log( "First useEffect: parsedImageString = '" + parsedImageString + "'" );
+      storedImageString = parsedImageString;
     } else {
       console.log( "First useEffect in FixedContainer() in Create.tsx: imageString NOT FOUND in localStorage" );
       console.log( "First useEffect: saving defaultImageString for imageString in localStorage" );
@@ -272,7 +273,6 @@ function FixedContainer() {
     } else {
       console.log( "Second useEffect in FixedContainer in Create.tsx: did NOT save imageCharArray as imageString!" );
     }
-    // storedImageString = thisImageString;
     if ( JungianLib.logLogicFlow ) {
       console.log( "Exiting second useEffect in FixedContainer() in Create.tsx" );
     }
