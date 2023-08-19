@@ -24,6 +24,9 @@ let imageCharArray: string[] = [];
 
 // draw: Add a "groja-esque" grid of blue, green, red, and yellow squares
 const draw = (context: CanvasRenderingContext2D) => {
+  if ( JungianLib.logLogicFlow ) {
+    console.log( "Top of draw() in Create.tsx" );
+  }
   const width = JungianLib.canvasWidth;
   const height = JungianLib.canvasHeight;
   const innerSquareWidth = JungianLib.canvasWidth - ( 2 * JungianLib.gridTopX );
@@ -45,7 +48,9 @@ const draw = (context: CanvasRenderingContext2D) => {
 // console.log( "draw: opacityPercent = " + opacityPercent.toString() );
 
   if ( drawFreshImage ) {
-    console.log( "draw() in Create.tsx: drawing a Fresh Image" );
+    if ( JungianLib.logLogicFlow ) {
+      console.log( "draw() in Create.tsx: drawing a Fresh Image" );
+    }
     imageCharArray = [];
     console.log( "draw() in Create.tsx: imageCharArray.length = " + imageCharArray.length );
     for ( let row=0; row < JungianLib.gridSize; row++ ) {
@@ -70,7 +75,11 @@ const draw = (context: CanvasRenderingContext2D) => {
         imageCharArray.push( colorLetter );
       }
     }
-  } else {
+    console.log( "draw() in Create.tsx: finished drawing Fresh Image, imageCharArray: " + imageCharArray )
+  } else if ( storedImageString.length > 0 ) {
+    if ( JungianLib.logLogicFlow ) {
+      console.log( "draw() in Create.tsx: drawing storedImageString = " + storedImageString );
+    }
     imageCharArray = storedImageString.split( "" );
     let imgStrIdx = 0;
     console.log( "draw() in Create.tsx: drawing the image saved in localStorage..." );
@@ -94,12 +103,22 @@ const draw = (context: CanvasRenderingContext2D) => {
         context.fillRect( squareTopX, squareTopY, JungianLib.squareSize, JungianLib.squareSize );
       }
     }
+  } else {
+    if ( JungianLib.logLogicFlow ) {
+      console.log( "draw() in Create.tsx: drawFreshImage is false and storedImageString is empty!" );
+    }
   }
-//console.log( "Create: imageCharArray: " + imageCharArray )
+  if ( JungianLib.logLogicFlow ) {
+    console.log( "Exiting draw() in Create.tsx" );
+  }
 };
 
 // FixedSizeImageCards: function component to display a jungian image
 function FixedSizeImageCards( props: JungianLib.JungianImageProps ) {
+  if ( JungianLib.logLogicFlow ) {
+    console.log( "Top of FixedSizeImageCards() in Create.tsx" );
+  }
+
   const width = JungianLib.canvasWidth;
   const height = JungianLib.canvasHeight;
 
@@ -139,6 +158,10 @@ function FixedSizeImageCards( props: JungianLib.JungianImageProps ) {
     }
   }
 
+  if ( JungianLib.logLogicFlow ) {
+    console.log( "return()ing from FixedSizeImageCards() in Create.tsx" );
+  }
+
   return (
     <>
       <div className="row mt-4">
@@ -162,6 +185,10 @@ function FixedSizeImageCards( props: JungianLib.JungianImageProps ) {
 
 // FixedContainer: function component containing an MDB container
 function FixedContainer() {
+  if ( JungianLib.logLogicFlow ) {
+    console.log( "Top of FixedContainer() in Create.tsx" );
+  }
+
   const [currentSliderValues, setCurrentSliderValues] = useState([defaultSliderValue]);
   // const [currentImageString, setCurrentImageString] = useState(defaultImageString);
 
@@ -178,11 +205,12 @@ function FixedContainer() {
   }
 
   useEffect(() => {
+    console.log( "Top of first useEffect in FixedContainer() in Create.tsx" );
     const rawStoredSliderValues = localStorage.getItem( 'sliderValues' );
     if ( rawStoredSliderValues ) {
-    //console.log( "First useEffect in FixedContainer() in Create.tsx: found some rawStoredSliderValues!" );
+      console.log( "First useEffect in FixedContainer() in Create.tsx: found some rawStoredSliderValues!" );
       const parsedSliderValues = JSON.parse( rawStoredSliderValues );
-    //console.log( "First useEffect in FixedContainer() in Create.tsx: Calling setCurrentSliderValues..." );
+      console.log( "First useEffect in FixedContainer() in Create.tsx: Calling setCurrentSliderValues..." );
       setCurrentSliderValues( parsedSliderValues );
     } else {
       console.log( "First useEffect in FixedContainer() in Create.tsx: sliderValues NOT FOUND in localStorage, saving default values..." );
@@ -195,13 +223,17 @@ function FixedContainer() {
       // setCurrentImageString(storedImageString);
     } else {
       console.log( "First useEffect in FixedContainer() in Create.tsx: imageString NOT FOUND in localStorage" );
-      console.log( "imageString NOT FOUND so setting drawFreshImage = true and storedImageString = defaultImageString" );
+      console.log( "imageString NOT FOUND so setting drawFreshImage = true" );
+      console.log( "imageString NOT FOUND so setting storedImageString and currentImageString = defaultImageString" );
       storedImageString = defaultImageString;
+      // setCurrentImageString(storedImageString);
       drawFreshImage = true;
     }
+    console.log( "Exiting first useEffect in FixedContainer() in Create.tsx" );
   }, []);
 
   useEffect(() => {
+    console.log( "Top of second useEffect in FixedContainer() in Create.tsx" );
     console.log( "Second useEffect in FixedContainer in Create.tsx: currentSliderValues.length = " + currentSliderValues.length );
     if ( currentSliderValues.length > 3 ) {
       localStorage.setItem( 'sliderValues', JSON.stringify(currentSliderValues) );
@@ -214,7 +246,8 @@ function FixedContainer() {
     console.log( "Second useEffect in FixedContainer in Create.tsx: imageCharArray.toString() = " + imageCharArray.toString() );
     console.log( "Second useEffect in FixedContainer in Create.tsx: thisImageString = " + thisImageString );
     localStorage.setItem( 'imageString', JSON.stringify(thisImageString) );
-    console.log( "FixedContainer in Create.tsx: saved imageCharArray->thisImageString as imageString." );
+    console.log( "FixedContainer in Create.tsx: saved imageCharArray->thisImageString in local storage as imageString." );
+    console.log( "Exiting second useEffect in FixedContainer() in Create.tsx" );
   }, [currentSliderValues]);
 
   storedSliderValues.opacityValue = currentSliderValues[0];
@@ -243,6 +276,10 @@ function FixedContainer() {
     );
   }
 
+  if ( JungianLib.logLogicFlow ) {
+    console.log( "return()ing from FixedContainer() in Create.tsx" );
+  }
+
   return (
     <div className="container">
       <h4>FixedContainer:</h4>
@@ -263,6 +300,10 @@ function FixedContainer() {
 // Create: default "mainline" component for this menu option
 // function Create( props: JungianLib.JungianImageProps ) {
 function Create() {
+  if ( JungianLib.logLogicFlow ) {
+    console.log( "Top of Create() in Create.tsx: return()ing from Create()" );
+  }
+
   return (
     <div id="create">
       <h2>Create</h2>
