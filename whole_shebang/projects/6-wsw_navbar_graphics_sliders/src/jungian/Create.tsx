@@ -26,6 +26,7 @@ const draw = (context: CanvasRenderingContext2D) => {
   if ( JungianLib.logLogicFlow ) {
     console.log( "Top of draw() in Create.tsx" );
   }
+
   const width = JungianLib.canvasWidth;
   const height = JungianLib.canvasHeight;
   const innerSquareWidth = JungianLib.canvasWidth - ( 2 * JungianLib.gridTopX );
@@ -248,6 +249,7 @@ function FixedContainer() {
   }, []);
 
   // Second useEffect: runs when the user moves a slider
+  //   Stores the new slider values and image string in local storage
   useEffect(() => {
     if ( JungianLib.logLogicFlow ) {
       console.log( "Top of second useEffect in FixedContainer() in Create.tsx" );
@@ -260,12 +262,10 @@ function FixedContainer() {
       console.log( "Second useEffect in FixedContainer in Create.tsx: did NOT save currentSliderValues as sliderValues!" );
     }
     if ( imageCharArray.length > JungianLib.gridSize ) {
-      const thisImageString = imageCharArray.join('');
-      console.log( "Second useEffect in FixedContainer in Create.tsx: ready to save imageCharArray->thisImageString as imageString..." );
-      console.log( "Second useEffect in FixedContainer in Create.tsx: imageCharArray.toString() = " + imageCharArray.toString() );
-      console.log( "Second useEffect in FixedContainer in Create.tsx: thisImageString = " + thisImageString );
-      localStorage.setItem( 'imageString', JSON.stringify(thisImageString) );
-      console.log( "Second useEffect in FixedContainer in Create.tsx: saved imageCharArray->thisImageString in local storage as imageString." );
+      // const thisImageString = imageCharArray.join('');
+      console.log( "Second useEffect in FixedContainer in Create.tsx: ready to save storedImageString as imageString" );
+      localStorage.setItem( 'imageString', JSON.stringify(storedImageString) );
+      console.log( "Second useEffect: saved storedImageString = " + storedImageString + " in local storage" );
     } else {
       console.log( "Second useEffect in FixedContainer in Create.tsx: did NOT save imageCharArray as imageString!" );
     }
