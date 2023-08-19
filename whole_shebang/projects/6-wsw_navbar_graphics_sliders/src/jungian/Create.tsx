@@ -210,7 +210,7 @@ function FixedContainer() {
   // First useEffect: runs once
   //   Fetches values from local storage, initializing them if they're not set
   //   Sets currentSliderValues to values from local storage
-  useEffect(() => {
+  useEffect( () => {
     if ( JungianLib.logLogicFlow ) {
       console.log( "Top of first useEffect in FixedContainer() in Create.tsx" );
     }
@@ -246,11 +246,12 @@ function FixedContainer() {
     if ( JungianLib.logLogicFlow ) {
       console.log( "Exiting first useEffect in FixedContainer() in Create.tsx" );
     }
-  }, []);
+    // NOTE! DO NOT DELETE THE EMPTY DEPENDENCY ARRAY!!  DOING SO CAUSES AN INFINITE LOOP!!!
+  }, [] ); // empty dependency array -> this runs just once when the component is mounted
 
   // Second useEffect: runs when the user moves a slider
   //   Stores the new slider values and image string in local storage
-  useEffect(() => {
+  useEffect( () => {
     if ( JungianLib.logLogicFlow ) {
       console.log( "Top of second useEffect in FixedContainer() in Create.tsx" );
     }
@@ -261,18 +262,17 @@ function FixedContainer() {
     } else {
       console.log( "Second useEffect in FixedContainer in Create.tsx: did NOT save currentSliderValues as sliderValues!" );
     }
-    if ( imageCharArray.length > JungianLib.gridSize ) {
-      // const thisImageString = imageCharArray.join('');
+    if ( storedImageString.length > JungianLib.gridSize ) {
       console.log( "Second useEffect in FixedContainer in Create.tsx: ready to save storedImageString as imageString" );
       localStorage.setItem( 'imageString', JSON.stringify(storedImageString) );
       console.log( "Second useEffect: saved storedImageString = " + storedImageString + " in local storage" );
     } else {
-      console.log( "Second useEffect in FixedContainer in Create.tsx: did NOT save imageCharArray as imageString!" );
+      console.log( "Second useEffect in FixedContainer in Create.tsx: NOT saving storedImageString as imageString!" );
     }
     if ( JungianLib.logLogicFlow ) {
       console.log( "Exiting second useEffect in FixedContainer() in Create.tsx" );
     }
-  }, [currentSliderValues]);
+  }, [currentSliderValues] );
 
   storedSliderValues.opacityValue = currentSliderValues[0];
   storedSliderValues.blueVsYellowValue = currentSliderValues[1];
