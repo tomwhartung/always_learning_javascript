@@ -1,4 +1,4 @@
-// 
+//
 // JungianLib.tsx: types and constants used by the Jungian quiz type
 //
 import * as SliderLib from './SliderLib.tsx';
@@ -116,24 +116,28 @@ export function getRandomPrimaryColor( sliderValues: JungianImageProps ) {
 
 // drawStoredImageString: Add a "groja-esque" grid of blue, green, red, and yellow squares
 export const drawStoredImageString = (context: CanvasRenderingContext2D, storedImageString: string) => {
+  if ( logLogicFlow ) {
+    console.log( "Top of draw() in JungianLib.tsx" );
+  }
+
   const width = canvasWidth;
   const height = canvasHeight;
   const innerSquareWidth = canvasWidth - ( 2 * gridTopX );
   const innerSquareHeight = canvasHeight - ( 2 * gridTopY );
   let imageCharArray: string[] = [];
 
-  // Paint it all black
+  // Paint it all black - this is how we get the border
   context.fillStyle = "rgb(0, 0, 0)";
   context.fillRect(0, 0, width, height);
 
-  // Paint the inner square white
+  // Paint the inner square, where the actual image will be, white
   context.fillStyle = "rgb(255, 255, 255)";
   context.fillRect(gridTopY, gridTopY, innerSquareWidth, innerSquareHeight);
 
   let squareTopX = gridTopX;
   let squareTopY = gridTopY;
   let colorLetter = "B";
-  let imgStrIdx = 0;
+
   const opacityPercent = globalProps.opacityPercent;
   // console.log( "draw: globalProps.opacityPercent = " + globalProps.opacityPercent.toString() );
   // console.log( "draw: opacityPercent = " + opacityPercent.toString() );
@@ -141,8 +145,11 @@ export const drawStoredImageString = (context: CanvasRenderingContext2D, storedI
   console.log( "draw() in JungianLib.tsx: storedImageString.length = '" + storedImageString.length + "'" );
 
   if ( storedImageString.length > 0 ) {
-    console.log( "draw() in JungianLib.tsx: top of the for loop" );
+    if ( logLogicFlow ) {
+      console.log( "draw() in JungianLib.tsx: top of the for loop" );
+    }
     imageCharArray = storedImageString.split( "" );
+    let imgStrIdx = 0;
     for ( let row=0; row < gridSize; row++ ) {
       squareTopY = gridTopY + (row * squareSize);
       for ( let col=0; col < gridSize; col++ ){
@@ -164,6 +171,11 @@ export const drawStoredImageString = (context: CanvasRenderingContext2D, storedI
         context.fillRect( squareTopX, squareTopY, squareSize, squareSize );
       }
     }
+  } else if ( logLogicFlow ) {
+    console.log( "draw() in JungianLib.tsx: storedImageString is empty, hope that's ok...!" );
+  }
+  if ( logLogicFlow ) {
+    console.log( "Exiting draw() in JungianLib.tsx" );
   }
 };
 
