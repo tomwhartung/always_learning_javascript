@@ -19,7 +19,6 @@ const storedSliderValues: JungianLib.JungianImageProps = {
 let storedImageString = "";
 let drawFreshImage = false;
 
-const defaultImageString = "";
 let imageCharArray: string[] = [];
 
 // draw: Add a "groja-esque" grid of blue, green, red, and yellow squares
@@ -193,6 +192,7 @@ function FixedContainer() {
     console.log( "Top of FixedContainer() in Create.tsx" );
   }
 
+  const defaultImageString = "";
   const [currentSliderValues, setCurrentSliderValues] = useState([defaultSliderValue]);
   // const [currentImageString, setCurrentImageString] = useState(defaultImageString);
 
@@ -202,8 +202,6 @@ function FixedContainer() {
     const nextSliderValues = currentSliderValues.slice();
     nextSliderValues[col] = Number(val);
     setCurrentSliderValues(nextSliderValues);
-    // imageCharArray = [];                  // When a slider value changes, we need to draw a new image
-    // setCurrentImageString(defaultImageString);   // When a slider value changes, we need to draw a new image
     console.log( "handleChangeArrayOfNumbers in FixedContainer: setting drawFreshImage = true BECAUSE PRESUMABLY A SLIDER WAS MOVED" );
     drawFreshImage = true;                  // When a slider value changes, we need to draw a new image
   }
@@ -224,11 +222,11 @@ function FixedContainer() {
     } else {
       console.log( "First useEffect in FixedContainer() in Create.tsx: sliderValues NOT FOUND in localStorage" );
       console.log( "First useEffect: saving default values for sliderValues in localStorage" );
-      // setCurrentSliderValues( defaultSliderValues );
       const defaultSliderValues = [ defaultSliderValue, defaultSliderValue, defaultSliderValue, defaultSliderValue ];
+      // setCurrentSliderValues( defaultSliderValues );
+      // storedSliderValues = defaultSliderValues;
       localStorage.setItem( 'sliderValues', JSON.stringify(defaultSliderValues) );
       setCurrentSliderValues( defaultSliderValues );
-      // storedSliderValues = defaultSliderValues;
     }
     const rawStoredImageString = localStorage.getItem( 'imageString' );
     console.log( "First useEffect in FixedContainer() in Create.tsx: rawStoredImageString = " + rawStoredImageString );
@@ -240,8 +238,6 @@ function FixedContainer() {
     } else {
       console.log( "First useEffect in FixedContainer() in Create.tsx: imageString NOT FOUND in localStorage" );
       console.log( "First useEffect: saving defaultImageString for imageString in localStorage" );
-      // console.log( "imageString NOT FOUND so setting drawFreshImage = true" );
-      // drawFreshImage = true;
       localStorage.setItem( 'imageString', JSON.stringify(defaultImageString) );
       // storedImageString = defaultImageString;
       // setCurrentImageString(storedImageString);
