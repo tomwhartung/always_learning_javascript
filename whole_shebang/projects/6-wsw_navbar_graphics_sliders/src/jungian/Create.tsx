@@ -36,7 +36,7 @@ const draw = (context: CanvasRenderingContext2D) => {
   context.fillStyle = "rgb(0, 0, 0)";
   context.fillRect(0, 0, width, height);
 
-  // Paint the inner square white
+  // Paint the inner square, where the actual image will be, white
   context.fillStyle = "rgb(255, 255, 255)";
   context.fillRect(JungianLib.gridTopY, JungianLib.gridTopY, innerSquareWidth, innerSquareHeight);
 
@@ -81,32 +81,7 @@ const draw = (context: CanvasRenderingContext2D) => {
     drawFreshImage = false;
     storedImageString = imageCharArray.join('');
   } else if ( storedImageString.length > 0 ) {
-    if ( JungianLib.logLogicFlow ) {
-      console.log( "draw() in Create.tsx: drawing storedImageString = " + storedImageString );
-    }
-    imageCharArray = storedImageString.split( "" );
-    let imgStrIdx = 0;
-    console.log( "draw() in Create.tsx: drawing the image saved in localStorage..." );
-    for ( let row=0; row < JungianLib.gridSize; row++ ) {
-      squareTopY = JungianLib.gridTopY + (row * JungianLib.squareSize);
-      for ( let col=0; col < JungianLib.gridSize; col++ ){
-        colorLetter = imageCharArray[imgStrIdx++];
-      //console.log( "colorLetter = " + colorLetter );
-        squareTopX = JungianLib.gridTopX + (col * JungianLib.squareSize);
-        if ( colorLetter == "B" ) {
-          context.fillStyle = "rgba(0, 0, 255, " + opacityPercent.toString() + ")";
-        } else if ( colorLetter == "G" ) {
-          context.fillStyle = "rgba(0, 255, 0, " + opacityPercent.toString() + ")";
-        } else if ( colorLetter == "R" ) {
-          context.fillStyle = "rgba(255, 0, 0, " + opacityPercent.toString() + ")";
-        } else if ( colorLetter == "Y" ) {
-          context.fillStyle = "rgba(255, 255, 0, " + opacityPercent.toString() + ")";
-        } else {
-          context.fillStyle = "rgb(255, 255, 255, " + opacityPercent.toString() + ")";
-        }
-        context.fillRect( squareTopX, squareTopY, JungianLib.squareSize, JungianLib.squareSize );
-      }
-    }
+    JungianLib.drawStoredImageString( context, storedImageString );
   } else {
     if ( JungianLib.logLogicFlow ) {
       console.log( "draw() in Create.tsx: drawFreshImage is false and storedImageString is empty!" );
