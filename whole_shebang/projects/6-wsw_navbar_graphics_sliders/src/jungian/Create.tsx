@@ -16,6 +16,7 @@ const storedSliderValues: JungianLib.JungianImageProps = {
   greenVsRedValue: defaultSliderValue,
   bAndYVsGandRValue: defaultSliderValue,
 };
+
 let storedImageString = "";
 let drawFreshImage = false;
 
@@ -43,9 +44,11 @@ const draw = (context: CanvasRenderingContext2D) => {
   let squareTopX = JungianLib.gridTopX;
   let squareTopY = JungianLib.gridTopY;
   let colorLetter = "B";
-  const opacityPercent = JungianLib.globalProps.opacityPercent;
+
+// const opacityPercent = JungianLib.globalProps.opacityPercent;
 // console.log( "draw: JungianLib.globalProps.opacityPercent = " + JungianLib.globalProps.opacityPercent.toString() );
 // console.log( "draw: opacityPercent = " + opacityPercent.toString() );
+  const opacityPercent = JungianLib.valueToPct( storedSliderValues.opacityValue );
 
   if ( drawFreshImage ) {
     if ( JungianLib.logLogicFlow ) {
@@ -81,7 +84,7 @@ const draw = (context: CanvasRenderingContext2D) => {
     drawFreshImage = false;
     storedImageString = imageCharArray.join('');
   } else if ( storedImageString.length > 0 ) {
-    JungianLib.drawStoredImageString( context, storedImageString );
+    JungianLib.drawStoredImageString( context, storedImageString, storedSliderValues.opacityValue );
   } else {
     if ( JungianLib.logLogicFlow ) {
       console.log( "draw() in Create.tsx: drawFreshImage is false and storedImageString is empty!" );
