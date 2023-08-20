@@ -115,7 +115,7 @@ export function getRandomPrimaryColor( sliderValues: JungianImageProps ) {
 }
 
 // drawStoredImageString: Add a "groja-esque" grid of blue, green, red, and yellow squares
-export const drawStoredImageString = (context: CanvasRenderingContext2D, storedImageString: string) => {
+export const drawStoredImageString = (context: CanvasRenderingContext2D, storedImageString: string, opacityValue: number) => {
   if ( logLogicFlow ) {
     console.log( "Top of draw() in JungianLib.tsx" );
   }
@@ -137,8 +137,9 @@ export const drawStoredImageString = (context: CanvasRenderingContext2D, storedI
   let squareTopX = gridTopX;
   let squareTopY = gridTopY;
   let colorLetter = "B";
+  const opacityPercent = valueToPct( opacityValue );
 
-  const opacityPercent = globalProps.opacityPercent;
+  // const opacityPercent = globalProps.opacityPercent;
   // console.log( "draw: globalProps.opacityPercent = " + globalProps.opacityPercent.toString() );
   // console.log( "draw: opacityPercent = " + opacityPercent.toString() );
   // console.log( "draw() in JungianLib.tsx: storedImageString = '" + storedImageString + "'" );
