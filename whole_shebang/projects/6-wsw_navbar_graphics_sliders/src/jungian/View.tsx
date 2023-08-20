@@ -9,10 +9,11 @@ import {defaultSliderValue} from '../lib/SliderLib.tsx';
 import * as JungianLib from '../lib/JungianLib.tsx';
 
 let storedImageString = "";
+let opacityValue = defaultSliderValue;
 
-// draw: Add a "groja-esque" grid of blue, green, red, and yellow squares
+// draw: draw the grid of blue, green, red, and yellow squares defined in storedImageString
 const draw = (context: CanvasRenderingContext2D) => {
-  JungianLib.drawStoredImageString( context, storedImageString );
+  JungianLib.drawStoredImageString( context, storedImageString, opacityValue );
 };
 
 // DFlexViewSliderValuesAndImage: function component to display a jungian image
@@ -31,6 +32,8 @@ function DFlexViewSliderValuesAndImage( props:JungianLib.JungianImageProps ) {
   console.log( "DFlexViewSliderValuesAndImage() in View.tsx: props.blueVsYellowValue = " + props.blueVsYellowValue );
   console.log( "DFlexViewSliderValuesAndImage() in View.tsx: props.greenVsRedValue = " + props.greenVsRedValue );
   console.log( "DFlexViewSliderValuesAndImage() in View.tsx: props.bAndYVsGandRValue = " + props.bAndYVsGandRValue );
+
+  opacityValue = props.opacityValue;
 
   return (
     <>
