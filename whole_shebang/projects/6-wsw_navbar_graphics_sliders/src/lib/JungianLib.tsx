@@ -1,21 +1,6 @@
 //
 // JungianLib.tsx: types and constants used by the Jungian quiz type
 //
-import * as SliderLib from './SliderLib.tsx';
-
-// -----------------
-// TEMPORARY GLOBAL:
-// -----------------
-// import { defaultSliderValue } from './SliderLib.tsx'
-// ***************************************************************************************************************
-// globalProps: A TEMPORARY GLOBAL variable to be replaced by a Context or local db or whatever in a later Project
-// ***************************************************************************************************************
-export const globalProps: JungianImagePercents = {
-  opacityPercent: valueToPct( SliderLib.defaultSliderValue ),
-  blueVsYellowPercent: valueToPct( SliderLib.defaultSliderValue ),
-  greenVsRedPercent: valueToPct( SliderLib.defaultSliderValue ),
-  bAndYVsGandRPercent: valueToPct( SliderLib.defaultSliderValue ),
-}
 
 // Types:
 // ------
@@ -139,10 +124,6 @@ export const drawStoredImageString = (context: CanvasRenderingContext2D, storedI
   let colorLetter = "B";
   const opacityPercent = valueToPct( opacityValue );
 
-  // const opacityPercent = globalProps.opacityPercent;
-  // console.log( "draw: globalProps.opacityPercent = " + globalProps.opacityPercent.toString() );
-  // console.log( "draw: opacityPercent = " + opacityPercent.toString() );
-  // console.log( "draw() in JungianLib.tsx: storedImageString = '" + storedImageString + "'" );
   console.log( "draw() in JungianLib.tsx: storedImageString.length = '" + storedImageString.length + "'" );
 
   if ( storedImageString.length > 0 ) {
