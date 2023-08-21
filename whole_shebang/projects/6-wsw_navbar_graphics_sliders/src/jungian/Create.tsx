@@ -179,7 +179,7 @@ function FixedContainer() {
     drawFreshImage = true;                  // When a slider value changes, we need to draw a new image
   }
 
-  // First useEffect: runs once
+  // First useEffect: (presumably) runs once when component is mounted (but I have my doubts...)
   //   Fetches values from local storage, initializing them if they're not set
   //   Sets currentSliderValues to values from local storage
   useEffect( () => {
@@ -221,7 +221,7 @@ function FixedContainer() {
     // NOTE! DO NOT DELETE THE EMPTY DEPENDENCY ARRAY!!  DOING SO CAUSES AN INFINITE LOOP!!!
   }, [] ); // empty dependency array -> this runs just once when the component is mounted
 
-  // Second useEffect: runs when the user moves a slider
+  // Second useEffect: runs when component is mounted AND when the user moves a slider
   //   Stores the new slider values and image string in local storage
   useEffect( () => {
     if ( JungianLib.logLogicFlow ) {
@@ -240,6 +240,8 @@ function FixedContainer() {
       console.log( "Second useEffect: saved storedImageString = " + storedImageString + " in local storage" );
     } else {
       console.log( "Second useEffect in FixedContainer in Create.tsx: NOT saving storedImageString as imageString!" );
+      console.log( "Second useEffect: setting drawFreshImage = true" );
+      drawFreshImage = true;
     }
     if ( JungianLib.logLogicFlow ) {
       console.log( "Exiting second useEffect in FixedContainer() in Create.tsx" );
