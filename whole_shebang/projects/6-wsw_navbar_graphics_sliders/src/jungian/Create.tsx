@@ -45,9 +45,6 @@ const draw = (context: CanvasRenderingContext2D) => {
   let squareTopY = JungianLib.gridTopY;
   let colorLetter = "B";
 
-// const opacityPercent = JungianLib.globalProps.opacityPercent;
-// console.log( "draw: JungianLib.globalProps.opacityPercent = " + JungianLib.globalProps.opacityPercent.toString() );
-// console.log( "draw: opacityPercent = " + opacityPercent.toString() );
   const opacityPercent = JungianLib.valueToPct( storedSliderValues.opacityValue );
 
   if ( drawFreshImage ) {
@@ -103,9 +100,6 @@ function FixedSizeImageCards( props: JungianLib.JungianImageProps ) {
 
   const width = JungianLib.canvasWidth;
   const height = JungianLib.canvasHeight;
-
-  // **TEMPORARILY** Save the raw opacityPercent slider value as a percentage in a **GLOBAL OBJECT**
-  JungianLib.globalProps.opacityPercent = JungianLib.valueToPct( props.opacityValue );
 
   function handleImageClick(event: React.MouseEvent<HTMLElement>) {
     const rect = (event.target as HTMLElement).getBoundingClientRect();
