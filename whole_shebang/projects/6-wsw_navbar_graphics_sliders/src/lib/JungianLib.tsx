@@ -49,6 +49,8 @@ export const colorLetters = [
 
 export const logLogicFlow = true;
 
+export const defaultImageString = "";
+
 // Note: At some point, we may want to make some of these variables set by the user
 export const squareSize = 15;    // Size of each square
 // export const gridSize = 19;      // No. of squares in each row and column
@@ -100,7 +102,7 @@ export function getRandomPrimaryColor( sliderValues: JungianImageProps ) {
 }
 
 // drawStoredImageString: Add a "groja-esque" grid of blue, green, red, and yellow squares
-export const drawStoredImageString = (context: CanvasRenderingContext2D, storedImageString: string, opacityValue: number) => {
+export function drawStoredImageString( context: CanvasRenderingContext2D, storedImageString: string, opacityValue: number ) {
   if ( logLogicFlow ) {
     console.log( "Top of draw() in JungianLib.tsx" );
   }
@@ -159,5 +161,5 @@ export const drawStoredImageString = (context: CanvasRenderingContext2D, storedI
   if ( logLogicFlow ) {
     console.log( "Exiting draw() in JungianLib.tsx" );
   }
-};
+}
 
