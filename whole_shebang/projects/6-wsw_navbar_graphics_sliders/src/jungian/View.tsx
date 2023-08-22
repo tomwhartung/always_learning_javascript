@@ -7,6 +7,7 @@ import { useEffect, useState } from 'react';
 import Canvas from '../lib/CanvasLib.tsx';
 import {defaultSliderValue} from '../lib/SliderLib.tsx';
 import * as JungianLib from '../lib/JungianLib.tsx';
+import * as JungianLSLib from '../lib/JungianLocalStorageLib.tsx';
 
 let storedImageString = "";
 let opacityValue = defaultSliderValue;
@@ -18,6 +19,10 @@ const draw = (context: CanvasRenderingContext2D) => {
 
 // DFlexViewSliderValuesAndImage: function component to display a jungian image
 function DFlexViewSliderValuesAndImage( props:JungianLib.JungianImageProps ) {
+  if ( JungianLib.logLogicFlow ) {
+    console.log( "Top of DFlexViewSliderValuesAndImage() in View.tsx" );
+  }
+
   const width = JungianLib.canvasWidth;
   const height = JungianLib.canvasHeight;
 
@@ -28,12 +33,16 @@ function DFlexViewSliderValuesAndImage( props:JungianLib.JungianImageProps ) {
     console.log( "Click on resizable image at (" + pixelX.toString() + ", " + pixelY.toString() + ")" );
   }
 
-  console.log( "DFlexViewSliderValuesAndImage() in View.tsx: props.opacityValue = " + props.opacityValue );
-  console.log( "DFlexViewSliderValuesAndImage() in View.tsx: props.blueVsYellowValue = " + props.blueVsYellowValue );
-  console.log( "DFlexViewSliderValuesAndImage() in View.tsx: props.greenVsRedValue = " + props.greenVsRedValue );
-  console.log( "DFlexViewSliderValuesAndImage() in View.tsx: props.bAndYVsGandRValue = " + props.bAndYVsGandRValue );
+  // console.log( "DFlexViewSliderValuesAndImage() in View.tsx: props.opacityValue = " + props.opacityValue );
+  // console.log( "DFlexViewSliderValuesAndImage() in View.tsx: props.blueVsYellowValue = " + props.blueVsYellowValue );
+  // console.log( "DFlexViewSliderValuesAndImage() in View.tsx: props.greenVsRedValue = " + props.greenVsRedValue );
+  // console.log( "DFlexViewSliderValuesAndImage() in View.tsx: props.bAndYVsGandRValue = " + props.bAndYVsGandRValue );
 
   opacityValue = props.opacityValue;
+
+  if ( JungianLib.logLogicFlow ) {
+    console.log( "Return()ing from DFlexViewSliderValuesAndImage() in View.tsx" );
+  }
 
   return (
     <>
@@ -62,9 +71,16 @@ function DFlexViewSliderValuesAndImage( props:JungianLib.JungianImageProps ) {
 
 // DFlexContainer: function component containing a "d-flex" MDB container
 function DFlexContainer() {
+  if ( JungianLib.logLogicFlow ) {
+    console.log( "Top of DFlexContainer() in View.tsx" );
+  }
+
   const [currentSliderValues, setCurrentSliderValues] = useState([defaultSliderValue]);
 
   useEffect(() => {
+    if ( JungianLib.logLogicFlow ) {
+      console.log( "Top of useEffect in DFlexContainer() in View.tsx" );
+    }
     const rawStoredSliderValues = localStorage.getItem( 'sliderValues' );
     if ( rawStoredSliderValues ) {
       console.log( "useEffect() in DFlexContainer() in View.tsx: found rawStoredSliderValues.toString()  = " + rawStoredSliderValues.toString() );
@@ -77,12 +93,9 @@ function DFlexContainer() {
     } else {
        console.log( "useEffect() in DFlexContainer() in View.tsx: sliderValues NOT FOUND in localStorage!!!" );
     }
-    const rawStoredImageString = localStorage.getItem( 'imageString' );
-    if ( rawStoredImageString ) {
-      storedImageString = JSON.parse( rawStoredImageString );
-      //   console.log( "DFlexContainer() in View.tsx: storedImageString = '" + storedImageString + "'" );
-      // } else {
-      //    console.log( "DFlexContainer() in View.tsx: imageString NOT FOUND in localStorage!!!" );
+    storedImageString = JungianLSLib.getImageString();
+    if ( JungianLib.logLogicFlow ) {
+      console.log( "Exiting useEffect in DFlexContainer() in View.tsx: storedImageString = '" + storedImageString + "'" );
     }
   }, []);
 
@@ -97,6 +110,10 @@ function DFlexContainer() {
     createOrRefineMessage = "You must use the Create option to create an image before you can View it.";
   } else {
     createOrRefineMessage = "You can now use the Refine option to refine your image.";
+  }
+
+  if ( JungianLib.logLogicFlow ) {
+    console.log( "Return()ing from DFlexContainer() in View.tsx" );
   }
 
   return (
@@ -115,6 +132,10 @@ function DFlexContainer() {
 
 // View: default "mainline" component for this menu option
 function View() {
+  if ( JungianLib.logLogicFlow ) {
+    console.log( "Top of View() in View.tsx: return()ing from View()" );
+  }
+
   return (
     <div id="view">
       <h2>View</h2>
