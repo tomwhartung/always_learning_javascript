@@ -8,6 +8,7 @@ import Canvas from '../lib/CanvasLib.tsx';
 import {defaultSliderValue} from '../lib/SliderLib.tsx';
 import SliderCard from '../lib/SliderCard.tsx';
 import * as JungianLib from '../lib/JungianLib.tsx';
+import * as JungianLSLib from '../lib/JungianLocalStorageLib.tsx';
 
 // These are the slider values we use when drawing the image
 const storedSliderValues: JungianLib.JungianImageProps = {
@@ -165,9 +166,10 @@ function FixedContainer() {
     console.log( "Top of FixedContainer() in Create.tsx" );
   }
 
-  const defaultImageString = "";
+  // const defaultImageString = "";   // Moved to JungianLib on 2023-22-08
+
   const [currentSliderValues, setCurrentSliderValues] = useState([defaultSliderValue]);
-  // const [currentImageString, setCurrentImageString] = useState(defaultImageString);
+  // const [currentImageString, setCurrentImageString] = useState(JungianLib.defaultImageString);
 
   function handleChangeArrayOfNumbers( evt:ChangeEvent, col:number ) {
     const val = (evt.target as HTMLInputElement).value;
@@ -202,18 +204,29 @@ function FixedContainer() {
       setCurrentSliderValues( defaultSliderValues );
     }
     const rawStoredImageString = localStorage.getItem( 'imageString' );
+    let tmpImageString = JungianLib.defaultImageString;
     console.log( "First useEffect in FixedContainer() in Create.tsx: rawStoredImageString = " + rawStoredImageString );
     if ( rawStoredImageString && rawStoredImageString.length > 0 ) {
       console.log( "First useEffect in FixedContainer() in Create.tsx: found the rawStoredImageString" );
       const parsedImageString = JSON.parse( rawStoredImageString );
       console.log( "First useEffect: parsedImageString = '" + parsedImageString + "'" );
       storedImageString = parsedImageString;
+      tmpImageString = storedImageString;
     } else {
       console.log( "First useEffect in FixedContainer() in Create.tsx: imageString NOT FOUND in localStorage" );
-      console.log( "First useEffect: saving defaultImageString for imageString in localStorage" );
-      localStorage.setItem( 'imageString', JSON.stringify(defaultImageString) );
-      // storedImageString = defaultImageString;
+      console.log( "First useEffect: saving JungianLib.defaultImageString for imageString in localStorage" );
+      localStorage.setItem( 'imageString', JSON.stringify(JungianLib.defaultImageString) );
+      tmpImageString = JungianLib.defaultImageString;
+      // storedImageString = JungianLib.defaultImageString;
       // setCurrentImageString(storedImageString);
+    }
+    const jLSLibImageString = JungianLSLib.getImageString();
+    console.log( "First useEffect in FixedContainer() in Create.tsx: jLSLibImageString = '" + jLSLibImageString + "'" );
+    console.log( "First useEffect in FixedContainer() in Create.tsx: tmpImageString = '" + tmpImageString + "'" );
+    if ( tmpImageString === jLSLibImageString ) {
+      console.log( "First useEffect in FixedContainer() in Create.tsx: jLSLibImageString === tmpImageString" );
+    } else {
+      console.log( "FIRST USEEFFECT IN FIXEDCONTAINER() IN CREATE.TSX: jLSLibImageString NOT === tmpImageString" );
     }
     if ( JungianLib.logLogicFlow ) {
       console.log( "Exiting first useEffect in FixedContainer() in Create.tsx" );
