@@ -2,6 +2,34 @@
 // JungianLocalStorageLib.tsx: code used to store and access Jungian data in localStorage
 //
 import * as JungianLib from '../lib/JungianLib.tsx';
+import {defaultSliderValue} from './SliderLib.tsx';
+
+// getSliderValues: returns the current sliderValues from local storage
+export function getSliderValues(): number[] {
+  if ( JungianLib.logLogicFlow ) {
+    console.log( "Top of getSliderValues() in JungianLocalStorageLib.tsx" );
+  }
+
+//const defaultSliderValues = [ defaultSliderValue, defaultSliderValue, defaultSliderValue, defaultSliderValue ];
+  let sliderValues = [ defaultSliderValue ];
+  const rawStoredSliderValues = localStorage.getItem( 'sliderValues' );
+
+  if ( rawStoredSliderValues ) {
+    console.log( "getSliderValues in JungianLocalStorageLib.tsx: found the rawStoredSliderValues" );
+    sliderValues = JSON.parse( rawStoredSliderValues );
+    console.log( "getSliderValues: sliderValues.toString() = " + sliderValues.toString() );
+  } else {
+    console.log( "getSliderValues in JungianLocalStorageLib.tsx: sliderValues NOT FOUND in localStorage" );
+    console.log( "getSliderValues: returning an array containing a single defaultSliderValue" );
+  }
+
+  if ( JungianLib.logLogicFlow ) {
+    console.log( "Return()ing '" + sliderValues.toString() + "' from getSliderValues() in JungianLocalStorageLib.tsx" );
+  }
+
+  return sliderValues;
+}
+
 
 // setImageString: sets the current imageString to the specified value
 //   returns true if successful else false if the newImageString is too short
