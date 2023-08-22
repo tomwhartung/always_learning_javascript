@@ -224,9 +224,9 @@ function FixedContainer() {
     console.log( "First useEffect in FixedContainer() in Create.tsx: jLSLibImageString = '" + jLSLibImageString + "'" );
     console.log( "First useEffect in FixedContainer() in Create.tsx: tmpImageString = '" + tmpImageString + "'" );
     if ( tmpImageString === jLSLibImageString ) {
-      console.log( "First useEffect in FixedContainer() in Create.tsx: jLSLibImageString === tmpImageString" );
+      console.log( "First useEffect in FixedContainer() in Create.tsx: jLSLibImageString === tmpImageString YAY IT WORKS OK!!" );
     } else {
-      console.log( "FIRST USEEFFECT IN FIXEDCONTAINER() IN CREATE.TSX: jLSLibImageString NOT === tmpImageString" );
+      console.log( "FIRST USEEFFECT IN FIXEDCONTAINER() IN CREATE.TSX: jLSLibImageString NOT === tmpImageString OH NO IT'S BROKEN!!" );
     }
     if ( JungianLib.logLogicFlow ) {
       console.log( "Exiting first useEffect in FixedContainer() in Create.tsx" );
@@ -247,14 +247,20 @@ function FixedContainer() {
     } else {
       console.log( "Second useEffect in FixedContainer in Create.tsx: did NOT save currentSliderValues as sliderValues!" );
     }
-    if ( storedImageString.length > JungianLib.gridSize ) {
-      console.log( "Second useEffect in FixedContainer in Create.tsx: ready to save storedImageString as imageString" );
-      localStorage.setItem( 'imageString', JSON.stringify(storedImageString) );
-      console.log( "Second useEffect: saved storedImageString = " + storedImageString + " in local storage" );
+  //if ( storedImageString.length > JungianLib.gridSize ) {
+  //  console.log( "Second useEffect in FixedContainer in Create.tsx: ready to save storedImageString as imageString" );
+  //  localStorage.setItem( 'imageString', JSON.stringify(storedImageString) );
+  //  console.log( "Second useEffect: saved storedImageString = " + storedImageString + " in local storage" );
+  //} else {
+  //  console.log( "Second useEffect in FixedContainer in Create.tsx: NOT saving storedImageString as imageString!" );
+  //  console.log( "Second useEffect: setting drawFreshImage = true" );
+  //  drawFreshImage = true;
+  //}
+    if ( JungianLSLib.setImageString(storedImageString) ) {
+      console.log( "Second useEffect in FixedContainer in Create.tsx: saved storedImageString as imageString ok" );
     } else {
-      console.log( "Second useEffect in FixedContainer in Create.tsx: NOT saving storedImageString as imageString!" );
-      console.log( "Second useEffect: setting drawFreshImage = true" );
       drawFreshImage = true;
+      console.log( "Second useEffect in FixedContainer in Create.tsx: DID NOT SAVE storedImageString as imageString!" );
     }
     if ( JungianLib.logLogicFlow ) {
       console.log( "Exiting second useEffect in FixedContainer() in Create.tsx" );
