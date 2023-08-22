@@ -11,6 +11,7 @@ import * as JungianLib from '../lib/JungianLib.tsx';
 import * as JungianLSLib from '../lib/JungianLocalStorageLib.tsx';
 
 // These are the slider values we use when drawing the image
+// let storedSliderValues: JungianLib.JungianImageProps = {
 const storedSliderValues: JungianLib.JungianImageProps = {
   opacityValue: defaultSliderValue,
   blueVsYellowValue: defaultSliderValue,
@@ -186,18 +187,32 @@ function FixedContainer() {
     if ( JungianLib.logLogicFlow ) {
       console.log( "Top of first useEffect in FixedContainer() in Create.tsx" );
     }
-    const rawStoredSliderValues = localStorage.getItem( 'sliderValues' );
-    if ( rawStoredSliderValues ) {
-      console.log( "First useEffect in FixedContainer() in Create.tsx: found the rawStoredSliderValues" );
-      const parsedSliderValues = JSON.parse( rawStoredSliderValues );
-      console.log( "First useEffect: parsedSliderValues.toString() = " + parsedSliderValues.toString() );
-      setCurrentSliderValues( parsedSliderValues );
+    // const rawStoredSliderValues = localStorage.getItem( 'sliderValues' );
+    // if ( rawStoredSliderValues ) {
+    //   console.log( "First useEffect in FixedContainer() in Create.tsx: found the rawStoredSliderValues" );
+    //   const parsedSliderValues = JSON.parse( rawStoredSliderValues );
+    //   console.log( "First useEffect: parsedSliderValues.toString() = " + parsedSliderValues.toString() );
+    //   setCurrentSliderValues( parsedSliderValues );
+    // } else {
+    //   console.log( "First useEffect in FixedContainer() in Create.tsx: sliderValues NOT FOUND in localStorage" );
+    //   console.log( "First useEffect: saving default values for sliderValues in localStorage" );
+    //   const defaultSliderValues = [ defaultSliderValue, defaultSliderValue, defaultSliderValue, defaultSliderValue ];
+    //   // setCurrentSliderValues( defaultSliderValues );
+    //   // storedSliderValues = defaultSliderValues;
+    //   localStorage.setItem( 'sliderValues', JSON.stringify(defaultSliderValues) );
+    //   setCurrentSliderValues( defaultSliderValues );
+    // }
+    const jungianLSLSliderValues = JungianLSLib.getSliderValues();
+    if ( jungianLSLSliderValues.length > 3 ) {
+      console.log( "First useEffect in FixedContainer() in Create.tsx: found the jungianLSLSliderValues" );
+      console.log( "First useEffect: jungianLSLSliderValues.toString() = " + jungianLSLSliderValues.toString() );
+      setCurrentSliderValues( jungianLSLSliderValues );
     } else {
-      console.log( "First useEffect in FixedContainer() in Create.tsx: sliderValues NOT FOUND in localStorage" );
+      console.log( "First useEffect in FixedContainer() in Create.tsx: jungianLSLSliderValues NOT FOUND in localStorage" );
       console.log( "First useEffect: saving default values for sliderValues in localStorage" );
       const defaultSliderValues = [ defaultSliderValue, defaultSliderValue, defaultSliderValue, defaultSliderValue ];
-      // setCurrentSliderValues( defaultSliderValues );
-      // storedSliderValues = defaultSliderValues;
+    //   // setCurrentSliderValues( defaultSliderValues );
+    //   // storedSliderValues = defaultSliderValues;
       localStorage.setItem( 'sliderValues', JSON.stringify(defaultSliderValues) );
       setCurrentSliderValues( defaultSliderValues );
     }
