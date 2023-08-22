@@ -81,18 +81,12 @@ function DFlexContainer() {
     if ( JungianLib.logLogicFlow ) {
       console.log( "Top of useEffect in DFlexContainer() in View.tsx" );
     }
-    const rawStoredSliderValues = localStorage.getItem( 'sliderValues' );
-    if ( rawStoredSliderValues ) {
-      console.log( "useEffect() in DFlexContainer() in View.tsx: found rawStoredSliderValues.toString()  = " + rawStoredSliderValues.toString() );
-      const storedSliderValues = JSON.parse( rawStoredSliderValues );
-      // console.log( "useEffect in DFlexContainer() in View.tsx: storedSliderValues[0] = " + storedSliderValues[0] );
-      // console.log( "useEffect in DFlexContainer() in View.tsx: storedSliderValues[1] = " + storedSliderValues[1] );
-      // console.log( "useEffect in DFlexContainer() in View.tsx: storedSliderValues[2] = " + storedSliderValues[2] );
-      // console.log( "useEffect in DFlexContainer() in View.tsx: storedSliderValues[3] = " + storedSliderValues[3] );
-      setCurrentSliderValues( storedSliderValues );
-    } else {
-       console.log( "useEffect() in DFlexContainer() in View.tsx: sliderValues NOT FOUND in localStorage!!!" );
-    }
+    const storedSliderValues = JungianLSLib.getSliderValues();
+    setCurrentSliderValues( storedSliderValues );
+    // console.log( "useEffect in DFlexContainer() in View.tsx: storedSliderValues[0] = " + storedSliderValues[0] );
+    // console.log( "useEffect in DFlexContainer() in View.tsx: storedSliderValues[1] = " + storedSliderValues[1] );
+    // console.log( "useEffect in DFlexContainer() in View.tsx: storedSliderValues[2] = " + storedSliderValues[2] );
+    // console.log( "useEffect in DFlexContainer() in View.tsx: storedSliderValues[3] = " + storedSliderValues[3] );
     storedImageString = JungianLSLib.getImageString();
     if ( JungianLib.logLogicFlow ) {
       console.log( "Exiting useEffect in DFlexContainer() in View.tsx: storedImageString = '" + storedImageString + "'" );
