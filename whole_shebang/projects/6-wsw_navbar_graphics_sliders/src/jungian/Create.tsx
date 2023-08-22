@@ -166,8 +166,6 @@ function FixedContainer() {
     console.log( "Top of FixedContainer() in Create.tsx" );
   }
 
-  // const defaultImageString = "";   // Moved to JungianLib on 2023-22-08
-
   const [currentSliderValues, setCurrentSliderValues] = useState([defaultSliderValue]);
   // const [currentImageString, setCurrentImageString] = useState(JungianLib.defaultImageString);
 
@@ -203,31 +201,31 @@ function FixedContainer() {
       localStorage.setItem( 'sliderValues', JSON.stringify(defaultSliderValues) );
       setCurrentSliderValues( defaultSliderValues );
     }
-    const rawStoredImageString = localStorage.getItem( 'imageString' );
-    let tmpImageString = JungianLib.defaultImageString;
-    console.log( "First useEffect in FixedContainer() in Create.tsx: rawStoredImageString = " + rawStoredImageString );
-    if ( rawStoredImageString && rawStoredImageString.length > 0 ) {
-      console.log( "First useEffect in FixedContainer() in Create.tsx: found the rawStoredImageString" );
-      const parsedImageString = JSON.parse( rawStoredImageString );
-      console.log( "First useEffect: parsedImageString = '" + parsedImageString + "'" );
-      storedImageString = parsedImageString;
-      tmpImageString = storedImageString;
-    } else {
-      console.log( "First useEffect in FixedContainer() in Create.tsx: imageString NOT FOUND in localStorage" );
-      console.log( "First useEffect: saving JungianLib.defaultImageString for imageString in localStorage" );
-      localStorage.setItem( 'imageString', JSON.stringify(JungianLib.defaultImageString) );
-      tmpImageString = JungianLib.defaultImageString;
-      // storedImageString = JungianLib.defaultImageString;
-      // setCurrentImageString(storedImageString);
-    }
-    const jLSLibImageString = JungianLSLib.getImageString();
-    console.log( "First useEffect in FixedContainer() in Create.tsx: jLSLibImageString = '" + jLSLibImageString + "'" );
-    console.log( "First useEffect in FixedContainer() in Create.tsx: tmpImageString = '" + tmpImageString + "'" );
-    if ( tmpImageString === jLSLibImageString ) {
-      console.log( "First useEffect in FixedContainer() in Create.tsx: jLSLibImageString === tmpImageString YAY IT WORKS OK!!" );
-    } else {
-      console.log( "FIRST USEEFFECT IN FIXEDCONTAINER() IN CREATE.TSX: jLSLibImageString NOT === tmpImageString OH NO IT'S BROKEN!!" );
-    }
+    // const rawStoredImageString = localStorage.getItem( 'imageString' );
+    // let tmpImageString = JungianLib.defaultImageString;
+    // console.log( "First useEffect in FixedContainer() in Create.tsx: rawStoredImageString = " + rawStoredImageString );
+    // if ( rawStoredImageString && rawStoredImageString.length > 0 ) {
+    //   console.log( "First useEffect in FixedContainer() in Create.tsx: found the rawStoredImageString" );
+    //   const parsedImageString = JSON.parse( rawStoredImageString );
+    //   console.log( "First useEffect: parsedImageString = '" + parsedImageString + "'" );
+    //   storedImageString = parsedImageString;
+    //   tmpImageString = storedImageString;
+    // } else {
+    //   console.log( "First useEffect in FixedContainer() in Create.tsx: imageString NOT FOUND in localStorage" );
+    //   console.log( "First useEffect: saving JungianLib.defaultImageString for imageString in localStorage" );
+    //   localStorage.setItem( 'imageString', JSON.stringify(JungianLib.defaultImageString) );
+    //   tmpImageString = JungianLib.defaultImageString;
+    //   // storedImageString = JungianLib.defaultImageString;
+    //   // setCurrentImageString(storedImageString);
+    // }
+    storedImageString = JungianLSLib.getImageString();
+    // console.log( "First useEffect in FixedContainer() in Create.tsx: jungianLSLibImageString = '" + jungianLSLibImageString + "'" );
+    // console.log( "First useEffect in FixedContainer() in Create.tsx: tmpImageString = '" + tmpImageString + "'" );
+    // if ( tmpImageString === jungianLSLibImageString ) {
+    //   console.log( "First useEffect in FixedContainer() in Create.tsx: jungianLSLibImageString === tmpImageString YAY IT WORKS OK!!" );
+    // } else {
+    //   console.log( "FIRST USEEFFECT IN FIXEDCONTAINER() IN CREATE.TSX: jungianLSLibImageString NOT === tmpImageString OH NO IT'S BROKEN!!" );
+    // }
     if ( JungianLib.logLogicFlow ) {
       console.log( "Exiting first useEffect in FixedContainer() in Create.tsx" );
     }
