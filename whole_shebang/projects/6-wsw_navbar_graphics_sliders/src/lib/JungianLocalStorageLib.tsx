@@ -4,6 +4,31 @@
 import * as JungianLib from '../lib/JungianLib.tsx';
 import {defaultSliderValue} from './SliderLib.tsx';
 
+// setSliderValues: sets the current SliderValues to the specified value
+//   returns true if successful else false if the newImageString is too short
+export function setSliderValues( newSliderValues: number[] ): boolean {
+  if ( JungianLib.logLogicFlow ) {
+    console.log( "Top of setSliderValues() in JungianLocalStorageLib.tsx" );
+  }
+
+  let success = true;
+
+  if ( newSliderValues.length > 3 ) {
+    console.log( "setSliderValues(): storing '" + newSliderValues + "' as imageString" );
+    localStorage.setItem( 'sliderValues', JSON.stringify(newSliderValues) );
+  } else {
+    console.log( "setSliderValues(): newSliderValues.length = " + newSliderValues.length );
+    console.log( "setSliderValues(): NOT saving newSliderValues because it has too few values" );
+    success = false;
+  }
+
+  if ( JungianLib.logLogicFlow ) {
+    console.log( "Return()ing from setSliderValues() in JungianLocalStorageLib.tsx" );
+  }
+
+  return success;
+}
+
 // getSliderValues: returns the current sliderValues from local storage
 export function getSliderValues(): number[] {
   if ( JungianLib.logLogicFlow ) {
@@ -30,10 +55,9 @@ export function getSliderValues(): number[] {
   return sliderValues;
 }
 
-
 // setImageString: sets the current imageString to the specified value
 //   returns true if successful else false if the newImageString is too short
-export function setImageString( newImageString: string ) {
+export function setImageString( newImageString: string ): boolean {
   if ( JungianLib.logLogicFlow ) {
     console.log( "Top of setImageString() in JungianLocalStorageLib.tsx" );
   }
