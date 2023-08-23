@@ -54,7 +54,7 @@ export const defaultImageString = "";
 // Note: At some point, we may want to make some of these variables set by the user
 export const squareSize = 15;    // Size of each square
 // export const gridSize = 19;      // No. of squares in each row and column
-export const gridSize = 4;      // No. of squares in each row and column
+export const gridSize = 9;      // No. of squares in each row and column
 
 export const gridTopX = 4;       // X location of top left corner of grid
 export const gridTopY = 4;       // Y location of top left corner of grid
