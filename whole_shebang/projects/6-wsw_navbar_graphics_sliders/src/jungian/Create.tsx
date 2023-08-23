@@ -213,7 +213,8 @@ function FixedContainer() {
       const defaultSliderValues = [ defaultSliderValue, defaultSliderValue, defaultSliderValue, defaultSliderValue ];
     //   // setCurrentSliderValues( defaultSliderValues );
     //   // storedSliderValues = defaultSliderValues;
-      localStorage.setItem( 'sliderValues', JSON.stringify(defaultSliderValues) );
+      // localStorage.setItem( 'sliderValues', JSON.stringify(defaultSliderValues) );
+      JungianLSLib.setSliderValues( defaultSliderValues );
       setCurrentSliderValues( defaultSliderValues );
     }
     // const rawStoredImageString = localStorage.getItem( 'imageString' );
@@ -255,7 +256,8 @@ function FixedContainer() {
     }
     console.log( "Second useEffect in FixedContainer in Create.tsx: currentSliderValues.length = " + currentSliderValues.length );
     if ( currentSliderValues.length > 3 ) {
-      localStorage.setItem( 'sliderValues', JSON.stringify(currentSliderValues) );
+      // localStorage.setItem( 'sliderValues', JSON.stringify(currentSliderValues) );
+      JungianLSLib.setSliderValues( currentSliderValues );
       console.log( "Second useEffect in FixedContainer in Create.tsx: saved currentSliderValues as sliderValues." );
     } else {
       console.log( "Second useEffect in FixedContainer in Create.tsx: did NOT save currentSliderValues as sliderValues!" );
