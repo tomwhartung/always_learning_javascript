@@ -1,5 +1,5 @@
 //
-// Create.tsx: code for the Create option
+// Create.tsx: code for the Create option for the Jungian quiz type
 //
 import '../App.css'
 import { ChangeEvent, useState, useEffect } from 'react';
@@ -11,8 +11,7 @@ import * as JungianLib from '../lib/JungianLib.tsx';
 import * as JungianLSLib from '../lib/JungianLocalStorageLib.tsx';
 
 // These are the slider values we use when drawing the image
-// let storedSliderValues: JungianLib.JungianImageProps = {
-const storedSliderValues: JungianLib.JungianImageProps = {
+const storedSliderValues: JungianLib.JungianSliderValues = {
   opacityValue: defaultSliderValue,
   blueVsYellowValue: defaultSliderValue,
   greenVsRedValue: defaultSliderValue,
@@ -95,7 +94,7 @@ const draw = (context: CanvasRenderingContext2D) => {
 };
 
 // FixedSizeImageCards: function component to display a jungian image
-function FixedSizeImageCards( props: JungianLib.JungianImageProps ) {
+function FixedSizeImageCards( props: JungianLib.JungianSliderValues ) {
   if ( JungianLib.logLogicFlow ) {
     console.log( "Top of FixedSizeImageCards() in Create.tsx" );
   }
@@ -202,13 +201,13 @@ function FixedContainer() {
     //   localStorage.setItem( 'sliderValues', JSON.stringify(defaultSliderValues) );
     //   setCurrentSliderValues( defaultSliderValues );
     // }
-    const jungianLSLSliderValues = JungianLSLib.getSliderValues();
-    if ( jungianLSLSliderValues.length > 3 ) {
-      console.log( "First useEffect in FixedContainer() in Create.tsx: found the jungianLSLSliderValues" );
-      console.log( "First useEffect: jungianLSLSliderValues.toString() = " + jungianLSLSliderValues.toString() );
-      setCurrentSliderValues( jungianLSLSliderValues );
+    const jungianLSLibSliderValues = JungianLSLib.getSliderValues();
+    if ( jungianLSLibSliderValues.length > 3 ) {
+      console.log( "First useEffect in FixedContainer() in Create.tsx: found the jungianLSLibSliderValues" );
+      console.log( "First useEffect: jungianLSLibSliderValues.toString() = " + jungianLSLibSliderValues.toString() );
+      setCurrentSliderValues( jungianLSLibSliderValues );
     } else {
-      console.log( "First useEffect in FixedContainer() in Create.tsx: jungianLSLSliderValues NOT FOUND in localStorage" );
+      console.log( "First useEffect in FixedContainer() in Create.tsx: jungianLSLibSliderValues NOT FOUND in localStorage" );
       console.log( "First useEffect: saving default values for sliderValues in localStorage" );
       const defaultSliderValues = [ defaultSliderValue, defaultSliderValue, defaultSliderValue, defaultSliderValue ];
     //   // setCurrentSliderValues( defaultSliderValues );
@@ -330,7 +329,6 @@ function FixedContainer() {
 }
 
 // Create: default "mainline" component for this menu option
-// function Create( props: JungianLib.JungianImageProps ) {
 function Create() {
   if ( JungianLib.logLogicFlow ) {
     console.log( "Top of Create() in Create.tsx: return()ing from Create()" );
