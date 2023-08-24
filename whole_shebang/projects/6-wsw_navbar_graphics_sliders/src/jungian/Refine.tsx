@@ -10,14 +10,7 @@ import {defaultSliderValue} from '../lib/SliderLib.tsx';
 import * as JungianLib from '../lib/JungianLib.tsx';
 import * as JungianLSLib from '../lib/JungianLocalStorageLib.tsx';
 
-// These are the slider values that come from localStorage
-const storedSliderValues: JungianLib.JungianSliderValues = {
-  opacityValue: defaultSliderValue,
-  blueVsYellowValue: defaultSliderValue,
-  greenVsRedValue: defaultSliderValue,
-  bAndYVsGandRValue: defaultSliderValue,
-};
-
+let opacityValue = defaultSliderValue;
 let storedImageString = "";
 
 interface JungianRefineProps extends JungianLib.JungianSliderValues {
@@ -26,7 +19,7 @@ interface JungianRefineProps extends JungianLib.JungianSliderValues {
 
 // draw: draw the grid of blue, green, red, and yellow squares defined in storedImageString
 const draw = (context: CanvasRenderingContext2D) => {
-  JungianLib.drawStoredImageString( context, storedImageString, storedSliderValues.opacityValue );
+  JungianLib.drawStoredImageString( context, storedImageString, opacityValue );
 };
 
 // FixedSizeImageCards: function component to display a jungian image
@@ -37,6 +30,7 @@ function FixedSizeImageCards( props: JungianRefineProps ) {
 
   const width = JungianLib.canvasWidth;
   const height = JungianLib.canvasHeight;
+  opacityValue = props.opacityValue;
 
   if ( JungianLib.logLogicFlow ) {
     console.log( "return()ing from FixedSizeImageCards() in Refine.tsx" );
