@@ -2,8 +2,10 @@
 // Refine.tsx: code for the Refine option for the Jungian quiz type
 //
 import '../App.css'
+
+// import { useState, useEffect } from 'react';
 // import { ChangeEvent, useState, useEffect } from 'react';
-import { useState, useEffect } from 'react';
+import { MouseEvent, useState, useEffect } from 'react';
 
 import Canvas from '../lib/CanvasLib.tsx';
 import {defaultSliderValue} from '../lib/SliderLib.tsx';
@@ -21,19 +23,59 @@ const storedSliderValues: JungianLib.JungianSliderValues = {
 
 let storedImageString = "";
 
+interface JungianRefineProps extends JungianLib.JungianSliderValues {
+  onImageClick: (evt: MouseEvent<Element, MouseEvent>) => void;
+}
+
 // draw: draw the grid of blue, green, red, and yellow squares defined in storedImageString
 const draw = (context: CanvasRenderingContext2D) => {
   JungianLib.drawStoredImageString( context, storedImageString, storedSliderValues.opacityValue );
 };
 
 // FixedSizeImageCards: function component to display a jungian image
-function FixedSizeImageCards( props: JungianLib.JungianSliderValues ) {
+function FixedSizeImageCards( props: JungianRefineProps ) {
   if ( JungianLib.logLogicFlow ) {
     console.log( "Top of FixedSizeImageCards() in Refine.tsx" );
   }
 
   const width = JungianLib.canvasWidth;
   const height = JungianLib.canvasHeight;
+
+  if ( JungianLib.logLogicFlow ) {
+    console.log( "return()ing from FixedSizeImageCards() in Refine.tsx" );
+  }
+
+  return (
+    <>
+      <div className="row mt-4">
+        <div className="col-md-4 align-items-center">
+          <p>{JungianLib.jungianImagePropLabels[0]}: {props.opacityValue}</p>
+          <p>{JungianLib.jungianImagePropLabels[1]}: {props.blueVsYellowValue}</p>
+          <p>{JungianLib.jungianImagePropLabels[2]}: {props.greenVsRedValue}</p>
+          <p>{JungianLib.jungianImagePropLabels[3]}: {props.bAndYVsGandRValue}</p>
+        </div>
+        <div className="col-md-8">
+          <Canvas
+            draw={draw}
+            onClick={props.onImageClick}
+            width={width}
+            height={height} />
+        </div>
+      </div>
+    </>
+  );
+}
+
+// FixedContainer: function component containing an MDB container
+function FixedContainer() {
+  if ( JungianLib.logLogicFlow ) {
+    console.log( "Top of FixedContainer() in Refine.tsx" );
+  }
+
+  const [currentImageString, setCurrentImageString] = useState(JungianLib.defaultImageString);
+  const [currentClickMessage, setCurrentClickMessage] = useState("Click on a square to change its color.");
+
+  // let clickToRefineMessage = "Click on a square to change its color.";
 
   function handleImageClick(event: React.MouseEvent<HTMLElement>) {
     if ( JungianLib.logLogicFlow ) {
@@ -54,58 +96,34 @@ function FixedSizeImageCards( props: JungianLib.JungianSliderValues ) {
     squareX = Math.floor( ( pixelX - JungianLib.gridTopX ) / JungianLib.squareSize );
     squareY = Math.floor( ( pixelY - JungianLib.gridTopY ) / JungianLib.squareSize );
     if ( squareX < 0 && squareY < 0 ) {
+      setCurrentClickMessage( "You clicked on the upper-left corner, not on a square" );
       console.log( "You clicked on the upper-left corner, not on a square" );
     } else if ( squareX < 0 && squareY >= JungianLib.gridSize) {
+      setCurrentClickMessage( "You clicked on the lower-left corner, not on a square" );
       console.log( "You clicked on the lower-left corner, not on a square" );
     } else if ( squareX >= JungianLib.gridSize && squareY < 0 ) {
+      setCurrentClickMessage( "You clicked on the upper-right corner, not on a square" );
       console.log( "You clicked on the upper-right corner, not on a square" );
     } else if ( squareX >= JungianLib.gridSize && squareY >= JungianLib.gridSize) {
+      setCurrentClickMessage( "You clicked on the lower-right corner, not on a square" );
       console.log( "You clicked on the lower-right corner, not on a square" );
     } else if ( squareX < 0 ) {
-      console.log( "You clicked on the left-side border, not on a square" );
+      setCurrentClickMessage( "You clicked on the bottom border, not on a square" );
+      console.log( "You clicked on the bottom border, not on a square" );
     } else if ( squareY < 0 ) {
-      console.log( "You clicked on the upper border, not on a square" );
+      setCurrentClickMessage( "You clicked on the top border, not on a square" );
+      console.log( "You clicked on the top border, not on a square" );
     } else if ( squareX >= JungianLib.gridSize ) {
+      setCurrentClickMessage( "You clicked on the right-side border, not on a square" );
       console.log( "You clicked on the right-side border, not on a square" );
     } else if ( squareY >= JungianLib.gridSize ) {
+      setCurrentClickMessage( "You clicked on the lower border, not on a square" );
       console.log( "You clicked on the lower border, not on a square" );
     } else {
+      setCurrentClickMessage( "You clicked on the square at (" + squareX.toString() + ", " + squareY.toString() + ")" );
       console.log( "Pixel coords correspond to squareCoords (" + squareX.toString() + ", " + squareY.toString() + ")" );
     }
   }
-
-  if ( JungianLib.logLogicFlow ) {
-    console.log( "return()ing from FixedSizeImageCards() in Refine.tsx" );
-  }
-
-  return (
-    <>
-      <div className="row mt-4">
-        <div className="col-md-4 align-items-center">
-          <p>{JungianLib.jungianImagePropLabels[0]}: {props.opacityValue}</p>
-          <p>{JungianLib.jungianImagePropLabels[1]}: {props.blueVsYellowValue}</p>
-          <p>{JungianLib.jungianImagePropLabels[2]}: {props.greenVsRedValue}</p>
-          <p>{JungianLib.jungianImagePropLabels[3]}: {props.bAndYVsGandRValue}</p>
-        </div>
-        <div className="col-md-8">
-          <Canvas
-            draw={draw}
-            onClick={handleImageClick}
-            width={width}
-            height={height} />
-        </div>
-      </div>
-    </>
-  );
-}
-
-// FixedContainer: function component containing an MDB container
-function FixedContainer() {
-  if ( JungianLib.logLogicFlow ) {
-    console.log( "Top of FixedContainer() in Refine.tsx" );
-  }
-
-  const [currentImageString, setCurrentImageString] = useState(JungianLib.defaultImageString);
 
   // First useEffect: (presumably) runs once when component is mounted...
   useEffect( () => {
@@ -147,21 +165,20 @@ function FixedContainer() {
     }
   }, [currentImageString] );
 
-  const clickToRefineMessage = "Click on a square to change its color.";
-
   if ( JungianLib.logLogicFlow ) {
     console.log( "return()ing from FixedContainer() in Refine.tsx" );
   }
 
   return (
     <div className="container">
-      <h5>{clickToRefineMessage}</h5>
+      <h5>{currentClickMessage}</h5>
       <div className="row mt-4">
         <FixedSizeImageCards
           opacityValue={storedSliderValues.opacityValue}
           blueVsYellowValue={storedSliderValues.blueVsYellowValue}
           greenVsRedValue={storedSliderValues.greenVsRedValue}
           bAndYVsGandRValue={storedSliderValues.bAndYVsGandRValue}
+          onImageClick={handleImageClick}
         />
       </div>
     </div>
