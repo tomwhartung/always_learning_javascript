@@ -12,7 +12,7 @@ import * as JungianLib from '../lib/JungianLib.tsx';
 import * as JungianLSLib from '../lib/JungianLocalStorageLib.tsx';
 
 // These are the slider values that come from localStorage
-const storedSliderValues: JungianLib.JungianImageProps = {
+const storedSliderValues: JungianLib.JungianSliderValues = {
   opacityValue: defaultSliderValue,
   blueVsYellowValue: defaultSliderValue,
   greenVsRedValue: defaultSliderValue,
@@ -27,7 +27,7 @@ const draw = (context: CanvasRenderingContext2D) => {
 };
 
 // FixedSizeImageCards: function component to display a jungian image
-function FixedSizeImageCards( props: JungianLib.JungianImageProps ) {
+function FixedSizeImageCards( props: JungianLib.JungianSliderValues ) {
   if ( JungianLib.logLogicFlow ) {
     console.log( "Top of FixedSizeImageCards() in Refine.tsx" );
   }
@@ -147,19 +147,7 @@ function FixedContainer() {
     }
   }, [currentImageString] );
 
-  // // Construct markup for the SliderCards
-  // const sliderNumberCols = [];
-  // for ( let col = 0; col < JungianLib.numberOfSliderCards; col++ ) {
-  //   sliderNumberCols.push(
-  //     <div key={col} className="col-md-3">
-  //       <SliderCard
-  //        sliderNo={col}
-  //        sliderVal={currentSliderValues[col] ?? defaultSliderValue}
-  //        onSliderChange={ (evt) => handleChangeArrayOfNumbers(evt,col) }
-  //       />
-  //     </div>
-  //   );
-  // }
+  const clickToRefineMessage = "Click on a square to change its color.";
 
   if ( JungianLib.logLogicFlow ) {
     console.log( "return()ing from FixedContainer() in Refine.tsx" );
@@ -167,7 +155,7 @@ function FixedContainer() {
 
   return (
     <div className="container">
-      <h4>FixedContainer:</h4>
+      <h5>{clickToRefineMessage}</h5>
       <div className="row mt-4">
         <FixedSizeImageCards
           opacityValue={storedSliderValues.opacityValue}
