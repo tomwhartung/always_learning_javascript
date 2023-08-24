@@ -24,7 +24,7 @@ const storedSliderValues: JungianLib.JungianSliderValues = {
 let storedImageString = "";
 
 interface JungianRefineProps extends JungianLib.JungianSliderValues {
-  onImageClick: (evt: MouseEvent<Element, MouseEvent>) => void;
+  onImageClick: (evt: React.MouseEvent<HTMLElement>) => void;
 }
 
 // draw: draw the grid of blue, green, red, and yellow squares defined in storedImageString
