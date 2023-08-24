@@ -4,8 +4,8 @@
 
 // Types:
 // ------
-// JungianImageProps: values that come from the Jungian sliders
-export interface JungianImageProps {
+// JungianSliderValues: values that come from the Jungian sliders
+export interface JungianSliderValues {
   opacityValue: number;           // [0 .. 100]
   blueVsYellowValue: number;      // [0 .. 100]
   greenVsRedValue: number;        // [0 .. 100]
@@ -71,7 +71,7 @@ export function valueToPct( value: number ) : number {
 }
 
 // getRandomPrimaryColor: return a single character, "B", "G", "R", or "Y"
-export function getRandomPrimaryColor( sliderValues: JungianImageProps ) {
+export function getRandomPrimaryColor( sliderValues: JungianSliderValues ) {
   const blueVsYellowPercent = valueToPct( sliderValues.blueVsYellowValue );
   const greenVsRedPercent = valueToPct( sliderValues.greenVsRedValue );
   const bAndYVsGandRPercent = valueToPct( sliderValues.bAndYVsGandRValue );
