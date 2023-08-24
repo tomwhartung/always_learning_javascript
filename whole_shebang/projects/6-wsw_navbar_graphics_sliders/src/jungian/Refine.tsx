@@ -3,13 +3,10 @@
 //
 import '../App.css'
 
-// import { useState, useEffect } from 'react';
-// import { ChangeEvent, useState, useEffect } from 'react';
 import { MouseEvent, useState, useEffect } from 'react';
 
 import Canvas from '../lib/CanvasLib.tsx';
 import {defaultSliderValue} from '../lib/SliderLib.tsx';
-// import SliderCard from '../lib/SliderCard.tsx';
 import * as JungianLib from '../lib/JungianLib.tsx';
 import * as JungianLSLib from '../lib/JungianLocalStorageLib.tsx';
 
@@ -24,7 +21,7 @@ const storedSliderValues: JungianLib.JungianSliderValues = {
 let storedImageString = "";
 
 interface JungianRefineProps extends JungianLib.JungianSliderValues {
-  onImageClick: (evt: React.MouseEvent<HTMLElement>) => void;
+  onImageClick: (evt: MouseEvent<HTMLElement>) => void;
 }
 
 // draw: draw the grid of blue, green, red, and yellow squares defined in storedImageString
@@ -72,6 +69,7 @@ function FixedContainer() {
     console.log( "Top of FixedContainer() in Refine.tsx" );
   }
 
+  const [currentSliderValues, setCurrentSliderValues] = useState([defaultSliderValue]);
   const [currentImageString, setCurrentImageString] = useState(JungianLib.defaultImageString);
   const [currentClickMessage, setCurrentClickMessage] = useState("Click on a square to change its color.");
 
@@ -126,28 +124,17 @@ function FixedContainer() {
   }
 
   // First useEffect: (presumably) runs once when component is mounted...
+  //   Fetches values from local storage...   
   useEffect( () => {
     if ( JungianLib.logLogicFlow ) {
       console.log( "Top of first useEffect in FixedContainer() in Refine.tsx" );
     }
-    const jungianLSLibSliderValues = JungianLSLib.getSliderValues();
-    if ( jungianLSLibSliderValues.length > 3 ) {
-      console.log( "First useEffect in FixedContainer() in Refine.tsx: found the jungianLSLibSliderValues" );
-      console.log( "First useEffect: jungianLSLibSliderValues.toString() = " + jungianLSLibSliderValues.toString() );
-      console.log( "First useEffect: saving jungianLSLibSliderValues as storedSliderValues" );
-      storedSliderValues.opacityValue = jungianLSLibSliderValues[0];
-      storedSliderValues.blueVsYellowValue = jungianLSLibSliderValues[1];
-      storedSliderValues.greenVsRedValue = jungianLSLibSliderValues[2];
-      storedSliderValues.bAndYVsGandRValue = jungianLSLibSliderValues[3];
-    } else {
-      console.log( "First useEffect in FixedContainer() in Refine.tsx: jungianLSLibSliderValues NOT FOUND in localStorage" );
-    }
+    setCurrentSliderValues( JungianLSLib.getSliderValues() );
     storedImageString = JungianLSLib.getImageString();
     if ( JungianLib.logLogicFlow ) {
       console.log( "Exiting first useEffect in FixedContainer() in Refine.tsx" );
     }
-    // NOTE! DO NOT DELETE THE EMPTY DEPENDENCY ARRAY!!  DOING SO CAUSES AN INFINITE LOOP!!!
-  }, [] ); // empty dependency array -> this runs just once when the component is mounted
+  }, [] );
 
   // Second useEffect: runs when component is mounted AND when the user changes the imageString
   //   Stores the new image string in local storage
@@ -174,10 +161,10 @@ function FixedContainer() {
       <h5>{currentClickMessage}</h5>
       <div className="row mt-4">
         <FixedSizeImageCards
-          opacityValue={storedSliderValues.opacityValue}
-          blueVsYellowValue={storedSliderValues.blueVsYellowValue}
-          greenVsRedValue={storedSliderValues.greenVsRedValue}
-          bAndYVsGandRValue={storedSliderValues.bAndYVsGandRValue}
+          opacityValue={currentSliderValues[0]}
+          blueVsYellowValue={currentSliderValues[1]}
+          greenVsRedValue={currentSliderValues[2]}
+          bAndYVsGandRValue={currentSliderValues[3]}
           onImageClick={handleImageClick}
         />
       </div>
