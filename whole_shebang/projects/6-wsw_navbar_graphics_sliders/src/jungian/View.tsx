@@ -1,5 +1,5 @@
 //
-// View.tsx: code for the View option
+// View.tsx: code for the View option for the Jungian quiz type
 //
 import '../App.css'
 import { useEffect, useState } from 'react';
@@ -18,7 +18,7 @@ const draw = (context: CanvasRenderingContext2D) => {
 };
 
 // DFlexViewSliderValuesAndImage: function component to display a jungian image
-function DFlexViewSliderValuesAndImage( props:JungianLib.JungianImageProps ) {
+function DFlexViewSliderValuesAndImage( props:JungianLib.JungianSliderValues ) {
   if ( JungianLib.logLogicFlow ) {
     console.log( "Top of DFlexViewSliderValuesAndImage() in View.tsx" );
   }
