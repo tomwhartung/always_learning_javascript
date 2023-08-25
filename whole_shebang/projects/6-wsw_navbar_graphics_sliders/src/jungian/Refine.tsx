@@ -15,6 +15,7 @@ let storedImageString = "";
 
 interface JungianRefineProps extends JungianLib.JungianSliderValues {
   onImageClick: (evt: MouseEvent<HTMLElement>) => void;
+  clickMessage: string;
 }
 
 // draw: draw the grid of blue, green, red, and yellow squares defined in storedImageString
@@ -97,6 +98,7 @@ function FixedSizeImageCards( props: JungianRefineProps ) {
           <p>{JungianLib.jungianImagePropLabels[3]}: {props.bAndYVsGandRValue}</p>
         </div>
         <div className="col-md-8">
+          <h5>{props.clickMessage}</h5>
           <Canvas
             draw={draw}
             onClick={props.onImageClick}
@@ -161,6 +163,7 @@ function FixedContainer() {
       console.log( "Top of first useEffect in FixedContainer() in Refine.tsx" );
     }
     setCurrentSliderValues( JungianLSLib.getSliderValues() );
+    setCurrentImageString( JungianLSLib.getImageString() );
     storedImageString = JungianLSLib.getImageString();
     if ( JungianLib.logLogicFlow ) {
       console.log( "Exiting first useEffect in FixedContainer() in Refine.tsx" );
@@ -172,8 +175,12 @@ function FixedContainer() {
   useEffect( () => {
     if ( JungianLib.logLogicFlow ) {
       console.log( "Top of second useEffect in FixedContainer() in Refine.tsx" );
+      console.log( "Second useEffect: currentImageString.length = " + currentImageString.length );
+      console.log( "Second useEffect: storedImageString.length = " + storedImageString.length );
+      console.log( "Second useEffect: storedImageString = " + storedImageString );
     }
     const savedImageStringOk = JungianLSLib.setImageString(currentImageString);
+    storedImageString = currentImageString;
     if ( JungianLib.logLogicFlow ) {
       if ( savedImageStringOk) {
         console.log( "Second useEffect in FixedContainer in Refine.tsx: saved currentImageString as imageString ok" );
@@ -198,6 +205,7 @@ function FixedContainer() {
           greenVsRedValue={currentSliderValues[2]}
           bAndYVsGandRValue={currentSliderValues[3]}
           onImageClick={handleImageClick}
+          clickMessage={currentClickMessage}
         />
       </div>
     </div>
