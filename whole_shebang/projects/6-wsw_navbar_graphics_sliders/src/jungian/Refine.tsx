@@ -22,7 +22,28 @@ const draw = (context: CanvasRenderingContext2D) => {
   JungianLib.drawStoredImageString( context, storedImageString, opacityValue );
 };
 
+// getSquareCoords: use (pixelX, pixelY) to calculate (squareX, squareY)
+function getSquareCoords( pixelX: number, pixelY: number ) {
+  let squareX = -1;
+  let squareY = -1;
+  squareX = Math.floor( ( pixelX - JungianLib.gridTopX ) / JungianLib.squareSize );
+  squareY = Math.floor( ( pixelY - JungianLib.gridTopY ) / JungianLib.squareSize );
+  if ( squareX < 0 ) {
+    console.log( "You clicked on the left-side border, not on a square" );
+  } else if ( squareX >= JungianLib.gridSize ) {
+    console.log( "You clicked on the right-side border, not on a square" );
+  } else if ( squareY < 0 ) {
+    console.log( "You clicked on the top border, not on a square" );
+  } else if ( squareY >= JungianLib.gridSize ) {
+    console.log( "You clicked on the bottom border, not on a square" );
+  } else {
+    console.log( "You clicked on the square at (" + squareX.toString() + ", " + squareY.toString() + ")" );
+    console.log( "Pixel coords correspond to squareCoords (" + squareX.toString() + ", " + squareY.toString() + ")" );
+  }
+  return( [squareX, squareY] );
+}
 // logSquareCoords: use (pixelX, pixelY) to calculate (squareX, squareY) and log the values to the console
+//   Note: this is really over kill and should be run only when debugging or JungianLib.logLogicFlow is true
 function logSquareCoords( pixelX: number, pixelY: number ) {
   let squareX = 0;
   let squareY = 0;
@@ -105,30 +126,14 @@ function FixedContainer() {
     const pixelY = Math.round( event.clientY - rect.top );
     console.log( "Click on the FixedSizeImage at pixel coords (" + pixelX.toString() + ", " + pixelY.toString() + ")" );
     const [squareX, squareY] = getSquareCoords( pixelX, pixelY );
+    if ( 0 <= squareX && 0 <= squareY ) {
+      setCurrentClickMessage( "You clicked on the square at (" + squareX.toString() + ", " + squareY.toString() + ")" );
+    }
     if ( JungianLib.logLogicFlow ) {
       console.log( "handleImageClick: You clicked on the square at (" + squareX.toString() + ", " + squareY.toString() + ")" );
       logSquareCoords( pixelX, pixelY );
       console.log( "handleImageClick in FixedContainer in Refine.tsx: exiting function" );
     }
-  }
-  function getSquareCoords( pixelX: number, pixelY: number ) {
-    let squareX = -1;
-    let squareY = -1;
-    squareX = Math.floor( ( pixelX - JungianLib.gridTopX ) / JungianLib.squareSize );
-    squareY = Math.floor( ( pixelY - JungianLib.gridTopY ) / JungianLib.squareSize );
-    if ( squareX < 0 ) {
-      setCurrentClickMessage( "You clicked on the left-side border, not on a square" );
-    } else if ( squareX >= JungianLib.gridSize ) {
-      setCurrentClickMessage( "You clicked on the right-side border, not on a square" );
-    } else if ( squareY < 0 ) {
-      setCurrentClickMessage( "You clicked on the top border, not on a square" );
-    } else if ( squareY >= JungianLib.gridSize ) {
-      setCurrentClickMessage( "You clicked on the bottom border, not on a square" );
-    } else {
-      setCurrentClickMessage( "You clicked on the square at (" + squareX.toString() + ", " + squareY.toString() + ")" );
-      console.log( "Pixel coords correspond to squareCoords (" + squareX.toString() + ", " + squareY.toString() + ")" );
-    }
-    return( [squareX, squareY] );
   }
 
   // First useEffect: (presumably) runs once when component is mounted...
@@ -179,7 +184,6 @@ function FixedContainer() {
     </div>
   )
 }
-
 
 function Refine() {
   if ( JungianLib.logLogicFlow ) {
