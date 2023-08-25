@@ -14,12 +14,16 @@ export function setSliderValues( newSliderValues: number[] ): boolean {
   let success = true;
 
   if ( newSliderValues.length > 3 ) {
-    console.log( "setSliderValues(): storing '" + newSliderValues + "' as imageString" );
     localStorage.setItem( 'sliderValues', JSON.stringify(newSliderValues) );
+    if ( JungianLib.logLogicFlow ) {
+      console.log( "setSliderValues(): stored '" + newSliderValues + "' as imageString" );
+    }
   } else {
-    console.log( "setSliderValues(): newSliderValues.length = " + newSliderValues.length );
-    console.log( "setSliderValues(): NOT saving newSliderValues because it has too few values" );
     success = false;
+    if ( JungianLib.logLogicFlow ) {
+      console.log( "setSliderValues(): newSliderValues.length = " + newSliderValues.length );
+      console.log( "setSliderValues(): NOT saving newSliderValues because it has too few values" );
+    }
   }
 
   if ( JungianLib.logLogicFlow ) {
@@ -40,12 +44,16 @@ export function getSliderValues(): number[] {
   const rawStoredSliderValues = localStorage.getItem( 'sliderValues' );
 
   if ( rawStoredSliderValues ) {
-    console.log( "getSliderValues in JungianLocalStorageLib.tsx: found the rawStoredSliderValues" );
     sliderValues = JSON.parse( rawStoredSliderValues );
-    console.log( "getSliderValues: sliderValues.toString() = " + sliderValues.toString() );
+    if ( JungianLib.logLogicFlow ) {
+      console.log( "getSliderValues in JungianLocalStorageLib.tsx: found the rawStoredSliderValues" );
+      console.log( "getSliderValues: sliderValues.toString() = " + sliderValues.toString() );
+    }
   } else {
-    console.log( "getSliderValues in JungianLocalStorageLib.tsx: sliderValues NOT FOUND in localStorage" );
-    console.log( "getSliderValues: returning an array containing a single defaultSliderValue" );
+    if ( JungianLib.logLogicFlow ) {
+      console.log( "getSliderValues in JungianLocalStorageLib.tsx: sliderValues NOT FOUND in localStorage" );
+      console.log( "getSliderValues: returning an array containing a single defaultSliderValue" );
+    }
   }
 
   if ( JungianLib.logLogicFlow ) {
@@ -65,12 +73,16 @@ export function setImageString( newImageString: string ): boolean {
   let success = true;
 
   if ( newImageString.length > JungianLib.gridSize ) {
-    console.log( "setImageString(): storing '" + newImageString + "' as imageString" );
     localStorage.setItem( 'imageString', JSON.stringify(newImageString) );
+    if ( JungianLib.logLogicFlow ) {
+      console.log( "setImageString(): stored '" + newImageString + "' as imageString" );
+    }
   } else {
-    console.log( "setImageString(): newImageString.length = " + newImageString.length + "' is imageString" );
-    console.log( "setImageString(): NOT saving newImageString because it is TOO SHORT" );
     success = false;
+    if ( JungianLib.logLogicFlow ) {
+      console.log( "setImageString(): newImageString.length = " + newImageString.length + "' is imageString" );
+      console.log( "setImageString(): NOT saving newImageString because it is TOO SHORT" );
+    }
   }
 
   if ( JungianLib.logLogicFlow ) {
