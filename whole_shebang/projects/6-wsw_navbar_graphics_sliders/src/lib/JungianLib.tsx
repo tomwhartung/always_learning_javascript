@@ -48,6 +48,7 @@ export const colorLetters = [
 // Constant Values
 
 export const logLogicFlow = true;
+// export const logLogicFlow = false;
 
 export const defaultImageString = "";
 
@@ -126,7 +127,9 @@ export function drawStoredImageString( context: CanvasRenderingContext2D, stored
   let colorLetter = "B";
   const opacityPercent = valueToPct( opacityValue );
 
-  console.log( "draw() in JungianLib.tsx: storedImageString.length = '" + storedImageString.length + "'" );
+  if ( logLogicFlow ) {
+    console.log( "draw() in JungianLib.tsx: storedImageString.length = '" + storedImageString.length + "'" );
+  }
 
   if ( storedImageString.length > 0 ) {
     if ( logLogicFlow ) {
