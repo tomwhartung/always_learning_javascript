@@ -28,17 +28,20 @@ function getSquareCoords( pixelX: number, pixelY: number ) {
   let squareY = -1;
   squareX = Math.floor( ( pixelX - JungianLib.gridTopX ) / JungianLib.squareSize );
   squareY = Math.floor( ( pixelY - JungianLib.gridTopY ) / JungianLib.squareSize );
-  if ( squareX < 0 ) {
-    console.log( "You clicked on the left-side border, not on a square" );
-  } else if ( squareX >= JungianLib.gridSize ) {
-    console.log( "You clicked on the right-side border, not on a square" );
-  } else if ( squareY < 0 ) {
-    console.log( "You clicked on the top border, not on a square" );
-  } else if ( squareY >= JungianLib.gridSize ) {
-    console.log( "You clicked on the bottom border, not on a square" );
-  } else {
-    console.log( "You clicked on the square at (" + squareX.toString() + ", " + squareY.toString() + ")" );
-    console.log( "Pixel coords correspond to squareCoords (" + squareX.toString() + ", " + squareY.toString() + ")" );
+  if ( JungianLib.logLogicFlow ) {
+    console.log( "getSquareCoords: pixel coords (" + pixelX.toString() + ", " + pixelY.toString() + ")" );
+    console.log( "correspond to square coords (" + squareX.toString() + ", " + squareY.toString() + ")" );
+    if ( squareX < 0 ) {
+      console.log( "You clicked on the left-side border, not on a square" );
+    } else if ( squareX >= JungianLib.gridSize ) {
+      console.log( "You clicked on the right-side border, not on a square" );
+    } else if ( squareY < 0 ) {
+      console.log( "You clicked on the top border, not on a square" );
+    } else if ( squareY >= JungianLib.gridSize ) {
+      console.log( "You clicked on the bottom border, not on a square" );
+    } else {
+      console.log( "You clicked on the square at (" + squareX.toString() + ", " + squareY.toString() + ")" );
+    }
   }
   return( [squareX, squareY] );
 }
@@ -124,7 +127,9 @@ function FixedContainer() {
     const rect = (event.target as HTMLElement).getBoundingClientRect();
     const pixelX = Math.round( event.clientX - rect.left );
     const pixelY = Math.round( event.clientY - rect.top );
-    console.log( "Click on the FixedSizeImage at pixel coords (" + pixelX.toString() + ", " + pixelY.toString() + ")" );
+    if ( JungianLib.logLogicFlow ) {
+      console.log( "Click on the FixedSizeImage at pixel coords (" + pixelX.toString() + ", " + pixelY.toString() + ")" );
+    }
     const [squareX, squareY] = getSquareCoords( pixelX, pixelY );
     if ( 0 <= squareX && 0 <= squareY ) {
       setCurrentClickMessage( "You clicked on the square at (" + squareX.toString() + ", " + squareY.toString() + ")" );
@@ -139,7 +144,9 @@ function FixedContainer() {
   }
   function changeSquareAt( squareX: number, squareY: number ) {
     const squarePosition = squareX + (squareY * JungianLib.gridSize);
-    console.log( "changeSquareAt: squarePosition = " + squarePosition );
+    if ( JungianLib.logLogicFlow ) {
+      console.log( "changeSquareAt: squarePosition = " + squarePosition );
+    }
     const newImageCharArr = storedImageString.split( "" );
     newImageCharArr[squarePosition] = 'B';
     newImageCharArr.splice( squarePosition, 1, 'B' );
@@ -166,12 +173,13 @@ function FixedContainer() {
     if ( JungianLib.logLogicFlow ) {
       console.log( "Top of second useEffect in FixedContainer() in Refine.tsx" );
     }
-    if ( JungianLSLib.setImageString(currentImageString) ) {
-      console.log( "Second useEffect in FixedContainer in Refine.tsx: saved currentImageString as imageString ok" );
-    } else {
-      console.log( "Second useEffect in FixedContainer in Refine.tsx: UNABLE TO SAVE currentImageString as imageString!" );
-    }
+    const savedImageStringOk = JungianLSLib.setImageString(currentImageString);
     if ( JungianLib.logLogicFlow ) {
+      if ( savedImageStringOk) {
+        console.log( "Second useEffect in FixedContainer in Refine.tsx: saved currentImageString as imageString ok" );
+      } else {
+        console.log( "Second useEffect in FixedContainer in Refine.tsx: UNABLE TO SAVE currentImageString as imageString!" );
+      }
       console.log( "Exiting second useEffect in FixedContainer() in Refine.tsx" );
     }
   }, [currentImageString] );
