@@ -128,12 +128,23 @@ function FixedContainer() {
     const [squareX, squareY] = getSquareCoords( pixelX, pixelY );
     if ( 0 <= squareX && 0 <= squareY ) {
       setCurrentClickMessage( "You clicked on the square at (" + squareX.toString() + ", " + squareY.toString() + ")" );
+      const newImageString = changeSquareAt( squareX, squareY );
+      setCurrentImageString( newImageString );
     }
     if ( JungianLib.logLogicFlow ) {
       console.log( "handleImageClick: You clicked on the square at (" + squareX.toString() + ", " + squareY.toString() + ")" );
       logSquareCoords( pixelX, pixelY );
       console.log( "handleImageClick in FixedContainer in Refine.tsx: exiting function" );
     }
+  }
+  function changeSquareAt( squareX: number, squareY: number ) {
+    const squarePosition = squareX + (squareY * JungianLib.gridSize);
+    console.log( "changeSquareAt: squarePosition = " + squarePosition );
+    let newImageCharArr = storedImageString.split( "" );
+    newImageCharArr[squarePosition] = 'B';
+    newImageCharArr.splice( squarePosition, 1, 'B' );
+    const newImageString = newImageCharArr.join( '' );
+    return newImageString;
   }
 
   // First useEffect: (presumably) runs once when component is mounted...
