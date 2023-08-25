@@ -53,13 +53,13 @@ const draw = (context: CanvasRenderingContext2D) => {
       console.log( "draw() in Create.tsx: drawFreshImage is true so we are drawing a Fresh Image" );
     }
     imageCharArray = [];
-    console.log( "draw() in Create.tsx: imageCharArray.length = " + imageCharArray.length );
+    // console.log( "draw() in Create.tsx: imageCharArray.length = " + imageCharArray.length );
     for ( let row=0; row < JungianLib.gridSize; row++ ) {
       squareTopY = JungianLib.gridTopY + (row * JungianLib.squareSize);
       for ( let col=0; col < JungianLib.gridSize; col++ ){
-      //console.log( "draw() in Create.tsx: calling JungianLib.getRandomPrimaryColor = " + colorLetter );
+        // console.log( "draw() in Create.tsx: calling JungianLib.getRandomPrimaryColor = " + colorLetter );
         colorLetter = JungianLib.getRandomPrimaryColor( storedSliderValues );
-      //console.log( "draw() in Create.tsx: colorLetter = " + colorLetter );
+        // console.log( "draw() in Create.tsx: colorLetter = " + colorLetter );
         squareTopX = JungianLib.gridTopX + (col * JungianLib.squareSize);
         if ( colorLetter == "B" ) {
           context.fillStyle = "rgba(0, 0, 255, " + opacityPercent.toString() + ")";
@@ -76,12 +76,16 @@ const draw = (context: CanvasRenderingContext2D) => {
         imageCharArray.push( colorLetter );
       }
     }
-    console.log( "draw() in Create.tsx: finished drawing Fresh Image, imageCharArray: " + imageCharArray )
-    console.log( "draw(): finished drawing Fresh Image so setting drawFreshImage = false" );
-    console.log( "draw(): finished drawing Fresh Image so setting storedImageString to imageCharArray.join()" );
+    if ( JungianLib.logLogicFlow ) {
+      console.log( "draw() in Create.tsx: finished drawing Fresh Image, imageCharArray: " + imageCharArray )
+      console.log( "draw(): setting drawFreshImage = false and saving imageCharArray as storedImageString" );
+    }
     drawFreshImage = false;
     storedImageString = imageCharArray.join('');
   } else if ( storedImageString.length > 0 ) {
+    if ( JungianLib.logLogicFlow ) {
+      console.log( "draw() in Create.tsx: drawing storedImageString" );
+    }
     JungianLib.drawStoredImageString( context, storedImageString, storedSliderValues.opacityValue );
   } else {
     if ( JungianLib.logLogicFlow ) {
@@ -106,8 +110,10 @@ function FixedSizeImageCards( props: JungianLib.JungianSliderValues ) {
     const rect = (event.target as HTMLElement).getBoundingClientRect();
     const pixelX = Math.round( event.clientX - rect.left );
     const pixelY = Math.round( event.clientY - rect.top );
-    console.log( "Click on the FixedSizeImage at pixel coords (" + pixelX.toString() + ", " + pixelY.toString() + ")" );
-    logSquareCoords( pixelX, pixelY );
+    if ( JungianLib.logLogicFlow ) {
+      console.log( "Click on the FixedSizeImage at pixel coords (" + pixelX.toString() + ", " + pixelY.toString() + ")" );
+      logSquareCoords( pixelX, pixelY );
+    }
   }
   function logSquareCoords( pixelX: number, pixelY: number ) {
     let squareX = 0;
@@ -171,11 +177,13 @@ function FixedContainer() {
 
   function handleChangeArrayOfNumbers( evt:ChangeEvent, col:number ) {
     const val = (evt.target as HTMLInputElement).value;
-  //console.log( "Value of slider number " + col.toString() + " is now " + val.toString() );
+    // console.log( "Value of slider number " + col.toString() + " is now " + val.toString() );
     const nextSliderValues = currentSliderValues.slice();
     nextSliderValues[col] = Number(val);
     setCurrentSliderValues(nextSliderValues);
-    console.log( "handleChangeArrayOfNumbers in FixedContainer: setting drawFreshImage = true BECAUSE PRESUMABLY A SLIDER WAS MOVED" );
+    if ( JungianLib.logLogicFlow ) {
+      console.log( "handleChangeArrayOfNumbers in FixedContainer: setting drawFreshImage = true" );
+    }
     drawFreshImage = true;                  // When a slider value changes, we need to draw a new image
   }
 
@@ -186,61 +194,24 @@ function FixedContainer() {
     if ( JungianLib.logLogicFlow ) {
       console.log( "Top of first useEffect in FixedContainer() in Create.tsx" );
     }
-    // const rawStoredSliderValues = localStorage.getItem( 'sliderValues' );
-    // if ( rawStoredSliderValues ) {
-    //   console.log( "First useEffect in FixedContainer() in Create.tsx: found the rawStoredSliderValues" );
-    //   const parsedSliderValues = JSON.parse( rawStoredSliderValues );
-    //   console.log( "First useEffect: parsedSliderValues.toString() = " + parsedSliderValues.toString() );
-    //   setCurrentSliderValues( parsedSliderValues );
-    // } else {
-    //   console.log( "First useEffect in FixedContainer() in Create.tsx: sliderValues NOT FOUND in localStorage" );
-    //   console.log( "First useEffect: saving default values for sliderValues in localStorage" );
-    //   const defaultSliderValues = [ defaultSliderValue, defaultSliderValue, defaultSliderValue, defaultSliderValue ];
-    //   // setCurrentSliderValues( defaultSliderValues );
-    //   // storedSliderValues = defaultSliderValues;
-    //   localStorage.setItem( 'sliderValues', JSON.stringify(defaultSliderValues) );
-    //   setCurrentSliderValues( defaultSliderValues );
-    // }
     const jungianLSLibSliderValues = JungianLSLib.getSliderValues();
     if ( jungianLSLibSliderValues.length > 3 ) {
-      console.log( "First useEffect in FixedContainer() in Create.tsx: found the jungianLSLibSliderValues" );
-      console.log( "First useEffect: jungianLSLibSliderValues.toString() = " + jungianLSLibSliderValues.toString() );
+      if ( JungianLib.logLogicFlow ) {
+        console.log( "First useEffect in FixedContainer() in Create.tsx: found the jungianLSLibSliderValues" );
+        console.log( "First useEffect: jungianLSLibSliderValues.toString() = " + jungianLSLibSliderValues.toString() );
+      }
       setCurrentSliderValues( jungianLSLibSliderValues );
     } else {
-      console.log( "First useEffect in FixedContainer() in Create.tsx: jungianLSLibSliderValues NOT FOUND in localStorage" );
-      console.log( "First useEffect: saving default values for sliderValues in localStorage" );
+      if ( JungianLib.logLogicFlow ) {
+        console.log( "First useEffect in FixedContainer() in Create.tsx: jungianLSLibSliderValues NOT FOUND in localStorage" );
+        console.log( "First useEffect: saving default values for sliderValues in localStorage" );
+      }
       const defaultSliderValues = [ defaultSliderValue, defaultSliderValue, defaultSliderValue, defaultSliderValue ];
-    //   // setCurrentSliderValues( defaultSliderValues );
-    //   // storedSliderValues = defaultSliderValues;
       // localStorage.setItem( 'sliderValues', JSON.stringify(defaultSliderValues) );
       JungianLSLib.setSliderValues( defaultSliderValues );
       setCurrentSliderValues( defaultSliderValues );
     }
-    // const rawStoredImageString = localStorage.getItem( 'imageString' );
-    // let tmpImageString = JungianLib.defaultImageString;
-    // console.log( "First useEffect in FixedContainer() in Create.tsx: rawStoredImageString = " + rawStoredImageString );
-    // if ( rawStoredImageString && rawStoredImageString.length > 0 ) {
-    //   console.log( "First useEffect in FixedContainer() in Create.tsx: found the rawStoredImageString" );
-    //   const parsedImageString = JSON.parse( rawStoredImageString );
-    //   console.log( "First useEffect: parsedImageString = '" + parsedImageString + "'" );
-    //   storedImageString = parsedImageString;
-    //   tmpImageString = storedImageString;
-    // } else {
-    //   console.log( "First useEffect in FixedContainer() in Create.tsx: imageString NOT FOUND in localStorage" );
-    //   console.log( "First useEffect: saving JungianLib.defaultImageString for imageString in localStorage" );
-    //   localStorage.setItem( 'imageString', JSON.stringify(JungianLib.defaultImageString) );
-    //   tmpImageString = JungianLib.defaultImageString;
-    //   // storedImageString = JungianLib.defaultImageString;
-    //   // setCurrentImageString(storedImageString);
-    // }
     storedImageString = JungianLSLib.getImageString();
-    // console.log( "First useEffect in FixedContainer() in Create.tsx: jungianLSLibImageString = '" + jungianLSLibImageString + "'" );
-    // console.log( "First useEffect in FixedContainer() in Create.tsx: tmpImageString = '" + tmpImageString + "'" );
-    // if ( tmpImageString === jungianLSLibImageString ) {
-    //   console.log( "First useEffect in FixedContainer() in Create.tsx: jungianLSLibImageString === tmpImageString YAY IT WORKS OK!!" );
-    // } else {
-    //   console.log( "FIRST USEEFFECT IN FIXEDCONTAINER() IN CREATE.TSX: jungianLSLibImageString NOT === tmpImageString OH NO IT'S BROKEN!!" );
-    // }
     if ( JungianLib.logLogicFlow ) {
       console.log( "Exiting first useEffect in FixedContainer() in Create.tsx" );
     }
@@ -252,29 +223,27 @@ function FixedContainer() {
   useEffect( () => {
     if ( JungianLib.logLogicFlow ) {
       console.log( "Top of second useEffect in FixedContainer() in Create.tsx" );
+      console.log( "Second useEffect in FixedContainer in Create.tsx: currentSliderValues.length = " + currentSliderValues.length );
     }
-    console.log( "Second useEffect in FixedContainer in Create.tsx: currentSliderValues.length = " + currentSliderValues.length );
     if ( currentSliderValues.length > 3 ) {
-      // localStorage.setItem( 'sliderValues', JSON.stringify(currentSliderValues) );
       JungianLSLib.setSliderValues( currentSliderValues );
-      console.log( "Second useEffect in FixedContainer in Create.tsx: saved currentSliderValues as sliderValues." );
+      if ( JungianLib.logLogicFlow ) {
+        console.log( "Second useEffect in FixedContainer in Create.tsx: saved currentSliderValues as sliderValues." );
+      }
     } else {
-      console.log( "Second useEffect in FixedContainer in Create.tsx: did NOT save currentSliderValues as sliderValues!" );
+      if ( JungianLib.logLogicFlow ) {
+        console.log( "Second useEffect in FixedContainer in Create.tsx: did NOT save currentSliderValues as sliderValues!" );
+      }
     }
-  //if ( storedImageString.length > JungianLib.gridSize ) {
-  //  console.log( "Second useEffect in FixedContainer in Create.tsx: ready to save storedImageString as imageString" );
-  //  localStorage.setItem( 'imageString', JSON.stringify(storedImageString) );
-  //  console.log( "Second useEffect: saved storedImageString = " + storedImageString + " in local storage" );
-  //} else {
-  //  console.log( "Second useEffect in FixedContainer in Create.tsx: NOT saving storedImageString as imageString!" );
-  //  console.log( "Second useEffect: setting drawFreshImage = true" );
-  //  drawFreshImage = true;
-  //}
     if ( JungianLSLib.setImageString(storedImageString) ) {
-      console.log( "Second useEffect in FixedContainer in Create.tsx: saved storedImageString as imageString ok" );
+      if ( JungianLib.logLogicFlow ) {
+        console.log( "Second useEffect in FixedContainer in Create.tsx: saved storedImageString as imageString ok" );
+      }
     } else {
       drawFreshImage = true;
-      console.log( "Second useEffect in FixedContainer in Create.tsx: DID NOT SAVE storedImageString as imageString!" );
+      if ( JungianLib.logLogicFlow ) {
+        console.log( "Second useEffect in FixedContainer in Create.tsx: DID NOT SAVE storedImageString as imageString!" );
+      }
     }
     if ( JungianLib.logLogicFlow ) {
       console.log( "Exiting second useEffect in FixedContainer() in Create.tsx" );
@@ -285,13 +254,6 @@ function FixedContainer() {
   storedSliderValues.blueVsYellowValue = currentSliderValues[1];
   storedSliderValues.greenVsRedValue = currentSliderValues[2];
   storedSliderValues.bAndYVsGandRValue = currentSliderValues[3];
-
-  // if ( currentImageString.length !== 0 ) {
-  //   storedImageString = currentImageString;
-  // } else {
-  //   console.log( "FixedContainer in Create.tsx: setting drawFreshImage = true because it seems like the thing to do." );
-  //   drawFreshImage = true;
-  // }
 
   // Construct markup for the SliderCards
   const sliderNumberCols = [];
