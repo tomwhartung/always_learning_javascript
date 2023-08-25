@@ -140,7 +140,7 @@ function FixedContainer() {
   function changeSquareAt( squareX: number, squareY: number ) {
     const squarePosition = squareX + (squareY * JungianLib.gridSize);
     console.log( "changeSquareAt: squarePosition = " + squarePosition );
-    let newImageCharArr = storedImageString.split( "" );
+    const newImageCharArr = storedImageString.split( "" );
     newImageCharArr[squarePosition] = 'B';
     newImageCharArr.splice( squarePosition, 1, 'B' );
     const newImageString = newImageCharArr.join( '' );
