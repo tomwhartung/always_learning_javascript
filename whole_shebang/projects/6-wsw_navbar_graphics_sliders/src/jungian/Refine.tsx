@@ -73,7 +73,7 @@ function FixedSizeImageCards( props: JungianRefineProps ) {
   return (
     <>
       <div className="row mt-4">
-        <div className="col-md-8 jungian-canvas">
+        <div className="col-md-12 align-items-center jungian-canvas">
           <Canvas
             draw={draw}
             onClick={props.onImageClick}
@@ -82,7 +82,7 @@ function FixedSizeImageCards( props: JungianRefineProps ) {
           />
         </div>
       </div>
-      <div className="row mt-4">
+      <div className="row mt-4 justify-content-center">
         <div className="col-md-3 card align-items-center">
           {JungianLib.imagePropNames[0]}: {props.opacityValue}
         </div>
@@ -109,7 +109,7 @@ function FixedContainer() {
   const defautClickMessage = "Click on a square to change its color to Blue.";
   const [currentSliderValues, setCurrentSliderValues] = useState( [defaultSliderValue] );
   const [currentImageString, setCurrentImageString] = useState( JungianLib.defaultImageString );
-  const [currentClickMessage, setCurrentClickMessage] = useState( defautClickMessage );
+  const [currentStatusMessage, setCurrentStatusMessage] = useState( defautClickMessage );
 
   function handleImageClick(event: React.MouseEvent<HTMLElement>) {
     if ( JungianLib.logLogicFlow ) {
@@ -125,7 +125,7 @@ function FixedContainer() {
     const [squareX, squareY] = getSquareCoords( pixelX, pixelY );
     const squareCoords = "(" + squareX.toString() + ", " + squareY.toString() + ")";
     if ( 0 <= squareX && 0 <= squareY ) {
-      setCurrentClickMessage( "Changed the color of the square at " + squareCoords + " to Blue" );
+      setCurrentStatusMessage( "Changed the color of the square at " + squareCoords + " to Blue" );
       const newImageString = changeSquareAt( squareX, squareY );
       setCurrentImageString( newImageString );
     }
@@ -155,6 +155,9 @@ function FixedContainer() {
     setCurrentSliderValues( JungianLSLib.getSliderValues() );
     setCurrentImageString( JungianLSLib.getImageString() );
     storedImageString = JungianLSLib.getImageString();
+    if (storedImageString.length === 0 ) {
+      setCurrentStatusMessage( "You must use the Create option to create an image before you can Refine it." );
+    }
     if ( JungianLib.logLogicFlow ) {
       console.log( "Exiting First useEffect in FixedContainer() in Refine.tsx" );
     }
@@ -189,7 +192,7 @@ function FixedContainer() {
 
   return (
     <div className="container">
-      <h5>{currentClickMessage}</h5>
+      <h5>{currentStatusMessage}</h5>
       <div className="row mt-4">
         <FixedSizeImageCards
           opacityValue={currentSliderValues[0]}
