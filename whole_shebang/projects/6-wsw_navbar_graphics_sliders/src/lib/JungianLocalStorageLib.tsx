@@ -4,6 +4,7 @@
 import * as JungianLib from '../lib/JungianLib.tsx';
 import {defaultSliderValue} from './SliderLib.tsx';
 
+//
 // setSliderValues: sets the current SliderValues to the specified value
 //   returns true if successful else false if the newImageString is too short
 export function setSliderValues( newSliderValues: number[] ): boolean {
@@ -45,10 +46,10 @@ export function getSliderValues(): number[] {
 
   if ( rawStoredSliderValues ) {
     sliderValues = JSON.parse( rawStoredSliderValues );
-    if ( JungianLib.logLogicFlow ) {
-      console.log( "getSliderValues in JungianLocalStorageLib.tsx: found the rawStoredSliderValues" );
-      console.log( "getSliderValues: sliderValues.toString() = " + sliderValues.toString() );
-    }
+    // if ( JungianLib.logLogicFlow ) {
+    //   console.log( "getSliderValues in JungianLocalStorageLib.tsx: found the rawStoredSliderValues" );
+    //   console.log( "getSliderValues: sliderValues.toString() = " + sliderValues.toString() );
+    // }
   } else {
     if ( JungianLib.logLogicFlow ) {
       console.log( "getSliderValues in JungianLocalStorageLib.tsx: sliderValues NOT FOUND in localStorage" );
@@ -75,7 +76,8 @@ export function setImageString( newImageString: string ): boolean {
   if ( newImageString.length > JungianLib.gridSize ) {
     localStorage.setItem( 'imageString', JSON.stringify(newImageString) );
     if ( JungianLib.logLogicFlow ) {
-      console.log( "setImageString(): stored '" + newImageString + "' as imageString" );
+      // console.log( "setImageString(): stored '" + newImageString + "' as imageString" );
+      console.log( "setImageString(): stored newImageString as imageString" );
     }
   } else {
     success = false;
@@ -86,7 +88,7 @@ export function setImageString( newImageString: string ): boolean {
   }
 
   if ( JungianLib.logLogicFlow ) {
-    console.log( "Return()ing from setImageString() in JungianLocalStorageLib.tsx" );
+    console.log( "Return()ing '" + success + "' from setImageString() in JungianLocalStorageLib.tsx" );
   }
 
   return success;
@@ -106,7 +108,8 @@ export function getImageString():string {
   }
 
   if ( JungianLib.logLogicFlow ) {
-    console.log( "Return()ing '" + imageString + "' from getImageString() in JungianLocalStorageLib.tsx" );
+    // console.log( "Return()ing '" + imageString + "' from getImageString() in JungianLocalStorageLib.tsx" );
+    console.log( "Return()ing from getImageString() in JungianLocalStorageLib.tsx" );
   }
 
   return imageString;
