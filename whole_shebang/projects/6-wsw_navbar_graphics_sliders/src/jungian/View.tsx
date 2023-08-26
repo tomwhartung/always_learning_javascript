@@ -9,6 +9,10 @@ import {defaultSliderValue} from '../lib/SliderLib.tsx';
 import * as JungianLib from '../lib/JungianLib.tsx';
 import * as JungianLSLib from '../lib/JungianLocalStorageLib.tsx';
 
+// NOTE: Setting logLogicFlow to true for one page in effect sets it for all pages
+// JungianLib.setLogLogicFlow( true );     // un-comment when trying to track down issues
+JungianLib.setLogLogicFlow( false );    // un-comment when everything's ok
+
 let storedImageString = "";
 let opacityValue = defaultSliderValue;
 
@@ -47,14 +51,6 @@ function DFlexViewSliderValuesAndImage( props:JungianLib.JungianSliderValues ) {
   return (
     <>
       <div className="row mt-4 d-flex justify-content-center">
-        <div className="col-md-4 align-items-center">
-          <div className="card jungian-canvas">
-            <p>{JungianLib.jungianImagePropLabels[0]}: {props.opacityValue}</p>
-            <p>{JungianLib.jungianImagePropLabels[1]}: {props.blueVsYellowValue}</p>
-            <p>{JungianLib.jungianImagePropLabels[2]}: {props.greenVsRedValue}</p>
-            <p>{JungianLib.jungianImagePropLabels[3]}: {props.bAndYVsGandRValue}</p>
-          </div>
-        </div>
         <div className="col-md-8">
           <div className="card jungian-canvas">
             <Canvas
@@ -63,6 +59,20 @@ function DFlexViewSliderValuesAndImage( props:JungianLib.JungianSliderValues ) {
               width={width}
               height={height} />
           </div>
+        </div>
+      </div>
+      <div className="row mt-4 justify-content-center">
+        <div className="col-md-3 card align-items-center">
+          {JungianLib.imagePropNames[0]}: {props.opacityValue}
+        </div>
+        <div className="col-md-3 card align-items-center">
+          {JungianLib.imagePropNames[1]}: {props.blueVsYellowValue}
+        </div>
+        <div className="col-md-3 card align-items-center">
+          {JungianLib.imagePropNames[2]}: {props.greenVsRedValue}
+        </div>
+        <div className="col-md-3 card align-items-center">
+          {JungianLib.imagePropNames[3]}: {props.bAndYVsGandRValue}
         </div>
       </div>
     </>
