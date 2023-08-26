@@ -160,13 +160,17 @@ function FixedContainer() {
   //   Fetches values from local storage...   
   useEffect( () => {
     if ( JungianLib.logLogicFlow ) {
-      console.log( "Top of first useEffect in FixedContainer() in Refine.tsx" );
+      console.log( "Top of First useEffect in FixedContainer() in Refine.tsx" );
     }
     setCurrentSliderValues( JungianLSLib.getSliderValues() );
     setCurrentImageString( JungianLSLib.getImageString() );
+    console.log( "WTF First useEffect just set it but currentImageString.length = " + currentImageString.length );
     storedImageString = JungianLSLib.getImageString();
     if ( JungianLib.logLogicFlow ) {
-      console.log( "Exiting first useEffect in FixedContainer() in Refine.tsx" );
+      console.log( "Leaving First useEffect: currentImageString.length = " + currentImageString.length );
+      console.log( "Leaving First useEffect: storedImageString.length = " + storedImageString.length );
+      console.log( "Leaving First useEffect: storedImageString = " + storedImageString );
+      console.log( "Exiting First useEffect in FixedContainer() in Refine.tsx" );
     }
   }, [] );
 
@@ -177,15 +181,20 @@ function FixedContainer() {
       console.log( "Top of second useEffect in FixedContainer() in Refine.tsx" );
       console.log( "Second useEffect: currentImageString.length = " + currentImageString.length );
       console.log( "Second useEffect: storedImageString.length = " + storedImageString.length );
+      console.log( "Second useEffect: currentImageString = " + currentImageString );
       console.log( "Second useEffect: storedImageString = " + storedImageString );
     }
     const savedImageStringOk = JungianLSLib.setImageString(currentImageString);
-    storedImageString = currentImageString;
+    if ( currentImageString.length > JungianLib.gridSize ) {
+      storedImageString = currentImageString;
+    } else {
+      console.log( "Second useEffect: NOT SETTING storedImageString = currentImageString BECAUSE IT IS TOO SHORT!!" );
+    }
     if ( JungianLib.logLogicFlow ) {
       if ( savedImageStringOk) {
         console.log( "Second useEffect in FixedContainer in Refine.tsx: saved currentImageString as imageString ok" );
       } else {
-        console.log( "Second useEffect in FixedContainer in Refine.tsx: UNABLE TO SAVE currentImageString as imageString!" );
+        console.log( "Second useEffect in FixedContainer in Refine.tsx: DID NOT SAVE currentImageString as imageString!" );
       }
       console.log( "Exiting second useEffect in FixedContainer() in Refine.tsx" );
     }
