@@ -10,6 +10,7 @@ import {defaultSliderValue} from '../lib/SliderLib.tsx';
 import * as JungianLib from '../lib/JungianLib.tsx';
 import * as JungianLSLib from '../lib/JungianLocalStorageLib.tsx';
 
+// NOTE: Setting logLogicFlow to true for one page in effect sets it for all pages
 JungianLib.setLogLogicFlow( true );   // un-comment when trying to track down issues
 // JungianLib.setLogLogicFlow( false );   // un-comment when everything's ok
 
@@ -72,18 +73,27 @@ function FixedSizeImageCards( props: JungianRefineProps ) {
   return (
     <>
       <div className="row mt-4">
-        <div className="col-md-4 align-items-center">
-          <p>{JungianLib.jungianImagePropLabels[0]}: {props.opacityValue}</p>
-          <p>{JungianLib.jungianImagePropLabels[1]}: {props.blueVsYellowValue}</p>
-          <p>{JungianLib.jungianImagePropLabels[2]}: {props.greenVsRedValue}</p>
-          <p>{JungianLib.jungianImagePropLabels[3]}: {props.bAndYVsGandRValue}</p>
-        </div>
-        <div className="col-md-8">
+        <div className="col-md-8 jungian-canvas">
           <Canvas
             draw={draw}
             onClick={props.onImageClick}
             width={width}
-            height={height} />
+            height={height}
+          />
+        </div>
+      </div>
+      <div className="row mt-4">
+        <div className="col-md-3 card align-items-center">
+          {JungianLib.imagePropNames[0]}: {props.opacityValue}
+        </div>
+        <div className="col-md-3 card align-items-center">
+          {JungianLib.imagePropNames[1]}: {props.blueVsYellowValue}
+        </div>
+        <div className="col-md-3 card align-items-center">
+          {JungianLib.imagePropNames[2]}: {props.greenVsRedValue}
+        </div>
+        <div className="col-md-3 card align-items-center">
+          {JungianLib.imagePropNames[3]}: {props.bAndYVsGandRValue}
         </div>
       </div>
     </>
