@@ -10,7 +10,6 @@ import {defaultSliderValue} from '../lib/SliderLib.tsx';
 import * as JungianLib from '../lib/JungianLib.tsx';
 import * as JungianLSLib from '../lib/JungianLocalStorageLib.tsx';
 
-// NOT SURE IF I CAN GET THIS TO WORK
 JungianLib.setLogLogicFlow( true );   // un-comment when trying to track down issues
 // JungianLib.setLogLogicFlow( false );   // un-comment when everything's ok
 
@@ -19,7 +18,6 @@ let storedImageString = "";
 
 interface JungianRefineProps extends JungianLib.JungianSliderValues {
   onImageClick: (evt: MouseEvent<HTMLElement>) => void;
-  clickMessage: string;
 }
 
 // draw: draw the grid of blue, green, red, and yellow squares defined in storedImageString
@@ -28,6 +26,12 @@ const draw = (context: CanvasRenderingContext2D) => {
 };
 
 // getSquareCoords: use (pixelX, pixelY) to calculate (squareX, squareY)
+//   To support more efficient code, this function includes the corners with the borders
+//   If at some point we want to identify the corners, here is how to do it:
+//     (squareX < 0 && squareY < 0): upper-left corner
+//     (squareX < 0 && squareY >= JungianLib.gridSize): lower-left corner
+//     (squareX >= JungianLib.gridSize && squareY < 0): upper-right corner
+//     (squareX >= JungianLib.gridSize && squareY >= JungianLib.gridSize): lower-right corner
 function getSquareCoords( pixelX: number, pixelY: number ) {
   let squareX = -1;
   let squareY = -1;
@@ -49,33 +53,6 @@ function getSquareCoords( pixelX: number, pixelY: number ) {
     }
   }
   return( [squareX, squareY] );
-}
-// logSquareCoords: use (pixelX, pixelY) to calculate (squareX, squareY) and log the values to the console
-//   Note: this is really over kill and should be run only when debugging or JungianLib.logLogicFlow is true
-function logSquareCoords( pixelX: number, pixelY: number ) {
-  let squareX = 0;
-  let squareY = 0;
-  squareX = Math.floor( ( pixelX - JungianLib.gridTopX ) / JungianLib.squareSize );
-  squareY = Math.floor( ( pixelY - JungianLib.gridTopY ) / JungianLib.squareSize );
-  if ( squareX < 0 && squareY < 0 ) {
-    console.log( "You clicked on the upper-left corner, not on a square" );
-  } else if ( squareX < 0 && squareY >= JungianLib.gridSize) {
-    console.log( "You clicked on the lower-left corner, not on a square" );
-  } else if ( squareX >= JungianLib.gridSize && squareY < 0 ) {
-    console.log( "You clicked on the upper-right corner, not on a square" );
-  } else if ( squareX >= JungianLib.gridSize && squareY >= JungianLib.gridSize) {
-    console.log( "You clicked on the lower-right corner, not on a square" );
-  } else if ( squareX < 0 ) {
-    console.log( "You clicked on the bottom border, not on a square" );
-  } else if ( squareY < 0 ) {
-    console.log( "You clicked on the top border, not on a square" );
-  } else if ( squareX >= JungianLib.gridSize ) {
-    console.log( "You clicked on the right-side border, not on a square" );
-  } else if ( squareY >= JungianLib.gridSize ) {
-    console.log( "You clicked on the lower border, not on a square" );
-  } else {
-    console.log( "Pixel coords correspond to squareCoords (" + squareX.toString() + ", " + squareY.toString() + ")" );
-  }
 }
 
 // FixedSizeImageCards: function component to display a jungian image
@@ -102,7 +79,6 @@ function FixedSizeImageCards( props: JungianRefineProps ) {
           <p>{JungianLib.jungianImagePropLabels[3]}: {props.bAndYVsGandRValue}</p>
         </div>
         <div className="col-md-8">
-          <h5>{props.clickMessage}</h5>
           <Canvas
             draw={draw}
             onClick={props.onImageClick}
@@ -120,11 +96,10 @@ function FixedContainer() {
     console.log( "Top of FixedContainer() in Refine.tsx" );
   }
 
-  const [currentSliderValues, setCurrentSliderValues] = useState([defaultSliderValue]);
-  const [currentImageString, setCurrentImageString] = useState(JungianLib.defaultImageString);
-  const [currentClickMessage, setCurrentClickMessage] = useState("Click on a square to change its color.");
-
-  // let clickToRefineMessage = "Click on a square to change its color.";
+  const defautClickMessage = "Click on a square to change its color to Blue.";
+  const [currentSliderValues, setCurrentSliderValues] = useState( [defaultSliderValue] );
+  const [currentImageString, setCurrentImageString] = useState( JungianLib.defaultImageString );
+  const [currentClickMessage, setCurrentClickMessage] = useState( defautClickMessage );
 
   function handleImageClick(event: React.MouseEvent<HTMLElement>) {
     if ( JungianLib.logLogicFlow ) {
@@ -146,7 +121,6 @@ function FixedContainer() {
     }
     if ( JungianLib.logLogicFlow ) {
       console.log( "handleImageClick: You clicked on the square at " + squareCoords );
-      logSquareCoords( pixelX, pixelY );
       console.log( "handleImageClick in FixedContainer in Refine.tsx: exiting function" );
     }
   }
@@ -213,7 +187,6 @@ function FixedContainer() {
           greenVsRedValue={currentSliderValues[2]}
           bAndYVsGandRValue={currentSliderValues[3]}
           onImageClick={handleImageClick}
-          clickMessage={currentClickMessage}
         />
       </div>
     </div>
