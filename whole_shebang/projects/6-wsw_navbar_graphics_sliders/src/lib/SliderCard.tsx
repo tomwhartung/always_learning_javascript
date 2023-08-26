@@ -11,31 +11,26 @@ function JungianSlider( props: SliderLib.SliderProps ) {
   const sliderOppositeValue = 100 - props.sliderVal;
   const sliderId = "myslider-" + props.sliderNo.toString();
   let sliderLabel = sliderOppositeValue.toString() + "% " +
-                    JungianLib.jungianImagePropNames[props.sliderNo] + ": " +
+                    JungianLib.imageSliderLabels[props.sliderNo] + ": " +
                     props.sliderVal.toString() + "%";
 
   if ( props.sliderNo == 0 ) {
-    sliderLabel = JungianLib.jungianImagePropNames[props.sliderNo] + ": " +
+    sliderLabel = JungianLib.imageSliderLabels[props.sliderNo] + ": " +
                   props.sliderVal.toString();
-// } else {
-//   const sliderLabel = sliderOppositeValue.toString() +
-//                       JungianLib.jungianImagePropNames[props.sliderNo] + ": " +
-//                       props.sliderVal.toString();
   }
 
   const initialSliderVal = ( 0 <= props.sliderVal && props.sliderVal <= 100 ) ? props.sliderVal : SliderLib.defaultSliderValue;
-//console.log( "JungianSlider in SliderCard.tsx: props.sliderVal = " + props.sliderVal );
-//console.log( "JungianSlider in SliderCard.tsx: initialSliderVal = " + initialSliderVal );
 
   return (
     <>
       <MDBRange
+        className="pt-2 ps-2 pe-2"
         defaultValue={initialSliderVal}
         id={sliderId}
         label=""
         onChange={props.onSliderChange}
       />
-      <p>{sliderLabel}</p>
+      <p className="ps-2">{sliderLabel}</p>
     </>
   );
 }
