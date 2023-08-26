@@ -11,8 +11,8 @@ import * as JungianLib from '../lib/JungianLib.tsx';
 import * as JungianLSLib from '../lib/JungianLocalStorageLib.tsx';
 
 // NOT SURE IF I CAN GET THIS TO WORK
-// JungianLib.setLogLogicFlow( true );   // un-comment when trying to track down issues
-JungianLib.setLogLogicFlow( false );   // un-comment when everything's ok
+JungianLib.setLogLogicFlow( true );   // un-comment when trying to track down issues
+// JungianLib.setLogLogicFlow( false );   // un-comment when everything's ok
 
 let opacityValue = defaultSliderValue;
 let storedImageString = "";
@@ -128,35 +128,36 @@ function FixedContainer() {
 
   function handleImageClick(event: React.MouseEvent<HTMLElement>) {
     if ( JungianLib.logLogicFlow ) {
-      console.log( "handleImageClick in FixedContainer in Refine.tsx: top of function" );
+      console.log( "Top of handleImageClick() in FixedContainer in Refine.tsx" );
     }
     const rect = (event.target as HTMLElement).getBoundingClientRect();
     const pixelX = Math.round( event.clientX - rect.left );
     const pixelY = Math.round( event.clientY - rect.top );
     if ( JungianLib.logLogicFlow ) {
-      console.log( "Click on the FixedSizeImage at pixel coords (" + pixelX.toString() + ", " + pixelY.toString() + ")" );
+      const pixelCoords = "(" + pixelX.toString() + ", " + pixelY.toString() + ")";
+      console.log( "Click on the FixedSizeImage at " + pixelCoords);
     }
     const [squareX, squareY] = getSquareCoords( pixelX, pixelY );
+    const squareCoords = "(" + squareX.toString() + ", " + squareY.toString() + ")";
     if ( 0 <= squareX && 0 <= squareY ) {
-      const squareCoords = "(" + squareX.toString() + ", " + squareY.toString() + ")";
       setCurrentClickMessage( "Changed the color of the square at " + squareCoords + " to Blue" );
       const newImageString = changeSquareAt( squareX, squareY );
       setCurrentImageString( newImageString );
     }
     if ( JungianLib.logLogicFlow ) {
-      console.log( "handleImageClick: You clicked on the square at (" + squareX.toString() + ", " + squareY.toString() + ")" );
+      console.log( "handleImageClick: You clicked on the square at " + squareCoords );
       logSquareCoords( pixelX, pixelY );
       console.log( "handleImageClick in FixedContainer in Refine.tsx: exiting function" );
     }
   }
   function changeSquareAt( squareX: number, squareY: number ) {
-    const squarePosition = squareX + (squareY * JungianLib.gridSize);
+    const charArrIndex = squareX + (squareY * JungianLib.gridSize);
     if ( JungianLib.logLogicFlow ) {
-      console.log( "changeSquareAt: squarePosition = " + squarePosition );
+      console.log( "changeSquareAt: charArrIndex = " + charArrIndex );
     }
     const newImageCharArr = storedImageString.split( "" );
-    newImageCharArr[squarePosition] = 'B';
-    newImageCharArr.splice( squarePosition, 1, 'B' );
+    newImageCharArr[charArrIndex] = 'B';
+    newImageCharArr.splice( charArrIndex, 1, 'B' );
     const newImageString = newImageCharArr.join( '' );
     return newImageString;
   }
@@ -171,9 +172,6 @@ function FixedContainer() {
     setCurrentImageString( JungianLSLib.getImageString() );
     storedImageString = JungianLSLib.getImageString();
     if ( JungianLib.logLogicFlow ) {
-      console.log( "Leaving First useEffect: currentImageString.length = " + currentImageString.length );
-      console.log( "Leaving First useEffect: storedImageString.length = " + storedImageString.length );
-      console.log( "Leaving First useEffect: storedImageString = " + storedImageString );
       console.log( "Exiting First useEffect in FixedContainer() in Refine.tsx" );
     }
   }, [] );
@@ -183,10 +181,6 @@ function FixedContainer() {
   useEffect( () => {
     if ( JungianLib.logLogicFlow ) {
       console.log( "Top of second useEffect in FixedContainer() in Refine.tsx" );
-      console.log( "Second useEffect: currentImageString.length = " + currentImageString.length );
-      console.log( "Second useEffect: storedImageString.length = " + storedImageString.length );
-      console.log( "Second useEffect: currentImageString = " + currentImageString );
-      console.log( "Second useEffect: storedImageString = " + storedImageString );
     }
     const savedImageStringOk = JungianLSLib.setImageString(currentImageString);
     if ( currentImageString.length > JungianLib.gridSize ) {
@@ -196,13 +190,13 @@ function FixedContainer() {
       if ( savedImageStringOk) {
         console.log( "Second useEffect in Refine.tsx: saved currentImageString as imageString ok" );
       } else {
-        console.log( "Second useEffect in Refine.tsx: DID NOT SAVE currentImageString as imageString" );
+        console.log( "Second useEffect: currentImageString.length = " + currentImageString.length );
+        console.log( "Second useEffect: DID NOT SAVE currentImageString as imageString" );
       }
       console.log( "Exiting second useEffect in FixedContainer() in Refine.tsx" );
     }
   }, [currentImageString] );
 
-  // storedImageString = JungianLSLib.getImageString();
   storedImageString = currentImageString;
 
   if ( JungianLib.logLogicFlow ) {
