@@ -23,15 +23,15 @@ export interface JungianImagePercents {
 // Constant Arrays
 export const numberOfSliderCards = 4;  // Warning: Do not make this greater
                                        // than or equal to the number of
-                                       // elements in jungianImagePropNames
-                                       // and jungianImagePropLabels
-export const jungianImagePropLabels: readonly string[] = [
+                                       // elements in imageSliderLabels
+                                       // and imagePropNames
+export const imagePropNames: readonly string[] = [
   "Opacity",
   "B vs Y",
   "G vs R",
   "B&Y vs G&R",
 ];
-export const jungianImagePropNames: readonly string[] = [
+export const imageSliderLabels: readonly string[] = [
   "Opacity",
   "Y vs B",
   "R vs G",
@@ -47,9 +47,6 @@ export const colorLetters = [
 
 // Constant Values
 
-export const logLogicFlow = true;
-// export const logLogicFlow = false;
-
 export const defaultImageString = "";
 
 // Note: At some point, we may want to make some of these variables set by the user
@@ -63,8 +60,21 @@ export const gridTopY = 4;       // Y location of top left corner of grid
 export const canvasWidth = ( squareSize * gridSize ) + ( 2 * gridTopX );
 export const canvasHeight = ( squareSize * gridSize ) + ( 2 * gridTopY );
 
+// logLogicFlow: enable turning logging to the console on and off
+//   NOTE: Setting logLogicFlow to true for one page in effect sets it for all pages
+//
+export let logLogicFlow = false;
+export function setLogLogicFlow( value: boolean ) {
+  logLogicFlow = value;
+}
+export function getLogLogicFlow(): boolean {
+  return logLogicFlow;
+}
+
+
 // Functions:
 // ----------
+//
 // valueToPct: convert a slider value [0 - 100] to a percentage of opacity [0.0 - 1.00]
 export function valueToPct( value: number ) : number {
   const percent = value / 100;
