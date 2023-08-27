@@ -55,11 +55,23 @@ function getSquareCoords( pixelX: number, pixelY: number ) {
   }
   return( [squareX, squareY] );
 }
-
-// FixedSizeImageCards: function component to display a jungian image
-function FixedSizeImageCards( props: JungianRefineProps ) {
+// changeSquareAt: change the color of the square at location (squareX, squareY)
+function changeSquareAt( squareX: number, squareY: number ) {
+  const charArrIndex = squareX + (squareY * JungianLib.gridSize);
   if ( JungianLib.logLogicFlow ) {
-    console.log( "Top of FixedSizeImageCards() in Refine.tsx" );
+    console.log( "changeSquareAt: charArrIndex = " + charArrIndex );
+  }
+  const newImageCharArr = storedImageString.split( "" );
+  newImageCharArr[charArrIndex] = 'B';
+  newImageCharArr.splice( charArrIndex, 1, 'B' );
+  const newImageString = newImageCharArr.join( '' );
+  return newImageString;
+}
+
+// FixedSizeImageAndCards: function component to display a jungian image
+function FixedSizeImageAndCards( props: JungianRefineProps ) {
+  if ( JungianLib.logLogicFlow ) {
+    console.log( "Top of FixedSizeImageAndCards() in Refine.tsx" );
   }
 
   const width = JungianLib.canvasWidth;
@@ -67,9 +79,11 @@ function FixedSizeImageCards( props: JungianRefineProps ) {
   opacityValue = props.opacityValue;
 
   if ( JungianLib.logLogicFlow ) {
-    console.log( "return()ing from FixedSizeImageCards() in Refine.tsx" );
+    console.log( "return()ing from FixedSizeImageAndCards() in Refine.tsx" );
   }
 
+  // NOTE: DO NOT PUT THIS Canvas IN A CARD!  Doing so makes it resizable and
+  //   breaks the code that calculates which square the user clicked on!!
   return (
     <>
       <div className="row mt-4">
@@ -115,14 +129,19 @@ function FixedContainer() {
     if ( JungianLib.logLogicFlow ) {
       console.log( "Top of handleImageClick() in FixedContainer in Refine.tsx" );
     }
+    // getBoundingClientRect: get coords of top-left of image (the target element)
+    // rect.left & rect.top: coords of top-left of image (the target element)
+    // event.clientX & event.clientY: coords of click relative to top-left of screen
+    // pixelX & pixelY: coords of click relative to top-left of image (screen coord minus rect coord)
+    // getSquareCoords() and squareX & squareY: see comments in getSquareCoords() function header
     const rect = (event.target as HTMLElement).getBoundingClientRect();
     const pixelX = Math.round( event.clientX - rect.left );
     const pixelY = Math.round( event.clientY - rect.top );
     if ( JungianLib.logLogicFlow ) {
       const pixelCoords = "(" + pixelX.toString() + ", " + pixelY.toString() + ")";
-      console.log( "Click on the FixedSizeImage at " + pixelCoords);
+      console.log( "handleImageClick: Click on the FixedSizeImage at " + pixelCoords);
     }
-    const [squareX, squareY] = getSquareCoords( pixelX, pixelY );
+    const [squareX, squareY] = getSquareCoords( pixelX, pixelY );  // see comments in function header
     const squareCoords = "(" + squareX.toString() + ", " + squareY.toString() + ")";
     if ( 0 <= squareX && 0 <= squareY ) {
       setCurrentStatusMessage( "Changed the color of the square at " + squareCoords + " to Blue" );
@@ -134,20 +153,10 @@ function FixedContainer() {
       console.log( "handleImageClick in FixedContainer in Refine.tsx: exiting function" );
     }
   }
-  function changeSquareAt( squareX: number, squareY: number ) {
-    const charArrIndex = squareX + (squareY * JungianLib.gridSize);
-    if ( JungianLib.logLogicFlow ) {
-      console.log( "changeSquareAt: charArrIndex = " + charArrIndex );
-    }
-    const newImageCharArr = storedImageString.split( "" );
-    newImageCharArr[charArrIndex] = 'B';
-    newImageCharArr.splice( charArrIndex, 1, 'B' );
-    const newImageString = newImageCharArr.join( '' );
-    return newImageString;
-  }
 
-  // First useEffect: (presumably) runs once when component is mounted...
-  //   Fetches values from local storage...   
+  // First useEffect: (presumably) runs once when component is mounted, or so they tell me...
+  // - Fetches sliderValues and imageString from local storage and sets them in state variables
+  // - If imageString is empty, set the current status message accordingly
   useEffect( () => {
     if ( JungianLib.logLogicFlow ) {
       console.log( "Top of First useEffect in FixedContainer() in Refine.tsx" );
@@ -164,12 +173,12 @@ function FixedContainer() {
   }, [] );
 
   // Second useEffect: runs when component is mounted AND when the user changes the imageString
-  //   Stores the new image string in local storage
+  //   Stores the new, refined image string in local storage
   useEffect( () => {
     if ( JungianLib.logLogicFlow ) {
       console.log( "Top of second useEffect in FixedContainer() in Refine.tsx" );
     }
-    const savedImageStringOk = JungianLSLib.setImageString(currentImageString);
+    const savedImageStringOk = JungianLSLib.setImageString( currentImageString );
     if ( currentImageString.length > JungianLib.gridSize ) {
       storedImageString = currentImageString;
     }
@@ -184,7 +193,7 @@ function FixedContainer() {
     }
   }, [currentImageString] );
 
-  storedImageString = currentImageString;
+  storedImageString = currentImageString;    // updates the displayed image with the latest changes
 
   if ( JungianLib.logLogicFlow ) {
     console.log( "return()ing from FixedContainer() in Refine.tsx" );
@@ -194,7 +203,7 @@ function FixedContainer() {
     <div className="container">
       <h5>{currentStatusMessage}</h5>
       <div className="row mt-4">
-        <FixedSizeImageCards
+        <FixedSizeImageAndCards
           opacityValue={currentSliderValues[0]}
           blueVsYellowValue={currentSliderValues[1]}
           greenVsRedValue={currentSliderValues[2]}
