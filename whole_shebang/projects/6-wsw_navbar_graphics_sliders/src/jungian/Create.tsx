@@ -11,10 +11,10 @@ import * as JungianLib from '../lib/JungianLib.tsx';
 import * as JungianLSLib from '../lib/JungianLocalStorageLib.tsx';
 
 // NOTE: Setting logLogicFlow to true for one page in effect sets it for all pages
-// JungianLib.setLogLogicFlow( true );     // un-comment when trying to track down issues
-JungianLib.setLogLogicFlow( false );    // un-comment when everything's ok
+// JungianLib.setLogLogicFlow( false );    // un-comment when everything's ok
+JungianLib.setLogLogicFlow( true );     // un-comment when trying to track down issues
 
-// These are the slider values we use when drawing the image
+// These are the slider values we use when drawing a Fresh Image
 const storedSliderValues: JungianLib.JungianSliderValues = {
   opacityValue: defaultSliderValue,
   blueVsYellowValue: defaultSliderValue,
@@ -81,8 +81,9 @@ const draw = (context: CanvasRenderingContext2D) => {
       }
     }
     if ( JungianLib.logLogicFlow ) {
-      console.log( "draw() in Create.tsx: finished drawing Fresh Image, imageCharArray: " + imageCharArray )
-      console.log( "draw(): setting drawFreshImage = false and saving imageCharArray as storedImageString" );
+      console.log( "draw() in Create.tsx: finished drawing a Fresh Image" );
+      console.log( "draw(): Fresh Image's imageCharArray.length = " + imageCharArray.length );
+      console.log( "draw(): setting drawFreshImage = false and saving new image as storedImageString" );
     }
     drawFreshImage = false;
     storedImageString = imageCharArray.join('');
@@ -101,10 +102,10 @@ const draw = (context: CanvasRenderingContext2D) => {
   }
 };
 
-// FixedSizeImageCards: function component to display a jungian image
-function FixedSizeImageCards( props: JungianLib.JungianSliderValues ) {
+// FixedSizeImageAndCards: function component to display a jungian image
+function FixedSizeImageAndCards( props: JungianLib.JungianSliderValues ) {
   if ( JungianLib.logLogicFlow ) {
-    console.log( "Top of FixedSizeImageCards() in Create.tsx" );
+    console.log( "Top of FixedSizeImageAndCards() in Create.tsx" );
   }
 
   const width = JungianLib.canvasWidth;
@@ -146,7 +147,7 @@ function FixedSizeImageCards( props: JungianLib.JungianSliderValues ) {
   }
 
   if ( JungianLib.logLogicFlow ) {
-    console.log( "return()ing from FixedSizeImageCards() in Create.tsx" );
+    console.log( "return()ing from FixedSizeImageAndCards() in Create.tsx" );
   }
 
   return (
@@ -157,7 +158,8 @@ function FixedSizeImageCards( props: JungianLib.JungianSliderValues ) {
             draw={draw}
             onClick={handleImageClick}
             width={width}
-            height={height} />
+            height={height}
+          />
         </div>
       </div>
       <div className="row mt-4 justify-content-center">
@@ -187,16 +189,20 @@ function FixedContainer() {
   const [currentSliderValues, setCurrentSliderValues] = useState([defaultSliderValue]);
   // const [currentImageString, setCurrentImageString] = useState(JungianLib.defaultImageString);
 
-  function handleChangeArrayOfNumbers( evt:ChangeEvent, col:number ) {
+  function handleSliderValueChange( evt:ChangeEvent, col:number ) {
+    if ( JungianLib.logLogicFlow ) {
+      console.log( "Top of handleSliderValueChange in FixedContainer" );
+    }
     const val = (evt.target as HTMLInputElement).value;
-    // console.log( "Value of slider number " + col.toString() + " is now " + val.toString() );
+    // console.log( "handleSliderValueChange: slider num " + col.toString() + " = " + val.toString() );
     const nextSliderValues = currentSliderValues.slice();
     nextSliderValues[col] = Number(val);
     setCurrentSliderValues(nextSliderValues);
-    if ( JungianLib.logLogicFlow ) {
-      console.log( "handleChangeArrayOfNumbers in FixedContainer: setting drawFreshImage = true" );
-    }
     drawFreshImage = true;                  // When a slider value changes, we need to draw a new image
+    if ( JungianLib.logLogicFlow ) {
+      console.log( "handleSliderValueChange: set drawFreshImage = true" );
+      console.log( "Exiting handleSliderValueChange in FixedContainer" );
+    }
   }
 
   // First useEffect: (presumably) runs once when component is mounted (but I have my doubts...)
@@ -275,7 +281,7 @@ function FixedContainer() {
         <SliderCard
          sliderNo={col}
          sliderVal={currentSliderValues[col] ?? defaultSliderValue}
-         onSliderChange={ (evt) => handleChangeArrayOfNumbers(evt,col) }
+         onSliderChange={ (evt) => handleSliderValueChange(evt,col) }
         />
       </div>
     );
@@ -292,7 +298,7 @@ function FixedContainer() {
         {sliderNumberCols}
       </div>
       <div className="row mt-4">
-        <FixedSizeImageCards
+        <FixedSizeImageAndCards
           opacityValue={currentSliderValues[0] ?? defaultSliderValue}
           blueVsYellowValue={currentSliderValues[1] ?? defaultSliderValue}
           greenVsRedValue={currentSliderValues[2] ?? defaultSliderValue}
