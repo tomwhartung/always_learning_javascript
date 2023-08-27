@@ -178,13 +178,10 @@ function FixedContainer() {
     if ( JungianLib.logLogicFlow ) {
       console.log( "Top of second useEffect in FixedContainer() in Refine.tsx" );
     }
-    const savedImageStringOk = JungianLSLib.setImageString( currentImageString );
-    if ( currentImageString.length > JungianLib.gridSize ) {
-      storedImageString = currentImageString;
-    }
+    const success = JungianLSLib.setImageString( currentImageString );
     if ( JungianLib.logLogicFlow ) {
-      if ( savedImageStringOk) {
-        console.log( "Second useEffect in Refine.tsx: saved currentImageString as imageString ok" );
+      if ( success ) {
+        console.log( "Second useEffect: saved currentImageString as imageString ok" );
       } else {
         console.log( "Second useEffect: currentImageString.length = " + currentImageString.length );
         console.log( "Second useEffect: DID NOT SAVE currentImageString as imageString" );
