@@ -194,11 +194,16 @@ function FixedContainer() {
       console.log( "Top of handleSliderValueChange in FixedContainer" );
     }
     const val = (evt.target as HTMLInputElement).value;
-    // console.log( "handleSliderValueChange: slider num " + col.toString() + " = " + val.toString() );
+    if ( JungianLib.logLogicFlow ) {
+      console.log( "handleSliderValueChange: slider num " + col.toString() + " = " + val.toString() );
+    }
     const nextSliderValues = currentSliderValues.slice();
     nextSliderValues[col] = Number(val);
     setCurrentSliderValues(nextSliderValues);
-    drawFreshImage = true;                  // When a slider value changes, we need to draw a new image
+    // When the value for a slider (other than opacity) changes, we need to draw a new image
+    if ( 0 < col ) {
+      drawFreshImage = true;
+    }
     if ( JungianLib.logLogicFlow ) {
       console.log( "handleSliderValueChange: set drawFreshImage = true" );
       console.log( "Exiting handleSliderValueChange in FixedContainer" );
