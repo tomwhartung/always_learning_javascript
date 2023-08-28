@@ -95,7 +95,9 @@ function FixedSizeImageAndCards( props: JungianRefineProps ) {
   return (
     <>
       <div className="row mt-3 justify-content-center">
-        <div className="col-sm-3 card align-items-center">
+        <div className="col-sm-4 card align-items-center">
+        </div>
+        <div className="col-sm-2 card align-items-center">
           <MDBRadio
             name="colorPicker"
             id="blue"
@@ -105,7 +107,7 @@ function FixedSizeImageAndCards( props: JungianRefineProps ) {
             defaultChecked
           />
         </div>
-        <div className="col-sm-3 card align-items-center">
+        <div className="col-sm-2 card align-items-center">
           <MDBRadio
             name="colorPicker"
             label={JungianLib.colorNames[1]}
@@ -113,7 +115,7 @@ function FixedSizeImageAndCards( props: JungianRefineProps ) {
             onChange={props.onRadioButtonClick}
           />
         </div>
-        <div className="col-sm-3 card align-items-center">
+        <div className="col-sm-2 card align-items-center">
           <MDBRadio
             name="colorPicker"
             id="red"
@@ -122,7 +124,7 @@ function FixedSizeImageAndCards( props: JungianRefineProps ) {
             onChange={props.onRadioButtonClick}
           />
         </div>
-        <div className="col-sm-3 card align-items-center">
+        <div className="col-sm-2 card align-items-center">
           <MDBRadio
             name="colorPicker"
             id="yellow"
@@ -181,8 +183,11 @@ function FixedContainer() {
       console.log( "handleColorPickerChange: event.currentTarget.value = " + event.currentTarget.value );
     }
     const colorIndex = parseInt( event.currentTarget.value );
+    const colorPicked = JungianLib.colorNames[ colorIndex ];
     setCurrentColorIndex( colorIndex );
+    setCurrentStatusMessage( "Click on a square to change its color to " + colorPicked );
     if ( JungianLib.logLogicFlow ) {
+      console.log( "handleColorPickerChange currentStatusMessage = " + currentStatusMessage );
       console.log( "Exiting handleColorPickerChange in FixedContainer in Refine.tsx" );
     }
   }
