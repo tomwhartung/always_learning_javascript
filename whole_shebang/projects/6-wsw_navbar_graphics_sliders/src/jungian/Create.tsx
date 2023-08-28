@@ -25,68 +25,22 @@ const storedSliderValues: JungianLib.JungianSliderValues = {
 let storedImageString = "";
 let drawFreshImage = false;
 
-let imageCharArray: string[] = [];
-
 // draw: Add a "groja-esque" grid of blue, green, red, and yellow squares
 const draw = (context: CanvasRenderingContext2D) => {
   if ( JungianLib.logLogicFlow ) {
     console.log( "Top of draw() in Create.tsx" );
   }
 
-  const width = JungianLib.canvasWidth;
-  const height = JungianLib.canvasHeight;
-  const innerSquareWidth = JungianLib.canvasWidth - ( 2 * JungianLib.gridTopX );
-  const innerSquareHeight = JungianLib.canvasHeight - ( 2 * JungianLib.gridTopY );
-
-  // Paint it all black
-  context.fillStyle = "rgb(0, 0, 0)";
-  context.fillRect(0, 0, width, height);
-
-  // Paint the inner square, where the actual image will be, white
-  context.fillStyle = "rgb(255, 255, 255)";
-  context.fillRect(JungianLib.gridTopY, JungianLib.gridTopY, innerSquareWidth, innerSquareHeight);
-
-  let squareTopX = JungianLib.gridTopX;
-  let squareTopY = JungianLib.gridTopY;
-  let colorLetter = "B";
-
-  const opacityPercent = JungianLib.valueToPct( storedSliderValues.opacityValue );
-
   if ( drawFreshImage ) {
     if ( JungianLib.logLogicFlow ) {
-      console.log( "draw() in Create.tsx: drawFreshImage is true so we are drawing a Fresh Image" );
+      console.log( "draw() in Create.tsx: calling JungianLib.drawNewImageString to draw a Fresh Image" );
     }
-    imageCharArray = [];
-    // console.log( "draw() in Create.tsx: imageCharArray.length = " + imageCharArray.length );
-    for ( let row=0; row < JungianLib.gridSize; row++ ) {
-      squareTopY = JungianLib.gridTopY + (row * JungianLib.squareSize);
-      for ( let col=0; col < JungianLib.gridSize; col++ ){
-        // console.log( "draw() in Create.tsx: calling JungianLib.getRandomPrimaryColor = " + colorLetter );
-        colorLetter = JungianLib.getRandomPrimaryColor( storedSliderValues );
-        // console.log( "draw() in Create.tsx: colorLetter = " + colorLetter );
-        squareTopX = JungianLib.gridTopX + (col * JungianLib.squareSize);
-        if ( colorLetter == "B" ) {
-          context.fillStyle = "rgba(0, 0, 255, " + opacityPercent.toString() + ")";
-        } else if ( colorLetter == "G" ) {
-          context.fillStyle = "rgba(0, 255, 0, " + opacityPercent.toString() + ")";
-        } else if ( colorLetter == "R" ) {
-          context.fillStyle = "rgba(255, 0, 0, " + opacityPercent.toString() + ")";
-        } else if ( colorLetter == "Y" ) {
-          context.fillStyle = "rgba(255, 255, 0, " + opacityPercent.toString() + ")";
-        } else {
-          context.fillStyle = "rgb(255, 255, 255, " + opacityPercent.toString() + ")";
-        }
-        context.fillRect( squareTopX, squareTopY, JungianLib.squareSize, JungianLib.squareSize );
-        imageCharArray.push( colorLetter );
-      }
-    }
-    if ( JungianLib.logLogicFlow ) {
-      console.log( "draw() in Create.tsx: finished drawing a Fresh Image" );
-      console.log( "draw(): Fresh Image's imageCharArray.length = " + imageCharArray.length );
-      console.log( "draw(): setting drawFreshImage = false and saving new image as storedImageString" );
-    }
+    const newImageString = JungianLib.drawNewImageString( context, storedSliderValues );
+    storedImageString = newImageString;
     drawFreshImage = false;
-    storedImageString = imageCharArray.join('');
+    if ( JungianLib.logLogicFlow ) {
+      console.log( "draw(): set drawFreshImage = false and saved the newImageString as storedImageString" );
+    }
   } else if ( storedImageString.length > 0 ) {
     if ( JungianLib.logLogicFlow ) {
       console.log( "draw() in Create.tsx: drawing storedImageString" );
