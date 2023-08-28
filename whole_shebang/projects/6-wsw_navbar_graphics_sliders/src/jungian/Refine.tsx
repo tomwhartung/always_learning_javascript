@@ -59,14 +59,18 @@ function getSquareCoords( pixelX: number, pixelY: number ) {
   return( [squareX, squareY] );
 }
 // changeSquareAt: change the color of the square at location (squareX, squareY)
-function changeSquareAt( squareX: number, squareY: number ) {
+function changeSquareAt( squareX: number, squareY: number, colorIndex: number ) {
   const charArrIndex = squareX + (squareY * JungianLib.gridSize);
+  const colorLetterPicked = JungianLib.colorLetters[colorIndex];
+
   if ( JungianLib.logLogicFlow ) {
     console.log( "changeSquareAt: charArrIndex = " + charArrIndex );
+    console.log( "changeSquareAt: colorIndex = " + colorIndex );
+    console.log( "changeSquareAt: colorLetterPicked = " + colorLetterPicked );
   }
+
   const newImageCharArr = storedImageString.split( "" );
-  newImageCharArr[charArrIndex] = 'B';
-  newImageCharArr.splice( charArrIndex, 1, 'B' );
+  newImageCharArr.splice( charArrIndex, 1, colorLetterPicked );
   const newImageString = newImageCharArr.join( '' );
   return newImageString;
 }
@@ -95,8 +99,8 @@ function FixedSizeImageAndCards( props: JungianRefineProps ) {
           <MDBRadio
             name="colorPicker"
             id="blue"
-            label="Blue"
-            value="B"
+            label={JungianLib.colorNames[0]}
+            value="0"
             onChange={props.onRadioButtonClick}
             defaultChecked
           />
@@ -104,9 +108,8 @@ function FixedSizeImageAndCards( props: JungianRefineProps ) {
         <div className="col-sm-3 card align-items-center">
           <MDBRadio
             name="colorPicker"
-            id="green"
-            label="Green"
-            value="G"
+            label={JungianLib.colorNames[1]}
+            value="1"
             onChange={props.onRadioButtonClick}
           />
         </div>
@@ -114,8 +117,8 @@ function FixedSizeImageAndCards( props: JungianRefineProps ) {
           <MDBRadio
             name="colorPicker"
             id="red"
-            label="Red"
-            value="R"
+            label={JungianLib.colorNames[2]}
+            value="2"
             onChange={props.onRadioButtonClick}
           />
         </div>
@@ -123,8 +126,8 @@ function FixedSizeImageAndCards( props: JungianRefineProps ) {
           <MDBRadio
             name="colorPicker"
             id="yellow"
-            label="Yellow"
-            value="Y"
+            label={JungianLib.colorNames[3]}
+            value="3"
             onChange={props.onRadioButtonClick}
           />
         </div>
@@ -163,17 +166,22 @@ function FixedContainer() {
     console.log( "Top of FixedContainer() in Refine.tsx" );
   }
 
-  const defautClickMessage = "Click on a square to change its color to Blue.";
+  const defaultStatusMessage = "Click on a square to change its color to Blue.";
+  const defaultColorIndex = 0;
+
   const [currentSliderValues, setCurrentSliderValues] = useState( [defaultSliderValue] );
   const [currentImageString, setCurrentImageString] = useState( JungianLib.defaultImageString );
-  const [currentStatusMessage, setCurrentStatusMessage] = useState( defautClickMessage );
+  const [currentStatusMessage, setCurrentStatusMessage] = useState( defaultStatusMessage );
+  const [currentColorIndex, setCurrentColorIndex] = useState( defaultColorIndex );
 
   // handleColorPickerChange: Change the new color used when user clicks on a square
   function handleColorPickerChange( event: ChangeEvent<HTMLInputElement> ) {
-    // if ( JungianLib.logLogicFlow ) {
+    if ( JungianLib.logLogicFlow ) {
       console.log( "Top of handleColorPickerChange in FixedContainer in Refine.tsx" );
       console.log( "handleColorPickerChange: event.currentTarget.value = " + event.currentTarget.value );
-    // }
+    }
+    const colorIndex = parseInt( event.currentTarget.value );
+    setCurrentColorIndex( colorIndex );
     if ( JungianLib.logLogicFlow ) {
       console.log( "Exiting handleColorPickerChange in FixedContainer in Refine.tsx" );
     }
@@ -199,9 +207,10 @@ function FixedContainer() {
     const [squareX, squareY] = getSquareCoords( pixelX, pixelY );  // see comments in function header
     const squareCoords = "(" + squareX.toString() + ", " + squareY.toString() + ")";
     if ( 0 <= squareX && 0 <= squareY ) {
-      setCurrentStatusMessage( "Changed the color of the square at " + squareCoords + " to Blue" );
-      const newImageString = changeSquareAt( squareX, squareY );
+      const newImageString = changeSquareAt( squareX, squareY, currentColorIndex );
       setCurrentImageString( newImageString );
+      const colorPicked = JungianLib.colorNames[ currentColorIndex ];
+      setCurrentStatusMessage( "Changed the color of the square at " + squareCoords + " to " + colorPicked );
     }
     if ( JungianLib.logLogicFlow ) {
       console.log( "handleImageClick: You clicked on the square at " + squareCoords );
