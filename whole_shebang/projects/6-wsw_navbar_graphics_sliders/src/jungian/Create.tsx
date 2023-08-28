@@ -219,20 +219,19 @@ function FixedContainer() {
     }
     const jungianLSLibSliderValues = JungianLSLib.getSliderValues();
     if ( jungianLSLibSliderValues.length > 3 ) {
+      setCurrentSliderValues( jungianLSLibSliderValues );
       if ( JungianLib.logLogicFlow ) {
-        console.log( "First useEffect in FixedContainer() in Create.tsx: found the jungianLSLibSliderValues" );
+        console.log( "First useEffect: found the jungianLSLibSliderValues" );
         console.log( "First useEffect: jungianLSLibSliderValues.toString() = " + jungianLSLibSliderValues.toString() );
       }
-      setCurrentSliderValues( jungianLSLibSliderValues );
     } else {
-      if ( JungianLib.logLogicFlow ) {
-        console.log( "First useEffect in FixedContainer() in Create.tsx: jungianLSLibSliderValues NOT FOUND in localStorage" );
-        console.log( "First useEffect: saving default values for sliderValues in localStorage" );
-      }
       const defaultSliderValues = [ defaultSliderValue, defaultSliderValue, defaultSliderValue, defaultSliderValue ];
-      // localStorage.setItem( 'sliderValues', JSON.stringify(defaultSliderValues) );
       JungianLSLib.setSliderValues( defaultSliderValues );
       setCurrentSliderValues( defaultSliderValues );
+      if ( JungianLib.logLogicFlow ) {
+        console.log( "First useEffect: jungianLSLibSliderValues NOT FOUND in localStorage" );
+        console.log( "First useEffect: saving default values for sliderValues in localStorage" );
+      }
     }
     storedImageString = JungianLSLib.getImageString();
     if ( JungianLib.logLogicFlow ) {
@@ -246,26 +245,28 @@ function FixedContainer() {
   useEffect( () => {
     if ( JungianLib.logLogicFlow ) {
       console.log( "Top of second useEffect in FixedContainer() in Create.tsx" );
-      console.log( "Second useEffect in FixedContainer in Create.tsx: currentSliderValues.length = " + currentSliderValues.length );
+      console.log( "Second useEffect: currentSliderValues.length = " + currentSliderValues.length );
     }
     if ( currentSliderValues.length > 3 ) {
       JungianLSLib.setSliderValues( currentSliderValues );
       if ( JungianLib.logLogicFlow ) {
-        console.log( "Second useEffect in FixedContainer in Create.tsx: saved currentSliderValues as sliderValues." );
+        console.log( "Second useEffect in Create.tsx: saved currentSliderValues as sliderValues." );
       }
     } else {
       if ( JungianLib.logLogicFlow ) {
-        console.log( "Second useEffect in FixedContainer in Create.tsx: did NOT save currentSliderValues as sliderValues!" );
+        console.log( "Second useEffect in Create.tsx: did NOT save currentSliderValues as sliderValues" );
       }
     }
-    if ( JungianLSLib.setImageString(storedImageString) ) {
+    const success = JungianLSLib.setImageString( storedImageString );
+    if ( success ) {
       if ( JungianLib.logLogicFlow ) {
-        console.log( "Second useEffect in FixedContainer in Create.tsx: saved storedImageString as imageString ok" );
+        console.log( "Second useEffect in Create.tsx: saved storedImageString as imageString ok" );
       }
     } else {
       drawFreshImage = true;
       if ( JungianLib.logLogicFlow ) {
-        console.log( "Second useEffect in FixedContainer in Create.tsx: DID NOT SAVE storedImageString as imageString!" );
+        console.log( "Second useEffect in Create.tsx: DID NOT SAVE storedImageString as imageString" );
+        console.log( "Second useEffect in Create.tsx: setting drawFreshImage = true" );
       }
     }
     if ( JungianLib.logLogicFlow ) {
