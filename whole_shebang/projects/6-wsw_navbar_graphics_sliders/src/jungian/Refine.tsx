@@ -3,7 +3,9 @@
 //
 import '../App.css'
 
-import { MouseEvent, useState, useEffect } from 'react';
+import { ChangeEvent, MouseEvent, useState, useEffect } from 'react';
+
+import { MDBRadio } from 'mdb-react-ui-kit';
 
 import Canvas from '../lib/CanvasLib.tsx';
 import {defaultSliderValue} from '../lib/SliderLib.tsx';
@@ -11,8 +13,8 @@ import * as JungianLib from '../lib/JungianLib.tsx';
 import * as JungianLSLib from '../lib/JungianLocalStorageLib.tsx';
 
 // NOTE: Setting logLogicFlow to true for one page in effect sets it for all pages
-JungianLib.setLogLogicFlow( true );   // un-comment when trying to track down issues
-// JungianLib.setLogLogicFlow( false );   // un-comment when everything's ok
+// JungianLib.setLogLogicFlow( true );   // un-comment when trying to track down issues
+JungianLib.setLogLogicFlow( false );   // un-comment when everything's ok
 
 let opacityValue = defaultSliderValue;
 let storedImageString = "";
@@ -74,6 +76,16 @@ function FixedSizeImageAndCards( props: JungianRefineProps ) {
     console.log( "Top of FixedSizeImageAndCards() in Refine.tsx" );
   }
 
+  function handleColorPickerChange( event: ChangeEvent<HTMLInputElement> ) {
+    // if ( JungianLib.logLogicFlow ) {
+      console.log( "Top of handleColorPickerChange in FixedSizeImageAndCards in Refine.tsx" );
+      console.log( "handleColorPickerChange: event.currentTarget.value = " + event.currentTarget.value );
+    // }
+    if ( JungianLib.logLogicFlow ) {
+      console.log( "Exiting handleColorPickerChange in FixedSizeImageAndCards in Refine.tsx" );
+    }
+  }
+
   const width = JungianLib.canvasWidth;
   const height = JungianLib.canvasHeight;
   opacityValue = props.opacityValue;
@@ -84,9 +96,49 @@ function FixedSizeImageAndCards( props: JungianRefineProps ) {
 
   // NOTE: DO NOT PUT THIS Canvas IN A CARD!  Doing so makes it resizable and
   //   breaks the code that calculates which square the user clicked on!!
+  // value="{JungianLib.colorLetters[0]}"
   return (
     <>
-      <div className="row mt-4">
+      <div className="row mt-3 justify-content-center">
+        <div className="col-sm-3 card align-items-center">
+          <MDBRadio
+            name="colorPicker"
+            id="blue"
+            label="Blue"
+            value="B"
+            onChange={handleColorPickerChange}
+            defaultChecked
+          />
+        </div>
+        <div className="col-sm-3 card align-items-center">
+          <MDBRadio
+            name="colorPicker"
+            id="green"
+            label="Green"
+            value="G"
+            onChange={handleColorPickerChange}
+          />
+        </div>
+        <div className="col-sm-3 card align-items-center">
+          <MDBRadio
+            name="colorPicker"
+            id="red"
+            label="Red"
+            value="R"
+            onChange={handleColorPickerChange}
+          />
+        </div>
+        <div className="col-sm-3 card align-items-center">
+          <MDBRadio
+            name="colorPicker"
+            id="yellow"
+            label="Yellow"
+            value="Y"
+            onChange={handleColorPickerChange}
+          />
+        </div>
+      </div>
+      <div className="row mt-3">
         <div className="col-md-12 align-items-center jungian-canvas">
           <Canvas
             draw={draw}
@@ -96,17 +148,17 @@ function FixedSizeImageAndCards( props: JungianRefineProps ) {
           />
         </div>
       </div>
-      <div className="row mt-4 justify-content-center">
-        <div className="col-md-3 card align-items-center">
+      <div className="row mt-3 justify-content-center">
+        <div className="col-sm-3 card align-items-center">
           {JungianLib.imagePropNames[0]}: {props.opacityValue}
         </div>
-        <div className="col-md-3 card align-items-center">
+        <div className="col-sm-3 card align-items-center">
           {JungianLib.imagePropNames[1]}: {props.blueVsYellowValue}
         </div>
-        <div className="col-md-3 card align-items-center">
+        <div className="col-sm-3 card align-items-center">
           {JungianLib.imagePropNames[2]}: {props.greenVsRedValue}
         </div>
-        <div className="col-md-3 card align-items-center">
+        <div className="col-sm-3 card align-items-center">
           {JungianLib.imagePropNames[3]}: {props.bAndYVsGandRValue}
         </div>
       </div>
@@ -165,7 +217,7 @@ function FixedContainer() {
     setCurrentImageString( JungianLSLib.getImageString() );
     storedImageString = JungianLSLib.getImageString();
     if (storedImageString.length === 0 ) {
-      setCurrentStatusMessage( "You must use the Create option to create an image before you can Refine it." );
+      setCurrentStatusMessage( "Please use the Create option to create an image before you can Refine it." );
     }
     if ( JungianLib.logLogicFlow ) {
       console.log( "Exiting First useEffect in FixedContainer() in Refine.tsx" );
