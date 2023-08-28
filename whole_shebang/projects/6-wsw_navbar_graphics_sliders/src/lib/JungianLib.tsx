@@ -2,12 +2,16 @@
 // JungianLib.tsx: types and constants used by the Jungian quiz type
 //
 
-// Constant Values:
-// ----------------
+// Constant and Variable Values:
+// -----------------------------
 //
-// Note: At some point, we may want to make some of these variables set by the user
-export const squareSize = 15;    // Size of each square
-export const gridSize = 19;      // No. of squares in each row and column
+// export const defaultSquareSize = 15;        // Default size of each square
+// export const defaultGridSize = 19;          // Default number of squares in each row and column
+// export let squareSize = defaultSquareSize;  // Changed by a slider on Refine page
+// export let gridSize = defaultGridSize;      // Changed by a slider on Create page
+
+export const squareSize = 15;    // TODO: Allow this to be changed by a slider on the Refine page
+export const gridSize = 19;      // TODO: Allow this to be changed by a slider on the Create page
 
 export const gridTopX = 4;       // X location of top left corner of grid
 export const gridTopY = 4;       // Y location of top left corner of grid
@@ -26,7 +30,7 @@ export function setLogLogicFlow( value: boolean ) {
 export function getLogLogicFlow(): boolean {
   return logLogicFlow;
 }
-
+setLogLogicFlow( true );
 
 // Constant Arrays:
 // ----------------
@@ -123,10 +127,73 @@ export function getRandomPrimaryColor( sliderValues: JungianSliderValues ) {
   return randomColorLetter;
 }
 
+// drawNewImageString: Create a new totally random "groja-esque" grid of blue, green, red, and yellow squares
+export function drawNewImageString( context: CanvasRenderingContext2D, storedSliderValues: JungianSliderValues ) {
+  let newImageString = defaultImageString;
+  if ( logLogicFlow ) {
+    console.log( "Top of drawNewImageString() in JungianLib.tsx" );
+  }
+
+  const width = canvasWidth;
+  const height = canvasHeight;
+  const innerSquareWidth = canvasWidth - ( 2 * gridTopX );
+  const innerSquareHeight = canvasHeight - ( 2 * gridTopY );
+  const opacityPercent = valueToPct( storedSliderValues.opacityValue );
+
+  // Paint it all black
+  context.fillStyle = "rgb(0, 0, 0)";
+  context.fillRect(0, 0, width, height);
+
+  // Paint the inner square, where the actual image will be, white
+  context.fillStyle = "rgb(255, 255, 255)";
+  context.fillRect(gridTopY, gridTopY, innerSquareWidth, innerSquareHeight);
+
+  let squareTopX = gridTopX;
+  let squareTopY = gridTopY;
+  let colorLetter = "B";
+  const imageCharArray: string[] = [];
+
+  // console.log( "draw() in Create.tsx: imageCharArray.length = " + imageCharArray.length );
+  for ( let row=0; row < gridSize; row++ ) {
+    squareTopY = gridTopY + (row * squareSize);
+    for ( let col=0; col < gridSize; col++ ){
+      // console.log( "draw() in Create.tsx: calling getRandomPrimaryColor = " + colorLetter );
+      colorLetter = getRandomPrimaryColor( storedSliderValues );
+      // console.log( "draw() in Create.tsx: colorLetter = " + colorLetter );
+      squareTopX = gridTopX + (col * squareSize);
+      if ( colorLetter == "B" ) {
+        context.fillStyle = "rgba(0, 0, 255, " + opacityPercent.toString() + ")";
+      } else if ( colorLetter == "G" ) {
+        context.fillStyle = "rgba(0, 255, 0, " + opacityPercent.toString() + ")";
+      } else if ( colorLetter == "R" ) {
+        context.fillStyle = "rgba(255, 0, 0, " + opacityPercent.toString() + ")";
+      } else if ( colorLetter == "Y" ) {
+        context.fillStyle = "rgba(255, 255, 0, " + opacityPercent.toString() + ")";
+      } else {
+        context.fillStyle = "rgb(255, 255, 255, " + opacityPercent.toString() + ")";
+      }
+      context.fillRect( squareTopX, squareTopY, squareSize, squareSize );
+      imageCharArray.push( colorLetter );
+    }
+  }
+
+  newImageString = imageCharArray.join('');
+  if ( logLogicFlow ) {
+    console.log( "draw() in Create.tsx: finished drawing a Fresh Image" );
+    console.log( "draw(): Fresh Image's imageCharArray.length = " + imageCharArray.length );
+    console.log( "draw(): setting drawFreshImage = false and saving new image as storedImageString" );
+  }
+
+  if ( logLogicFlow ) {
+    console.log( "Exiting drawNewImageString() in JungianLib.tsx and returning a newImageString" );
+  }
+  return newImageString;
+}
+
 // drawStoredImageString: Add a "groja-esque" grid of blue, green, red, and yellow squares
 export function drawStoredImageString( context: CanvasRenderingContext2D, storedImageString: string, opacityValue: number ) {
   if ( logLogicFlow ) {
-    console.log( "Top of draw() in JungianLib.tsx" );
+    console.log( "Top of drawStoredImageString() in JungianLib.tsx" );
   }
 
   const width = canvasWidth;
@@ -149,12 +216,12 @@ export function drawStoredImageString( context: CanvasRenderingContext2D, stored
   const opacityPercent = valueToPct( opacityValue );
 
   if ( logLogicFlow ) {
-    console.log( "draw() in JungianLib.tsx: storedImageString.length = '" + storedImageString.length + "'" );
+    console.log( "drawStoredImageString() in JungianLib.tsx: storedImageString.length = '" + storedImageString.length + "'" );
   }
 
   if ( storedImageString.length > 0 ) {
     if ( logLogicFlow ) {
-      console.log( "draw() in JungianLib.tsx: top of the for loop" );
+      console.log( "drawStoredImageString() in JungianLib.tsx: top of the for loop" );
     }
     imageCharArray = storedImageString.split( "" );
     let imgStrIdx = 0;
@@ -162,8 +229,8 @@ export function drawStoredImageString( context: CanvasRenderingContext2D, stored
       squareTopY = gridTopY + (row * squareSize);
       for ( let col=0; col < gridSize; col++ ){
         colorLetter = imageCharArray[imgStrIdx++];
-        // console.log( "for loop in draw() in JungianLib.tsx: imgStrIdx = " + imgStrIdx );
-        // console.log( "for loop in draw() in JungianLib.tsx: colorLetter = " + colorLetter );
+        // console.log( "for loop in drawStoredImageString() in JungianLib.tsx: imgStrIdx = " + imgStrIdx );
+        // console.log( "for loop in drawStoredImageString() in JungianLib.tsx: colorLetter = " + colorLetter );
         squareTopX = gridTopX + (col * squareSize);
         if ( colorLetter == "B" ) {
           context.fillStyle = "rgba(0, 0, 255, " + opacityPercent.toString() + ")";
@@ -180,10 +247,10 @@ export function drawStoredImageString( context: CanvasRenderingContext2D, stored
       }
     }
   } else if ( logLogicFlow ) {
-    console.log( "draw() in JungianLib.tsx: storedImageString is empty, hope that's ok...!" );
+    console.log( "drawStoredImageString() in JungianLib.tsx: storedImageString is empty, hope that's ok...!" );
   }
   if ( logLogicFlow ) {
-    console.log( "Exiting draw() in JungianLib.tsx" );
+    console.log( "Exiting drawStoredImageString() in JungianLib.tsx" );
   }
 }
 
