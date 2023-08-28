@@ -5,7 +5,7 @@ import { ChangeEvent } from 'react';
 
 export interface SliderProps {
   sliderNo: number;
-  onSliderChange: (evt: ChangeEvent<Element>) => void;
+  onSliderChange: (event: ChangeEvent<Element>) => void;
   sliderVal: number;
 }
 

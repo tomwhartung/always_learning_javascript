@@ -20,7 +20,7 @@ let opacityValue = defaultSliderValue;
 let storedImageString = "";
 
 interface JungianRefineProps extends JungianLib.JungianSliderValues {
-  onImageClick: (evt: MouseEvent<HTMLElement>) => void;
+  onImageClick: (event: MouseEvent<HTMLElement>) => void;
 }
 
 // draw: draw the grid of blue, green, red, and yellow squares defined in storedImageString
