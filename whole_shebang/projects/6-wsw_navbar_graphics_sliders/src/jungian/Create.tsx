@@ -189,11 +189,11 @@ function FixedContainer() {
   const [currentSliderValues, setCurrentSliderValues] = useState([defaultSliderValue]);
   // const [currentImageString, setCurrentImageString] = useState(JungianLib.defaultImageString);
 
-  function handleSliderValueChange( evt:ChangeEvent, col:number ) {
+  function handleSliderValueChange( event:ChangeEvent, col:number ) {
     if ( JungianLib.logLogicFlow ) {
       console.log( "Top of handleSliderValueChange in FixedContainer" );
     }
-    const val = (evt.target as HTMLInputElement).value;
+    const val = (event.target as HTMLInputElement).value;
     if ( JungianLib.logLogicFlow ) {
       console.log( "handleSliderValueChange: slider num " + col.toString() + " = " + val.toString() );
     }
@@ -287,7 +287,7 @@ function FixedContainer() {
         <SliderCard
          sliderNo={col}
          sliderVal={currentSliderValues[col] ?? defaultSliderValue}
-         onSliderChange={ (evt) => handleSliderValueChange(evt,col) }
+         onSliderChange={ (event) => handleSliderValueChange(event,col) }
         />
       </div>
     );
