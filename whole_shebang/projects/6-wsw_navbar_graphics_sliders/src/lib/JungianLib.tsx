@@ -2,25 +2,35 @@
 // JungianLib.tsx: types and constants used by the Jungian quiz type
 //
 
-// Types:
-// ------
-// JungianSliderValues: values that come from the Jungian sliders
-export interface JungianSliderValues {
-  opacityValue: number;           // [0 .. 100]
-  blueVsYellowValue: number;      // [0 .. 100]
-  greenVsRedValue: number;        // [0 .. 100]
-  bAndYVsGandRValue: number;      // [0 .. 100]
+// Constant Values:
+// ----------------
+//
+// Note: At some point, we may want to make some of these variables set by the user
+export const squareSize = 15;    // Size of each square
+export const gridSize = 19;      // No. of squares in each row and column
+
+export const gridTopX = 4;       // X location of top left corner of grid
+export const gridTopY = 4;       // Y location of top left corner of grid
+
+export const canvasWidth = ( squareSize * gridSize ) + ( 2 * gridTopX );
+export const canvasHeight = ( squareSize * gridSize ) + ( 2 * gridTopY );
+
+export const defaultImageString = "";
+
+// logLogicFlow: enable turning logging to the console on and off
+//   NOTE: Setting logLogicFlow to true for one page in effect sets it for all pages
+export let logLogicFlow = false;
+export function setLogLogicFlow( value: boolean ) {
+  logLogicFlow = value;
+}
+export function getLogLogicFlow(): boolean {
+  return logLogicFlow;
 }
 
-// JungianImagePercents: slider values as percentages, used to create the image
-export interface JungianImagePercents {
-  opacityPercent: number;           // [0.0 .. 1.0]
-  blueVsYellowPercent: number;      // [0.0 .. 1.0]
-  greenVsRedPercent: number;        // [0.0 .. 1.0]
-  bAndYVsGandRPercent: number;      // [0.0 .. 1.0]
-}
 
-// Constant Arrays
+// Constant Arrays:
+// ----------------
+//
 export const numberOfSliderCards = 4;  // Warning: Do not make this greater
                                        // than or equal to the number of
                                        // elements in imageSliderLabels
@@ -37,38 +47,39 @@ export const imageSliderLabels: readonly string[] = [
   "R vs G",
   "G&R vs B&Y",
 ];
-export const colorLetters = [
+export const colorLetters: readonly string[] = [
   "B",   // Blue
   "G",   // Green
   "R",   // Red
   "Y",   // Yellow
   "X",   // Invalid!
 ];
+export const colorNames: readonly string[] = [
+  "Blue",
+  "Green",
+  "Red",
+  "Yellow",
+  "Invalid"
+];
 
-// Constant Values
 
-export const defaultImageString = "";
-
-// Note: At some point, we may want to make some of these variables set by the user
-export const squareSize = 15;    // Size of each square
-// export const gridSize = 19;      // No. of squares in each row and column
-export const gridSize = 9;      // No. of squares in each row and column
-
-export const gridTopX = 4;       // X location of top left corner of grid
-export const gridTopY = 4;       // Y location of top left corner of grid
-
-export const canvasWidth = ( squareSize * gridSize ) + ( 2 * gridTopX );
-export const canvasHeight = ( squareSize * gridSize ) + ( 2 * gridTopY );
-
-// logLogicFlow: enable turning logging to the console on and off
-//   NOTE: Setting logLogicFlow to true for one page in effect sets it for all pages
+// Types:
+// ------
 //
-export let logLogicFlow = false;
-export function setLogLogicFlow( value: boolean ) {
-  logLogicFlow = value;
+// JungianSliderValues: values that come from the Jungian sliders
+export interface JungianSliderValues {
+  opacityValue: number;           // [0 .. 100]
+  blueVsYellowValue: number;      // [0 .. 100]
+  greenVsRedValue: number;        // [0 .. 100]
+  bAndYVsGandRValue: number;      // [0 .. 100]
 }
-export function getLogLogicFlow(): boolean {
-  return logLogicFlow;
+
+// JungianImagePercents: slider values as percentages, used to create the image
+export interface JungianImagePercents {
+  opacityPercent: number;           // [0.0 .. 1.0]
+  blueVsYellowPercent: number;      // [0.0 .. 1.0]
+  greenVsRedPercent: number;        // [0.0 .. 1.0]
+  bAndYVsGandRPercent: number;      // [0.0 .. 1.0]
 }
 
 
