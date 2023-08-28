@@ -5,7 +5,7 @@ import '../App.css'
 
 import { ChangeEvent, MouseEvent, useState, useEffect } from 'react';
 
-import { MDBRadio } from 'mdb-react-ui-kit';
+import { MDBRadio, MDBRange } from 'mdb-react-ui-kit';
 
 import Canvas from '../lib/CanvasLib.tsx';
 import {defaultSliderValue} from '../lib/SliderLib.tsx';
@@ -85,6 +85,17 @@ function FixedSizeImageAndCards( props: JungianRefineProps ) {
   const height = JungianLib.canvasHeight;
   opacityValue = props.opacityValue;
 
+  // onSquareSizeChange: handle when user moves the square size slider
+  function onSquareSizeChange( event: ChangeEvent<HTMLInputElement> ) {
+    // if ( JungianLib.logLogicFlow ) {
+      console.log( "Top of onSquareSizeChange in FixedSizeImageAndCards() in Refine.tsx" );
+      console.log( "onSquareSizeChange: event.target.value = " + event.target.value );
+    // }
+    // if ( JungianLib.logLogicFlow ) {
+      console.log( "Exiting onSquareSizeChange in FixedSizeImageAndCards() in Refine.tsx" );
+    // }
+  }
+
   if ( JungianLib.logLogicFlow ) {
     console.log( "return()ing from FixedSizeImageAndCards() in Refine.tsx" );
   }
@@ -96,6 +107,14 @@ function FixedSizeImageAndCards( props: JungianRefineProps ) {
     <>
       <div className="row mt-3 justify-content-center">
         <div className="col-sm-4 card align-items-center">
+          <MDBRange
+            defaultValue={JungianLib.squareSize}
+            min='1'
+            max='23'
+            id='square-size'
+            label='Pixels per square'
+            onChange={onSquareSizeChange}
+          />
         </div>
         <div className="col-sm-2 card align-items-center">
           <MDBRadio
