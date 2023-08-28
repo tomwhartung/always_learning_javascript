@@ -79,14 +79,13 @@ function DFlexContainer() {
     if ( JungianLib.logLogicFlow ) {
       console.log( "Top of useEffect in DFlexContainer() in View.tsx" );
     }
-    const storedSliderValues = JungianLSLib.getSliderValues();
-    setCurrentSliderValues( storedSliderValues );
+    setCurrentSliderValues( JungianLSLib.getSliderValues() );
     storedImageString = JungianLSLib.getImageString();
     if ( JungianLib.logLogicFlow ) {
-      // console.log( "useEffect in DFlexContainer: storedSliderValues[0] = " + storedSliderValues[0] );
-      // console.log( "useEffect in DFlexContainer: storedSliderValues[1] = " + storedSliderValues[1] );
-      // console.log( "useEffect in DFlexContainer: storedSliderValues[2] = " + storedSliderValues[2] );
-      // console.log( "useEffect in DFlexContainer: storedSliderValues[3] = " + storedSliderValues[3] );
+      // console.log( "useEffect in DFlexContainer: currentSliderValues[0] = " + currentSliderValues[0] );
+      // console.log( "useEffect in DFlexContainer: currentSliderValues[1] = " + currentSliderValues[1] );
+      // console.log( "useEffect in DFlexContainer: currentSliderValues[2] = " + currentSliderValues[2] );
+      // console.log( "useEffect in DFlexContainer: currentSliderValues[3] = " + currentSliderValues[3] );
       console.log( "Exiting useEffect in DFlexContainer() in View.tsx" );
     }
   }, []);
