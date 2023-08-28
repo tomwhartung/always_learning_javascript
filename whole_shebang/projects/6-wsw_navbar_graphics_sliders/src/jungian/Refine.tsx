@@ -21,6 +21,7 @@ let storedImageString = "";
 
 interface JungianRefineProps extends JungianLib.JungianSliderValues {
   onImageClick: (event: MouseEvent<HTMLElement>) => void;
+  onRadioButtonClick: (event: ChangeEvent<HTMLInputElement>) => void;
 }
 
 // draw: draw the grid of blue, green, red, and yellow squares defined in storedImageString
@@ -76,16 +77,6 @@ function FixedSizeImageAndCards( props: JungianRefineProps ) {
     console.log( "Top of FixedSizeImageAndCards() in Refine.tsx" );
   }
 
-  function handleColorPickerChange( event: ChangeEvent<HTMLInputElement> ) {
-    // if ( JungianLib.logLogicFlow ) {
-      console.log( "Top of handleColorPickerChange in FixedSizeImageAndCards in Refine.tsx" );
-      console.log( "handleColorPickerChange: event.currentTarget.value = " + event.currentTarget.value );
-    // }
-    if ( JungianLib.logLogicFlow ) {
-      console.log( "Exiting handleColorPickerChange in FixedSizeImageAndCards in Refine.tsx" );
-    }
-  }
-
   const width = JungianLib.canvasWidth;
   const height = JungianLib.canvasHeight;
   opacityValue = props.opacityValue;
@@ -106,7 +97,7 @@ function FixedSizeImageAndCards( props: JungianRefineProps ) {
             id="blue"
             label="Blue"
             value="B"
-            onChange={handleColorPickerChange}
+            onChange={props.onRadioButtonClick}
             defaultChecked
           />
         </div>
@@ -116,7 +107,7 @@ function FixedSizeImageAndCards( props: JungianRefineProps ) {
             id="green"
             label="Green"
             value="G"
-            onChange={handleColorPickerChange}
+            onChange={props.onRadioButtonClick}
           />
         </div>
         <div className="col-sm-3 card align-items-center">
@@ -125,7 +116,7 @@ function FixedSizeImageAndCards( props: JungianRefineProps ) {
             id="red"
             label="Red"
             value="R"
-            onChange={handleColorPickerChange}
+            onChange={props.onRadioButtonClick}
           />
         </div>
         <div className="col-sm-3 card align-items-center">
@@ -134,7 +125,7 @@ function FixedSizeImageAndCards( props: JungianRefineProps ) {
             id="yellow"
             label="Yellow"
             value="Y"
-            onChange={handleColorPickerChange}
+            onChange={props.onRadioButtonClick}
           />
         </div>
       </div>
@@ -177,6 +168,18 @@ function FixedContainer() {
   const [currentImageString, setCurrentImageString] = useState( JungianLib.defaultImageString );
   const [currentStatusMessage, setCurrentStatusMessage] = useState( defautClickMessage );
 
+  // handleColorPickerChange: Change the new color used when user clicks on a square
+  function handleColorPickerChange( event: ChangeEvent<HTMLInputElement> ) {
+    // if ( JungianLib.logLogicFlow ) {
+      console.log( "Top of handleColorPickerChange in FixedContainer in Refine.tsx" );
+      console.log( "handleColorPickerChange: event.currentTarget.value = " + event.currentTarget.value );
+    // }
+    if ( JungianLib.logLogicFlow ) {
+      console.log( "Exiting handleColorPickerChange in FixedContainer in Refine.tsx" );
+    }
+  }
+
+  // handleImageClick: Change the color of the square the user clicks on
   function handleImageClick(event: React.MouseEvent<HTMLElement>) {
     if ( JungianLib.logLogicFlow ) {
       console.log( "Top of handleImageClick() in FixedContainer in Refine.tsx" );
@@ -257,6 +260,7 @@ function FixedContainer() {
           blueVsYellowValue={currentSliderValues[1]}
           greenVsRedValue={currentSliderValues[2]}
           bAndYVsGandRValue={currentSliderValues[3]}
+          onRadioButtonClick={handleColorPickerChange}
           onImageClick={handleImageClick}
         />
       </div>
