@@ -20,8 +20,9 @@ let opacityValue = defaultSliderValue;
 let storedImageString = "";
 
 interface JungianRefineProps extends JungianLib.JungianSliderValues {
-  onImageClick: (event: MouseEvent<HTMLElement>) => void;
+  onSquareSizeChange: (event: ChangeEvent<HTMLInputElement>) => void;
   onRadioButtonClick: (event: ChangeEvent<HTMLInputElement>) => void;
+  onImageClick: (event: MouseEvent<HTMLElement>) => void;
 }
 
 // draw: draw the grid of blue, green, red, and yellow squares defined in storedImageString
@@ -85,17 +86,6 @@ function FixedSizeImageAndCards( props: JungianRefineProps ) {
   const height = JungianLib.canvasHeight;
   opacityValue = props.opacityValue;
 
-  // onSquareSizeChange: handle when user moves the square size slider
-  function onSquareSizeChange( event: ChangeEvent<HTMLInputElement> ) {
-    // if ( JungianLib.logLogicFlow ) {
-      console.log( "Top of onSquareSizeChange in FixedSizeImageAndCards() in Refine.tsx" );
-      console.log( "onSquareSizeChange: event.target.value = " + event.target.value );
-    // }
-    // if ( JungianLib.logLogicFlow ) {
-      console.log( "Exiting onSquareSizeChange in FixedSizeImageAndCards() in Refine.tsx" );
-    // }
-  }
-
   if ( JungianLib.logLogicFlow ) {
     console.log( "return()ing from FixedSizeImageAndCards() in Refine.tsx" );
   }
@@ -113,7 +103,7 @@ function FixedSizeImageAndCards( props: JungianRefineProps ) {
             max='23'
             id='square-size'
             label='Pixels per square'
-            onChange={onSquareSizeChange}
+            onChange={props.onSquareSizeChange}
           />
         </div>
         <div className="col-sm-2 card align-items-center">
@@ -194,6 +184,21 @@ function FixedContainer() {
   const [currentImageString, setCurrentImageString] = useState( JungianLib.defaultImageString );
   const [currentStatusMessage, setCurrentStatusMessage] = useState( defaultStatusMessage );
   const [currentColorIndex, setCurrentColorIndex] = useState( defaultColorIndex );
+  const [currentSquareSize, setCurrentSquareSize] = useState( JungianLib.squareSize );
+
+  // handleSquareSizeChange: handle when user moves the square size slider
+  function handleSquareSizeChange( event: ChangeEvent<HTMLInputElement> ) {
+    // if ( JungianLib.logLogicFlow ) {
+      console.log( "Top of onSquareSizeChange in FixedContainer() in Refine.tsx" );
+      console.log( "onSquareSizeChange: event.target.value = " + event.target.value );
+    // }
+    const newSquareSize = parseInt( event.target.value );
+    setCurrentSquareSize( newSquareSize );
+    // if ( JungianLib.logLogicFlow ) {
+      console.log( "onSquareSizeChange: currentSquareSize = " + currentSquareSize );
+      console.log( "Exiting onSquareSizeChange in FixedContainer() in Refine.tsx" );
+    // }
+  }
 
   // handleColorPickerChange: Change the new color used when user clicks on a square
   function handleColorPickerChange( event: ChangeEvent<HTMLInputElement> ) {
@@ -279,6 +284,7 @@ function FixedContainer() {
   }, [currentImageString] );
 
   storedImageString = currentImageString;    // updates the displayed image with the latest changes
+  // JungianLib.squareSize = currentSquareSize;
 
   if ( JungianLib.logLogicFlow ) {
     console.log( "return()ing from FixedContainer() in Refine.tsx" );
@@ -293,6 +299,7 @@ function FixedContainer() {
           blueVsYellowValue={currentSliderValues[1]}
           greenVsRedValue={currentSliderValues[2]}
           bAndYVsGandRValue={currentSliderValues[3]}
+          onSquareSizeChange={handleSquareSizeChange}
           onRadioButtonClick={handleColorPickerChange}
           onImageClick={handleImageClick}
         />
