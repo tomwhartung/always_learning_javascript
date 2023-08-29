@@ -95,12 +95,12 @@ function FixedSizeImageAndCards( props: JungianRefineProps ) {
   // value="{JungianLib.colorLetters[0]}"
   return (
     <>
-      <div className="row d-flex mt-1 align-items-center justify-content-center">
+      <div className="row d-flex mt-1 align-items-center">
         <div className="col-sm-8 card align-items-center">
-          <div className="row d-flex mt-1 align-items-center justify-content-center">
+          <div className="row d-flex mt-1 align-items-center">
             <h5>Color Picker</h5>
           </div>
-          <div className="row d-flex mt-1 align-items-center justify-content-center">
+          <div className="row d-flex mt-1">
             <div className="col-sm-3 align-items-center">
               <MDBRadio
                 name="colorPicker"
@@ -160,7 +160,7 @@ function FixedSizeImageAndCards( props: JungianRefineProps ) {
           />
         </div>
       </div>
-      <div className="row mt-1 justify-content-center">
+      <div className="row d-flex mt-1">
         <div className="col-sm-3 card align-items-center">
           {JungianLib.imagePropNames[0]}: {props.opacityValue}
         </div>
