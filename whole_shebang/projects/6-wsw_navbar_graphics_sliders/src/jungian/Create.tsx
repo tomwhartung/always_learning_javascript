@@ -65,41 +65,6 @@ function FixedSizeImageAndCards( props: JungianLib.JungianSliderValues ) {
   const width = JungianLib.canvasWidth;
   const height = JungianLib.canvasHeight;
 
-  function handleImageClick(event: React.MouseEvent<HTMLElement>) {
-    const rect = (event.target as HTMLElement).getBoundingClientRect();
-    const pixelX = Math.round( event.clientX - rect.left );
-    const pixelY = Math.round( event.clientY - rect.top );
-    if ( JungianLib.logLogicFlow ) {
-      console.log( "Click on the FixedSizeImage at pixel coords (" + pixelX.toString() + ", " + pixelY.toString() + ")" );
-      logSquareCoords( pixelX, pixelY );
-    }
-  }
-  function logSquareCoords( pixelX: number, pixelY: number ) {
-    let squareX = 0;
-    let squareY = 0;
-    squareX = Math.floor( ( pixelX - JungianLib.gridTopX ) / JungianLib.squareSize );
-    squareY = Math.floor( ( pixelY - JungianLib.gridTopY ) / JungianLib.squareSize );
-    if ( squareX < 0 && squareY < 0 ) {
-      console.log( "You clicked on the upper-left corner, not on a square" );
-    } else if ( squareX < 0 && squareY >= JungianLib.gridSize) {
-      console.log( "You clicked on the lower-left corner, not on a square" );
-    } else if ( squareX >= JungianLib.gridSize && squareY < 0 ) {
-      console.log( "You clicked on the upper-right corner, not on a square" );
-    } else if ( squareX >= JungianLib.gridSize && squareY >= JungianLib.gridSize) {
-      console.log( "You clicked on the lower-right corner, not on a square" );
-    } else if ( squareX < 0 ) {
-      console.log( "You clicked on the left-side border, not on a square" );
-    } else if ( squareY < 0 ) {
-      console.log( "You clicked on the upper border, not on a square" );
-    } else if ( squareX >= JungianLib.gridSize ) {
-      console.log( "You clicked on the right-side border, not on a square" );
-    } else if ( squareY >= JungianLib.gridSize ) {
-      console.log( "You clicked on the lower border, not on a square" );
-    } else {
-      console.log( "Pixel coords correspond to squareCoords (" + squareX.toString() + ", " + squareY.toString() + ")" );
-    }
-  }
-
   if ( JungianLib.logLogicFlow ) {
     console.log( "return()ing from FixedSizeImageAndCards() in Create.tsx" );
   }
@@ -110,7 +75,6 @@ function FixedSizeImageAndCards( props: JungianLib.JungianSliderValues ) {
         <div className="col-md-12 align-items-center jungian-canvas">
           <Canvas
             draw={draw}
-            onClick={handleImageClick}
             width={width}
             height={height}
           />
