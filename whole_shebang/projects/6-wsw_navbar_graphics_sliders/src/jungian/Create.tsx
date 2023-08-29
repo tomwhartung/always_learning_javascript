@@ -22,7 +22,7 @@ const storedSliderValues: JungianLib.JungianSliderValues = {
   bAndYVsGandRValue: defaultSliderValue,
 };
 
-let storedImageString = "";
+let storedImageString = JungianLib.defaultImageString;
 let drawFreshImage = false;
 
 // draw: Add a "groja-esque" grid of blue, green, red, and yellow squares
@@ -105,26 +105,27 @@ function FixedContainer() {
   }
 
   const [currentSliderValues, setCurrentSliderValues] = useState([defaultSliderValue]);
-  // const [currentImageString, setCurrentImageString] = useState(JungianLib.defaultImageString);
 
-  function handleSliderValueChange( event:ChangeEvent, col:number ) {
+  function handleSliderValueChange( event: ChangeEvent, col: number ) {
     if ( JungianLib.logLogicFlow ) {
-      console.log( "Top of handleSliderValueChange in FixedContainer" );
+      console.log( "Top of handleSliderValueChange in FixedContainer in Create.tsx" );
     }
-    const val = (event.target as HTMLInputElement).value;
+    const sliderValue = (event.target as HTMLInputElement).value;
     if ( JungianLib.logLogicFlow ) {
-      console.log( "handleSliderValueChange: slider num " + col.toString() + " = " + val.toString() );
+      console.log( "handleSliderValueChange: slider num " + col.toString() + " = " + sliderValue.toString() );
     }
     const nextSliderValues = currentSliderValues.slice();
-    nextSliderValues[col] = Number(val);
+    nextSliderValues[col] = parseInt(sliderValue);
     setCurrentSliderValues(nextSliderValues);
     // When the value for a slider (other than opacity) changes, we need to draw a new image
     if ( 0 < col ) {
       drawFreshImage = true;
+      if ( JungianLib.logLogicFlow ) {
+        console.log( "handleSliderValueChange: set drawFreshImage = true" );
+      }
     }
     if ( JungianLib.logLogicFlow ) {
-      console.log( "handleSliderValueChange: set drawFreshImage = true" );
-      console.log( "Exiting handleSliderValueChange in FixedContainer" );
+      console.log( "Exiting handleSliderValueChange in FixedContainer in Create.tsx" );
     }
   }
 
