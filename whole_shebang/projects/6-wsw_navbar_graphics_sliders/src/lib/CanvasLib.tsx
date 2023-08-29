@@ -6,7 +6,7 @@ import React from 'react';
 
 interface CanvasProps {
   draw:  (context: CanvasRenderingContext2D) => void;
-  onClick: (event: React.MouseEvent<HTMLElement>) => void;
+  onClick?: (event: React.MouseEvent<HTMLElement>) => void;
   width: number;
   height: number;
 }
