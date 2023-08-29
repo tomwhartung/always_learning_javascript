@@ -86,6 +86,23 @@ function FixedSizeImageAndCards( props: JungianRefineProps ) {
   const height = JungianLib.canvasHeight;
   opacityValue = props.opacityValue;
 
+  // Construct the markup for the Color Picker
+  const colorPickerCols = [];
+  for ( let colorNum = 0; colorNum < JungianLib.numberOfColors; colorNum++ ) {
+    colorPickerCols.push(
+      <div key={colorNum} className="col-sm-3 align-items-center">
+        <MDBRadio
+          name="colorPicker"
+          id={JungianLib.colorNames[colorNum]}
+          label={JungianLib.colorNames[colorNum]}
+          value={colorNum}
+          onChange={props.onRadioButtonClick}
+          defaultChecked
+        />
+      </div>
+    );
+  }
+
   if ( JungianLib.logLogicFlow ) {
     console.log( "return()ing from FixedSizeImageAndCards() in Refine.tsx" );
   }
@@ -99,6 +116,9 @@ function FixedSizeImageAndCards( props: JungianRefineProps ) {
         <div className="col-sm-8 card align-items-center">
           <div className="row d-flex mt-1 align-items-center">
             <h5>Color Picker</h5>
+          </div>
+          <div className="row d-flex mt-1">
+            {colorPickerCols}
           </div>
           <div className="row d-flex mt-1">
             <div className="col-sm-3 align-items-center">
