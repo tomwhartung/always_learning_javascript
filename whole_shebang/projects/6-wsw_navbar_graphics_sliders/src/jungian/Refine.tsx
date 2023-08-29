@@ -95,15 +95,13 @@ function FixedSizeImageAndCards( props: JungianRefineProps ) {
   // value="{JungianLib.colorLetters[0]}"
   return (
     <>
-      <div className="row d-flex mt-3 align-items-center justify-content-center">
+      <div className="row d-flex mt-1 align-items-center justify-content-center">
         <div className="col-sm-8 card align-items-center">
-          <div className="row d-flex mt-3 align-items-center justify-content-center">
-            <div className="col-sm-12 card align-items-center">
-              Color Picker
-            </div>
+          <div className="row d-flex mt-1 align-items-center justify-content-center">
+            <h5>Color Picker</h5>
           </div>
-          <div className="row d-flex mt-3 align-items-center justify-content-center">
-            <div className="col-sm-3 card align-items-center">
+          <div className="row d-flex mt-1 align-items-center justify-content-center">
+            <div className="col-sm-3 align-items-center">
               <MDBRadio
                 name="colorPicker"
                 id="blue"
@@ -113,7 +111,7 @@ function FixedSizeImageAndCards( props: JungianRefineProps ) {
                 defaultChecked
               />
             </div>
-            <div className="col-sm-3 card align-items-center">
+            <div className="col-sm-3 align-items-center">
               <MDBRadio
                 name="colorPicker"
                 label={JungianLib.colorNames[1]}
@@ -121,7 +119,7 @@ function FixedSizeImageAndCards( props: JungianRefineProps ) {
                 onChange={props.onRadioButtonClick}
               />
             </div>
-            <div className="col-sm-3 card align-items-center">
+            <div className="col-sm-3 align-items-center">
               <MDBRadio
                 name="colorPicker"
                 id="red"
@@ -130,7 +128,7 @@ function FixedSizeImageAndCards( props: JungianRefineProps ) {
                 onChange={props.onRadioButtonClick}
               />
             </div>
-            <div className="col-sm-3 card align-items-center">
+            <div className="col-sm-3 align-items-center">
               <MDBRadio
                 name="colorPicker"
                 id="yellow"
@@ -142,17 +140,17 @@ function FixedSizeImageAndCards( props: JungianRefineProps ) {
           </div>
         </div>
         <div className="col-sm-4 card align-items-center">
+          <h5>Pixels per square</h5>
           <MDBRange
             defaultValue={JungianLib.squareSize}
             min='1'
             max='23'
             id='square-size'
-            label='Pixels per square'
             onChange={props.onSquareSizeChange}
           />
         </div>
       </div>
-      <div className="row mt-3">
+      <div className="row mt-2">
         <div className="col-md-12 align-items-center jungian-canvas">
           <Canvas
             draw={draw}
@@ -162,7 +160,7 @@ function FixedSizeImageAndCards( props: JungianRefineProps ) {
           />
         </div>
       </div>
-      <div className="row mt-3 justify-content-center">
+      <div className="row mt-1 justify-content-center">
         <div className="col-sm-3 card align-items-center">
           {JungianLib.imagePropNames[0]}: {props.opacityValue}
         </div>
@@ -301,8 +299,12 @@ function FixedContainer() {
 
   return (
     <div className="container">
-      <h5>{currentStatusMessage}</h5>
-      <div className="row mt-4">
+      <div className="row mt-2">
+        <div className="col-sm-12">
+          <h5>{currentStatusMessage}</h5>
+        </div>
+      </div>
+      <div className="row">
         <FixedSizeImageAndCards
           opacityValue={currentSliderValues[0]}
           blueVsYellowValue={currentSliderValues[1]}
