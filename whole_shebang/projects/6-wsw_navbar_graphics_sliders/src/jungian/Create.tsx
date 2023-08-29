@@ -131,7 +131,7 @@ function FixedContainer() {
 
   // First useEffect: (presumably) runs once when component is mounted (but I have my doubts...)
   //   Fetches values from local storage, initializing them if they're not set
-  //   Sets currentSliderValues to values from local storage
+  //   Sets the currentSliderValues state variable to values from local storage [or default values]
   useEffect( () => {
     if ( JungianLib.logLogicFlow ) {
       console.log( "Top of first useEffect in FixedContainer() in Create.tsx" );
@@ -141,7 +141,7 @@ function FixedContainer() {
       setCurrentSliderValues( jungianLSLibSliderValues );
       if ( JungianLib.logLogicFlow ) {
         console.log( "First useEffect: found the jungianLSLibSliderValues" );
-        console.log( "First useEffect: jungianLSLibSliderValues.toString() = " + jungianLSLibSliderValues.toString() );
+        // console.log( "First useEffect: jungianLSLibSliderValues.toString() = " + jungianLSLibSliderValues.toString() );
       }
     } else {
       const defaultSliderValues = [ defaultSliderValue, defaultSliderValue, defaultSliderValue, defaultSliderValue ];
@@ -149,7 +149,7 @@ function FixedContainer() {
       setCurrentSliderValues( defaultSliderValues );
       if ( JungianLib.logLogicFlow ) {
         console.log( "First useEffect: jungianLSLibSliderValues NOT FOUND in localStorage" );
-        console.log( "First useEffect: saving default values for sliderValues in localStorage" );
+        console.log( "First useEffect: saved default values for sliderValues in state variable & localStorage" );
       }
     }
     storedImageString = JungianLSLib.getImageString();
@@ -184,8 +184,8 @@ function FixedContainer() {
     } else {
       drawFreshImage = true;
       if ( JungianLib.logLogicFlow ) {
-        console.log( "Second useEffect in Create.tsx: DID NOT SAVE storedImageString as imageString" );
-        console.log( "Second useEffect in Create.tsx: setting drawFreshImage = true" );
+        console.log( "Second useEffect: DID NOT SAVE storedImageString in local storage" );
+        console.log( "Second useEffect: set drawFreshImage = true" );
       }
     }
     if ( JungianLib.logLogicFlow ) {
