@@ -89,6 +89,12 @@ function FixedSizeImageAndCards( props: JungianRefineProps ) {
   // Construct the markup for the Color Picker
   const colorPickerCols = [];
   for ( let colorNum = 0; colorNum < JungianLib.numberOfColors; colorNum++ ) {
+    let defaultChecked = false;
+    if ( colorNum === 0 ) {
+      defaultChecked = true;
+    } else {
+      defaultChecked = false;
+    }
     colorPickerCols.push(
       <div key={colorNum} className="col-sm-3 align-items-center">
         <MDBRadio
@@ -97,7 +103,7 @@ function FixedSizeImageAndCards( props: JungianRefineProps ) {
           label={JungianLib.colorNames[colorNum]}
           value={colorNum}
           onChange={props.onRadioButtonClick}
-          defaultChecked
+          defaultChecked={defaultChecked}
         />
       </div>
     );
@@ -119,44 +125,6 @@ function FixedSizeImageAndCards( props: JungianRefineProps ) {
           </div>
           <div className="row d-flex mt-1">
             {colorPickerCols}
-          </div>
-          <div className="row d-flex mt-1">
-            <div className="col-sm-3 align-items-center">
-              <MDBRadio
-                name="colorPicker"
-                id="blue"
-                label={JungianLib.colorNames[0]}
-                value="0"
-                onChange={props.onRadioButtonClick}
-                defaultChecked
-              />
-            </div>
-            <div className="col-sm-3 align-items-center">
-              <MDBRadio
-                name="colorPicker"
-                label={JungianLib.colorNames[1]}
-                value="1"
-                onChange={props.onRadioButtonClick}
-              />
-            </div>
-            <div className="col-sm-3 align-items-center">
-              <MDBRadio
-                name="colorPicker"
-                id="red"
-                label={JungianLib.colorNames[2]}
-                value="2"
-                onChange={props.onRadioButtonClick}
-              />
-            </div>
-            <div className="col-sm-3 align-items-center">
-              <MDBRadio
-                name="colorPicker"
-                id="yellow"
-                label={JungianLib.colorNames[3]}
-                value="3"
-                onChange={props.onRadioButtonClick}
-              />
-            </div>
           </div>
         </div>
         <div className="col-sm-4 card align-items-center">
