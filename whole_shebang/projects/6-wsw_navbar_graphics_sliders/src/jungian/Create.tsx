@@ -33,22 +33,22 @@ const draw = (context: CanvasRenderingContext2D) => {
 
   if ( drawFreshImage ) {
     if ( JungianLib.logLogicFlow ) {
-      console.log( "draw() in Create.tsx: calling JungianLib.drawNewImageString to draw a Fresh Image" );
+      console.log( "draw(): calling JungianLib.drawNewImageString to draw a Fresh Image" );
     }
     const newImageString = JungianLib.drawNewImageString( context, storedSliderValues );
     storedImageString = newImageString;
     drawFreshImage = false;
     if ( JungianLib.logLogicFlow ) {
-      console.log( "draw(): set drawFreshImage = false and saved the newImageString as storedImageString" );
+      console.log( "draw(): set drawFreshImage = false & storedImageString = newImageString" );
     }
-  } else if ( storedImageString.length > 0 ) {
+  } else if ( storedImageString.length === 0 ) {
     if ( JungianLib.logLogicFlow ) {
-      console.log( "draw() in Create.tsx: drawing storedImageString" );
+      console.log( "draw(): drawFreshImage is false and storedImageString is empty..." );
     }
-    JungianLib.drawStoredImageString( context, storedImageString, storedSliderValues.opacityValue );
   } else {
+    JungianLib.drawStoredImageString( context, storedImageString, storedSliderValues.opacityValue );
     if ( JungianLib.logLogicFlow ) {
-      console.log( "draw() in Create.tsx: drawFreshImage is false and storedImageString is empty!" );
+      console.log( "draw(): drew the storedImageString" );
     }
   }
   if ( JungianLib.logLogicFlow ) {
