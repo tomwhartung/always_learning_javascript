@@ -95,7 +95,52 @@ function FixedSizeImageAndCards( props: JungianRefineProps ) {
   // value="{JungianLib.colorLetters[0]}"
   return (
     <>
-      <div className="row mt-3 justify-content-center">
+      <div className="row d-flex mt-3 align-items-center justify-content-center">
+        <div className="col-sm-8 card align-items-center">
+          <div className="row d-flex mt-3 align-items-center justify-content-center">
+            <div className="col-sm-12 card align-items-center">
+              Color Picker
+            </div>
+          </div>
+          <div className="row d-flex mt-3 align-items-center justify-content-center">
+            <div className="col-sm-3 card align-items-center">
+              <MDBRadio
+                name="colorPicker"
+                id="blue"
+                label={JungianLib.colorNames[0]}
+                value="0"
+                onChange={props.onRadioButtonClick}
+                defaultChecked
+              />
+            </div>
+            <div className="col-sm-3 card align-items-center">
+              <MDBRadio
+                name="colorPicker"
+                label={JungianLib.colorNames[1]}
+                value="1"
+                onChange={props.onRadioButtonClick}
+              />
+            </div>
+            <div className="col-sm-3 card align-items-center">
+              <MDBRadio
+                name="colorPicker"
+                id="red"
+                label={JungianLib.colorNames[2]}
+                value="2"
+                onChange={props.onRadioButtonClick}
+              />
+            </div>
+            <div className="col-sm-3 card align-items-center">
+              <MDBRadio
+                name="colorPicker"
+                id="yellow"
+                label={JungianLib.colorNames[3]}
+                value="3"
+                onChange={props.onRadioButtonClick}
+              />
+            </div>
+          </div>
+        </div>
         <div className="col-sm-4 card align-items-center">
           <MDBRange
             defaultValue={JungianLib.squareSize}
@@ -104,42 +149,6 @@ function FixedSizeImageAndCards( props: JungianRefineProps ) {
             id='square-size'
             label='Pixels per square'
             onChange={props.onSquareSizeChange}
-          />
-        </div>
-        <div className="col-sm-2 card align-items-center">
-          <MDBRadio
-            name="colorPicker"
-            id="blue"
-            label={JungianLib.colorNames[0]}
-            value="0"
-            onChange={props.onRadioButtonClick}
-            defaultChecked
-          />
-        </div>
-        <div className="col-sm-2 card align-items-center">
-          <MDBRadio
-            name="colorPicker"
-            label={JungianLib.colorNames[1]}
-            value="1"
-            onChange={props.onRadioButtonClick}
-          />
-        </div>
-        <div className="col-sm-2 card align-items-center">
-          <MDBRadio
-            name="colorPicker"
-            id="red"
-            label={JungianLib.colorNames[2]}
-            value="2"
-            onChange={props.onRadioButtonClick}
-          />
-        </div>
-        <div className="col-sm-2 card align-items-center">
-          <MDBRadio
-            name="colorPicker"
-            id="yellow"
-            label={JungianLib.colorNames[3]}
-            value="3"
-            onChange={props.onRadioButtonClick}
           />
         </div>
       </div>
