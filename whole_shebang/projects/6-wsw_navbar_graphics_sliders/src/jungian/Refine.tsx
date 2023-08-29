@@ -13,8 +13,8 @@ import * as JungianLib from '../lib/JungianLib.tsx';
 import * as JungianLSLib from '../lib/JungianLocalStorageLib.tsx';
 
 // NOTE: Setting logLogicFlow to true for one page in effect sets it for all pages
-// JungianLib.setLogLogicFlow( true );   // un-comment when trying to track down issues
-JungianLib.setLogLogicFlow( false );   // un-comment when everything's ok
+JungianLib.setLogLogicFlow( true );   // un-comment when trying to track down issues
+// JungianLib.setLogLogicFlow( false );   // un-comment when everything's ok
 
 let opacityValue = defaultSliderValue;
 let storedImageString = "";
@@ -242,7 +242,8 @@ function FixedContainer() {
     }
     const [squareX, squareY] = getSquareCoords( pixelX, pixelY );  // see comments in function header
     const squareCoords = "(" + squareX.toString() + ", " + squareY.toString() + ")";
-    if ( 0 <= squareX && 0 <= squareY ) {
+    if ( 0 <= squareX && squareX < JungianLib.gridSize &&
+         0 <= squareY && squareY < JungianLib.gridSize    ) {
       const newImageString = changeSquareAt( squareX, squareY, currentColorIndex );
       setCurrentImageString( newImageString );
       const colorPicked = JungianLib.colorNames[ currentColorIndex ];
