@@ -82,8 +82,8 @@ function FixedSizeImageAndCards( props: JungianRefineProps ) {
     console.log( "Top of FixedSizeImageAndCards() in Refine.tsx" );
   }
 
-  const width = JungianLib.canvasWidth;
-  const height = JungianLib.canvasHeight;
+  const width = JungianLib.getCanvasWidth();
+  const height = JungianLib.getCanvasHeight();
   opacityValue = props.opacityValue;
 
   // Construct the markup for the Color Picker
@@ -189,6 +189,7 @@ function FixedContainer() {
     // }
     const newSquareSize = parseInt( event.target.value );
     setCurrentSquareSize( newSquareSize );
+    JungianLib.setSquareSize( newSquareSize );
     // if ( JungianLib.logLogicFlow ) {
       console.log( "handleSquareSizeChange: currentSquareSize = " + currentSquareSize );
       console.log( "Exiting handleSquareSizeChange in FixedContainer() in Refine.tsx" );
