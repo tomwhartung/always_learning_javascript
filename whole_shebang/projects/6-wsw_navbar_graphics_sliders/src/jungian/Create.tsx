@@ -61,8 +61,8 @@ function FixedSizeImageAndCards( props: JungianLib.JungianSliderValues ) {
     console.log( "Top of FixedSizeImageAndCards() in Create.tsx" );
   }
 
-  const width = JungianLib.canvasWidth;
-  const height = JungianLib.canvasHeight;
+  const width = JungianLib.getCanvasWidth();
+  const height = JungianLib.getCanvasHeight();
 
   if ( JungianLib.logLogicFlow ) {
     console.log( "return()ing from FixedSizeImageAndCards() in Create.tsx" );
