@@ -5,32 +5,43 @@
 // Constant and Variable Values:
 // -----------------------------
 //
-// export const defaultSquareSize = 15;        // Default size of each square
-// export const defaultGridSize = 19;          // Default number of squares in each row and column
-// export let squareSize = defaultSquareSize;  // Changed by a slider on Refine page
-// export let gridSize = defaultGridSize;      // Changed by a slider on Create page
+export const defaultImageString = "";
 
-export const squareSize = 15;    // TODO: Allow this to be changed by a slider on the Refine page
+export const minSquareSize = 1;             // Minimum size of each square
+export const maxSquareSize = 33;            // Maximum size of each square
+export const defaultSquareSize = 15;        // Default size of each square
+export let squareSize = defaultSquareSize;  // Changed by a slider on Refine page
+export function setSquareSize( newSquareSize: number ) {
+  squareSize = newSquareSize;
+}
+
+// export const defaultGridSize = 19;          // Default number of squares in each row and column
+// export let gridSize = defaultGridSize;      // Changed by a slider on Create page
 export const gridSize = 19;      // TODO: Allow this to be changed by a slider on the Create page
 
 export const gridTopX = 4;       // X location of top left corner of grid
 export const gridTopY = 4;       // Y location of top left corner of grid
 
-export const canvasWidth = ( squareSize * gridSize ) + ( 2 * gridTopX );
-export const canvasHeight = ( squareSize * gridSize ) + ( 2 * gridTopY );
-
-export const defaultImageString = "";
+export function getCanvasWidth() {
+  return ( squareSize * gridSize ) + ( 2 * gridTopX );
+}
+export function getCanvasHeight() {
+  return ( squareSize * gridSize ) + ( 2 * gridTopY );
+}
 
 // logLogicFlow: enable turning logging to the console on and off
 //   NOTE: Setting logLogicFlow to true for one page in effect sets it for all pages
-export let logLogicFlow = false;
+//     Or so it seems like it does, sometimes...
+// export let logLogicFlow = false;
+export let logLogicFlow = true;
 export function setLogLogicFlow( value: boolean ) {
   logLogicFlow = value;
 }
 export function getLogLogicFlow(): boolean {
   return logLogicFlow;
 }
-setLogLogicFlow( true );
+// setLogLogicFlow( true );
+
 
 // Constant Arrays:
 // ----------------
@@ -51,6 +62,7 @@ export const imageSliderLabels: readonly string[] = [
   "R vs G",
   "G&R vs B&Y",
 ];
+export const numberOfColors = 4;  // Needed if we are going to allow for an Invalid color
 export const colorLetters: readonly string[] = [
   "B",   // Blue
   "G",   // Green
@@ -134,16 +146,16 @@ export function drawNewImageString( context: CanvasRenderingContext2D, storedSli
     console.log( "Top of drawNewImageString() in JungianLib.tsx" );
   }
 
-  const width = canvasWidth;
-  const height = canvasHeight;
-  const innerSquareWidth = canvasWidth - ( 2 * gridTopX );
-  const innerSquareHeight = canvasHeight - ( 2 * gridTopY );
+  const width = getCanvasWidth();
+  const height = getCanvasHeight();
   const opacityPercent = valueToPct( storedSliderValues.opacityValue );
 
   // Paint it all black
   context.fillStyle = "rgb(0, 0, 0)";
   context.fillRect(0, 0, width, height);
 
+  const innerSquareWidth = getCanvasWidth() - ( 2 * gridTopX );
+  const innerSquareHeight = getCanvasHeight() - ( 2 * gridTopY );
   // Paint the inner square, where the actual image will be, white
   context.fillStyle = "rgb(255, 255, 255)";
   context.fillRect(gridTopY, gridTopY, innerSquareWidth, innerSquareHeight);
@@ -196,16 +208,17 @@ export function drawStoredImageString( context: CanvasRenderingContext2D, stored
     console.log( "Top of drawStoredImageString() in JungianLib.tsx" );
   }
 
-  const width = canvasWidth;
-  const height = canvasHeight;
-  const innerSquareWidth = canvasWidth - ( 2 * gridTopX );
-  const innerSquareHeight = canvasHeight - ( 2 * gridTopY );
+  const width = getCanvasWidth();
+  const height = getCanvasHeight();
+
   let imageCharArray: string[] = [];
 
   // Paint it all black - this is how we get the border
   context.fillStyle = "rgb(0, 0, 0)";
   context.fillRect(0, 0, width, height);
 
+  const innerSquareWidth = getCanvasWidth() - ( 2 * gridTopX );
+  const innerSquareHeight = getCanvasHeight() - ( 2 * gridTopY );
   // Paint the inner square, where the actual image will be, white
   context.fillStyle = "rgb(255, 255, 255)";
   context.fillRect(gridTopY, gridTopY, innerSquareWidth, innerSquareHeight);
