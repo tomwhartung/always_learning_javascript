@@ -20,9 +20,9 @@ let opacityValue = defaultSliderValue;
 let storedImageString = "";
 
 interface JungianRefineProps extends JungianLib.JungianSliderValues {
-  onSquareSizeChange: (event: ChangeEvent<HTMLInputElement>) => void;
   onRadioButtonClick: (event: ChangeEvent<HTMLInputElement>) => void;
   onImageClick: (event: MouseEvent<HTMLElement>) => void;
+  onSquareSizeChange: (event: ChangeEvent<HTMLInputElement>) => void;
 }
 
 // draw: draw the grid of blue, green, red, and yellow squares defined in storedImageString
@@ -131,8 +131,8 @@ function FixedSizeImageAndCards( props: JungianRefineProps ) {
           <h5>Pixels per square</h5>
           <MDBRange
             defaultValue={JungianLib.squareSize}
-            min='1'
-            max='23'
+            min={JungianLib.minSquareSize}
+            max={JungianLib.maxSquareSize}
             id='square-size'
             onChange={props.onSquareSizeChange}
           />
@@ -184,14 +184,14 @@ function FixedContainer() {
   // handleSquareSizeChange: handle when user moves the square size slider
   function handleSquareSizeChange( event: ChangeEvent<HTMLInputElement> ) {
     // if ( JungianLib.logLogicFlow ) {
-      console.log( "Top of onSquareSizeChange in FixedContainer() in Refine.tsx" );
-      console.log( "onSquareSizeChange: event.target.value = " + event.target.value );
+      console.log( "Top of handleSquareSizeChange in FixedContainer() in Refine.tsx" );
+      console.log( "handleSquareSizeChange: event.target.value = " + event.target.value );
     // }
     const newSquareSize = parseInt( event.target.value );
     setCurrentSquareSize( newSquareSize );
     // if ( JungianLib.logLogicFlow ) {
-      console.log( "onSquareSizeChange: currentSquareSize = " + currentSquareSize );
-      console.log( "Exiting onSquareSizeChange in FixedContainer() in Refine.tsx" );
+      console.log( "handleSquareSizeChange: currentSquareSize = " + currentSquareSize );
+      console.log( "Exiting handleSquareSizeChange in FixedContainer() in Refine.tsx" );
     // }
   }
 
@@ -256,6 +256,7 @@ function FixedContainer() {
     if (storedImageString.length === 0 ) {
       setCurrentStatusMessage( "Please use the Create option to create an image before you can Refine it." );
     }
+    setCurrentSquareSize( JungianLSLib.getSquareSize() );
     if ( JungianLib.logLogicFlow ) {
       console.log( "Exiting First useEffect in FixedContainer() in Refine.tsx" );
     }
@@ -278,6 +279,24 @@ function FixedContainer() {
       console.log( "Exiting second useEffect in FixedContainer() in Refine.tsx" );
     }
   }, [currentImageString] );
+
+  // Third useEffect: runs when component is mounted AND when the user changes the squareSize
+  //   Stores the new, refined squareSize in local storage
+  useEffect( () => {
+    if ( JungianLib.logLogicFlow ) {
+      console.log( "Top of third useEffect in FixedContainer() in Refine.tsx" );
+    }
+    const success = JungianLSLib.setSquareSize( currentSquareSize );
+    if ( JungianLib.logLogicFlow ) {
+      if ( success ) {
+        console.log( "Third useEffect: saved currentSquareSize as squareSize ok" );
+      } else {
+        console.log( "Third useEffect: currentSquareSize = " + currentSquareSize );
+        console.log( "Third useEffect: DID NOT SAVE currentSquareSize as squareSize" );
+      }
+      console.log( "Exiting third useEffect in FixedContainer() in Refine.tsx" );
+    }
+  }, [currentSquareSize] );
 
   storedImageString = currentImageString;    // updates the displayed image with the latest changes
   // JungianLib.squareSize = currentSquareSize;
