@@ -27,8 +27,8 @@ function DFlexImageAndSliderValues( props:JungianLib.JungianSliderValues ) {
     console.log( "Top of DFlexImageAndSliderValues() in View.tsx" );
   }
 
-  const width = JungianLib.canvasWidth;
-  const height = JungianLib.canvasHeight;
+  const width = JungianLib.getCanvasWidth();
+  const height = JungianLib.getCanvasHeight();
 
   opacityValue = props.opacityValue;
 
