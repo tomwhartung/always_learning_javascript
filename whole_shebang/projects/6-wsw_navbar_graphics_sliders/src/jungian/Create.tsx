@@ -5,8 +5,7 @@ import '../App.css'
 import { ChangeEvent, useState, useEffect } from 'react';
 
 import Canvas from '../lib/CanvasLib.tsx';
-import {defaultSliderValue} from '../lib/SliderLib.tsx';
-import SliderCard from '../lib/SliderCard.tsx';
+import { defaultSliderValue, SliderCard } from '../lib/SliderLib.tsx';
 import * as JungianLib from '../lib/JungianLib.tsx';
 import * as JungianLSLib from '../lib/JungianLocalStorageLib.tsx';
 
