@@ -4,13 +4,16 @@
 
 // Constant and Variable Values:
 // -----------------------------
+// In some cases, these include minimal get and set functions to support
+// manipulation *in real time* of some of the values used to draw the images.
 //
 export const defaultImageString = "";
 
+export const initialSquareSize = 15;        // Size of each square before user changes it
+export const invalidSquareSize = 0;         // Used as "default" value for state variable
 export const minSquareSize = 1;             // Minimum size of each square
 export const maxSquareSize = 33;            // Maximum size of each square
-export const defaultSquareSize = 15;        // Default size of each square
-export let squareSize = defaultSquareSize;  // Changed by a slider on Refine page
+export let squareSize = initialSquareSize;  // Changed by a slider on Refine page
 export function setSquareSize( newSquareSize: number ) {
   squareSize = newSquareSize;
 }
