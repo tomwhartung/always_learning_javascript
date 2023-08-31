@@ -179,7 +179,7 @@ function FixedContainer() {
   const [currentImageString, setCurrentImageString] = useState( JungianLib.defaultImageString );
   const [currentStatusMessage, setCurrentStatusMessage] = useState( defaultStatusMessage );
   const [currentColorIndex, setCurrentColorIndex] = useState( defaultColorIndex );
-  const [currentSquareSize, setCurrentSquareSize] = useState( JungianLib.squareSize );
+  const [currentSquareSize, setCurrentSquareSize] = useState( JungianLib.invalidSquareSize );
 
   // handleSquareSizeChange: handle when user moves the square size slider
   function handleSquareSizeChange( event: ChangeEvent<HTMLInputElement> ) {
@@ -258,6 +258,7 @@ function FixedContainer() {
       setCurrentStatusMessage( "Please use the Create option to create an image before you can Refine it." );
     }
     setCurrentSquareSize( JungianLSLib.getSquareSize() );
+    JungianLib.setSquareSize( JungianLSLib.getSquareSize() );
     if ( JungianLib.logLogicFlow ) {
       console.log( "Exiting First useEffect in FixedContainer() in Refine.tsx" );
     }
