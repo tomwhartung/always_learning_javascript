@@ -5,7 +5,7 @@ import '../App.css'
 import { useEffect, useState } from 'react';
 
 import Canvas from '../lib/CanvasLib.tsx';
-import {defaultSliderValue} from '../lib/SliderLib.tsx';
+import {defaultSliderValue} from '../lib/JungianScoreSliderLib.tsx';
 import * as JungianLib from '../lib/JungianLib.tsx';
 import * as JungianLSLib from '../lib/JungianLocalStorageLib.tsx';
 
@@ -22,7 +22,7 @@ const draw = (context: CanvasRenderingContext2D) => {
 };
 
 // DFlexImageAndSliderValues: function component to display a jungian image
-function DFlexImageAndSliderValues( props:JungianLib.JungianSliderValues ) {
+function DFlexImageAndSliderValues( props:JungianLib.JungianScoreSliderValues ) {
   if ( JungianLib.logLogicFlow ) {
     console.log( "Top of DFlexImageAndSliderValues() in View.tsx" );
   }
@@ -51,16 +51,16 @@ function DFlexImageAndSliderValues( props:JungianLib.JungianSliderValues ) {
       </div>
       <div className="row mt-4 justify-content-center">
         <div className="col-md-3 card align-items-center">
-          {JungianLib.imagePropNames[0]}: {props.opacityValue}
+          {JungianLib.jungianScorePropNames[0]}: {props.opacityValue}
         </div>
         <div className="col-md-3 card align-items-center">
-          {JungianLib.imagePropNames[1]}: {props.blueVsYellowValue}
+          {JungianLib.jungianScorePropNames[1]}: {props.blueVsYellowValue}
         </div>
         <div className="col-md-3 card align-items-center">
-          {JungianLib.imagePropNames[2]}: {props.greenVsRedValue}
+          {JungianLib.jungianScorePropNames[2]}: {props.greenVsRedValue}
         </div>
         <div className="col-md-3 card align-items-center">
-          {JungianLib.imagePropNames[3]}: {props.bAndYVsGandRValue}
+          {JungianLib.jungianScorePropNames[3]}: {props.bAndYVsGandRValue}
         </div>
       </div>
     </>
@@ -93,7 +93,7 @@ function DFlexContainer() {
   let createOrRefineMessage = "";
 
   if ( storedImageString.length === 0 ) {
-    createOrRefineMessage = "Please use the Create option to create an image before you can View it.";
+    createOrRefineMessage = "Please use the Create option to create an image before trying to View it.";
   } else {
     createOrRefineMessage = "You can now use the Refine option to refine your image.";
   }
