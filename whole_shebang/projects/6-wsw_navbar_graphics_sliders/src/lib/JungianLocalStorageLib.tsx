@@ -165,7 +165,7 @@ export function getSquareSize(): number {
     console.log( "Top of getSquareSize() in JungianLocalStorageLib.tsx" );
   }
 
-  let squareSize = JungianLib.defaultSquareSize;
+  let squareSize = JungianLib.initialSquareSize;
   const jungianItem = getTheJungianItem( );
 
   if ( jungianItem ) {
@@ -177,7 +177,7 @@ export function getSquareSize(): number {
   } else {
     if ( JungianLib.logLogicFlow ) {
       console.log( "getSquareSize in JungianLocalStorageLib.tsx: 'jungian' item NOT FOUND in localStorage" );
-      console.log( "getSquareSize: returning defaultSquareSize" );
+      console.log( "getSquareSize: returning initialSquareSize" );
     }
   }
 
@@ -222,19 +222,19 @@ function getTheJungianItem(): JungianItemValues {
     console.log( "Top of getTheJungianItem() in JungianLocalStorageLib.tsx" );
   }
 
-  const defaultJungianItemValues: JungianItemValues = {
+  const initialJungianItemValues: JungianItemValues = {
     imageString: JungianLib.defaultImageString,
     sliderValues: [ defaultSliderValue ],
-    squareSize: JungianLib.defaultSquareSize,
+    squareSize: JungianLib.initialSquareSize,
   }
 
-  let jungianItem = defaultJungianItemValues;
+  let jungianItem = initialJungianItemValues;
   const rawStoredJungianItem = localStorage.getItem( 'jungian' );
 
   if ( rawStoredJungianItem ) {
     jungianItem = JSON.parse( rawStoredJungianItem );
     if ( JungianLib.logLogicFlow ) {
-      console.log( "getTheJungianItem(): found the stored 'jungian' item" );
+      console.log( "getTheJungianItem(): found the stored 'jungian' item and parsed it" );
     }
   }
 
