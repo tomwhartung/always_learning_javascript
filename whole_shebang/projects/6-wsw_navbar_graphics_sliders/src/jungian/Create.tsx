@@ -5,7 +5,7 @@ import '../App.css'
 import { ChangeEvent, useState, useEffect } from 'react';
 
 import Canvas from '../lib/CanvasLib.tsx';
-import { defaultSliderValue, SliderCard } from '../lib/SliderLib.tsx';
+import { defaultSliderValue, JungianScoreSliderCard } from '../lib/JungianScoreSliderLib.tsx';
 import * as JungianLib from '../lib/JungianLib.tsx';
 import * as JungianLSLib from '../lib/JungianLocalStorageLib.tsx';
 
@@ -14,7 +14,7 @@ import * as JungianLSLib from '../lib/JungianLocalStorageLib.tsx';
 JungianLib.setLogLogicFlow( true );     // un-comment when trying to track down issues
 
 // These are the slider values we use when drawing a Fresh Image
-const storedSliderValues: JungianLib.JungianSliderValues = {
+const storedSliderValues: JungianLib.JungianScoreSliderValues = {
   opacityValue: defaultSliderValue,
   blueVsYellowValue: defaultSliderValue,
   greenVsRedValue: defaultSliderValue,
@@ -56,7 +56,7 @@ const draw = (context: CanvasRenderingContext2D) => {
 };
 
 // FixedSizeImageAndCards: function component to display a jungian image
-function FixedSizeImageAndCards( props: JungianLib.JungianSliderValues ) {
+function FixedSizeImageAndCards( props: JungianLib.JungianScoreSliderValues ) {
   if ( JungianLib.logLogicFlow ) {
     console.log( "Top of FixedSizeImageAndCards() in Create.tsx" );
   }
@@ -81,16 +81,16 @@ function FixedSizeImageAndCards( props: JungianLib.JungianSliderValues ) {
       </div>
       <div className="row mt-4 justify-content-center">
         <div className="col-md-3 card align-items-center">
-          {JungianLib.imagePropNames[0]}: {props.opacityValue}
+          {JungianLib.jungianScorePropNames[0]}: {props.opacityValue}
         </div>
         <div className="col-md-3 card align-items-center">
-          {JungianLib.imagePropNames[1]}: {props.blueVsYellowValue}
+          {JungianLib.jungianScorePropNames[1]}: {props.blueVsYellowValue}
         </div>
         <div className="col-md-3 card align-items-center">
-          {JungianLib.imagePropNames[2]}: {props.greenVsRedValue}
+          {JungianLib.jungianScorePropNames[2]}: {props.greenVsRedValue}
         </div>
         <div className="col-md-3 card align-items-center">
-          {JungianLib.imagePropNames[3]}: {props.bAndYVsGandRValue}
+          {JungianLib.jungianScorePropNames[3]}: {props.bAndYVsGandRValue}
         </div>
       </div>
     </>
@@ -152,6 +152,7 @@ function FixedContainer() {
       }
     }
     storedImageString = JungianLSLib.getImageString();
+    JungianLib.setSquareSize( JungianLSLib.getSquareSize() );
     if ( JungianLib.logLogicFlow ) {
       console.log( "Exiting first useEffect in FixedContainer() in Create.tsx" );
     }
@@ -197,12 +198,12 @@ function FixedContainer() {
   storedSliderValues.greenVsRedValue = currentSliderValues[2];
   storedSliderValues.bAndYVsGandRValue = currentSliderValues[3];
 
-  // Construct markup for the SliderCards
+  // Construct markup for the JungianScoreSliderCards
   const sliderNumberCols = [];
-  for ( let col = 0; col < JungianLib.numberOfSliderCards; col++ ) {
+  for ( let col = 0; col < JungianLib.jungianScoreSliderLabels.length; col++ ) {
     sliderNumberCols.push(
       <div key={col} className="col-md-3">
-        <SliderCard
+        <JungianScoreSliderCard
          sliderNo={col}
          sliderVal={currentSliderValues[col] ?? defaultSliderValue}
          onSliderChange={ (event) => handleSliderValueChange(event,col) }
