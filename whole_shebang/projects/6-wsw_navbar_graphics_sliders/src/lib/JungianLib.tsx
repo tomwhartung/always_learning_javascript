@@ -49,56 +49,41 @@ export function getLogLogicFlow(): boolean {
 // Constant Arrays:
 // ----------------
 //
-export const numberOfSliderCards = 4;  // Warning: Do not make this greater
-                                       // than or equal to the number of
-                                       // elements in imageSliderLabels
-                                       // and imagePropNames
-export const imagePropNames: readonly string[] = [
+export const jungianScorePropNames: readonly string[] = [
   "Opacity",
   "B vs Y",
   "G vs R",
   "B&Y vs G&R",
 ];
-export const imageSliderLabels: readonly string[] = [
+export const jungianScoreSliderLabels: readonly string[] = [
   "Opacity",
   "Y vs B",
   "R vs G",
   "G&R vs B&Y",
 ];
-export const numberOfColors = 4;  // Needed if we are going to allow for an Invalid color
 export const colorLetters: readonly string[] = [
-  "B",   // Blue
-  "G",   // Green
-  "R",   // Red
-  "Y",   // Yellow
-  "X",   // Invalid!
+  "B",   // "B"lue
+  "G",   // "G"reen
+  "R",   // "R"ed
+  "Y"    // "Y"ellow
 ];
 export const colorNames: readonly string[] = [
   "Blue",
   "Green",
   "Red",
-  "Yellow",
-  "Invalid"
+  "Yellow"
 ];
 
 
 // Types:
 // ------
 //
-// JungianSliderValues: values that come from the Jungian sliders
-export interface JungianSliderValues {
+// JungianScoreSliderValues: values that come from the Jungian sliders
+export interface JungianScoreSliderValues {
   opacityValue: number;           // [0 .. 100]
   blueVsYellowValue: number;      // [0 .. 100]
   greenVsRedValue: number;        // [0 .. 100]
   bAndYVsGandRValue: number;      // [0 .. 100]
-}
-
-// JungianImagePercents: slider values as percentages, used to create the image
-export interface JungianImagePercents {
-  opacityPercent: number;           // [0.0 .. 1.0]
-  blueVsYellowPercent: number;      // [0.0 .. 1.0]
-  greenVsRedPercent: number;        // [0.0 .. 1.0]
-  bAndYVsGandRPercent: number;      // [0.0 .. 1.0]
 }
 
 
@@ -112,7 +97,7 @@ export function valueToPct( value: number ) : number {
 }
 
 // getRandomPrimaryColor: return a single character, "B", "G", "R", or "Y"
-export function getRandomPrimaryColor( sliderValues: JungianSliderValues ) {
+export function getRandomPrimaryColor( sliderValues: JungianScoreSliderValues ) {
   const blueVsYellowPercent = valueToPct( sliderValues.blueVsYellowValue );
   const greenVsRedPercent = valueToPct( sliderValues.greenVsRedValue );
   const bAndYVsGandRPercent = valueToPct( sliderValues.bAndYVsGandRValue );
@@ -143,7 +128,7 @@ export function getRandomPrimaryColor( sliderValues: JungianSliderValues ) {
 }
 
 // drawNewImageString: Create a new totally random "groja-esque" grid of blue, green, red, and yellow squares
-export function drawNewImageString( context: CanvasRenderingContext2D, storedSliderValues: JungianSliderValues ) {
+export function drawNewImageString( context: CanvasRenderingContext2D, storedSliderValues: JungianScoreSliderValues ) {
   let newImageString = defaultImageString;
   if ( logLogicFlow ) {
     console.log( "Top of drawNewImageString() in JungianLib.tsx" );
