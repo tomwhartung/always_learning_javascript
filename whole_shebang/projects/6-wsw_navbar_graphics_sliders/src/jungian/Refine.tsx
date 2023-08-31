@@ -8,7 +8,7 @@ import { ChangeEvent, MouseEvent, useState, useEffect } from 'react';
 import { MDBRadio, MDBRange } from 'mdb-react-ui-kit';
 
 import Canvas from '../lib/CanvasLib.tsx';
-import {defaultSliderValue} from '../lib/SliderLib.tsx';
+import {defaultSliderValue} from '../lib/JungianScoreSliderLib.tsx';
 import * as JungianLib from '../lib/JungianLib.tsx';
 import * as JungianLSLib from '../lib/JungianLocalStorageLib.tsx';
 
@@ -19,7 +19,7 @@ JungianLib.setLogLogicFlow( true );   // un-comment when trying to track down is
 let opacityValue = defaultSliderValue;
 let storedImageString = "";
 
-interface JungianRefineProps extends JungianLib.JungianSliderValues {
+interface JungianRefineProps extends JungianLib.JungianScoreSliderValues {
   onRadioButtonClick: (event: ChangeEvent<HTMLInputElement>) => void;
   onImageClick: (event: MouseEvent<HTMLElement>) => void;
   onSquareSizeChange: (event: ChangeEvent<HTMLInputElement>) => void;
@@ -88,7 +88,7 @@ function FixedSizeImageAndCards( props: JungianRefineProps ) {
 
   // Construct the markup for the Color Picker
   const colorPickerCols = [];
-  for ( let colorNum = 0; colorNum < JungianLib.numberOfColors; colorNum++ ) {
+  for ( let colorNum = 0; colorNum < JungianLib.colorLetters.length; colorNum++ ) {
     let defaultChecked = false;
     if ( colorNum === 0 ) {
       defaultChecked = true;
@@ -128,7 +128,7 @@ function FixedSizeImageAndCards( props: JungianRefineProps ) {
           </div>
         </div>
         <div className="col-sm-4 card align-items-center">
-          <h5>Pixels per square</h5>
+          <h5>Square Size</h5>
           <MDBRange
             defaultValue={JungianLib.squareSize}
             min={JungianLib.minSquareSize}
@@ -150,16 +150,16 @@ function FixedSizeImageAndCards( props: JungianRefineProps ) {
       </div>
       <div className="row d-flex mt-1">
         <div className="col-sm-3 card align-items-center">
-          {JungianLib.imagePropNames[0]}: {props.opacityValue}
+          {JungianLib.jungianScorePropNames[0]}: {props.opacityValue}
         </div>
         <div className="col-sm-3 card align-items-center">
-          {JungianLib.imagePropNames[1]}: {props.blueVsYellowValue}
+          {JungianLib.jungianScorePropNames[1]}: {props.blueVsYellowValue}
         </div>
         <div className="col-sm-3 card align-items-center">
-          {JungianLib.imagePropNames[2]}: {props.greenVsRedValue}
+          {JungianLib.jungianScorePropNames[2]}: {props.greenVsRedValue}
         </div>
         <div className="col-sm-3 card align-items-center">
-          {JungianLib.imagePropNames[3]}: {props.bAndYVsGandRValue}
+          {JungianLib.jungianScorePropNames[3]}: {props.bAndYVsGandRValue}
         </div>
       </div>
     </>
@@ -255,7 +255,7 @@ function FixedContainer() {
     setCurrentImageString( JungianLSLib.getImageString() );
     storedImageString = JungianLSLib.getImageString();
     if (storedImageString.length === 0 ) {
-      setCurrentStatusMessage( "Please use the Create option to create an image before you can Refine it." );
+      setCurrentStatusMessage( "Please use the Create option to create an image before trying to Refine it." );
     }
     setCurrentSquareSize( JungianLSLib.getSquareSize() );
     JungianLib.setSquareSize( JungianLSLib.getSquareSize() );
