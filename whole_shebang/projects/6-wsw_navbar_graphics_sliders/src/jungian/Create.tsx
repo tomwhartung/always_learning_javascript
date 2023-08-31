@@ -3,6 +3,7 @@
 //
 import '../App.css'
 import { ChangeEvent, useState, useEffect } from 'react';
+import { MDBRange } from 'mdb-react-ui-kit';
 
 import Canvas from '../lib/CanvasLib.tsx';
 import { defaultSliderValue, JungianScoreSliderCard } from '../lib/JungianScoreSliderLib.tsx';
@@ -104,7 +105,25 @@ function FixedContainer() {
   }
 
   const [currentSliderValues, setCurrentSliderValues] = useState([defaultSliderValue]);
+  const [currentGridSize, setCurrentGridSize] = useState( JungianLib.invalidGridSize );
 
+  // handleGridSizeChange: code to run when user moves the grid size slider
+  function handleGridSizeChange( event: ChangeEvent<HTMLInputElement> ) {
+    // if ( JungianLib.logLogicFlow ) {
+      console.log( "Top of handleGridSizeChange in FixedContainer() in Refine.tsx" );
+      console.log( "handleGridSizeChange: event.target.value = " + event.target.value );
+    // }
+    const newGridSize = parseInt( event.target.value );
+    setCurrentGridSize( newGridSize );
+    JungianLib.setGridSize( newGridSize );
+    drawFreshImage = true;
+    // if ( JungianLib.logLogicFlow ) {
+      console.log( "handleGridSizeChange: currentGridSize = " + currentGridSize );
+      console.log( "Exiting handleGridSizeChange in FixedContainer() in Refine.tsx" );
+    // }
+  }
+
+  // handleSliderValueChange: code to run when the user moves a score slider
   function handleSliderValueChange( event: ChangeEvent, col: number ) {
     if ( JungianLib.logLogicFlow ) {
       console.log( "Top of handleSliderValueChange in FixedContainer in Create.tsx" );
@@ -153,6 +172,7 @@ function FixedContainer() {
     }
     storedImageString = JungianLSLib.getImageString();
     JungianLib.setSquareSize( JungianLSLib.getSquareSize() );
+    JungianLib.setGridSize( JungianLSLib.getGridSize() );
     if ( JungianLib.logLogicFlow ) {
       console.log( "Exiting first useEffect in FixedContainer() in Create.tsx" );
     }
@@ -193,6 +213,24 @@ function FixedContainer() {
     }
   }, [currentSliderValues] );
 
+  // Third useEffect: runs when component is mounted AND when the user changes the gridSize
+  //   Stores the new, refined gridSize in local storage
+  useEffect( () => {
+    if ( JungianLib.logLogicFlow ) {
+      console.log( "Top of third useEffect in FixedContainer() in Refine.tsx" );
+    }
+    const success = JungianLSLib.setGridSize( currentGridSize );
+    if ( JungianLib.logLogicFlow ) {
+      if ( success ) {
+        console.log( "Third useEffect: saved currentGridSize as gridSize ok" );
+      } else {
+        console.log( "Third useEffect: currentGridSize = " + currentGridSize );
+        console.log( "Third useEffect: DID NOT SAVE currentGridSize as gridSize" );
+      }
+      console.log( "Exiting third useEffect in FixedContainer() in Refine.tsx" );
+    }
+  }, [currentGridSize] );
+
   storedSliderValues.opacityValue = currentSliderValues[0];
   storedSliderValues.blueVsYellowValue = currentSliderValues[1];
   storedSliderValues.greenVsRedValue = currentSliderValues[2];
@@ -228,6 +266,18 @@ function FixedContainer() {
           blueVsYellowValue={currentSliderValues[1] ?? defaultSliderValue}
           greenVsRedValue={currentSliderValues[2] ?? defaultSliderValue}
           bAndYVsGandRValue={currentSliderValues[3] ?? defaultSliderValue} />
+      </div>
+      <div className="row mt-4">
+        <div className="col-12 card align-items-center">
+          <h5>Grid Size</h5>
+          <MDBRange
+            defaultValue={JungianLib.gridSize}
+            min={JungianLib.minGridSize}
+            max={JungianLib.maxGridSize}
+            id='square-size'
+            onChange={handleGridSizeChange}
+          />
+        </div>
       </div>
     </div>
   )
