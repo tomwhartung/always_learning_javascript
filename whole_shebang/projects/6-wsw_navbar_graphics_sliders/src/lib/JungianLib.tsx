@@ -18,9 +18,14 @@ export function setSquareSize( newSquareSize: number ) {
   squareSize = newSquareSize;
 }
 
-// export const defaultGridSize = 19;          // Default number of squares in each row and column
-// export let gridSize = defaultGridSize;      // Changed by a slider on Create page
-export const gridSize = 19;      // TODO: Allow this to be changed by a slider on the Create page
+export const initialGridSize = 19;        // Default number of squares in each row and column
+export const invalidGridSize = 0;         // Used as "default" value for state variable
+export const minGridSize = 2;             // Minimum number of squares on each side
+export const maxGridSize = 49;            // Maximum number of squares on each side
+export let gridSize = initialGridSize;    // Changed by a slider on the Create page
+export function setGridSize( newGridSize: number ) {
+  gridSize = newGridSize;
+}
 
 export const gridTopX = 4;       // X location of top left corner of grid
 export const gridTopY = 4;       // Y location of top left corner of grid
