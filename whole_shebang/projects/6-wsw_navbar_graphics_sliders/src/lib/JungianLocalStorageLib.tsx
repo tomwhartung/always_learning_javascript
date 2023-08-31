@@ -2,7 +2,7 @@
 // JungianLocalStorageLib.tsx: code used to store and access Jungian data in localStorage
 //
 import * as JungianLib from '../lib/JungianLib.tsx';
-import { defaultSliderValue } from './SliderLib.tsx';
+import { defaultSliderValue } from './JungianScoreSliderLib.tsx';
 
 //
 // setSliderValues: sets the current SliderValues to the specified value
@@ -35,7 +35,6 @@ export function setSliderValues( newSliderValues: number[] ): boolean {
 
   return success;
 }
-
 // getSliderValues: returns the current sliderValues from local storage
 export function getSliderValues(): number[] {
   if ( JungianLib.logLogicFlow ) {
@@ -64,6 +63,7 @@ export function getSliderValues(): number[] {
 
   return sliderValues;
 }
+
 
 // setImageString: sets the current imageString to the specified value
 //   returns true if successful else false if the newImageString is too short
@@ -95,7 +95,6 @@ export function setImageString( newImageString: string ): boolean {
 
   return success;
 }
-
 // getImageString: returns the current imageString from local storage
 export function getImageString(): string {
   if ( JungianLib.logLogicFlow ) {
@@ -127,7 +126,8 @@ export function getImageString(): string {
   return imageString;
 }
 
-// setSquareSize: sets the current imageString to the specified value
+
+// setSquareSize: sets the current squareSize to the specified value
 //   returns true if successful else false if the newImageString is too short
 export function setSquareSize( newSquareSize: number ): boolean {
   if ( JungianLib.logLogicFlow ) {
@@ -158,8 +158,7 @@ export function setSquareSize( newSquareSize: number ): boolean {
 
   return success;
 }
-
-// getSquareSize: returns the current imageString from local storage
+// getSquareSize: returns the current squareSize from local storage
 export function getSquareSize(): number {
   if ( JungianLib.logLogicFlow ) {
     console.log( "Top of getSquareSize() in JungianLocalStorageLib.tsx" );
@@ -190,14 +189,77 @@ export function getSquareSize(): number {
 }
 
 
+// setGridSize: sets the current imageString to the specified value
+//   returns true if successful else false if the newImageString is too short
+export function setGridSize( newGridSize: number ): boolean {
+  if ( JungianLib.logLogicFlow ) {
+    console.log( "Top of setGridSize() in JungianLocalStorageLib.tsx" );
+  }
+
+  let success = true;
+
+  if ( JungianLib.minGridSize <= newGridSize &&
+       newGridSize <= JungianLib.maxGridSize   ) {
+    const jungianItem = getTheJungianItem();
+    jungianItem.gridSize = newGridSize;
+    setTheJungianItem( jungianItem );
+    if ( JungianLib.logLogicFlow ) {
+      console.log( "setGridSize(): stored newGridSize in the 'jungian' item" );
+    }
+  } else {
+    success = false;
+    if ( JungianLib.logLogicFlow ) {
+      console.log( "setGridSize(): newGridSize = " + newGridSize + " IS UNACCEPTABLE" );
+      console.log( "setGridSize(): NOT SAVING newGridSize BECAUSE IT IS INVALID" );
+    }
+  }
+
+  if ( JungianLib.logLogicFlow ) {
+    console.log( "Return()ing '" + success + "' from setGridSize() in JungianLocalStorageLib.tsx" );
+  }
+
+  return success;
+}
+// getGridSize: returns the current imageString from local storage
+export function getGridSize(): number {
+  if ( JungianLib.logLogicFlow ) {
+    console.log( "Top of getGridSize() in JungianLocalStorageLib.tsx" );
+  }
+
+  let gridSize = JungianLib.initialGridSize;
+  const jungianItem = getTheJungianItem( );
+
+  if ( jungianItem ) {
+    gridSize = jungianItem.gridSize;
+    if ( JungianLib.logLogicFlow ) {
+      console.log( "getGridSize in JungianLocalStorageLib.tsx: found the 'jungian' item" );
+      console.log( "getGridSize: gridSize = " + gridSize );
+    }
+  } else {
+    if ( JungianLib.logLogicFlow ) {
+      console.log( "getGridSize in JungianLocalStorageLib.tsx: 'jungian' item NOT FOUND in localStorage" );
+      console.log( "getGridSize: returning initialGridSize" );
+    }
+  }
+
+
+  if ( JungianLib.logLogicFlow ) {
+    console.log( "Return()ing '" + gridSize + "' from getGridSize() in JungianLocalStorageLib.tsx" );
+  }
+
+  return gridSize;
+}
+
+
 // THIS SORT OF THING BREAKS STUFF ...
 //const defaultSliderValues = [ defaultSliderValue, defaultSliderValue, defaultSliderValue, defaultSliderValue ];
 
 interface JungianItemValues {
   imageString: string;
-//sliderValues: JungianLib.JungianSliderValues;
+//sliderValues: JungianLib.JungianScoreSliderValues;
   sliderValues: number[];
   squareSize: number;
+  gridSize: number;
 }
 
 // setTheJungianItem: sets all of the values in the 'jungian' item in local storage
@@ -215,7 +277,6 @@ function setTheJungianItem( newJungianItemValues: JungianItemValues ) {
 
   return;
 }
-
 // getTheJungianItem: returns the current 'jungian' item from local storage
 function getTheJungianItem(): JungianItemValues {
   if ( JungianLib.logLogicFlow ) {
@@ -226,6 +287,7 @@ function getTheJungianItem(): JungianItemValues {
     imageString: JungianLib.defaultImageString,
     sliderValues: [ defaultSliderValue ],
     squareSize: JungianLib.initialSquareSize,
+    gridSize: JungianLib.initialGridSize,
   }
 
   let jungianItem = initialJungianItemValues;
