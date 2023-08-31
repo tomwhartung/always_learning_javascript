@@ -2,24 +2,24 @@
 // SliderLib.tsx: types and constants used by quiz types that use sliders
 //
 import { ChangeEvent } from 'react';
-
 import { MDBRange } from 'mdb-react-ui-kit';
+
 import * as JungianLib from '../lib/JungianLib.tsx';
 
 export const defaultSliderValue = 50;
 
-// SliderProps: props passed to SliderCard and JungianSlider components
-export interface SliderProps {
+// JungianScoreSliderProps: props passed to JungianScoreSliderCard and JungianScoreSlider components
+export interface JungianScoreSliderProps {
   sliderNo: number;
   onSliderChange: (event: ChangeEvent<Element>) => void;
   sliderVal: number;
 }
 
-// SliderCard: MDB card wrapping a quiz-specific wrapper of the MDBRange component
-export function SliderCard( props: SliderProps ) {
+// JungianScoreSliderCard: MDB card wrapping a quiz-specific wrapper of the MDBRange component
+export function JungianScoreSliderCard( props: JungianScoreSliderProps ) {
   return (
     <div className="card">
-      <JungianSlider
+      <JungianScoreSlider
         sliderNo={props.sliderNo}
         sliderVal={props.sliderVal}
         onSliderChange={props.onSliderChange}
@@ -28,16 +28,16 @@ export function SliderCard( props: SliderProps ) {
   )
 }
 
-// JungianSlider: Jungian-specific wrapper for the MDBRange component
-function JungianSlider( props: SliderProps ) {
+// JungianScoreSlider: Jungian Score-specific wrapper for the MDBRange component
+function JungianScoreSlider( props: JungianScoreSliderProps ) {
   const sliderOppositeValue = 100 - props.sliderVal;
   const sliderId = "myslider-" + props.sliderNo.toString();
   let sliderLabel = sliderOppositeValue.toString() + "% " +
-                    JungianLib.imageSliderLabels[props.sliderNo] + ": " +
+                    JungianLib.jungianScoreSliderLabels[props.sliderNo] + ": " +
                     props.sliderVal.toString() + "%";
 
   if ( props.sliderNo == 0 ) {
-    sliderLabel = JungianLib.imageSliderLabels[props.sliderNo] + ": " +
+    sliderLabel = JungianLib.jungianScoreSliderLabels[props.sliderNo] + ": " +
                   props.sliderVal.toString();
   }
 
