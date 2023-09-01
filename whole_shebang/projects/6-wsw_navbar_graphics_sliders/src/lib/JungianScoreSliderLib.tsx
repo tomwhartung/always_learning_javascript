@@ -6,8 +6,6 @@ import { MDBRange } from 'mdb-react-ui-kit';
 
 import * as JungianLib from '../lib/JungianLib.tsx';
 
-export const defaultSliderValue = 50;
-
 // JungianScoreSliderProps: props passed to JungianScoreSliderCard and JungianScoreSlider components
 export interface JungianScoreSliderProps {
   sliderNo: number;
@@ -33,21 +31,25 @@ function JungianScoreSlider( props: JungianScoreSliderProps ) {
   const sliderOppositeValue = 100 - props.sliderVal;
   const sliderId = "myslider-" + props.sliderNo.toString();
   let sliderLabel = sliderOppositeValue.toString() + "% " +
-                    JungianLib.jungianScoreSliderLabels[props.sliderNo] + ": " +
+                    JungianLib.jungianScoreLabels[props.sliderNo] + ": " +
                     props.sliderVal.toString() + "%";
 
   if ( props.sliderNo == 0 ) {
-    sliderLabel = JungianLib.jungianScoreSliderLabels[props.sliderNo] + ": " +
+    sliderLabel = JungianLib.jungianScoreLabels[props.sliderNo] + ": " +
                   props.sliderVal.toString();
   }
 
-  const initialSliderVal = ( 0 <= props.sliderVal && props.sliderVal <= 100 ) ? props.sliderVal : defaultSliderValue;
+  let scoreValueForTag = JungianLib.initialScoreValue;
+
+  if ( JungianLib.minScoreValue <= props.sliderVal && props.sliderVal <= JungianLib.minScoreValue ) {
+     scoreValueForTag = props.sliderVal;
+  }
 
   return (
     <>
       <MDBRange
         className="pt-2 ps-2 pe-2"
-        defaultValue={initialSliderVal}
+        defaultValue={scoreValueForTag}
         id={sliderId}
         label=""
         onChange={props.onSliderChange}
