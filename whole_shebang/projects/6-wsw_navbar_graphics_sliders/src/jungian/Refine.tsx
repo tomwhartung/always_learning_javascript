@@ -8,7 +8,6 @@ import { ChangeEvent, MouseEvent, useState, useEffect } from 'react';
 import { MDBRadio, MDBRange } from 'mdb-react-ui-kit';
 
 import Canvas from '../lib/CanvasLib.tsx';
-import {defaultSliderValue} from '../lib/JungianScoreSliderLib.tsx';
 import * as JungianLib from '../lib/JungianLib.tsx';
 import * as JungianLSLib from '../lib/JungianLocalStorageLib.tsx';
 
@@ -16,7 +15,7 @@ import * as JungianLSLib from '../lib/JungianLocalStorageLib.tsx';
 JungianLib.setLogLogicFlow( true );   // un-comment when trying to track down issues
 // JungianLib.setLogLogicFlow( false );   // un-comment when everything's ok
 
-let opacityValue = defaultSliderValue;
+let opacityValue = JungianLib.initialScoreValue;
 let storedImageString = "";
 
 interface JungianRefineProps extends JungianLib.JungianScoreSliderValues {
@@ -115,7 +114,7 @@ function FixedSizeImageAndCards( props: JungianRefineProps ) {
 
   // NOTE: DO NOT PUT THIS Canvas IN A CARD!  Doing so makes it resizable and
   //   breaks the code that calculates which square the user clicked on!!
-  // value="{JungianLib.colorLetters[0]}"
+  //
   return (
     <>
       <div className="row d-flex mt-1 align-items-center">
@@ -175,13 +174,13 @@ function FixedContainer() {
   const defaultStatusMessage = "Click on a square to change its color to Blue.";
   const defaultColorIndex = 0;
 
-  const [currentSliderValues, setCurrentSliderValues] = useState( [defaultSliderValue] );
+  const [currentSliderValues, setCurrentSliderValues] = useState( [JungianLib.invalidScoreValue] );
   const [currentImageString, setCurrentImageString] = useState( JungianLib.defaultImageString );
   const [currentStatusMessage, setCurrentStatusMessage] = useState( defaultStatusMessage );
   const [currentColorIndex, setCurrentColorIndex] = useState( defaultColorIndex );
   const [currentSquareSize, setCurrentSquareSize] = useState( JungianLib.invalidSquareSize );
 
-  // handleSquareSizeChange: handle when user moves the square size slider
+  // handleSquareSizeChange: code to run when the user moves the square size slider
   function handleSquareSizeChange( event: ChangeEvent<HTMLInputElement> ) {
     // if ( JungianLib.logLogicFlow ) {
       console.log( "Top of handleSquareSizeChange in FixedContainer() in Refine.tsx" );
@@ -190,10 +189,10 @@ function FixedContainer() {
     const newSquareSize = parseInt( event.target.value );
     setCurrentSquareSize( newSquareSize );
     JungianLib.setSquareSize( newSquareSize );
-    // if ( JungianLib.logLogicFlow ) {
+    if ( JungianLib.logLogicFlow ) {
       console.log( "handleSquareSizeChange: currentSquareSize = " + currentSquareSize );
       console.log( "Exiting handleSquareSizeChange in FixedContainer() in Refine.tsx" );
-    // }
+    }
   }
 
   // handleColorPickerChange: Change the new color used when user clicks on a square
@@ -255,7 +254,7 @@ function FixedContainer() {
     setCurrentImageString( JungianLSLib.getImageString() );
     storedImageString = JungianLSLib.getImageString();
     if (storedImageString.length === 0 ) {
-      setCurrentStatusMessage( "Please use the Create option to create an image before trying to Refine it." );
+      setCurrentStatusMessage( "Please use the Create option to Create an image before trying to Refine it." );
     }
     setCurrentSquareSize( JungianLSLib.getSquareSize() );
     JungianLib.setSquareSize( JungianLSLib.getSquareSize() );
