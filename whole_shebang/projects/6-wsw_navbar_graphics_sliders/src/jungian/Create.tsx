@@ -11,8 +11,8 @@ import * as JungianLib from '../lib/JungianLib.tsx';
 import * as JungianLSLib from '../lib/JungianLocalStorageLib.tsx';
 
 // NOTE: Setting logLogicFlow to true for one page in effect sets it for all pages
-// JungianLib.setLogLogicFlow( false );    // un-comment when everything's ok
-JungianLib.setLogLogicFlow( true );     // un-comment when trying to track down issues
+JungianLib.setLogLogicFlow( false );    // un-comment when everything's ok
+// JungianLib.setLogLogicFlow( true );     // un-comment when trying to track down issues
 
 // These are the slider values we use when drawing a Fresh Image
 const storedSliderValues: JungianLib.JungianScoreSliderValues = {
@@ -37,6 +37,8 @@ const draw = (context: CanvasRenderingContext2D) => {
     }
     const newImageString = JungianLib.drawNewImageString( context, storedSliderValues );
     storedImageString = newImageString;
+    JungianLSLib.setImageString( newImageString );
+    console.log( "draw(): set drawFreshImage storedImageString.length = " + storedImageString.length );
     drawFreshImage = false;
     if ( JungianLib.logLogicFlow ) {
       console.log( "draw(): set drawFreshImage = false & storedImageString = newImageString" );
@@ -107,22 +109,6 @@ function FixedContainer() {
   const [currentSliderValues, setCurrentSliderValues] = useState([defaultSliderValue]);
   const [currentGridSize, setCurrentGridSize] = useState( JungianLib.invalidGridSize );
 
-  // handleGridSizeChange: code to run when user moves the grid size slider
-  function handleGridSizeChange( event: ChangeEvent<HTMLInputElement> ) {
-    // if ( JungianLib.logLogicFlow ) {
-      console.log( "Top of handleGridSizeChange in FixedContainer() in Refine.tsx" );
-      console.log( "handleGridSizeChange: event.target.value = " + event.target.value );
-    // }
-    const newGridSize = parseInt( event.target.value );
-    setCurrentGridSize( newGridSize );
-    JungianLib.setGridSize( newGridSize );
-    drawFreshImage = true;
-    // if ( JungianLib.logLogicFlow ) {
-      console.log( "handleGridSizeChange: currentGridSize = " + currentGridSize );
-      console.log( "Exiting handleGridSizeChange in FixedContainer() in Refine.tsx" );
-    // }
-  }
-
   // handleSliderValueChange: code to run when the user moves a score slider
   function handleSliderValueChange( event: ChangeEvent, col: number ) {
     if ( JungianLib.logLogicFlow ) {
@@ -147,12 +133,28 @@ function FixedContainer() {
     }
   }
 
+  // handleGridSizeChange: code to run when user moves the grid size slider
+  function handleGridSizeChange( event: ChangeEvent<HTMLInputElement> ) {
+    if ( JungianLib.logLogicFlow ) {
+      console.log( "Top of handleGridSizeChange in FixedContainer in Create.tsx" );
+      console.log( "handleGridSizeChange: event.target.value = " + event.target.value );
+    }
+    const newGridSize = parseInt( event.target.value );
+    setCurrentGridSize( newGridSize );
+    JungianLib.setGridSize( newGridSize );
+    drawFreshImage = true;
+    if ( JungianLib.logLogicFlow ) {
+      console.log( "handleGridSizeChange: currentGridSize = " + currentGridSize );
+      console.log( "Exiting handleGridSizeChange in FixedContainer in Create.tsx" );
+    }
+  }
+
   // First useEffect: (presumably) runs once when component is mounted (but I have my doubts...)
   //   Fetches values from local storage, initializing them if they're not set
   //   Sets the currentSliderValues state variable to values from local storage [or default values]
   useEffect( () => {
     if ( JungianLib.logLogicFlow ) {
-      console.log( "Top of first useEffect in FixedContainer() in Create.tsx" );
+      console.log( "Top of first useEffect in FixedContainer in Create.tsx" );
     }
     const jungianLSLibSliderValues = JungianLSLib.getSliderValues();
     if ( jungianLSLibSliderValues.length > 3 ) {
@@ -174,7 +176,7 @@ function FixedContainer() {
     JungianLib.setSquareSize( JungianLSLib.getSquareSize() );
     JungianLib.setGridSize( JungianLSLib.getGridSize() );
     if ( JungianLib.logLogicFlow ) {
-      console.log( "Exiting first useEffect in FixedContainer() in Create.tsx" );
+      console.log( "Exiting first useEffect in FixedContainer in Create.tsx" );
     }
     // NOTE! DO NOT DELETE THE EMPTY DEPENDENCY ARRAY!!  DOING SO CAUSES AN INFINITE LOOP!!!
   }, [] ); // empty dependency array -> this runs just once when the component is mounted
@@ -183,7 +185,7 @@ function FixedContainer() {
   //   Stores the new slider values and image string in local storage
   useEffect( () => {
     if ( JungianLib.logLogicFlow ) {
-      console.log( "Top of second useEffect in FixedContainer() in Create.tsx" );
+      console.log( "Top of second useEffect in FixedContainer in Create.tsx" );
       console.log( "Second useEffect: currentSliderValues.length = " + currentSliderValues.length );
     }
     if ( currentSliderValues.length > 3 ) {
@@ -209,7 +211,7 @@ function FixedContainer() {
       }
     }
     if ( JungianLib.logLogicFlow ) {
-      console.log( "Exiting second useEffect in FixedContainer() in Create.tsx" );
+      console.log( "Exiting second useEffect in FixedContainer in Create.tsx" );
     }
   }, [currentSliderValues] );
 
@@ -217,7 +219,7 @@ function FixedContainer() {
   //   Stores the new, refined gridSize in local storage
   useEffect( () => {
     if ( JungianLib.logLogicFlow ) {
-      console.log( "Top of third useEffect in FixedContainer() in Refine.tsx" );
+      console.log( "Top of third useEffect in FixedContainer in Create.tsx" );
     }
     const success = JungianLSLib.setGridSize( currentGridSize );
     if ( JungianLib.logLogicFlow ) {
@@ -227,7 +229,7 @@ function FixedContainer() {
         console.log( "Third useEffect: currentGridSize = " + currentGridSize );
         console.log( "Third useEffect: DID NOT SAVE currentGridSize as gridSize" );
       }
-      console.log( "Exiting third useEffect in FixedContainer() in Refine.tsx" );
+      console.log( "Exiting third useEffect in FixedContainer in Create.tsx" );
     }
   }, [currentGridSize] );
 
