@@ -5,7 +5,6 @@ import '../App.css'
 import { useEffect, useState } from 'react';
 
 import Canvas from '../lib/CanvasLib.tsx';
-import {defaultSliderValue} from '../lib/JungianScoreSliderLib.tsx';
 import * as JungianLib from '../lib/JungianLib.tsx';
 import * as JungianLSLib from '../lib/JungianLocalStorageLib.tsx';
 
@@ -14,7 +13,7 @@ import * as JungianLSLib from '../lib/JungianLocalStorageLib.tsx';
 JungianLib.setLogLogicFlow( true );     // un-comment when trying to track down issues
 
 let storedImageString = "";
-let opacityValue = defaultSliderValue;
+let opacityValue = JungianLib.initialScoreValue;
 
 // draw: draw the grid of blue, green, red, and yellow squares defined in storedImageString
 const draw = (context: CanvasRenderingContext2D) => {
@@ -73,7 +72,7 @@ function DFlexContainer() {
     console.log( "Top of DFlexContainer() in View.tsx" );
   }
 
-  const [currentSliderValues, setCurrentSliderValues] = useState([defaultSliderValue]);
+  const [currentSliderValues, setCurrentSliderValues] = useState([JungianLib.invalidScoreValue]);
 
   useEffect(() => {
     if ( JungianLib.logLogicFlow ) {
@@ -93,7 +92,7 @@ function DFlexContainer() {
   let createOrRefineMessage = "";
 
   if ( storedImageString.length === 0 ) {
-    createOrRefineMessage = "Please use the Create option to create an image before trying to View it.";
+    createOrRefineMessage = "Please use the Create option to Create an image before trying to View it.";
   } else {
     createOrRefineMessage = "You can now use the Refine option to refine your image.";
   }
@@ -107,10 +106,10 @@ function DFlexContainer() {
       <div className="row mt-2 d-flex justify-content-center">
         <h5>{createOrRefineMessage}</h5>
         <DFlexImageAndSliderValues
-          opacityValue={currentSliderValues[0] ?? defaultSliderValue}
-          blueVsYellowValue={currentSliderValues[1] ?? defaultSliderValue}
-          greenVsRedValue={currentSliderValues[2] ?? defaultSliderValue}
-          bAndYVsGandRValue={currentSliderValues[3] ?? defaultSliderValue} />
+          opacityValue={currentSliderValues[0] ?? JungianLib.initialScoreValue}
+          blueVsYellowValue={currentSliderValues[1] ?? JungianLib.initialScoreValue}
+          greenVsRedValue={currentSliderValues[2] ?? JungianLib.initialScoreValue}
+          bAndYVsGandRValue={currentSliderValues[3] ?? JungianLib.initialScoreValue} />
       </div>
     </div>
   )
