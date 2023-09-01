@@ -7,8 +7,28 @@
 // In some cases, these include minimal get and set functions to support
 // manipulation *in real time* of some of the values used to draw the images.
 //
+
+// logLogicFlow: enable turning logging to the console on and off
+//   NOTE: Setting logLogicFlow to true for one page in effect sets it for all pages
+//     Or so it seems like it does, sometimes...
+// export let logLogicFlow = false;
+export let logLogicFlow = true;
+export function setLogLogicFlow( value: boolean ) {
+  logLogicFlow = value;
+}
+export function getLogLogicFlow(): boolean {
+  return logLogicFlow;
+}
+// setLogLogicFlow( true );
+
 export const initialScoreValue = 50;        // Initial value of each slider before user changes it
-export const invalidScoreValue = -1;        // Used as "default" value for state variable
+export const invalidScoreValue = -1;        // Used to create "default" value for state variable
+export const invalidScoreArray = [          // Used as "default" value for state variable
+  invalidScoreValue,
+  invalidScoreValue,
+  invalidScoreValue,
+  invalidScoreValue
+];
 export const minScoreValue = 0;             // Minimum score value
 export const maxScoreValue = 100;           // Maximum score value
 // export let squareSize = initialScoreValue;  // Changed by a slider on Refine page
@@ -46,19 +66,6 @@ export function getCanvasHeight() {
   return ( squareSize * gridSize ) + ( 2 * gridTopY );
 }
 
-// logLogicFlow: enable turning logging to the console on and off
-//   NOTE: Setting logLogicFlow to true for one page in effect sets it for all pages
-//     Or so it seems like it does, sometimes...
-export let logLogicFlow = false;
-// export let logLogicFlow = true;
-export function setLogLogicFlow( value: boolean ) {
-  logLogicFlow = value;
-}
-export function getLogLogicFlow(): boolean {
-  return logLogicFlow;
-}
-// setLogLogicFlow( true );
-
 
 // Constant Arrays:
 // ----------------
@@ -69,7 +76,7 @@ export const jungianScorePropNames: readonly string[] = [
   "G vs R",
   "B&Y vs G&R",
 ];
-export const jungianScoreSliderLabels: readonly string[] = [
+export const jungianScoreLabels: readonly string[] = [
   "Opacity",
   "Y vs B",
   "R vs G",
@@ -92,8 +99,8 @@ export const colorNames: readonly string[] = [
 // Types:
 // ------
 //
-// JungianScoreSliderValues: values that come from the Jungian sliders
-export interface JungianScoreSliderValues {
+// JungianScoreValues: values that come from the Jungian sliders
+export interface JungianScoreValues {
   opacityValue: number;           // [0 .. 100]
   blueVsYellowValue: number;      // [0 .. 100]
   greenVsRedValue: number;        // [0 .. 100]
@@ -111,10 +118,10 @@ export function valueToPct( value: number ) : number {
 }
 
 // getRandomPrimaryColor: return a single character, "B", "G", "R", or "Y"
-export function getRandomPrimaryColor( sliderValues: JungianScoreSliderValues ) {
-  const blueVsYellowPercent = valueToPct( sliderValues.blueVsYellowValue );
-  const greenVsRedPercent = valueToPct( sliderValues.greenVsRedValue );
-  const bAndYVsGandRPercent = valueToPct( sliderValues.bAndYVsGandRValue );
+export function getRandomPrimaryColor( scoreValues: JungianScoreValues ) {
+  const blueVsYellowPercent = valueToPct( scoreValues.blueVsYellowValue );
+  const greenVsRedPercent = valueToPct( scoreValues.greenVsRedValue );
+  const bAndYVsGandRPercent = valueToPct( scoreValues.bAndYVsGandRValue );
   let randomFloat = Math.random();
   let randomColorLetter = colorLetters[4];  // default is INVALID!
 
@@ -142,7 +149,7 @@ export function getRandomPrimaryColor( sliderValues: JungianScoreSliderValues ) 
 }
 
 // drawNewImageString: Create a new totally random "groja-esque" grid of blue, green, red, and yellow squares
-export function drawNewImageString( context: CanvasRenderingContext2D, storedSliderValues: JungianScoreSliderValues ) {
+export function drawNewImageString( context: CanvasRenderingContext2D, storedScoreValues: JungianScoreValues ) {
   let newImageString = defaultImageString;
   if ( logLogicFlow ) {
     console.log( "Top of drawNewImageString() in JungianLib.tsx" );
@@ -150,7 +157,7 @@ export function drawNewImageString( context: CanvasRenderingContext2D, storedSli
 
   const width = getCanvasWidth();
   const height = getCanvasHeight();
-  const opacityPercent = valueToPct( storedSliderValues.opacityValue );
+  const opacityPercent = valueToPct( storedScoreValues.opacityValue );
 
   // Paint it all black
   context.fillStyle = "rgb(0, 0, 0)";
@@ -167,12 +174,13 @@ export function drawNewImageString( context: CanvasRenderingContext2D, storedSli
   let colorLetter = "B";
   const imageCharArray: string[] = [];
 
-  // console.log( "drawNewImageString() in JungianLib.tsx: imageCharArray.length = " + imageCharArray.length );
+  // console.log( "drawNewImageString(): imageCharArray.length = " + imageCharArray.length );
+  console.log( "drawNewImageString(): storedScoreValues.toString() = " + storedScoreValues.toString() );
   for ( let row=0; row < gridSize; row++ ) {
     squareTopY = gridTopY + (row * squareSize);
     for ( let col=0; col < gridSize; col++ ){
       // console.log( "drawNewImageString() in JungianLib.tsx: calling getRandomPrimaryColor = " + colorLetter );
-      colorLetter = getRandomPrimaryColor( storedSliderValues );
+      colorLetter = getRandomPrimaryColor( storedScoreValues );
       // console.log( "drawNewImageString() in JungianLib.tsx: colorLetter = " + colorLetter );
       squareTopX = gridTopX + (col * squareSize);
       if ( colorLetter == "B" ) {
