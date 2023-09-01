@@ -2,7 +2,6 @@
 // JungianLocalStorageLib.tsx: code used to store and access Jungian data in localStorage
 //
 import * as JungianLib from '../lib/JungianLib.tsx';
-import { defaultSliderValue } from './JungianScoreSliderLib.tsx';
 
 //
 // setSliderValues: sets the current SliderValues to the specified value
@@ -41,7 +40,7 @@ export function getSliderValues(): number[] {
     console.log( "Top of getSliderValues() in JungianLocalStorageLib.tsx" );
   }
 
-  let sliderValues = [ defaultSliderValue ];
+  let sliderValues = [ JungianLib.initialScoreValue ];
   const jungianItem = getTheJungianItem();
 
   if ( jungianItem ) {
@@ -53,7 +52,7 @@ export function getSliderValues(): number[] {
   } else {
     if ( JungianLib.logLogicFlow ) {
       console.log( "getSliderValues in JungianLocalStorageLib.tsx: 'jungian' item NOT FOUND in localStorage" );
-      console.log( "getSliderValues: returning an array containing a single defaultSliderValue" );
+      console.log( "getSliderValues: returning an array containing a single JungianLib.initialScoreValue" );
     }
   }
 
@@ -251,9 +250,6 @@ export function getGridSize(): number {
 }
 
 
-// THIS SORT OF THING BREAKS STUFF ...
-//const defaultSliderValues = [ defaultSliderValue, defaultSliderValue, defaultSliderValue, defaultSliderValue ];
-
 interface JungianItemValues {
   imageString: string;
 //sliderValues: JungianLib.JungianScoreSliderValues;
@@ -285,7 +281,12 @@ function getTheJungianItem(): JungianItemValues {
 
   const initialJungianItemValues: JungianItemValues = {
     imageString: JungianLib.defaultImageString,
-    sliderValues: [ defaultSliderValue ],
+    sliderValues: [
+      JungianLib.initialScoreValue,
+      JungianLib.initialScoreValue,
+      JungianLib.initialScoreValue,
+      JungianLib.initialScoreValue
+    ],
     squareSize: JungianLib.initialSquareSize,
     gridSize: JungianLib.initialGridSize,
   }
