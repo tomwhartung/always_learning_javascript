@@ -4,63 +4,70 @@
 import * as JungianLib from '../lib/JungianLib.tsx';
 
 //
-// setSliderValues: sets the current SliderValues to the specified value
+// setScoreValues: sets the scoreValues in local storage to the specified values
 //   returns true if successful else false if the newImageString is too short
-export function setSliderValues( newSliderValues: number[] ): boolean {
+export function setScoreValues( newScoreValues: number[] ): boolean {
   if ( JungianLib.logLogicFlow ) {
-    console.log( "Top of setSliderValues() in JungianLocalStorageLib.tsx" );
+    console.log( "Top of setScoreValues() in JungianLocalStorageLib.tsx" );
   }
 
   let success = true;
 
-  if ( newSliderValues.length > 3 ) {
+  for ( let valIdx = 0; valIdx < newScoreValues.length; ++valIdx ) {
+    if ( newScoreValues[valIdx] < JungianLib.minScoreValue ||
+         JungianLib.maxScoreValue < newScoreValues[valIdx]   ) {
+      success = false;
+      break;
+    }
+  }
+
+  if ( success ) {
     const jungianItem = getTheJungianItem();
-    jungianItem.sliderValues = newSliderValues;
+    jungianItem.scoreValues = newScoreValues;
     setTheJungianItem( jungianItem );
     if ( JungianLib.logLogicFlow ) {
-      console.log( "setSliderValues(): stored '" + newSliderValues + "' in the 'jungian' item" );
+      console.log( "setScoreValues(): stored '" + newScoreValues + "' in the 'jungian' item" );
     }
   } else {
-    success = false;
     if ( JungianLib.logLogicFlow ) {
-      console.log( "setSliderValues(): newSliderValues.length = " + newSliderValues.length );
-      console.log( "setSliderValues(): NOT SAVING newSliderValues BECAUSE IT HAS TOO FEW VALUES" );
+      console.log( "setScoreValues(): newScoreValues = " + newScoreValues );
+      console.log( "setScoreValues(): NOT SAVING newScoreValues BECAUSE IT HAS AN INVALID VALUE" );
     }
   }
 
   if ( JungianLib.logLogicFlow ) {
-    console.log( "Return()ing " + success + " from setSliderValues() in JungianLocalStorageLib.tsx" );
+    console.log( "Return()ing " + success + " from setScoreValues() in JungianLocalStorageLib.tsx" );
   }
 
   return success;
 }
-// getSliderValues: returns the current sliderValues from local storage
-export function getSliderValues(): number[] {
+// getScoreValues: returns the current scoreValues from local storage
+export function getScoreValues(): number[] {
   if ( JungianLib.logLogicFlow ) {
-    console.log( "Top of getSliderValues() in JungianLocalStorageLib.tsx" );
+    console.log( "Top of getScoreValues() in JungianLocalStorageLib.tsx" );
   }
 
-  let sliderValues = [ JungianLib.initialScoreValue ];
+  let scoreValues = [ JungianLib.initialScoreValue ];
   const jungianItem = getTheJungianItem();
 
   if ( jungianItem ) {
-    sliderValues = jungianItem.sliderValues;
+    scoreValues = jungianItem.scoreValues;
     if ( JungianLib.logLogicFlow ) {
-      console.log( "getSliderValues in JungianLocalStorageLib.tsx: found the 'jungian' item" );
-      console.log( "getSliderValues: sliderValues.toString() = " + sliderValues.toString() );
+      console.log( "getScoreValues in JungianLocalStorageLib.tsx: found the 'jungian' item" );
+      console.log( "getScoreValues: scoreValues.toString() = " + scoreValues.toString() );
     }
   } else {
     if ( JungianLib.logLogicFlow ) {
-      console.log( "getSliderValues in JungianLocalStorageLib.tsx: 'jungian' item NOT FOUND in localStorage" );
-      console.log( "getSliderValues: returning an array containing a single JungianLib.initialScoreValue" );
+      console.log( "getScoreValues in JungianLocalStorageLib.tsx: 'jungian' item NOT FOUND in localStorage" );
+      console.log( "getScoreValues: returning an array containing a single JungianLib.initialScoreValue" );
     }
   }
 
   if ( JungianLib.logLogicFlow ) {
-    console.log( "Return()ing '" + sliderValues.toString() + "' from getSliderValues() in JungianLocalStorageLib.tsx" );
+    console.log( "Return()ing '" + scoreValues.toString() + "' from getScoreValues() in JungianLocalStorageLib.tsx" );
   }
 
-  return sliderValues;
+  return scoreValues;
 }
 
 
@@ -252,8 +259,8 @@ export function getGridSize(): number {
 
 interface JungianItemValues {
   imageString: string;
-//sliderValues: JungianLib.JungianScoreSliderValues;
-  sliderValues: number[];
+//scoreValues: JungianLib.JungianScoreValues;
+  scoreValues: number[];
   squareSize: number;
   gridSize: number;
 }
@@ -275,13 +282,13 @@ function setTheJungianItem( newJungianItemValues: JungianItemValues ) {
 }
 // getTheJungianItem: returns the current 'jungian' item from local storage
 function getTheJungianItem(): JungianItemValues {
-  if ( JungianLib.logLogicFlow ) {
-    console.log( "Top of getTheJungianItem() in JungianLocalStorageLib.tsx" );
-  }
+  // if ( JungianLib.logLogicFlow ) {
+  //   console.log( "Top of getTheJungianItem() in JungianLocalStorageLib.tsx" );
+  // }
 
   const initialJungianItemValues: JungianItemValues = {
     imageString: JungianLib.defaultImageString,
-    sliderValues: [
+    scoreValues: [
       JungianLib.initialScoreValue,
       JungianLib.initialScoreValue,
       JungianLib.initialScoreValue,
@@ -296,15 +303,15 @@ function getTheJungianItem(): JungianItemValues {
 
   if ( rawStoredJungianItem ) {
     jungianItem = JSON.parse( rawStoredJungianItem );
-    if ( JungianLib.logLogicFlow ) {
-      console.log( "getTheJungianItem(): found the stored 'jungian' item and parsed it" );
-    }
+    // if ( JungianLib.logLogicFlow ) {
+    //   console.log( "getTheJungianItem(): found the stored 'jungian' item and parsed it" );
+    // }
   }
 
-  if ( JungianLib.logLogicFlow ) {
-    // console.log( "Return()ing '" + jungianItem + "' from getTheJungianItem() in JungianLocalStorageLib.tsx" );
-    console.log( "Return()ing from getTheJungianItem() in JungianLocalStorageLib.tsx" );
-  }
+  // if ( JungianLib.logLogicFlow ) {
+  //   // console.log( "Return()ing '" + jungianItem + "' from getTheJungianItem() in JungianLocalStorageLib.tsx" );
+  //   console.log( "Return()ing from getTheJungianItem() in JungianLocalStorageLib.tsx" );
+  // }
 
   return jungianItem;
 }
