@@ -21,7 +21,7 @@ const draw = (context: CanvasRenderingContext2D) => {
 };
 
 // DFlexImageAndSliderValues: function component to display a jungian image
-function DFlexImageAndSliderValues( props:JungianLib.JungianScoreSliderValues ) {
+function DFlexImageAndSliderValues( props:JungianLib.JungianScoreValues ) {
   if ( JungianLib.logLogicFlow ) {
     console.log( "Top of DFlexImageAndSliderValues() in View.tsx" );
   }
@@ -72,19 +72,19 @@ function DFlexContainer() {
     console.log( "Top of DFlexContainer() in View.tsx" );
   }
 
-  const [currentSliderValues, setCurrentSliderValues] = useState([JungianLib.invalidScoreValue]);
+  const [currentScoreValues, setCurrentScoreValues] = useState([JungianLib.invalidScoreValue]);
 
   useEffect(() => {
     if ( JungianLib.logLogicFlow ) {
       console.log( "Top of useEffect in DFlexContainer() in View.tsx" );
     }
-    setCurrentSliderValues( JungianLSLib.getSliderValues() );
+    setCurrentScoreValues( JungianLSLib.getScoreValues() );
     storedImageString = JungianLSLib.getImageString();
     if ( JungianLib.logLogicFlow ) {
-      // console.log( "useEffect in DFlexContainer: currentSliderValues[0] = " + currentSliderValues[0] );
-      // console.log( "useEffect in DFlexContainer: currentSliderValues[1] = " + currentSliderValues[1] );
-      // console.log( "useEffect in DFlexContainer: currentSliderValues[2] = " + currentSliderValues[2] );
-      // console.log( "useEffect in DFlexContainer: currentSliderValues[3] = " + currentSliderValues[3] );
+      // console.log( "useEffect in DFlexContainer: currentScoreValues[0] = " + currentScoreValues[0] );
+      // console.log( "useEffect in DFlexContainer: currentScoreValues[1] = " + currentScoreValues[1] );
+      // console.log( "useEffect in DFlexContainer: currentScoreValues[2] = " + currentScoreValues[2] );
+      // console.log( "useEffect in DFlexContainer: currentScoreValues[3] = " + currentScoreValues[3] );
       console.log( "Exiting useEffect in DFlexContainer() in View.tsx" );
     }
   }, []);
@@ -106,10 +106,10 @@ function DFlexContainer() {
       <div className="row mt-2 d-flex justify-content-center">
         <h5>{createOrRefineMessage}</h5>
         <DFlexImageAndSliderValues
-          opacityValue={currentSliderValues[0] ?? JungianLib.initialScoreValue}
-          blueVsYellowValue={currentSliderValues[1] ?? JungianLib.initialScoreValue}
-          greenVsRedValue={currentSliderValues[2] ?? JungianLib.initialScoreValue}
-          bAndYVsGandRValue={currentSliderValues[3] ?? JungianLib.initialScoreValue} />
+          opacityValue={currentScoreValues[0] ?? JungianLib.initialScoreValue}
+          blueVsYellowValue={currentScoreValues[1] ?? JungianLib.initialScoreValue}
+          greenVsRedValue={currentScoreValues[2] ?? JungianLib.initialScoreValue}
+          bAndYVsGandRValue={currentScoreValues[3] ?? JungianLib.initialScoreValue} />
       </div>
     </div>
   )
