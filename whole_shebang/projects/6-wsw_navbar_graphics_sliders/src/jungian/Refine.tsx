@@ -18,7 +18,7 @@ JungianLib.setLogLogicFlow( true );   // un-comment when trying to track down is
 let opacityValue = JungianLib.initialScoreValue;
 let storedImageString = "";
 
-interface JungianRefineProps extends JungianLib.JungianScoreSliderValues {
+interface JungianRefineProps extends JungianLib.JungianScoreValues {
   onRadioButtonClick: (event: ChangeEvent<HTMLInputElement>) => void;
   onImageClick: (event: MouseEvent<HTMLElement>) => void;
   onSquareSizeChange: (event: ChangeEvent<HTMLInputElement>) => void;
@@ -174,7 +174,7 @@ function FixedContainer() {
   const defaultStatusMessage = "Click on a square to change its color to Blue.";
   const defaultColorIndex = 0;
 
-  const [currentSliderValues, setCurrentSliderValues] = useState( [JungianLib.invalidScoreValue] );
+  const [currentScoreValues, setCurrentScoreValues] = useState( [JungianLib.invalidScoreValue] );
   const [currentImageString, setCurrentImageString] = useState( JungianLib.defaultImageString );
   const [currentStatusMessage, setCurrentStatusMessage] = useState( defaultStatusMessage );
   const [currentColorIndex, setCurrentColorIndex] = useState( defaultColorIndex );
@@ -244,13 +244,13 @@ function FixedContainer() {
   }
 
   // First useEffect: (presumably) runs once when component is mounted, or so they tell me...
-  // - Fetches sliderValues and imageString from local storage and sets them in state variables
+  // - Fetches scoreValues and imageString from local storage and sets them in state variables
   // - If imageString is empty, set the current status message accordingly
   useEffect( () => {
     if ( JungianLib.logLogicFlow ) {
       console.log( "Top of First useEffect in FixedContainer() in Refine.tsx" );
     }
-    setCurrentSliderValues( JungianLSLib.getSliderValues() );
+    setCurrentScoreValues( JungianLSLib.getScoreValues() );
     setCurrentImageString( JungianLSLib.getImageString() );
     storedImageString = JungianLSLib.getImageString();
     if (storedImageString.length === 0 ) {
@@ -315,10 +315,10 @@ function FixedContainer() {
       </div>
       <div className="row">
         <FixedSizeImageAndCards
-          opacityValue={currentSliderValues[0]}
-          blueVsYellowValue={currentSliderValues[1]}
-          greenVsRedValue={currentSliderValues[2]}
-          bAndYVsGandRValue={currentSliderValues[3]}
+          opacityValue={currentScoreValues[0]}
+          blueVsYellowValue={currentScoreValues[1]}
+          greenVsRedValue={currentScoreValues[2]}
+          bAndYVsGandRValue={currentScoreValues[3]}
           onSquareSizeChange={handleSquareSizeChange}
           onRadioButtonClick={handleColorPickerChange}
           onImageClick={handleImageClick}
