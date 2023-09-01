@@ -7,6 +7,15 @@
 // In some cases, these include minimal get and set functions to support
 // manipulation *in real time* of some of the values used to draw the images.
 //
+export const initialScoreValue = 50;        // Initial value of each slider before user changes it
+export const invalidScoreValue = -1;        // Used as "default" value for state variable
+export const minScoreValue = 0;             // Minimum score value
+export const maxScoreValue = 100;           // Maximum score value
+// export let squareSize = initialScoreValue;  // Changed by a slider on Refine page
+// export function setScoreValue( newScoreValue: number ) {
+//   squareSize = newScoreValue;
+// }
+
 export const defaultImageString = "";
 
 export const initialSquareSize = 15;        // Size of each square before user changes it
@@ -40,8 +49,8 @@ export function getCanvasHeight() {
 // logLogicFlow: enable turning logging to the console on and off
 //   NOTE: Setting logLogicFlow to true for one page in effect sets it for all pages
 //     Or so it seems like it does, sometimes...
-// export let logLogicFlow = false;
-export let logLogicFlow = true;
+export let logLogicFlow = false;
+// export let logLogicFlow = true;
 export function setLogLogicFlow( value: boolean ) {
   logLogicFlow = value;
 }
@@ -158,13 +167,13 @@ export function drawNewImageString( context: CanvasRenderingContext2D, storedSli
   let colorLetter = "B";
   const imageCharArray: string[] = [];
 
-  // console.log( "draw() in Create.tsx: imageCharArray.length = " + imageCharArray.length );
+  // console.log( "drawNewImageString() in JungianLib.tsx: imageCharArray.length = " + imageCharArray.length );
   for ( let row=0; row < gridSize; row++ ) {
     squareTopY = gridTopY + (row * squareSize);
     for ( let col=0; col < gridSize; col++ ){
-      // console.log( "draw() in Create.tsx: calling getRandomPrimaryColor = " + colorLetter );
+      // console.log( "drawNewImageString() in JungianLib.tsx: calling getRandomPrimaryColor = " + colorLetter );
       colorLetter = getRandomPrimaryColor( storedSliderValues );
-      // console.log( "draw() in Create.tsx: colorLetter = " + colorLetter );
+      // console.log( "drawNewImageString() in JungianLib.tsx: colorLetter = " + colorLetter );
       squareTopX = gridTopX + (col * squareSize);
       if ( colorLetter == "B" ) {
         context.fillStyle = "rgba(0, 0, 255, " + opacityPercent.toString() + ")";
@@ -180,13 +189,13 @@ export function drawNewImageString( context: CanvasRenderingContext2D, storedSli
       context.fillRect( squareTopX, squareTopY, squareSize, squareSize );
       imageCharArray.push( colorLetter );
     }
+    // console.log( "drawNewImageString() in JungianLib.tsx: imageCharArray.length = " + imageCharArray.length );
   }
 
   newImageString = imageCharArray.join('');
   if ( logLogicFlow ) {
-    console.log( "draw() in Create.tsx: finished drawing a Fresh Image" );
-    console.log( "draw(): Fresh Image's imageCharArray.length = " + imageCharArray.length );
-    console.log( "draw(): setting drawFreshImage = false and saving new image as storedImageString" );
+    console.log( "drawNewImageString() in JungianLib.tsx: finished drawing a Fresh Image" );
+    console.log( "drawNewImageString(): Fresh Image's imageCharArray.length = " + imageCharArray.length );
   }
 
   if ( logLogicFlow ) {
