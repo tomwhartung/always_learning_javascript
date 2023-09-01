@@ -6,20 +6,20 @@ import { ChangeEvent, useState, useEffect } from 'react';
 import { MDBRange } from 'mdb-react-ui-kit';
 
 import Canvas from '../lib/CanvasLib.tsx';
-import { defaultSliderValue, JungianScoreSliderCard } from '../lib/JungianScoreSliderLib.tsx';
+import { JungianScoreSliderCard } from '../lib/JungianScoreSliderLib.tsx';
 import * as JungianLib from '../lib/JungianLib.tsx';
 import * as JungianLSLib from '../lib/JungianLocalStorageLib.tsx';
 
 // NOTE: Setting logLogicFlow to true for one page in effect sets it for all pages
-JungianLib.setLogLogicFlow( false );    // un-comment when everything's ok
-// JungianLib.setLogLogicFlow( true );     // un-comment when trying to track down issues
+// JungianLib.setLogLogicFlow( false );    // un-comment when everything's ok
+JungianLib.setLogLogicFlow( true );     // un-comment when trying to track down issues
 
 // These are the slider values we use when drawing a Fresh Image
 const storedSliderValues: JungianLib.JungianScoreSliderValues = {
-  opacityValue: defaultSliderValue,
-  blueVsYellowValue: defaultSliderValue,
-  greenVsRedValue: defaultSliderValue,
-  bAndYVsGandRValue: defaultSliderValue,
+  opacityValue: JungianLib.initialScoreValue,
+  blueVsYellowValue: JungianLib.initialScoreValue,
+  greenVsRedValue: JungianLib.initialScoreValue,
+  bAndYVsGandRValue: JungianLib.initialScoreValue,
 };
 
 let storedImageString = JungianLib.defaultImageString;
@@ -106,7 +106,7 @@ function FixedContainer() {
     console.log( "Top of FixedContainer() in Create.tsx" );
   }
 
-  const [currentSliderValues, setCurrentSliderValues] = useState([defaultSliderValue]);
+  const [currentSliderValues, setCurrentSliderValues] = useState([JungianLib.invalidScoreValue]);
   const [currentGridSize, setCurrentGridSize] = useState( JungianLib.invalidGridSize );
 
   // handleSliderValueChange: code to run when the user moves a score slider
@@ -164,9 +164,9 @@ function FixedContainer() {
         // console.log( "First useEffect: jungianLSLibSliderValues.toString() = " + jungianLSLibSliderValues.toString() );
       }
     } else {
-      const defaultSliderValues = [ defaultSliderValue, defaultSliderValue, defaultSliderValue, defaultSliderValue ];
-      JungianLSLib.setSliderValues( defaultSliderValues );
-      setCurrentSliderValues( defaultSliderValues );
+      const initialScoreValues = [ JungianLib.initialScoreValue, JungianLib.initialScoreValue, JungianLib.initialScoreValue, JungianLib.initialScoreValue ];
+      JungianLSLib.setSliderValues( initialScoreValues );
+      setCurrentSliderValues( initialScoreValues );
       if ( JungianLib.logLogicFlow ) {
         console.log( "First useEffect: jungianLSLibSliderValues NOT FOUND in localStorage" );
         console.log( "First useEffect: saved default values for sliderValues in state variable & localStorage" );
@@ -245,7 +245,7 @@ function FixedContainer() {
       <div key={col} className="col-md-3">
         <JungianScoreSliderCard
          sliderNo={col}
-         sliderVal={currentSliderValues[col] ?? defaultSliderValue}
+         sliderVal={currentSliderValues[col] ?? JungianLib.initialScoreValue}
          onSliderChange={ (event) => handleSliderValueChange(event,col) }
         />
       </div>
@@ -264,10 +264,10 @@ function FixedContainer() {
       </div>
       <div className="row mt-4">
         <FixedSizeImageAndCards
-          opacityValue={currentSliderValues[0] ?? defaultSliderValue}
-          blueVsYellowValue={currentSliderValues[1] ?? defaultSliderValue}
-          greenVsRedValue={currentSliderValues[2] ?? defaultSliderValue}
-          bAndYVsGandRValue={currentSliderValues[3] ?? defaultSliderValue} />
+          opacityValue={currentSliderValues[0] ?? JungianLib.initialScoreValue}
+          blueVsYellowValue={currentSliderValues[1] ?? JungianLib.initialScoreValue}
+          greenVsRedValue={currentSliderValues[2] ?? JungianLib.initialScoreValue}
+          bAndYVsGandRValue={currentSliderValues[3] ?? JungianLib.initialScoreValue} />
       </div>
       <div className="row mt-4">
         <div className="col-12 card align-items-center">
