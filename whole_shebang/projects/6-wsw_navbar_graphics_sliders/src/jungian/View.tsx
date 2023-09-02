@@ -85,7 +85,7 @@ function DFlexContainer() {
     }
     setCurrentScoreValues( JungianLSLib.getScoreValues() );
     imageStringToDraw = JungianLSLib.getImageString();
-    JungianLib.setGridSize( JungianLSLib.getGridSize() );
+    JungianLib.setGridSizeToDraw( JungianLSLib.getGridSize() );
     if ( JungianLib.logLogicFlow ) {
       // console.log( "useEffect in DFlexContainer: currentScoreValues[0] = " + currentScoreValues[0] );
       // console.log( "useEffect in DFlexContainer: currentScoreValues[1] = " + currentScoreValues[1] );
