@@ -12,12 +12,12 @@ import * as JungianLSLib from '../lib/JungianLocalStorageLib.tsx';
 // JungianLib.setLogLogicFlow( false );    // un-comment when everything's ok
 JungianLib.setLogLogicFlow( true );     // un-comment when trying to track down issues
 
-let storedImageString = "";
+let imageStringToDraw = "";
 let opacityValue = JungianLib.initialScoreValue;
 
-// draw: draw the grid of blue, green, red, and yellow squares defined in storedImageString
+// draw: draw the grid of blue, green, red, and yellow squares defined in imageStringToDraw
 const draw = (context: CanvasRenderingContext2D) => {
-  JungianLib.drawStoredImageString( context, storedImageString, opacityValue );
+  JungianLib.drawStoredImageString( context, imageStringToDraw, opacityValue );
 };
 
 // DFlexImageAndSliderValues: function component to display a jungian image
@@ -84,7 +84,7 @@ function DFlexContainer() {
       console.log( "Top of useEffect in DFlexContainer() in View.tsx" );
     }
     setCurrentScoreValues( JungianLSLib.getScoreValues() );
-    storedImageString = JungianLSLib.getImageString();
+    imageStringToDraw = JungianLSLib.getImageString();
     JungianLib.setGridSize( JungianLSLib.getGridSize() );
     if ( JungianLib.logLogicFlow ) {
       // console.log( "useEffect in DFlexContainer: currentScoreValues[0] = " + currentScoreValues[0] );
@@ -97,7 +97,7 @@ function DFlexContainer() {
 
   let createOrRefineMessage = "";
 
-  if ( storedImageString.length === 0 ) {
+  if ( imageStringToDraw.length === 0 ) {
     createOrRefineMessage = "Please use the Create option to Create an image before trying to View it.";
   } else {
     createOrRefineMessage = "You can now use the Refine option to refine your image.";
