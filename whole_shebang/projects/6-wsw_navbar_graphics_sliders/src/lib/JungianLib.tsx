@@ -43,7 +43,7 @@ export const invalidSquareSize = 0;         // Used as "default" value for state
 export const minSquareSize = 1;             // Minimum size of each square
 export const maxSquareSize = 33;            // Maximum size of each square
 export let squareSize = initialSquareSize;  // Changed by a slider on Refine page
-export function setSquareSize( newSquareSize: number ) {
+export function setSquareSizeToDraw( newSquareSize: number ) {
   squareSize = newSquareSize;
 }
 
@@ -52,7 +52,7 @@ export const invalidGridSize = 0;         // Used as "default" value for state v
 export const minGridSize = 2;             // Minimum number of squares on each side
 export const maxGridSize = 49;            // Maximum number of squares on each side
 export let gridSize = initialGridSize;    // Changed by a slider on the Create page
-export function setGridSize( newGridSize: number ) {
+export function setGridSizeToDraw( newGridSize: number ) {
   gridSize = newGridSize;
 }
 
