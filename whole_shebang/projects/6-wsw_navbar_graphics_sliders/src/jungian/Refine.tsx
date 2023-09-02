@@ -161,6 +161,11 @@ function FixedSizeImageAndCards( props: JungianRefineProps ) {
           {JungianLib.jungianScorePropNames[3]}: {props.bAndYVsGandRValue}
         </div>
       </div>
+      <div className="row d-flex mt-1">
+        <div className="col-sm-12 card align-items-center">
+          Grid Size: {JungianLib.gridSize} Squares per Side
+        </div>
+      </div>
     </>
   );
 }
@@ -258,6 +263,7 @@ function FixedContainer() {
     }
     setCurrentSquareSize( JungianLSLib.getSquareSize() );
     JungianLib.setSquareSize( JungianLSLib.getSquareSize() );
+    JungianLib.setGridSize( JungianLSLib.getGridSize() );
     if ( JungianLib.logLogicFlow ) {
       console.log( "Exiting First useEffect in FixedContainer() in Refine.tsx" );
     }
