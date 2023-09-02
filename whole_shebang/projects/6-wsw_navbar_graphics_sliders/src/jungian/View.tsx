@@ -62,6 +62,11 @@ function DFlexImageAndSliderValues( props:JungianLib.JungianScoreValues ) {
           {JungianLib.jungianScorePropNames[3]}: {props.bAndYVsGandRValue}
         </div>
       </div>
+      <div className="row d-flex mt-1">
+        <div className="col-sm-12 card align-items-center">
+          Grid Size: {JungianLib.gridSize} Squares per Side
+        </div>
+      </div>
     </>
   );
 }
@@ -80,6 +85,7 @@ function DFlexContainer() {
     }
     setCurrentScoreValues( JungianLSLib.getScoreValues() );
     storedImageString = JungianLSLib.getImageString();
+    JungianLib.setGridSize( JungianLSLib.getGridSize() );
     if ( JungianLib.logLogicFlow ) {
       // console.log( "useEffect in DFlexContainer: currentScoreValues[0] = " + currentScoreValues[0] );
       // console.log( "useEffect in DFlexContainer: currentScoreValues[1] = " + currentScoreValues[1] );
