@@ -8,7 +8,7 @@ import { MDBRange } from 'mdb-react-ui-kit';
 import Canvas from '../lib/CanvasLib.tsx';
 import { JungianScoreSliderCard } from '../lib/JungianScoreSliderLib.tsx';
 import * as JungianLib from '../lib/JungianLib.tsx';
-import * as JungianLSLib from '../lib/JungianLocalStorageLib.tsx';
+import * as LocalStorageLib from '../lib/JungianLocalStorageLib.tsx';
 
 // NOTE: Setting logLogicFlow to true for one page in effect sets it for all pages
 // JungianLib.setLogLogicFlow( false );    // un-comment when everything's ok
@@ -37,7 +37,7 @@ const draw = (context: CanvasRenderingContext2D) => {
     }
     const newImageString = JungianLib.drawNewImageString( context, scoreValuesToDraw );
     imageStringToDraw = newImageString;
-    JungianLSLib.setImageString( newImageString );
+    LocalStorageLib.storeImageString( newImageString );
     console.log( "draw(): set drawFreshImage imageStringToDraw.length = " + imageStringToDraw.length );
     drawFreshImage = false;
     if ( JungianLib.logLogicFlow ) {
@@ -156,7 +156,7 @@ function FixedContainer() {
     if ( JungianLib.logLogicFlow ) {
       console.log( "Top of first useEffect in FixedContainer in Create.tsx" );
     }
-    const lsScoreValues = JungianLSLib.getScoreValues();
+    const lsScoreValues = LocalStorageLib.getStoredScoreValues();
     setCurrentScoreValues( lsScoreValues );
     scoreValuesToDraw.opacityValue = lsScoreValues[0];
     scoreValuesToDraw.blueVsYellowValue = lsScoreValues[1];
@@ -166,7 +166,7 @@ function FixedContainer() {
       console.log( "First useEffect: scoreValuesToDraw.toString() = " + scoreValuesToDraw.toString() );
       console.log( "First useEffect: set scoreValuesToDraw and the currentScoreValues state variable" );
     }
-    const imageString = JungianLSLib.getImageString();
+    const imageString = LocalStorageLib.getStoredImageString();
     if ( imageString.length > JungianLib.gridSize ) {
       imageStringToDraw = imageString;
       if ( JungianLib.logLogicFlow ) {
@@ -181,8 +181,8 @@ function FixedContainer() {
         console.log( "First useEffect: set drawFreshImage = true instead" );
       }
     }
-    JungianLib.setSquareSizeToDraw( JungianLSLib.getSquareSize() );
-    const gridSize = JungianLSLib.getGridSize();
+    JungianLib.setSquareSizeToDraw( LocalStorageLib.getStoredSquareSize() );
+    const gridSize = LocalStorageLib.getStoredGridSize();
     JungianLib.setGridSizeToDraw( gridSize );
     setCurrentGridSize( gridSize );
     if ( JungianLib.logLogicFlow ) {
@@ -198,12 +198,12 @@ function FixedContainer() {
       console.log( "Top of second useEffect in FixedContainer in Create.tsx" );
       console.log( "Second useEffect: currentScoreValues.toString() = " + currentScoreValues.toString() );
     }
-    let success = JungianLSLib.setScoreValues( currentScoreValues );
+    let success = LocalStorageLib.storeScoreValues( currentScoreValues );
     if ( success ) {
       if ( JungianLib.logLogicFlow ) {
         console.log( "Second useEffect in Create.tsx: saved currentScoreValues as scoreValues ok" );
       }
-      success = JungianLSLib.setImageString( imageStringToDraw );
+      success = LocalStorageLib.storeImageString( imageStringToDraw );
       if ( success ) {
         if ( JungianLib.logLogicFlow ) {
           console.log( "Second useEffect in Create.tsx: saved imageStringToDraw as imageString ok" );
@@ -231,7 +231,7 @@ function FixedContainer() {
     if ( JungianLib.logLogicFlow ) {
       console.log( "Top of third useEffect in FixedContainer in Create.tsx" );
     }
-    const success = JungianLSLib.setGridSize( currentGridSize );
+    const success = LocalStorageLib.storeGridSize( currentGridSize );
     if ( JungianLib.logLogicFlow ) {
       if ( success ) {
         console.log( "Third useEffect: saved currentGridSize as gridSize ok" );

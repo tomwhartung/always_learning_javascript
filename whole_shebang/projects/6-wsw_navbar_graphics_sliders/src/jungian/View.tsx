@@ -6,7 +6,7 @@ import { useEffect, useState } from 'react';
 
 import Canvas from '../lib/CanvasLib.tsx';
 import * as JungianLib from '../lib/JungianLib.tsx';
-import * as JungianLSLib from '../lib/JungianLocalStorageLib.tsx';
+import * as LocalStorageLib from '../lib/JungianLocalStorageLib.tsx';
 
 // NOTE: Setting logLogicFlow to true for one page in effect sets it for all pages
 // JungianLib.setLogLogicFlow( false );    // un-comment when everything's ok
@@ -83,9 +83,9 @@ function DFlexContainer() {
     if ( JungianLib.logLogicFlow ) {
       console.log( "Top of useEffect in DFlexContainer() in View.tsx" );
     }
-    setCurrentScoreValues( JungianLSLib.getScoreValues() );
-    imageStringToDraw = JungianLSLib.getImageString();
-    JungianLib.setGridSizeToDraw( JungianLSLib.getGridSize() );
+    setCurrentScoreValues( LocalStorageLib.getStoredScoreValues() );
+    imageStringToDraw = LocalStorageLib.getStoredImageString();
+    JungianLib.setGridSizeToDraw( LocalStorageLib.getStoredGridSize() );
     if ( JungianLib.logLogicFlow ) {
       // console.log( "useEffect in DFlexContainer: currentScoreValues[0] = " + currentScoreValues[0] );
       // console.log( "useEffect in DFlexContainer: currentScoreValues[1] = " + currentScoreValues[1] );

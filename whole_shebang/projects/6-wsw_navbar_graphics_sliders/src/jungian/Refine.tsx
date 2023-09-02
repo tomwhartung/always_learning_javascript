@@ -9,7 +9,7 @@ import { MDBRadio, MDBRange } from 'mdb-react-ui-kit';
 
 import Canvas from '../lib/CanvasLib.tsx';
 import * as JungianLib from '../lib/JungianLib.tsx';
-import * as JungianLSLib from '../lib/JungianLocalStorageLib.tsx';
+import * as LocalStorageLib from '../lib/JungianLocalStorageLib.tsx';
 
 // NOTE: Setting logLogicFlow to true for one page in effect sets it for all pages
 JungianLib.setLogLogicFlow( true );   // un-comment when trying to track down issues
@@ -255,15 +255,15 @@ function FixedContainer() {
     if ( JungianLib.logLogicFlow ) {
       console.log( "Top of First useEffect in FixedContainer() in Refine.tsx" );
     }
-    setCurrentScoreValues( JungianLSLib.getScoreValues() );
-    setCurrentImageString( JungianLSLib.getImageString() );
-    imageStringToDraw = JungianLSLib.getImageString();
+    setCurrentScoreValues( LocalStorageLib.getStoredScoreValues() );
+    setCurrentImageString( LocalStorageLib.getStoredImageString() );
+    imageStringToDraw = LocalStorageLib.getStoredImageString();
     if (imageStringToDraw.length === 0 ) {
       setCurrentStatusMessage( "Please use the Create option to Create an image before trying to Refine it." );
     }
-    setCurrentSquareSize( JungianLSLib.getSquareSize() );
-    JungianLib.setSquareSizeToDraw( JungianLSLib.getSquareSize() );
-    JungianLib.setGridSizeToDraw( JungianLSLib.getGridSize() );
+    setCurrentSquareSize( LocalStorageLib.getStoredSquareSize() );
+    JungianLib.setSquareSizeToDraw( LocalStorageLib.getStoredSquareSize() );
+    JungianLib.setGridSizeToDraw( LocalStorageLib.getStoredGridSize() );
     if ( JungianLib.logLogicFlow ) {
       console.log( "Exiting First useEffect in FixedContainer() in Refine.tsx" );
     }
@@ -275,7 +275,7 @@ function FixedContainer() {
     if ( JungianLib.logLogicFlow ) {
       console.log( "Top of second useEffect in FixedContainer() in Refine.tsx" );
     }
-    const success = JungianLSLib.setImageString( currentImageString );
+    const success = LocalStorageLib.storeImageString( currentImageString );
     if ( JungianLib.logLogicFlow ) {
       if ( success ) {
         console.log( "Second useEffect: saved currentImageString as imageString ok" );
@@ -293,7 +293,7 @@ function FixedContainer() {
     if ( JungianLib.logLogicFlow ) {
       console.log( "Top of third useEffect in FixedContainer() in Refine.tsx" );
     }
-    const success = JungianLSLib.setSquareSize( currentSquareSize );
+    const success = LocalStorageLib.storeSquareSize( currentSquareSize );
     if ( JungianLib.logLogicFlow ) {
       if ( success ) {
         console.log( "Third useEffect: saved currentSquareSize as squareSize ok" );
