@@ -273,13 +273,6 @@ function FixedContainer() {
         {sliderNumberCols}
       </div>
       <div className="row mt-4">
-        <FixedSizeImageAndCards
-          opacityValue={currentScoreValues[0] ?? JungianLib.initialScoreValue}
-          blueVsYellowValue={currentScoreValues[1] ?? JungianLib.initialScoreValue}
-          greenVsRedValue={currentScoreValues[2] ?? JungianLib.initialScoreValue}
-          bAndYVsGandRValue={currentScoreValues[3] ?? JungianLib.initialScoreValue} />
-      </div>
-      <div className="row mt-4">
         <div className="col-12 card align-items-center">
           <h5>Grid Size</h5>
           <MDBRange
@@ -290,6 +283,13 @@ function FixedContainer() {
             onChange={handleGridSizeChange}
           />
         </div>
+      </div>
+      <div className="row mt-4">
+        <FixedSizeImageAndCards
+          opacityValue={currentScoreValues[0] ?? JungianLib.initialScoreValue}
+          blueVsYellowValue={currentScoreValues[1] ?? JungianLib.initialScoreValue}
+          greenVsRedValue={currentScoreValues[2] ?? JungianLib.initialScoreValue}
+          bAndYVsGandRValue={currentScoreValues[3] ?? JungianLib.initialScoreValue} />
       </div>
     </div>
   )
