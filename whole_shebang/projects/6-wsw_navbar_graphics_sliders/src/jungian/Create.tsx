@@ -15,14 +15,14 @@ import * as JungianLSLib from '../lib/JungianLocalStorageLib.tsx';
 JungianLib.setLogLogicFlow( true );     // un-comment when trying to track down issues
 
 // These are the slider values we use when drawing a Fresh Image
-const storedScoreValues: JungianLib.JungianScoreValues = {
+const scoreValuesToDraw: JungianLib.JungianScoreValues = {
   opacityValue: JungianLib.initialScoreValue,
   blueVsYellowValue: JungianLib.initialScoreValue,
   greenVsRedValue: JungianLib.initialScoreValue,
   bAndYVsGandRValue: JungianLib.initialScoreValue,
 };
 
-let storedImageString = JungianLib.defaultImageString;
+let imageStringToDraw = JungianLib.defaultImageString;
 let drawFreshImage = false;
 
 // draw: Add a "groja-esque" grid of blue, green, red, and yellow squares
@@ -35,22 +35,22 @@ const draw = (context: CanvasRenderingContext2D) => {
     if ( JungianLib.logLogicFlow ) {
       console.log( "draw(): calling JungianLib.drawNewImageString to draw a Fresh Image" );
     }
-    const newImageString = JungianLib.drawNewImageString( context, storedScoreValues );
-    storedImageString = newImageString;
+    const newImageString = JungianLib.drawNewImageString( context, scoreValuesToDraw );
+    imageStringToDraw = newImageString;
     JungianLSLib.setImageString( newImageString );
-    console.log( "draw(): set drawFreshImage storedImageString.length = " + storedImageString.length );
+    console.log( "draw(): set drawFreshImage imageStringToDraw.length = " + imageStringToDraw.length );
     drawFreshImage = false;
     if ( JungianLib.logLogicFlow ) {
-      console.log( "draw(): set drawFreshImage = false & storedImageString = newImageString" );
+      console.log( "draw(): set drawFreshImage = false & imageStringToDraw = newImageString" );
     }
-  } else if ( storedImageString.length === 0 ) {
+  } else if ( imageStringToDraw.length === 0 ) {
     if ( JungianLib.logLogicFlow ) {
-      console.log( "draw(): drawFreshImage is false and storedImageString is empty..." );
+      console.log( "draw(): drawFreshImage is false and imageStringToDraw is empty..." );
     }
   } else {
-    JungianLib.drawStoredImageString( context, storedImageString, storedScoreValues.opacityValue );
+    JungianLib.drawStoredImageString( context, imageStringToDraw, scoreValuesToDraw.opacityValue );
     if ( JungianLib.logLogicFlow ) {
-      console.log( "draw(): drew the storedImageString" );
+      console.log( "draw(): drew the imageStringToDraw" );
     }
   }
   if ( JungianLib.logLogicFlow ) {
@@ -158,26 +158,26 @@ function FixedContainer() {
     }
     const lsScoreValues = JungianLSLib.getScoreValues();
     setCurrentScoreValues( lsScoreValues );
-    storedScoreValues.opacityValue = lsScoreValues[0];
-    storedScoreValues.blueVsYellowValue = lsScoreValues[1];
-    storedScoreValues.greenVsRedValue = lsScoreValues[2];
-    storedScoreValues.bAndYVsGandRValue = lsScoreValues[3];
+    scoreValuesToDraw.opacityValue = lsScoreValues[0];
+    scoreValuesToDraw.blueVsYellowValue = lsScoreValues[1];
+    scoreValuesToDraw.greenVsRedValue = lsScoreValues[2];
+    scoreValuesToDraw.bAndYVsGandRValue = lsScoreValues[3];
     if ( JungianLib.logLogicFlow ) {
-      console.log( "First useEffect: storedScoreValues.toString() = " + storedScoreValues.toString() );
-      console.log( "First useEffect: set storedScoreValues and the currentScoreValues state variable" );
+      console.log( "First useEffect: scoreValuesToDraw.toString() = " + scoreValuesToDraw.toString() );
+      console.log( "First useEffect: set scoreValuesToDraw and the currentScoreValues state variable" );
     }
     const imageString = JungianLSLib.getImageString();
     if ( imageString.length > JungianLib.gridSize ) {
-      storedImageString = imageString;
+      imageStringToDraw = imageString;
       if ( JungianLib.logLogicFlow ) {
         console.log( "First useEffect: imageString.length = " + imageString.length );
-        console.log( "First useEffect: set the storedImageString ok" );
+        console.log( "First useEffect: set the imageStringToDraw ok" );
       }
     } else {
       drawFreshImage = true;
       if ( JungianLib.logLogicFlow ) {
         console.log( "First useEffect: imageString.length = " + imageString.length );
-        console.log( "First useEffect: DID NOT SET THE storedImageString BECAUSE IT'S TOO SHORT" );
+        console.log( "First useEffect: DID NOT SET THE imageStringToDraw BECAUSE IT'S TOO SHORT" );
         console.log( "First useEffect: set drawFreshImage = true instead" );
       }
     }
@@ -203,15 +203,15 @@ function FixedContainer() {
       if ( JungianLib.logLogicFlow ) {
         console.log( "Second useEffect in Create.tsx: saved currentScoreValues as scoreValues ok" );
       }
-      success = JungianLSLib.setImageString( storedImageString );
+      success = JungianLSLib.setImageString( imageStringToDraw );
       if ( success ) {
         if ( JungianLib.logLogicFlow ) {
-          console.log( "Second useEffect in Create.tsx: saved storedImageString as imageString ok" );
+          console.log( "Second useEffect in Create.tsx: saved imageStringToDraw as imageString ok" );
         }
       } else {
         drawFreshImage = true;
         if ( JungianLib.logLogicFlow ) {
-          console.log( "Second useEffect: DID NOT SAVE storedImageString in local storage" );
+          console.log( "Second useEffect: DID NOT SAVE imageStringToDraw in local storage" );
           console.log( "Second useEffect: set drawFreshImage = true" );
         }
       }
@@ -243,10 +243,10 @@ function FixedContainer() {
     }
   }, [currentGridSize] );
 
-  storedScoreValues.opacityValue = currentScoreValues[0];
-  storedScoreValues.blueVsYellowValue = currentScoreValues[1];
-  storedScoreValues.greenVsRedValue = currentScoreValues[2];
-  storedScoreValues.bAndYVsGandRValue = currentScoreValues[3];
+  scoreValuesToDraw.opacityValue = currentScoreValues[0];
+  scoreValuesToDraw.blueVsYellowValue = currentScoreValues[1];
+  scoreValuesToDraw.greenVsRedValue = currentScoreValues[2];
+  scoreValuesToDraw.bAndYVsGandRValue = currentScoreValues[3];
 
   // Construct markup for the JungianScoreSliderCards
   const sliderNumberCols = [];
@@ -262,6 +262,8 @@ function FixedContainer() {
     );
   }
 
+  const gridSizeLabel = "Grid Size: " + JungianLib.gridSize + " Squares per Side";
+
   if ( JungianLib.logLogicFlow ) {
     console.log( "return()ing from FixedContainer() in Create.tsx" );
   }
@@ -273,13 +275,13 @@ function FixedContainer() {
         {sliderNumberCols}
       </div>
       <div className="row mt-4">
-        <div className="col-12 card align-items-center">
-          <h5>Grid Size</h5>
+        <div className="col-sm-12 card align-items-center">
           <MDBRange
             defaultValue={JungianLib.gridSize}
             min={JungianLib.minGridSize}
             max={JungianLib.maxGridSize}
-            id='square-size'
+            id='grid-size'
+            label={gridSizeLabel}
             onChange={handleGridSizeChange}
           />
         </div>
