@@ -16,7 +16,7 @@ JungianLib.setLogLogicFlow( true );   // un-comment when trying to track down is
 // JungianLib.setLogLogicFlow( false );   // un-comment when everything's ok
 
 let opacityValue = JungianLib.initialScoreValue;
-let storedImageString = "";
+let imageStringToDraw = "";
 
 interface JungianRefineProps extends JungianLib.JungianScoreValues {
   onRadioButtonClick: (event: ChangeEvent<HTMLInputElement>) => void;
@@ -24,9 +24,9 @@ interface JungianRefineProps extends JungianLib.JungianScoreValues {
   onSquareSizeChange: (event: ChangeEvent<HTMLInputElement>) => void;
 }
 
-// draw: draw the grid of blue, green, red, and yellow squares defined in storedImageString
+// draw: draw the grid of blue, green, red, and yellow squares defined in imageStringToDraw
 const draw = (context: CanvasRenderingContext2D) => {
-  JungianLib.drawStoredImageString( context, storedImageString, opacityValue );
+  JungianLib.drawStoredImageString( context, imageStringToDraw, opacityValue );
 };
 
 // getSquareCoords: use (pixelX, pixelY) to calculate (squareX, squareY)
@@ -69,7 +69,7 @@ function changeSquareAt( squareX: number, squareY: number, colorIndex: number ) 
     console.log( "changeSquareAt: colorLetterPicked = " + colorLetterPicked );
   }
 
-  const newImageCharArr = storedImageString.split( "" );
+  const newImageCharArr = imageStringToDraw.split( "" );
   newImageCharArr.splice( charArrIndex, 1, colorLetterPicked );
   const newImageString = newImageCharArr.join( '' );
   return newImageString;
@@ -257,8 +257,8 @@ function FixedContainer() {
     }
     setCurrentScoreValues( JungianLSLib.getScoreValues() );
     setCurrentImageString( JungianLSLib.getImageString() );
-    storedImageString = JungianLSLib.getImageString();
-    if (storedImageString.length === 0 ) {
+    imageStringToDraw = JungianLSLib.getImageString();
+    if (imageStringToDraw.length === 0 ) {
       setCurrentStatusMessage( "Please use the Create option to Create an image before trying to Refine it." );
     }
     setCurrentSquareSize( JungianLSLib.getSquareSize() );
@@ -305,7 +305,7 @@ function FixedContainer() {
     }
   }, [currentSquareSize] );
 
-  storedImageString = currentImageString;    // updates the displayed image with the latest changes
+  imageStringToDraw = currentImageString;    // updates the displayed image with the latest changes
   // JungianLib.squareSize = currentSquareSize;
 
   if ( JungianLib.logLogicFlow ) {
