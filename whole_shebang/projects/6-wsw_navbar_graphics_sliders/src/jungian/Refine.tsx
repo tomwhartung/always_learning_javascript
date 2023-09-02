@@ -193,7 +193,7 @@ function FixedContainer() {
     // }
     const newSquareSize = parseInt( event.target.value );
     setCurrentSquareSize( newSquareSize );
-    JungianLib.setSquareSizeToDraw( newSquareSize );
+    JungianLib.setSquareSize( newSquareSize );
     if ( JungianLib.logLogicFlow ) {
       console.log( "handleSquareSizeChange: currentSquareSize = " + currentSquareSize );
       console.log( "Exiting handleSquareSizeChange in FixedContainer() in Refine.tsx" );
@@ -262,8 +262,8 @@ function FixedContainer() {
       setCurrentStatusMessage( "Please use the Create option to Create an image before trying to Refine it." );
     }
     setCurrentSquareSize( LocalStorageLib.getStoredSquareSize() );
-    JungianLib.setSquareSizeToDraw( LocalStorageLib.getStoredSquareSize() );
-    JungianLib.setGridSizeToDraw( LocalStorageLib.getStoredGridSize() );
+    JungianLib.setSquareSize( LocalStorageLib.getStoredSquareSize() );
+    JungianLib.setGridSize( LocalStorageLib.getStoredGridSize() );
     if ( JungianLib.logLogicFlow ) {
       console.log( "Exiting First useEffect in FixedContainer() in Refine.tsx" );
     }

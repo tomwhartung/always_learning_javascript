@@ -141,7 +141,7 @@ function FixedContainer() {
     }
     const newGridSize = parseInt( event.target.value );
     setCurrentGridSize( newGridSize );
-    JungianLib.setGridSizeToDraw( newGridSize );
+    JungianLib.setGridSize( newGridSize );
     drawFreshImage = true;
     if ( JungianLib.logLogicFlow ) {
       console.log( "handleGridSizeChange: currentGridSize = " + currentGridSize );
@@ -181,9 +181,9 @@ function FixedContainer() {
         console.log( "First useEffect: set drawFreshImage = true instead" );
       }
     }
-    JungianLib.setSquareSizeToDraw( LocalStorageLib.getStoredSquareSize() );
+    JungianLib.setSquareSize( LocalStorageLib.getStoredSquareSize() );
     const gridSize = LocalStorageLib.getStoredGridSize();
-    JungianLib.setGridSizeToDraw( gridSize );
+    JungianLib.setGridSize( gridSize );
     setCurrentGridSize( gridSize );
     if ( JungianLib.logLogicFlow ) {
       console.log( "Exiting first useEffect in FixedContainer in Create.tsx" );

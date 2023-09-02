@@ -85,7 +85,7 @@ function DFlexContainer() {
     }
     setCurrentScoreValues( LocalStorageLib.getStoredScoreValues() );
     imageStringToDraw = LocalStorageLib.getStoredImageString();
-    JungianLib.setGridSizeToDraw( LocalStorageLib.getStoredGridSize() );
+    JungianLib.setGridSize( LocalStorageLib.getStoredGridSize() );
     if ( JungianLib.logLogicFlow ) {
       // console.log( "useEffect in DFlexContainer: currentScoreValues[0] = " + currentScoreValues[0] );
       // console.log( "useEffect in DFlexContainer: currentScoreValues[1] = " + currentScoreValues[1] );
