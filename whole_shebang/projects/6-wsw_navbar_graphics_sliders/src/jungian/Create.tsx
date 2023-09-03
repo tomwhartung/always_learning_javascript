@@ -107,6 +107,7 @@ function FixedContainer() {
   }
 
   const [currentScoreValues, setCurrentScoreValues] = useState( JungianLib.invalidScoreArray );
+  const [currentSquareSize, setCurrentSquareSize] = useState( JungianLib.invalidSquareSize );
   const [currentGridSize, setCurrentGridSize] = useState( JungianLib.invalidGridSize );
 
   // handleScoreValueChange: code to run when the user moves a score slider
@@ -146,6 +147,21 @@ function FixedContainer() {
     if ( JungianLib.logLogicFlow ) {
       console.log( "handleGridSizeChange: currentGridSize = " + currentGridSize );
       console.log( "Exiting handleGridSizeChange in FixedContainer in Create.tsx" );
+    }
+  }
+
+  // handleSquareSizeChange: code to run when the user moves the square size slider
+  function handleSquareSizeChange( event: ChangeEvent<HTMLInputElement> ) {
+    // if ( JungianLib.logLogicFlow ) {
+      console.log( "Top of handleSquareSizeChange in FixedContainer() in Refine.tsx" );
+      console.log( "handleSquareSizeChange: event.target.value = " + event.target.value );
+    // }
+    const newSquareSize = parseInt( event.target.value );
+    setCurrentSquareSize( newSquareSize );
+    JungianLib.setSquareSize( newSquareSize );
+    if ( JungianLib.logLogicFlow ) {
+      console.log( "handleSquareSizeChange: currentSquareSize = " + currentSquareSize );
+      console.log( "Exiting handleSquareSizeChange in FixedContainer() in Refine.tsx" );
     }
   }
 
@@ -243,6 +259,24 @@ function FixedContainer() {
     }
   }, [currentGridSize] );
 
+  // Fourth useEffect: runs when component is mounted AND when the user changes the squareSize
+  //   Stores the new, refined squareSize in local storage
+  useEffect( () => {
+    if ( JungianLib.logLogicFlow ) {
+      console.log( "Top of fourth useEffect in FixedContainer() in Refine.tsx" );
+    }
+    const success = LocalStorageLib.storeSquareSize( currentSquareSize );
+    if ( JungianLib.logLogicFlow ) {
+      if ( success ) {
+        console.log( "Fourth useEffect: saved currentSquareSize as squareSize ok" );
+      } else {
+        console.log( "Fourth useEffect: currentSquareSize = " + currentSquareSize );
+        console.log( "Fourth useEffect: DID NOT SAVE currentSquareSize as squareSize" );
+      }
+      console.log( "Exiting fourth useEffect in FixedContainer() in Refine.tsx" );
+    }
+  }, [currentSquareSize] );
+
   scoreValuesToDraw.opacityValue = currentScoreValues[0];
   scoreValuesToDraw.blueVsYellowValue = currentScoreValues[1];
   scoreValuesToDraw.greenVsRedValue = currentScoreValues[2];
@@ -263,6 +297,7 @@ function FixedContainer() {
   }
 
   const gridSizeLabel = "Grid Size: " + JungianLib.gridSize + " Squares per Side";
+  const squareSizeLabel = "Square Size: " + JungianLib.squareSize + " Pixels per Square";
 
   if ( JungianLib.logLogicFlow ) {
     console.log( "return()ing from FixedContainer() in Create.tsx" );
@@ -275,7 +310,7 @@ function FixedContainer() {
         {sliderNumberCols}
       </div>
       <div className="row mt-4">
-        <div className="col-sm-12 card align-items-center">
+        <div className="col-sm-6 card align-items-center">
           <MDBRange
             defaultValue={JungianLib.gridSize}
             min={JungianLib.minGridSize}
@@ -283,6 +318,16 @@ function FixedContainer() {
             id='grid-size'
             label={gridSizeLabel}
             onChange={handleGridSizeChange}
+          />
+        </div>
+        <div className="col-sm-6 card align-items-center">
+          <MDBRange
+            defaultValue={JungianLib.squareSize}
+            min={JungianLib.minSquareSize}
+            max={JungianLib.maxSquareSize}
+            id='square-size'
+            label={squareSizeLabel}
+            onChange={handleSquareSizeChange}
           />
         </div>
       </div>
