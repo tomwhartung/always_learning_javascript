@@ -8,7 +8,7 @@ import { MDBRange } from 'mdb-react-ui-kit';
 import Canvas from '../lib/CanvasLib.tsx';
 import { JungianScoreSliderCard } from '../lib/JungianScoreSliderLib.tsx';
 import * as JungianLib from '../lib/JungianLib.tsx';
-import * as LocalStorageLib from '../lib/JungianLocalStorageLib.tsx';
+import * as LocalStorageLib from '../lib/jungian/LocalStorageLib.tsx';
 
 // NOTE: Setting logLogicFlow to true for one page in effect sets it for all pages
 // JungianLib.setLogLogicFlow( false );    // un-comment when everything's ok

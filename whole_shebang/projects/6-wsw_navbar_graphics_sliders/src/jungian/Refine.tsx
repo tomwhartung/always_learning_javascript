@@ -9,7 +9,7 @@ import { MDBRadio, MDBRange } from 'mdb-react-ui-kit';
 
 import Canvas from '../lib/CanvasLib.tsx';
 import * as JungianLib from '../lib/JungianLib.tsx';
-import * as LocalStorageLib from '../lib/JungianLocalStorageLib.tsx';
+import * as LocalStorageLib from '../lib/jungian/LocalStorageLib.tsx';
 
 // NOTE: Setting logLogicFlow to true for one page in effect sets it for all pages
 JungianLib.setLogLogicFlow( true );   // un-comment when trying to track down issues
