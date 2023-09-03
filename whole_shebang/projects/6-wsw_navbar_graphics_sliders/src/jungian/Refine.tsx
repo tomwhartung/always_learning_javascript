@@ -4,12 +4,12 @@
 import '../App.css'
 
 import { ChangeEvent, MouseEvent, useState, useEffect } from 'react';
-
-import { MDBRadio, MDBRange } from 'mdb-react-ui-kit';
+import { MDBRadio } from 'mdb-react-ui-kit';
 
 import Canvas from '../lib/CanvasLib.tsx';
 import * as JungianLib from '../lib/JungianLib.tsx';
 import * as LocalStorageLib from '../lib/jungian/LocalStorageLib.tsx';
+import SquareSizeSlider from '../lib/jungian/SquareSizeSliderLib.tsx';
 
 // NOTE: Setting logLogicFlow to true for one page in effect sets it for all pages
 JungianLib.setLogLogicFlow( true );   // un-comment when trying to track down issues
@@ -129,13 +129,9 @@ function FixedSizeImageAndCards( props: JungianRefineProps ) {
           </div>
         </div>
         <div className="col-sm-4 card align-items-center">
-          <MDBRange
-            defaultValue={JungianLib.squareSize}
-            min={JungianLib.minSquareSize}
-            max={JungianLib.maxSquareSize}
-            id='square-size'
-            label={squareSizeLabel}
-            onChange={props.onSquareSizeChange}
+          <SquareSizeSlider
+            squareSizeLabel={squareSizeLabel}
+            onSquareSizeChange={props.onSquareSizeChange}
           />
         </div>
       </div>
