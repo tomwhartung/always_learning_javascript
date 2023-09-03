@@ -1,7 +1,8 @@
 //
 // lib/jungian/LocalStorageLib.tsx: code used to store and access Jungian data in localStorage
 //
-import * as JungianLib from '../lib/JungianLib.tsx';
+
+import * as JungianLib from '../JungianLib.tsx';
 
 //
 // storeScoreValues: sets the scoreValues in local storage to the specified values
