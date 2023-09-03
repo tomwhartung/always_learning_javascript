@@ -1,23 +1,23 @@
 // 
-// SliderLib.tsx: types and constants used by quiz types that use sliders
+// lib/jungian/ScoreSliderLib.tsx: types and components used by the Jungian score sliders
 //
 import { ChangeEvent } from 'react';
 import { MDBRange } from 'mdb-react-ui-kit';
 
-import * as JungianLib from '../lib/JungianLib.tsx';
+import * as JungianLib from '../JungianLib.tsx';
 
-// JungianScoreSliderProps: props passed to JungianScoreSliderCard and JungianScoreSlider components
-export interface JungianScoreSliderProps {
+// ScoreSliderProps: props passed to ScoreSliderCard and ScoreSlider components
+interface ScoreSliderProps {
   sliderNo: number;
   onSliderChange: (event: ChangeEvent<Element>) => void;
   sliderVal: number;
 }
 
-// JungianScoreSliderCard: MDB card wrapping a quiz-specific wrapper of the MDBRange component
-export function JungianScoreSliderCard( props: JungianScoreSliderProps ) {
+// ScoreSliderCard: MDB card wrapping a quiz-specific wrapper of the MDBRange component
+export function ScoreSliderCard( props: ScoreSliderProps ) {
   return (
     <div className="card">
-      <JungianScoreSlider
+      <ScoreSlider
         sliderNo={props.sliderNo}
         sliderVal={props.sliderVal}
         onSliderChange={props.onSliderChange}
@@ -26,8 +26,8 @@ export function JungianScoreSliderCard( props: JungianScoreSliderProps ) {
   )
 }
 
-// JungianScoreSlider: Jungian Score-specific wrapper for the MDBRange component
-function JungianScoreSlider( props: JungianScoreSliderProps ) {
+// ScoreSlider: Jungian Score-specific wrapper for the MDBRange component
+function ScoreSlider( props: ScoreSliderProps ) {
   const sliderOppositeValue = 100 - props.sliderVal;
   const sliderId = "myslider-" + props.sliderNo.toString();
   let sliderLabel = sliderOppositeValue.toString() + "% " +
@@ -58,4 +58,6 @@ function JungianScoreSlider( props: JungianScoreSliderProps ) {
     </>
   );
 }
+
+export default ScoreSliderCard
 
