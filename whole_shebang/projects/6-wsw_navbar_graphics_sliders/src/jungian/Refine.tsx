@@ -108,6 +108,8 @@ function FixedSizeImageAndCards( props: JungianRefineProps ) {
     );
   }
 
+  const squareSizeLabel = "Square Size: " + JungianLib.squareSize + " Pixels";
+
   if ( JungianLib.logLogicFlow ) {
     console.log( "return()ing from FixedSizeImageAndCards() in Refine.tsx" );
   }
@@ -127,12 +129,12 @@ function FixedSizeImageAndCards( props: JungianRefineProps ) {
           </div>
         </div>
         <div className="col-sm-4 card align-items-center">
-          <h5>Square Size</h5>
           <MDBRange
             defaultValue={JungianLib.squareSize}
             min={JungianLib.minSquareSize}
             max={JungianLib.maxSquareSize}
             id='square-size'
+            label={squareSizeLabel}
             onChange={props.onSquareSizeChange}
           />
         </div>
@@ -187,10 +189,10 @@ function FixedContainer() {
 
   // handleSquareSizeChange: code to run when the user moves the square size slider
   function handleSquareSizeChange( event: ChangeEvent<HTMLInputElement> ) {
-    // if ( JungianLib.logLogicFlow ) {
+    if ( JungianLib.logLogicFlow ) {
       console.log( "Top of handleSquareSizeChange in FixedContainer() in Refine.tsx" );
-      console.log( "handleSquareSizeChange: event.target.value = " + event.target.value );
-    // }
+      // console.log( "handleSquareSizeChange: event.target.value = " + event.target.value );
+    }
     const newSquareSize = parseInt( event.target.value );
     setCurrentSquareSize( newSquareSize );
     JungianLib.setSquareSize( newSquareSize );
@@ -306,7 +308,6 @@ function FixedContainer() {
   }, [currentSquareSize] );
 
   imageStringToDraw = currentImageString;    // updates the displayed image with the latest changes
-  // JungianLib.squareSize = currentSquareSize;
 
   if ( JungianLib.logLogicFlow ) {
     console.log( "return()ing from FixedContainer() in Refine.tsx" );
