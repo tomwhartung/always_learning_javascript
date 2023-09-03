@@ -1,5 +1,5 @@
 //
-// JungianLocalStorageLib.tsx: code used to store and access Jungian data in localStorage
+// lib/jungian/LocalStorageLib.tsx: code used to store and access Jungian data in localStorage
 //
 import * as JungianLib from '../lib/JungianLib.tsx';
 
@@ -8,7 +8,7 @@ import * as JungianLib from '../lib/JungianLib.tsx';
 //   returns true if successful else false if the newImageString is too short
 export function storeScoreValues( newScoreValues: number[] ): boolean {
   if ( JungianLib.logLogicFlow ) {
-    console.log( "Top of storeScoreValues() in JungianLocalStorageLib.tsx" );
+    console.log( "Top of storeScoreValues() in lib/jungian/LocalStorageLib.tsx" );
   }
 
   let success = true;
@@ -36,7 +36,7 @@ export function storeScoreValues( newScoreValues: number[] ): boolean {
   }
 
   if ( JungianLib.logLogicFlow ) {
-    console.log( "Return()ing " + success + " from storeScoreValues() in JungianLocalStorageLib.tsx" );
+    console.log( "Return()ing " + success + " from storeScoreValues() in lib/jungian/LocalStorageLib.tsx" );
   }
 
   return success;
@@ -44,7 +44,7 @@ export function storeScoreValues( newScoreValues: number[] ): boolean {
 // getStoredScoreValues: returns the current scoreValues from local storage
 export function getStoredScoreValues(): number[] {
   if ( JungianLib.logLogicFlow ) {
-    console.log( "Top of getStoredScoreValues() in JungianLocalStorageLib.tsx" );
+    console.log( "Top of getStoredScoreValues() in lib/jungian/LocalStorageLib.tsx" );
   }
 
   let scoreValues = [ JungianLib.initialScoreValue ];
@@ -53,18 +53,18 @@ export function getStoredScoreValues(): number[] {
   if ( jungianItem ) {
     scoreValues = jungianItem.scoreValues;
     if ( JungianLib.logLogicFlow ) {
-      console.log( "getStoredScoreValues in JungianLocalStorageLib.tsx: found the 'jungian' item" );
+      console.log( "getStoredScoreValues in lib/jungian/LocalStorageLib.tsx: found the 'jungian' item" );
       console.log( "getStoredScoreValues: scoreValues.toString() = " + scoreValues.toString() );
     }
   } else {
     if ( JungianLib.logLogicFlow ) {
-      console.log( "getStoredScoreValues in JungianLocalStorageLib.tsx: 'jungian' item NOT FOUND in localStorage" );
+      console.log( "getStoredScoreValues in lib/jungian/LocalStorageLib.tsx: 'jungian' item NOT FOUND in localStorage" );
       console.log( "getStoredScoreValues: returning an array containing a single JungianLib.initialScoreValue" );
     }
   }
 
   if ( JungianLib.logLogicFlow ) {
-    console.log( "Return()ing '" + scoreValues.toString() + "' from getStoredScoreValues() in JungianLocalStorageLib.tsx" );
+    console.log( "Return()ing '" + scoreValues.toString() + "' from getStoredScoreValues() in lib/jungian/LocalStorageLib.tsx" );
   }
 
   return scoreValues;
@@ -75,7 +75,7 @@ export function getStoredScoreValues(): number[] {
 //   returns true if successful else false if the newImageString is too short
 export function storeImageString( newImageString: string ): boolean {
   if ( JungianLib.logLogicFlow ) {
-    console.log( "Top of storeImageString() in JungianLocalStorageLib.tsx" );
+    console.log( "Top of storeImageString() in lib/jungian/LocalStorageLib.tsx" );
   }
 
   let success = true;
@@ -96,7 +96,7 @@ export function storeImageString( newImageString: string ): boolean {
   }
 
   if ( JungianLib.logLogicFlow ) {
-    console.log( "Return()ing '" + success + "' from storeImageString() in JungianLocalStorageLib.tsx" );
+    console.log( "Return()ing '" + success + "' from storeImageString() in lib/jungian/LocalStorageLib.tsx" );
   }
 
   return success;
@@ -104,7 +104,7 @@ export function storeImageString( newImageString: string ): boolean {
 // getStoredImageString: returns the current imageString from local storage
 export function getStoredImageString(): string {
   if ( JungianLib.logLogicFlow ) {
-    console.log( "Top of getStoredImageString() in JungianLocalStorageLib.tsx" );
+    console.log( "Top of getStoredImageString() in lib/jungian/LocalStorageLib.tsx" );
   }
 
   let imageString = JungianLib.defaultImageString;
@@ -113,20 +113,20 @@ export function getStoredImageString(): string {
   if ( jungianItem ) {
     imageString = jungianItem.imageString;
     if ( JungianLib.logLogicFlow ) {
-      console.log( "getStoredImageString in JungianLocalStorageLib.tsx: found the 'jungian' item" );
+      console.log( "getStoredImageString in lib/jungian/LocalStorageLib.tsx: found the 'jungian' item" );
       console.log( "getStoredImageString: imageString.length = " + imageString.length );
     }
   } else {
     if ( JungianLib.logLogicFlow ) {
-      console.log( "getStoredImageString in JungianLocalStorageLib.tsx: 'jungian' item NOT FOUND in localStorage" );
+      console.log( "getStoredImageString in lib/jungian/LocalStorageLib.tsx: 'jungian' item NOT FOUND in localStorage" );
       console.log( "getStoredImageString: returning defaultImageString" );
     }
   }
 
 
   if ( JungianLib.logLogicFlow ) {
-    // console.log( "Return()ing '" + imageString + "' from getStoredImageString() in JungianLocalStorageLib.tsx" );
-    console.log( "Return()ing from getStoredImageString() in JungianLocalStorageLib.tsx" );
+    // console.log( "Return()ing '" + imageString + "' from getStoredImageString() in lib/jungian/LocalStorageLib.tsx" );
+    console.log( "Return()ing from getStoredImageString() in lib/jungian/LocalStorageLib.tsx" );
   }
 
   return imageString;
@@ -137,7 +137,7 @@ export function getStoredImageString(): string {
 //   returns true if successful else false if the newImageString is too short
 export function storeSquareSize( newSquareSize: number ): boolean {
   if ( JungianLib.logLogicFlow ) {
-    console.log( "Top of storeSquareSize() in JungianLocalStorageLib.tsx" );
+    console.log( "Top of storeSquareSize() in lib/jungian/LocalStorageLib.tsx" );
   }
 
   let success = true;
@@ -159,7 +159,7 @@ export function storeSquareSize( newSquareSize: number ): boolean {
   }
 
   if ( JungianLib.logLogicFlow ) {
-    console.log( "Return()ing '" + success + "' from storeSquareSize() in JungianLocalStorageLib.tsx" );
+    console.log( "Return()ing '" + success + "' from storeSquareSize() in lib/jungian/LocalStorageLib.tsx" );
   }
 
   return success;
@@ -167,7 +167,7 @@ export function storeSquareSize( newSquareSize: number ): boolean {
 // getStoredSquareSize: returns the current squareSize from local storage
 export function getStoredSquareSize(): number {
   if ( JungianLib.logLogicFlow ) {
-    console.log( "Top of getStoredSquareSize() in JungianLocalStorageLib.tsx" );
+    console.log( "Top of getStoredSquareSize() in lib/jungian/LocalStorageLib.tsx" );
   }
 
   let squareSize = JungianLib.initialSquareSize;
@@ -176,19 +176,19 @@ export function getStoredSquareSize(): number {
   if ( jungianItem ) {
     squareSize = jungianItem.squareSize;
     if ( JungianLib.logLogicFlow ) {
-      console.log( "getStoredSquareSize in JungianLocalStorageLib.tsx: found the 'jungian' item" );
+      console.log( "getStoredSquareSize in lib/jungian/LocalStorageLib.tsx: found the 'jungian' item" );
       console.log( "getStoredSquareSize: squareSize = " + squareSize );
     }
   } else {
     if ( JungianLib.logLogicFlow ) {
-      console.log( "getStoredSquareSize in JungianLocalStorageLib.tsx: 'jungian' item NOT FOUND in localStorage" );
+      console.log( "getStoredSquareSize in lib/jungian/LocalStorageLib.tsx: 'jungian' item NOT FOUND in localStorage" );
       console.log( "getStoredSquareSize: returning initialSquareSize" );
     }
   }
 
 
   if ( JungianLib.logLogicFlow ) {
-    console.log( "Return()ing '" + squareSize + "' from getStoredSquareSize() in JungianLocalStorageLib.tsx" );
+    console.log( "Return()ing '" + squareSize + "' from getStoredSquareSize() in lib/jungian/LocalStorageLib.tsx" );
   }
 
   return squareSize;
@@ -199,7 +199,7 @@ export function getStoredSquareSize(): number {
 //   returns true if successful else false if the newImageString is too short
 export function storeGridSize( newGridSize: number ): boolean {
   if ( JungianLib.logLogicFlow ) {
-    console.log( "Top of storeGridSize() in JungianLocalStorageLib.tsx" );
+    console.log( "Top of storeGridSize() in lib/jungian/LocalStorageLib.tsx" );
   }
 
   let success = true;
@@ -221,7 +221,7 @@ export function storeGridSize( newGridSize: number ): boolean {
   }
 
   if ( JungianLib.logLogicFlow ) {
-    console.log( "Return()ing '" + success + "' from storeGridSize() in JungianLocalStorageLib.tsx" );
+    console.log( "Return()ing '" + success + "' from storeGridSize() in lib/jungian/LocalStorageLib.tsx" );
   }
 
   return success;
@@ -229,7 +229,7 @@ export function storeGridSize( newGridSize: number ): boolean {
 // getStoredGridSize: returns the current imageString from local storage
 export function getStoredGridSize(): number {
   if ( JungianLib.logLogicFlow ) {
-    console.log( "Top of getStoredGridSize() in JungianLocalStorageLib.tsx" );
+    console.log( "Top of getStoredGridSize() in lib/jungian/LocalStorageLib.tsx" );
   }
 
   let gridSize = JungianLib.initialGridSize;
@@ -238,19 +238,19 @@ export function getStoredGridSize(): number {
   if ( jungianItem ) {
     gridSize = jungianItem.gridSize;
     if ( JungianLib.logLogicFlow ) {
-      console.log( "getStoredGridSize in JungianLocalStorageLib.tsx: found the 'jungian' item" );
+      console.log( "getStoredGridSize in lib/jungian/LocalStorageLib.tsx: found the 'jungian' item" );
       console.log( "getStoredGridSize: gridSize = " + gridSize );
     }
   } else {
     if ( JungianLib.logLogicFlow ) {
-      console.log( "getStoredGridSize in JungianLocalStorageLib.tsx: 'jungian' item NOT FOUND in localStorage" );
+      console.log( "getStoredGridSize in lib/jungian/LocalStorageLib.tsx: 'jungian' item NOT FOUND in localStorage" );
       console.log( "getStoredGridSize: returning initialGridSize" );
     }
   }
 
 
   if ( JungianLib.logLogicFlow ) {
-    console.log( "Return()ing '" + gridSize + "' from getStoredGridSize() in JungianLocalStorageLib.tsx" );
+    console.log( "Return()ing '" + gridSize + "' from getStoredGridSize() in lib/jungian/LocalStorageLib.tsx" );
   }
 
   return gridSize;
@@ -268,14 +268,14 @@ interface JungianItemValues {
 // storeJungianItem: sets all of the values in the 'jungian' item in local storage
 function storeJungianItem( newJungianItemValues: JungianItemValues ) {
   if ( JungianLib.logLogicFlow ) {
-    console.log( "Top of storeJungianItem() in JungianLocalStorageLib.tsx" );
+    console.log( "Top of storeJungianItem() in lib/jungian/LocalStorageLib.tsx" );
   }
 
   localStorage.setItem( 'jungian', JSON.stringify(newJungianItemValues) );
 
   if ( JungianLib.logLogicFlow ) {
     // console.log( "storeJungianItem(): stored newJungianItemValues as the 'jungian' item" );
-    console.log( "Return()ing from storeJungianItem() in JungianLocalStorageLib.tsx" );
+    console.log( "Return()ing from storeJungianItem() in lib/jungian/LocalStorageLib.tsx" );
   }
 
   return;
@@ -283,7 +283,7 @@ function storeJungianItem( newJungianItemValues: JungianItemValues ) {
 // getStoredJungianItem: returns the current 'jungian' item from local storage
 function getStoredJungianItem(): JungianItemValues {
   // if ( JungianLib.logLogicFlow ) {
-  //   console.log( "Top of getStoredJungianItem() in JungianLocalStorageLib.tsx" );
+  //   console.log( "Top of getStoredJungianItem() in lib/jungian/LocalStorageLib.tsx" );
   // }
 
   const initialJungianItemValues: JungianItemValues = {
@@ -309,8 +309,8 @@ function getStoredJungianItem(): JungianItemValues {
   }
 
   // if ( JungianLib.logLogicFlow ) {
-  //   // console.log( "Return()ing '" + jungianItem + "' from getStoredJungianItem() in JungianLocalStorageLib.tsx" );
-  //   console.log( "Return()ing from getStoredJungianItem() in JungianLocalStorageLib.tsx" );
+  //   // console.log( "Return()ing '" + jungianItem + "' from getStoredJungianItem() in lib/jungian/LocalStorageLib.tsx" );
+  //   console.log( "Return()ing from getStoredJungianItem() in lib/jungian/LocalStorageLib.tsx" );
   // }
 
   return jungianItem;
