@@ -6,9 +6,9 @@ import { ChangeEvent, useState, useEffect } from 'react';
 import { MDBRange } from 'mdb-react-ui-kit';
 
 import Canvas from '../lib/CanvasLib.tsx';
-import { JungianScoreSliderCard } from '../lib/JungianScoreSliderLib.tsx';
 import * as JungianLib from '../lib/JungianLib.tsx';
 import * as LocalStorageLib from '../lib/jungian/LocalStorageLib.tsx';
+import ScoreSliderCard from '../lib/jungian/ScoreSliderLib.tsx';
 
 // NOTE: Setting logLogicFlow to true for one page in effect sets it for all pages
 // JungianLib.setLogLogicFlow( false );    // un-comment when everything's ok
@@ -248,12 +248,12 @@ function FixedContainer() {
   scoreValuesToDraw.greenVsRedValue = currentScoreValues[2];
   scoreValuesToDraw.bAndYVsGandRValue = currentScoreValues[3];
 
-  // Construct markup for the JungianScoreSliderCards
+  // Construct markup for the ScoreSliderCards
   const sliderNumberCols = [];
   for ( let col = 0; col < JungianLib.jungianScoreLabels.length; col++ ) {
     sliderNumberCols.push(
       <div key={col} className="col-md-3">
-        <JungianScoreSliderCard
+        <ScoreSliderCard
          sliderNo={col}
          sliderVal={currentScoreValues[col] ?? JungianLib.initialScoreValue}
          onSliderChange={ (event) => handleScoreValueChange(event,col) }
