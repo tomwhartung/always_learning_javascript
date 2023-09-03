@@ -9,6 +9,7 @@ import Canvas from '../lib/CanvasLib.tsx';
 import * as JungianLib from '../lib/JungianLib.tsx';
 import * as LocalStorageLib from '../lib/jungian/LocalStorageLib.tsx';
 import ScoreSliderCard from '../lib/jungian/ScoreSliderLib.tsx';
+import SquareSizeSlider from '../lib/jungian/SquareSizeSliderLib.tsx';
 
 // NOTE: Setting logLogicFlow to true for one page in effect sets it for all pages
 // JungianLib.setLogLogicFlow( false );    // un-comment when everything's ok
@@ -321,13 +322,9 @@ function FixedContainer() {
           />
         </div>
         <div className="col-sm-6 card align-items-center">
-          <MDBRange
-            defaultValue={JungianLib.squareSize}
-            min={JungianLib.minSquareSize}
-            max={JungianLib.maxSquareSize}
-            id='square-size'
-            label={squareSizeLabel}
-            onChange={handleSquareSizeChange}
+          <SquareSizeSlider
+            squareSizeLabel={squareSizeLabel}
+            onSquareSizeChange={handleSquareSizeChange}
           />
         </div>
       </div>
