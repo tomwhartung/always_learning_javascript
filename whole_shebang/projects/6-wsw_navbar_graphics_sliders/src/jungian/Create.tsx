@@ -137,32 +137,32 @@ function FixedContainer() {
 
   // handleGridSizeChange: code to run when user moves the grid size slider
   function handleGridSizeChange( event: ChangeEvent<HTMLInputElement> ) {
-    if ( JungianLib.logLogicFlow ) {
-      console.log( "Top of handleGridSizeChange in FixedContainer in Create.tsx" );
-      console.log( "handleGridSizeChange: event.target.value = " + event.target.value );
-    }
+    // if ( JungianLib.logLogicFlow ) {
+    //   console.log( "Top of handleGridSizeChange in FixedContainer in Create.tsx" );
+    //   // console.log( "handleGridSizeChange: event.target.value = " + event.target.value );
+    // }
     const newGridSize = parseInt( event.target.value );
     setCurrentGridSize( newGridSize );
     JungianLib.setGridSize( newGridSize );
     drawFreshImage = true;
     if ( JungianLib.logLogicFlow ) {
       console.log( "handleGridSizeChange: currentGridSize = " + currentGridSize );
-      console.log( "Exiting handleGridSizeChange in FixedContainer in Create.tsx" );
+      // console.log( "Exiting handleGridSizeChange in FixedContainer in Create.tsx" );
     }
   }
 
   // handleSquareSizeChange: code to run when the user moves the square size slider
   function handleSquareSizeChange( event: ChangeEvent<HTMLInputElement> ) {
     // if ( JungianLib.logLogicFlow ) {
-      console.log( "Top of handleSquareSizeChange in FixedContainer() in Refine.tsx" );
-      console.log( "handleSquareSizeChange: event.target.value = " + event.target.value );
+    //   console.log( "Top of handleSquareSizeChange in FixedContainer() in Refine.tsx" );
+    //   // console.log( "handleSquareSizeChange: event.target.value = " + event.target.value );
     // }
     const newSquareSize = parseInt( event.target.value );
     setCurrentSquareSize( newSquareSize );
     JungianLib.setSquareSize( newSquareSize );
     if ( JungianLib.logLogicFlow ) {
       console.log( "handleSquareSizeChange: currentSquareSize = " + currentSquareSize );
-      console.log( "Exiting handleSquareSizeChange in FixedContainer() in Refine.tsx" );
+      // console.log( "Exiting handleSquareSizeChange in FixedContainer() in Refine.tsx" );
     }
   }
 
@@ -245,36 +245,36 @@ function FixedContainer() {
   // Third useEffect: runs when component is mounted AND when the user changes the gridSize
   //   Stores the new, refined gridSize in local storage
   useEffect( () => {
-    if ( JungianLib.logLogicFlow ) {
-      console.log( "Top of third useEffect in FixedContainer in Create.tsx" );
-    }
+    // if ( JungianLib.logLogicFlow ) {
+    //   console.log( "Top of third useEffect in FixedContainer in Create.tsx" );
+    // }
     const success = LocalStorageLib.storeGridSize( currentGridSize );
     if ( JungianLib.logLogicFlow ) {
       if ( success ) {
         console.log( "Third useEffect: saved currentGridSize as gridSize ok" );
       } else {
-        console.log( "Third useEffect: currentGridSize = " + currentGridSize );
+        // console.log( "Third useEffect: currentGridSize = " + currentGridSize );
         console.log( "Third useEffect: DID NOT SAVE currentGridSize as gridSize" );
       }
-      console.log( "Exiting third useEffect in FixedContainer in Create.tsx" );
+      // console.log( "Exiting third useEffect in FixedContainer in Create.tsx" );
     }
   }, [currentGridSize] );
 
   // Fourth useEffect: runs when component is mounted AND when the user changes the squareSize
   //   Stores the new, refined squareSize in local storage
   useEffect( () => {
-    if ( JungianLib.logLogicFlow ) {
-      console.log( "Top of fourth useEffect in FixedContainer() in Refine.tsx" );
-    }
+    // if ( JungianLib.logLogicFlow ) {
+    //   console.log( "Top of fourth useEffect in FixedContainer() in Refine.tsx" );
+    // }
     const success = LocalStorageLib.storeSquareSize( currentSquareSize );
     if ( JungianLib.logLogicFlow ) {
       if ( success ) {
         console.log( "Fourth useEffect: saved currentSquareSize as squareSize ok" );
       } else {
-        console.log( "Fourth useEffect: currentSquareSize = " + currentSquareSize );
+        // console.log( "Fourth useEffect: currentSquareSize = " + currentSquareSize );
         console.log( "Fourth useEffect: DID NOT SAVE currentSquareSize as squareSize" );
       }
-      console.log( "Exiting fourth useEffect in FixedContainer() in Refine.tsx" );
+      // console.log( "Exiting fourth useEffect in FixedContainer() in Refine.tsx" );
     }
   }, [currentSquareSize] );
 
