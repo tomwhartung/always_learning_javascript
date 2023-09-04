@@ -80,9 +80,9 @@ function DFlexContainer() {
   const [currentScoreValues, setCurrentScoreValues] = useState([JungianLib.invalidScoreValue]);
 
   useEffect(() => {
-    if ( JungianLib.logLogicFlow ) {
-      console.log( "Top of useEffect in DFlexContainer() in View.tsx" );
-    }
+    // if ( JungianLib.logLogicFlow ) {
+    //   console.log( "Top of useEffect in DFlexContainer() in View.tsx" );
+    // }
     setCurrentScoreValues( LocalStorageLib.getStoredScoreValues() );
     imageStringToDraw = LocalStorageLib.getStoredImageString();
     JungianLib.setGridSize( LocalStorageLib.getStoredGridSize() );
