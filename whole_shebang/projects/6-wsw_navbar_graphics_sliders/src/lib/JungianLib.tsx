@@ -56,8 +56,13 @@ export function setGridSize( newGridSize: number ) {
   gridSize = newGridSize;
 }
 
+// gridTopX and gridTopY in effect define the width of the image's border
+//  IT WOULD BE NICE if the size of the border would increase gradually with the size of the image
 export const gridTopX = 4;       // X location of top left corner of grid
 export const gridTopY = 4;       // Y location of top left corner of grid
+//  NOT SURE WHY THIS DOESN'T WORK, and not wanting to worry about it right now:
+// export const gridTopX = Math.round( (squareSize * gridSize) / 50 );       // X location of top left corner of grid
+// export const gridTopY = Math.round( (squareSize * gridSize) / 50 );       // Y location of top left corner of grid
 
 export function getCanvasWidth() {
   return ( squareSize * gridSize ) + ( 2 * gridTopX );
@@ -99,7 +104,7 @@ export const colorNames: readonly string[] = [
 // Types:
 // ------
 //
-// JungianScoreValues: values that come from the Jungian sliders
+// JungianScoreValues: giving names to the values that come from the Jungian sliders
 export interface JungianScoreValues {
   opacityValue: number;           // [0 .. 100]
   blueVsYellowValue: number;      // [0 .. 100]
@@ -118,16 +123,16 @@ export function valueToPct( value: number ) : number {
 }
 
 // getRandomPrimaryColor: return a single character, "B", "G", "R", or "Y"
-export function getRandomPrimaryColor( scoreValues: JungianScoreValues ) {
+function getRandomPrimaryColor( scoreValues: JungianScoreValues ) {
+  // if ( logLogicFlow ) {
+  //   console.log( "getRandomPrimaryColor() in JungianLib.tsx: Top of getRandomPrimaryColor" );
+  // }
   const blueVsYellowPercent = valueToPct( scoreValues.blueVsYellowValue );
   const greenVsRedPercent = valueToPct( scoreValues.greenVsRedValue );
   const bAndYVsGandRPercent = valueToPct( scoreValues.bAndYVsGandRValue );
+
   let randomFloat = Math.random();
   let randomColorLetter = colorLetters[4];  // default is INVALID!
-
-  // console.log( "getRandomPrimaryColor: blueVsYellowPercent = " + blueVsYellowPercent );
-  // console.log( "getRandomPrimaryColor: greenVsRedPercent = " + greenVsRedPercent );
-  // console.log( "getRandomPrimaryColor: bAndYVsGandRPercent = " + bAndYVsGandRPercent );
 
   if ( randomFloat <= bAndYVsGandRPercent ) {
     randomFloat = Math.random();
@@ -145,12 +150,14 @@ export function getRandomPrimaryColor( scoreValues: JungianScoreValues ) {
     }
   }
 
+  // if ( logLogicFlow ) {
+  //   console.log( "getRandomPrimaryColor(): Return()ing randomColorLetter = " + randomColorLetter );
+  // }
   return randomColorLetter;
 }
 
 // drawNewImageString: Create a new totally random "groja-esque" grid of blue, green, red, and yellow squares
 export function drawNewImageString( context: CanvasRenderingContext2D, scoreValuesToDraw: JungianScoreValues ) {
-  let newImageString = defaultImageString;
   if ( logLogicFlow ) {
     console.log( "Top of drawNewImageString() in JungianLib.tsx" );
   }
@@ -165,6 +172,7 @@ export function drawNewImageString( context: CanvasRenderingContext2D, scoreValu
 
   const innerSquareWidth = getCanvasWidth() - ( 2 * gridTopX );
   const innerSquareHeight = getCanvasHeight() - ( 2 * gridTopY );
+
   // Paint the inner square, where the actual image will be, white
   context.fillStyle = "rgb(255, 255, 255)";
   context.fillRect(gridTopY, gridTopY, innerSquareWidth, innerSquareHeight);
@@ -174,14 +182,10 @@ export function drawNewImageString( context: CanvasRenderingContext2D, scoreValu
   let colorLetter = "B";
   const imageCharArray: string[] = [];
 
-  // console.log( "drawNewImageString(): imageCharArray.length = " + imageCharArray.length );
-  console.log( "drawNewImageString(): scoreValuesToDraw.toString() = " + scoreValuesToDraw.toString() );
   for ( let row=0; row < gridSize; row++ ) {
     squareTopY = gridTopY + (row * squareSize);
     for ( let col=0; col < gridSize; col++ ){
-      // console.log( "drawNewImageString() in JungianLib.tsx: calling getRandomPrimaryColor = " + colorLetter );
       colorLetter = getRandomPrimaryColor( scoreValuesToDraw );
-      // console.log( "drawNewImageString() in JungianLib.tsx: colorLetter = " + colorLetter );
       squareTopX = gridTopX + (col * squareSize);
       if ( colorLetter == "B" ) {
         context.fillStyle = "rgba(0, 0, 255, " + opacityPercent.toString() + ")";
@@ -197,17 +201,16 @@ export function drawNewImageString( context: CanvasRenderingContext2D, scoreValu
       context.fillRect( squareTopX, squareTopY, squareSize, squareSize );
       imageCharArray.push( colorLetter );
     }
-    // console.log( "drawNewImageString() in JungianLib.tsx: imageCharArray.length = " + imageCharArray.length );
+    // if ( logLogicFlow ) {
+    //   console.log( "drawNewImageString() in JungianLib.tsx: imageCharArray.length = " + imageCharArray.length );
+    // }
   }
 
-  newImageString = imageCharArray.join('');
-  if ( logLogicFlow ) {
-    console.log( "drawNewImageString() in JungianLib.tsx: finished drawing a Fresh Image" );
-    console.log( "drawNewImageString(): Fresh Image's imageCharArray.length = " + imageCharArray.length );
-  }
+  const newImageString = imageCharArray.join('');
 
   if ( logLogicFlow ) {
-    console.log( "Exiting drawNewImageString() in JungianLib.tsx and returning a newImageString" );
+    console.log( "drawNewImageString(): Fresh Image's newImageString.length = " + newImageString.length );
+    console.log( "drawNewImageString() in JungianLib.tsx: Return()ing the newImageString" );
   }
   return newImageString;
 }
@@ -229,6 +232,7 @@ export function drawStoredImageString( context: CanvasRenderingContext2D, imageS
 
   const innerSquareWidth = getCanvasWidth() - ( 2 * gridTopX );
   const innerSquareHeight = getCanvasHeight() - ( 2 * gridTopY );
+
   // Paint the inner square, where the actual image will be, white
   context.fillStyle = "rgb(255, 255, 255)";
   context.fillRect(gridTopY, gridTopY, innerSquareWidth, innerSquareHeight);
@@ -269,8 +273,10 @@ export function drawStoredImageString( context: CanvasRenderingContext2D, imageS
         context.fillRect( squareTopX, squareTopY, squareSize, squareSize );
       }
     }
-  } else if ( logLogicFlow ) {
-    console.log( "drawStoredImageString() in JungianLib.tsx: imageStringToDraw is empty, hope that's ok...!" );
+  } else {
+    if ( logLogicFlow ) {
+      console.log( "drawStoredImageString() in JungianLib.tsx: imageStringToDraw is empty, hope that's ok...!" );
+    }
   }
   if ( logLogicFlow ) {
     console.log( "Exiting drawStoredImageString() in JungianLib.tsx" );
