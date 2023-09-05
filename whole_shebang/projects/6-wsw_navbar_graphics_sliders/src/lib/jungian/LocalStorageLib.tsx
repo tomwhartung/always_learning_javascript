@@ -148,7 +148,7 @@ export function storeSquareSize( newSquareSize: number ): boolean {
       console.log( "storeSquareSize(): stored newSquareSize " + newSquareSize + " ok" );
     } else {
       console.log( "storeSquareSize(): newSquareSize = " + newSquareSize + " IS UNACCEPTABLE" );
-      console.log( "storeSquareSize(): NOT STORING newSquareSize BECAUSE IT IS INVALID" );
+      // console.log( "storeSquareSize(): NOT STORING newSquareSize BECAUSE IT IS INVALID" );
     }
     // console.log( "Return()ing '" + success + "' from storeSquareSize() in lib/jungian/LocalStorageLib.tsx" );
   }
@@ -206,7 +206,7 @@ export function storeGridSize( newGridSize: number ): boolean {
       console.log( "storeGridSize(): stored newGridSize = " + newGridSize + " ok" );
     } else {
       console.log( "storeGridSize(): newGridSize = " + newGridSize + " IS UNACCEPTABLE" );
-      console.log( "storeGridSize(): NOT STORING newGridSize BECAUSE IT IS INVALID" );
+      // console.log( "storeGridSize(): NOT STORING newGridSize BECAUSE IT IS INVALID" );
     }
     // console.log( "Return()ing '" + success + "' from storeGridSize() in lib/jungian/LocalStorageLib.tsx" );
   }
