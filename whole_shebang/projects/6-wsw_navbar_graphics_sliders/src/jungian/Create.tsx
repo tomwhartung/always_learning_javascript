@@ -170,9 +170,9 @@ function FixedContainer() {
   //   Fetches values from local storage, initializing them if they're not set
   //   Sets the currentScoreValues state variable to values from local storage [or default values]
   useEffect( () => {
-    if ( JungianLib.logLogicFlow ) {
-      console.log( "Top of first useEffect in FixedContainer in Create.tsx" );
-    }
+    // if ( JungianLib.logLogicFlow ) {
+    //   console.log( "Top of first useEffect in FixedContainer in Create.tsx" );
+    // }
     const lsScoreValues = LocalStorageLib.getStoredScoreValues();
     setCurrentScoreValues( lsScoreValues );
     scoreValuesToDraw.opacityValue = lsScoreValues[0];
@@ -180,7 +180,7 @@ function FixedContainer() {
     scoreValuesToDraw.greenVsRedValue = lsScoreValues[2];
     scoreValuesToDraw.bAndYVsGandRValue = lsScoreValues[3];
     if ( JungianLib.logLogicFlow ) {
-      console.log( "First useEffect: scoreValuesToDraw.toString() = " + scoreValuesToDraw.toString() );
+      // console.log( "First useEffect: scoreValuesToDraw.toString() = " + scoreValuesToDraw.toString() );
       console.log( "First useEffect: set scoreValuesToDraw and the currentScoreValues state variable" );
     }
     const imageString = LocalStorageLib.getStoredImageString();
