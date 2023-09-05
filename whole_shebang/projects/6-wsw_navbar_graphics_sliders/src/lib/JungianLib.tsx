@@ -117,7 +117,7 @@ export interface JungianScoreValues {
 // ----------
 //
 // valueToPct: convert a slider value [0 - 100] to a percentage of opacity [0.0 - 1.00]
-export function valueToPct( value: number ) : number {
+function valueToPct( value: number ) : number {
   const percent = value / 100;
   return ( percent );
 }
@@ -156,15 +156,9 @@ function getRandomPrimaryColor( scoreValues: JungianScoreValues ) {
   return randomColorLetter;
 }
 
-// drawNewImageString: Create a new totally random "groja-esque" grid of blue, green, red, and yellow squares
-export function drawNewImageString( context: CanvasRenderingContext2D, scoreValuesToDraw: JungianScoreValues ) {
-  if ( logLogicFlow ) {
-    console.log( "Top of drawNewImageString() in JungianLib.tsx" );
-  }
-
+function drawUnderlyingCanvas( context: CanvasRenderingContext2D ) {
   const width = getCanvasWidth();
   const height = getCanvasHeight();
-  const opacityPercent = valueToPct( scoreValuesToDraw.opacityValue );
 
   // Paint it all black
   context.fillStyle = "rgb(0, 0, 0)";
@@ -176,6 +170,19 @@ export function drawNewImageString( context: CanvasRenderingContext2D, scoreValu
   // Paint the inner square, where the actual image will be, white
   context.fillStyle = "rgb(255, 255, 255)";
   context.fillRect(gridTopY, gridTopY, innerSquareWidth, innerSquareHeight);
+}
+
+// drawNewImageString: Create a new totally random "groja-esque" grid of blue, green, red, and yellow squares
+//   Starts with an empty imageCharArray and adds color letters one-by-one
+//   Returns the imageCharArray as a string
+export function drawNewImageString( context: CanvasRenderingContext2D, scoreValuesToDraw: JungianScoreValues ) {
+  if ( logLogicFlow ) {
+    console.log( "Top of drawNewImageString() in JungianLib.tsx" );
+  }
+
+  const opacityPercent = valueToPct( scoreValuesToDraw.opacityValue );
+
+  drawUnderlyingCanvas( context );
 
   let squareTopX = gridTopX;
   let squareTopY = gridTopY;
@@ -216,26 +223,14 @@ export function drawNewImageString( context: CanvasRenderingContext2D, scoreValu
 }
 
 // drawStoredImageString: Add a "groja-esque" grid of blue, green, red, and yellow squares
+//   Starts with an imageStringToDraw, splits it into an imageCharArray, and draws the squares one-by-one
+//   Returns absolutely nothing
 export function drawStoredImageString( context: CanvasRenderingContext2D, imageStringToDraw: string, opacityValue: number ) {
   if ( logLogicFlow ) {
     console.log( "Top of drawStoredImageString() in JungianLib.tsx" );
   }
 
-  const width = getCanvasWidth();
-  const height = getCanvasHeight();
-
-  let imageCharArray: string[] = [];
-
-  // Paint it all black - this is how we get the border
-  context.fillStyle = "rgb(0, 0, 0)";
-  context.fillRect(0, 0, width, height);
-
-  const innerSquareWidth = getCanvasWidth() - ( 2 * gridTopX );
-  const innerSquareHeight = getCanvasHeight() - ( 2 * gridTopY );
-
-  // Paint the inner square, where the actual image will be, white
-  context.fillStyle = "rgb(255, 255, 255)";
-  context.fillRect(gridTopY, gridTopY, innerSquareWidth, innerSquareHeight);
+  drawUnderlyingCanvas( context );
 
   let squareTopX = gridTopX;
   let squareTopY = gridTopY;
@@ -247,11 +242,11 @@ export function drawStoredImageString( context: CanvasRenderingContext2D, imageS
   }
 
   if ( imageStringToDraw.length > 0 ) {
-    if ( logLogicFlow ) {
-      console.log( "drawStoredImageString() in JungianLib.tsx: top of the for loop" );
-    }
-    imageCharArray = imageStringToDraw.split( "" );
+    const imageCharArray = imageStringToDraw.split( "" );
     let imgStrIdx = 0;
+    if ( logLogicFlow ) {
+      console.log( "drawStoredImageString() in JungianLib.tsx: starting the for loop" );
+    }
     for ( let row=0; row < gridSize; row++ ) {
       squareTopY = gridTopY + (row * squareSize);
       for ( let col=0; col < gridSize; col++ ){
