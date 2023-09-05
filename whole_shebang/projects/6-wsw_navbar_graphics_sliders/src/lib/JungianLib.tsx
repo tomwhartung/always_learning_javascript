@@ -116,62 +116,6 @@ export interface JungianScoreValues {
 // Functions:
 // ----------
 //
-// valueToPct: convert a slider value [0 - 100] to a percentage of opacity [0.0 - 1.00]
-function valueToPct( value: number ) : number {
-  const percent = value / 100;
-  return ( percent );
-}
-
-// getRandomPrimaryColor: return a single character, "B", "G", "R", or "Y"
-function getRandomPrimaryColor( scoreValues: JungianScoreValues ) {
-  // if ( logLogicFlow ) {
-  //   console.log( "getRandomPrimaryColor() in JungianLib.tsx: Top of getRandomPrimaryColor" );
-  // }
-  const blueVsYellowPercent = valueToPct( scoreValues.blueVsYellowValue );
-  const greenVsRedPercent = valueToPct( scoreValues.greenVsRedValue );
-  const bAndYVsGandRPercent = valueToPct( scoreValues.bAndYVsGandRValue );
-
-  let randomFloat = Math.random();
-  let randomColorLetter = colorLetters[4];  // default is INVALID!
-
-  if ( randomFloat <= bAndYVsGandRPercent ) {
-    randomFloat = Math.random();
-    if ( randomFloat <= blueVsYellowPercent ) {
-      randomColorLetter = colorLetters[0];
-    } else {
-      randomColorLetter = colorLetters[3];
-    }
-  } else {
-    randomFloat = Math.random();
-    if ( randomFloat <= greenVsRedPercent ) {
-      randomColorLetter = colorLetters[1];
-    } else {
-      randomColorLetter = colorLetters[2];
-    }
-  }
-
-  // if ( logLogicFlow ) {
-  //   console.log( "getRandomPrimaryColor(): Return()ing randomColorLetter = " + randomColorLetter );
-  // }
-  return randomColorLetter;
-}
-
-function drawUnderlyingCanvas( context: CanvasRenderingContext2D ) {
-  const width = getCanvasWidth();
-  const height = getCanvasHeight();
-
-  // Paint it all black
-  context.fillStyle = "rgb(0, 0, 0)";
-  context.fillRect(0, 0, width, height);
-
-  const innerSquareWidth = getCanvasWidth() - ( 2 * gridTopX );
-  const innerSquareHeight = getCanvasHeight() - ( 2 * gridTopY );
-
-  // Paint the inner square, where the actual image will be, white
-  context.fillStyle = "rgb(255, 255, 255)";
-  context.fillRect(gridTopY, gridTopY, innerSquareWidth, innerSquareHeight);
-}
-
 // drawNewImageString: Create a new totally random "groja-esque" grid of blue, green, red, and yellow squares
 //   Starts with an empty imageCharArray and adds color letters one-by-one
 //   Returns the imageCharArray as a string
@@ -276,5 +220,62 @@ export function drawStoredImageString( context: CanvasRenderingContext2D, imageS
   if ( logLogicFlow ) {
     console.log( "Exiting drawStoredImageString() in JungianLib.tsx" );
   }
+}
+
+// valueToPct: convert a slider value [0 - 100] to a percentage of opacity [0.0 - 1.00]
+function valueToPct( value: number ) : number {
+  const percent = value / 100;
+  return ( percent );
+}
+
+// getRandomPrimaryColor: return a random single character, either "B", "G", "R", or "Y"
+function getRandomPrimaryColor( scoreValues: JungianScoreValues ) {
+  // if ( logLogicFlow ) {
+  //   console.log( "getRandomPrimaryColor() in JungianLib.tsx: Top of getRandomPrimaryColor" );
+  // }
+  const blueVsYellowPercent = valueToPct( scoreValues.blueVsYellowValue );
+  const greenVsRedPercent = valueToPct( scoreValues.greenVsRedValue );
+  const bAndYVsGandRPercent = valueToPct( scoreValues.bAndYVsGandRValue );
+
+  let randomFloat = Math.random();
+  let randomColorLetter = colorLetters[4];  // default is INVALID!
+
+  if ( randomFloat <= bAndYVsGandRPercent ) {
+    randomFloat = Math.random();
+    if ( randomFloat <= blueVsYellowPercent ) {
+      randomColorLetter = colorLetters[0];
+    } else {
+      randomColorLetter = colorLetters[3];
+    }
+  } else {
+    randomFloat = Math.random();
+    if ( randomFloat <= greenVsRedPercent ) {
+      randomColorLetter = colorLetters[1];
+    } else {
+      randomColorLetter = colorLetters[2];
+    }
+  }
+
+  // if ( logLogicFlow ) {
+  //   console.log( "getRandomPrimaryColor(): Return()ing randomColorLetter = " + randomColorLetter );
+  // }
+  return randomColorLetter;
+}
+
+// drawUnderlyingCanvas: paints the entire canvas black then fills the inner portion of it with white
+function drawUnderlyingCanvas( context: CanvasRenderingContext2D ) {
+  const width = getCanvasWidth();
+  const height = getCanvasHeight();
+
+  // Paint it all black
+  context.fillStyle = "rgb(0, 0, 0)";
+  context.fillRect(0, 0, width, height);
+
+  const innerSquareWidth = getCanvasWidth() - ( 2 * gridTopX );
+  const innerSquareHeight = getCanvasHeight() - ( 2 * gridTopY );
+
+  // Paint the inner square, where the actual image will be, white
+  context.fillStyle = "rgb(255, 255, 255)";
+  context.fillRect(gridTopY, gridTopY, innerSquareWidth, innerSquareHeight);
 }
 
