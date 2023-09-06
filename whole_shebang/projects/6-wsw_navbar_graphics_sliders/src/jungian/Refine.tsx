@@ -252,7 +252,7 @@ function FixedContainer() {
   // - If imageString is empty, set the current status message accordingly
   useEffect( () => {
     // if ( JungianLib.logLogicFlow ) {
-    //   console.log( "Top of First useEffect in FixedContainer() in Refine.tsx" );
+    //   console.log( "Top of First useEffect in Refine.tsx" );
     // }
     setCurrentScoreValues( LocalStorageLib.getStoredScoreValues() );
     setCurrentImageString( LocalStorageLib.getStoredImageString() );
@@ -265,44 +265,44 @@ function FixedContainer() {
     setCurrentSquareSize( storedSquareSize );
     JungianLib.setSquareSize( storedSquareSize );
     if ( JungianLib.logLogicFlow ) {
-      console.log( "First useEffect in FixedContainer() in Refine.tsx: updated grid size and square size" );
-      // console.log( "Exiting First useEffect in FixedContainer() in Refine.tsx" );
+      console.log( "First useEffect in Refine.tsx: updated grid size and square size" );
+      // console.log( "Exiting First useEffect in Refine.tsx" );
     }
   }, [] );
 
-  // Second useEffect: runs when component is mounted AND when the user changes the imageString
+  // useEffect for currentImageString: runs when component is mounted AND when the user changes the imageString
   //   Stores the new, refined image string in local storage
   useEffect( () => {
     // if ( JungianLib.logLogicFlow ) {
-    //   console.log( "Top of second useEffect in FixedContainer() in Refine.tsx" );
+    //   console.log( "Top of useEffect for currentImageString in Refine.tsx" );
     // }
     const success = LocalStorageLib.storeImageString( currentImageString );
     if ( JungianLib.logLogicFlow ) {
+      console.log( "useEffect for currentImageString in Refine.tsx: currentImageString.length = " + currentImageString.length );
       if ( success ) {
-        console.log( "Second useEffect: saved currentImageString as imageString ok" );
+        console.log( "useEffect for currentImageString in Refine.tsx: saved currentImageString as imageString ok" );
       } else {
-        // console.log( "Second useEffect: currentImageString.length = " + currentImageString.length );
-        console.log( "Second useEffect: DID NOT SAVE currentImageString as imageString" );
+        console.log( "useEffect for currentImageString in Refine.tsx: DID NOT SAVE currentImageString as imageString" );
       }
-      // console.log( "Exiting second useEffect in FixedContainer() in Refine.tsx" );
+      // console.log( "Exiting useEffect for currentImageString in Refine.tsx" );
     }
   }, [currentImageString] );
 
-  // Third useEffect: runs when component is mounted AND when the user changes the squareSize
+  // useEffect for currentSquareSize: runs when component is mounted AND when the user changes the squareSize
   //   Stores the new, refined squareSize in local storage
   useEffect( () => {
     // if ( JungianLib.logLogicFlow ) {
-    //   console.log( "Top of third useEffect in FixedContainer() in Refine.tsx" );
+    //   console.log( "Top of useEffect for currentSquareSize in Refine.tsx" );
     // }
     const success = LocalStorageLib.storeSquareSize( currentSquareSize );
     if ( JungianLib.logLogicFlow ) {
+      console.log( "useEffect for currentSquareSize: currentSquareSize = " + currentSquareSize );
       if ( success ) {
-        console.log( "Third useEffect: saved currentSquareSize as squareSize ok" );
+        console.log( "useEffect for currentSquareSize: saved currentSquareSize as squareSize ok" );
       } else {
-        // console.log( "Third useEffect: currentSquareSize = " + currentSquareSize );
-        console.log( "Third useEffect: DID NOT SAVE currentSquareSize as squareSize" );
+        console.log( "useEffect for currentSquareSize: DID NOT SAVE currentSquareSize as squareSize" );
       }
-      // console.log( "Exiting third useEffect in FixedContainer() in Refine.tsx" );
+      // console.log( "Exiting useEffect for currentSquareSize in Refine.tsx" );
     }
   }, [currentSquareSize] );
 
