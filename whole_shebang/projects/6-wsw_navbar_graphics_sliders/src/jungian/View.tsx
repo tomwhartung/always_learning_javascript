@@ -79,19 +79,21 @@ function DFlexContainer() {
 
   const [currentScoreValues, setCurrentScoreValues] = useState([JungianLib.invalidScoreValue]);
 
+  // First useEffect: set currentScoreValues, imageStringToDraw, and gridSize with values from local storage
   useEffect(() => {
     // if ( JungianLib.logLogicFlow ) {
-    //   console.log( "Top of useEffect in DFlexContainer() in View.tsx" );
+    //   console.log( "Top of First useEffect in View.tsx" );
     // }
     setCurrentScoreValues( LocalStorageLib.getStoredScoreValues() );
     imageStringToDraw = LocalStorageLib.getStoredImageString();
     JungianLib.setGridSize( LocalStorageLib.getStoredGridSize() );
     if ( JungianLib.logLogicFlow ) {
-      // console.log( "useEffect in DFlexContainer: currentScoreValues[0] = " + currentScoreValues[0] );
-      // console.log( "useEffect in DFlexContainer: currentScoreValues[1] = " + currentScoreValues[1] );
-      // console.log( "useEffect in DFlexContainer: currentScoreValues[2] = " + currentScoreValues[2] );
-      // console.log( "useEffect in DFlexContainer: currentScoreValues[3] = " + currentScoreValues[3] );
-      console.log( "Exiting useEffect in DFlexContainer() in View.tsx" );
+      // console.log( "First useEffect in View.tsx: currentScoreValues[0] = " + currentScoreValues[0] );
+      // console.log( "First useEffect in View.tsx: currentScoreValues[1] = " + currentScoreValues[1] );
+      // console.log( "First useEffect in View.tsx: currentScoreValues[2] = " + currentScoreValues[2] );
+      // console.log( "First useEffect in View.tsx: currentScoreValues[3] = " + currentScoreValues[3] );
+      console.log( "First useEffect in View.tsx: set the currentScoreValues, imageStringToDraw, and gridSize" );
+      // console.log( "Exiting the only useEffect in View.tsx" );
     }
   }, []);
 
