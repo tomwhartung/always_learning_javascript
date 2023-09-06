@@ -112,10 +112,11 @@ function FixedContainer() {
   const [currentGridSize, setCurrentGridSize] = useState( JungianLib.invalidGridSize );
 
   // handleScoreValueChange: code to run when the user moves a score slider
+  //   Update currentScoreValues to the new slider value and possibly draw a new image
   function handleScoreValueChange( event: ChangeEvent, col: number ) {
-    if ( JungianLib.logLogicFlow ) {
-      console.log( "Top of handleScoreValueChange in FixedContainer in Create.tsx" );
-    }
+    // if ( JungianLib.logLogicFlow ) {
+    //   console.log( "Top of handleScoreValueChange in FixedContainer in Create.tsx" );
+    // }
     const scoreValue = (event.target as HTMLInputElement).value;
     if ( JungianLib.logLogicFlow ) {
       console.log( "handleScoreValueChange: slider num " + col.toString() + " = " + scoreValue.toString() );
@@ -126,19 +127,19 @@ function FixedContainer() {
     // When the value for a slider (other than opacity) changes, we need to draw a new image
     if ( 0 < col ) {
       drawFreshImage = true;
-      if ( JungianLib.logLogicFlow ) {
-        console.log( "handleScoreValueChange: set drawFreshImage = true" );
-      }
     }
     if ( JungianLib.logLogicFlow ) {
-      console.log( "Exiting handleScoreValueChange in FixedContainer in Create.tsx" );
+      if ( 0 < col ) {
+        console.log( "handleScoreValueChange: set drawFreshImage = true" );
+      }
+      // console.log( "Exiting handleScoreValueChange in Create.tsx" );
     }
   }
 
   // handleGridSizeChange: code to run when user moves the grid size slider
   function handleGridSizeChange( event: ChangeEvent<HTMLInputElement> ) {
     // if ( JungianLib.logLogicFlow ) {
-    //   console.log( "Top of handleGridSizeChange in FixedContainer in Create.tsx" );
+    //   console.log( "Top of handleGridSizeChange in Create.tsx" );
     //   // console.log( "handleGridSizeChange: event.target.value = " + event.target.value );
     // }
     const newGridSize = parseInt( event.target.value );
@@ -147,14 +148,14 @@ function FixedContainer() {
     drawFreshImage = true;
     if ( JungianLib.logLogicFlow ) {
       console.log( "handleGridSizeChange: currentGridSize = " + currentGridSize );
-      // console.log( "Exiting handleGridSizeChange in FixedContainer in Create.tsx" );
+      // console.log( "Exiting handleGridSizeChange in Create.tsx" );
     }
   }
 
   // handleSquareSizeChange: code to run when the user moves the square size slider
   function handleSquareSizeChange( event: ChangeEvent<HTMLInputElement> ) {
     // if ( JungianLib.logLogicFlow ) {
-    //   console.log( "Top of handleSquareSizeChange in FixedContainer() in Create.tsx" );
+    //   console.log( "Top of handleSquareSizeChange in Create.tsx" );
     //   // console.log( "handleSquareSizeChange: event.target.value = " + event.target.value );
     // }
     const newSquareSize = parseInt( event.target.value );
@@ -162,7 +163,7 @@ function FixedContainer() {
     JungianLib.setSquareSize( newSquareSize );
     if ( JungianLib.logLogicFlow ) {
       console.log( "handleSquareSizeChange: currentSquareSize = " + currentSquareSize );
-      // console.log( "Exiting handleSquareSizeChange in FixedContainer() in Create.tsx" );
+      // console.log( "Exiting handleSquareSizeChange in Create.tsx" );
     }
   }
 
