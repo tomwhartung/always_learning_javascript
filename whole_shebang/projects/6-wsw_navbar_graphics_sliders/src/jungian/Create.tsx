@@ -181,19 +181,19 @@ function FixedContainer() {
     scoreValuesToDraw.bAndYVsGandRValue = lsScoreValues[3];
     if ( JungianLib.logLogicFlow ) {
       // console.log( "First useEffect: scoreValuesToDraw.toString() = " + scoreValuesToDraw.toString() );
-      console.log( "First useEffect: set scoreValuesToDraw and the currentScoreValues state variable" );
+      console.log( "First useEffect in Create.tsx: set scoreValuesToDraw and currentScoreValues" );
     }
     const imageString = LocalStorageLib.getStoredImageString();
     if ( imageString.length > JungianLib.gridSize ) {
       imageStringToDraw = imageString;
-      if ( JungianLib.logLogicFlow ) {
-        console.log( "First useEffect: imageString.length = " + imageString.length );
-        console.log( "First useEffect: set the imageStringToDraw ok" );
-      }
     } else {
       drawFreshImage = true;
-      if ( JungianLib.logLogicFlow ) {
-        console.log( "First useEffect: imageString.length = " + imageString.length );
+    }
+    if ( JungianLib.logLogicFlow ) {
+      console.log( "First useEffect in Create.tsx: imageString.length = " + imageString.length );
+      if ( imageString.length > JungianLib.gridSize ) {
+        console.log( "First useEffect: set the imageStringToDraw with value from local storage" );
+      } else {
         console.log( "First useEffect: DID NOT SET THE imageStringToDraw BECAUSE IT'S TOO SHORT" );
         console.log( "First useEffect: set drawFreshImage = true instead" );
       }
@@ -203,42 +203,44 @@ function FixedContainer() {
     JungianLib.setGridSize( gridSize );
     setCurrentGridSize( gridSize );
     if ( JungianLib.logLogicFlow ) {
-      console.log( "Exiting first useEffect in FixedContainer in Create.tsx" );
+      console.log( "First useEffect in Create.tsx: set squareSize and gridSize in JungianLib" );
+      // console.log( "Exiting first useEffect in FixedContainer in Create.tsx" );
     }
     // NOTE! DO NOT DELETE THE EMPTY DEPENDENCY ARRAY!!  DOING SO CAUSES AN INFINITE LOOP!!!
   }, [] ); // empty dependency array -> this runs just once when the component is mounted
 
-  // Second useEffect: runs when component is mounted AND when the user moves a slider
+  // useEffect for currentScoreValues: runs when component is mounted AND when the user moves a score value slider
   //   Stores the new slider values and image string in local storage
   useEffect( () => {
     if ( JungianLib.logLogicFlow ) {
-      console.log( "Top of second useEffect in FixedContainer in Create.tsx" );
-      console.log( "Second useEffect: currentScoreValues.toString() = " + currentScoreValues.toString() );
+      console.log( "Top of useEffect for currentScoreValues in FixedContainer in Create.tsx" );
+      console.log( "useEffect for currentScoreValues: currentScoreValues.toString() = " + currentScoreValues.toString() );
     }
-    let success = LocalStorageLib.storeScoreValues( currentScoreValues );
-    if ( success ) {
+    const storedScoreValuesOk = LocalStorageLib.storeScoreValues( currentScoreValues );
+    let storedImageStringOk = false;
+    if ( storedScoreValuesOk ) {
       if ( JungianLib.logLogicFlow ) {
-        console.log( "Second useEffect in Create.tsx: saved currentScoreValues as scoreValues ok" );
+        console.log( "useEffect for currentScoreValues in Create.tsx: saved currentScoreValues as scoreValues ok" );
       }
-      success = LocalStorageLib.storeImageString( imageStringToDraw );
-      if ( success ) {
-        if ( JungianLib.logLogicFlow ) {
-          console.log( "Second useEffect in Create.tsx: saved imageStringToDraw as imageString ok" );
-        }
-      } else {
+      storedImageStringOk = LocalStorageLib.storeImageString( imageStringToDraw );
+      if ( ! storedImageStringOk ) {
         drawFreshImage = true;
-        if ( JungianLib.logLogicFlow ) {
-          console.log( "Second useEffect: DID NOT SAVE imageStringToDraw in local storage" );
-          console.log( "Second useEffect: set drawFreshImage = true" );
-        }
-      }
-    } else {
-      if ( JungianLib.logLogicFlow ) {
-        console.log( "Second useEffect: DID NOT SAVE currentScoreValues IN LOCAL STORAGE" );
       }
     }
     if ( JungianLib.logLogicFlow ) {
-      console.log( "Exiting second useEffect in FixedContainer in Create.tsx" );
+      if ( storedScoreValuesOk ) {
+        console.log( "useEffect for currentScoreValues in Create.tsx: saved currentScoreValues as scoreValues ok" );
+        if ( storedImageStringOk ) {
+          console.log( "useEffect for currentScoreValues in Create.tsx: saved imageStringToDraw as imageString ok" );
+        } else {
+          console.log( "useEffect for currentScoreValues: DID NOT SAVE imageStringToDraw IN LOCAL STORAGE" );
+          console.log( "useEffect for currentScoreValues: set drawFreshImage = true" );
+        }
+      } else {
+        console.log( "useEffect for currentScoreValues: DID NOT SAVE currentScoreValues IN LOCAL STORAGE" );
+        console.log( "useEffect for currentScoreValues: DID NOT ATTEMPT TO SAVE imageStringToDraw IN LOCAL STORAGE" );
+      }
+      console.log( "Exiting useEffect for currentScoreValues in FixedContainer in Create.tsx" );
     }
   }, [currentScoreValues] );
 
