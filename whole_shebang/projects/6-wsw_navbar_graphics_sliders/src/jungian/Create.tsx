@@ -154,7 +154,7 @@ function FixedContainer() {
   // handleSquareSizeChange: code to run when the user moves the square size slider
   function handleSquareSizeChange( event: ChangeEvent<HTMLInputElement> ) {
     // if ( JungianLib.logLogicFlow ) {
-    //   console.log( "Top of handleSquareSizeChange in FixedContainer() in Refine.tsx" );
+    //   console.log( "Top of handleSquareSizeChange in FixedContainer() in Create.tsx" );
     //   // console.log( "handleSquareSizeChange: event.target.value = " + event.target.value );
     // }
     const newSquareSize = parseInt( event.target.value );
@@ -162,7 +162,7 @@ function FixedContainer() {
     JungianLib.setSquareSize( newSquareSize );
     if ( JungianLib.logLogicFlow ) {
       console.log( "handleSquareSizeChange: currentSquareSize = " + currentSquareSize );
-      // console.log( "Exiting handleSquareSizeChange in FixedContainer() in Refine.tsx" );
+      // console.log( "Exiting handleSquareSizeChange in FixedContainer() in Create.tsx" );
     }
   }
 
@@ -214,7 +214,7 @@ function FixedContainer() {
   useEffect( () => {
     if ( JungianLib.logLogicFlow ) {
       console.log( "Top of useEffect for currentScoreValues in FixedContainer in Create.tsx" );
-      console.log( "useEffect for currentScoreValues: currentScoreValues.toString() = " + currentScoreValues.toString() );
+      // console.log( "useEffect for currentScoreValues: currentScoreValues.toString() = " + currentScoreValues.toString() );
     }
     const storedScoreValuesOk = LocalStorageLib.storeScoreValues( currentScoreValues );
     let storedImageStringOk = false;
@@ -238,45 +238,45 @@ function FixedContainer() {
         }
       } else {
         console.log( "useEffect for currentScoreValues: DID NOT SAVE currentScoreValues IN LOCAL STORAGE" );
-        console.log( "useEffect for currentScoreValues: DID NOT ATTEMPT TO SAVE imageStringToDraw IN LOCAL STORAGE" );
+        console.log( "useEffect for currentScoreValues: DID NOT TRY TO SAVE imageStringToDraw IN LOCAL STORAGE" );
       }
-      console.log( "Exiting useEffect for currentScoreValues in FixedContainer in Create.tsx" );
+      console.log( "Exiting useEffect for currentScoreValues in Create.tsx" );
     }
   }, [currentScoreValues] );
 
-  // Third useEffect: runs when component is mounted AND when the user changes the gridSize
-  //   Stores the new, refined gridSize in local storage
+  // useEffect for currentGridSize: runs when component is mounted AND when the user changes the gridSize
+  //   Stores the new, updated gridSize in local storage
   useEffect( () => {
     // if ( JungianLib.logLogicFlow ) {
-    //   console.log( "Top of third useEffect in FixedContainer in Create.tsx" );
+    //   console.log( "Top of useEffect for currentGridSize in Create.tsx" );
     // }
     const success = LocalStorageLib.storeGridSize( currentGridSize );
     if ( JungianLib.logLogicFlow ) {
+      console.log( "useEffect for currentGridSize in Create.tsx: currentGridSize = " + currentGridSize );
       if ( success ) {
-        console.log( "Third useEffect: saved currentGridSize as gridSize ok" );
+        console.log( "useEffect for currentGridSize: saved currentGridSize as gridSize ok" );
       } else {
-        // console.log( "Third useEffect: currentGridSize = " + currentGridSize );
-        console.log( "Third useEffect: DID NOT SAVE currentGridSize as gridSize" );
+        console.log( "useEffect for currentGridSize: DID NOT SAVE currentGridSize as gridSize" );
       }
-      // console.log( "Exiting third useEffect in FixedContainer in Create.tsx" );
+      // console.log( "Exiting useEffect for currentGridSize in Create.tsx" );
     }
   }, [currentGridSize] );
 
-  // Fourth useEffect: runs when component is mounted AND when the user changes the squareSize
-  //   Stores the new, refined squareSize in local storage
+  // useEffect for currentSquareSize: runs when component is mounted AND when the user changes the squareSize
+  //   Stores the new, updated squareSize in local storage
   useEffect( () => {
     // if ( JungianLib.logLogicFlow ) {
-    //   console.log( "Top of fourth useEffect in FixedContainer() in Refine.tsx" );
+    //   console.log( "Top of useEffect for currentSquareSize in Create.tsx" );
     // }
     const success = LocalStorageLib.storeSquareSize( currentSquareSize );
     if ( JungianLib.logLogicFlow ) {
+      console.log( "useEffect for currentSquareSize in Create.tsx: currentSquareSize = " + currentSquareSize );
       if ( success ) {
-        console.log( "Fourth useEffect: saved currentSquareSize as squareSize ok" );
+        console.log( "useEffect for currentSquareSize: saved currentSquareSize as squareSize ok" );
       } else {
-        // console.log( "Fourth useEffect: currentSquareSize = " + currentSquareSize );
-        console.log( "Fourth useEffect: DID NOT SAVE currentSquareSize as squareSize" );
+        console.log( "useEffect for currentSquareSize: DID NOT SAVE currentSquareSize as squareSize" );
       }
-      // console.log( "Exiting fourth useEffect in FixedContainer() in Refine.tsx" );
+      // console.log( "Exiting useEffect for currentSquareSize in Create.tsx" );
     }
   }, [currentSquareSize] );
 
