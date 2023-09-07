@@ -12,17 +12,17 @@ export function storeScoreValues( newScoreValues: number[] ): boolean {
   //   console.log( "Top of storeScoreValues() in lib/jungian/LocalStorageLib.tsx" );
   // }
 
-  let success = true;
+  let allValuesOk = true;
 
   for ( let valIdx = 0; valIdx < newScoreValues.length; ++valIdx ) {
     if ( newScoreValues[valIdx] < JungianLib.minScoreValue ||
          JungianLib.maxScoreValue < newScoreValues[valIdx]   ) {
-      success = false;
+      allValuesOk = false;
       break;
     }
   }
 
-  if ( success ) {
+  if ( allValuesOk ) {
     const jungianItem = getStoredJungianItem();
     jungianItem.scoreValues = newScoreValues;
     storeJungianItem( jungianItem );
@@ -30,15 +30,15 @@ export function storeScoreValues( newScoreValues: number[] ): boolean {
 
   if ( JungianLib.logLogicFlow ) {
     console.log( "storeScoreValues(): newScoreValues.toString() = " + newScoreValues.toString() );
-    if ( success ) {
+    if ( allValuesOk ) {
       console.log( "storeScoreValues(): stored newScoreValues ok" );
     } else {
       console.log( "storeScoreValues(): NOT STORING newScoreValues BECAUSE IT HAS AN INVALID VALUE" );
     }
-    // console.log( "Return()ing " + success + " from storeScoreValues() in lib/jungian/LocalStorageLib.tsx" );
+    // console.log( "Return()ing " + allValuesOk + " from storeScoreValues() in lib/jungian/LocalStorageLib.tsx" );
   }
 
-  return success;
+  return allValuesOk;
 }
 // getStoredScoreValues: returns the current scoreValues from local storage
 export function getStoredScoreValues(): number[] {
@@ -46,7 +46,7 @@ export function getStoredScoreValues(): number[] {
     console.log( "Top of getStoredScoreValues() in lib/jungian/LocalStorageLib.tsx" );
   }
 
-  let scoreValues = [ JungianLib.initialScoreValue ];
+  let scoreValues = JungianLib.initialScoreValueArray;
   const jungianItem = getStoredJungianItem();
 
   if ( jungianItem ) {
@@ -59,7 +59,7 @@ export function getStoredScoreValues(): number[] {
       console.log( "getStoredScoreValues: found scoreValues.toString() = " + scoreValues.toString() );
     } else {
       console.log( "getStoredScoreValues in lib/jungian/LocalStorageLib.tsx: 'jungian' ITEM NOT FOUND IN localStorage" );
-      console.log( "getStoredScoreValues: returning an array containing a single JungianLib.initialScoreValue" );
+      console.log( "getStoredScoreValues: returning JungianLib.initialScoreValueArray " );
     }
     console.log( "Return()ing '" + scoreValues.toString() + "' from getStoredScoreValues() in lib/jungian/LocalStorageLib.tsx" );
   }
@@ -273,12 +273,7 @@ function getStoredJungianItem(): JungianItemValues {
 
   const initialJungianItemValues: JungianItemValues = {
     imageString: JungianLib.defaultImageString,
-    scoreValues: [
-      JungianLib.initialScoreValue,
-      JungianLib.initialScoreValue,
-      JungianLib.initialScoreValue,
-      JungianLib.initialScoreValue
-    ],
+    scoreValues: JungianLib.initialScoreValueArray,
     squareSize: JungianLib.initialSquareSize,
     gridSize: JungianLib.initialGridSize,
   }
