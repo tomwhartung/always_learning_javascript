@@ -247,7 +247,7 @@ function FixedContainer() {
     }
   }
 
-  // First useEffect: (presumably) runs once when component is mounted, or so they tell me...
+  // First useEffect: runs once when component is mounted - except when we are in development
   // - Fetches scoreValues and imageString from local storage and sets them in state variables
   // - If imageString is empty, set the current status message accordingly
   useEffect( () => {
