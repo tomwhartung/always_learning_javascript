@@ -1,13 +1,4 @@
 
-
-Review:
-  getStoredScoreValues in jungian/LocalStorageLib.tsx
-    - Returns a single initialScoreValue
-    - We no longer check the length of the scoreValues array
-      - That was a hack, remember?
-   - Should be ok to change this to ...???
-   - Not wanting to mess with this now...   
-
 Review:
   Review code on all pages:
     [x] lib/JungianLib.tsx
@@ -17,19 +8,19 @@ Review:
       [x] Check for unnecessary code, e.g., console.log statements
       [x] Check for unnecessarily-exported functions
     [ ] Create page
-      [ ] Check event handlers and useEffect() calls on all pages:
-        [ ] Check for consistency, esp. in First useEffect()
-      [ ] Check for unnecessary code, e.g., console.log statements
-      [ ] Check for clarity
-      [ ] Check for unnecessary state variables - could be scary!
-    [ ] View page
-      [ ] Check event handlers and useEffect() calls on all pages:
+      [ ] Check event handlers and useEffect() calls:
         [ ] Check for consistency, esp. in First useEffect()
       [x] Check for unnecessary code, e.g., console.log statements
       [x] Check for clarity
       [ ] Check for unnecessary state variables - could be scary!
+    [ ] View page
+      [ ] Check event handlers and useEffect() calls:
+        [ ] Check for consistency, esp. in First useEffect()
+      [x] Check for unnecessary code, e.g., console.log statements
+      [x] Check for clarity
+      [x] Check for unnecessary state variables - could be scary!
     [ ] Refine page
-      [ ] Check event handlers and useEffect() calls on all pages:
+      [ ] Check event handlers and useEffect() calls:
         [ ] Check for consistency, esp. in First useEffect()
       [x] Check for unnecessary code, e.g., console.log statements
       [x] Check for clarity
