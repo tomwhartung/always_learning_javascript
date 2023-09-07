@@ -186,7 +186,7 @@ function FixedContainer() {
   // handleSquareSizeChange: code to run when the user moves the square size slider
   function handleSquareSizeChange( event: ChangeEvent<HTMLInputElement> ) {
     // if ( JungianLib.logLogicFlow ) {
-    //   console.log( "Top of handleSquareSizeChange in FixedContainer() in Refine.tsx" );
+    //   console.log( "Top of handleSquareSizeChange in Refine.tsx" );
     //   // console.log( "handleSquareSizeChange: event.target.value = " + event.target.value );
     // }
     const newSquareSize = parseInt( event.target.value );
@@ -194,14 +194,14 @@ function FixedContainer() {
     JungianLib.setSquareSize( newSquareSize );
     if ( JungianLib.logLogicFlow ) {
       console.log( "handleSquareSizeChange: currentSquareSize = " + currentSquareSize );
-      // console.log( "Exiting handleSquareSizeChange in FixedContainer() in Refine.tsx" );
+      // console.log( "Exiting handleSquareSizeChange in Refine.tsx" );
     }
   }
 
   // handleColorPickerChange: Change the new color used when user clicks on a square
   function handleColorPickerChange( event: ChangeEvent<HTMLInputElement> ) {
     // if ( JungianLib.logLogicFlow ) {
-    //   console.log( "Top of handleColorPickerChange in FixedContainer in Refine.tsx" );
+    //   console.log( "Top of handleColorPickerChange in Refine.tsx" );
     //   console.log( "handleColorPickerChange: event.currentTarget.value = " + event.currentTarget.value );
     // }
     const colorIndex = parseInt( event.currentTarget.value );
@@ -209,16 +209,16 @@ function FixedContainer() {
     setCurrentColorIndex( colorIndex );
     setCurrentStatusMessage( "Click on a square to change its color to " + colorPicked );
     if ( JungianLib.logLogicFlow ) {
-      console.log( "handleColorPickerChange in FixedContainer in Refine.tsx: colorPicked = " + colorPicked );
+      console.log( "handleColorPickerChange in Refine.tsx: colorPicked = " + colorPicked );
       // console.log( "handleColorPickerChange currentStatusMessage = " + currentStatusMessage );
-      // console.log( "Exiting handleColorPickerChange in FixedContainer in Refine.tsx" );
+      // console.log( "Exiting handleColorPickerChange in Refine.tsx" );
     }
   }
 
   // handleImageClick: Change the color of the square the user clicks on
   function handleImageClick(event: React.MouseEvent<HTMLElement>) {
     // if ( JungianLib.logLogicFlow ) {
-    //   console.log( "Top of handleImageClick() in FixedContainer in Refine.tsx" );
+    //   console.log( "Top of handleImageClick() in Refine.tsx" );
     // }
     // getBoundingClientRect: get coords of top-left of image (the target element)
     // rect.left & rect.top: coords of top-left of image (the target element)
@@ -230,7 +230,7 @@ function FixedContainer() {
     const pixelY = Math.round( event.clientY - rect.top );
     if ( JungianLib.logLogicFlow ) {
       const pixelCoords = "(" + pixelX.toString() + ", " + pixelY.toString() + ")";
-      console.log( "handleImageClick in FixedContainer in Refine: pixelCoords = " + pixelCoords);
+      console.log( "handleImageClick in Refine: pixelCoords = " + pixelCoords);
     }
     const [squareX, squareY] = getSquareCoords( pixelX, pixelY );  // see comments in function header
     const squareCoords = "(" + squareX.toString() + ", " + squareY.toString() + ")";
@@ -242,8 +242,8 @@ function FixedContainer() {
       setCurrentStatusMessage( "Changed the color of the square at " + squareCoords + " to " + colorPicked );
     }
     if ( JungianLib.logLogicFlow ) {
-      console.log( "handleImageClick in FixedContainer in Refine.tsx: squareCoords = " + squareCoords );
-      // console.log( "handleImageClick in FixedContainer in Refine.tsx: exiting function" );
+      console.log( "handleImageClick in Refine.tsx: squareCoords = " + squareCoords );
+      // console.log( "handleImageClick in Refine.tsx: exiting function" );
     }
   }
 
