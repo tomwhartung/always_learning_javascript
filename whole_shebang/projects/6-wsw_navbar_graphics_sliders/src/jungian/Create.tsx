@@ -107,7 +107,7 @@ function FixedContainer() {
     console.log( "Top of FixedContainer() in Create.tsx" );
   }
 
-  const [currentScoreValues, setCurrentScoreValues] = useState( JungianLib.invalidScoreArray );
+  const [currentScoreValues, setCurrentScoreValues] = useState( JungianLib.invalidScoreValueArray );
   const [currentSquareSize, setCurrentSquareSize] = useState( JungianLib.invalidSquareSize );
   const [currentGridSize, setCurrentGridSize] = useState( JungianLib.invalidGridSize );
 

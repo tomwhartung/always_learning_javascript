@@ -5,7 +5,8 @@
 // Constant and Variable Values:
 // -----------------------------
 // In some cases, these include minimal get and set functions to support
-// manipulation *in real time* of some of the values used to draw the images.
+// manipulation *in real time* of some of the values used to draw the images and
+// arrays of initial and invalid values for initializing state and local storage.
 //
 
 // logLogicFlow: enable turning logging to the console on and off
@@ -29,7 +30,7 @@ export const initialScoreValueArray = [
   initialScoreValue
 ];
 export const invalidScoreValue = -1;        // Used to create "default" value for state variable
-export const invalidScoreArray = [          // Used as "default" value for state variable
+export const invalidScoreValueArray = [     // Used as "default" value for state variable
   invalidScoreValue,
   invalidScoreValue,
   invalidScoreValue,
