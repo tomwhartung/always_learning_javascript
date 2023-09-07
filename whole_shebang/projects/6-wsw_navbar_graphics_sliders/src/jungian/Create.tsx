@@ -167,7 +167,7 @@ function FixedContainer() {
     }
   }
 
-  // First useEffect: (presumably) runs once when component is mounted (but I have my doubts...)
+  // First useEffect: runs once when component is mounted - except when we are in development
   //   Fetches values from local storage, initializing them if they're not set
   //   Sets the currentScoreValues state variable to values from local storage [or default values]
   useEffect( () => {
