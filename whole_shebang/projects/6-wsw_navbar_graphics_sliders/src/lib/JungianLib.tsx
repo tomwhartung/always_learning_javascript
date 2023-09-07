@@ -22,6 +22,12 @@ export function getLogLogicFlow(): boolean {
 // setLogLogicFlow( true );
 
 export const initialScoreValue = 50;        // Initial value of each slider before user changes it
+export const initialScoreValueArray = [
+  initialScoreValue,
+  initialScoreValue,
+  initialScoreValue,
+  initialScoreValue
+];
 export const invalidScoreValue = -1;        // Used to create "default" value for state variable
 export const invalidScoreArray = [          // Used as "default" value for state variable
   invalidScoreValue,
