@@ -77,7 +77,7 @@ function DFlexContainer() {
     console.log( "Top of DFlexContainer() in View.tsx" );
   }
 
-  const [currentScoreValues, setCurrentScoreValues] = useState([JungianLib.invalidScoreValue]);
+  const [currentScoreValues, setCurrentScoreValues] = useState(JungianLib.invalidScoreValueArray);
 
   // First useEffect: set currentScoreValues, imageStringToDraw, and gridSize with values from local storage
   useEffect(() => {
