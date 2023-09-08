@@ -34,13 +34,14 @@ const draw = (context: CanvasRenderingContext2D) => {
 
   if ( drawFreshImage ) {
     if ( ImageLib.logLogicFlow ) {
-      console.log( "draw(): calling ImageLib.drawNewImageString to draw a Fresh Image" );
+      console.log( "draw(): calling ImageLib.createFreshImageString to create a Fresh Image" );
     }
-    const newImageString = ImageLib.drawNewImageString( context, scoreValuesToDraw );
+    const newImageString = ImageLib.createFreshImageString( scoreValuesToDraw );
     imageStringToDraw = newImageString;
     LocalStorageLib.storeImageString( newImageString );
     console.log( "draw(): set drawFreshImage imageStringToDraw.length = " + imageStringToDraw.length );
     drawFreshImage = false;
+    ImageLib.drawStoredImageString( context, imageStringToDraw, scoreValuesToDraw.opacityValue );
     if ( ImageLib.logLogicFlow ) {
       console.log( "draw(): set drawFreshImage = false & imageStringToDraw = newImageString" );
     }
