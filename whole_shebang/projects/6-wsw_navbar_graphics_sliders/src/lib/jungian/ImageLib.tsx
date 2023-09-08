@@ -22,6 +22,17 @@ export function getLogLogicFlow(): boolean {
 }
 // setLogLogicFlow( true );
 
+// Types:
+// ------
+//
+// JungianScoreValues: giving names to the values that come from the Jungian sliders
+export interface JungianScoreValues {
+  opacityValue: number;           // [0 .. 100]
+  blueVsYellowValue: number;      // [0 .. 100]
+  greenVsRedValue: number;        // [0 .. 100]
+  bAndYVsGandRValue: number;      // [0 .. 100]
+}
+
 export const initialScoreValue = 50;        // Initial value of each slider before user changes it
 export const initialScoreValueArray = [
   initialScoreValue,
@@ -38,13 +49,21 @@ export const invalidScoreValueArray = [     // Used as "default" value for state
 ];
 export const minScoreValue = 0;             // Minimum score value
 export const maxScoreValue = 100;           // Maximum score value
-// export let squareSize = initialScoreValue;  // Changed by a slider on Refine page
-// export function setScoreValue( newScoreValue: number ) {
-//   squareSize = newScoreValue;
-// }
+export const scoreValueObj = {
+  opacityValue: initialScoreValue,
+  blueVsYellowValue: initialScoreValue,
+  greenVsRedValue: initialScoreValue,
+  bAndYVsGandRValue: initialScoreValue,
+}
+export function setScoreValueObj( newScoreValueArray: number[] ) {
+  scoreValueObj.opacityValue = newScoreValueArray[0];
+  scoreValueObj.blueVsYellowValue = newScoreValueArray[1];
+  scoreValueObj.greenVsRedValue = newScoreValueArray[2];
+  scoreValueObj.bAndYVsGandRValue = newScoreValueArray[3];
+}
+
 
 export const defaultImageString = "";
-
 export const initialSquareSize = 15;        // Size of each square before user changes it
 export const invalidSquareSize = 0;         // Used as "default" value for state variable
 export const minSquareSize = 1;             // Minimum size of each square
@@ -108,25 +127,13 @@ export const colorNames: readonly string[] = [
 ];
 
 
-// Types:
-// ------
-//
-// JungianScoreValues: giving names to the values that come from the Jungian sliders
-export interface JungianScoreValues {
-  opacityValue: number;           // [0 .. 100]
-  blueVsYellowValue: number;      // [0 .. 100]
-  greenVsRedValue: number;        // [0 .. 100]
-  bAndYVsGandRValue: number;      // [0 .. 100]
-}
-
-
 // Functions:
 // ----------
 //
 // createFreshImageString: Create a new totally random "groja-esque" grid of blue, green, red, and yellow squares
 //   Starts with an empty imageCharArray and adds color letters one-by-one
 //   Returns the imageCharArray as a string
-export function createFreshImageString( scoreValuesToDraw: JungianScoreValues ) {
+export function createFreshImageString() {
   if ( logLogicFlow ) {
     console.log( "Top of createFreshImageString() in ImageLib.tsx" );
   }
@@ -136,7 +143,7 @@ export function createFreshImageString( scoreValuesToDraw: JungianScoreValues ) 
 
   for ( let row=0; row < gridSize; row++ ) {
     for ( let col=0; col < gridSize; col++ ){
-      colorLetter = getRandomPrimaryColor( scoreValuesToDraw );
+      colorLetter = getRandomPrimaryColor();
       imageCharArray.push( colorLetter );
     }
     if ( logLogicFlow ) {
@@ -216,13 +223,13 @@ function valueToPct( value: number ) : number {
 }
 
 // getRandomPrimaryColor: return a random single character, either "B", "G", "R", or "Y"
-function getRandomPrimaryColor( scoreValues: JungianScoreValues ) {
+function getRandomPrimaryColor() {
   // if ( logLogicFlow ) {
   //   console.log( "getRandomPrimaryColor() in ImageLib.tsx: Top of getRandomPrimaryColor" );
   // }
-  const blueVsYellowPercent = valueToPct( scoreValues.blueVsYellowValue );
-  const greenVsRedPercent = valueToPct( scoreValues.greenVsRedValue );
-  const bAndYVsGandRPercent = valueToPct( scoreValues.bAndYVsGandRValue );
+  const blueVsYellowPercent = valueToPct( scoreValueObj.blueVsYellowValue );
+  const greenVsRedPercent = valueToPct( scoreValueObj.greenVsRedValue );
+  const bAndYVsGandRPercent = valueToPct( scoreValueObj.bAndYVsGandRValue );
 
   let randomFloat = Math.random();
   let randomColorLetter = colorLetters[4];  // default is INVALID!
