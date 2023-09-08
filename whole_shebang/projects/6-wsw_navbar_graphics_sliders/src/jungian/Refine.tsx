@@ -7,18 +7,18 @@ import { ChangeEvent, MouseEvent, useState, useEffect } from 'react';
 import { MDBRadio } from 'mdb-react-ui-kit';
 
 import Canvas from '../lib/CanvasLib.tsx';
-import * as JungianLib from '../lib/JungianLib.tsx';
+import * as ImageLib from '../lib/jungian/ImageLib.tsx';
 import * as LocalStorageLib from '../lib/jungian/LocalStorageLib.tsx';
 import SquareSizeSlider from '../lib/jungian/SquareSizeSliderLib.tsx';
 
 // NOTE: Setting logLogicFlow to true for one page in effect sets it for all pages
-JungianLib.setLogLogicFlow( true );   // un-comment when trying to track down issues
-// JungianLib.setLogLogicFlow( false );   // un-comment when everything's ok
+ImageLib.setLogLogicFlow( true );   // un-comment when trying to track down issues
+// ImageLib.setLogLogicFlow( false );   // un-comment when everything's ok
 
-let opacityValue = JungianLib.initialScoreValue;
+let opacityValue = ImageLib.initialScoreValue;
 let imageStringToDraw = "";
 
-interface JungianRefineProps extends JungianLib.JungianScoreValues {
+interface JungianRefineProps extends ImageLib.JungianScoreValues {
   onRadioButtonClick: (event: ChangeEvent<HTMLInputElement>) => void;
   onImageClick: (event: MouseEvent<HTMLElement>) => void;
   onSquareSizeChange: (event: ChangeEvent<HTMLInputElement>) => void;
@@ -26,31 +26,31 @@ interface JungianRefineProps extends JungianLib.JungianScoreValues {
 
 // draw: draw the grid of blue, green, red, and yellow squares defined in imageStringToDraw
 const draw = (context: CanvasRenderingContext2D) => {
-  JungianLib.drawStoredImageString( context, imageStringToDraw, opacityValue );
+  ImageLib.drawStoredImageString( context, imageStringToDraw, opacityValue );
 };
 
 // getSquareCoords: use (pixelX, pixelY) to calculate (squareX, squareY)
 //   To support more efficient code, this function includes the corners with the borders
 //   If at some point we want to identify the corners, here is how to do it:
 //     (squareX < 0 && squareY < 0): upper-left corner
-//     (squareX < 0 && squareY >= JungianLib.gridSize): lower-left corner
-//     (squareX >= JungianLib.gridSize && squareY < 0): upper-right corner
-//     (squareX >= JungianLib.gridSize && squareY >= JungianLib.gridSize): lower-right corner
+//     (squareX < 0 && squareY >= ImageLib.gridSize): lower-left corner
+//     (squareX >= ImageLib.gridSize && squareY < 0): upper-right corner
+//     (squareX >= ImageLib.gridSize && squareY >= ImageLib.gridSize): lower-right corner
 function getSquareCoords( pixelX: number, pixelY: number ) {
   let squareX = -1;
   let squareY = -1;
-  squareX = Math.floor( ( pixelX - JungianLib.gridTopX ) / JungianLib.squareSize );
-  squareY = Math.floor( ( pixelY - JungianLib.gridTopY ) / JungianLib.squareSize );
-  if ( JungianLib.logLogicFlow ) {
+  squareX = Math.floor( ( pixelX - ImageLib.gridTopX ) / ImageLib.squareSize );
+  squareY = Math.floor( ( pixelY - ImageLib.gridTopY ) / ImageLib.squareSize );
+  if ( ImageLib.logLogicFlow ) {
     console.log( "getSquareCoords: pixel coords (" + pixelX.toString() + ", " + pixelY.toString() + ")" );
     console.log( "correspond to square coords (" + squareX.toString() + ", " + squareY.toString() + ")" );
     if ( squareX < 0 ) {
       console.log( "You clicked on the left-side border, not on a square" );
-    } else if ( squareX >= JungianLib.gridSize ) {
+    } else if ( squareX >= ImageLib.gridSize ) {
       console.log( "You clicked on the right-side border, not on a square" );
     } else if ( squareY < 0 ) {
       console.log( "You clicked on the top border, not on a square" );
-    } else if ( squareY >= JungianLib.gridSize ) {
+    } else if ( squareY >= ImageLib.gridSize ) {
       console.log( "You clicked on the bottom border, not on a square" );
     } else {
       console.log( "You clicked on the square at (" + squareX.toString() + ", " + squareY.toString() + ")" );
@@ -60,10 +60,10 @@ function getSquareCoords( pixelX: number, pixelY: number ) {
 }
 // changeSquareAt: change the color of the square at location (squareX, squareY)
 function changeSquareAt( squareX: number, squareY: number, colorIndex: number ) {
-  const charArrIndex = squareX + (squareY * JungianLib.gridSize);
-  const colorLetterPicked = JungianLib.colorLetters[colorIndex];
+  const charArrIndex = squareX + (squareY * ImageLib.gridSize);
+  const colorLetterPicked = ImageLib.colorLetters[colorIndex];
 
-  // if ( JungianLib.logLogicFlow ) {
+  // if ( ImageLib.logLogicFlow ) {
   //   console.log( "changeSquareAt: charArrIndex = " + charArrIndex );
   //   console.log( "changeSquareAt: colorIndex = " + colorIndex );
   //   console.log( "changeSquareAt: colorLetterPicked = " + colorLetterPicked );
@@ -77,17 +77,17 @@ function changeSquareAt( squareX: number, squareY: number, colorIndex: number ) 
 
 // FixedSizeImageAndCards: function component to display a jungian image
 function FixedSizeImageAndCards( props: JungianRefineProps ) {
-  if ( JungianLib.logLogicFlow ) {
+  if ( ImageLib.logLogicFlow ) {
     console.log( "Top of FixedSizeImageAndCards() in Refine.tsx" );
   }
 
-  const width = JungianLib.getCanvasWidth();
-  const height = JungianLib.getCanvasHeight();
+  const width = ImageLib.getCanvasWidth();
+  const height = ImageLib.getCanvasHeight();
   opacityValue = props.opacityValue;
 
   // Construct the markup for the Color Picker
   const colorPickerCols = [];
-  for ( let colorNum = 0; colorNum < JungianLib.colorLetters.length; colorNum++ ) {
+  for ( let colorNum = 0; colorNum < ImageLib.colorLetters.length; colorNum++ ) {
     let defaultChecked = false;
     if ( colorNum === 0 ) {
       defaultChecked = true;
@@ -98,8 +98,8 @@ function FixedSizeImageAndCards( props: JungianRefineProps ) {
       <div key={colorNum} className="col-sm-3 align-items-center">
         <MDBRadio
           name="colorPicker"
-          id={JungianLib.colorNames[colorNum]}
-          label={JungianLib.colorNames[colorNum]}
+          id={ImageLib.colorNames[colorNum]}
+          label={ImageLib.colorNames[colorNum]}
           value={colorNum}
           onChange={props.onRadioButtonClick}
           defaultChecked={defaultChecked}
@@ -108,9 +108,9 @@ function FixedSizeImageAndCards( props: JungianRefineProps ) {
     );
   }
 
-  const squareSizeLabel = "Square Size: " + JungianLib.squareSize + " Pixels";
+  const squareSizeLabel = "Square Size: " + ImageLib.squareSize + " Pixels";
 
-  if ( JungianLib.logLogicFlow ) {
+  if ( ImageLib.logLogicFlow ) {
     console.log( "return()ing from FixedSizeImageAndCards() in Refine.tsx" );
   }
 
@@ -147,21 +147,21 @@ function FixedSizeImageAndCards( props: JungianRefineProps ) {
       </div>
       <div className="row d-flex mt-1">
         <div className="col-sm-3 card align-items-center">
-          {JungianLib.jungianScorePropNames[0]}: {props.opacityValue}
+          {ImageLib.jungianScorePropNames[0]}: {props.opacityValue}
         </div>
         <div className="col-sm-3 card align-items-center">
-          {JungianLib.jungianScorePropNames[1]}: {props.blueVsYellowValue}
+          {ImageLib.jungianScorePropNames[1]}: {props.blueVsYellowValue}
         </div>
         <div className="col-sm-3 card align-items-center">
-          {JungianLib.jungianScorePropNames[2]}: {props.greenVsRedValue}
+          {ImageLib.jungianScorePropNames[2]}: {props.greenVsRedValue}
         </div>
         <div className="col-sm-3 card align-items-center">
-          {JungianLib.jungianScorePropNames[3]}: {props.bAndYVsGandRValue}
+          {ImageLib.jungianScorePropNames[3]}: {props.bAndYVsGandRValue}
         </div>
       </div>
       <div className="row d-flex mt-1">
         <div className="col-sm-12 card align-items-center">
-          Grid Size: {JungianLib.gridSize} Squares per Side
+          Grid Size: {ImageLib.gridSize} Squares per Side
         </div>
       </div>
     </>
@@ -170,29 +170,29 @@ function FixedSizeImageAndCards( props: JungianRefineProps ) {
 
 // FixedContainer: function component containing an MDB container
 function FixedContainer() {
-  if ( JungianLib.logLogicFlow ) {
+  if ( ImageLib.logLogicFlow ) {
     console.log( "Top of FixedContainer() in Refine.tsx" );
   }
 
   const defaultStatusMessage = "Click on a square to change its color to Blue.";
   const defaultColorIndex = 0;
 
-  const [currentScoreValues, setCurrentScoreValues] = useState( [JungianLib.invalidScoreValue] );
-  const [currentImageString, setCurrentImageString] = useState( JungianLib.defaultImageString );
+  const [currentScoreValues, setCurrentScoreValues] = useState( ImageLib.invalidScoreValueArray );
+  const [currentImageString, setCurrentImageString] = useState( ImageLib.defaultImageString );
   const [currentStatusMessage, setCurrentStatusMessage] = useState( defaultStatusMessage );
   const [currentColorIndex, setCurrentColorIndex] = useState( defaultColorIndex );
-  const [currentSquareSize, setCurrentSquareSize] = useState( JungianLib.invalidSquareSize );
+  const [currentSquareSize, setCurrentSquareSize] = useState( ImageLib.invalidSquareSize );
 
   // handleSquareSizeChange: code to run when the user moves the square size slider
   function handleSquareSizeChange( event: ChangeEvent<HTMLInputElement> ) {
-    // if ( JungianLib.logLogicFlow ) {
+    // if ( ImageLib.logLogicFlow ) {
     //   console.log( "Top of handleSquareSizeChange in Refine.tsx" );
     //   // console.log( "handleSquareSizeChange: event.target.value = " + event.target.value );
     // }
     const newSquareSize = parseInt( event.target.value );
     setCurrentSquareSize( newSquareSize );
-    JungianLib.setSquareSize( newSquareSize );
-    if ( JungianLib.logLogicFlow ) {
+    ImageLib.setSquareSize( newSquareSize );
+    if ( ImageLib.logLogicFlow ) {
       console.log( "handleSquareSizeChange: currentSquareSize = " + currentSquareSize );
       // console.log( "Exiting handleSquareSizeChange in Refine.tsx" );
     }
@@ -200,15 +200,15 @@ function FixedContainer() {
 
   // handleColorPickerChange: Change the new color used when user clicks on a square
   function handleColorPickerChange( event: ChangeEvent<HTMLInputElement> ) {
-    // if ( JungianLib.logLogicFlow ) {
+    // if ( ImageLib.logLogicFlow ) {
     //   console.log( "Top of handleColorPickerChange in Refine.tsx" );
     //   console.log( "handleColorPickerChange: event.currentTarget.value = " + event.currentTarget.value );
     // }
     const colorIndex = parseInt( event.currentTarget.value );
-    const colorPicked = JungianLib.colorNames[ colorIndex ];
+    const colorPicked = ImageLib.colorNames[ colorIndex ];
     setCurrentColorIndex( colorIndex );
     setCurrentStatusMessage( "Click on a square to change its color to " + colorPicked );
-    if ( JungianLib.logLogicFlow ) {
+    if ( ImageLib.logLogicFlow ) {
       console.log( "handleColorPickerChange in Refine.tsx: colorPicked = " + colorPicked );
       // console.log( "handleColorPickerChange currentStatusMessage = " + currentStatusMessage );
       // console.log( "Exiting handleColorPickerChange in Refine.tsx" );
@@ -217,7 +217,7 @@ function FixedContainer() {
 
   // handleImageClick: Change the color of the square the user clicks on
   function handleImageClick(event: React.MouseEvent<HTMLElement>) {
-    // if ( JungianLib.logLogicFlow ) {
+    // if ( ImageLib.logLogicFlow ) {
     //   console.log( "Top of handleImageClick() in Refine.tsx" );
     // }
     // getBoundingClientRect: get coords of top-left of image (the target element)
@@ -228,20 +228,20 @@ function FixedContainer() {
     const rect = (event.target as HTMLElement).getBoundingClientRect();
     const pixelX = Math.round( event.clientX - rect.left );
     const pixelY = Math.round( event.clientY - rect.top );
-    if ( JungianLib.logLogicFlow ) {
+    if ( ImageLib.logLogicFlow ) {
       const pixelCoords = "(" + pixelX.toString() + ", " + pixelY.toString() + ")";
       console.log( "handleImageClick in Refine: pixelCoords = " + pixelCoords);
     }
     const [squareX, squareY] = getSquareCoords( pixelX, pixelY );  // see comments in function header
     const squareCoords = "(" + squareX.toString() + ", " + squareY.toString() + ")";
-    if ( 0 <= squareX && squareX < JungianLib.gridSize &&
-         0 <= squareY && squareY < JungianLib.gridSize    ) {
+    if ( 0 <= squareX && squareX < ImageLib.gridSize &&
+         0 <= squareY && squareY < ImageLib.gridSize    ) {
       const newImageString = changeSquareAt( squareX, squareY, currentColorIndex );
       setCurrentImageString( newImageString );
-      const colorPicked = JungianLib.colorNames[ currentColorIndex ];
+      const colorPicked = ImageLib.colorNames[ currentColorIndex ];
       setCurrentStatusMessage( "Changed the color of the square at " + squareCoords + " to " + colorPicked );
     }
-    if ( JungianLib.logLogicFlow ) {
+    if ( ImageLib.logLogicFlow ) {
       console.log( "handleImageClick in Refine.tsx: squareCoords = " + squareCoords );
       // console.log( "handleImageClick in Refine.tsx: exiting function" );
     }
@@ -251,7 +251,7 @@ function FixedContainer() {
   // - Fetches scoreValues and imageString from local storage and sets them in state variables
   // - If imageString is empty, set the current status message accordingly
   useEffect( () => {
-    // if ( JungianLib.logLogicFlow ) {
+    // if ( ImageLib.logLogicFlow ) {
     //   console.log( "Top of First useEffect in Refine.tsx" );
     // }
     setCurrentScoreValues( LocalStorageLib.getStoredScoreValues() );
@@ -260,11 +260,11 @@ function FixedContainer() {
     if (imageStringToDraw.length === 0 ) {
       setCurrentStatusMessage( "Please use the Create option to Create an image before trying to Refine it." );
     }
-    JungianLib.setGridSize( LocalStorageLib.getStoredGridSize() );
+    ImageLib.setGridSize( LocalStorageLib.getStoredGridSize() );
     const storedSquareSize = LocalStorageLib.getStoredSquareSize();
     setCurrentSquareSize( storedSquareSize );
-    JungianLib.setSquareSize( storedSquareSize );
-    if ( JungianLib.logLogicFlow ) {
+    ImageLib.setSquareSize( storedSquareSize );
+    if ( ImageLib.logLogicFlow ) {
       console.log( "First useEffect in Refine.tsx: updated grid size and square size" );
       // console.log( "Exiting First useEffect in Refine.tsx" );
     }
@@ -273,11 +273,11 @@ function FixedContainer() {
   // useEffect for currentImageString: runs when component is mounted AND when the user changes the imageString
   //   Stores the new, refined image string in local storage
   useEffect( () => {
-    // if ( JungianLib.logLogicFlow ) {
+    // if ( ImageLib.logLogicFlow ) {
     //   console.log( "Top of useEffect for currentImageString in Refine.tsx" );
     // }
     const success = LocalStorageLib.storeImageString( currentImageString );
-    if ( JungianLib.logLogicFlow ) {
+    if ( ImageLib.logLogicFlow ) {
       console.log( "useEffect for currentImageString in Refine.tsx: currentImageString.length = " + currentImageString.length );
       if ( success ) {
         console.log( "useEffect for currentImageString in Refine.tsx: saved currentImageString as imageString ok" );
@@ -291,11 +291,11 @@ function FixedContainer() {
   // useEffect for currentSquareSize: runs when component is mounted AND when the user changes the squareSize
   //   Stores the new, refined squareSize in local storage
   useEffect( () => {
-    // if ( JungianLib.logLogicFlow ) {
+    // if ( ImageLib.logLogicFlow ) {
     //   console.log( "Top of useEffect for currentSquareSize in Refine.tsx" );
     // }
     const success = LocalStorageLib.storeSquareSize( currentSquareSize );
-    if ( JungianLib.logLogicFlow ) {
+    if ( ImageLib.logLogicFlow ) {
       console.log( "useEffect for currentSquareSize: currentSquareSize = " + currentSquareSize );
       if ( success ) {
         console.log( "useEffect for currentSquareSize: saved currentSquareSize as squareSize ok" );
@@ -308,7 +308,7 @@ function FixedContainer() {
 
   imageStringToDraw = currentImageString;    // updates the displayed image with the latest changes
 
-  if ( JungianLib.logLogicFlow ) {
+  if ( ImageLib.logLogicFlow ) {
     console.log( "return()ing from FixedContainer() in Refine.tsx" );
   }
 
@@ -335,7 +335,7 @@ function FixedContainer() {
 }
 
 function Refine() {
-  if ( JungianLib.logLogicFlow ) {
+  if ( ImageLib.logLogicFlow ) {
     console.log( "Top of Refine() in Refine.tsx: return()ing from Refine()" );
   }
 
