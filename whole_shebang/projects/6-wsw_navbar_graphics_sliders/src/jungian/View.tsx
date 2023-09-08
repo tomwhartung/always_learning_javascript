@@ -2,7 +2,8 @@
 // View.tsx: code for the View option for the Jungian quiz type
 //
 import '../App.css'
-import { useEffect, useState } from 'react';
+
+import { useEffect } from 'react';
 
 import Canvas from '../lib/CanvasLib.tsx';
 import * as ImageLib from '../lib/jungian/ImageLib.tsx';
@@ -21,7 +22,7 @@ const draw = (context: CanvasRenderingContext2D) => {
 };
 
 // DFlexImageAndSliderValues: function component to display a jungian image
-function DFlexImageAndSliderValues( props:ImageLib.JungianScoreValues ) {
+function DFlexImageAndSliderValues( props: ImageLib.JungianScoreValues ) {
   if ( ImageLib.logLogicFlow ) {
     console.log( "Top of DFlexImageAndSliderValues() in View.tsx" );
   }
@@ -77,22 +78,17 @@ function DFlexContainer() {
     console.log( "Top of DFlexContainer() in View.tsx" );
   }
 
-  const [currentScoreValues, setCurrentScoreValues] = useState(ImageLib.invalidScoreValueArray);
-
-  // First useEffect: set currentScoreValues, imageStringToDraw, and gridSize with values from local storage
+  // First useEffect: set scoreValueObj, imageStringToDraw, and gridSize with values from local storage
   useEffect(() => {
     // if ( ImageLib.logLogicFlow ) {
     //   console.log( "Top of First useEffect in View.tsx" );
     // }
-    setCurrentScoreValues( LocalStorageLib.getStoredScoreValues() );
+    ImageLib.setScoreValueObj( LocalStorageLib.getStoredScoreValues() );
     imageStringToDraw = LocalStorageLib.getStoredImageString();
     ImageLib.setGridSize( LocalStorageLib.getStoredGridSize() );
     if ( ImageLib.logLogicFlow ) {
-      // console.log( "First useEffect in View.tsx: currentScoreValues[0] = " + currentScoreValues[0] );
-      // console.log( "First useEffect in View.tsx: currentScoreValues[1] = " + currentScoreValues[1] );
-      // console.log( "First useEffect in View.tsx: currentScoreValues[2] = " + currentScoreValues[2] );
-      // console.log( "First useEffect in View.tsx: currentScoreValues[3] = " + currentScoreValues[3] );
-      console.log( "First useEffect in View.tsx: set the currentScoreValues, imageStringToDraw, and gridSize" );
+      // console.log( "First useEffect in View.tsx:\n" + ImageLib.scoreValueObj.toString() );
+      console.log( "First useEffect in View.tsx: set the scoreValueObj, imageStringToDraw, and gridSize" );
       // console.log( "Exiting the only useEffect in View.tsx" );
     }
   }, []);
@@ -114,10 +110,10 @@ function DFlexContainer() {
       <div className="row mt-2 d-flex justify-content-center">
         <h5>{createOrRefineMessage}</h5>
         <DFlexImageAndSliderValues
-          opacityValue={currentScoreValues[0] ?? ImageLib.initialScoreValue}
-          blueVsYellowValue={currentScoreValues[1] ?? ImageLib.initialScoreValue}
-          greenVsRedValue={currentScoreValues[2] ?? ImageLib.initialScoreValue}
-          bAndYVsGandRValue={currentScoreValues[3] ?? ImageLib.initialScoreValue} />
+          opacityValue={ImageLib.scoreValueObj.opacityValue ?? ImageLib.initialScoreValue}
+          blueVsYellowValue={ImageLib.scoreValueObj.blueVsYellowValue ?? ImageLib.initialScoreValue}
+          greenVsRedValue={ImageLib.scoreValueObj.greenVsRedValue ?? ImageLib.initialScoreValue}
+          bAndYVsGandRValue={ImageLib.scoreValueObj.bAndYVsGandRValue ?? ImageLib.initialScoreValue} />
       </div>
     </div>
   )
