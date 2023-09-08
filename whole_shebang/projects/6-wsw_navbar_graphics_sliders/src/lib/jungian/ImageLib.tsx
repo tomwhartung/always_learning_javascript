@@ -123,54 +123,34 @@ export interface JungianScoreValues {
 // Functions:
 // ----------
 //
-// drawNewImageString: Create a new totally random "groja-esque" grid of blue, green, red, and yellow squares
+// createFreshImageString: Create a new totally random "groja-esque" grid of blue, green, red, and yellow squares
 //   Starts with an empty imageCharArray and adds color letters one-by-one
 //   Returns the imageCharArray as a string
-export function drawNewImageString( context: CanvasRenderingContext2D, scoreValuesToDraw: JungianScoreValues ) {
+export function createFreshImageString( scoreValuesToDraw: JungianScoreValues ) {
   if ( logLogicFlow ) {
-    console.log( "Top of drawNewImageString() in ImageLib.tsx" );
+    console.log( "Top of createFreshImageString() in ImageLib.tsx" );
   }
 
-  const opacityPercent = valueToPct( scoreValuesToDraw.opacityValue );
-
-  drawUnderlyingCanvas( context );
-
-  let squareTopX = gridTopX;
-  let squareTopY = gridTopY;
   let colorLetter = "B";
   const imageCharArray: string[] = [];
 
   for ( let row=0; row < gridSize; row++ ) {
-    squareTopY = gridTopY + (row * squareSize);
     for ( let col=0; col < gridSize; col++ ){
       colorLetter = getRandomPrimaryColor( scoreValuesToDraw );
-      squareTopX = gridTopX + (col * squareSize);
-      if ( colorLetter == "B" ) {
-        context.fillStyle = "rgba(0, 0, 255, " + opacityPercent.toString() + ")";
-      } else if ( colorLetter == "G" ) {
-        context.fillStyle = "rgba(0, 255, 0, " + opacityPercent.toString() + ")";
-      } else if ( colorLetter == "R" ) {
-        context.fillStyle = "rgba(255, 0, 0, " + opacityPercent.toString() + ")";
-      } else if ( colorLetter == "Y" ) {
-        context.fillStyle = "rgba(255, 255, 0, " + opacityPercent.toString() + ")";
-      } else {
-        context.fillStyle = "rgb(255, 255, 255, " + opacityPercent.toString() + ")";
-      }
-      context.fillRect( squareTopX, squareTopY, squareSize, squareSize );
       imageCharArray.push( colorLetter );
     }
-    // if ( logLogicFlow ) {
-    //   console.log( "drawNewImageString() in ImageLib.tsx: imageCharArray.length = " + imageCharArray.length );
-    // }
+    if ( logLogicFlow ) {
+      console.log( "createFreshImageString() in ImageLib.tsx: imageCharArray.length = " + imageCharArray.length );
+    }
   }
 
-  const newImageString = imageCharArray.join('');
+  const freshImageString = imageCharArray.join('');
 
   if ( logLogicFlow ) {
-    console.log( "drawNewImageString(): Fresh Image's newImageString.length = " + newImageString.length );
-    console.log( "drawNewImageString() in ImageLib.tsx: Return()ing the newImageString" );
+    console.log( "createFreshImageString(): Fresh Image's freshImageString.length = " + freshImageString.length );
+    console.log( "createFreshImageString() in ImageLib.tsx: Return()ing the freshImageString" );
   }
-  return newImageString;
+  return freshImageString;
 }
 
 // drawStoredImageString: Add a "groja-esque" grid of blue, green, red, and yellow squares
