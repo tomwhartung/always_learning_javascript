@@ -6,69 +6,69 @@ import { ChangeEvent, useState, useEffect } from 'react';
 import { MDBRange } from 'mdb-react-ui-kit';
 
 import Canvas from '../lib/CanvasLib.tsx';
-import * as JungianLib from '../lib/JungianLib.tsx';
+import * as ImageLib from '../lib/jungian/ImageLib.tsx';
 import * as LocalStorageLib from '../lib/jungian/LocalStorageLib.tsx';
 import ScoreSliderCard from '../lib/jungian/ScoreSliderLib.tsx';
 import SquareSizeSlider from '../lib/jungian/SquareSizeSliderLib.tsx';
 
 // NOTE: Setting logLogicFlow to true for one page in effect sets it for all pages
-// JungianLib.setLogLogicFlow( false );    // un-comment when everything's ok
-JungianLib.setLogLogicFlow( true );     // un-comment when trying to track down issues
+// ImageLib.setLogLogicFlow( false );    // un-comment when everything's ok
+ImageLib.setLogLogicFlow( true );     // un-comment when trying to track down issues
 
 // These are the slider values we use when drawing a Fresh Image
-const scoreValuesToDraw: JungianLib.JungianScoreValues = {
-  opacityValue: JungianLib.initialScoreValue,
-  blueVsYellowValue: JungianLib.initialScoreValue,
-  greenVsRedValue: JungianLib.initialScoreValue,
-  bAndYVsGandRValue: JungianLib.initialScoreValue,
+const scoreValuesToDraw: ImageLib.JungianScoreValues = {
+  opacityValue: ImageLib.initialScoreValue,
+  blueVsYellowValue: ImageLib.initialScoreValue,
+  greenVsRedValue: ImageLib.initialScoreValue,
+  bAndYVsGandRValue: ImageLib.initialScoreValue,
 };
 
-let imageStringToDraw = JungianLib.defaultImageString;
+let imageStringToDraw = ImageLib.defaultImageString;
 let drawFreshImage = false;
 
 // draw: Add a "groja-esque" grid of blue, green, red, and yellow squares
 const draw = (context: CanvasRenderingContext2D) => {
-  if ( JungianLib.logLogicFlow ) {
+  if ( ImageLib.logLogicFlow ) {
     console.log( "Top of draw() in Create.tsx" );
   }
 
   if ( drawFreshImage ) {
-    if ( JungianLib.logLogicFlow ) {
-      console.log( "draw(): calling JungianLib.drawNewImageString to draw a Fresh Image" );
+    if ( ImageLib.logLogicFlow ) {
+      console.log( "draw(): calling ImageLib.drawNewImageString to draw a Fresh Image" );
     }
-    const newImageString = JungianLib.drawNewImageString( context, scoreValuesToDraw );
+    const newImageString = ImageLib.drawNewImageString( context, scoreValuesToDraw );
     imageStringToDraw = newImageString;
     LocalStorageLib.storeImageString( newImageString );
     console.log( "draw(): set drawFreshImage imageStringToDraw.length = " + imageStringToDraw.length );
     drawFreshImage = false;
-    if ( JungianLib.logLogicFlow ) {
+    if ( ImageLib.logLogicFlow ) {
       console.log( "draw(): set drawFreshImage = false & imageStringToDraw = newImageString" );
     }
   } else if ( imageStringToDraw.length === 0 ) {
-    if ( JungianLib.logLogicFlow ) {
+    if ( ImageLib.logLogicFlow ) {
       console.log( "draw(): drawFreshImage is false and imageStringToDraw is empty..." );
     }
   } else {
-    JungianLib.drawStoredImageString( context, imageStringToDraw, scoreValuesToDraw.opacityValue );
-    if ( JungianLib.logLogicFlow ) {
+    ImageLib.drawStoredImageString( context, imageStringToDraw, scoreValuesToDraw.opacityValue );
+    if ( ImageLib.logLogicFlow ) {
       console.log( "draw(): drew the imageStringToDraw" );
     }
   }
-  if ( JungianLib.logLogicFlow ) {
+  if ( ImageLib.logLogicFlow ) {
     console.log( "Exiting draw() in Create.tsx" );
   }
 };
 
 // FixedSizeImageAndCards: function component to display a jungian image
-function FixedSizeImageAndCards( props: JungianLib.JungianScoreValues ) {
-  if ( JungianLib.logLogicFlow ) {
+function FixedSizeImageAndCards( props: ImageLib.JungianScoreValues ) {
+  if ( ImageLib.logLogicFlow ) {
     console.log( "Top of FixedSizeImageAndCards() in Create.tsx" );
   }
 
-  const width = JungianLib.getCanvasWidth();
-  const height = JungianLib.getCanvasHeight();
+  const width = ImageLib.getCanvasWidth();
+  const height = ImageLib.getCanvasHeight();
 
-  if ( JungianLib.logLogicFlow ) {
+  if ( ImageLib.logLogicFlow ) {
     console.log( "return()ing from FixedSizeImageAndCards() in Create.tsx" );
   }
 
@@ -85,16 +85,16 @@ function FixedSizeImageAndCards( props: JungianLib.JungianScoreValues ) {
       </div>
       <div className="row mt-4 justify-content-center">
         <div className="col-md-3 card align-items-center">
-          {JungianLib.jungianScorePropNames[0]}: {props.opacityValue}
+          {ImageLib.jungianScorePropNames[0]}: {props.opacityValue}
         </div>
         <div className="col-md-3 card align-items-center">
-          {JungianLib.jungianScorePropNames[1]}: {props.blueVsYellowValue}
+          {ImageLib.jungianScorePropNames[1]}: {props.blueVsYellowValue}
         </div>
         <div className="col-md-3 card align-items-center">
-          {JungianLib.jungianScorePropNames[2]}: {props.greenVsRedValue}
+          {ImageLib.jungianScorePropNames[2]}: {props.greenVsRedValue}
         </div>
         <div className="col-md-3 card align-items-center">
-          {JungianLib.jungianScorePropNames[3]}: {props.bAndYVsGandRValue}
+          {ImageLib.jungianScorePropNames[3]}: {props.bAndYVsGandRValue}
         </div>
       </div>
     </>
@@ -103,22 +103,22 @@ function FixedSizeImageAndCards( props: JungianLib.JungianScoreValues ) {
 
 // FixedContainer: function component containing an MDB container
 function FixedContainer() {
-  if ( JungianLib.logLogicFlow ) {
+  if ( ImageLib.logLogicFlow ) {
     console.log( "Top of FixedContainer() in Create.tsx" );
   }
 
-  const [currentScoreValues, setCurrentScoreValues] = useState( JungianLib.invalidScoreValueArray );
-  const [currentSquareSize, setCurrentSquareSize] = useState( JungianLib.invalidSquareSize );
-  const [currentGridSize, setCurrentGridSize] = useState( JungianLib.invalidGridSize );
+  const [currentScoreValues, setCurrentScoreValues] = useState( ImageLib.invalidScoreValueArray );
+  const [currentSquareSize, setCurrentSquareSize] = useState( ImageLib.invalidSquareSize );
+  const [currentGridSize, setCurrentGridSize] = useState( ImageLib.invalidGridSize );
 
   // handleScoreValueChange: code to run when the user moves a score slider
   //   Update currentScoreValues to the new slider value and possibly draw a new image
   function handleScoreValueChange( event: ChangeEvent, col: number ) {
-    // if ( JungianLib.logLogicFlow ) {
+    // if ( ImageLib.logLogicFlow ) {
     //   console.log( "Top of handleScoreValueChange in FixedContainer in Create.tsx" );
     // }
     const scoreValue = (event.target as HTMLInputElement).value;
-    if ( JungianLib.logLogicFlow ) {
+    if ( ImageLib.logLogicFlow ) {
       console.log( "handleScoreValueChange: slider num " + col.toString() + " = " + scoreValue.toString() );
     }
     const nextScoreValues = currentScoreValues.slice();
@@ -128,7 +128,7 @@ function FixedContainer() {
     if ( 0 < col ) {
       drawFreshImage = true;
     }
-    if ( JungianLib.logLogicFlow ) {
+    if ( ImageLib.logLogicFlow ) {
       if ( 0 < col ) {
         console.log( "handleScoreValueChange: set drawFreshImage = true" );
       }
@@ -138,15 +138,15 @@ function FixedContainer() {
 
   // handleGridSizeChange: code to run when user moves the grid size slider
   function handleGridSizeChange( event: ChangeEvent<HTMLInputElement> ) {
-    // if ( JungianLib.logLogicFlow ) {
+    // if ( ImageLib.logLogicFlow ) {
     //   console.log( "Top of handleGridSizeChange in Create.tsx" );
     //   // console.log( "handleGridSizeChange: event.target.value = " + event.target.value );
     // }
     const newGridSize = parseInt( event.target.value );
     setCurrentGridSize( newGridSize );
-    JungianLib.setGridSize( newGridSize );
+    ImageLib.setGridSize( newGridSize );
     drawFreshImage = true;
-    if ( JungianLib.logLogicFlow ) {
+    if ( ImageLib.logLogicFlow ) {
       console.log( "handleGridSizeChange: currentGridSize = " + currentGridSize );
       // console.log( "Exiting handleGridSizeChange in Create.tsx" );
     }
@@ -154,14 +154,14 @@ function FixedContainer() {
 
   // handleSquareSizeChange: code to run when the user moves the square size slider
   function handleSquareSizeChange( event: ChangeEvent<HTMLInputElement> ) {
-    // if ( JungianLib.logLogicFlow ) {
+    // if ( ImageLib.logLogicFlow ) {
     //   console.log( "Top of handleSquareSizeChange in Create.tsx" );
     //   // console.log( "handleSquareSizeChange: event.target.value = " + event.target.value );
     // }
     const newSquareSize = parseInt( event.target.value );
     setCurrentSquareSize( newSquareSize );
-    JungianLib.setSquareSize( newSquareSize );
-    if ( JungianLib.logLogicFlow ) {
+    ImageLib.setSquareSize( newSquareSize );
+    if ( ImageLib.logLogicFlow ) {
       console.log( "handleSquareSizeChange: currentSquareSize = " + currentSquareSize );
       // console.log( "Exiting handleSquareSizeChange in Create.tsx" );
     }
@@ -171,7 +171,7 @@ function FixedContainer() {
   //   Fetches values from local storage, initializing them if they're not set
   //   Sets the currentScoreValues state variable to values from local storage [or default values]
   useEffect( () => {
-    // if ( JungianLib.logLogicFlow ) {
+    // if ( ImageLib.logLogicFlow ) {
     //   console.log( "Top of first useEffect in FixedContainer in Create.tsx" );
     // }
     const lsScoreValues = LocalStorageLib.getStoredScoreValues();
@@ -180,31 +180,31 @@ function FixedContainer() {
     scoreValuesToDraw.blueVsYellowValue = lsScoreValues[1];
     scoreValuesToDraw.greenVsRedValue = lsScoreValues[2];
     scoreValuesToDraw.bAndYVsGandRValue = lsScoreValues[3];
-    if ( JungianLib.logLogicFlow ) {
+    if ( ImageLib.logLogicFlow ) {
       // console.log( "First useEffect: scoreValuesToDraw.toString() = " + scoreValuesToDraw.toString() );
       console.log( "First useEffect in Create.tsx: set scoreValuesToDraw and currentScoreValues" );
     }
     const imageString = LocalStorageLib.getStoredImageString();
-    if ( imageString.length > JungianLib.gridSize ) {
+    if ( imageString.length > ImageLib.gridSize ) {
       imageStringToDraw = imageString;
     } else {
       drawFreshImage = true;
     }
-    if ( JungianLib.logLogicFlow ) {
+    if ( ImageLib.logLogicFlow ) {
       console.log( "First useEffect in Create.tsx: imageString.length = " + imageString.length );
-      if ( imageString.length > JungianLib.gridSize ) {
+      if ( imageString.length > ImageLib.gridSize ) {
         console.log( "First useEffect: set the imageStringToDraw with value from local storage" );
       } else {
         console.log( "First useEffect: DID NOT SET THE imageStringToDraw BECAUSE IT'S TOO SHORT" );
         console.log( "First useEffect: set drawFreshImage = true instead" );
       }
     }
-    JungianLib.setSquareSize( LocalStorageLib.getStoredSquareSize() );
+    ImageLib.setSquareSize( LocalStorageLib.getStoredSquareSize() );
     const gridSize = LocalStorageLib.getStoredGridSize();
-    JungianLib.setGridSize( gridSize );
+    ImageLib.setGridSize( gridSize );
     setCurrentGridSize( gridSize );
-    if ( JungianLib.logLogicFlow ) {
-      console.log( "First useEffect in Create.tsx: set squareSize and gridSize in JungianLib" );
+    if ( ImageLib.logLogicFlow ) {
+      console.log( "First useEffect in Create.tsx: set squareSize and gridSize in ImageLib" );
       // console.log( "Exiting first useEffect in FixedContainer in Create.tsx" );
     }
     // NOTE! DO NOT DELETE THE EMPTY DEPENDENCY ARRAY!!  DOING SO CAUSES AN INFINITE LOOP!!!
@@ -213,14 +213,14 @@ function FixedContainer() {
   // useEffect for currentScoreValues: runs when component is mounted AND when the user moves a score value slider
   //   Stores the new slider values and image string in local storage
   useEffect( () => {
-    if ( JungianLib.logLogicFlow ) {
+    if ( ImageLib.logLogicFlow ) {
       console.log( "Top of useEffect for currentScoreValues in FixedContainer in Create.tsx" );
       // console.log( "useEffect for currentScoreValues: currentScoreValues.toString() = " + currentScoreValues.toString() );
     }
     const storedScoreValuesOk = LocalStorageLib.storeScoreValues( currentScoreValues );
     let storedImageStringOk = false;
     if ( storedScoreValuesOk ) {
-      if ( JungianLib.logLogicFlow ) {
+      if ( ImageLib.logLogicFlow ) {
         console.log( "useEffect for currentScoreValues in Create.tsx: saved currentScoreValues as scoreValues ok" );
       }
       storedImageStringOk = LocalStorageLib.storeImageString( imageStringToDraw );
@@ -228,7 +228,7 @@ function FixedContainer() {
         drawFreshImage = true;
       }
     }
-    if ( JungianLib.logLogicFlow ) {
+    if ( ImageLib.logLogicFlow ) {
       if ( storedScoreValuesOk ) {
         console.log( "useEffect for currentScoreValues in Create.tsx: saved currentScoreValues as scoreValues ok" );
         if ( storedImageStringOk ) {
@@ -248,11 +248,11 @@ function FixedContainer() {
   // useEffect for currentGridSize: runs when component is mounted AND when the user changes the gridSize
   //   Stores the new, updated gridSize in local storage
   useEffect( () => {
-    // if ( JungianLib.logLogicFlow ) {
+    // if ( ImageLib.logLogicFlow ) {
     //   console.log( "Top of useEffect for currentGridSize in Create.tsx" );
     // }
     const success = LocalStorageLib.storeGridSize( currentGridSize );
-    if ( JungianLib.logLogicFlow ) {
+    if ( ImageLib.logLogicFlow ) {
       console.log( "useEffect for currentGridSize in Create.tsx: currentGridSize = " + currentGridSize );
       if ( success ) {
         console.log( "useEffect for currentGridSize: saved currentGridSize as gridSize ok" );
@@ -266,11 +266,11 @@ function FixedContainer() {
   // useEffect for currentSquareSize: runs when component is mounted AND when the user changes the squareSize
   //   Stores the new, updated squareSize in local storage
   useEffect( () => {
-    // if ( JungianLib.logLogicFlow ) {
+    // if ( ImageLib.logLogicFlow ) {
     //   console.log( "Top of useEffect for currentSquareSize in Create.tsx" );
     // }
     const success = LocalStorageLib.storeSquareSize( currentSquareSize );
-    if ( JungianLib.logLogicFlow ) {
+    if ( ImageLib.logLogicFlow ) {
       console.log( "useEffect for currentSquareSize in Create.tsx: currentSquareSize = " + currentSquareSize );
       if ( success ) {
         console.log( "useEffect for currentSquareSize: saved currentSquareSize as squareSize ok" );
@@ -288,22 +288,22 @@ function FixedContainer() {
 
   // Construct markup for the ScoreSliderCards
   const sliderNumberCols = [];
-  for ( let col = 0; col < JungianLib.jungianScoreLabels.length; col++ ) {
+  for ( let col = 0; col < ImageLib.jungianScoreLabels.length; col++ ) {
     sliderNumberCols.push(
       <div key={col} className="col-md-3">
         <ScoreSliderCard
          sliderNo={col}
-         sliderVal={currentScoreValues[col] ?? JungianLib.initialScoreValue}
+         sliderVal={currentScoreValues[col] ?? ImageLib.initialScoreValue}
          onSliderChange={ (event) => handleScoreValueChange(event,col) }
         />
       </div>
     );
   }
 
-  const gridSizeLabel = "Grid Size: " + JungianLib.gridSize + " Squares per Side";
-  const squareSizeLabel = "Square Size: " + JungianLib.squareSize + " Pixels per Square";
+  const gridSizeLabel = "Grid Size: " + ImageLib.gridSize + " Squares per Side";
+  const squareSizeLabel = "Square Size: " + ImageLib.squareSize + " Pixels per Square";
 
-  if ( JungianLib.logLogicFlow ) {
+  if ( ImageLib.logLogicFlow ) {
     console.log( "return()ing from FixedContainer() in Create.tsx" );
   }
 
@@ -316,9 +316,9 @@ function FixedContainer() {
       <div className="row mt-4">
         <div className="col-sm-6 card align-items-center">
           <MDBRange
-            defaultValue={JungianLib.gridSize}
-            min={JungianLib.minGridSize}
-            max={JungianLib.maxGridSize}
+            defaultValue={ImageLib.gridSize}
+            min={ImageLib.minGridSize}
+            max={ImageLib.maxGridSize}
             id='grid-size'
             label={gridSizeLabel}
             onChange={handleGridSizeChange}
@@ -333,10 +333,10 @@ function FixedContainer() {
       </div>
       <div className="row mt-4">
         <FixedSizeImageAndCards
-          opacityValue={currentScoreValues[0] ?? JungianLib.initialScoreValue}
-          blueVsYellowValue={currentScoreValues[1] ?? JungianLib.initialScoreValue}
-          greenVsRedValue={currentScoreValues[2] ?? JungianLib.initialScoreValue}
-          bAndYVsGandRValue={currentScoreValues[3] ?? JungianLib.initialScoreValue} />
+          opacityValue={currentScoreValues[0] ?? ImageLib.initialScoreValue}
+          blueVsYellowValue={currentScoreValues[1] ?? ImageLib.initialScoreValue}
+          greenVsRedValue={currentScoreValues[2] ?? ImageLib.initialScoreValue}
+          bAndYVsGandRValue={currentScoreValues[3] ?? ImageLib.initialScoreValue} />
       </div>
     </div>
   )
@@ -344,7 +344,7 @@ function FixedContainer() {
 
 // Create: default "mainline" component for this menu option
 function Create() {
-  if ( JungianLib.logLogicFlow ) {
+  if ( ImageLib.logLogicFlow ) {
     console.log( "Top of Create() in Create.tsx: return()ing from Create()" );
   }
 
