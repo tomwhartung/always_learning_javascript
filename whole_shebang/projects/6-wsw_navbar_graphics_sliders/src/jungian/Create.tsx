@@ -15,14 +15,6 @@ import SquareSizeSlider from '../lib/jungian/SquareSizeSliderLib.tsx';
 // ImageLib.setLogLogicFlow( false );    // un-comment when everything's ok
 ImageLib.setLogLogicFlow( true );     // un-comment when trying to track down issues
 
-// These are the slider values we use when drawing a Fresh Image
-const scoreValuesToDraw: ImageLib.JungianScoreValues = {
-  opacityValue: ImageLib.initialScoreValue,
-  blueVsYellowValue: ImageLib.initialScoreValue,
-  greenVsRedValue: ImageLib.initialScoreValue,
-  bAndYVsGandRValue: ImageLib.initialScoreValue,
-};
-
 let imageStringToDraw = ImageLib.defaultImageString;
 let drawFreshImage = false;
 
@@ -36,21 +28,21 @@ const draw = (context: CanvasRenderingContext2D) => {
     if ( ImageLib.logLogicFlow ) {
       console.log( "draw(): calling ImageLib.createFreshImageString to create a Fresh Image" );
     }
-    const newImageString = ImageLib.createFreshImageString( scoreValuesToDraw );
-    imageStringToDraw = newImageString;
-    LocalStorageLib.storeImageString( newImageString );
+    const freshImageString = ImageLib.createFreshImageString();
+    imageStringToDraw = freshImageString;
+    LocalStorageLib.storeImageString( freshImageString );
     console.log( "draw(): set drawFreshImage imageStringToDraw.length = " + imageStringToDraw.length );
     drawFreshImage = false;
-    ImageLib.drawStoredImageString( context, imageStringToDraw, scoreValuesToDraw.opacityValue );
+    ImageLib.drawStoredImageString( context, imageStringToDraw, ImageLib.scoreValueObj.opacityValue );
     if ( ImageLib.logLogicFlow ) {
-      console.log( "draw(): set drawFreshImage = false & imageStringToDraw = newImageString" );
+      console.log( "draw(): set drawFreshImage = false & imageStringToDraw = freshImageString" );
     }
   } else if ( imageStringToDraw.length === 0 ) {
     if ( ImageLib.logLogicFlow ) {
       console.log( "draw(): drawFreshImage is false and imageStringToDraw is empty..." );
     }
   } else {
-    ImageLib.drawStoredImageString( context, imageStringToDraw, scoreValuesToDraw.opacityValue );
+    ImageLib.drawStoredImageString( context, imageStringToDraw, ImageLib.scoreValueObj.opacityValue );
     if ( ImageLib.logLogicFlow ) {
       console.log( "draw(): drew the imageStringToDraw" );
     }
@@ -175,15 +167,12 @@ function FixedContainer() {
     // if ( ImageLib.logLogicFlow ) {
     //   console.log( "Top of first useEffect in FixedContainer in Create.tsx" );
     // }
-    const lsScoreValues = LocalStorageLib.getStoredScoreValues();
-    setCurrentScoreValues( lsScoreValues );
-    scoreValuesToDraw.opacityValue = lsScoreValues[0];
-    scoreValuesToDraw.blueVsYellowValue = lsScoreValues[1];
-    scoreValuesToDraw.greenVsRedValue = lsScoreValues[2];
-    scoreValuesToDraw.bAndYVsGandRValue = lsScoreValues[3];
+    const storedScoreValues = LocalStorageLib.getStoredScoreValues();
+    setCurrentScoreValues( storedScoreValues );
+    ImageLib.setScoreValueObj( storedScoreValues );
     if ( ImageLib.logLogicFlow ) {
-      // console.log( "First useEffect: scoreValuesToDraw.toString() = " + scoreValuesToDraw.toString() );
-      console.log( "First useEffect in Create.tsx: set scoreValuesToDraw and currentScoreValues" );
+      console.log( "First useEffect: ImageLib.scoreValueObj.toString() = " + ImageLib.scoreValueObj.toString() );
+      console.log( "First useEffect in Create.tsx: set currentScoreValues and ImageLib.scoreValueObj " );
     }
     const imageString = LocalStorageLib.getStoredImageString();
     if ( imageString.length > ImageLib.gridSize ) {
@@ -282,10 +271,7 @@ function FixedContainer() {
     }
   }, [currentSquareSize] );
 
-  scoreValuesToDraw.opacityValue = currentScoreValues[0];
-  scoreValuesToDraw.blueVsYellowValue = currentScoreValues[1];
-  scoreValuesToDraw.greenVsRedValue = currentScoreValues[2];
-  scoreValuesToDraw.bAndYVsGandRValue = currentScoreValues[3];
+  ImageLib.setScoreValueObj( currentScoreValues );
 
   // Construct markup for the ScoreSliderCards
   const sliderNumberCols = [];
