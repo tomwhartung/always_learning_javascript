@@ -54,6 +54,14 @@ export const scoreValueObj = {
   blueVsYellowValue: initialScoreValue,
   greenVsRedValue: initialScoreValue,
   bAndYVsGandRValue: initialScoreValue,
+  toString: function() {
+    return(
+      "ImageLib.scoreValueObj.opacityValue = " + this.opacityValue + "\n" +
+      "ImageLib.scoreValueObj.blueVsYellowValue = " + this.blueVsYellowValue + "\n" +
+      "ImageLib.scoreValueObj.greenVsRedValue = " + this.greenVsRedValue + "\n" +
+      "ImageLib.scoreValueObj.bAndYVsGandRValue = " + this.bAndYVsGandRValue
+    );
+  },
 }
 export function setScoreValueObj( newScoreValueArray: number[] ) {
   scoreValueObj.opacityValue = newScoreValueArray[0];
