@@ -4,7 +4,7 @@
 import { ChangeEvent } from 'react';
 import { MDBRange } from 'mdb-react-ui-kit';
 
-import * as JungianLib from '../JungianLib.tsx';
+import * as ImageLib from './ImageLib.tsx';
 
 // SquareSizeSliderProps: props passed to SquareSizeSlider
 export interface SquareSizeSliderProps {
@@ -16,9 +16,9 @@ export interface SquareSizeSliderProps {
 export function SquareSizeSlider( props: SquareSizeSliderProps ) {
   return (
     <MDBRange
-      defaultValue={JungianLib.squareSize}
-      min={JungianLib.minSquareSize}
-      max={JungianLib.maxSquareSize}
+      defaultValue={ImageLib.squareSize}
+      min={ImageLib.minSquareSize}
+      max={ImageLib.maxSquareSize}
       id='square-size'
       label={props.squareSizeLabel}
       onChange={props.onSquareSizeChange}
