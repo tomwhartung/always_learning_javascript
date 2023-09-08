@@ -1,5 +1,5 @@
 //
-// JungianLib.tsx: types and constants used by the Jungian quiz type
+// ImageLib.tsx: types and constants used by the Jungian quiz type
 //
 
 // Constant and Variable Values:
@@ -128,7 +128,7 @@ export interface JungianScoreValues {
 //   Returns the imageCharArray as a string
 export function drawNewImageString( context: CanvasRenderingContext2D, scoreValuesToDraw: JungianScoreValues ) {
   if ( logLogicFlow ) {
-    console.log( "Top of drawNewImageString() in JungianLib.tsx" );
+    console.log( "Top of drawNewImageString() in ImageLib.tsx" );
   }
 
   const opacityPercent = valueToPct( scoreValuesToDraw.opacityValue );
@@ -160,7 +160,7 @@ export function drawNewImageString( context: CanvasRenderingContext2D, scoreValu
       imageCharArray.push( colorLetter );
     }
     // if ( logLogicFlow ) {
-    //   console.log( "drawNewImageString() in JungianLib.tsx: imageCharArray.length = " + imageCharArray.length );
+    //   console.log( "drawNewImageString() in ImageLib.tsx: imageCharArray.length = " + imageCharArray.length );
     // }
   }
 
@@ -168,7 +168,7 @@ export function drawNewImageString( context: CanvasRenderingContext2D, scoreValu
 
   if ( logLogicFlow ) {
     console.log( "drawNewImageString(): Fresh Image's newImageString.length = " + newImageString.length );
-    console.log( "drawNewImageString() in JungianLib.tsx: Return()ing the newImageString" );
+    console.log( "drawNewImageString() in ImageLib.tsx: Return()ing the newImageString" );
   }
   return newImageString;
 }
@@ -178,7 +178,7 @@ export function drawNewImageString( context: CanvasRenderingContext2D, scoreValu
 //   Returns absolutely nothing
 export function drawStoredImageString( context: CanvasRenderingContext2D, imageStringToDraw: string, opacityValue: number ) {
   if ( logLogicFlow ) {
-    console.log( "Top of drawStoredImageString() in JungianLib.tsx" );
+    console.log( "Top of drawStoredImageString() in ImageLib.tsx" );
   }
 
   drawUnderlyingCanvas( context );
@@ -189,21 +189,21 @@ export function drawStoredImageString( context: CanvasRenderingContext2D, imageS
   const opacityPercent = valueToPct( opacityValue );
 
   if ( logLogicFlow ) {
-    console.log( "drawStoredImageString() in JungianLib.tsx: imageStringToDraw.length = '" + imageStringToDraw.length + "'" );
+    console.log( "drawStoredImageString() in ImageLib.tsx: imageStringToDraw.length = '" + imageStringToDraw.length + "'" );
   }
 
   if ( imageStringToDraw.length > 0 ) {
     const imageCharArray = imageStringToDraw.split( "" );
     let imgStrIdx = 0;
     if ( logLogicFlow ) {
-      console.log( "drawStoredImageString() in JungianLib.tsx: starting the for loop" );
+      console.log( "drawStoredImageString() in ImageLib.tsx: starting the for loop" );
     }
     for ( let row=0; row < gridSize; row++ ) {
       squareTopY = gridTopY + (row * squareSize);
       for ( let col=0; col < gridSize; col++ ){
         colorLetter = imageCharArray[imgStrIdx++];
-        // console.log( "for loop in drawStoredImageString() in JungianLib.tsx: imgStrIdx = " + imgStrIdx );
-        // console.log( "for loop in drawStoredImageString() in JungianLib.tsx: colorLetter = " + colorLetter );
+        // console.log( "for loop in drawStoredImageString() in ImageLib.tsx: imgStrIdx = " + imgStrIdx );
+        // console.log( "for loop in drawStoredImageString() in ImageLib.tsx: colorLetter = " + colorLetter );
         squareTopX = gridTopX + (col * squareSize);
         if ( colorLetter == "B" ) {
           context.fillStyle = "rgba(0, 0, 255, " + opacityPercent.toString() + ")";
@@ -221,11 +221,11 @@ export function drawStoredImageString( context: CanvasRenderingContext2D, imageS
     }
   } else {
     if ( logLogicFlow ) {
-      console.log( "drawStoredImageString() in JungianLib.tsx: imageStringToDraw is empty, hope that's ok...!" );
+      console.log( "drawStoredImageString() in ImageLib.tsx: imageStringToDraw is empty, hope that's ok...!" );
     }
   }
   if ( logLogicFlow ) {
-    console.log( "Exiting drawStoredImageString() in JungianLib.tsx" );
+    console.log( "Exiting drawStoredImageString() in ImageLib.tsx" );
   }
 }
 
@@ -238,7 +238,7 @@ function valueToPct( value: number ) : number {
 // getRandomPrimaryColor: return a random single character, either "B", "G", "R", or "Y"
 function getRandomPrimaryColor( scoreValues: JungianScoreValues ) {
   // if ( logLogicFlow ) {
-  //   console.log( "getRandomPrimaryColor() in JungianLib.tsx: Top of getRandomPrimaryColor" );
+  //   console.log( "getRandomPrimaryColor() in ImageLib.tsx: Top of getRandomPrimaryColor" );
   // }
   const blueVsYellowPercent = valueToPct( scoreValues.blueVsYellowValue );
   const greenVsRedPercent = valueToPct( scoreValues.greenVsRedValue );
