@@ -4,7 +4,7 @@
 import { ChangeEvent } from 'react';
 import { MDBRange } from 'mdb-react-ui-kit';
 
-import * as JungianLib from '../JungianLib.tsx';
+import * as ImageLib from './ImageLib.tsx';
 
 // ScoreSliderProps: props passed to ScoreSliderCard and ScoreSlider components
 interface ScoreSliderProps {
@@ -31,17 +31,17 @@ function ScoreSlider( props: ScoreSliderProps ) {
   const sliderOppositeValue = 100 - props.sliderVal;
   const sliderId = "myslider-" + props.sliderNo.toString();
   let sliderLabel = sliderOppositeValue.toString() + "% " +
-                    JungianLib.jungianScoreLabels[props.sliderNo] + ": " +
+                    ImageLib.jungianScoreLabels[props.sliderNo] + ": " +
                     props.sliderVal.toString() + "%";
 
   if ( props.sliderNo == 0 ) {
-    sliderLabel = JungianLib.jungianScoreLabels[props.sliderNo] + ": " +
+    sliderLabel = ImageLib.jungianScoreLabels[props.sliderNo] + ": " +
                   props.sliderVal.toString();
   }
 
-  let scoreValueForTag = JungianLib.initialScoreValue;
+  let scoreValueForTag = ImageLib.initialScoreValue;
 
-  if ( JungianLib.minScoreValue <= props.sliderVal && props.sliderVal <= JungianLib.minScoreValue ) {
+  if ( ImageLib.minScoreValue <= props.sliderVal && props.sliderVal <= ImageLib.minScoreValue ) {
      scoreValueForTag = props.sliderVal;
   }
 
