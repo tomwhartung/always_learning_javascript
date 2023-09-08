@@ -5,33 +5,33 @@ import '../App.css'
 import { useEffect, useState } from 'react';
 
 import Canvas from '../lib/CanvasLib.tsx';
-import * as JungianLib from '../lib/JungianLib.tsx';
+import * as ImageLib from '../lib/jungian/ImageLib.tsx';
 import * as LocalStorageLib from '../lib/jungian/LocalStorageLib.tsx';
 
 // NOTE: Setting logLogicFlow to true for one page in effect sets it for all pages
-// JungianLib.setLogLogicFlow( false );    // un-comment when everything's ok
-JungianLib.setLogLogicFlow( true );     // un-comment when trying to track down issues
+// ImageLib.setLogLogicFlow( false );    // un-comment when everything's ok
+ImageLib.setLogLogicFlow( true );     // un-comment when trying to track down issues
 
 let imageStringToDraw = "";
-let opacityValue = JungianLib.initialScoreValue;
+let opacityValue = ImageLib.initialScoreValue;
 
 // draw: draw the grid of blue, green, red, and yellow squares defined in imageStringToDraw
 const draw = (context: CanvasRenderingContext2D) => {
-  JungianLib.drawStoredImageString( context, imageStringToDraw, opacityValue );
+  ImageLib.drawStoredImageString( context, imageStringToDraw, opacityValue );
 };
 
 // DFlexImageAndSliderValues: function component to display a jungian image
-function DFlexImageAndSliderValues( props:JungianLib.JungianScoreValues ) {
-  if ( JungianLib.logLogicFlow ) {
+function DFlexImageAndSliderValues( props:ImageLib.JungianScoreValues ) {
+  if ( ImageLib.logLogicFlow ) {
     console.log( "Top of DFlexImageAndSliderValues() in View.tsx" );
   }
 
-  const width = JungianLib.getCanvasWidth();
-  const height = JungianLib.getCanvasHeight();
+  const width = ImageLib.getCanvasWidth();
+  const height = ImageLib.getCanvasHeight();
 
   opacityValue = props.opacityValue;
 
-  if ( JungianLib.logLogicFlow ) {
+  if ( ImageLib.logLogicFlow ) {
     console.log( "Return()ing from DFlexImageAndSliderValues() in View.tsx" );
   }
 
@@ -50,21 +50,21 @@ function DFlexImageAndSliderValues( props:JungianLib.JungianScoreValues ) {
       </div>
       <div className="row mt-4 justify-content-center">
         <div className="col-md-3 card align-items-center">
-          {JungianLib.jungianScorePropNames[0]}: {props.opacityValue}
+          {ImageLib.jungianScorePropNames[0]}: {props.opacityValue}
         </div>
         <div className="col-md-3 card align-items-center">
-          {JungianLib.jungianScorePropNames[1]}: {props.blueVsYellowValue}
+          {ImageLib.jungianScorePropNames[1]}: {props.blueVsYellowValue}
         </div>
         <div className="col-md-3 card align-items-center">
-          {JungianLib.jungianScorePropNames[2]}: {props.greenVsRedValue}
+          {ImageLib.jungianScorePropNames[2]}: {props.greenVsRedValue}
         </div>
         <div className="col-md-3 card align-items-center">
-          {JungianLib.jungianScorePropNames[3]}: {props.bAndYVsGandRValue}
+          {ImageLib.jungianScorePropNames[3]}: {props.bAndYVsGandRValue}
         </div>
       </div>
       <div className="row d-flex mt-1">
         <div className="col-sm-12 card align-items-center">
-          Grid Size: {JungianLib.gridSize} Squares per Side
+          Grid Size: {ImageLib.gridSize} Squares per Side
         </div>
       </div>
     </>
@@ -73,21 +73,21 @@ function DFlexImageAndSliderValues( props:JungianLib.JungianScoreValues ) {
 
 // DFlexContainer: function component containing a "d-flex" MDB container
 function DFlexContainer() {
-  if ( JungianLib.logLogicFlow ) {
+  if ( ImageLib.logLogicFlow ) {
     console.log( "Top of DFlexContainer() in View.tsx" );
   }
 
-  const [currentScoreValues, setCurrentScoreValues] = useState(JungianLib.invalidScoreValueArray);
+  const [currentScoreValues, setCurrentScoreValues] = useState(ImageLib.invalidScoreValueArray);
 
   // First useEffect: set currentScoreValues, imageStringToDraw, and gridSize with values from local storage
   useEffect(() => {
-    // if ( JungianLib.logLogicFlow ) {
+    // if ( ImageLib.logLogicFlow ) {
     //   console.log( "Top of First useEffect in View.tsx" );
     // }
     setCurrentScoreValues( LocalStorageLib.getStoredScoreValues() );
     imageStringToDraw = LocalStorageLib.getStoredImageString();
-    JungianLib.setGridSize( LocalStorageLib.getStoredGridSize() );
-    if ( JungianLib.logLogicFlow ) {
+    ImageLib.setGridSize( LocalStorageLib.getStoredGridSize() );
+    if ( ImageLib.logLogicFlow ) {
       // console.log( "First useEffect in View.tsx: currentScoreValues[0] = " + currentScoreValues[0] );
       // console.log( "First useEffect in View.tsx: currentScoreValues[1] = " + currentScoreValues[1] );
       // console.log( "First useEffect in View.tsx: currentScoreValues[2] = " + currentScoreValues[2] );
@@ -105,7 +105,7 @@ function DFlexContainer() {
     createOrRefineMessage = "You can now use the Refine option to refine your image.";
   }
 
-  if ( JungianLib.logLogicFlow ) {
+  if ( ImageLib.logLogicFlow ) {
     console.log( "Return()ing from DFlexContainer() in View.tsx" );
   }
 
@@ -114,10 +114,10 @@ function DFlexContainer() {
       <div className="row mt-2 d-flex justify-content-center">
         <h5>{createOrRefineMessage}</h5>
         <DFlexImageAndSliderValues
-          opacityValue={currentScoreValues[0] ?? JungianLib.initialScoreValue}
-          blueVsYellowValue={currentScoreValues[1] ?? JungianLib.initialScoreValue}
-          greenVsRedValue={currentScoreValues[2] ?? JungianLib.initialScoreValue}
-          bAndYVsGandRValue={currentScoreValues[3] ?? JungianLib.initialScoreValue} />
+          opacityValue={currentScoreValues[0] ?? ImageLib.initialScoreValue}
+          blueVsYellowValue={currentScoreValues[1] ?? ImageLib.initialScoreValue}
+          greenVsRedValue={currentScoreValues[2] ?? ImageLib.initialScoreValue}
+          bAndYVsGandRValue={currentScoreValues[3] ?? ImageLib.initialScoreValue} />
       </div>
     </div>
   )
@@ -125,7 +125,7 @@ function DFlexContainer() {
 
 // View: default "mainline" component for this menu option
 function View() {
-  if ( JungianLib.logLogicFlow ) {
+  if ( ImageLib.logLogicFlow ) {
     console.log( "Top of View() in View.tsx: return()ing from View()" );
   }
 
