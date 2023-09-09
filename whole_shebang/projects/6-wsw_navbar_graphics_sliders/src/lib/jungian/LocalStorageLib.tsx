@@ -5,11 +5,11 @@
 import * as ImageLib from './ImageLib.tsx';
 
 //
-// storeScoreValues: sets the scoreValues in local storage to the specified values
+// storeScoreValueArr: sets the array of scoreValues in local storage to the specified values
 //   returns true if successful else false if the newImageString is too short
-export function storeScoreValues( newScoreValues: number[] ): boolean {
+export function storeScoreValueArr( newScoreValues: number[] ): boolean {
   // if ( ImageLib.logLogicFlow ) {
-  //   console.log( "Top of storeScoreValues() in lib/jungian/LocalStorageLib.tsx" );
+  //   console.log( "Top of storeScoreValueArr() in lib/jungian/LocalStorageLib.tsx" );
   // }
 
   let allValuesOk = true;
@@ -29,21 +29,21 @@ export function storeScoreValues( newScoreValues: number[] ): boolean {
   }
 
   if ( ImageLib.logLogicFlow ) {
-    console.log( "storeScoreValues(): newScoreValues.toString() = " + newScoreValues.toString() );
+    console.log( "storeScoreValueArr(): newScoreValues.toString() = " + newScoreValues.toString() );
     if ( allValuesOk ) {
-      console.log( "storeScoreValues(): stored newScoreValues ok" );
+      console.log( "storeScoreValueArr(): stored newScoreValues ok" );
     } else {
-      console.log( "storeScoreValues(): NOT STORING newScoreValues BECAUSE IT HAS AN INVALID VALUE" );
+      console.log( "storeScoreValueArr(): NOT STORING newScoreValues BECAUSE IT HAS AN INVALID VALUE" );
     }
-    // console.log( "Return()ing " + allValuesOk + " from storeScoreValues() in lib/jungian/LocalStorageLib.tsx" );
+    // console.log( "Return()ing " + allValuesOk + " from storeScoreValueArr() in lib/jungian/LocalStorageLib.tsx" );
   }
 
   return allValuesOk;
 }
-// getStoredScoreValues: returns the current scoreValues from local storage
-export function getStoredScoreValues(): number[] {
+// getStoredScoreValueArr: returns an array of the current scoreValues from local storage
+export function getStoredScoreValueArr(): number[] {
   if ( ImageLib.logLogicFlow ) {
-    console.log( "Top of getStoredScoreValues() in lib/jungian/LocalStorageLib.tsx" );
+    console.log( "Top of getStoredScoreValueArr() in lib/jungian/LocalStorageLib.tsx" );
   }
 
   let scoreValues = ImageLib.initialScoreValueArray;
@@ -55,13 +55,13 @@ export function getStoredScoreValues(): number[] {
 
   if ( ImageLib.logLogicFlow ) {
     if ( jungianItem ) {
-      // console.log( "getStoredScoreValues in lib/jungian/LocalStorageLib.tsx: found the 'jungian' item" );
-      console.log( "getStoredScoreValues: found scoreValues.toString() = " + scoreValues.toString() );
+      // console.log( "getStoredScoreValueArr in lib/jungian/LocalStorageLib.tsx: found the 'jungian' item" );
+      console.log( "getStoredScoreValueArr: found scoreValues.toString() = " + scoreValues.toString() );
     } else {
-      console.log( "getStoredScoreValues in lib/jungian/LocalStorageLib.tsx: 'jungian' ITEM NOT FOUND IN localStorage" );
-      console.log( "getStoredScoreValues: returning ImageLib.initialScoreValueArray" );
+      console.log( "getStoredScoreValueArr in lib/jungian/LocalStorageLib.tsx: 'jungian' ITEM NOT FOUND IN localStorage" );
+      console.log( "getStoredScoreValueArr: returning ImageLib.initialScoreValueArray" );
     }
-    console.log( "Return()ing '" + scoreValues.toString() + "' from getStoredScoreValues() in lib/jungian/LocalStorageLib.tsx" );
+    console.log( "Return()ing '" + scoreValues.toString() + "' from getStoredScoreValueArr() in lib/jungian/LocalStorageLib.tsx" );
   }
 
   return scoreValues;
