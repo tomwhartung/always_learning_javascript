@@ -84,7 +84,7 @@ function DFlexContainer() {
     //   console.log( "Top of First useEffect in View.tsx" );
     // }
     ImageLib.setScoreValueObj( LocalStorageLib.getStoredScoreValueArr() );
-    imageStringToDraw = LocalStorageLib.getStoredImageString();
+    imageStringToDraw = LocalStorageLib.getStoredImageStr();
     ImageLib.setGridSize( LocalStorageLib.getStoredGridSize() );
     if ( ImageLib.logLogicFlow ) {
       // console.log( "First useEffect in View.tsx:\n" + ImageLib.scoreValueObj.toString() );
