@@ -177,7 +177,7 @@ function FixedContainer() {
   const defaultStatusMessage = "Click on a square to change its color to Blue.";
   const defaultColorIndex = 0;
 
-  const [currentImageString, setCurrentImageString] = useState( ImageLib.defaultImageString );
+  const [currentImageString, setCurrentImageString] = useState( ImageLib.invalidImageStr );
   const [currentStatusMessage, setCurrentStatusMessage] = useState( defaultStatusMessage );
   const [currentColorIndex, setCurrentColorIndex] = useState( defaultColorIndex );
   const [currentSquareSize, setCurrentSquareSize] = useState( ImageLib.invalidSquareSize );
@@ -255,8 +255,8 @@ function FixedContainer() {
     //   console.log( "Top of First useEffect in Refine.tsx" );
     // }
     ImageLib.setScoreValueObj( LocalStorageLib.getStoredScoreValueArr() );
-    setCurrentImageString( LocalStorageLib.getStoredImageString() );
-    imageStringToDraw = LocalStorageLib.getStoredImageString();
+    setCurrentImageString( LocalStorageLib.getStoredImageStr() );
+    imageStringToDraw = LocalStorageLib.getStoredImageStr();
     if (imageStringToDraw.length === 0 ) {
       setCurrentStatusMessage( "Please use the Create option to Create an image before trying to Refine it." );
     }
@@ -276,7 +276,7 @@ function FixedContainer() {
     // if ( ImageLib.logLogicFlow ) {
     //   console.log( "Top of useEffect for currentImageString in Refine.tsx" );
     // }
-    const success = LocalStorageLib.storeImageString( currentImageString );
+    const success = LocalStorageLib.storeImageStr( currentImageString );
     if ( ImageLib.logLogicFlow ) {
       console.log( "useEffect for currentImageString in Refine.tsx: currentImageString.length = " + currentImageString.length );
       if ( success ) {
