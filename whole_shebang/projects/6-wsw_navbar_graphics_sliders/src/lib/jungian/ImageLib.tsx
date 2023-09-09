@@ -33,6 +33,9 @@ export interface JungianScoreValues {
   bAndYVsGandRValue: number;      // [0 .. 100]
 }
 
+// Image Parameters: These control how the App creates the image
+// -------------------------------------------------------------
+// scoreValues: the value of each of the four score sliders
 export const initialScoreValue = 50;        // Initial value of each slider before user changes it
 export const initialScoreValueArr = [
   initialScoreValue,
@@ -70,8 +73,15 @@ export function setScoreValueObj( newScoreValueArr: number[] ) {
   scoreValueObj.bAndYVsGandRValue = newScoreValueArr[3];
 }
 
+// imageStr: string of characters denoting the color of each square in the image
+//   These go from left to right and from top to bottom
+//     The first letter is the color of the upper-left square
+//     The last letter is the color of the lower-rightt square
+export const initialImageStr = "";
+export const invalidImageStr = "";
+export const imageStr = invalidImageStr;
 
-export const defaultImageString = "";
+// squareSize: number of pixels per square
 export const initialSquareSize = 15;        // Size of each square before user changes it
 export const invalidSquareSize = 0;         // Used as "default" value for state variable
 export const minSquareSize = 1;             // Minimum size of each square
@@ -81,6 +91,7 @@ export function setSquareSize( newSquareSize: number ) {
   squareSize = newSquareSize;
 }
 
+// gridSize: number of squares per side
 export const initialGridSize = 19;        // Default number of squares in each row and column
 export const invalidGridSize = 0;         // Used as "default" value for state variable
 export const minGridSize = 2;             // Minimum number of squares on each side
