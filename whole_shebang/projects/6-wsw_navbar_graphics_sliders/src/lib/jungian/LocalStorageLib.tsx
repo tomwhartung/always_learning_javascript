@@ -46,7 +46,7 @@ export function getStoredScoreValueArr(): number[] {
     console.log( "Top of getStoredScoreValueArr() in lib/jungian/LocalStorageLib.tsx" );
   }
 
-  let scoreValues = ImageLib.initialScoreValueArray;
+  let scoreValues = ImageLib.initialScoreValueArr;
   const jungianItem = getStoredJungianItem();
 
   if ( jungianItem ) {
@@ -59,7 +59,7 @@ export function getStoredScoreValueArr(): number[] {
       console.log( "getStoredScoreValueArr: found scoreValues.toString() = " + scoreValues.toString() );
     } else {
       console.log( "getStoredScoreValueArr in lib/jungian/LocalStorageLib.tsx: 'jungian' ITEM NOT FOUND IN localStorage" );
-      console.log( "getStoredScoreValueArr: returning ImageLib.initialScoreValueArray" );
+      console.log( "getStoredScoreValueArr: returning ImageLib.initialScoreValueArr" );
     }
     console.log( "Return()ing '" + scoreValues.toString() + "' from getStoredScoreValueArr() in lib/jungian/LocalStorageLib.tsx" );
   }
@@ -273,7 +273,7 @@ function getStoredJungianItem(): JungianItemValues {
 
   const initialJungianItemValues: JungianItemValues = {
     imageString: ImageLib.defaultImageString,
-    scoreValues: ImageLib.initialScoreValueArray,
+    scoreValues: ImageLib.initialScoreValueArr,
     squareSize: ImageLib.initialSquareSize,
     gridSize: ImageLib.initialGridSize,
   }
