@@ -177,7 +177,6 @@ function FixedContainer() {
   const defaultStatusMessage = "Click on a square to change its color to Blue.";
   const defaultColorIndex = 0;
 
-  const [currentScoreValues, setCurrentScoreValues] = useState( ImageLib.invalidScoreValueArray );
   const [currentImageString, setCurrentImageString] = useState( ImageLib.defaultImageString );
   const [currentStatusMessage, setCurrentStatusMessage] = useState( defaultStatusMessage );
   const [currentColorIndex, setCurrentColorIndex] = useState( defaultColorIndex );
@@ -248,13 +247,14 @@ function FixedContainer() {
   }
 
   // First useEffect: runs once when component is mounted - except when we are in development
-  // - Fetches scoreValues and imageString from local storage and sets them in state variables
+  // - Fetches the scoreValues from local storage and sets them in ImageLib
+  // - Fetches the imageString from local storage and sets it in a state variable - FOR NOW???
   // - If imageString is empty, set the current status message accordingly
   useEffect( () => {
     // if ( ImageLib.logLogicFlow ) {
     //   console.log( "Top of First useEffect in Refine.tsx" );
     // }
-    setCurrentScoreValues( LocalStorageLib.getStoredScoreValues() );
+    ImageLib.setScoreValueObj( LocalStorageLib.getStoredScoreValueArr() );
     setCurrentImageString( LocalStorageLib.getStoredImageString() );
     imageStringToDraw = LocalStorageLib.getStoredImageString();
     if (imageStringToDraw.length === 0 ) {
@@ -321,10 +321,10 @@ function FixedContainer() {
       </div>
       <div className="row">
         <FixedSizeImageAndCards
-          opacityValue={currentScoreValues[0]}
-          blueVsYellowValue={currentScoreValues[1]}
-          greenVsRedValue={currentScoreValues[2]}
-          bAndYVsGandRValue={currentScoreValues[3]}
+          opacityValue={ImageLib.scoreValueObj.opacityValue}
+          blueVsYellowValue={ImageLib.scoreValueObj.blueVsYellowValue}
+          greenVsRedValue={ImageLib.scoreValueObj.greenVsRedValue}
+          bAndYVsGandRValue={ImageLib.scoreValueObj.bAndYVsGandRValue}
           onSquareSizeChange={handleSquareSizeChange}
           onRadioButtonClick={handleColorPickerChange}
           onImageClick={handleImageClick}
