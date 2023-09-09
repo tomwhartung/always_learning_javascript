@@ -100,7 +100,7 @@ function FixedContainer() {
     console.log( "Top of FixedContainer() in Create.tsx" );
   }
 
-  const [currentScoreValues, setCurrentScoreValues] = useState( ImageLib.invalidScoreValueArray );
+  const [currentScoreValues, setCurrentScoreValues] = useState( ImageLib.invalidScoreValueArr );
   const [currentSquareSize, setCurrentSquareSize] = useState( ImageLib.invalidSquareSize );
   const [currentGridSize, setCurrentGridSize] = useState( ImageLib.invalidGridSize );
 
@@ -167,7 +167,7 @@ function FixedContainer() {
     // if ( ImageLib.logLogicFlow ) {
     //   console.log( "Top of first useEffect in FixedContainer in Create.tsx" );
     // }
-    const storedScoreValues = LocalStorageLib.getStoredScoreValues();
+    const storedScoreValues = LocalStorageLib.getStoredScoreValueArr();
     setCurrentScoreValues( storedScoreValues );
     ImageLib.setScoreValueObj( storedScoreValues );
     if ( ImageLib.logLogicFlow ) {
@@ -207,9 +207,9 @@ function FixedContainer() {
       console.log( "Top of useEffect for currentScoreValues in FixedContainer in Create.tsx" );
       // console.log( "useEffect for currentScoreValues: currentScoreValues.toString() = " + currentScoreValues.toString() );
     }
-    const storedScoreValuesOk = LocalStorageLib.storeScoreValues( currentScoreValues );
+    const storedScoreValueArrOk = LocalStorageLib.storeScoreValueArr( currentScoreValues );
     let storedImageStringOk = false;
-    if ( storedScoreValuesOk ) {
+    if ( storedScoreValueArrOk ) {
       if ( ImageLib.logLogicFlow ) {
         console.log( "useEffect for currentScoreValues in Create.tsx: saved currentScoreValues as scoreValues ok" );
       }
@@ -219,7 +219,7 @@ function FixedContainer() {
       }
     }
     if ( ImageLib.logLogicFlow ) {
-      if ( storedScoreValuesOk ) {
+      if ( storedScoreValueArrOk ) {
         console.log( "useEffect for currentScoreValues in Create.tsx: saved currentScoreValues as scoreValues ok" );
         if ( storedImageStringOk ) {
           console.log( "useEffect for currentScoreValues in Create.tsx: saved imageStringToDraw as imageString ok" );
