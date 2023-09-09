@@ -34,14 +34,14 @@ export interface JungianScoreValues {
 }
 
 export const initialScoreValue = 50;        // Initial value of each slider before user changes it
-export const initialScoreValueArray = [
+export const initialScoreValueArr = [
   initialScoreValue,
   initialScoreValue,
   initialScoreValue,
   initialScoreValue
 ];
 export const invalidScoreValue = -1;        // Used to create "default" value for state variable
-export const invalidScoreValueArray = [     // Used as "default" value for state variable
+export const invalidScoreValueArr = [     // Used as "default" value for state variable
   invalidScoreValue,
   invalidScoreValue,
   invalidScoreValue,
@@ -63,11 +63,11 @@ export const scoreValueObj = {
     );
   },
 }
-export function setScoreValueObj( newScoreValueArray: number[] ) {
-  scoreValueObj.opacityValue = newScoreValueArray[0];
-  scoreValueObj.blueVsYellowValue = newScoreValueArray[1];
-  scoreValueObj.greenVsRedValue = newScoreValueArray[2];
-  scoreValueObj.bAndYVsGandRValue = newScoreValueArray[3];
+export function setScoreValueObj( newScoreValueArr: number[] ) {
+  scoreValueObj.opacityValue = newScoreValueArr[0];
+  scoreValueObj.blueVsYellowValue = newScoreValueArr[1];
+  scoreValueObj.greenVsRedValue = newScoreValueArr[2];
+  scoreValueObj.bAndYVsGandRValue = newScoreValueArr[3];
 }
 
 
@@ -139,27 +139,27 @@ export const colorNames: readonly string[] = [
 // ----------
 //
 // createFreshImageString: Create a new totally random "groja-esque" grid of blue, green, red, and yellow squares
-//   Starts with an empty imageCharArray and adds color letters one-by-one
-//   Returns the imageCharArray as a string
+//   Starts with an empty imageCharArr and adds color letters one-by-one
+//   Returns the imageCharArr as a string
 export function createFreshImageString() {
   if ( logLogicFlow ) {
     console.log( "Top of createFreshImageString() in ImageLib.tsx" );
   }
 
   let colorLetter = "B";
-  const imageCharArray: string[] = [];
+  const imageCharArr: string[] = [];
 
   for ( let row=0; row < gridSize; row++ ) {
     for ( let col=0; col < gridSize; col++ ){
       colorLetter = getRandomPrimaryColor();
-      imageCharArray.push( colorLetter );
+      imageCharArr.push( colorLetter );
     }
-    if ( logLogicFlow ) {
-      console.log( "createFreshImageString() in ImageLib.tsx: imageCharArray.length = " + imageCharArray.length );
-    }
+    // if ( logLogicFlow ) {
+    //   console.log( "createFreshImageString() in ImageLib.tsx: imageCharArr.length = " + imageCharArr.length );
+    // }
   }
 
-  const freshImageString = imageCharArray.join('');
+  const freshImageString = imageCharArr.join('');
 
   if ( logLogicFlow ) {
     console.log( "createFreshImageString(): Fresh Image's freshImageString.length = " + freshImageString.length );
@@ -169,7 +169,7 @@ export function createFreshImageString() {
 }
 
 // drawStoredImageString: Add a "groja-esque" grid of blue, green, red, and yellow squares
-//   Starts with an imageStringToDraw, splits it into an imageCharArray, and draws the squares one-by-one
+//   Starts with an imageStringToDraw, splits it into an imageCharArr, and draws the squares one-by-one
 //   Returns absolutely nothing
 export function drawStoredImageString( context: CanvasRenderingContext2D, imageStringToDraw: string, opacityValue: number ) {
   if ( logLogicFlow ) {
@@ -188,7 +188,7 @@ export function drawStoredImageString( context: CanvasRenderingContext2D, imageS
   }
 
   if ( imageStringToDraw.length > 0 ) {
-    const imageCharArray = imageStringToDraw.split( "" );
+    const imageCharArr = imageStringToDraw.split( "" );
     let imgStrIdx = 0;
     if ( logLogicFlow ) {
       console.log( "drawStoredImageString() in ImageLib.tsx: starting the for loop" );
@@ -196,7 +196,7 @@ export function drawStoredImageString( context: CanvasRenderingContext2D, imageS
     for ( let row=0; row < gridSize; row++ ) {
       squareTopY = gridTopY + (row * squareSize);
       for ( let col=0; col < gridSize; col++ ){
-        colorLetter = imageCharArray[imgStrIdx++];
+        colorLetter = imageCharArr[imgStrIdx++];
         // console.log( "for loop in drawStoredImageString() in ImageLib.tsx: imgStrIdx = " + imgStrIdx );
         // console.log( "for loop in drawStoredImageString() in ImageLib.tsx: colorLetter = " + colorLetter );
         squareTopX = gridTopX + (col * squareSize);
