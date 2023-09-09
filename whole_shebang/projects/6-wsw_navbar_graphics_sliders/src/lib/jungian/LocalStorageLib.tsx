@@ -6,7 +6,7 @@ import * as ImageLib from './ImageLib.tsx';
 
 //
 // storeScoreValueArr: sets the array of scoreValues in local storage to the specified values
-//   returns true if successful else false if the newImageString is too short
+//   returns true if successful else false if any of the values is invalid
 export function storeScoreValueArr( newScoreValues: number[] ): boolean {
   // if ( ImageLib.logLogicFlow ) {
   //   console.log( "Top of storeScoreValueArr() in lib/jungian/LocalStorageLib.tsx" );
@@ -68,65 +68,65 @@ export function getStoredScoreValueArr(): number[] {
 }
 
 
-// storeImageString: sets the current imageString to the specified value
-//   returns true if successful else false if the newImageString is too short
-export function storeImageString( newImageString: string ): boolean {
+// storeImageStr: sets the current imageStr to the specified value
+//   returns true if successful else false if the newImageStr is too short
+export function storeImageStr( newImageStr: string ): boolean {
   // if ( ImageLib.logLogicFlow ) {
-  //   console.log( "Top of storeImageString() in lib/jungian/LocalStorageLib.tsx" );
+  //   console.log( "Top of storeImageStr() in lib/jungian/LocalStorageLib.tsx" );
   // }
 
   let success = true;
 
-  if ( newImageString.length > ImageLib.gridSize ) {
+  if ( newImageStr.length > ImageLib.gridSize ) {
     const jungianItem = getStoredJungianItem();
-    jungianItem.imageString = newImageString;
+    jungianItem.imageStr = newImageStr;
     storeJungianItem( jungianItem );
   } else {
     success = false;
   }
 
   if ( ImageLib.logLogicFlow ) {
-    console.log( "storeImageString(): newImageString.length = " + newImageString.length );
+    console.log( "storeImageStr(): newImageStr.length = " + newImageStr.length );
     if ( success ) {
-      console.log( "storeImageString(): stored newImageString in the 'jungian' item ok" );
+      console.log( "storeImageStr(): stored newImageStr in the 'jungian' item ok" );
     } else {
-      console.log( "storeImageString(): NOT STORING newImageString BECAUSE IT IS TOO SHORT" );
+      console.log( "storeImageStr(): NOT STORING newImageStr BECAUSE IT IS TOO SHORT" );
     }
-    // console.log( "Return()ing '" + success + "' from storeImageString() in lib/jungian/LocalStorageLib.tsx" );
+    // console.log( "Return()ing '" + success + "' from storeImageStr() in lib/jungian/LocalStorageLib.tsx" );
   }
 
   return success;
 }
-// getStoredImageString: returns the current imageString from local storage
-export function getStoredImageString(): string {
+// getStoredImageStr: returns the current imageStr from local storage
+export function getStoredImageStr(): string {
   // if ( ImageLib.logLogicFlow ) {
-  //   console.log( "Top of getStoredImageString() in lib/jungian/LocalStorageLib.tsx" );
+  //   console.log( "Top of getStoredImageStr() in lib/jungian/LocalStorageLib.tsx" );
   // }
 
-  let imageString = ImageLib.defaultImageString;
+  let imageStr = ImageLib.invalidImageStr;
   const jungianItem = getStoredJungianItem( );
 
   if ( jungianItem ) {
-    imageString = jungianItem.imageString;
+    imageStr = jungianItem.imageStr;
   }
 
   if ( ImageLib.logLogicFlow ) {
     if ( jungianItem ) {
-      // console.log( "getStoredImageString in lib/jungian/LocalStorageLib.tsx: found the 'jungian' item" );
-      console.log( "getStoredImageString: found imageString.length = " + imageString.length );
+      // console.log( "getStoredImageStr in lib/jungian/LocalStorageLib.tsx: found the 'jungian' item" );
+      console.log( "getStoredImageStr: found imageStr.length = " + imageStr.length );
     } else {
-      console.log( "getStoredImageString in lib/jungian/LocalStorageLib.tsx: 'jungian' ITEM NOT FOUND IN localStorage" );
-      console.log( "getStoredImageString: returning defaultImageString, length = " + imageString.length );
+      console.log( "getStoredImageStr in lib/jungian/LocalStorageLib.tsx: 'jungian' ITEM NOT FOUND IN localStorage" );
+      console.log( "getStoredImageStr: returning invalidImageStr, length = " + imageStr.length );
     }
-    // console.log( "getStoredImageString: return()ing imageString.length = " + imageString.length );
+    // console.log( "getStoredImageStr: return()ing imageStr.length = " + imageStr.length );
   }
 
-  return imageString;
+  return imageStr;
 }
 
 
 // storeSquareSize: sets the current squareSize to the specified value
-//   returns true if successful else false if the newImageString is too short
+//   returns true if successful else false if the newSquareSize is invalid
 export function storeSquareSize( newSquareSize: number ): boolean {
   // if ( ImageLib.logLogicFlow ) {
   //   console.log( "Top of storeSquareSize() in lib/jungian/LocalStorageLib.tsx" );
@@ -183,8 +183,8 @@ export function getStoredSquareSize(): number {
 }
 
 
-// storeGridSize: sets the current imageString to the specified value
-//   returns true if successful else false if the newImageString is too short
+// storeGridSize: sets the current gridSize to the specified value
+//   returns true if successful else false if the newGridSize is invalid
 export function storeGridSize( newGridSize: number ): boolean {
   // if ( ImageLib.logLogicFlow ) {
   //   console.log( "Top of storeGridSize() in lib/jungian/LocalStorageLib.tsx" );
@@ -213,7 +213,7 @@ export function storeGridSize( newGridSize: number ): boolean {
 
   return success;
 }
-// getStoredGridSize: returns the current imageString from local storage
+// getStoredGridSize: returns the current gridSize from local storage
 export function getStoredGridSize(): number {
   // if ( ImageLib.logLogicFlow ) {
   //   console.log( "Top of getStoredGridSize() in lib/jungian/LocalStorageLib.tsx" );
@@ -242,7 +242,7 @@ export function getStoredGridSize(): number {
 
 
 interface JungianItemValues {
-  imageString: string;
+  imageStr: string;
 //scoreValues: ImageLib.JungianScoreValues;
   scoreValues: number[];
   squareSize: number;
@@ -272,7 +272,7 @@ function getStoredJungianItem(): JungianItemValues {
   // }
 
   const initialJungianItemValues: JungianItemValues = {
-    imageString: ImageLib.defaultImageString,
+    imageStr: ImageLib.initialImageStr,
     scoreValues: ImageLib.initialScoreValueArr,
     squareSize: ImageLib.initialSquareSize,
     gridSize: ImageLib.initialGridSize,
