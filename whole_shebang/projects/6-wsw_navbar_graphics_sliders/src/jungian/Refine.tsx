@@ -15,7 +15,7 @@ import SquareSizeSlider from '../lib/jungian/SquareSizeSliderLib.tsx';
 ImageLib.setLogLogicFlow( true );   // un-comment when trying to track down issues
 // ImageLib.setLogLogicFlow( false );   // un-comment when everything's ok
 
-interface JungianRefineProps extends ImageLib.JungianScoreValues {
+interface JungianRefineProps {
   onRadioButtonClick: (event: ChangeEvent<HTMLInputElement>) => void;
   onImageClick: (event: MouseEvent<HTMLElement>) => void;
   onSquareSizeChange: (event: ChangeEvent<HTMLInputElement>) => void;
@@ -143,16 +143,16 @@ function FixedSizeImageAndCards( props: JungianRefineProps ) {
       </div>
       <div className="row d-flex mt-1">
         <div className="col-sm-3 card align-items-center">
-          {ImageLib.jungianScorePropNames[0]}: {props.opacityValue}
+          {ImageLib.jungianScorePropNames[0]}: {ImageLib.scoreValueObj.opacityValue}
         </div>
         <div className="col-sm-3 card align-items-center">
-          {ImageLib.jungianScorePropNames[1]}: {props.blueVsYellowValue}
+          {ImageLib.jungianScorePropNames[1]}: {ImageLib.scoreValueObj.blueVsYellowValue}
         </div>
         <div className="col-sm-3 card align-items-center">
-          {ImageLib.jungianScorePropNames[2]}: {props.greenVsRedValue}
+          {ImageLib.jungianScorePropNames[2]}: {ImageLib.scoreValueObj.greenVsRedValue}
         </div>
         <div className="col-sm-3 card align-items-center">
-          {ImageLib.jungianScorePropNames[3]}: {props.bAndYVsGandRValue}
+          {ImageLib.jungianScorePropNames[3]}: {ImageLib.scoreValueObj.bAndYVsGandRValue}
         </div>
       </div>
       <div className="row d-flex mt-1">
@@ -318,10 +318,6 @@ function FixedContainer() {
       </div>
       <div className="row">
         <FixedSizeImageAndCards
-          opacityValue={ImageLib.scoreValueObj.opacityValue}
-          blueVsYellowValue={ImageLib.scoreValueObj.blueVsYellowValue}
-          greenVsRedValue={ImageLib.scoreValueObj.greenVsRedValue}
-          bAndYVsGandRValue={ImageLib.scoreValueObj.bAndYVsGandRValue}
           onSquareSizeChange={handleSquareSizeChange}
           onRadioButtonClick={handleColorPickerChange}
           onImageClick={handleImageClick}
