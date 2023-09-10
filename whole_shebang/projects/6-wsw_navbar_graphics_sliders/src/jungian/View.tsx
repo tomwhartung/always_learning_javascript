@@ -6,7 +6,7 @@ import '../App.css'
 import { useEffect } from 'react';
 
 import Canvas from '../lib/CanvasLib.tsx';
-import * as ImageLib from '../lib/jungian/ImageLib.tsx';
+import * as ImageLib from '../lib/jungian/ImageLib.ts';
 import * as LocalStorageLib from '../lib/jungian/LocalStorageLib.tsx';
 
 // NOTE: Setting logLogicFlow to true for one page in effect sets it for all pages

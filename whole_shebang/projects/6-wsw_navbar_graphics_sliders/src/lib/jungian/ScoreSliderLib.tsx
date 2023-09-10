@@ -4,7 +4,7 @@
 import { ChangeEvent } from 'react';
 import { MDBRange } from 'mdb-react-ui-kit';
 
-import * as ImageLib from './ImageLib.tsx';
+import * as ImageLib from './ImageLib.ts';
 
 // ScoreSliderProps: props passed to ScoreSliderCard and ScoreSlider components
 interface ScoreSliderProps {

@@ -2,7 +2,7 @@
 // lib/jungian/LocalStorageLib.tsx: code used to store and access Jungian data in localStorage
 //
 
-import * as ImageLib from './ImageLib.tsx';
+import * as ImageLib from './ImageLib.ts';
 
 //
 // storeScoreValueArr: sets the array of scoreValues in local storage to the specified values
@@ -243,7 +243,6 @@ export function getStoredGridSize(): number {
 
 interface JungianItemValues {
   imageStr: string;
-//scoreValues: ImageLib.JungianScoreValues;
   scoreValues: number[];
   squareSize: number;
   gridSize: number;
