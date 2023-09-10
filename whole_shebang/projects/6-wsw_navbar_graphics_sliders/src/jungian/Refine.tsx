@@ -143,16 +143,16 @@ function FixedSizeImageAndCards( props: JungianRefineProps ) {
       </div>
       <div className="row d-flex mt-1">
         <div className="col-sm-3 card align-items-center">
-          {ImageLib.jungianScorePropNames[0]}: {ImageLib.scoreValueObj.opacityValue}
+          {ImageLib.scoreValueNames[0]}: {ImageLib.scoreValueObj.opacityValue}
         </div>
         <div className="col-sm-3 card align-items-center">
-          {ImageLib.jungianScorePropNames[1]}: {ImageLib.scoreValueObj.blueVsYellowValue}
+          {ImageLib.scoreValueNames[1]}: {ImageLib.scoreValueObj.blueVsYellowValue}
         </div>
         <div className="col-sm-3 card align-items-center">
-          {ImageLib.jungianScorePropNames[2]}: {ImageLib.scoreValueObj.greenVsRedValue}
+          {ImageLib.scoreValueNames[2]}: {ImageLib.scoreValueObj.greenVsRedValue}
         </div>
         <div className="col-sm-3 card align-items-center">
-          {ImageLib.jungianScorePropNames[3]}: {ImageLib.scoreValueObj.bAndYVsGandRValue}
+          {ImageLib.scoreValueNames[3]}: {ImageLib.scoreValueObj.bAndYVsGandRValue}
         </div>
       </div>
       <div className="row d-flex mt-1">
@@ -244,8 +244,8 @@ function FixedContainer() {
 
   // First useEffect: runs once when component is mounted - except when we are in development
   // - Fetches the scoreValues from local storage and sets them in ImageLib
-  // - Fetches the imageString from local storage and sets it in a state variable - FOR NOW???
-  // - If imageString is empty, set the current status message accordingly
+  // - Fetches the imageStr from local storage and sets it in a state variable - FOR NOW???
+  // - If imageStr is empty, set the current status message accordingly
   useEffect( () => {
     // if ( ImageLib.logLogicFlow ) {
     //   console.log( "Top of First useEffect in Refine.tsx" );
@@ -253,7 +253,7 @@ function FixedContainer() {
     ImageLib.setScoreValueObj( LocalStorageLib.getStoredScoreValueArr() );
     setCurrentImageString( LocalStorageLib.getStoredImageStr() );
     ImageLib.setImageStr( LocalStorageLib.getStoredImageStr() );
-    if (ImageLib.imageStr.length === 0 ) {
+    if ( ImageLib.imageStr.length === 0 ) {
       setCurrentStatusMessage( "Please use the Create option to Create an image before trying to Refine it." );
     }
     ImageLib.setGridSize( LocalStorageLib.getStoredGridSize() );
@@ -266,7 +266,7 @@ function FixedContainer() {
     }
   }, [] );
 
-  // useEffect for currentImageString: runs when component is mounted AND when the user changes the imageString
+  // useEffect for currentImageString: runs when component is mounted AND when the user changes the currentImageString
   //   Stores the new, refined image string in local storage
   useEffect( () => {
     // if ( ImageLib.logLogicFlow ) {
@@ -277,9 +277,9 @@ function FixedContainer() {
     if ( ImageLib.logLogicFlow ) {
       console.log( "useEffect for currentImageString in Refine.tsx: currentImageString.length = " + currentImageString.length );
       if ( success ) {
-        console.log( "useEffect for currentImageString in Refine.tsx: saved currentImageString as imageString ok" );
+        console.log( "useEffect for currentImageString in Refine.tsx: stored currentImageString as jungian.imageStr ok" );
       } else {
-        console.log( "useEffect for currentImageString in Refine.tsx: DID NOT SAVE currentImageString as imageString" );
+        console.log( "useEffect for currentImageString in Refine.tsx: DID NOT STORE currentImageString as jungian.imageStr" );
       }
       // console.log( "Exiting useEffect for currentImageString in Refine.tsx" );
     }
