@@ -31,11 +31,11 @@ function ScoreSlider( props: ScoreSliderProps ) {
   const sliderOppositeValue = 100 - props.sliderVal;
   const sliderId = "myslider-" + props.sliderNo.toString();
   let sliderLabel = sliderOppositeValue.toString() + "% " +
-                    ImageLib.jungianScoreLabels[props.sliderNo] + ": " +
+                    ImageLib.scoreValueLabels[props.sliderNo] + ": " +
                     props.sliderVal.toString() + "%";
 
   if ( props.sliderNo == 0 ) {
-    sliderLabel = ImageLib.jungianScoreLabels[props.sliderNo] + ": " +
+    sliderLabel = ImageLib.scoreValueLabels[props.sliderNo] + ": " +
                   props.sliderVal.toString();
   }
 
