@@ -25,8 +25,8 @@ export function getLogLogicFlow(): boolean {
 // Types:
 // ------
 //
-// JungianScoreValues: giving names to the values that come from the Jungian sliders
-export interface JungianScoreValues {
+// ScoreValueIFace: giving names to the values that come from the Jungian sliders
+export interface ScoreValueIFace {
   opacityValue: number;           // [0 .. 100]
   blueVsYellowValue: number;      // [0 .. 100]
   greenVsRedValue: number;        // [0 .. 100]
@@ -123,13 +123,13 @@ export function getCanvasHeight(): number {
 // Constant Arrays:
 // ----------------
 //
-export const jungianScorePropNames: readonly string[] = [
+export const scoreValueNames: readonly string[] = [
   "Opacity",
   "B vs Y",
   "G vs R",
   "B&Y vs G&R",
 ];
-export const jungianScoreLabels: readonly string[] = [
+export const scoreValueLabels: readonly string[] = [
   "Opacity",
   "Y vs B",
   "R vs G",
