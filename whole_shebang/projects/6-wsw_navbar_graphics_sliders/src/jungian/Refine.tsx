@@ -16,7 +16,6 @@ ImageLib.setLogLogicFlow( true );   // un-comment when trying to track down issu
 // ImageLib.setLogLogicFlow( false );   // un-comment when everything's ok
 
 let opacityValue = ImageLib.initialScoreValue;
-let imageStringToDraw = "";
 
 interface JungianRefineProps extends ImageLib.JungianScoreValues {
   onRadioButtonClick: (event: ChangeEvent<HTMLInputElement>) => void;
@@ -24,9 +23,9 @@ interface JungianRefineProps extends ImageLib.JungianScoreValues {
   onSquareSizeChange: (event: ChangeEvent<HTMLInputElement>) => void;
 }
 
-// draw: draw the grid of blue, green, red, and yellow squares defined in imageStringToDraw
+// draw: draw the grid of blue, green, red, and yellow squares defined in ImageLib.imageStr
 const draw = (context: CanvasRenderingContext2D) => {
-  ImageLib.drawStoredImageString( context, imageStringToDraw, opacityValue );
+  ImageLib.drawImageStr( context );
 };
 
 // getSquareCoords: use (pixelX, pixelY) to calculate (squareX, squareY)
@@ -69,7 +68,7 @@ function changeSquareAt( squareX: number, squareY: number, colorIndex: number ) 
   //   console.log( "changeSquareAt: colorLetterPicked = " + colorLetterPicked );
   // }
 
-  const newImageCharArr = imageStringToDraw.split( "" );
+  const newImageCharArr = ImageLib.imageStr.split( "" );
   newImageCharArr.splice( charArrIndex, 1, colorLetterPicked );
   const newImageString = newImageCharArr.join( '' );
   return newImageString;
@@ -256,8 +255,8 @@ function FixedContainer() {
     // }
     ImageLib.setScoreValueObj( LocalStorageLib.getStoredScoreValueArr() );
     setCurrentImageString( LocalStorageLib.getStoredImageStr() );
-    imageStringToDraw = LocalStorageLib.getStoredImageStr();
-    if (imageStringToDraw.length === 0 ) {
+    ImageLib.setImageStr( LocalStorageLib.getStoredImageStr() );
+    if (ImageLib.imageStr.length === 0 ) {
       setCurrentStatusMessage( "Please use the Create option to Create an image before trying to Refine it." );
     }
     ImageLib.setGridSize( LocalStorageLib.getStoredGridSize() );
@@ -277,6 +276,7 @@ function FixedContainer() {
     //   console.log( "Top of useEffect for currentImageString in Refine.tsx" );
     // }
     const success = LocalStorageLib.storeImageStr( currentImageString );
+    // ImageLib.setImageStr( currentImageString );
     if ( ImageLib.logLogicFlow ) {
       console.log( "useEffect for currentImageString in Refine.tsx: currentImageString.length = " + currentImageString.length );
       if ( success ) {
@@ -306,7 +306,7 @@ function FixedContainer() {
     }
   }, [currentSquareSize] );
 
-  imageStringToDraw = currentImageString;    // updates the displayed image with the latest changes
+  ImageLib.setImageStr( currentImageString );    // updates the displayed image with the latest changes
 
   if ( ImageLib.logLogicFlow ) {
     console.log( "return()ing from FixedContainer() in Refine.tsx" );
