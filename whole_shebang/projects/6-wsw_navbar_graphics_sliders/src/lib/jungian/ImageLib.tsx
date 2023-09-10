@@ -14,7 +14,7 @@
 //     Or so it seems like it does, sometimes...
 // export let logLogicFlow = false;
 export let logLogicFlow = true;
-export function setLogLogicFlow( value: boolean ) {
+export function setLogLogicFlow( value: boolean ): void {
   logLogicFlow = value;
 }
 export function getLogLogicFlow(): boolean {
@@ -57,7 +57,7 @@ export const scoreValueObj = {
   blueVsYellowValue: initialScoreValue,
   greenVsRedValue: initialScoreValue,
   bAndYVsGandRValue: initialScoreValue,
-  toString: function() {
+  toString: function(): string {
     return(
       "ImageLib.scoreValueObj.opacityValue = " + this.opacityValue + "\n" +
       "ImageLib.scoreValueObj.blueVsYellowValue = " + this.blueVsYellowValue + "\n" +
@@ -66,7 +66,7 @@ export const scoreValueObj = {
     );
   },
 }
-export function setScoreValueObj( newScoreValueArr: number[] ) {
+export function setScoreValueObj( newScoreValueArr: number[] ): void {
   scoreValueObj.opacityValue = newScoreValueArr[0];
   scoreValueObj.blueVsYellowValue = newScoreValueArr[1];
   scoreValueObj.greenVsRedValue = newScoreValueArr[2];
@@ -79,7 +79,10 @@ export function setScoreValueObj( newScoreValueArr: number[] ) {
 //     The last letter is the color of the lower-rightt square
 export const initialImageStr = "";
 export const invalidImageStr = "";
-export const imageStr = invalidImageStr;
+export let imageStr = invalidImageStr;
+export function setImageStr( newImageStr: string ): void {
+  imageStr = newImageStr;
+}
 
 // squareSize: number of pixels per square
 export const initialSquareSize = 15;        // Size of each square before user changes it
@@ -87,7 +90,7 @@ export const invalidSquareSize = 0;         // Used as "default" value for state
 export const minSquareSize = 1;             // Minimum size of each square
 export const maxSquareSize = 33;            // Maximum size of each square
 export let squareSize = initialSquareSize;  // Changed by a slider on Refine page
-export function setSquareSize( newSquareSize: number ) {
+export function setSquareSize( newSquareSize: number ): void {
   squareSize = newSquareSize;
 }
 
@@ -97,7 +100,7 @@ export const invalidGridSize = 0;         // Used as "default" value for state v
 export const minGridSize = 2;             // Minimum number of squares on each side
 export const maxGridSize = 49;            // Maximum number of squares on each side
 export let gridSize = initialGridSize;    // Changed by a slider on the Create page
-export function setGridSize( newGridSize: number ) {
+export function setGridSize( newGridSize: number ): void {
   gridSize = newGridSize;
 }
 
@@ -109,10 +112,10 @@ export const gridTopY = 4;       // Y location of top left corner of grid
 // export const gridTopX = Math.round( (squareSize * gridSize) / 50 );       // X location of top left corner of grid
 // export const gridTopY = Math.round( (squareSize * gridSize) / 50 );       // Y location of top left corner of grid
 
-export function getCanvasWidth() {
+export function getCanvasWidth(): number {
   return ( squareSize * gridSize ) + ( 2 * gridTopX );
 }
-export function getCanvasHeight() {
+export function getCanvasHeight(): number {
   return ( squareSize * gridSize ) + ( 2 * gridTopY );
 }
 
@@ -152,7 +155,7 @@ export const colorNames: readonly string[] = [
 // createFreshImageString: Create a new totally random "groja-esque" grid of blue, green, red, and yellow squares
 //   Starts with an empty imageCharArr and adds color letters one-by-one
 //   Returns the imageCharArr as a string
-export function createFreshImageString() {
+export function createFreshImageString(): string {
   if ( logLogicFlow ) {
     console.log( "Top of createFreshImageString() in ImageLib.tsx" );
   }
@@ -179,6 +182,60 @@ export function createFreshImageString() {
   return freshImageString;
 }
 
+// drawImageStr: Add a "groja-esque" grid of blue, green, red, and yellow squares
+//   Splits imageStr into an imageCharArr, and draws the squares one-by-one
+export function drawImageStr( context: CanvasRenderingContext2D ): void {
+  if ( logLogicFlow ) {
+    console.log( "Top of drawImageStr() in ImageLib.tsx" );
+  }
+
+  drawUnderlyingCanvas( context );
+
+  let squareTopX = gridTopX;
+  let squareTopY = gridTopY;
+  let colorLetter = "B";
+  const opacityPercent = valueToPct( scoreValueObj.opacityValue );
+
+  if ( logLogicFlow ) {
+    console.log( "drawImageStr() in ImageLib.tsx: imageStr.length = '" + imageStr.length + "'" );
+  }
+
+  if ( imageStr.length > 0 ) {
+    const imageCharArr = imageStr.split( "" );
+    let imgStrIdx = 0;
+    if ( logLogicFlow ) {
+      console.log( "drawImageStr() in ImageLib.tsx: starting the for loop" );
+    }
+    for ( let row=0; row < gridSize; row++ ) {
+      squareTopY = gridTopY + (row * squareSize);
+      for ( let col=0; col < gridSize; col++ ){
+        colorLetter = imageCharArr[imgStrIdx++];
+        // console.log( "for loop in drawImageStr() in ImageLib.tsx: imgStrIdx = " + imgStrIdx );
+        // console.log( "for loop in drawImageStr() in ImageLib.tsx: colorLetter = " + colorLetter );
+        squareTopX = gridTopX + (col * squareSize);
+        if ( colorLetter == "B" ) {
+          context.fillStyle = "rgba(0, 0, 255, " + opacityPercent.toString() + ")";
+        } else if ( colorLetter == "G" ) {
+          context.fillStyle = "rgba(0, 255, 0, " + opacityPercent.toString() + ")";
+        } else if ( colorLetter == "R" ) {
+          context.fillStyle = "rgba(255, 0, 0, " + opacityPercent.toString() + ")";
+        } else if ( colorLetter == "Y" ) {
+          context.fillStyle = "rgba(255, 255, 0, " + opacityPercent.toString() + ")";
+        } else {
+          context.fillStyle = "rgb(255, 255, 255, " + opacityPercent.toString() + ")";
+        }
+        context.fillRect( squareTopX, squareTopY, squareSize, squareSize );
+      }
+    }
+  } else {
+    if ( logLogicFlow ) {
+      console.log( "drawImageStr() in ImageLib.tsx: imageStr is empty, hope that's ok...!" );
+    }
+  }
+  if ( logLogicFlow ) {
+    console.log( "Exiting drawImageStr() in ImageLib.tsx" );
+  }
+}
 // drawStoredImageString: Add a "groja-esque" grid of blue, green, red, and yellow squares
 //   Starts with an imageStringToDraw, splits it into an imageCharArr, and draws the squares one-by-one
 //   Returns absolutely nothing
@@ -236,13 +293,13 @@ export function drawStoredImageString( context: CanvasRenderingContext2D, imageS
 }
 
 // valueToPct: convert a slider value [0 - 100] to a percentage of opacity [0.0 - 1.00]
-function valueToPct( value: number ) : number {
+function valueToPct( value: number ): number {
   const percent = value / 100;
   return ( percent );
 }
 
 // getRandomPrimaryColor: return a random single character, either "B", "G", "R", or "Y"
-function getRandomPrimaryColor() {
+function getRandomPrimaryColor(): string {
   // if ( logLogicFlow ) {
   //   console.log( "getRandomPrimaryColor() in ImageLib.tsx: Top of getRandomPrimaryColor" );
   // }
@@ -276,7 +333,7 @@ function getRandomPrimaryColor() {
 }
 
 // drawUnderlyingCanvas: paints the entire canvas black then fills the inner portion of it with white
-function drawUnderlyingCanvas( context: CanvasRenderingContext2D ) {
+function drawUnderlyingCanvas( context: CanvasRenderingContext2D ): void {
   const width = getCanvasWidth();
   const height = getCanvasHeight();
 
