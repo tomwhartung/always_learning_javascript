@@ -15,7 +15,6 @@ import SquareSizeSlider from '../lib/jungian/SquareSizeSliderLib.tsx';
 // ImageLib.setLogLogicFlow( false );    // un-comment when everything's ok
 ImageLib.setLogLogicFlow( true );     // un-comment when trying to track down issues
 
-let imageStringToDraw = ImageLib.initialImageStr;
 let drawFreshImage = false;
 
 // draw: Add a "groja-esque" grid of blue, green, red, and yellow squares
@@ -29,22 +28,22 @@ const draw = (context: CanvasRenderingContext2D) => {
       console.log( "draw(): calling ImageLib.createFreshImageString to create a Fresh Image" );
     }
     const freshImageString = ImageLib.createFreshImageString();
-    imageStringToDraw = freshImageString;
+    ImageLib.setImageStr( freshImageString );
     LocalStorageLib.storeImageStr( freshImageString );
-    console.log( "draw(): set drawFreshImage imageStringToDraw.length = " + imageStringToDraw.length );
+    console.log( "draw(): ImageLib.imageStr.length = " + ImageLib.imageStr.length );
     drawFreshImage = false;
-    ImageLib.drawStoredImageString( context, imageStringToDraw, ImageLib.scoreValueObj.opacityValue );
+    ImageLib.drawImageStr( context );
     if ( ImageLib.logLogicFlow ) {
-      console.log( "draw(): set drawFreshImage = false & imageStringToDraw = freshImageString" );
+      console.log( "draw(): set drawFreshImage = false and ImageLib.imageStr = freshImageString" );
     }
-  } else if ( imageStringToDraw.length === 0 ) {
+  } else if ( ImageLib.imageStr.length === 0 ) {
     if ( ImageLib.logLogicFlow ) {
-      console.log( "draw(): drawFreshImage is false and imageStringToDraw is empty..." );
+      console.log( "draw(): drawFreshImage is false and ImageLib.imageStr is empty, doing nothing" );
     }
   } else {
-    ImageLib.drawStoredImageString( context, imageStringToDraw, ImageLib.scoreValueObj.opacityValue );
+    ImageLib.drawImageStr( context );
     if ( ImageLib.logLogicFlow ) {
-      console.log( "draw(): drew the imageStringToDraw" );
+      console.log( "draw(): drew the ImageLib.imageStr" );
     }
   }
   if ( ImageLib.logLogicFlow ) {
@@ -174,18 +173,18 @@ function FixedContainer() {
       console.log( "First useEffect: ImageLib.scoreValueObj.toString() = " + ImageLib.scoreValueObj.toString() );
       console.log( "First useEffect in Create.tsx: set currentScoreValues and ImageLib.scoreValueObj " );
     }
-    const imageString = LocalStorageLib.getStoredImageStr();
-    if ( imageString.length > ImageLib.gridSize ) {
-      imageStringToDraw = imageString;
+    const storedImageStr = LocalStorageLib.getStoredImageStr();
+    if ( storedImageStr.length > ImageLib.gridSize ) {
+      ImageLib.setImageStr( storedImageStr );
     } else {
       drawFreshImage = true;
     }
     if ( ImageLib.logLogicFlow ) {
-      console.log( "First useEffect in Create.tsx: imageString.length = " + imageString.length );
-      if ( imageString.length > ImageLib.gridSize ) {
-        console.log( "First useEffect: set the imageStringToDraw with value from local storage" );
+      console.log( "First useEffect in Create.tsx: storedImageStr.length = " + storedImageStr.length );
+      if ( storedImageStr.length > ImageLib.gridSize ) {
+        console.log( "First useEffect: set the ImageLib.imageStr to the value from local storage" );
       } else {
-        console.log( "First useEffect: DID NOT SET THE imageStringToDraw BECAUSE IT'S TOO SHORT" );
+        console.log( "First useEffect: DID NOT SET ImageLib.imageStr BECAUSE STORED VALUE IS TOO SHORT" );
         console.log( "First useEffect: set drawFreshImage = true instead" );
       }
     }
@@ -213,7 +212,7 @@ function FixedContainer() {
       if ( ImageLib.logLogicFlow ) {
         console.log( "useEffect for currentScoreValues in Create.tsx: saved currentScoreValues as scoreValues ok" );
       }
-      storedImageStrOk = LocalStorageLib.storeImageStr( imageStringToDraw );
+      storedImageStrOk = LocalStorageLib.storeImageStr( ImageLib.imageStr );
       if ( ! storedImageStrOk ) {
         drawFreshImage = true;
       }
@@ -222,14 +221,14 @@ function FixedContainer() {
       if ( storedScoreValueArrOk ) {
         console.log( "useEffect for currentScoreValues in Create.tsx: saved currentScoreValues as scoreValues ok" );
         if ( storedImageStrOk ) {
-          console.log( "useEffect for currentScoreValues in Create.tsx: saved imageStringToDraw as imageString ok" );
+          console.log( "useEffect for currentScoreValues in Create.tsx: saved ImageLib.imageStr as imageStr ok" );
         } else {
-          console.log( "useEffect for currentScoreValues: DID NOT SAVE imageStringToDraw IN LOCAL STORAGE" );
+          console.log( "useEffect for currentScoreValues: DID NOT SAVE ImageLib.imageStr IN LOCAL STORAGE" );
           console.log( "useEffect for currentScoreValues: set drawFreshImage = true" );
         }
       } else {
         console.log( "useEffect for currentScoreValues: DID NOT SAVE currentScoreValues IN LOCAL STORAGE" );
-        console.log( "useEffect for currentScoreValues: DID NOT TRY TO SAVE imageStringToDraw IN LOCAL STORAGE" );
+        console.log( "useEffect for currentScoreValues: DID NOT TRY TO SAVE ImageLib.imageStr IN LOCAL STORAGE" );
       }
       console.log( "Exiting useEffect for currentScoreValues in Create.tsx" );
     }
