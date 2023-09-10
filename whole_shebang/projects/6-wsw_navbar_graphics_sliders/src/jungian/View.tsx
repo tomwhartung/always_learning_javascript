@@ -13,12 +13,10 @@ import * as LocalStorageLib from '../lib/jungian/LocalStorageLib.tsx';
 // ImageLib.setLogLogicFlow( false );    // un-comment when everything's ok
 ImageLib.setLogLogicFlow( true );     // un-comment when trying to track down issues
 
-let imageStringToDraw = "";
-let opacityValue = ImageLib.initialScoreValue;
 
-// draw: draw the grid of blue, green, red, and yellow squares defined in imageStringToDraw
+// draw: draw the grid of blue, green, red, and yellow squares defined in ImageLib.imageStr
 const draw = (context: CanvasRenderingContext2D) => {
-  ImageLib.drawStoredImageString( context, imageStringToDraw, opacityValue );
+  ImageLib.drawImageStr( context );
 };
 
 // DFlexImageAndSliderValues: function component to display a jungian image
@@ -29,8 +27,6 @@ function DFlexImageAndSliderValues( props: ImageLib.JungianScoreValues ) {
 
   const width = ImageLib.getCanvasWidth();
   const height = ImageLib.getCanvasHeight();
-
-  opacityValue = props.opacityValue;
 
   if ( ImageLib.logLogicFlow ) {
     console.log( "Return()ing from DFlexImageAndSliderValues() in View.tsx" );
@@ -78,24 +74,25 @@ function DFlexContainer() {
     console.log( "Top of DFlexContainer() in View.tsx" );
   }
 
-  // First useEffect: set scoreValueObj, imageStringToDraw, and gridSize with values from local storage
+  // First useEffect:
+  //   set ImageLib.scoreValueObj, ImageLib.imageStr, and ImageLib.gridSize with values from local storage
   useEffect(() => {
     // if ( ImageLib.logLogicFlow ) {
     //   console.log( "Top of First useEffect in View.tsx" );
     // }
     ImageLib.setScoreValueObj( LocalStorageLib.getStoredScoreValueArr() );
-    imageStringToDraw = LocalStorageLib.getStoredImageStr();
+    ImageLib.setImageStr( LocalStorageLib.getStoredImageStr() );
     ImageLib.setGridSize( LocalStorageLib.getStoredGridSize() );
     if ( ImageLib.logLogicFlow ) {
       // console.log( "First useEffect in View.tsx:\n" + ImageLib.scoreValueObj.toString() );
-      console.log( "First useEffect in View.tsx: set the scoreValueObj, imageStringToDraw, and gridSize" );
+      console.log( "First useEffect in View.tsx: set the scoreValueObj, imageStr, and gridSize" );
       // console.log( "Exiting the only useEffect in View.tsx" );
     }
   }, []);
 
   let createOrRefineMessage = "";
 
-  if ( imageStringToDraw.length === 0 ) {
+  if ( ImageLib.imageStr.length === 0 ) {
     createOrRefineMessage = "Please use the Create option to Create an image before trying to View it.";
   } else {
     createOrRefineMessage = "You can now use the Refine option to refine your image.";
