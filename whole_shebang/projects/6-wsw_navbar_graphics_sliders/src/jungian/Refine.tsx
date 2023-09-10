@@ -15,8 +15,6 @@ import SquareSizeSlider from '../lib/jungian/SquareSizeSliderLib.tsx';
 ImageLib.setLogLogicFlow( true );   // un-comment when trying to track down issues
 // ImageLib.setLogLogicFlow( false );   // un-comment when everything's ok
 
-let opacityValue = ImageLib.initialScoreValue;
-
 interface JungianRefineProps extends ImageLib.JungianScoreValues {
   onRadioButtonClick: (event: ChangeEvent<HTMLInputElement>) => void;
   onImageClick: (event: MouseEvent<HTMLElement>) => void;
@@ -82,7 +80,6 @@ function FixedSizeImageAndCards( props: JungianRefineProps ) {
 
   const width = ImageLib.getCanvasWidth();
   const height = ImageLib.getCanvasHeight();
-  opacityValue = props.opacityValue;
 
   // Construct the markup for the Color Picker
   const colorPickerCols = [];
