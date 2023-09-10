@@ -20,7 +20,7 @@ const draw = (context: CanvasRenderingContext2D) => {
 };
 
 // DFlexImageAndSliderValues: function component to display a jungian image
-function DFlexImageAndSliderValues( props: ImageLib.JungianScoreValues ) {
+function DFlexImageAndSliderValues( ) {
   if ( ImageLib.logLogicFlow ) {
     console.log( "Top of DFlexImageAndSliderValues() in View.tsx" );
   }
@@ -47,16 +47,16 @@ function DFlexImageAndSliderValues( props: ImageLib.JungianScoreValues ) {
       </div>
       <div className="row mt-4 justify-content-center">
         <div className="col-md-3 card align-items-center">
-          {ImageLib.jungianScorePropNames[0]}: {props.opacityValue}
+          {ImageLib.scoreValueNames[0]}: {ImageLib.scoreValueObj.opacityValue}
         </div>
         <div className="col-md-3 card align-items-center">
-          {ImageLib.jungianScorePropNames[1]}: {props.blueVsYellowValue}
+          {ImageLib.scoreValueNames[1]}: {ImageLib.scoreValueObj.blueVsYellowValue}
         </div>
         <div className="col-md-3 card align-items-center">
-          {ImageLib.jungianScorePropNames[2]}: {props.greenVsRedValue}
+          {ImageLib.scoreValueNames[2]}: {ImageLib.scoreValueObj.greenVsRedValue}
         </div>
         <div className="col-md-3 card align-items-center">
-          {ImageLib.jungianScorePropNames[3]}: {props.bAndYVsGandRValue}
+          {ImageLib.scoreValueNames[3]}: {ImageLib.scoreValueObj.bAndYVsGandRValue}
         </div>
       </div>
       <div className="row d-flex mt-1">
@@ -106,11 +106,7 @@ function DFlexContainer() {
     <div className="container">
       <div className="row mt-2 d-flex justify-content-center">
         <h5>{createOrRefineMessage}</h5>
-        <DFlexImageAndSliderValues
-          opacityValue={ImageLib.scoreValueObj.opacityValue ?? ImageLib.initialScoreValue}
-          blueVsYellowValue={ImageLib.scoreValueObj.blueVsYellowValue ?? ImageLib.initialScoreValue}
-          greenVsRedValue={ImageLib.scoreValueObj.greenVsRedValue ?? ImageLib.initialScoreValue}
-          bAndYVsGandRValue={ImageLib.scoreValueObj.bAndYVsGandRValue ?? ImageLib.initialScoreValue} />
+        <DFlexImageAndSliderValues />
       </div>
     </div>
   )
