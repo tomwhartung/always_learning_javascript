@@ -52,7 +52,7 @@ const draw = (context: CanvasRenderingContext2D) => {
 };
 
 // FixedSizeImageAndCards: function component to display a jungian image
-function FixedSizeImageAndCards( props: ImageLib.JungianScoreValues ) {
+function FixedSizeImageAndCards( props: ImageLib.ScoreValueIFace ) {
   if ( ImageLib.logLogicFlow ) {
     console.log( "Top of FixedSizeImageAndCards() in Create.tsx" );
   }
@@ -77,16 +77,16 @@ function FixedSizeImageAndCards( props: ImageLib.JungianScoreValues ) {
       </div>
       <div className="row mt-4 justify-content-center">
         <div className="col-md-3 card align-items-center">
-          {ImageLib.jungianScorePropNames[0]}: {props.opacityValue}
+          {ImageLib.scoreValueNames[0]}: {props.opacityValue}
         </div>
         <div className="col-md-3 card align-items-center">
-          {ImageLib.jungianScorePropNames[1]}: {props.blueVsYellowValue}
+          {ImageLib.scoreValueNames[1]}: {props.blueVsYellowValue}
         </div>
         <div className="col-md-3 card align-items-center">
-          {ImageLib.jungianScorePropNames[2]}: {props.greenVsRedValue}
+          {ImageLib.scoreValueNames[2]}: {props.greenVsRedValue}
         </div>
         <div className="col-md-3 card align-items-center">
-          {ImageLib.jungianScorePropNames[3]}: {props.bAndYVsGandRValue}
+          {ImageLib.scoreValueNames[3]}: {props.bAndYVsGandRValue}
         </div>
       </div>
     </>
@@ -274,7 +274,7 @@ function FixedContainer() {
 
   // Construct markup for the ScoreSliderCards
   const sliderNumberCols = [];
-  for ( let col = 0; col < ImageLib.jungianScoreLabels.length; col++ ) {
+  for ( let col = 0; col < ImageLib.scoreValueLabels.length; col++ ) {
     sliderNumberCols.push(
       <div key={col} className="col-md-3">
         <ScoreSliderCard
