@@ -236,61 +236,6 @@ export function drawImageStr( context: CanvasRenderingContext2D ): void {
     console.log( "Exiting drawImageStr() in ImageLib.tsx" );
   }
 }
-// drawStoredImageString: Add a "groja-esque" grid of blue, green, red, and yellow squares
-//   Starts with an imageStringToDraw, splits it into an imageCharArr, and draws the squares one-by-one
-//   Returns absolutely nothing
-export function drawStoredImageString( context: CanvasRenderingContext2D, imageStringToDraw: string, opacityValue: number ) {
-  if ( logLogicFlow ) {
-    console.log( "Top of drawStoredImageString() in ImageLib.tsx" );
-  }
-
-  drawUnderlyingCanvas( context );
-
-  let squareTopX = gridTopX;
-  let squareTopY = gridTopY;
-  let colorLetter = "B";
-  const opacityPercent = valueToPct( opacityValue );
-
-  if ( logLogicFlow ) {
-    console.log( "drawStoredImageString() in ImageLib.tsx: imageStringToDraw.length = '" + imageStringToDraw.length + "'" );
-  }
-
-  if ( imageStringToDraw.length > 0 ) {
-    const imageCharArr = imageStringToDraw.split( "" );
-    let imgStrIdx = 0;
-    if ( logLogicFlow ) {
-      console.log( "drawStoredImageString() in ImageLib.tsx: starting the for loop" );
-    }
-    for ( let row=0; row < gridSize; row++ ) {
-      squareTopY = gridTopY + (row * squareSize);
-      for ( let col=0; col < gridSize; col++ ){
-        colorLetter = imageCharArr[imgStrIdx++];
-        // console.log( "for loop in drawStoredImageString() in ImageLib.tsx: imgStrIdx = " + imgStrIdx );
-        // console.log( "for loop in drawStoredImageString() in ImageLib.tsx: colorLetter = " + colorLetter );
-        squareTopX = gridTopX + (col * squareSize);
-        if ( colorLetter == "B" ) {
-          context.fillStyle = "rgba(0, 0, 255, " + opacityPercent.toString() + ")";
-        } else if ( colorLetter == "G" ) {
-          context.fillStyle = "rgba(0, 255, 0, " + opacityPercent.toString() + ")";
-        } else if ( colorLetter == "R" ) {
-          context.fillStyle = "rgba(255, 0, 0, " + opacityPercent.toString() + ")";
-        } else if ( colorLetter == "Y" ) {
-          context.fillStyle = "rgba(255, 255, 0, " + opacityPercent.toString() + ")";
-        } else {
-          context.fillStyle = "rgb(255, 255, 255, " + opacityPercent.toString() + ")";
-        }
-        context.fillRect( squareTopX, squareTopY, squareSize, squareSize );
-      }
-    }
-  } else {
-    if ( logLogicFlow ) {
-      console.log( "drawStoredImageString() in ImageLib.tsx: imageStringToDraw is empty, hope that's ok...!" );
-    }
-  }
-  if ( logLogicFlow ) {
-    console.log( "Exiting drawStoredImageString() in ImageLib.tsx" );
-  }
-}
 
 // valueToPct: convert a slider value [0 - 100] to a percentage of opacity [0.0 - 1.00]
 function valueToPct( value: number ): number {
