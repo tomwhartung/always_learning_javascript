@@ -47,16 +47,16 @@ function DFlexImageAndSliderValues( ) {
       </div>
       <div className="row mt-4 justify-content-center">
         <div className="col-md-3 card align-items-center">
-          {ImageLib.scoreValueNames[0]}: {ImageLib.scoreValueObj.opacityValue}
+          {ImageLib.scoreValueNames[0]}: {ImageLib.ScoreValueObj.opacityValue}
         </div>
         <div className="col-md-3 card align-items-center">
-          {ImageLib.scoreValueNames[1]}: {ImageLib.scoreValueObj.blueVsYellowValue}
+          {ImageLib.scoreValueNames[1]}: {ImageLib.ScoreValueObj.blueVsYellowValue}
         </div>
         <div className="col-md-3 card align-items-center">
-          {ImageLib.scoreValueNames[2]}: {ImageLib.scoreValueObj.greenVsRedValue}
+          {ImageLib.scoreValueNames[2]}: {ImageLib.ScoreValueObj.greenVsRedValue}
         </div>
         <div className="col-md-3 card align-items-center">
-          {ImageLib.scoreValueNames[3]}: {ImageLib.scoreValueObj.bAndYVsGandRValue}
+          {ImageLib.scoreValueNames[3]}: {ImageLib.ScoreValueObj.bAndYVsGandRValue}
         </div>
       </div>
       <div className="row d-flex mt-1">
@@ -75,7 +75,7 @@ function DFlexContainer() {
   }
 
   // First useEffect:
-  //   set ImageLib.scoreValueObj, ImageLib.imageStr, and ImageLib.gridSize with values from local storage
+  //   set ImageLib.ScoreValueObj, ImageLib.imageStr, and ImageLib.gridSize with values from local storage
   useEffect(() => {
     // if ( ImageLib.logLogicFlow ) {
     //   console.log( "Top of First useEffect in View.tsx" );
@@ -84,8 +84,8 @@ function DFlexContainer() {
     ImageLib.setImageStr( LocalStorageLib.getStoredImageStr() );
     ImageLib.setGridSize( LocalStorageLib.getStoredGridSize() );
     if ( ImageLib.logLogicFlow ) {
-      // console.log( "First useEffect in View.tsx:\n" + ImageLib.scoreValueObj.toString() );
-      console.log( "First useEffect in View.tsx: set the scoreValueObj, imageStr, and gridSize" );
+      // console.log( "First useEffect in View.tsx:\n" + ImageLib.ScoreValueObj.toString() );
+      console.log( "First useEffect in View.tsx: set the ScoreValueObj, imageStr, and gridSize" );
       // console.log( "Exiting the only useEffect in View.tsx" );
     }
   }, []);

@@ -143,16 +143,16 @@ function FixedSizeImageAndCards( props: JungianRefineProps ) {
       </div>
       <div className="row d-flex mt-1">
         <div className="col-sm-3 card align-items-center">
-          {ImageLib.scoreValueNames[0]}: {ImageLib.scoreValueObj.opacityValue}
+          {ImageLib.scoreValueNames[0]}: {ImageLib.ScoreValueObj.opacityValue}
         </div>
         <div className="col-sm-3 card align-items-center">
-          {ImageLib.scoreValueNames[1]}: {ImageLib.scoreValueObj.blueVsYellowValue}
+          {ImageLib.scoreValueNames[1]}: {ImageLib.ScoreValueObj.blueVsYellowValue}
         </div>
         <div className="col-sm-3 card align-items-center">
-          {ImageLib.scoreValueNames[2]}: {ImageLib.scoreValueObj.greenVsRedValue}
+          {ImageLib.scoreValueNames[2]}: {ImageLib.ScoreValueObj.greenVsRedValue}
         </div>
         <div className="col-sm-3 card align-items-center">
-          {ImageLib.scoreValueNames[3]}: {ImageLib.scoreValueObj.bAndYVsGandRValue}
+          {ImageLib.scoreValueNames[3]}: {ImageLib.ScoreValueObj.bAndYVsGandRValue}
         </div>
       </div>
       <div className="row d-flex mt-1">

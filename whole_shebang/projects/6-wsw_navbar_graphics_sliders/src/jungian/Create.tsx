@@ -170,8 +170,8 @@ function FixedContainer() {
     setCurrentScoreValues( storedScoreValues );
     ImageLib.setScoreValueObj( storedScoreValues );
     if ( ImageLib.logLogicFlow ) {
-      console.log( "First useEffect: ImageLib.scoreValueObj.toString() = " + ImageLib.scoreValueObj.toString() );
-      console.log( "First useEffect in Create.tsx: set currentScoreValues and ImageLib.scoreValueObj " );
+      console.log( "First useEffect: ImageLib.ScoreValueObj.toString() = " + ImageLib.ScoreValueObj.toString() );
+      console.log( "First useEffect in Create.tsx: set currentScoreValues and ImageLib.ScoreValueObj " );
     }
     const storedImageStr = LocalStorageLib.getStoredImageStr();
     if ( storedImageStr.length > ImageLib.gridSize ) {
