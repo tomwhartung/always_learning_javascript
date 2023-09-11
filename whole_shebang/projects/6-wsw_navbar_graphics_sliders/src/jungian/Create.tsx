@@ -17,28 +17,28 @@ ImageLib.setLogLogicFlow( true );     // un-comment when trying to track down is
 
 let drawFreshImage = false;
 
-// draw: Add a "groja-esque" grid of blue, green, red, and yellow squares
-const draw = (context: CanvasRenderingContext2D) => {
+// draw: Add a random "groja-esque" grid of blue, green, red, and yellow squares
+function draw( context: CanvasRenderingContext2D ): void {
   if ( ImageLib.logLogicFlow ) {
     console.log( "Top of draw() in Create.tsx" );
   }
 
   if ( drawFreshImage ) {
     if ( ImageLib.logLogicFlow ) {
-      console.log( "draw(): calling ImageLib.createFreshImageString to create a Fresh Image" );
+      console.log( "draw(): calling ImageLib.createFreshImageStr to create a Fresh Image" );
     }
-    const freshImageString = ImageLib.createFreshImageString();
-    ImageLib.setImageStr( freshImageString );
-    LocalStorageLib.storeImageStr( freshImageString );
+    const freshImageStr = ImageLib.createFreshImageStr();
+    ImageLib.setImageStr( freshImageStr );
+    LocalStorageLib.storeImageStr( freshImageStr );
     console.log( "draw(): ImageLib.imageStr.length = " + ImageLib.imageStr.length );
     drawFreshImage = false;
     ImageLib.drawImageStr( context );
     if ( ImageLib.logLogicFlow ) {
-      console.log( "draw(): set drawFreshImage = false and ImageLib.imageStr = freshImageString" );
+      console.log( "draw(): set drawFreshImage = false and ImageLib.imageStr = freshImageStr" );
     }
-  } else if ( ImageLib.imageStr.length === 0 ) {
+  } else if ( ImageLib.imageStr === ImageLib.invalidImageStr ) {
     if ( ImageLib.logLogicFlow ) {
-      console.log( "draw(): drawFreshImage is false and ImageLib.imageStr is empty, doing nothing" );
+      console.log( "draw(): drawFreshImage is false and ImageLib.imageStr is invalid, doing nothing" );
     }
   } else {
     ImageLib.drawImageStr( context );
@@ -49,7 +49,7 @@ const draw = (context: CanvasRenderingContext2D) => {
   if ( ImageLib.logLogicFlow ) {
     console.log( "Exiting draw() in Create.tsx" );
   }
-};
+}
 
 // FixedSizeImageAndCards: function component to display a jungian image
 function FixedSizeImageAndCards( props: ImageLib.ScoreValueIFace ) {
