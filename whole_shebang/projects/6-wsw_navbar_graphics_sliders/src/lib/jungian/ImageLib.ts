@@ -35,7 +35,8 @@ export interface ScoreValueIFace {
 
 // Image Parameters: These control how the App creates the image
 // -------------------------------------------------------------
-// scoreValues: the value of each of the four score sliders
+//
+// scoreValueArr: Array containing the value of each of the four score sliders
 export const initialScoreValue = 50;        // Initial value of each slider before user changes it
 export const initialScoreValueArr = [
   initialScoreValue,
@@ -152,12 +153,12 @@ export const colorNames: readonly string[] = [
 // Functions:
 // ----------
 //
-// createFreshImageString: Create a new totally random "groja-esque" grid of blue, green, red, and yellow squares
+// createFreshImageStr: Create a new totally random "groja-esque" grid of blue, green, red, and yellow squares
 //   Starts with an empty imageCharArr and adds color letters one-by-one
 //   Returns the imageCharArr as a string
-export function createFreshImageString(): string {
+export function createFreshImageStr(): string {
   if ( logLogicFlow ) {
-    console.log( "Top of createFreshImageString() in ImageLib.ts" );
+    console.log( "Top of createFreshImageStr() in ImageLib.ts" );
   }
 
   let colorLetter = "B";
@@ -169,17 +170,17 @@ export function createFreshImageString(): string {
       imageCharArr.push( colorLetter );
     }
     // if ( logLogicFlow ) {
-    //   console.log( "createFreshImageString() in ImageLib.ts: imageCharArr.length = " + imageCharArr.length );
+    //   console.log( "createFreshImageStr() in ImageLib.ts: imageCharArr.length = " + imageCharArr.length );
     // }
   }
 
-  const freshImageString = imageCharArr.join('');
+  const freshImageStr = imageCharArr.join('');
 
   if ( logLogicFlow ) {
-    console.log( "createFreshImageString(): Fresh Image's freshImageString.length = " + freshImageString.length );
-    console.log( "createFreshImageString() in ImageLib.ts: Return()ing the freshImageString" );
+    console.log( "createFreshImageStr(): Fresh Image's freshImageStr.length = " + freshImageStr.length );
+    console.log( "createFreshImageStr() in ImageLib.ts: Return()ing the freshImageStr" );
   }
-  return freshImageString;
+  return freshImageStr;
 }
 
 // drawImageStr: Add a "groja-esque" grid of blue, green, red, and yellow squares
