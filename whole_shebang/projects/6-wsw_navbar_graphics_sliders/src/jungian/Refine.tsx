@@ -68,8 +68,8 @@ function changeSquareAt( squareX: number, squareY: number, colorIndex: number ) 
 
   const newImageCharArr = ImageLib.imageStr.split( "" );
   newImageCharArr.splice( charArrIndex, 1, colorLetterPicked );
-  const newImageString = newImageCharArr.join( '' );
-  return newImageString;
+  const newImageStr = newImageCharArr.join( '' );
+  return newImageStr;
 }
 
 // FixedSizeImageAndCards: function component to display a jungian image
@@ -170,11 +170,11 @@ function FixedContainer() {
     console.log( "Top of FixedContainer() in Refine.tsx" );
   }
 
-  const defaultStatusMessage = "Click on a square to change its color to Blue.";
+  const defaultStatusMsg = "Click on a square to change its color to Blue.";
   const defaultColorIndex = 0;
 
-  const [currentImageString, setCurrentImageString] = useState( ImageLib.invalidImageStr );
-  const [currentStatusMessage, setCurrentStatusMessage] = useState( defaultStatusMessage );
+  const [currentImageStr, setCurrentImageStr] = useState( ImageLib.invalidImageStr );
+  const [currentStatusMsg, setCurrentStatusMsg] = useState( defaultStatusMsg );
   const [currentColorIndex, setCurrentColorIndex] = useState( defaultColorIndex );
   const [currentSquareSize, setCurrentSquareSize] = useState( ImageLib.invalidSquareSize );
 
@@ -202,10 +202,10 @@ function FixedContainer() {
     const colorIndex = parseInt( event.currentTarget.value );
     const colorPicked = ImageLib.colorNames[ colorIndex ];
     setCurrentColorIndex( colorIndex );
-    setCurrentStatusMessage( "Click on a square to change its color to " + colorPicked );
+    setCurrentStatusMsg( "Click on a square to change its color to " + colorPicked );
     if ( ImageLib.logLogicFlow ) {
       console.log( "handleColorPickerChange in Refine.tsx: colorPicked = " + colorPicked );
-      // console.log( "handleColorPickerChange currentStatusMessage = " + currentStatusMessage );
+      // console.log( "handleColorPickerChange currentStatusMsg = " + currentStatusMsg );
       // console.log( "Exiting handleColorPickerChange in Refine.tsx" );
     }
   }
@@ -231,10 +231,10 @@ function FixedContainer() {
     const squareCoords = "(" + squareX.toString() + ", " + squareY.toString() + ")";
     if ( 0 <= squareX && squareX < ImageLib.gridSize &&
          0 <= squareY && squareY < ImageLib.gridSize    ) {
-      const newImageString = changeSquareAt( squareX, squareY, currentColorIndex );
-      setCurrentImageString( newImageString );
+      const newImageStr = changeSquareAt( squareX, squareY, currentColorIndex );
+      setCurrentImageStr( newImageStr );
       const colorPicked = ImageLib.colorNames[ currentColorIndex ];
-      setCurrentStatusMessage( "Changed the color of the square at " + squareCoords + " to " + colorPicked );
+      setCurrentStatusMsg( "Changed the color of the square at " + squareCoords + " to " + colorPicked );
     }
     if ( ImageLib.logLogicFlow ) {
       console.log( "handleImageClick in Refine.tsx: squareCoords = " + squareCoords );
@@ -243,7 +243,7 @@ function FixedContainer() {
   }
 
   // First useEffect: runs once when component is mounted - except when we are in development
-  // - Fetches the scoreValues from local storage and sets them in ImageLib
+  // - Fetches the scoreValueArr from local storage and sets them in ImageLib
   // - Fetches the imageStr from local storage and sets it in a state variable - FOR NOW???
   // - If imageStr is empty, set the current status message accordingly
   useEffect( () => {
@@ -251,10 +251,10 @@ function FixedContainer() {
     //   console.log( "Top of First useEffect in Refine.tsx" );
     // }
     ImageLib.setScoreValueObj( LocalStorageLib.getStoredScoreValueArr() );
-    setCurrentImageString( LocalStorageLib.getStoredImageStr() );
+    setCurrentImageStr( LocalStorageLib.getStoredImageStr() );
     ImageLib.setImageStr( LocalStorageLib.getStoredImageStr() );
     if ( ImageLib.imageStr.length === 0 ) {
-      setCurrentStatusMessage( "Please use the Create option to Create an image before trying to Refine it." );
+      setCurrentStatusMsg( "Please use the Create option to Create an image before trying to Refine it." );
     }
     ImageLib.setGridSize( LocalStorageLib.getStoredGridSize() );
     const storedSquareSize = LocalStorageLib.getStoredSquareSize();
@@ -266,24 +266,24 @@ function FixedContainer() {
     }
   }, [] );
 
-  // useEffect for currentImageString: runs when component is mounted AND when the user changes the currentImageString
+  // useEffect for currentImageStr: runs when component is mounted AND when the user changes the currentImageStr
   //   Stores the new, refined image string in local storage
   useEffect( () => {
     // if ( ImageLib.logLogicFlow ) {
-    //   console.log( "Top of useEffect for currentImageString in Refine.tsx" );
+    //   console.log( "Top of useEffect for currentImageStr in Refine.tsx" );
     // }
-    const success = LocalStorageLib.storeImageStr( currentImageString );
-    // ImageLib.setImageStr( currentImageString );
+    const success = LocalStorageLib.storeImageStr( currentImageStr );
+    // ImageLib.setImageStr( currentImageStr );
     if ( ImageLib.logLogicFlow ) {
-      console.log( "useEffect for currentImageString in Refine.tsx: currentImageString.length = " + currentImageString.length );
+      console.log( "useEffect for currentImageStr in Refine.tsx: currentImageStr.length = " + currentImageStr.length );
       if ( success ) {
-        console.log( "useEffect for currentImageString in Refine.tsx: stored currentImageString as jungian.imageStr ok" );
+        console.log( "useEffect for currentImageStr in Refine.tsx: stored currentImageStr as jungian.imageStr ok" );
       } else {
-        console.log( "useEffect for currentImageString in Refine.tsx: DID NOT STORE currentImageString as jungian.imageStr" );
+        console.log( "useEffect for currentImageStr in Refine.tsx: DID NOT STORE currentImageStr as jungian.imageStr" );
       }
-      // console.log( "Exiting useEffect for currentImageString in Refine.tsx" );
+      // console.log( "Exiting useEffect for currentImageStr in Refine.tsx" );
     }
-  }, [currentImageString] );
+  }, [currentImageStr] );
 
   // useEffect for currentSquareSize: runs when component is mounted AND when the user changes the squareSize
   //   Stores the new, refined squareSize in local storage
@@ -303,7 +303,7 @@ function FixedContainer() {
     }
   }, [currentSquareSize] );
 
-  ImageLib.setImageStr( currentImageString );    // updates the displayed image with the latest changes
+  ImageLib.setImageStr( currentImageStr );    // updates the displayed image with the latest changes
 
   if ( ImageLib.logLogicFlow ) {
     console.log( "return()ing from FixedContainer() in Refine.tsx" );
@@ -313,7 +313,7 @@ function FixedContainer() {
     <div className="container">
       <div className="row mt-2">
         <div className="col-sm-12">
-          <h5>{currentStatusMessage}</h5>
+          <h5>{currentStatusMsg}</h5>
         </div>
       </div>
       <div className="row">
