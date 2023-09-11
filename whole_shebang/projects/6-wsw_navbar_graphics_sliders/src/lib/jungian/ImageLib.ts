@@ -1,5 +1,5 @@
 //
-// ImageLib.tsx: types and constants used by the Jungian quiz type
+// ImageLib.ts: types and constants used by the Jungian quiz type
 //
 
 // Constant and Variable Values:
@@ -157,7 +157,7 @@ export const colorNames: readonly string[] = [
 //   Returns the imageCharArr as a string
 export function createFreshImageString(): string {
   if ( logLogicFlow ) {
-    console.log( "Top of createFreshImageString() in ImageLib.tsx" );
+    console.log( "Top of createFreshImageString() in ImageLib.ts" );
   }
 
   let colorLetter = "B";
@@ -169,7 +169,7 @@ export function createFreshImageString(): string {
       imageCharArr.push( colorLetter );
     }
     // if ( logLogicFlow ) {
-    //   console.log( "createFreshImageString() in ImageLib.tsx: imageCharArr.length = " + imageCharArr.length );
+    //   console.log( "createFreshImageString() in ImageLib.ts: imageCharArr.length = " + imageCharArr.length );
     // }
   }
 
@@ -177,7 +177,7 @@ export function createFreshImageString(): string {
 
   if ( logLogicFlow ) {
     console.log( "createFreshImageString(): Fresh Image's freshImageString.length = " + freshImageString.length );
-    console.log( "createFreshImageString() in ImageLib.tsx: Return()ing the freshImageString" );
+    console.log( "createFreshImageString() in ImageLib.ts: Return()ing the freshImageString" );
   }
   return freshImageString;
 }
@@ -186,7 +186,7 @@ export function createFreshImageString(): string {
 //   Splits imageStr into an imageCharArr, and draws the squares one-by-one
 export function drawImageStr( context: CanvasRenderingContext2D ): void {
   if ( logLogicFlow ) {
-    console.log( "Top of drawImageStr() in ImageLib.tsx" );
+    console.log( "Top of drawImageStr() in ImageLib.ts" );
   }
 
   drawUnderlyingCanvas( context );
@@ -197,21 +197,21 @@ export function drawImageStr( context: CanvasRenderingContext2D ): void {
   const opacityPercent = valueToPct( ScoreValueObj.opacityValue );
 
   if ( logLogicFlow ) {
-    console.log( "drawImageStr() in ImageLib.tsx: imageStr.length = '" + imageStr.length + "'" );
+    console.log( "drawImageStr() in ImageLib.ts: imageStr.length = '" + imageStr.length + "'" );
   }
 
   if ( imageStr.length > 0 ) {
     const imageCharArr = imageStr.split( "" );
     let imgStrIdx = 0;
     if ( logLogicFlow ) {
-      console.log( "drawImageStr() in ImageLib.tsx: starting the for loop" );
+      console.log( "drawImageStr() in ImageLib.ts: starting the for loop" );
     }
     for ( let row=0; row < gridSize; row++ ) {
       squareTopY = gridTopY + (row * squareSize);
       for ( let col=0; col < gridSize; col++ ){
         colorLetter = imageCharArr[imgStrIdx++];
-        // console.log( "for loop in drawImageStr() in ImageLib.tsx: imgStrIdx = " + imgStrIdx );
-        // console.log( "for loop in drawImageStr() in ImageLib.tsx: colorLetter = " + colorLetter );
+        // console.log( "for loop in drawImageStr() in ImageLib.ts: imgStrIdx = " + imgStrIdx );
+        // console.log( "for loop in drawImageStr() in ImageLib.ts: colorLetter = " + colorLetter );
         squareTopX = gridTopX + (col * squareSize);
         if ( colorLetter == "B" ) {
           context.fillStyle = "rgba(0, 0, 255, " + opacityPercent.toString() + ")";
@@ -229,11 +229,11 @@ export function drawImageStr( context: CanvasRenderingContext2D ): void {
     }
   } else {
     if ( logLogicFlow ) {
-      console.log( "drawImageStr() in ImageLib.tsx: imageStr is empty, hope that's ok...!" );
+      console.log( "drawImageStr() in ImageLib.ts: imageStr is empty, hope that's ok...!" );
     }
   }
   if ( logLogicFlow ) {
-    console.log( "Exiting drawImageStr() in ImageLib.tsx" );
+    console.log( "Exiting drawImageStr() in ImageLib.ts" );
   }
 }
 
@@ -246,7 +246,7 @@ function valueToPct( value: number ): number {
 // getRandomPrimaryColor: return a random single character, either "B", "G", "R", or "Y"
 function getRandomPrimaryColor(): string {
   // if ( logLogicFlow ) {
-  //   console.log( "getRandomPrimaryColor() in ImageLib.tsx: Top of getRandomPrimaryColor" );
+  //   console.log( "getRandomPrimaryColor() in ImageLib.ts: Top of getRandomPrimaryColor" );
   // }
   const blueVsYellowPercent = valueToPct( ScoreValueObj.blueVsYellowValue );
   const greenVsRedPercent = valueToPct( ScoreValueObj.greenVsRedValue );
