@@ -99,12 +99,12 @@ function FixedContainer() {
     console.log( "Top of FixedContainer() in Create.tsx" );
   }
 
-  const [currentScoreValues, setCurrentScoreValues] = useState( ImageLib.invalidScoreValueArr );
+  const [currentScoreValueArr, setCurrentScoreValueArr] = useState( ImageLib.invalidScoreValueArr );
   const [currentSquareSize, setCurrentSquareSize] = useState( ImageLib.invalidSquareSize );
   const [currentGridSize, setCurrentGridSize] = useState( ImageLib.invalidGridSize );
 
   // handleScoreValueChange: code to run when the user moves a score slider
-  //   Update currentScoreValues to the new slider value and possibly draw a new image
+  //   Update currentScoreValueArr to the new slider value and possibly draw a new image
   function handleScoreValueChange( event: ChangeEvent, col: number ) {
     // if ( ImageLib.logLogicFlow ) {
     //   console.log( "Top of handleScoreValueChange in FixedContainer in Create.tsx" );
@@ -113,9 +113,9 @@ function FixedContainer() {
     if ( ImageLib.logLogicFlow ) {
       console.log( "handleScoreValueChange: slider num " + col.toString() + " = " + scoreValue.toString() );
     }
-    const nextScoreValues = currentScoreValues.slice();
-    nextScoreValues[col] = parseInt( scoreValue );
-    setCurrentScoreValues( nextScoreValues );
+    const nextScoreValueArr = currentScoreValueArr.slice();
+    nextScoreValueArr[col] = parseInt( scoreValue );
+    setCurrentScoreValueArr( nextScoreValueArr );
     // When the value for a slider (other than opacity) changes, we need to draw a new image
     if ( 0 < col ) {
       drawFreshImage = true;
@@ -161,17 +161,17 @@ function FixedContainer() {
 
   // First useEffect: runs once when component is mounted - except when we are in development
   //   Fetches values from local storage, initializing them if they're not set
-  //   Sets the currentScoreValues state variable to values from local storage [or default values]
+  //   Sets the currentScoreValueArr state variable to values from local storage
   useEffect( () => {
     // if ( ImageLib.logLogicFlow ) {
     //   console.log( "Top of first useEffect in FixedContainer in Create.tsx" );
     // }
-    const storedScoreValues = LocalStorageLib.getStoredScoreValueArr();
-    setCurrentScoreValues( storedScoreValues );
-    ImageLib.setScoreValueObj( storedScoreValues );
+    const storedScoreValueArr = LocalStorageLib.getStoredScoreValueArr();
+    setCurrentScoreValueArr( storedScoreValueArr );
+    ImageLib.setScoreValueObj( storedScoreValueArr );
     if ( ImageLib.logLogicFlow ) {
       console.log( "First useEffect: ImageLib.ScoreValueObj.toString() = " + ImageLib.ScoreValueObj.toString() );
-      console.log( "First useEffect in Create.tsx: set currentScoreValues and ImageLib.ScoreValueObj " );
+      console.log( "First useEffect in Create.tsx: set currentScoreValueArr and ImageLib.ScoreValueObj " );
     }
     const storedImageStr = LocalStorageLib.getStoredImageStr();
     if ( storedImageStr.length > ImageLib.gridSize ) {
@@ -199,18 +199,18 @@ function FixedContainer() {
     // NOTE! DO NOT DELETE THE EMPTY DEPENDENCY ARRAY!!  DOING SO CAUSES AN INFINITE LOOP!!!
   }, [] ); // empty dependency array -> this runs just once when the component is mounted
 
-  // useEffect for currentScoreValues: runs when component is mounted AND when the user moves a score value slider
+  // useEffect for currentScoreValueArr: runs when component is mounted AND when the user moves a score value slider
   //   Stores the new slider values and image string in local storage
   useEffect( () => {
     if ( ImageLib.logLogicFlow ) {
-      console.log( "Top of useEffect for currentScoreValues in FixedContainer in Create.tsx" );
-      // console.log( "useEffect for currentScoreValues: currentScoreValues.toString() = " + currentScoreValues.toString() );
+      console.log( "Top of useEffect for currentScoreValueArr in FixedContainer in Create.tsx" );
+      // console.log( "useEffect for currentScoreValueArr: currentScoreValueArr: " + currentScoreValueArr.toString() );
     }
-    const storedScoreValueArrOk = LocalStorageLib.storeScoreValueArr( currentScoreValues );
+    const storedScoreValueArrOk = LocalStorageLib.storeScoreValueArr( currentScoreValueArr );
     let storedImageStrOk = false;
     if ( storedScoreValueArrOk ) {
       if ( ImageLib.logLogicFlow ) {
-        console.log( "useEffect for currentScoreValues in Create.tsx: saved currentScoreValues as scoreValues ok" );
+        console.log( "useEffect for currentScoreValueArr in Create.tsx: saved currentScoreValueArr as scoreValueArr ok" );
       }
       storedImageStrOk = LocalStorageLib.storeImageStr( ImageLib.imageStr );
       if ( ! storedImageStrOk ) {
@@ -219,20 +219,20 @@ function FixedContainer() {
     }
     if ( ImageLib.logLogicFlow ) {
       if ( storedScoreValueArrOk ) {
-        console.log( "useEffect for currentScoreValues in Create.tsx: saved currentScoreValues as scoreValues ok" );
+        console.log( "useEffect for currentScoreValueArr in Create.tsx: saved currentScoreValueArr as scoreValueArr ok" );
         if ( storedImageStrOk ) {
-          console.log( "useEffect for currentScoreValues in Create.tsx: saved ImageLib.imageStr as imageStr ok" );
+          console.log( "useEffect for currentScoreValueArr in Create.tsx: saved ImageLib.imageStr as imageStr ok" );
         } else {
-          console.log( "useEffect for currentScoreValues: DID NOT SAVE ImageLib.imageStr IN LOCAL STORAGE" );
-          console.log( "useEffect for currentScoreValues: set drawFreshImage = true" );
+          console.log( "useEffect for currentScoreValueArr: DID NOT SAVE ImageLib.imageStr IN LOCAL STORAGE" );
+          console.log( "useEffect for currentScoreValueArr: set drawFreshImage = true" );
         }
       } else {
-        console.log( "useEffect for currentScoreValues: DID NOT SAVE currentScoreValues IN LOCAL STORAGE" );
-        console.log( "useEffect for currentScoreValues: DID NOT TRY TO SAVE ImageLib.imageStr IN LOCAL STORAGE" );
+        console.log( "useEffect for currentScoreValueArr: DID NOT SAVE currentScoreValueArr IN LOCAL STORAGE" );
+        console.log( "useEffect for currentScoreValueArr: DID NOT TRY TO SAVE ImageLib.imageStr IN LOCAL STORAGE" );
       }
-      console.log( "Exiting useEffect for currentScoreValues in Create.tsx" );
+      console.log( "Exiting useEffect for currentScoreValueArr in Create.tsx" );
     }
-  }, [currentScoreValues] );
+  }, [currentScoreValueArr] );
 
   // useEffect for currentGridSize: runs when component is mounted AND when the user changes the gridSize
   //   Stores the new, updated gridSize in local storage
@@ -270,7 +270,7 @@ function FixedContainer() {
     }
   }, [currentSquareSize] );
 
-  ImageLib.setScoreValueObj( currentScoreValues );
+  ImageLib.setScoreValueObj( currentScoreValueArr );
 
   // Construct markup for the ScoreSliderCards
   const sliderNumberCols = [];
@@ -279,7 +279,7 @@ function FixedContainer() {
       <div key={col} className="col-md-3">
         <ScoreSliderCard
          sliderNo={col}
-         sliderVal={currentScoreValues[col] ?? ImageLib.initialScoreValue}
+         sliderVal={currentScoreValueArr[col] ?? ImageLib.initialScoreValue}
          onSliderChange={ (event) => handleScoreValueChange(event,col) }
         />
       </div>
@@ -319,10 +319,10 @@ function FixedContainer() {
       </div>
       <div className="row mt-4">
         <FixedSizeImageAndCards
-          opacityValue={currentScoreValues[0] ?? ImageLib.initialScoreValue}
-          blueVsYellowValue={currentScoreValues[1] ?? ImageLib.initialScoreValue}
-          greenVsRedValue={currentScoreValues[2] ?? ImageLib.initialScoreValue}
-          bAndYVsGandRValue={currentScoreValues[3] ?? ImageLib.initialScoreValue} />
+          opacityValue={currentScoreValueArr[0] ?? ImageLib.initialScoreValue}
+          blueVsYellowValue={currentScoreValueArr[1] ?? ImageLib.initialScoreValue}
+          greenVsRedValue={currentScoreValueArr[2] ?? ImageLib.initialScoreValue}
+          bAndYVsGandRValue={currentScoreValueArr[3] ?? ImageLib.initialScoreValue} />
       </div>
     </div>
   )
