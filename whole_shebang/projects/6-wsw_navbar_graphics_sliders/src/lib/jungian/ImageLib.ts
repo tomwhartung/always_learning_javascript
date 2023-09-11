@@ -52,25 +52,25 @@ export const invalidScoreValueArr = [     // Used as "default" value for state v
 ];
 export const minScoreValue = 0;             // Minimum score value
 export const maxScoreValue = 100;           // Maximum score value
-export const scoreValueObj = {
+export const ScoreValueObj = {
   opacityValue: initialScoreValue,
   blueVsYellowValue: initialScoreValue,
   greenVsRedValue: initialScoreValue,
   bAndYVsGandRValue: initialScoreValue,
   toString: function(): string {
     return(
-      "ImageLib.scoreValueObj.opacityValue = " + this.opacityValue + "\n" +
-      "ImageLib.scoreValueObj.blueVsYellowValue = " + this.blueVsYellowValue + "\n" +
-      "ImageLib.scoreValueObj.greenVsRedValue = " + this.greenVsRedValue + "\n" +
-      "ImageLib.scoreValueObj.bAndYVsGandRValue = " + this.bAndYVsGandRValue
+      "ImageLib.ScoreValueObj.opacityValue = " + this.opacityValue + "\n" +
+      "ImageLib.ScoreValueObj.blueVsYellowValue = " + this.blueVsYellowValue + "\n" +
+      "ImageLib.ScoreValueObj.greenVsRedValue = " + this.greenVsRedValue + "\n" +
+      "ImageLib.ScoreValueObj.bAndYVsGandRValue = " + this.bAndYVsGandRValue
     );
   },
 }
 export function setScoreValueObj( newScoreValueArr: number[] ): void {
-  scoreValueObj.opacityValue = newScoreValueArr[0];
-  scoreValueObj.blueVsYellowValue = newScoreValueArr[1];
-  scoreValueObj.greenVsRedValue = newScoreValueArr[2];
-  scoreValueObj.bAndYVsGandRValue = newScoreValueArr[3];
+  ScoreValueObj.opacityValue = newScoreValueArr[0];
+  ScoreValueObj.blueVsYellowValue = newScoreValueArr[1];
+  ScoreValueObj.greenVsRedValue = newScoreValueArr[2];
+  ScoreValueObj.bAndYVsGandRValue = newScoreValueArr[3];
 }
 
 // imageStr: string of characters denoting the color of each square in the image
@@ -194,7 +194,7 @@ export function drawImageStr( context: CanvasRenderingContext2D ): void {
   let squareTopX = gridTopX;
   let squareTopY = gridTopY;
   let colorLetter = "B";
-  const opacityPercent = valueToPct( scoreValueObj.opacityValue );
+  const opacityPercent = valueToPct( ScoreValueObj.opacityValue );
 
   if ( logLogicFlow ) {
     console.log( "drawImageStr() in ImageLib.tsx: imageStr.length = '" + imageStr.length + "'" );
@@ -248,9 +248,9 @@ function getRandomPrimaryColor(): string {
   // if ( logLogicFlow ) {
   //   console.log( "getRandomPrimaryColor() in ImageLib.tsx: Top of getRandomPrimaryColor" );
   // }
-  const blueVsYellowPercent = valueToPct( scoreValueObj.blueVsYellowValue );
-  const greenVsRedPercent = valueToPct( scoreValueObj.greenVsRedValue );
-  const bAndYVsGandRPercent = valueToPct( scoreValueObj.bAndYVsGandRValue );
+  const blueVsYellowPercent = valueToPct( ScoreValueObj.blueVsYellowValue );
+  const greenVsRedPercent = valueToPct( ScoreValueObj.greenVsRedValue );
+  const bAndYVsGandRPercent = valueToPct( ScoreValueObj.bAndYVsGandRValue );
 
   let randomFloat = Math.random();
   let randomColorLetter = colorLetters[4];  // default is INVALID!
