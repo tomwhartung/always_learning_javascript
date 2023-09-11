@@ -7,7 +7,7 @@ import { MDBRange } from 'mdb-react-ui-kit';
 
 import Canvas from '../lib/CanvasLib.tsx';
 import * as ImageLib from '../lib/jungian/ImageLib.ts';
-import * as LocalStorageLib from '../lib/jungian/LocalStorageLib.tsx';
+import * as LocalStorageLib from '../lib/jungian/LocalStorageLib.ts';
 import ScoreSliderCard from '../lib/jungian/ScoreSliderLib.tsx';
 import SquareSizeSlider from '../lib/jungian/SquareSizeSliderLib.tsx';
 
