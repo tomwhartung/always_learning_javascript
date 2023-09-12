@@ -249,7 +249,7 @@ interface JungianItemValues {
 }
 
 // storeJungianItem: sets all of the values in the 'jungian' item in local storage
-function storeJungianItem( newJungianItemValues: JungianItemValues ) {
+function storeJungianItem( newJungianItemValues: JungianItemValues ): void {
   // if ( ImageLib.logLogicFlow ) {
   //   console.log( "Top of storeJungianItem() in lib/jungian/LocalStorageLib.ts" );
   // }
