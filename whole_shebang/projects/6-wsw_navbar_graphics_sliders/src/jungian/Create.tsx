@@ -169,33 +169,36 @@ function FixedContainer() {
     const storedScoreValueArr = LocalStorageLib.getStoredScoreValueArr();
     setCurrentScoreValueArr( storedScoreValueArr );
     ImageLib.setScoreValueObj( storedScoreValueArr );
-    if ( ImageLib.logLogicFlow ) {
-      console.log( "First useEffect: ImageLib.ScoreValueObj.toString() = " + ImageLib.ScoreValueObj.toString() );
-      console.log( "First useEffect in Create.tsx: set currentScoreValueArr and ImageLib.ScoreValueObj " );
-    }
-    const storedImageStr = LocalStorageLib.getStoredImageStr();
-    if ( storedImageStr.length > ImageLib.gridSize ) {
-      ImageLib.setImageStr( storedImageStr );
-    } else {
-      drawFreshImage = true;
-    }
-    if ( ImageLib.logLogicFlow ) {
-      console.log( "First useEffect in Create.tsx: storedImageStr.length = " + storedImageStr.length );
-      if ( storedImageStr.length > ImageLib.gridSize ) {
-        console.log( "First useEffect: set the ImageLib.imageStr to the value from local storage" );
-      } else {
-        console.log( "First useEffect: DID NOT SET ImageLib.imageStr BECAUSE STORED VALUE IS TOO SHORT" );
-        console.log( "First useEffect: set drawFreshImage = true instead" );
-      }
-    }
     ImageLib.setSquareSize( LocalStorageLib.getStoredSquareSize() );
     const gridSize = LocalStorageLib.getStoredGridSize();
     ImageLib.setGridSize( gridSize );
     setCurrentGridSize( gridSize );
     if ( ImageLib.logLogicFlow ) {
-      console.log( "First useEffect in Create.tsx: set squareSize and gridSize in ImageLib" );
-      // console.log( "Exiting first useEffect in FixedContainer in Create.tsx" );
+      console.log( "First useEffect in Create.tsx:\n" + ImageLib.ScoreValueObj.toString() );
+      console.log( "First useEffect: set currentScoreValueArr and ImageLib.ScoreValueObj " );
+      console.log( "First useEffect: also set squareSize and gridSize in ImageLib" );
     }
+    const storedImageStr = LocalStorageLib.getStoredImageStr();
+    if ( storedImageStr === ImageLib.initialImageStr ||
+         storedImageStr === ImageLib.invalidImageStr   ) {
+      drawFreshImage = true;
+    } else {
+      ImageLib.setImageStr( storedImageStr );
+    }
+    if ( ImageLib.logLogicFlow ) {
+      console.log( "First useEffect in Create.tsx: drawFreshImage = " + drawFreshImage );
+      console.log( "First useEffect: storedImageStr.length = " + storedImageStr.length );
+      if ( storedImageStr === ImageLib.initialImageStr ) {
+        console.log( "First useEffect: DID NOT SET ImageLib.imageStr BECAUSE IT MATCHES ImageLib.initialImageStr" );
+      } else if ( storedImageStr === ImageLib.invalidImageStr ) {
+        console.log( "First useEffect: DID NOT SET ImageLib.imageStr BECAUSE IT MATCHES ImageLib.invalidImageStr" );
+      } else {
+        console.log( "First useEffect: set the ImageLib.imageStr to the value from local storage" );
+      }
+    }
+    // if ( ImageLib.logLogicFlow ) {
+    //   console.log( "Exiting first useEffect in FixedContainer in Create.tsx" );
+    // }
     // NOTE! DO NOT DELETE THE EMPTY DEPENDENCY ARRAY!!  DOING SO CAUSES AN INFINITE LOOP!!!
   }, [] ); // empty dependency array -> this runs just once when the component is mounted
 
