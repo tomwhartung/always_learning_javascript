@@ -33,7 +33,7 @@ const draw = (context: CanvasRenderingContext2D) => {
 //     (squareX < 0 && squareY >= ImageLib.gridSize): lower-left corner
 //     (squareX >= ImageLib.gridSize && squareY < 0): upper-right corner
 //     (squareX >= ImageLib.gridSize && squareY >= ImageLib.gridSize): lower-right corner
-function getSquareCoords( pixelX: number, pixelY: number ) {
+function getSquareCoords( pixelX: number, pixelY: number ): number[] {
   let squareX = -1;
   let squareY = -1;
   squareX = Math.floor( ( pixelX - ImageLib.gridTopX ) / ImageLib.squareSize );
@@ -56,7 +56,7 @@ function getSquareCoords( pixelX: number, pixelY: number ) {
   return( [squareX, squareY] );
 }
 // changeSquareAt: change the color of the square at location (squareX, squareY)
-function changeSquareAt( squareX: number, squareY: number, colorIndex: number ) {
+function changeSquareAt( squareX: number, squareY: number, colorIndex: number ): string {
   const charArrIndex = squareX + (squareY * ImageLib.gridSize);
   const colorLetterPicked = ImageLib.colorLetters[colorIndex];
 
@@ -179,7 +179,7 @@ function FixedContainer() {
   const [currentSquareSize, setCurrentSquareSize] = useState( ImageLib.invalidSquareSize );
 
   // handleSquareSizeChange: code to run when the user moves the square size slider
-  function handleSquareSizeChange( event: ChangeEvent<HTMLInputElement> ) {
+  function handleSquareSizeChange( event: ChangeEvent<HTMLInputElement> ): void {
     // if ( ImageLib.logLogicFlow ) {
     //   console.log( "Top of handleSquareSizeChange in Refine.tsx" );
     //   // console.log( "handleSquareSizeChange: event.target.value = " + event.target.value );
@@ -194,7 +194,7 @@ function FixedContainer() {
   }
 
   // handleColorPickerChange: Change the new color used when user clicks on a square
-  function handleColorPickerChange( event: ChangeEvent<HTMLInputElement> ) {
+  function handleColorPickerChange( event: ChangeEvent<HTMLInputElement> ): void {
     // if ( ImageLib.logLogicFlow ) {
     //   console.log( "Top of handleColorPickerChange in Refine.tsx" );
     //   console.log( "handleColorPickerChange: event.currentTarget.value = " + event.currentTarget.value );
@@ -211,7 +211,7 @@ function FixedContainer() {
   }
 
   // handleImageClick: Change the color of the square the user clicks on
-  function handleImageClick(event: React.MouseEvent<HTMLElement>) {
+  function handleImageClick(event: React.MouseEvent<HTMLElement>): void {
     // if ( ImageLib.logLogicFlow ) {
     //   console.log( "Top of handleImageClick() in Refine.tsx" );
     // }
