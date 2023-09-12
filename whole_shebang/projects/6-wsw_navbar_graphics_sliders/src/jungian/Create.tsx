@@ -105,7 +105,7 @@ function FixedContainer() {
 
   // handleScoreValueChange: code to run when the user moves a score slider
   //   Update currentScoreValueArr to the new slider value and possibly draw a new image
-  function handleScoreValueChange( event: ChangeEvent, col: number ) {
+  function handleScoreValueChange( event: ChangeEvent, col: number ): void {
     // if ( ImageLib.logLogicFlow ) {
     //   console.log( "Top of handleScoreValueChange in FixedContainer in Create.tsx" );
     // }
@@ -129,7 +129,7 @@ function FixedContainer() {
   }
 
   // handleGridSizeChange: code to run when user moves the grid size slider
-  function handleGridSizeChange( event: ChangeEvent<HTMLInputElement> ) {
+  function handleGridSizeChange( event: ChangeEvent<HTMLInputElement> ): void {
     // if ( ImageLib.logLogicFlow ) {
     //   console.log( "Top of handleGridSizeChange in Create.tsx" );
     //   // console.log( "handleGridSizeChange: event.target.value = " + event.target.value );
@@ -145,7 +145,7 @@ function FixedContainer() {
   }
 
   // handleSquareSizeChange: code to run when the user moves the square size slider
-  function handleSquareSizeChange( event: ChangeEvent<HTMLInputElement> ) {
+  function handleSquareSizeChange( event: ChangeEvent<HTMLInputElement> ): void {
     // if ( ImageLib.logLogicFlow ) {
     //   console.log( "Top of handleSquareSizeChange in Create.tsx" );
     //   // console.log( "handleSquareSizeChange: event.target.value = " + event.target.value );
