@@ -89,24 +89,26 @@ function DFlexContainer() {
     if ( ImageLib.logLogicFlow ) {
       console.log( "Top of First useEffect in View.tsx" );
     }
-    setCurrentScoreValueArr( LocalStorageLib.getStoredScoreValueArr() );
-    ImageLib.setScoreValueObj( LocalStorageLib.getStoredScoreValueArr() );
-    ImageLib.setImageStr( LocalStorageLib.getStoredImageStr() );
+    const storedScoreValueArr = LocalStorageLib.getStoredScoreValueArr();
+    setCurrentScoreValueArr( storedScoreValueArr );
+    ImageLib.setScoreValueObj( storedScoreValueArr );
     ImageLib.setGridSize( LocalStorageLib.getStoredGridSize() );
+    ImageLib.setImageStr( LocalStorageLib.getStoredImageStr() );
     if ( ImageLib.logLogicFlow ) {
       console.log( "First useEffect in View.tsx:\n" + ImageLib.ScoreValueObj.toString() );
-      console.log( "First useEffect in View.tsx: ImageLib.gridSize = " + ImageLib.gridSize );
-      console.log( "First useEffect in View.tsx: set the ScoreValueObj, imageStr, and gridSize" );
+      console.log( "First useEffect: ImageLib.gridSize = " + ImageLib.gridSize );
+      console.log( "First useEffect: set ScoreValueObj, gridSize, and imageStr" );
       console.log( "Exiting the only useEffect in View.tsx" );
     }
   }, []);
 
-  let createOrRefineMessage = "";
+  let createOrRefineMsg = "";
 
-  if ( ImageLib.imageStr.length === 0 ) {
-    createOrRefineMessage = "Please use the Create option to Create an image before trying to View it.";
+  if ( ImageLib.imageStr === ImageLib.initialImageStr ||
+       ImageLib.imageStr === ImageLib.invalidImageStr   ) {
+    createOrRefineMsg = "Please use the Create option to Create an image before trying to View it.";
   } else {
-    createOrRefineMessage = "You can now use the Refine option to refine your image.";
+    createOrRefineMsg = "You can now use the Refine option to refine your image.";
   }
 
   if ( ImageLib.logLogicFlow ) {
@@ -116,7 +118,7 @@ function DFlexContainer() {
   return (
     <div className="container">
       <div className="row mt-2 d-flex justify-content-center">
-        <h5>{createOrRefineMessage}</h5>
+        <h5>{createOrRefineMsg}</h5>
         <DFlexImageAndSliderValues
           opacityValue={currentScoreValueArr[0] ?? ImageLib.initialScoreValue}
           blueVsYellowValue={currentScoreValueArr[1] ?? ImageLib.initialScoreValue}
