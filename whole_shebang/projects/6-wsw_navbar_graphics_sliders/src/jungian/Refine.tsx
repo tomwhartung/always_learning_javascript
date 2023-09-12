@@ -251,17 +251,20 @@ function FixedContainer() {
     //   console.log( "Top of First useEffect in Refine.tsx" );
     // }
     ImageLib.setScoreValueObj( LocalStorageLib.getStoredScoreValueArr() );
-    setCurrentImageStr( LocalStorageLib.getStoredImageStr() );
-    ImageLib.setImageStr( LocalStorageLib.getStoredImageStr() );
-    if ( ImageLib.imageStr.length === 0 ) {
-      setCurrentStatusMsg( "Please use the Create option to Create an image before trying to Refine it." );
-    }
     ImageLib.setGridSize( LocalStorageLib.getStoredGridSize() );
     const storedSquareSize = LocalStorageLib.getStoredSquareSize();
     setCurrentSquareSize( storedSquareSize );
     ImageLib.setSquareSize( storedSquareSize );
+    const storedImageStr = LocalStorageLib.getStoredImageStr();
+    setCurrentImageStr( storedImageStr );
+    ImageLib.setImageStr( storedImageStr );
+    if ( storedImageStr === ImageLib.initialImageStr ||
+         storedImageStr === ImageLib.invalidImageStr   ) {
+      setCurrentStatusMsg( "Please use the Create option to Create an image before trying to Refine it." );
+    }
     if ( ImageLib.logLogicFlow ) {
-      console.log( "First useEffect in Refine.tsx: updated grid size and square size" );
+      console.log( "First useEffect in Refine.tsx: \n" + ImageLib.ScoreValueObj.toString() );
+      console.log( "First useEffect: set ScoreValueObj, gridSize, squareSize, and imageStr in ImageLib" );
       // console.log( "Exiting First useEffect in Refine.tsx" );
     }
   }, [] );
@@ -277,9 +280,9 @@ function FixedContainer() {
     if ( ImageLib.logLogicFlow ) {
       console.log( "useEffect for currentImageStr in Refine.tsx: currentImageStr.length = " + currentImageStr.length );
       if ( success ) {
-        console.log( "useEffect for currentImageStr in Refine.tsx: stored currentImageStr as jungian.imageStr ok" );
+        console.log( "useEffect for currentImageStr in Refine.tsx: stored currentImageStr in local storage ok" );
       } else {
-        console.log( "useEffect for currentImageStr in Refine.tsx: DID NOT STORE currentImageStr as jungian.imageStr" );
+        console.log( "useEffect for currentImageStr in Refine.tsx: DID NOT STORE currentImageStr in local storage" );
       }
       // console.log( "Exiting useEffect for currentImageStr in Refine.tsx" );
     }
@@ -303,7 +306,7 @@ function FixedContainer() {
     }
   }, [currentSquareSize] );
 
-  ImageLib.setImageStr( currentImageStr );    // updates the displayed image with the latest changes
+  ImageLib.setImageStr( currentImageStr );    // Do not remove!  This needs to be here!!
 
   if ( ImageLib.logLogicFlow ) {
     console.log( "return()ing from FixedContainer() in Refine.tsx" );
