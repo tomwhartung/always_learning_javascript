@@ -1,5 +1,6 @@
 //
 // View.tsx: code for the View option for the Jungian quiz type
+// ============================================================
 //
 import '../App.css'
 
@@ -9,15 +10,15 @@ import Canvas from '../lib/CanvasLib.tsx';
 import * as ImageLib from '../lib/jungian/ImageLib.ts';
 import * as LocalStorageLib from '../lib/jungian/LocalStorageLib.ts';
 
-// NOTE: Setting logLogicFlow to true for one page in effect sets it for all pages
+// NOTE: Setting logLogicFlow to true for one page seems to in effect set it for all pages
 // ImageLib.setLogLogicFlow( false );    // un-comment when everything's ok
 ImageLib.setLogLogicFlow( true );     // un-comment when trying to track down issues
 
 
 // draw: draw the grid of blue, green, red, and yellow squares defined in ImageLib.imageStr
-const draw = (context: CanvasRenderingContext2D) => {
+function draw( context: CanvasRenderingContext2D ): void {
   ImageLib.drawImageStr( context );
-};
+}
 
 // DFlexImageAndSliderValues: function component to display a jungian image
 function DFlexImageAndSliderValues( props:ImageLib.ScoreValueIFace ) {
@@ -74,13 +75,20 @@ function DFlexContainer() {
     console.log( "Top of DFlexContainer() in View.tsx" );
   }
 
-  // Deleting this state variable apparently causes a bug, such that when accessing this page
-  // immediately after reloading the site it displays initial values for the slider values and
-  // grid size even though it has loaded the correct values from local storage.
-  // It looks to me like the DFlexImageAndSliderValues component does not re-render with the
-  // correct values unless it has props dependent on this state variable.  This would explain
-  // why we do not need a state variable or a prop for DFlexImageAndSliderValues to display
-  // the correct value from ImageLib after reloading the site.
+  // In most cases, we use a state variable to hold the dynamic value coming from a control.
+  //
+  // HOWEVER, deleting this state variable apparently causes a bug, such that when accessing this
+  // page immediately after reloading the site, it displays *initial* values for the slider values
+  // and grid size even though it has loaded the *correct* values from local storage.
+  // At this time, it appears that once DFlexImageAndSliderValues has rendered with the default
+  // values it does not re-render once the correct values are available, unless there is a reason
+  // for it to do so, i.e., unless it has props dependent on a state variable.  This would explain
+  // why the only reason we need this state variable is so that it can function as a prop for
+  // DFlexImageAndSliderValues, forcing it to re-render and display the correct values from local
+  // storage and saved in ImageLib, for the first time after reloading the site and hitting this
+  // page, and then *re-rendering* after having a chance to get the values from local storage.
+  //
+  // In other words, don't delete this state variable even though there are no controls for it on the page!
   const [currentScoreValueArr, setCurrentScoreValueArr] = useState( ImageLib.invalidScoreValueArr );
 
   // First useEffect:
@@ -145,3 +153,4 @@ function View() {
 }
 
 export default View
+
