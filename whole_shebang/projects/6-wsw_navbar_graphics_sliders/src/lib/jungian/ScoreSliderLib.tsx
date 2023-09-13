@@ -28,7 +28,7 @@ export function ScoreSliderCard( props: ScoreSliderPropsIFace ) {
 }
 
 // ScoreSlider: Jungian Score-specific wrapper for the MDBRange component
-function ScoreSlider( props: ScoreSliderProps ) {
+function ScoreSlider( props: ScoreSliderPropsIFace ) {
   const sliderOppositeValue = 100 - props.sliderVal;
   const sliderId = "myslider-" + props.sliderNo.toString();
   let sliderLabel = sliderOppositeValue.toString() + "% " +
