@@ -17,9 +17,9 @@ ImageLib.setLogLogicFlow( true );   // un-comment when trying to track down issu
 // ImageLib.setLogLogicFlow( false );   // un-comment when everything's ok
 
 // draw: draw the grid of blue, green, red, and yellow squares defined in ImageLib.imageStr
-const draw = (context: CanvasRenderingContext2D) => {
+function draw( context: CanvasRenderingContext2D ): void {
   ImageLib.drawImageStr( context );
-};
+}
 
 // getSquareCoords: use (pixelX, pixelY) to calculate (squareX, squareY)
 //   To support more efficient code, this function includes the corners with the borders
@@ -50,6 +50,7 @@ function getSquareCoords( pixelX: number, pixelY: number ): number[] {
   }
   return( [squareX, squareY] );
 }
+
 // changeSquareAt: change the color of the square at location (squareX, squareY)
 function changeSquareAt( squareX: number, squareY: number, colorIndex: number ): string {
   const charArrIndex = squareX + (squareY * ImageLib.gridSize);
@@ -217,6 +218,10 @@ function FixedContainer() {
     // if ( ImageLib.logLogicFlow ) {
     //   console.log( "Top of handleImageClick() in Refine.tsx" );
     // }
+    if ( ImageLib.imageStr === ImageLib.initialImageStr ||
+         ImageLib.imageStr === ImageLib.invalidImageStr   ) {
+      return;
+    }
     // getBoundingClientRect: get coords of top-left of image (the target element)
     // rect.left & rect.top: coords of top-left of image (the target element)
     // event.clientX & event.clientY: coords of click relative to top-left of screen
