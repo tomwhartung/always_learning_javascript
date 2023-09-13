@@ -1,17 +1,17 @@
 //
-// src/Canvas.tsx: defines a generic Canvas component
-// --------------------------------------------------
+// src/lib/Canvas.tsx: defines a generic Canvas component
+// ------------------------------------------------------
 //
 import React from 'react';
 
-interface CanvasProps {
+interface CanvasPropsIFace {
   draw:  (context: CanvasRenderingContext2D) => void;
   onClick?: (event: React.MouseEvent<HTMLElement>) => void;
   width: number;
   height: number;
 }
 
-const Canvas = ( { draw, onClick, width, height }: CanvasProps ) => {
+const Canvas = ( { draw, onClick, width, height }: CanvasPropsIFace ) => {
   const canvasRef = React.useRef<HTMLCanvasElement | null>(null);
 
   React.useEffect( () => {
