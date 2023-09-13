@@ -1,15 +1,9 @@
 //
-// ImageLib.ts: types and constants used by the Jungian quiz type
-//
-
-// Constant and Variable Values:
-// -----------------------------
-// In some cases, these include minimal get and set functions to support
-// manipulation *in real time* of some of the values used to draw the images and
-// arrays of initial and invalid values for initializing state and local storage.
-//
+// lib/jungian/ImageLib.ts: identifiers used to draw Jungian quiz type images
+// ==========================================================================
 
 // logLogicFlow: enable turning logging to the console on and off
+// --------------------------------------------------------------
 //   NOTE: Setting logLogicFlow to true for one page in effect sets it for all pages
 //     Or so it seems like it does, sometimes...
 // export let logLogicFlow = false;
@@ -17,14 +11,8 @@ export let logLogicFlow = true;
 export function setLogLogicFlow( value: boolean ): void {
   logLogicFlow = value;
 }
-export function getLogLogicFlow(): boolean {
-  return logLogicFlow;
-}
 // setLogLogicFlow( true );
 
-// Types:
-// ------
-//
 // ScoreValueIFace: giving names to the values that come from the Jungian sliders
 export interface ScoreValueIFace {
   opacityValue: number;           // [0 .. 100]
@@ -34,9 +22,16 @@ export interface ScoreValueIFace {
 }
 
 // Image Parameters: These control how the App creates the image
-// -------------------------------------------------------------
+// =============================================================
+// -> See the README-React_notes.md file for specifics; following is an overview:
+// The app stores each of these under the "jungian" item in local storage
+// Use the set* functions to manipulate these values *in real time*
+//   This works because of judicious use of state variables, event handlers, and useEffect() calls
+// Use the initial values for initializing local storage
+// Use the invalid values for initializing state variables
 //
-// scoreValueArr: Array containing the value of each of the four score sliders
+// *[Ss]coreValue* identifiers: values come from the four sliders on the Create page
+// ---------------------------------------------------------------------------------
 export const initialScoreValue = 50;        // Initial value of each slider before user changes it
 export const initialScoreValueArr = [
   initialScoreValue,
@@ -74,10 +69,13 @@ export function setScoreValueObj( newScoreValueArr: number[] ): void {
   ScoreValueObj.bAndYVsGandRValue = newScoreValueArr[3];
 }
 
-// imageStr: string of characters denoting the color of each square in the image
-//   These go from left to right and from top to bottom
-//     The first letter is the color of the upper-left square
-//     The last letter is the color of the lower-rightt square
+// *[Ii]mageStr identifiers contain a string of characters denoting the color of each square in the image
+// ------------------------------------------------------------------------------------------------------
+//   The characters go from left to right and from top to bottom
+//   - The first letter is the color of the upper-left square
+//   - The last letter is the color of the lower-right square
+// The score values on the Create page determine the original strings
+// Clicking on the image on the Refine page allows for fine-tuning the image one character at a time
 export const initialImageStr = "";
 export const invalidImageStr = "";
 export let imageStr = invalidImageStr;
@@ -85,7 +83,11 @@ export function setImageStr( newImageStr: string ): void {
   imageStr = newImageStr;
 }
 
-// squareSize: number of pixels per square
+// *[Ss]quareSize identifiers contain the number of pixels per square
+// ------------------------------------------------------------------
+// Set this value using a slider on the Create and Refine pages
+// -> This value is irrelevant on the View page, because the image appears in a "d-flex" card
+//    that automatically adjusts its size to the window in which it appears
 export const initialSquareSize = 15;        // Size of each square before user changes it
 export const invalidSquareSize = 0;         // Used as "default" value for state variable
 export const minSquareSize = 1;             // Minimum size of each square
@@ -95,7 +97,9 @@ export function setSquareSize( newSquareSize: number ): void {
   squareSize = newSquareSize;
 }
 
-// gridSize: number of squares per side
+// *[Gg]ridSize identifiers contain the number of squares per side
+// ---------------------------------------------------------------
+// Set this value using a slider on the Create page
 export const initialGridSize = 19;        // Default number of squares in each row and column
 export const invalidGridSize = 0;         // Used as "default" value for state variable
 export const minGridSize = 2;             // Minimum number of squares on each side
@@ -105,24 +109,9 @@ export function setGridSize( newGridSize: number ): void {
   gridSize = newGridSize;
 }
 
-// gridTopX and gridTopY in effect define the width of the image's border
-//  IT WOULD BE NICE if the size of the border would increase gradually with the size of the image
-export const gridTopX = 4;       // X location of top left corner of grid
-export const gridTopY = 4;       // Y location of top left corner of grid
-//  NOT SURE WHY THIS DOESN'T WORK, and not wanting to worry about it right now:
-// export const gridTopX = Math.round( (squareSize * gridSize) / 50 );       // X location of top left corner of grid
-// export const gridTopY = Math.round( (squareSize * gridSize) / 50 );       // Y location of top left corner of grid
-
-export function getCanvasWidth(): number {
-  return ( squareSize * gridSize ) + ( 2 * gridTopX );
-}
-export function getCanvasHeight(): number {
-  return ( squareSize * gridSize ) + ( 2 * gridTopY );
-}
-
 
 // Constant Arrays:
-// ----------------
+// ================
 //
 export const scoreValueNames: readonly string[] = [
   "Opacity",
@@ -150,10 +139,29 @@ export const colorNames: readonly string[] = [
 ];
 
 
-// Functions:
-// ----------
+// Derived Values:
+// ===============
 //
-// createFreshImageStr: Create a new totally random "groja-esque" grid of blue, green, red, and yellow squares
+// gridTopX and gridTopY in effect define the width of the image's border
+//   IT WOULD BE NICE if the size of the border would increase gradually with the size of the image
+// =-> NOT SURE WHY THIS DOESN'T WORK, and not wanting to worry about it right now:
+// export const gridTopX = Math.round( (squareSize * gridSize) / 50 );    // X location of top left corner
+// export const gridTopY = Math.round( (squareSize * gridSize) / 50 );    // Y location of top left corner
+export const gridTopX = 4;       // X location of top left corner of grid
+export const gridTopY = 4;       // Y location of top left corner of grid
+
+export function getCanvasWidth(): number {
+  return ( squareSize * gridSize ) + ( 2 * gridTopX );
+}
+export function getCanvasHeight(): number {
+  return ( squareSize * gridSize ) + ( 2 * gridTopY );
+}
+
+
+// Functions:
+// ==========
+//
+// createFreshImageStr: Create a new random "groja-esque" grid of blue, green, red, and yellow squares
 //   Starts with an empty imageCharArr and adds color letters one-by-one
 //   Returns the imageCharArr as a string
 export function createFreshImageStr(): string {
@@ -183,7 +191,7 @@ export function createFreshImageStr(): string {
   return freshImageStr;
 }
 
-// drawImageStr: Add a "groja-esque" grid of blue, green, red, and yellow squares
+// drawImageStr: Draw a "groja-esque" grid of blue, green, red, and yellow squares
 //   Splits imageStr into an imageCharArr, and draws the squares one-by-one
 export function drawImageStr( context: CanvasRenderingContext2D ): void {
   if ( logLogicFlow ) {
@@ -238,6 +246,11 @@ export function drawImageStr( context: CanvasRenderingContext2D ): void {
   }
 }
 
+
+// "Private" Functions:
+// ====================
+// These functions are *not* exported so are available for internal use *only*
+//
 // valueToPct: convert a slider value [0 - 100] to a percentage of opacity [0.0 - 1.00]
 function valueToPct( value: number ): number {
   const percent = value / 100;
