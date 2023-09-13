@@ -1,5 +1,6 @@
 //
 // Refine.tsx: code for the Refine option for the Jungian quiz type
+// ================================================================
 //
 import '../App.css'
 
@@ -11,15 +12,9 @@ import * as ImageLib from '../lib/jungian/ImageLib.ts';
 import * as LocalStorageLib from '../lib/jungian/LocalStorageLib.ts';
 import SquareSizeSlider from '../lib/jungian/SquareSizeSliderLib.tsx';
 
-// NOTE: Setting logLogicFlow to true for one page in effect sets it for all pages
+// NOTE: Setting logLogicFlow to true for one page seems to in effect set it for all pages
 ImageLib.setLogLogicFlow( true );   // un-comment when trying to track down issues
 // ImageLib.setLogLogicFlow( false );   // un-comment when everything's ok
-
-interface JungianRefineProps {
-  onRadioButtonClick: (event: ChangeEvent<HTMLInputElement>) => void;
-  onImageClick: (event: MouseEvent<HTMLElement>) => void;
-  onSquareSizeChange: (event: ChangeEvent<HTMLInputElement>) => void;
-}
 
 // draw: draw the grid of blue, green, red, and yellow squares defined in ImageLib.imageStr
 const draw = (context: CanvasRenderingContext2D) => {
@@ -72,8 +67,15 @@ function changeSquareAt( squareX: number, squareY: number, colorIndex: number ):
   return newImageStr;
 }
 
+// I like to bundle all the props passed to a component in an interface
+interface RefinePropsIFace {
+  onRadioButtonClick: (event: ChangeEvent<HTMLInputElement>) => void;
+  onImageClick: (event: MouseEvent<HTMLElement>) => void;
+  onSquareSizeChange: (event: ChangeEvent<HTMLInputElement>) => void;
+}
+
 // FixedSizeImageAndCards: function component to display a jungian image
-function FixedSizeImageAndCards( props: JungianRefineProps ) {
+function FixedSizeImageAndCards( props: RefinePropsIFace ) {
   if ( ImageLib.logLogicFlow ) {
     console.log( "Top of FixedSizeImageAndCards() in Refine.tsx" );
   }
