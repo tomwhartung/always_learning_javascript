@@ -1,5 +1,6 @@
 //
 // Create.tsx: code for the Create option for the Jungian quiz type
+// ================================================================
 //
 import '../App.css'
 import { ChangeEvent, useState, useEffect } from 'react';
@@ -11,7 +12,7 @@ import * as LocalStorageLib from '../lib/jungian/LocalStorageLib.ts';
 import ScoreSliderCard from '../lib/jungian/ScoreSliderLib.tsx';
 import SquareSizeSlider from '../lib/jungian/SquareSizeSliderLib.tsx';
 
-// NOTE: Setting logLogicFlow to true for one page in effect sets it for all pages
+// NOTE: Setting logLogicFlow to true for one page seems to in effect set it for all pages
 // ImageLib.setLogLogicFlow( false );    // un-comment when everything's ok
 ImageLib.setLogLogicFlow( true );     // un-comment when trying to track down issues
 
@@ -30,11 +31,11 @@ function draw( context: CanvasRenderingContext2D ): void {
     const freshImageStr = ImageLib.createFreshImageStr();
     ImageLib.setImageStr( freshImageStr );
     LocalStorageLib.storeImageStr( freshImageStr );
-    console.log( "draw(): ImageLib.imageStr.length = " + ImageLib.imageStr.length );
     drawFreshImage = false;
     ImageLib.drawImageStr( context );
     if ( ImageLib.logLogicFlow ) {
       console.log( "draw(): set drawFreshImage = false and ImageLib.imageStr = freshImageStr" );
+      console.log( "draw(): ImageLib.imageStr.length = " + ImageLib.imageStr.length );
     }
   } else if ( ImageLib.imageStr === ImageLib.invalidImageStr ) {
     if ( ImageLib.logLogicFlow ) {
@@ -99,6 +100,8 @@ function FixedContainer() {
     console.log( "Top of FixedContainer() in Create.tsx" );
   }
 
+  // Initializing these state variables with invalid values ensures we do not overwrite
+  // legitimage values in local storage.  For details, see README-React_notes.md .
   const [currentScoreValueArr, setCurrentScoreValueArr] = useState( ImageLib.invalidScoreValueArr );
   const [currentSquareSize, setCurrentSquareSize] = useState( ImageLib.invalidSquareSize );
   const [currentGridSize, setCurrentGridSize] = useState( ImageLib.invalidGridSize );
@@ -160,24 +163,22 @@ function FixedContainer() {
   }
 
   // First useEffect: runs once when component is mounted - except when we are in development
-  //   Fetches values from local storage, initializing them if they're not set
+  //   Fetches scoreValues, imageStr, squareSize, and gridSize from local storage
+  //     If they're not found, the local storage functions initialize them
   //   Sets the currentScoreValueArr state variable to values from local storage
   useEffect( () => {
     // if ( ImageLib.logLogicFlow ) {
     //   console.log( "Top of first useEffect in FixedContainer in Create.tsx" );
     // }
     const storedScoreValueArr = LocalStorageLib.getStoredScoreValueArr();
+    const storedSquareSize = LocalStorageLib.getStoredSquareSize();
+    const storedGridSize = LocalStorageLib.getStoredGridSize();
     setCurrentScoreValueArr( storedScoreValueArr );
+    setCurrentSquareSize( storedSquareSize );
+    setCurrentGridSize( storedGridSize );
     ImageLib.setScoreValueObj( storedScoreValueArr );
     ImageLib.setSquareSize( LocalStorageLib.getStoredSquareSize() );
-    const gridSize = LocalStorageLib.getStoredGridSize();
-    ImageLib.setGridSize( gridSize );
-    setCurrentGridSize( gridSize );
-    if ( ImageLib.logLogicFlow ) {
-      console.log( "First useEffect in Create.tsx:\n" + ImageLib.ScoreValueObj.toString() );
-      console.log( "First useEffect: set currentScoreValueArr and ImageLib.ScoreValueObj " );
-      console.log( "First useEffect: also set squareSize and gridSize in ImageLib" );
-    }
+    ImageLib.setGridSize( storedGridSize );
     const storedImageStr = LocalStorageLib.getStoredImageStr();
     if ( storedImageStr === ImageLib.initialImageStr ||
          storedImageStr === ImageLib.invalidImageStr   ) {
@@ -186,15 +187,19 @@ function FixedContainer() {
       ImageLib.setImageStr( storedImageStr );
     }
     if ( ImageLib.logLogicFlow ) {
-      console.log( "First useEffect in Create.tsx: drawFreshImage = " + drawFreshImage );
+      console.log( "First useEffect in Create.tsx:\n" + ImageLib.ScoreValueObj.toString() );
+      console.log( "First useEffect: set currentScoreValueArr and ImageLib.ScoreValueObj" );
+      console.log( "First useEffect: set currentSquareSize and ImageLib.squareSize" );
+      console.log( "First useEffect: set currentGridSize and ImageLib.gridSize" );
       console.log( "First useEffect: storedImageStr.length = " + storedImageStr.length );
       if ( storedImageStr === ImageLib.initialImageStr ) {
-        console.log( "First useEffect: DID NOT SET ImageLib.imageStr BECAUSE IT MATCHES ImageLib.initialImageStr" );
+        console.log( "First useEffect: DID NOT SET ImageLib.imageStr because it matches ImageLib.initialImageStr" );
       } else if ( storedImageStr === ImageLib.invalidImageStr ) {
-        console.log( "First useEffect: DID NOT SET ImageLib.imageStr BECAUSE IT MATCHES ImageLib.invalidImageStr" );
+        console.log( "First useEffect: DID NOT SET ImageLib.imageStr because it matches ImageLib.invalidImageStr" );
       } else {
         console.log( "First useEffect: set the ImageLib.imageStr to the value from local storage" );
       }
+      console.log( "First useEffect: drawFreshImage = " + drawFreshImage );
     }
     // if ( ImageLib.logLogicFlow ) {
     //   console.log( "Exiting first useEffect in FixedContainer in Create.tsx" );
@@ -212,28 +217,25 @@ function FixedContainer() {
     const storedScoreValueArrOk = LocalStorageLib.storeScoreValueArr( currentScoreValueArr );
     let storedImageStrOk = false;
     if ( storedScoreValueArrOk ) {
-      if ( ImageLib.logLogicFlow ) {
-        console.log( "useEffect for currentScoreValueArr in Create.tsx: saved currentScoreValueArr as scoreValueArr ok" );
-      }
       storedImageStrOk = LocalStorageLib.storeImageStr( ImageLib.imageStr );
       if ( ! storedImageStrOk ) {
-        drawFreshImage = true;
+        drawFreshImage = true;   // If it wasn't stored, it's too short and we need a new imageStr
       }
     }
     if ( ImageLib.logLogicFlow ) {
       if ( storedScoreValueArrOk ) {
-        console.log( "useEffect for currentScoreValueArr in Create.tsx: saved currentScoreValueArr as scoreValueArr ok" );
+        console.log( "useEffect for currentScoreValueArr: stored currentScoreValueArr as scoreValueArr ok" );
         if ( storedImageStrOk ) {
-          console.log( "useEffect for currentScoreValueArr in Create.tsx: saved ImageLib.imageStr as imageStr ok" );
+          console.log( "useEffect for currentScoreValueArr: stored ImageLib.imageStr as imageStr ok" );
         } else {
-          console.log( "useEffect for currentScoreValueArr: DID NOT SAVE ImageLib.imageStr IN LOCAL STORAGE" );
+          console.log( "useEffect for currentScoreValueArr: DID NOT STORE ImageLib.imageStr" );
           console.log( "useEffect for currentScoreValueArr: set drawFreshImage = true" );
         }
       } else {
-        console.log( "useEffect for currentScoreValueArr: DID NOT SAVE currentScoreValueArr IN LOCAL STORAGE" );
-        console.log( "useEffect for currentScoreValueArr: DID NOT TRY TO SAVE ImageLib.imageStr IN LOCAL STORAGE" );
+        console.log( "useEffect for currentScoreValueArr: DID NOT STORE currentScoreValueArr" );
+        console.log( "useEffect for currentScoreValueArr: DID NOT TRY TO STORE ImageLib.imageStr" );
       }
-      console.log( "Exiting useEffect for currentScoreValueArr in Create.tsx" );
+      console.log( "Exiting useEffect for currentScoreValueArr with drawFreshImage = " + drawFreshImage );
     }
   }, [currentScoreValueArr] );
 
@@ -247,9 +249,9 @@ function FixedContainer() {
     if ( ImageLib.logLogicFlow ) {
       console.log( "useEffect for currentGridSize in Create.tsx: currentGridSize = " + currentGridSize );
       if ( success ) {
-        console.log( "useEffect for currentGridSize: saved currentGridSize as gridSize ok" );
+        console.log( "useEffect for currentGridSize: stored currentGridSize as gridSize ok" );
       } else {
-        console.log( "useEffect for currentGridSize: DID NOT SAVE currentGridSize as gridSize" );
+        console.log( "useEffect for currentGridSize: DID NOT STORE currentGridSize as gridSize" );
       }
       // console.log( "Exiting useEffect for currentGridSize in Create.tsx" );
     }
@@ -265,9 +267,9 @@ function FixedContainer() {
     if ( ImageLib.logLogicFlow ) {
       console.log( "useEffect for currentSquareSize in Create.tsx: currentSquareSize = " + currentSquareSize );
       if ( success ) {
-        console.log( "useEffect for currentSquareSize: saved currentSquareSize as squareSize ok" );
+        console.log( "useEffect for currentSquareSize: stored currentSquareSize as squareSize ok" );
       } else {
-        console.log( "useEffect for currentSquareSize: DID NOT SAVE currentSquareSize as squareSize" );
+        console.log( "useEffect for currentSquareSize: DID NOT STORE currentSquareSize as squareSize" );
       }
       // console.log( "Exiting useEffect for currentSquareSize in Create.tsx" );
     }
