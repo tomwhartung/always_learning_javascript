@@ -51,8 +51,11 @@ export function getStoredScoreValueArr(): number[] {
   let scoreValueArr = ImageLib.initialScoreValueArr;
   const jungianItem = getStoredJungianItem();
 
+  // getStoredJungianItem should return initial values; this test is just in case that changes
   if ( jungianItem ) {
     scoreValueArr = jungianItem.scoreValueArr;
+  } else {
+    scoreValueArr = ImageLib.initialScoreValueArr;
   }
 
   if ( ImageLib.logLogicFlow ) {
@@ -108,8 +111,11 @@ export function getStoredImageStr(): string {
   let imageStr = ImageLib.invalidImageStr;
   const jungianItem = getStoredJungianItem( );
 
+  // getStoredJungianItem should return initial values; this test is just in case that changes
   if ( jungianItem ) {
     imageStr = jungianItem.imageStr;
+  } else {
+    imageStr = ImageLib.initialImageStr;
   }
 
   if ( ImageLib.logLogicFlow ) {
@@ -166,8 +172,11 @@ export function getStoredSquareSize(): number {
   let squareSize = ImageLib.initialSquareSize;
   const jungianItem = getStoredJungianItem( );
 
+  // getStoredJungianItem should return initial values; this test is just in case that changes
   if ( jungianItem ) {
     squareSize = jungianItem.squareSize;
+  } else {
+    squareSize = ImageLib.initialSquareSize;
   }
 
   if ( ImageLib.logLogicFlow ) {
@@ -224,8 +233,11 @@ export function getStoredGridSize(): number {
   let gridSize = ImageLib.initialGridSize;
   const jungianItem = getStoredJungianItem( );
 
+  // getStoredJungianItem should return initial values; this test is just in case that changes
   if ( jungianItem ) {
     gridSize = jungianItem.gridSize;
+  } else {
+    gridSize = ImageLib.initialGridSize;
   }
 
   if ( ImageLib.logLogicFlow ) {
@@ -244,7 +256,7 @@ export function getStoredGridSize(): number {
 // ===========================================================
 
 // Interface defining the values saved in local storage
-interface JungianItemValues {
+interface JungianItemIFace {
   imageStr: string;
   scoreValueArr: number[];
   squareSize: number;
@@ -252,7 +264,7 @@ interface JungianItemValues {
 }
 
 // Initial values saved in local storage
-const initialJungianItemValues: JungianItemValues = {
+const initialJungianItemValues: JungianItemIFace = {
   imageStr: ImageLib.initialImageStr,
   scoreValueArr: ImageLib.initialScoreValueArr,
   squareSize: ImageLib.initialSquareSize,
@@ -262,7 +274,7 @@ const initialJungianItemValues: JungianItemValues = {
 // storeJungianItem: sets all of the values in the 'jungian' item in local storage
 // -------------------------------------------------------------------------------
 // It is up to the functions setting the individual values to ensure the new value is valid
-function storeJungianItem( newJungianItemValues: JungianItemValues ): void {
+function storeJungianItem( newJungianItemValues: JungianItemIFace ): void {
   // if ( ImageLib.logLogicFlow ) {
   //   console.log( "Top of storeJungianItem() in lib/jungian/LocalStorageLib.ts" );
   // }
@@ -279,7 +291,7 @@ function storeJungianItem( newJungianItemValues: JungianItemValues ): void {
 // getStoredJungianItem: returns the 'jungian' item from local storage
 // -------------------------------------------------------------------
 // If the item is not found, returns initial values for all parameters
-function getStoredJungianItem(): JungianItemValues {
+function getStoredJungianItem(): JungianItemIFace {
   // if ( ImageLib.logLogicFlow ) {
   //   console.log( "Top of getStoredJungianItem() in lib/jungian/LocalStorageLib.ts" );
   // }
