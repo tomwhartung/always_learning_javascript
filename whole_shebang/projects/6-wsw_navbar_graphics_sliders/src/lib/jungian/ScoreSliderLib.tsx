@@ -1,20 +1,21 @@
 // 
 // lib/jungian/ScoreSliderLib.tsx: types and components used by the Jungian score sliders
+// --------------------------------------------------------------------------------------
 //
 import { ChangeEvent } from 'react';
 import { MDBRange } from 'mdb-react-ui-kit';
 
 import * as ImageLib from './ImageLib.ts';
 
-// ScoreSliderProps: props passed to ScoreSliderCard and ScoreSlider components
-interface ScoreSliderProps {
+// ScoreSliderPropsIFace: defines props passed to ScoreSliderCard and ScoreSlider components
+interface ScoreSliderPropsIFace {
   sliderNo: number;
   onSliderChange: (event: ChangeEvent<Element>) => void;
   sliderVal: number;
 }
 
 // ScoreSliderCard: MDB card wrapping a quiz-specific wrapper of the MDBRange component
-export function ScoreSliderCard( props: ScoreSliderProps ) {
+export function ScoreSliderCard( props: ScoreSliderPropsIFace ) {
   return (
     <div className="card">
       <ScoreSlider
