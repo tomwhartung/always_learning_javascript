@@ -250,9 +250,9 @@ function FixedContainer() {
   }
 
   // First useEffect: runs once when component is mounted - except when we are in development
-  // - Fetches the scoreValueArr from local storage and sets them in ImageLib
-  // - Fetches the imageStr from local storage and sets it in a state variable - FOR NOW???
-  // - If imageStr is empty, set the current status message accordingly
+  // - Fetches the scoreValueArr from local storage and sets the values in ImageLib
+  // - Fetches the imageStr from local storage and sets it in a state variable
+  //   - If imageStr is empty, set the current status message accordingly
   useEffect( () => {
     // if ( ImageLib.logLogicFlow ) {
     //   console.log( "Top of First useEffect in Refine.tsx" );
@@ -260,11 +260,11 @@ function FixedContainer() {
     ImageLib.setScoreValueObj( LocalStorageLib.getStoredScoreValueArr() );
     ImageLib.setGridSize( LocalStorageLib.getStoredGridSize() );
     const storedSquareSize = LocalStorageLib.getStoredSquareSize();
-    setCurrentSquareSize( storedSquareSize );
-    ImageLib.setSquareSize( storedSquareSize );
     const storedImageStr = LocalStorageLib.getStoredImageStr();
-    setCurrentImageStr( storedImageStr );
+    ImageLib.setSquareSize( storedSquareSize );
     ImageLib.setImageStr( storedImageStr );
+    setCurrentSquareSize( storedSquareSize );
+    setCurrentImageStr( storedImageStr );
     if ( storedImageStr === ImageLib.initialImageStr ||
          storedImageStr === ImageLib.invalidImageStr   ) {
       setCurrentStatusMsg( "Please use the Create option to Create an image before trying to Refine it." );
@@ -272,24 +272,26 @@ function FixedContainer() {
     if ( ImageLib.logLogicFlow ) {
       console.log( "First useEffect in Refine.tsx: \n" + ImageLib.ScoreValueObj.toString() );
       console.log( "First useEffect: set ScoreValueObj, gridSize, squareSize, and imageStr in ImageLib" );
+      console.log( "First useEffect: also set the squareSize and imageStr in their state variables" );
       // console.log( "Exiting First useEffect in Refine.tsx" );
     }
   }, [] );
 
-  // useEffect for currentImageStr: runs when component is mounted AND when the user changes the currentImageStr
+  // useEffect for currentImageStr: runs when component is mounted AND when the currentImageStr changes
   //   Stores the new, refined image string in local storage
   useEffect( () => {
     // if ( ImageLib.logLogicFlow ) {
     //   console.log( "Top of useEffect for currentImageStr in Refine.tsx" );
     // }
     const success = LocalStorageLib.storeImageStr( currentImageStr );
-    // ImageLib.setImageStr( currentImageStr );
+    // ImageLib.setImageStr( currentImageStr );    // seems like this should be here, but apparently not
     if ( ImageLib.logLogicFlow ) {
-      console.log( "useEffect for currentImageStr in Refine.tsx: currentImageStr.length = " + currentImageStr.length );
+      const imageStrLen = currentImageStr.length;
+      console.log( "useEffect for currentImageStr in Refine.tsx: currentImageStr.length = " + imageStrLen );
       if ( success ) {
-        console.log( "useEffect for currentImageStr in Refine.tsx: stored currentImageStr in local storage ok" );
+        console.log( "useEffect for currentImageStr: stored currentImageStr as imageStr ok" );
       } else {
-        console.log( "useEffect for currentImageStr in Refine.tsx: DID NOT STORE currentImageStr in local storage" );
+        console.log( "useEffect for currentImageStr: DID NOT STORE currentImageStr as imageStr" );
       }
       // console.log( "Exiting useEffect for currentImageStr in Refine.tsx" );
     }
@@ -305,9 +307,9 @@ function FixedContainer() {
     if ( ImageLib.logLogicFlow ) {
       console.log( "useEffect for currentSquareSize: currentSquareSize = " + currentSquareSize );
       if ( success ) {
-        console.log( "useEffect for currentSquareSize: saved currentSquareSize as squareSize ok" );
+        console.log( "useEffect for currentSquareSize: stored currentSquareSize as squareSize ok" );
       } else {
-        console.log( "useEffect for currentSquareSize: DID NOT SAVE currentSquareSize as squareSize" );
+        console.log( "useEffect for currentSquareSize: DID NOT STORE currentSquareSize as squareSize" );
       }
       // console.log( "Exiting useEffect for currentSquareSize in Refine.tsx" );
     }
