@@ -87,6 +87,20 @@ Cleanup:
             - NO!
         [!] Removing the call from the body of `FixedContainer` causes Refine to not show the image!!
 
+Review:
+  [x] Ensure all functions that are not JSX Components specify the type of their return values
+  [x] Review code and comments in ImageLib for correctness, consistency, and clarity
+  [x] Ensure logic, comments, and console log statements in all functions in LocalStorageLib are correct and consistent
+  [x] Review ScoreSliderLib and SquareSizeSliderLib for consistency and clarity
+  [x] Review code, console.log statements, and comments on all pages for consistency and clarity
+      [x] Create
+      [x] View
+      [x] Refine
+  [x] Check use of testing the length of `ImageLib.imageStr`
+      [x] Maybe check for equality to `ImageLib.initialImageStr` or `ImageLib.invalidImageStr` ???
+  [x] Check the use of the `ScoreValueIFace` type
+      [x] Look for times when it would make sense to use the `ScoreValueIFace` interface
+  [x] Look for times when it would make sense to use a new interface
 
 Add `README-React_notes.md` explaining:
 - [x] Standard process
@@ -95,5 +109,4 @@ Add `README-React_notes.md` explaining:
 - [x] State vs. Local Storage
 - [x] Event Handlers vs. useEffect() calls
 - [ ] Controls and State Variables
-- [ ] 
 
