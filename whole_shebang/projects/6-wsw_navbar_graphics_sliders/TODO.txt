@@ -107,6 +107,7 @@ Add `README-React_notes.md` explaining:
   - [x] User Action -> Event Handler -> State Variable -> `useEffect()` -> local storage
 - [x] Problems encountered and solved
 - [x] State vs. Local Storage
-- [x] Event Handlers vs. useEffect() calls
-- [ ] Controls and State Variables
+- [x] Controls, Event Handlers, and State Variables
+- [x] useEffect() calls
+
 
