@@ -1,13 +1,14 @@
 
 # README-React_notes.md
 
-`README` file containing some notes about the React code in this project.
+This `README` file contains notes about the React code in this project.
 
 # 1. General Notes
 
 ## 1.1. Local Storage
 
-This project saves the values and images in the browser's local storage.
+This project saves the images and the values used to create them in the
+browser's local storage.
 
 - All code using local storage is in `src/lib/jungian/LocalStorageLib.tsx`
 - All functions using local storage have names with the following prefixes:
@@ -22,21 +23,23 @@ following features of React:
 
 - State variables
   - Maintain the current state of controls used to change the image
+  - The names of all state variables begin with the `current` prefix
 - Event handlers
   - Handle changes to these controls
-- useEffect() calls or *"hooks"*
-  - Get and set values in local storage
+  - The names of all event handlers begin with the `handle` prefix
+- `useEffect()` calls or *"hooks"*
+  - Store and get values in local storage
 
 All state variables, event handlers, and `useEffect()` calls are in each page's
 main container, i.e.:
 
-- `FixedContainer` in `src/jungian/Create.tsx`
-- `DFlexContainer` in `src/jungian/View.tsx`
-- `FixedContainer` in `src/jungian/Refine.tsx`
+- The `FixedContainer` component in `src/jungian/Create.tsx`
+- The `DFlexContainer` component in `src/jungian/View.tsx`
+- The `FixedContainer` component in `src/jungian/Refine.tsx`
 
 The remainder of this file explains how this App uses these features.
 
-## 1.3. Standard Process
+## 1.3. Overview of Process
 
 State variables, event handlers, and `useEffect()` calls usually operate as follows:
 
@@ -44,11 +47,12 @@ State variables, event handlers, and `useEffect()` calls usually operate as foll
 - 2. This fires the event handler
 - 3. The event handler updates the corresponding state variable
 - 4. Changing a state variable fires the corresponding `useEffect()` call
-- 5. The `useEffect()` call stores the new value in local storate
+- 5. The `useEffect()` call stores the new value in local storage
+  - An exception occurs when `Create.tsx`'s `draw()` function stores a new `imageStr`
 
-I developed this technique by adding numerous `console.log()` statements to the code and
-watching the console in the Chrome developer tools to see which ones are used and what
-values they display.
+I developed this technique by adding numerous `console.log()` statements to the code
+and watching the console in the Chrome developer tools to see the flow of control
+within the components.
 
 ## 1.4. Fixing Problems
 
@@ -57,7 +61,7 @@ allow me to trace the flow of logic - which is not always straight-forward in Re
 programs - and see the current values of variables.
 
 - A test for `logLogicFlow` surrounds all `console.log()` statements
-- To turn off these `console.log()` statements, set `logLogicFlow` to `false` in *all* source files
+- To suppress this `console.log()` output, set `logLogicFlow` to `false` in *all* source files
 
 Note that many `console.log()` statements are commented-out, enabling them to be easily
 re-activated as necessary.
@@ -71,14 +75,30 @@ During testing I would:
 - 1. Set values on the Create page
 - 2. See the values on the View or Refine page
 - 3. Change the values on the Create page
-- 4. See the *old* values on the View or Refine page
+- 4. Sometimes see the *old* values on the View or Refine page
+  -  In particular, this can happen after reloading the app before visiting View or Refine
 
 As I recall:
 
 - These issues arose *before* I started storing values in local storage
 - I fixed these issues by adding state variables to the View and Refine pages
 
-My memory is a little fuzzy on this, but I *do* remember having the problem!
+Moreover, I re-introduced this bug when trying to remove the `currentScoreValues`
+state variable from the View page.
+
+- The View page has no controls allowing changes to the image
+- I thought that meant I did not need this state variable
+- I reproduced this bug by:
+  - 1. Removing the `currentScoreValues` state variable from the View page
+  - 2. Creating a new image
+  - 3. **Reloading** the app, then immediately visiting the View page
+- This caused the View page to display the `initial*` values, rather than the stored values!
+
+**Note:** this *did not wipe out* the values in local storage, it just caused them to lag.
+
+- I believe the bug was caused by React failing to re-render `DFlexImageAndSliderValues`
+
+For details, see the lengthy comment at the top of `DFlexContainer` in `View.tsx`.
 
 ## 2.2. Default Values Wiping out Values in Local Storage
 
@@ -91,7 +111,7 @@ During testing I would:
 
 This issue was caused by:
 
-- Specifying default values for state variables
+- Specifying *valid* "default" values for state variables
 - React saved these to local storage before the `useEffect()` call would read the saved values
 
 I fixed this issue by:
@@ -100,6 +120,7 @@ I fixed this issue by:
 - Ensuring the local storate functions would *not* save *invalid* values
 - Using the *invalid* values as the "default" for state variables
 - Using the *initial* values when there were no values in local storage
+
 
 # 2. Controls, State Variables, and Event Handlers
 
@@ -126,23 +147,12 @@ The Create page in `Create.tsx` supports using the following controls to create 
 ## 2.2. Controls, State Variables, and Event Handlers in `View.tsx`
 
 The View page in `View.tsx` allows only viewing an image, not changing it.
-Therefore, **the View page does not support any controls for changing the image.**
 
-- Because there are no controls, this page does not contain any event handlers
+- Therefore, **the View page does not support any controls for changing the image.**
 
-This page does, however, contain a state variable - specifically an array of numbers -
-containing the `scoreValues`:
+Because there are no controls, this page does not contain any state variables or event handlers.
 
-- State variable: `currentScoreValues`
+- State variable: *none*
 - Event handler: *none*
-- Local storage item name: `jungian.scoreValues`
-
-Testing and experimentation with the app proves that this state variable is needed so
-that the app can display the correct and current `scoreValue`s.
-
-- I am not sure why the `gridSize` works without a corresponding state variable
-- It may be possible, and even preferred, to use the `useRef` React hook instead of a state variable
-
-**However,** I got the state variable to work ok, and I am more comfortable using that feature than I am
-with using `useRef`, so am sticking with that - for the time being!
+- Local storage item name: *none*
 
