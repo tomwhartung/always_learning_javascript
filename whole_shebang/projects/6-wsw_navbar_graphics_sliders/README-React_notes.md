@@ -200,3 +200,53 @@ The Refine page in `Create.tsx` supports using the following controls to refine 
 
 # 4. `useEffect()` Hooks
 
+The following files contain `useEffect()` calls:
+
+- `src/jungian/Create.tsx`
+- `src/jungian/View.tsx`
+- `src/jungian/Refine.tsx`
+
+Some of these `useEffect()` calls contain several lines of code but actually do very little.
+This is because I like to use `console.log` statements to trace the flow of control
+and see values as they change.
+
+## 4.1. "First `useEffect()`"
+
+The "First `useEffect()`" calls in `Create.tsx`, `View.tsx`, and `Refine.tsx` are fairly similar
+to one another:
+
+- Contains an empty dependency array
+  - This means they are supposed to run only once, when the component mounts
+    - Adding `console.log` statements proves this is not exactly true
+    - For an explanation of this behavior, see:
+      https://react.dev/reference/react/useEffect#my-effect-runs-twice-when-the-component-mounts
+- Reads values from local storage and sets these in:
+  - The `ImageLib` variables
+  - State variables, as appropriate
+
+## 4.2. Subsequent `useEffect()` Calls in `Create.tsx`
+
+The Create page contains the following additional `useEffect()` calls:
+
+- `useEffect()` for `currentScoreValueArr`
+  - Updates local storage with the new `scoreValueArr`
+- `useEffect()` for `currentGridSize`
+  - Updates local storage with the new `gridSize`
+- `useEffect()` for `currentSquareSize`
+  - Updates local storage with the new `squareSize`
+
+## 4.3. Subsequent `useEffect()` Calls in `View.tsx`
+
+The Create page contains *no* additional `useEffect()` calls!
+
+## 4.4. Subsequent `useEffect()` Calls in `Refine.tsx`
+
+The Refine page contains the following additional `useEffect()` calls:
+
+- `useEffect` for `currentImageStr`
+  - Updates local storage with the new `imageStr`
+- `useEffect()` for `currentGridSize`
+  - Updates local storage with the new `gridSize`
+- `useEffect()` for `currentSquareSize`
+  - Updates local storage with the new `squareSize`
+
