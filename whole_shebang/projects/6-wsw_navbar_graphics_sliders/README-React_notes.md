@@ -12,8 +12,8 @@ browser's local storage.
 
 - All code using local storage is in `src/lib/jungian/LocalStorageLib.tsx`
 - All functions using local storage have names with the following prefixes:
-  - Functions that store values are named `store*`, e.g., `storeScoreValues`
-  - Functions that retrieve values are named `getStored*`, e.g., `getStoredScoreValues`
+  - Functions that store values are named `store*`, e.g., `storeImageStr`
+  - Functions that retrieve values are named `getStored*`, e.g., `getStoredImageStr`
 
 ## 1.2. React Features
 
@@ -68,7 +68,36 @@ re-activated as necessary.
 
 # 2. Problems Encountered and Solved
 
-## 2.1. Values Lagging on Different Pages
+## 2.1. Default Values Wiping out Values in Local Storage
+
+### 2.1.1. Symptoms
+
+During testing I would:
+
+- 1. Set values on the Create page
+- 2. See the values on the View and Refine pages, and in local storage
+- 3. Reload the app
+- 4. See the values in local storage reset to their default values
+
+### 2.1.2. Cause
+
+This issue was caused by:
+
+- Specifying *valid* "default" values for state variables
+- React saved these to local storage before the `useEffect()` call would read the saved values
+
+### 2.1.3. Fix
+
+I fixed this issue by:
+
+- Making the distinction between *initial* values and *invalid* values
+- Ensuring the local storate functions would *not* save *invalid* values
+- Using the *invalid* values as the "default" for state variables
+- Using the *initial* values when there were no values in local storage
+
+## 2.2. Values Lagging on Different Pages
+
+### 2.2.1. Symptoms
 
 During testing I would:
 
@@ -78,18 +107,23 @@ During testing I would:
 - 4. Sometimes see the *old* values on the View or Refine page
   -  In particular, this can happen after reloading the app before visiting View or Refine
 
-As I recall:
+### 2.2.2. This Bug Came Back!
 
-- These issues arose *before* I started storing values in local storage
-- I fixed these issues by adding state variables to the View and Refine pages
+As I recall, these issues arose *before* I started storing values in local storage, and
+I fixed them by adding state variables to the View and Refine pages.
 
-Moreover, I re-introduced this bug when trying to remove the `currentScoreValues`
-state variable from the View page.
+The issue was also probably before I added code to the Refine page supporting controls that
+allowed changing the image, which required adding state variables to the page as well.
+
+### 2.2.3. The Definitive Cause
+
+I re-introduced this bug when trying to remove the `currentScoreValueArr` state variable from
+the View page!
 
 - The View page has no controls allowing changes to the image
 - I thought that meant I did not need this state variable
 - I reproduced this bug by:
-  - 1. Removing the `currentScoreValues` state variable from the View page
+  - 1. Removing the `currentScoreValueArr` state variable from the View page
   - 2. Creating a new image
   - 3. **Reloading** the app, then immediately visiting the View page
 - This caused the View page to display the `initial*` values, rather than the stored values!
@@ -98,43 +132,27 @@ state variable from the View page.
 
 - I believe the bug was caused by React failing to re-render `DFlexImageAndSliderValues`
 
+### 2.2.4. The Definitive Fix
+
+I was able to fix the last manifestation of this bug by adding the `currentScoreValueArr`
+state variable back into the the View page's `DFlexContainer` component.
+
 For details, see the lengthy comment at the top of `DFlexContainer` in `View.tsx`.
 
-## 2.2. Default Values Wiping out Values in Local Storage
 
-During testing I would:
-
-- 1. Set values on the Create page
-- 2. See the values on the View and Refine pages, and in local storage
-- 3. Reload the app
-- 4. See the values in local storage reset to their default values
-
-This issue was caused by:
-
-- Specifying *valid* "default" values for state variables
-- React saved these to local storage before the `useEffect()` call would read the saved values
-
-I fixed this issue by:
-
-- Making the distinction between *initial* values and *invalid* values
-- Ensuring the local storate functions would *not* save *invalid* values
-- Using the *invalid* values as the "default" for state variables
-- Using the *initial* values when there were no values in local storage
-
-
-# 2. Controls, State Variables, and Event Handlers
+# 3. Controls, State Variables, and Event Handlers
 
 All state variables have been *"lifted up"* into each page's main container,
 enabling child components to share these values.
 
-## 2.1. Controls, State Variables, and Event Handlers in `Create.tsx`
+## 3.1. Controls, State Variables, and Event Handlers in `Create.tsx`
 
 The Create page in `Create.tsx` supports using the following controls to create an image:
 
 - Four score value sliders:
-  - State variable: `currentScoreValues`
+  - State variable: `currentScoreValueArr`
   - Event handler: `handleScoreValueChange`
-  - Local storage item name: `jungian.scoreValues`
+  - Local storage item name: `jungian.scoreValueArr`
 - Grid size slider:
   - State variable: `currentGridSize`
   - Event handler: `handleGridSizeChange`
@@ -144,15 +162,41 @@ The Create page in `Create.tsx` supports using the following controls to create 
   - Event handler: `handleSquareSizeChange`
   - Local storage item name: `jungian.squareSize`
 
-## 2.2. Controls, State Variables, and Event Handlers in `View.tsx`
+## 3.2. Controls, State Variables, and Event Handlers in `View.tsx`
 
 The View page in `View.tsx` allows only viewing an image, not changing it.
 
-- Therefore, **the View page does not support any controls for changing the image.**
+- However, without a state variable, values on the View page can lag behind their current values
 
-Because there are no controls, this page does not contain any state variables or event handlers.
+Therefore, even though there are no controls, this page contains the `currentScoreValueArr` state variable.
 
-- State variable: *none*
-- Event handler: *none*
-- Local storage item name: *none*
+- No controls:
+  - State variable: `currentScoreValueArr`
+  - Event handler: *none*
+  - Local storage item name: *none*
+    - The View page does not store any items, but it does get their values so it can display them
+
+## 3.3. Controls, State Variables, and Event Handlers in `Refine.tsx`
+
+The Refine page in `Create.tsx` supports using the following controls to refine an image:
+
+- Four color picker radio buttons:
+  - State variables: `currentColorIndex` and `currentImageStr`
+  - Event handler: `handleColorPickerChange`
+  - Local storage item name: None, but ultimately enables changing `jungian.imageStr`
+- Clicking on image:
+  - State variable: `currentImageStr`
+  - Event handler: `handleImageClick`
+  - Local storage item name: `jungian.imageStr`
+- Square size slider:
+  - State variable: `currentSquareSize`
+  - Event handler: `handleSquareSizeChange`
+  - Local storage item name: `jungian.squareSize`
+- Image and color picker:
+  - State variable: `currentStatusMsg`
+  - Event handlers: `handleColorPickerChange` and `handleImageClick`
+  - Local storage item name: *none*
+
+
+# 4. `useEffect()` Hooks
 
