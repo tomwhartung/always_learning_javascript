@@ -1,12 +1,38 @@
 
 # 6-wsw_navbar_graphics_sliders.md
 
-- Commands run in `1-whole_shebang` to initialize a minimal "Hello world"-type project using:
-  - Vite with Reactjs
-  - MDB
-  - TypeScript
-  - ESLint
-- A Navbar that can take us to pages that say "Hello World" in a few different languages
+This file contains the following sections:
+
+- 1. "Commands to Create *"The Whole Shebang"*"
+     - Commands run in `1-whole_shebang` to initialize a minimal "Hello world"-type project using:
+       - Vite with Reactjs
+       - MDB
+       - TypeScript
+       - ESLint
+- 2. "Add MDB Navbars and Hello-world-esque Components"
+     - How to add a Navbar that can take us to pages that say "Hello World" in a few different languages
+     - Covers how to get to what we have in`whole_shebang/projects/4-wsw_navbar`
+- 3. "Rename Languages to Quiz Types"
+     - Detailed steps on how to change the App's entire nature:
+       - Change `AppEn.tsx` to `AppBigFive.tsx`
+       - Change `AppEs.tsx` to `AppJungian.tsx`
+       - Change `AppFr.tsx` to `AppEnneagram.tsx`
+- 4. "Add a Few Basic MDB CSS Classes"
+     - Each `container` *should* have 1+ `row`s, which *should* have 1+ `col`s, which *might* have a `card`
+- 5. "Add Simplistic Graphics"
+- 6. "Add a Sun Signs Option"
+     - a high-level list of steps taken to do this
+- 7. "Add Graphics and Sliders"
+     - "Add the graphics and sliders from the `3-wsw_sliders` project to the Jungian option"
+- 8. "Refactoring"
+     - A set of "Guidelines" for organizing the code better
+- 9. "Splitting up the Two Main Components"
+     - Clean up the code so that:
+       - The fixed-size image is *only* in the `FixedContainer` component in `src/jungian/Create.tsx`
+       - The d-flex image is *only* in the `DFlexContainer` component in `src/jungian/View.tsx`
+# 10. "Utilize Local Storage"
+# 11. "Done?"
+
 
 # 1. Commands to Create *"The Whole Shebang"*
 
@@ -43,7 +69,7 @@ git add whole_shebang/projects/6-wsw_navbar_graphics_sliders/
 git commit -m 'Adding whole_shebang/projects/6-wsw_navbar_graphics_sliders/ , which contains the latest npm versions of the packages needed for this project.'
 ```
 
-# 2. Add MDB Navbars and Test Components
+# 2. Add MDB Navbars and Hello-world-esque Components
 
 We start by copying the Navbars and trivial components used in `whole_shebang/projects/4-wsw_navbar/`.
 
@@ -469,7 +495,7 @@ We may want to make these additional changes, but I see no reason to do so right
 
 As we add the graphics and sliders, we may want to do add some `cols`s and `card`s.
 
-# 5. Add Graphics
+# 5. Add Simplistic Graphics
 
 Add the simplistic graphics from the `2-wsw_graphics` project to the Big 5 and Enneagram options.
 
