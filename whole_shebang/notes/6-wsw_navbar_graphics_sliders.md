@@ -1,6 +1,10 @@
 
 # 6-wsw_navbar_graphics_sliders.md
 
+This is the notes file for the `whole_shebang/projects/6-wsw_navbar_graphics_sliders` project in this directory.
+
+# 0. About This File
+
 This file contains the following sections:
 
 - 1. "Commands to Create *"The Whole Shebang"*"
@@ -30,8 +34,12 @@ This file contains the following sections:
      - Clean up the code so that:
        - The fixed-size image is *only* in the `FixedContainer` component in `src/jungian/Create.tsx`
        - The d-flex image is *only* in the `DFlexContainer` component in `src/jungian/View.tsx`
-# 10. "Utilize Local Storage"
-# 11. "Done?"
+- 10. "Utilize Local Storage"
+      - Covers the initial goal, early frustrations, and the ultimate result
+      - "Spoiler Alert:" for details, see:
+        -  `whole_shebang/projects/6-wsw_navbar_graphics_sliders/README-React_notes.md`
+- 11. "Review"
+- 12. "Done?"
 
 
 # 1. Commands to Create *"The Whole Shebang"*
@@ -167,7 +175,7 @@ git commit -m 'Copied the whole_shebang/projects/4-wsw_navbar/src/App*.tsx files
 
 ## 2.5. Copy the `src/*.css` Files
 
-These files provide some basic styles for the app.
+These files provide some basic styles for the App.
 
 ```
 pwd       # /var/www/always_learning/always_learning_javascript/whole_shebang/projects
@@ -223,7 +231,7 @@ diff 4-wsw_navbar/src/fr 6-wsw_navbar_graphics_sliders/src/fr
 - [x] Run `npm run dev` inside the `6-wsw_navbar_graphics_sliders` directory
 - [x] Check that the `App` is working in the browser
 
-**Note:** at this point, the app should work just like the app in `whole_shebang/projects/4-wsw_navbar`.
+**Note:** at this point, the App should work just like the App in `whole_shebang/projects/4-wsw_navbar`.
 
 
 # 3. Rename Languages to Quiz Types
@@ -560,7 +568,10 @@ The high-level process is:
 
 A detailed process is beyond the scope of this document.
 
+
 # 10. Utilize Local Storage
+
+## 10.1. The Original Goal
 
 The goal is to:
 
@@ -569,17 +580,54 @@ The goal is to:
 - In `src/jungian/View.tsx`, use the data stored in JavaScript local storage to reproduce the image
   - Again, use the interface provided by React to do this
   - This image should be read-only, so deactivate the sliders
-  - We will probably eventually want to use the Score Scales used in seeourminds.com, but don't worry about that right now
+  - We will probably want to use the Score Scales used in seeourminds.com, but don't worry about that right now
 
-## 10.1. Major Frustrations
+## 10.2. Major Frustrations
 
-I tried creating a new file, `whole_shebang/projects/6-wsw_navbar_graphics_sliders/src/JungianPage.tsx`, which contains
-the quiz-specific menu and thus a component that is a parent to the `Create.tsx` page and other pages.
+I tried creating a new file, `whole_shebang/projects/6-wsw_navbar_graphics_sliders/src/JungianPage.tsx`,
+which contains the quiz-specific menu and thus a component that is a parent to the `Create.tsx` page and
+other pages.
 
-The idea was to get the values from localStorage in this parent component and pass them on to `Create.tsx` and other pages,
-as we do with state variables.
+The idea was to get the values from localStorage in this parent component and pass them on to `Create.tsx`
+and other pages, as we do with state variables.
 
 - It's clear that this idea will not work
 - I can see the values in local storage in Chrome's developer tools and in the useEffect call, but ...
 - ... these values somehow get reset to the default values before I can pass them on to the other pages
+
+## 10.3. Final Product
+
+This turned out to be a major effort, and in retrospect I wish I'd done it in a separate project,
+because it required making extensive changes.
+
+Detailing the steps taken to get to the final product is impossible, but while reviewing and refining the code that
+works I documented the current state of the App's use of React in:
+
+- `whole_shebang/projects/6-wsw_navbar_graphics_sliders/README-React_notes.md`
+
+Seriously, that document is much more informative than this one!
+
+
+# 11. Review and Refinement
+
+In getting the App to work the way I wanted it to, I took some guesses and named identifiers on the fly.
+Once I finished I stepped back a bit and made a lot of changes, to remove unnecessary or redundant code
+and try out some identifier naming conventions.
+
+As ideas for improvement came to me while still implementing previous ideas, I started keeping a TODO list.
+That list is now saved for posterity as:
+
+- `whole_shebang/projects/6-wsw_navbar_graphics_sliders/README-List_of_Refinement_TODOs.txt`
+
+Seriously, that document is not really worth much, **the good stuff is in the previously-mentioned:**
+
+- `whole_shebang/projects/6-wsw_navbar_graphics_sliders/README-React_notes.md`
+
+
+# 12. Done, I Hope!
+
+The functionality in this App is really quite close to what I want for the Jungian quiz type in the final App.
+Moreover, these whole_shebang projects are intended to be used as starting points, not as finished products.
+
+- Technically I think we can consider this project to be "completed"!
 
