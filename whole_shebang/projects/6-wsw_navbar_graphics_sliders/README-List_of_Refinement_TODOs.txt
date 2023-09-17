@@ -1,4 +1,8 @@
 
+# README-List_of_Refinement_TODOs.txt
+
+Decided to keep this list of TODOs, which are at this point DONEs, for posterity.
+
 Review code on all pages:
   [x] lib/JungianLib.tsx
     [x] Check for unnecessary code, e.g., console.log statements
@@ -109,5 +113,4 @@ Add `README-React_notes.md` explaining:
 - [x] State vs. Local Storage
 - [x] Controls, Event Handlers, and State Variables
 - [x] useEffect() calls
-
 
