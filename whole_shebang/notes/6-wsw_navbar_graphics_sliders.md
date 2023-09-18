@@ -7,39 +7,39 @@ This is the notes file for the `whole_shebang/projects/6-wsw_navbar_graphics_sli
 
 This file contains the following sections:
 
-- 1. "Commands to Create *"The Whole Shebang"*"
+1. "Commands to Create *"The Whole Shebang"*"
      - Commands run in `1-whole_shebang` to initialize a minimal "Hello world"-type project using:
        - Vite with Reactjs
        - MDB
        - TypeScript
        - ESLint
-- 2. "Add MDB Navbars and Hello-world-esque Components"
+2. "Add MDB Navbars and Hello-world-esque Components"
      - How to add a Navbar that can take us to pages that say "Hello World" in a few different languages
      - Covers how to get to what we have in`whole_shebang/projects/4-wsw_navbar`
-- 3. "Rename Languages to Quiz Types"
+3. "Rename Languages to Quiz Types"
      - Detailed steps on how to change the App's entire nature:
        - Change `AppEn.tsx` to `AppBigFive.tsx`
        - Change `AppEs.tsx` to `AppJungian.tsx`
        - Change `AppFr.tsx` to `AppEnneagram.tsx`
-- 4. "Add a Few Basic MDB CSS Classes"
+4. "Add a Few Basic MDB CSS Classes"
      - Each `container` *should* have 1+ `row`s, which *should* have 1+ `col`s, which *might* have a `card`
-- 5. "Add Simplistic Graphics"
-- 6. "Add a Sun Signs Option"
+5. "Add Simplistic Graphics"
+6. "Add a Sun Signs Option"
      - a high-level list of steps taken to do this
-- 7. "Add Graphics and Sliders"
+7. "Add Graphics and Sliders"
      - "Add the graphics and sliders from the `3-wsw_sliders` project to the Jungian option"
-- 8. "Refactoring"
+8. "Refactoring"
      - A set of "Guidelines" for organizing the code better
-- 9. "Splitting up the Two Main Components"
+9. "Splitting up the Two Main Components"
      - Clean up the code so that:
        - The fixed-size image is *only* in the `FixedContainer` component in `src/jungian/Create.tsx`
        - The d-flex image is *only* in the `DFlexContainer` component in `src/jungian/View.tsx`
-- 10. "Utilize Local Storage"
+10. "Utilize Local Storage"
       - Covers the initial goal, early frustrations, and the ultimate result
       - "Spoiler Alert:" for details, see:
         -  `whole_shebang/projects/6-wsw_navbar_graphics_sliders/README-React_notes.md`
-- 11. "Review"
-- 12. "Done?"
+11. "Review"
+12. "Done?"
 
 
 # 1. Commands to Create *"The Whole Shebang"*
