@@ -135,10 +135,11 @@ the View page!
 
 - The View page has no controls allowing changes to the image
 - I thought that meant I did not need this state variable
-- I reproduced this bug by:
-  1. Removing the `currentScoreValueArr` state variable from the View page
-  2. Creating a new image and thus setting new values in the `scoreValueArr`
-  3. **Reloading** the app, then immediately visiting the View page
+- I reproduced this bug by doing the following:
+
+1. Removing the `currentScoreValueArr` state variable from the View page
+2. Creating a new image and thus setting new values in the `scoreValueArr`
+3. **Reloading** the app, then immediately visiting the View page
 
 This caused the View page to display the `initial*` values, rather than the stored values!
 
